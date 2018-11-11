@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(1000000)
+
 N = int(input())
 X, Y = [], []
 
@@ -37,7 +40,7 @@ def dfs(v, p, d):
 
 dfs(K, -1, 0)
 
-print(cost)
+# print(cost)
 ans = []
 for q in range(Q):
     x, y = list(map(int, input().split()))
