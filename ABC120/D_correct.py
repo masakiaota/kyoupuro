@@ -1,24 +1,37 @@
+import sys
+read = sys.stdin.readline
+
+
 def readln():
-    return list(map(int, input().split()))
+    return list(map(int, read().split()))
 
 
 N, M = readln()
-AB = [readln() for _ in range(M)]
-A = [ab[0] for ab in AB]
-B = [ab[1] for ab in AB]
+A = []
+B = []
+for _ in range(M):
+    a, b = readln()
+    A.append(a-1)
+    B.append(b-1)
+# AB = [readln() for _ in range(M)]
+# A = [ab[0]-1 for ab in AB[::-1]]
+# B = [ab[1]-1 for ab in AB[::-1]]
+A.reverse()
+B.reverse()
 
 
-class union_find:
+class UnionFind:
     def __init__(self, N):
         self.N = N  # ノード数
         # 親ノードをしめす。負は自身が親ということ。
         self.parent = [-1] * N  # idxが各ノードに対応。
 
     def root(self, A):
+        # print(A)
         # ノード番号を受け取って一番上の親ノードの番号を帰す
         if (self.parent[A] < 0):
             return A
-        self.parent[A] = self.root(A)  # 経由したノードすべての親を上書き
+        self.parent[A] = self.root(self.parent[A])  # 経由したノードすべての親を上書き
         return self.parent[A]
 
     def size(self, A):
@@ -46,4 +59,14 @@ class union_find:
         return True
 
 
-ans = []
+ans = [N * (N - 1) // 2]
+uni = UnionFind(N)
+for a, b in zip(A, B):
+    if uni.root(a) == uni.root(b):
+        ans.append(ans[-1])
+    else:
+        ans.append(ans[-1] - uni.size(a) * uni.size(b))
+        uni.concat(a, b)
+
+for a in ans[-2::-1]:
+    print(a)
