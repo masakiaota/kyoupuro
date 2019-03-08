@@ -2,6 +2,36 @@
 
 放置気味になる気もするが
 
+### コピペ用
+```python
+def readln():
+    return list(map(int, input().split()))
+
+#入力が10**5とかになったときに100ms程度早い
+import sys
+read = sys.stdin.readline
+
+def readln():
+    return list(map(int, read().split()))
+
+
+# A列、B列が与えられるようなとき
+AB = [readln() for _ in range(M)]
+A = [ab[0] for ab in AB]
+B = [ab[1] for ab in AB]
+#こういう風にスマートに内包表記を書くよりも
+A = []
+B = []
+for _ in range(M):
+    a, b = readln()
+    A.append(a)
+    B.append(b)
+#愚直にappendしていったほうがかすかに早い
+
+```
+
+その他コピペで便利そうなアルゴリズムは`algorithm/`に保存してある。
+
 ### 難
 
 #### BeginnersSelectioin/novice
@@ -30,6 +60,9 @@
 - C問題 ... 全探索にすぐ気づいたにもかかわらず、時間切れで解けなかった悔しい問題。どう探索したらバグが少なく済みそうか、楽に実装できそうか考えないで実装し始めて時間内にバグ取りが終わらないなんてほんとアホだよお前は。コンテストへの汎化能力を得るためにC_correct.pyでは深さ優先探索を用いている。深さ優先探索の際には参考になるだろう。
 
 - D問題 ... 正直C問題より簡単だが、初めて二分探索を使ったのでコンテストで類問が出たときに使えるようにしておこう。 pythonではbisectを使うと良い。また大量に入力があるときはsys.stdin.readlineを用いると若干高速化される。
+
+#### ABC120
+- D問題 ... まさにアルゴリズム力が不足してるがために解けなかった問題。ノードのまとまりを管理する系の問題はUnionFindと覚えよう。
 
 
 
