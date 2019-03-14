@@ -28,6 +28,9 @@ for _ in range(M):
     B.append(b)
 #愚直にappendしていったほうがかすかに早い
 
+#再帰の上限を緩和する(引数は適当)
+import sys
+sys.setrecursionlimit(1 << 25)
 ```
 
 その他コピペで便利そうなアルゴリズムは`algorithm/`に保存してある。
