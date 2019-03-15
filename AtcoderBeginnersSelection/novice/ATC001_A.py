@@ -30,7 +30,7 @@ is_visited = [[False for _ in range(W)] for _ in range(H)]
 # 再帰関数によるdfsの実装
 # 到達できたらTrueを返すようにする
 # 行けないマスに関してはreturn Falseですぐさま終了
-# goalの場合はTrueを返し、Trueを保持したまま再　帰が帰ってくるようにする。
+# goalの場合はTrueを返し、Trueを保持したまま再帰が帰ってくるようにする。
 def dfs(i, j):
     # スコア等を引数に入れていくと便利なときもある
     if not (0 <= i < H) or not (0 <= j < W):
@@ -45,10 +45,12 @@ def dfs(i, j):
         return True
     # 4方向の再起探索
     for di, dj in mv:
-        flg = dfs(i+di, j+dj)
+        flg = dfs(i + di, j + dj)
         if flg:
             # trueが帰ってきたら再起のために返す
             return True
+    # Trueを返さなかった場合はgにたどり着かなかったということなので、falseを返す
+    return False
 
 
 if dfs(*start):
