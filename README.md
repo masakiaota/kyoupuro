@@ -31,6 +31,14 @@ for _ in range(M):
 #再帰の上限を緩和する(引数は適当)
 import sys
 sys.setrecursionlimit(1 << 25)
+
+#デフォルト値を持つ辞書
+from collections import defaultdict
+dic = defaultdict(lambda: 0)
+
+#要素の数え上げ(文字数の数え上げに便利
+from collections import Counter
+dic = Counter(なんかの配列)
 ```
 
 その他コピペで便利そうなアルゴリズムは`algorithm/`に保存してある。
