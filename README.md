@@ -39,6 +39,12 @@ dic = defaultdict(lambda: 0)
 #要素の数え上げ(文字数の数え上げに便利
 from collections import Counter
 dic = Counter(なんかの配列)
+
+#1次元累積和
+from itertools import accumulate
+A=list(range(10)) #なんからのリスト
+A_accum=list(accumelate(A)) #Aの累積和のリストがこれでできる
+
 ```
 
 その他コピペで便利そうなアルゴリズムは`algorithm/`に保存してある。
