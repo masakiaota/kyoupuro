@@ -84,8 +84,10 @@ A_accum=list(accumelate(A)) #Aの累積和のリストがこれでできる
 - [ビット全探索](https://github.com/masakiaota/kyoupuro/blob/master/AtcoderBeginnersSelection/novice/ABC045_C.py)
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
 
-### 難
+- [priority queue (コピペ用)](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/PriorityQueue.py)
+  - [実際に使われた問題](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC123/D_correct5.py)
 
+### 難
 #### BeginnersSelectioin/novice
 - ABC045_C問題 ... ビット全探索。考え方は難しくないが、ビット全探索という操作の書き方はなれておくと便利そう。また文字列をpythonスクリプトとして実行することもしたので必要になったときは見るべし。
 
@@ -120,8 +122,6 @@ A_accum=list(accumelate(A)) #Aの累積和のリストがこれでできる
 - D問題 ... DP力不足。小さい状態から大きい状態が決まる系の問題はDPを疑う癖をつけよう。補集合とO(1)解法にこだわっていたのも良くない。D_correctは初期化がテクニカルでDPも多次元だが、よく考えればそんなに難しくはないので復習しよう。
 
 #### ABC123
-- D問題 ... 全探索の計算量をいかに削減するかが重要な問題。制約条件から気が付きたい。
-
-
+- D問題 ... 全探索の計算量をいかに削減するかが重要な問題。制約条件から気が付きたい。またヒープを使う爆速なやり方もあり、ヒープを使う場合は確認しておくたい。上位k位が気になるというのはだいたいヒープを使えば良いことが多い。
 
 
