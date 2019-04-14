@@ -1,5 +1,5 @@
 # 良さげだけどバグが取れない！！！！
-
+# とれた...
 
 import sys
 read = sys.stdin.readline
@@ -45,38 +45,56 @@ def read_col(H, n_cols):
 
 
 N, K = read_ints()
-S = '1' + read()
+S = read()[:-1]
 sum_0 = [0]
-
-for s_new, s_next in zip(S[:-2], S[1:-1]):
-    # print(s_new, s_next)
-    if s_new == '1' and s_next == '0':
+# 0のブロックの累積和を作成する
+#  1 1 0 1 0 0 1だったら
+# 0 0 0 1 1 2 2 2みたいな
+now = '1'
+for s_next in S:
+    if s_next == '0' and now == '1':
         sum_0.append(sum_0[-1] + 1)
     else:
         sum_0.append(sum_0[-1])
+    now = s_next
 
-S = S[1:-1]
-print(sum_0)
+sum_0_2 = [0]
+#  1 1 0 1 0 0 1だったら
+# 0 0 0 1 1 1 2 2みたいな
+# もし0で終わっていたら後ろに追加する。
+for s_now, s_next in zip(S[:-1], S[1:]):
+    if s_next == '1' and s_now == '0':
+        sum_0_2.append(sum_0_2[-1] + 1)
+    else:
+        sum_0_2.append(sum_0_2[-1])
 
-left = 0  # 左端初期値
+if S[-1] == '0':
+    sum_0_2.append(sum_0_2[-1] + 1)
+else:
+    sum_0_2.append(sum_0_2[-1])
+
+# print(S)
+# print(sum_0)
+# print(sum_0_2)
+
+# [left,right)で考える
+left = 0
+right = 1
 ans = 1  # 解初期値
-right = 0
 
 # right-leftが答え
 # sum_0[right]-sum0[left]がKを超えたらleftを進める
 # print(sum_0)
 # しゃくとり法で溶けそうでは？
-for left in range(N-1):
-    while (True):
-        if right == N-1:
+for left in range(N - 1):
+    while right < N:
+        nextright = right+1
+        # ここにバグの原因がここにあった。半端な00..00の途中から半端な00..00の途中までの引き算は正しく行われない
+        if sum_0[nextright] - sum_0_2[left] > K:
             break
         right += 1
-        if sum_0[right + 1] - sum_0[left] > K:
-            right -= 1
-            break
-
-    # print(left, right)
-    ans = max(ans, right - left+1)  # 大きい方に更新
-    # print(ans)
+    print(right, right < N)
+    ans = max(ans, right - left)  # 大きい方に更新
+    print(left, right, ans, sum_0[nextright] - sum_0_2[left])
 
 print(ans)
