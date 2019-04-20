@@ -82,6 +82,7 @@ for i in range(3):
 for i in range(N - 1):
 
     for j in range(3):
-        dp[i+1][j] = max([dp[i][k] + ABC[i+1][j] for k in range(3) if k != j])
+        dp[i + 1][j] = max([dp[i][k] + ABC[i + 1][j]
+                            for k in range(3) if k != j])
 
 print(int(max(dp[-1])))
