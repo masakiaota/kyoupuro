@@ -2,6 +2,7 @@
 ===
 
 ### コピペ用
+テンプレ
 ```python
 #入力が10**5とかになったときに100ms程度早い
 import sys
@@ -40,8 +41,10 @@ def read_col(H,n_cols):
             ret[col].append(tmp[col])
     
     return ret
+```
 
 
+```python
 # A列、B列が与えられるようなとき
 AB = [readln() for _ in range(M)]
 A = [ab[0] for ab in AB]
