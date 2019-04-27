@@ -39,3 +39,40 @@ def read_col(H, n_cols):
             ret[col].append(tmp[col])
 
     return ret
+
+
+N, K = read_ints()
+W, V = read_col(N, 2)
+
+import numpy as np
+# 流れ
+# dpテーブルのサイズを決める
+#     (N,max(V)*N)
+# dpテーブルの初期化
+# dpテーブルの更新
+#     いままでと同じ
+#     sum_v以上を達成すhるように選んだときのsum_wの最小値を保持する
+# 答えの抽出
+# dpでW以下かつ最大価値が最大(sum_v)なものが答え
+
+
+dp = np.full((N+1, np.max(V) * N+1), float('inf'))
+# dp[:, 0] = 0
+dp[0][0] = 0
+
+from itertools import product
+
+for i, sum_v in product(range(N), range(np.max(V) * N+1)):
+    if sum_v - V[i] < 0:
+        dp[i + 1, sum_v] = dp[i, sum_v]
+    else:
+        # print(i, sum_v)
+        dp[i + 1, sum_v] = min(
+            dp[i, sum_v],
+            dp[i, sum_v-V[i]]+W[i]
+        )
+
+# print(dp)
+print(np.where((dp <= K).sum(axis=0) != 0)[0].max())
+# print(max(np.where((dp < K).sum(axis=0) != 0)))
+# print(max(np.where((dp < K).sum(axis=0) != 0)))
