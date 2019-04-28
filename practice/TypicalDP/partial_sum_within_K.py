@@ -1,5 +1,4 @@
-# https://qiita.com/drken/items/a5e6fe22863b7992efdb#問題-5最小個数部分和問題
-
+# 問題 https://qiita.com/drken/items/a5e6fe22863b7992efdb#問題-6k個以内部分和問題
 # 入力が10**5とかになったときに100ms程度早い
 import sys
 read = sys.stdin.readline
@@ -45,13 +44,14 @@ def read_col(H, n_cols):
 
 
 N = read_a_int()
+K = read_a_int()
 a = read_ints()
 A = read_a_int()
 
 import numpy as np
 
 dp = np.full((N + 1, A + 1), float('inf'))
-# dp[i,j]にはa[:i]まで考慮したときjを作るために必要な数の最小の個数。
+#
 
 dp[0, 0] = 0
 from itertools import product
@@ -63,7 +63,8 @@ for i, j in product(range(N), range(A + 1)):
 
 
 ans = dp[-1, -1]
-if ans == float('inf'):
-    print(-1)
+
+if ans <= K:
+    print('YES')
 else:
-    print(int(ans))
+    print('NO')
