@@ -89,12 +89,12 @@ from fractions import gcd
 その他コピペで便利そうなアルゴリズムは`algorithm/`に保存してある。
 
 ### 手法実装例へのリンク
-- [深さ優先探索](https://github.com/masakiaota/kyoupuro/blob/master/AtcoderBeginnersSelection/novice/ARC031_B.py)
-  - [深さ優先探索を用いた閉路判定](https://github.com/masakiaota/kyoupuro/blob/master/AtcoderBeginnersSelection/novice/ARC037_B.py)
+- [深さ優先探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC031_B.py)
+  - [深さ優先探索を用いた閉路判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC037_B.py)
 - [幅優先探索]( https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BFS.py )
 - [UnionFind木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/UnionFind.py)
   - [具体的に問題でつかってのはこれ](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC120/D_correct.py)
-- [ビット全探索](https://github.com/masakiaota/kyoupuro/blob/master/AtcoderBeginnersSelection/novice/ABC045_C.py)
+- [ビット全探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ABC045_C.py)
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
 
 - [priority queue (コピペ用)](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/PriorityQueue.py)
