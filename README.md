@@ -25,7 +25,7 @@ def read_map(H):
     H is number of rows
     文字列で与えられた盤面を読み取る用
     '''
-    return [read() for _ in range(H)]
+    return [read()[:-1] for _ in range(H)]
 
 def read_col(H,n_cols):
     '''
