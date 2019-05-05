@@ -84,6 +84,12 @@ A_accum=[0]+list(accumelate(A))
 from fractions import gcd
 #gcd(0,3)とか3と答える便利な性質がある。3だけの場合の最大公約数(つまり3)を求めることができるということ.
 
+# i番目の要素でソート
+# hoge=[(1,4),(2,3),(3,2),(4,1)]みたいなやつを`1`番目の要素でソートしたい
+from operator import itemgetter
+hoge.sort(key=itemgetter(1))
+# [(4, 1), (3, 2), (2, 3), (1, 4)]
+
 ```
 
 その他コピペで便利そうなアルゴリズムは`algorithm/`に保存してある。
