@@ -23,7 +23,7 @@ def read_map(H, W):
     H is number of rows
     文字列で与えられた盤面を読み取る用
     '''
-    return [read()[:-1] for _ in range(H)]
+    return [input() for _ in range(H)]
 
 
 def read_col(H, n_cols):
@@ -45,17 +45,15 @@ def read_col(H, n_cols):
 H, W = read_ints()
 A = read_map(H, W)
 
-
-# print(A)
-
-from itertools import product
-
-
-# 開始地点
+# 黒の座標
+end = []
+# 白の座標
 start = []
 for i, a in enumerate(A):
     for j, aa in enumerate(a):
         if aa == '#':
+            end.append((i, j))
+        else:
             start.append((i, j))
 
 
@@ -64,22 +62,11 @@ def mahattan(sy, sx, ey, ex):
 
 
 ans = 0
-# for i, j in product(range(H), range(W)):
-#     if A[i][j] == '.':
-#         tmp = 10000
-#         for ey, ex in start:
-#             tmp = min(tmp, mahattan(i, j, ey, ex))
-#         ans = max(ans, tmp)
 
-for i in range(H):
-    for j in range(W):
-        if A[i][j] == '#':
-            break
-            # 1行下の方が有利
-        if A[i][j] == '.':
-            tmp = 10000
-            for ey, ex in start:
-                tmp = min(tmp, mahattan(i, j, ey, ex))
-            ans = max(ans, tmp)
+for i, j in start:
+    tmp = 10000
+    for ey, ex in end:
+        tmp = min(tmp, mahattan(i, j, ey, ex))
+    ans = max(ans, tmp)
 
 print(ans)
