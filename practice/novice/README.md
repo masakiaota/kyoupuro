@@ -39,3 +39,6 @@ https://qiita.com/drken/items/e77685614f3c6bf86f44
 
 - KUPC2015_A
 - ABC103_D
+
+#### 辞書順最小
+- ABC076_C
