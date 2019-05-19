@@ -58,6 +58,15 @@ for _ in range(M):
     B.append(b)
 #愚直にappendしていったほうがかすかに早い
 
+# グラフ構造が与えられたとき
+from collections import defaultdict
+node = defaultdict(set)  # キーで指定したノードが隣接するノードを記録しておく。
+for _ in range(与えられる列数):
+    u, v, w = read_ints() # assume 2 node idx and edge weight are given
+    node[v-1].add((u-1, w))
+    node[u-1].add((v-1, w))
+
+
 #再帰の上限を緩和する(引数は適当)
 import sys
 sys.setrecursionlimit(1 << 25)
