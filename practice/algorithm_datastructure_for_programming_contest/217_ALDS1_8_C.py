@@ -74,8 +74,109 @@ def find(T, ROOT, k):
     return x
 
 
-def delete_node(T, ROOT, z):
-    raise NotImplementedError()
+def delete_node(T, z):
+    # case1 指定したzが子を持たない場合
+    parent = T[z].parent
+    if (T[z].left is None) and (T[z].right is None):
+        # そのノードを削除する
+        if T[parent].left == z:
+            T[parent].left = None
+        elif T[parent].right == z:
+            T[parent].right = None
+        else:
+            raise ValueError('something wrong in case 1')
+        del T[z]
+    # case2 指定したzが一つの子を保つ場合
+    elif T[z].right is None:
+        # 左だけある場合、左の子ノードを親につなぐ
+        # 親の左右のどちらにつなぐかはzのつながり方に依存する
+        z_is_left = True if T[parent].left == z else False
+        child = T[z].left
+        if z_is_left:
+            T[parent].left = child
+        else:
+            T[parent].right = child
+        T[child].parent = parent
+        del T[z]
+    elif T[z].left is None:
+        # ROOTが片方の部分木しかない場合でROOTを削除しようとするコーナーケースに実は引っかかるはず(実は嘘解法)
+        z_is_left = True if T[parent].left == z else False
+        child = T[z].right
+        if z_is_left:
+            T[parent].left = child
+        else:
+            T[parent].right = child
+        T[child].parent = parent
+        del T[z]
+    # case3 zが2つの子を保つ場合
+    elif (T[z].left is not None) and (T[z].right is not None):
+        # これに関しては本での解説に少し補足する
+        left, right = T[z].left, T[z].right
+        node_next_more = get_min_in_descendants(
+            T, T[z].right)  # 指定したノードの子孫の中で一番小さいノードを返す #ここが問題だ node_next_moreがrightと一致するときにparentとかの代入がいろいろおかしくなる
+        next_more_right = T[node_next_more].right
+        next_more_parent = T[node_next_more].parent
+        # zがROOTだったら
+        if parent is None:
+            if node_next_more == right:
+                # node_next_more==rightとなるような場合
+                T[right].parent = None
+                T[right].left = left
+                ROOT = right
+                del T[z]
+                return
+            else:
+                # node_next_moreがもっと下流にある場合
+                # zの子と親との接続
+                T[node_next_more].left = left
+                T[node_next_more].right = right
+                T[node_next_more].parent = None
+                T[left].parent = node_next_more  # zの左側の接続
+                T[right].parent = node_next_more  # zの右側の接続
+                # node_next_moreの親 → node_next_more右子の接続 (node_next_moreの親からみると左に接続される)
+                if next_more_right is not None:
+                    T[next_more_right].parent = next_more_parent
+                ROOT = node_next_more
+                del T[z]
+                return
+        else:  # zが非ROOT
+            # zが親からみてどっち側についているか
+            z_is_left = True if T[parent].left == z else False
+            if node_next_more == right:
+                if z_is_left:
+                    T[parent].left = right
+                else:
+                    T[parent].right = right
+                T[right].parent = parent
+                T[right].left = left
+                del T[z]
+                return
+            else:  # 以下が多分もっとも一般的な場合
+                # zの親->next_moreとの接続
+                if z_is_left:
+                    T[parent].left = node_next_more
+                else:
+                    T[parent].right = node_next_more
+                # next_more -> zの子との接続
+                T[node_next_more].left = T[z].left
+                T[node_next_more].right = T[z].right
+                T[node_next_more].parent = parent
+                T[left].parent = node_next_more  # zの左側の接続
+                T[right].parent = node_next_more  # zの左側の接続
+                # node_next_moreの親 → node_next_more右子の接続 (node_next_moreの親からみると左に接続される)
+                T[next_more_parent].left = next_more_right
+                if next_more_right is not None:
+                    T[next_more_right].parent = next_more_parent
+
+                del T[z]
+                return
+
+
+def get_min_in_descendants(T, z):
+    x = z
+    while T[x].left is not None:
+        x = T[x].left
+    return x
 
 
 def print_result(T):
@@ -84,6 +185,7 @@ def print_result(T):
     pre_parse(T, ROOT, pre_ls)
     print('', *in_ls)
     print('', *pre_ls)
+
 
     # データの読み込み
 N = int(input())
@@ -103,3 +205,6 @@ for i in range(N):
             print('no')
         else:
             print('yes')
+    elif tmp.startswith('delete'):
+        z = int(tmp.split()[1])
+        delete_node(T, z)
