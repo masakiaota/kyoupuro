@@ -1,4 +1,4 @@
-# https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/8/ALDS1_8_A
+# https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/8/ALDS1_8_C
 # 次への伏線みたいなもの
 # ここらへんはもうひたすら実装するだけ
 import sys
