@@ -151,7 +151,7 @@ def delete_node(T, z):
                 T[right].left = left
                 del T[z]
                 return
-            else:  # 以下が多分もっとも一般的な場合
+            else:  # 以下が多分もっとも一般的な場合 #写真で説明したのはこれを想定して説明している
                 # zの親->next_moreとの接続
                 if z_is_left:
                     T[parent].left = node_next_more
