@@ -11,7 +11,7 @@ class UnionFind:
         self.N = N  # ノード数
         # 親ノードをしめす。負は自身が親ということ。
         self.parent = [-1] * N  # idxが各ノードに対応。
-        # rankは親ノードの負の数の大きさに対応している
+        # 本で言うrankはこの実装では扱っていない。
 
     def root(self, A):  # 本で言うfindset
         # print(A)
