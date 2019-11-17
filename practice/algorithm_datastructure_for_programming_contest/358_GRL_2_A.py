@@ -1,9 +1,9 @@
-# https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_A
-# AtCoderの解説がわかりやすい https://youtu.be/zV3Ul2pA2Fw?t=1425
-# この解説を見た上で本を読むとより理解が深まる
-
-# 本とはやや違う実装だがこちらのほうがスマート(だとおもってる)
-# あとで自分の解説を書き直し
+# https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A
+# 最小全域木、またお前か(プリムのアルゴリズムでできるやつ)
+# ここではクラスカルのアルゴリズムを用いて解く。
+# アイデアとしては辺の重みの小さい順にgreedyにノード同士をつないでいけば、必ず最小全域木になるでしょうというもの
+# ただし木とならないような辺は省かなければ行けない。
+# 辺を追加する際に木であることを崩さないように効率よく判定するのにunion-find木を使っている
 
 
 class UnionFind:
@@ -21,7 +21,7 @@ class UnionFind:
         self.parent[A] = self.root(self.parent[A])  # 経由したノードすべての親を上書き
         return self.parent[A]
 
-    def size(self, A):  # 本で言うrankではない
+    def size(self, A):
         # ノード番号を受け取って、そのノードが含まれている集合のサイズを返す。
         return -self.parent[self.root(A)]
 
@@ -49,13 +49,32 @@ class UnionFind:
         return self.root(A) == self.root(B)
 
 
-N, Q = list(map(int, input().split()))
-ds = UnionFind(N)
-for q in range(Q):
-    com, x, y = list(map(int, input().split()))
-    if com == 0:
-        # unite
-        ds.unite(x, y)
-    elif com == 1:
-        # same?
-        print(1 if ds.is_in_same(x, y) else 0)
+Edges = []
+# load data
+n_V, n_E = list(map(int, input().split()))
+for _ in range(n_E):
+    s, t, w = list(map(int, input().split()))
+    Edges.append((w, s, t))
+
+
+def kruskal(N, Edges):
+    '''
+    Nは頂点数、Ndgesは各要素が(w,s,t)を前提としたlist
+    '''
+    edges = sorted(Edges)
+    ret = 0
+    union = UnionFind(N)
+    n_edges = 0
+    for w, s, t in edges:
+        if n_edges == N - 1:
+            # 全域木になったら早期終了可
+            break
+        if union.is_in_same(s, t):
+            continue
+        union.unite(s, t)
+        ret += w
+        n_edges += 1
+    return ret
+
+
+print(kruskal(n_V, Edges))
