@@ -16,7 +16,7 @@ class UnionFind:
         # ノード番号を受け取って、そのノードが含まれている集合のサイズを返す。
         return -self.parent[self.root(A)]
 
-    def concat(self, A, B):
+    def unite(self, A, B):
         # ノード番号を2つ受け取って、そのノード同士をつなげる処理を行う。
         # 引数のノードを直接つなぐ代わりに、親同士を連結する処理にする。
         A = self.root(A)
@@ -35,3 +35,6 @@ class UnionFind:
         self.parent[B] = A  # self.rootが呼び出されればBにくっついてるノードもすべて親がAだと上書きされる
 
         return True
+
+    def is_in_same(self, A, B):
+        return self.root(A) == self.root(B)
