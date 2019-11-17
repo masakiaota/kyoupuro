@@ -20,3 +20,6 @@ class PriorityQueue:
 
     def __call__(self):
         return self.heap
+
+    def __len__(self):
+        return len(self.heap)
