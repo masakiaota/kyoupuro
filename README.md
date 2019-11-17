@@ -99,6 +99,15 @@ from operator import itemgetter
 hoge.sort(key=itemgetter(1))
 # [(4, 1), (3, 2), (2, 3), (1, 4)]
 
+# mod取りながらcombination
+def combination_mod(n, r, mod):
+    r = min(r, n - r)
+    nf = rf = 1
+    for i in range(r):
+        nf = nf * (n - i) % mod
+        rf = rf * (i + 1) % mod
+    return nf * pow(rf, mod - 2, mod) % mod
+
 ```
 
 その他コピペで便利そうなアルゴリズムは`algorithm/`に保存してある。

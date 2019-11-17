@@ -45,36 +45,23 @@ def read_col(H, n_cols):
 MOD = 10**9 + 7
 
 X, Y = read_ints()
-if (X + Y) % 3 != 0:  # !=0
+if (X + Y) % 3 != 0 or Y / X > 2 or Y / X < 1 / 2:  # !=0
     print(0)
     exit()
 
 pascal_depth = int((X + Y) / 3)  # パスカルの三角形に当たるn
-x, y = int((X + Y) * 2 / 3), (X + Y) / 3
+x = ((X + Y) * 2) // 3
 pascal_k = x - X  # 端からいくつずれているか
 
-if pascal_k > pascal_depth / 2:
-    pascal_k = pascal_depth - pascal_k
 
-
-def cmb(n, r, mod):
-    if (r < 0 or r > n):
-        return 0
+def combination_mod(n, r, mod=MOD):
     r = min(r, n - r)
-    return g1[n] * g2[r] * g2[n - r] % mod
+    nf = rf = 1
+    for i in range(r):
+        nf = nf * (n - i) % mod
+        rf = rf * (i + 1) % mod
+    return nf * pow(rf, mod - 2, mod) % mod
 
 
-mod = 10**9 + 7  # 出力の制限
-N = pascal_depth
-g1 = [1, 1]  # 元テーブル
-g2 = [1, 1]  # 逆元テーブル
-inverse = [0, 1]  # 逆元テーブル計算用テーブル
-
-for i in range(2, N + 1):
-    g1.append((g1[-1] * i) % mod)
-    inverse.append((-inverse[mod % i] * (mod // i)) % mod)
-    g2.append((g2[-1] * inverse[-1]) % mod)
-
-
-a = cmb(pascal_depth, pascal_k, mod)
+a = combination_mod(pascal_depth, pascal_k, MOD)
 print(a)
