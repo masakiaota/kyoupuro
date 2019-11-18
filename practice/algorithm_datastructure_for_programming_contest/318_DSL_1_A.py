@@ -21,7 +21,7 @@ class UnionFind:
         self.parent[A] = self.root(self.parent[A])  # 経由したノードすべての親を上書き
         return self.parent[A]
 
-    def size(self, A):  # 本で言うrank
+    def size(self, A):  # 本で言うrankではない
         # ノード番号を受け取って、そのノードが含まれている集合のサイズを返す。
         return -self.parent[self.root(A)]
 
