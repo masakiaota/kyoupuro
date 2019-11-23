@@ -35,7 +35,7 @@ class Vector:
         ret = [a - b for a, b in zip(self.vec, vec.vec)]
         return Vector(ret)
 
-    def dot(self, vec):
+    def mul(self, vec):
         '''
         vec ... vector class
         '''
@@ -64,3 +64,40 @@ def cross(a, b):
     first = a[0] * b[1]
     second = a[1] * b[0]
     return first - second
+
+
+def dot(a, b):
+    return sum(a.mul(b))
+
+
+EPS = 1e-10
+
+
+def ccw(p0, p1, p2):
+    '''
+    問題を解くための関数
+    引数はすべてVector
+    '''
+    a = p1.sub(p0)
+    b = p2.sub(p0)
+    if cross(a, b) > EPS:
+        return 'COUNTER_CLOCKWISE'
+    elif cross(a, b) < -EPS:
+        return 'CLOCKWISE'
+    elif dot(a, b) < 0:  # 同一直線状でa,bが逆を向いている
+        return 'ONLINE_BACK'
+    elif a.norm() < b.norm():  # a,bが同じ方向を向いて かつ bがaよりも長い
+        return 'ONLINE_FRONT'
+    else:
+        return 'ON_SEGMENT'
+
+
+# load data
+x0, y0, x1, y1 = list(map(int, input().split()))
+N = int(input())
+p0 = Vector([x0, y0])
+p1 = Vector([x1, y1])
+for _ in range(N):
+    x2, y2 = list(map(int, input().split()))
+    p2 = Vector([x2, y2])
+    print(ccw(p0, p1, p2))
