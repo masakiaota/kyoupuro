@@ -115,14 +115,27 @@ def combination_mod(n, r, mod):
 ### 手法実装例へのリンク
 - [深さ優先探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC031_B.py)
   - [深さ優先探索を用いた閉路判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC037_B.py)
+- [再帰全探索メモ化](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/142_ALDS1_5_A.py)
 - [幅優先探索]( https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BFS.py )
 - [UnionFind木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/UnionFind.py)
   - [具体的に問題でつかってのはこれ](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC120/D_correct.py)
 - [ビット全探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ABC045_C.py)
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
-
+  - [二分探索木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BinarySearchTree.py)
+  - 単調増加関数をかませるパターンの二分探索(ライブラリが使えない) [螺旋本](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/136_ALDS1_4_D.py) [ABC146](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC146/C.py)
 - [priority queue (コピペ用)](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/PriorityQueue.py)
   - [実際に使われた問題](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC123/D_correct5.py)
+- ソート関係
+  - [Counting Sort](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/168_ALDS1_6_A.py) (出ないかも)
+  - バブルソートをするとしたら[要素の反転数は？](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/175_ALDS1_5_D.py) O(n**2)より高速なO(nlogn)
+  - [最小コストソート](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/179_ALDS1_6_D.py)...最小コストで要素をswapさせてソートしたい
+- DP関係
+  - [共通部分文字列](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/253_ALDS1_10_C.py)
+  - [連鎖行列積](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/257_ALDS1_10_B.py)
+- scipy関係
+  - [Minimum Spanning Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/296_ALDS1_12_A_AtCoder.py) データを打ち込むときに疎行列を使った[バージョン](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/358_GRL_2_A_AtCoder.py)
+<!--  TODO ダイクストラ法から  -->
+
 
 ### 難
 #### BeginnersSelectioin/novice
