@@ -15,6 +15,12 @@ for _ in range(N):
 
 # dpテーブルの作成
 dp = [[-1] * (W + 1) for _ in range(N + 1)]
+G = [[None] * (W + 1) for _ in range(N + 1)]  # 品物の選択状況を記録する
+# dpにおいて左上からの経路で更新されていた場合'DIAGONAL'と埋める （新しい品物の追加）
+# 上から更新→'top' (i番目の品物はとっていない)
+# i,wにDIAGONALと埋めてあったら、[i-1, w-items[i-1]の重さ]のマスを見ていけば良い
+DIA = 'DIGONOL'
+TOP = 'TOP'
 
 # dpテーブルの初期化
 for i in range(N + 1):
@@ -22,12 +28,31 @@ for i in range(N + 1):
 for w in range(W + 1):
     dp[0][w] = 0
 
+
 # dpテーブルの更新
+# ついでにGを埋めていく
 from itertools import product
 for i, w in product(range(N), range(W + 1)):
     dp[i + 1][w] = dp[i][w]
+    G[i + 1][w] = TOP
     value, weight = items[i]
     if w - weight >= 0:
-        dp[i + 1][w] = max(dp[i][w], dp[i][w - weight] + value)
+        if dp[i][w] < dp[i][w - weight] + value:
+            dp[i + 1][w] = dp[i][w - weight] + value
+            G[i + 1][w] = DIA
 
 print(dp[-1][-1])
+
+# Gから選択したitemを復元する
+w = W
+item_in_bag = []
+for i in range(N, 0, -1):
+    if G[i][w] == DIA:
+        w -= items[i - 1][1]
+        item_in_bag.append(i - 1)
+    elif G[i][w] == TOP:
+        pass
+    else:
+        raise ValueError
+
+print(item_in_bag[::-1])

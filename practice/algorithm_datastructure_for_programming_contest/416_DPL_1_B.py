@@ -1,6 +1,8 @@
 # https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_B
 # 王道のナップサック問題
 # 解説は螺旋本で十分わかりやすい
+# また、けんちょんさんの記事もわかりやすい
+# https://qiita.com/drken/items/a5e6fe22863b7992efdb#%E5%95%8F%E9%A1%8C-2%E3%83%8A%E3%83%83%E3%83%97%E3%82%B5%E3%83%83%E3%82%AF%E5%95%8F%E9%A1%8C
 
 # 実装の都合上本とは少しだけ変えて実装する
 # items (N,) ,i番目の品物の価値と重さが記録されているlist item[i]
