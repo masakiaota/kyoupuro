@@ -74,7 +74,7 @@ class BinarySearchTree:
         '''
         xを挿入して、xの右の数字(次に大きい)を削除する。idxがはみ出す場合は挿入だけ
         '''
-        idx_del = self.bisect_left(x) + 1
+        idx_del = self.bisect_right(x) + 1  # xと同じ大きさも削除したいならbisect_left
         if idx_del - 1 == len(self.bst):  # xがどの要素よりも大きい
             self.insert(x)
         else:
