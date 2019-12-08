@@ -1,3 +1,5 @@
+# https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_D
+# P422にはDPによる解法が乗っているが、実際解くにはP423に乗っているようなある種貪欲な方法のほうが計算量が少なく済む。
 from bisect import bisect_left, bisect_right, insort_left
 from collections import deque
 
@@ -80,3 +82,19 @@ class BinarySearchTree:
         else:
             self.insert(x)
             del self.bst[idx_del]
+
+
+# load data
+N = int(input())
+A = []
+for _ in range(N):
+    A.append(int(input()))
+
+
+L = BinarySearchTree()
+L.insert(A[0])
+
+for a in A[1:]:
+    L.insert_replace_right(a)
+
+print(len(L))
