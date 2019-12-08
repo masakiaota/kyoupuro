@@ -1,5 +1,6 @@
 # https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_D
 # P422にはDPによる解法が乗っているが、実際解くにはP423に乗っているようなある種貪欲な方法のほうが計算量が少なく済む。
+
 from bisect import bisect_left, bisect_right, insort_left
 from collections import deque
 
@@ -93,8 +94,13 @@ for _ in range(N):
 
 L = BinarySearchTree()
 L.insert(A[0])
-
+length = 0
 for a in A[1:]:
     L.insert_replace_right(a)
+    # # もし最長増加部分列の中身が知りたいなら、新たに長さが更新されたときに最適であることが保証されている
+    # if len(L) > length:
+    #     length = len(L)
+    #     LIS = L.bst
 
+# print(LIS)
 print(len(L))
