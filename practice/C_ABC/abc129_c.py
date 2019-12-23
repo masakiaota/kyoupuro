@@ -2,16 +2,16 @@
 # 典型的なDP
 
 
-from copy import deepcopy
-
-
 def full(shape, full_value):
     if isinstance(shape, tuple):
+        sha = shape[::-1]
+        ret = [full_value] * sha[0]
+        for s in sha[1:]:
+            ret = [ret.copy() for i in range(s)]
+        return ret
+
         if len(shape) == 2:
             return [[full_value] * shape[1] for _ in range(shape[0])]
-        else:
-            import numpy as np
-            return np.full(shape, full_value).tolist()
     else:
         return [full_value] * shape
 

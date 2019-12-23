@@ -108,6 +108,19 @@ def combination_mod(n, r, mod):
         rf = rf * (i + 1) % mod
     return nf * pow(rf, mod - 2, mod) % mod
 
+# np.full と同等のpython実装
+def full(shape, full_value):
+    if isinstance(shape, tuple):
+        sha = shape[::-1]
+        ret = [full_value] * sha[0]
+        for s in sha[1:]:
+            ret = [ret.copy() for i in range(s)]
+        return ret
+
+        if len(shape) == 2:
+            return [[full_value] * shape[1] for _ in range(shape[0])]
+    else:
+        return [full_value] * shape
 ```
 
 その他コピペで便利そうなアルゴリズムは`algorithm/`に保存してある。
