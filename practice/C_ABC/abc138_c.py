@@ -4,11 +4,9 @@
 
 N = int(input())
 V = list(map(int, input().split()))
-
+V.sort(reverse=True)
 while len(V) > 1:
-    V.sort(reverse=True)
     new = (V[-1] + V[-2]) / 2
-    V = V[:-2]
-    V.append(new)
+    V = V[:-2] + [new]
 
 print(V[0])
