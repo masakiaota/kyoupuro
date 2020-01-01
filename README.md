@@ -134,11 +134,14 @@ def full(shape, full_value):
 - [UnionFind木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/UnionFind.py)
   - [具体的に問題でつかってのはこれ](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC120/D_correct.py)
 - [ビット全探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ABC045_C.py) [ほかにはこれ](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc128_c.py) [1立つidxだけ考慮したりするやつ](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc147_c.py)
+
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
   - [二分探索木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BinarySearchTree.py)
   - 単調増加関数をかませるパターンの二分探索(ライブラリが使えない) [螺旋本](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/136_ALDS1_4_D.py) [ABC146](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC146/C.py)
+
 - [priority queue (コピペ用)](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/PriorityQueue.py)
   - [実際に使われた問題](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC123/D_correct5.py)
+
 - ソート関係
   - [Counting Sort](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/168_ALDS1_6_A.py) (出ないかも)
   - バブルソートをするとしたら[要素の反転数は？](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/175_ALDS1_5_D.py) O(n**2)より高速なO(nlogn)
@@ -146,6 +149,10 @@ def full(shape, full_value):
 - DP関係
   - [共通部分文字列](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/253_ALDS1_10_C.py)
   - [連鎖行列積](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/257_ALDS1_10_B.py)
+  - [最大長方形](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/428_DPL_3_B.py)
+  - [コイン問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/412_DPL_1_A.py)
+  - [ナップサックの復元](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/416_DPL_1_B_items.py)
+
 - グラフ関係
   - [深さ優先探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC031_B.py)
     - [深さ優先探索を用いた閉路判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC037_B.py)
@@ -160,11 +167,16 @@ def full(shape, full_value):
     - [関節点](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/348_GRL_3_A.py)の例
     - [橋](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc075_c.py)の例
 - [2D Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/324_DSL2_C.py)
+
 - 計算幾何
   - [線分交差判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/387_CGL_2_B.py)
   - [点の内包判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/398_CGL_3_C.py)
   - [二次元凸包作成](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/401_CGL_4_A.py)
   - [マンハッタン線分交差高速判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/405_CGL_6_A.py)
+
+- 整数論
+  - [素数判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C.py) [エラトステネスの篩](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C_eratosthenes.py)
+
 
 ### 難
 #### BeginnersSelectioin/novice
