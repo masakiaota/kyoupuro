@@ -156,7 +156,9 @@ def full(shape, full_value):
   - [warshall floyd](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/336_GRL_1_C_AtCoder.py)
   - [トポロジカルソート](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/342_GRL_4_B.py)
   - [木の直径](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/353_GRL_5_A.py)
-  - [関節点](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/348_GRL_3_A.py)
+  - [lowest link](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/lowest_link.py)
+    - [関節点](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/348_GRL_3_A.py)の例
+    - [橋](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc075_c.py)の例
 - [2D Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/324_DSL2_C.py)
 - 計算幾何
   - [線分交差判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/387_CGL_2_B.py)
