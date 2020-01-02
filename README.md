@@ -58,6 +58,13 @@ for _ in range(M):
     B.append(b)
 #愚直にappendしていったほうがかすかに早い
 
+# 文字の順番を扱うとき
+def ord_from_a(char):
+    return ord(char) - ord('a')
+def chr_from_a(n: int):
+    # nはaから何番あとかを示す
+    return chr(n + ord('a'))
+
 # グラフ構造が与えられたとき
 from collections import defaultdict
 node = defaultdict(set)  # キーで指定したノードが隣接するノードを記録しておく。
