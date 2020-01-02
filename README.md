@@ -71,6 +71,10 @@ for _ in range(与えられる列数):
 import sys
 sys.setrecursionlimit(1 << 25)
 
+#再帰メモ化
+from functools import lru_cache
+@lru_cache(maxsize=2**12)
+
 #デフォルト値を持つ辞書
 from collections import defaultdict
 dic = defaultdict(lambda: 0)
