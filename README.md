@@ -104,6 +104,9 @@ from operator import itemgetter
 hoge.sort(key=itemgetter(1))
 # [(4, 1), (3, 2), (2, 3), (1, 4)]
 
+# mより小さい最大値 (最小値も似たようにかける)
+max(arr, key=lambda x: -INF if x>m  else x)
+
 # mod取りながらcombination
 def combination_mod(n, r, mod):
     r = min(r, n - r)
@@ -176,6 +179,8 @@ def full(shape, full_value):
 
 - 整数論
   - [素数判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C.py) [エラトステネスの篩](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C_eratosthenes.py)
+  - [約数全列挙](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc112_d.py)の問題
+  - ココらへんの[スニペット](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/Prime_numbers.py)
 
 
 ### 難
