@@ -13,6 +13,7 @@
 # またその定数constはHである
 
 # 座標は10**4点。Nはたかだか100なので 最悪10**6回計算。間に合う。
+# あー結局全探索してるんだから問題の定義を借りて素直に実装すればバグらせずに済んだな
 
 import numpy as np
 from itertools import product
@@ -21,12 +22,14 @@ N = int(input())
 X, Y, H = [], [], []
 for n in range(N):
     x, y, h = list(map(int, input().split()))
+    if h == 0:
+        continue
     X.append(x)
     Y.append(y)
     H.append(h)
 
-if N == 1:
-    print(x, y, h)
+if len(H) == 1:
+    print(X[-1], Y[-1], H[-1])
     exit()
 
 X = np.array(X)
@@ -34,19 +37,16 @@ Y = np.array(Y)
 H = np.array(H)
 
 
-def is_eq_loss(X, Y, H, a, b):
-    loss = np.abs(- np.abs(X - a) - np.abs(Y - b) - H)
-    mask = (H == 0)  # 高さがない疑いのところは最小値に合わせる
-    if np.any(mask):
-        loss[mask] = loss.min()
-    if (loss[-1] == loss).all():
-        return True, loss[-1]
+def is_ok(X, Y, H, a, b):
+    height = H + np.abs(X - a) + np.abs(Y - b)
+    if (height == height[-1]).all():
+        return True, height[-1]
     else:
         return False, False
 
 
 for a, b in product(range(101), range(101)):
-    flg, ansH = is_eq_loss(X, Y, H, a, b)
+    flg, ansH = is_ok(X, Y, H, a, b)
     if flg:
         ans = (a, b, ansH)
 
