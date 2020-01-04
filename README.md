@@ -136,8 +136,8 @@ def full(shape, full_value):
             ret = [ret.copy() for i in range(s)]
         return ret
 
-        if len(shape) == 2:
-            return [[full_value] * shape[1] for _ in range(shape[0])]
+    if len(shape) == 2:
+        return [[full_value] * shape[1] for _ in range(shape[0])]
     else:
         return [full_value] * shape
 ```
