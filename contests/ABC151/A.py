@@ -1,4 +1,3 @@
-# 入力が10**5とかになったときに100ms程度早い
 import sys
 read = sys.stdin.readline
 
@@ -40,3 +39,17 @@ def read_col(H, n_cols):
             ret[col].append(tmp[col])
 
     return ret
+
+# 文字の順番を扱うとき
+
+
+def ord_from_a(char):
+    return ord(char) - ord('a')
+
+
+def chr_from_a(n: int):
+    # nはaから何番あとかを示す
+    return chr(n + ord('a'))
+
+
+print(chr_from_a(ord_from_a(input()) + 1))
