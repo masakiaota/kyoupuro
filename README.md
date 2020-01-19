@@ -133,7 +133,7 @@ def full(shape, full_value):
         sha = shape[::-1]
         ret = [full_value] * sha[0]
         for s in sha[1:]:
-            ret = [ret.copy() for i in range(s)]
+            ret = [ret.copy() for i in range(s)] #ここ、pypyだと何故かバグが出る
         return ret
     else:
         return [full_value] * shape
