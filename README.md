@@ -93,7 +93,7 @@ dic = Counter(なんかの配列)
 #1次元累積和
 from itertools import accumulate
 A=list(range(10)) #なんからのリスト
-A_accum=[0]+list(accumelate(A))
+A_accum=[0]+list(accumulate(A))
 # Aの累積和のリストがこれでできる
 # [0]は半開区間できれいに指定するため
 #A      :  1 2 3 4
