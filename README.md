@@ -120,6 +120,8 @@ max(arr, key=lambda x: -INF if x>m  else x)
 
 # mod取りながらcombination
 def combination_mod(n, r, mod):
+    if r > n:
+        return 0  # このような通りの数は無いため便宜上こう定義する
     r = min(r, n - r)
     nf = rf = 1
     for i in range(r):
