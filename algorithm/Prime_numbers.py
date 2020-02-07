@@ -33,6 +33,8 @@ def ret_erators(N: int):
 
 
 def factorization(n: int):
+    if n == 1:
+        return []  # 1は素数ではない
     # 素因数分解
     arr = []
     temp = n
