@@ -27,6 +27,15 @@ def read_map(H):
     '''
     return [read()[:-1] for _ in range(H)]
 
+def read_tuple(H):
+    '''
+    H is number of rows
+    '''
+    ret = []
+    for _ in range(H):
+        ret.append(tuple(map(int, read().split())))
+    return ret
+
 def read_col(H,n_cols):
     '''
     H is number of rows
