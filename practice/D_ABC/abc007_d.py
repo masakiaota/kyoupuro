@@ -43,22 +43,55 @@
 # print(B - A)
 
 
-def ketadp(X):
-    X = '0' + str(X)
-    dp = [[[0] * 2 for _ in range(2)] for _ in range(len(X))]
-    dp[0][0][0] = 1
-    for i in range(len(X) - 1):
-        for j in range(2):
-            for k in range(2):
-                for d in range(10 if j else int(X[i + 1]) + 1):
-                    dp[i + 1][j or d < int(X[i + 1])][k or d == 4 or d == 9] \
-                        += dp[i][j][k]
+# def ketadp(X):
+#     X = '0' + str(X)
+#     dp = [[[0] * 2 for _ in range(2)] for _ in range(len(X))]
+#     dp[0][0][0] = 1
+#     for i in range(len(X) - 1):
+#         for j in range(2):
+#             for k in range(2):
+#                 for d in range(10 if j else int(X[i + 1]) + 1):
+#                     dp[i + 1][j or d < int(X[i + 1])][k or d == 4 or d == 9] \
+#                         += dp[i][j][k]
 
-    # print(dp)
-    return dp[-1][0][1] + dp[-1][1][1]
+#     # print(dp)
+#     return dp[-1][0][1] + dp[-1][1][1]
+
+
+# A, B = list(map(int, input().split()))
+# A = ketadp(A - 1)
+# B = ketadp(B)
+# print(B - A)
+
+from functools import lru_cache
+import sys
+sys.setrecursionlimit(1 << 25)
+
+
+@lru_cache(None)
+def f(X: int):
+    '''
+    X以下で4,9が一つも含まれていない数の個数
+    '''
+    # 終了条件
+    assert X >= 0
+    if X < 10:  # もし一桁なら
+        return X - ((X >= 4) + (X >= 9)) + 1
+
+    # 再帰桁dp
+    q, r = divmod(X, 10)
+    ret = 0
+    for d in range(10):
+        if d == 4 or d == 9:
+            continue
+        elif d > r:
+            ret += f(q - 1)
+        else:
+            ret += f(q)
+    return ret
 
 
 A, B = list(map(int, input().split()))
-A = ketadp(A - 1)
-B = ketadp(B)
+A = A - f(A - 1)
+B = B + 1 - f(B)
 print(B - A)
