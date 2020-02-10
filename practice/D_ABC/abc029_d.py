@@ -1,11 +1,27 @@
 # https://atcoder.jp/contests/abc029/tasks/abc029_d
 # Nまでの1を何回書くか
 # 0001 0002 0003 ... 9999
-# 桁dpで、1を書いた回数を伝播させていく？
-# dp[i][j][k] ... i桁目まで考慮したときに、jの状態において、1が含まれているとき(k==1)の1の個数
-# dp[i][1][0] ... i桁目までに考慮したときに、
-# 1を書いてない個数と1を書いた個数をカウントする？
-# 次の桁の1を書く回数←(その桁で1を書いた場合 +1を書いてない数字の個数) + (その桁で1を書いてない場合 今までの1を書いた回数)
+# dp[i][j][1の登場回数] ... を満たす数字の数 というdpテーブルを作成する
 
+N = '0' + input()
 
-N = int(input())
+dp = [[[0] * 10 for _ in range(2)] for _ in range(len(N))]
+dp[0][0][0] = 1
+for i in range(len(N) - 1):
+    for j in range(2):
+        for d in range(10 if j else int(N[i + 1]) + 1):
+            # d==1のときだけ1のカウントが増える
+            if d == 1:
+                for k in range(9):
+                    dp[i + 1][j or d < int(N[i + 1])][k + 1] += dp[i][j][k]
+            else:
+                for k in range(10):
+                    dp[i + 1][j or d < int(N[i + 1])][k] += dp[i][j][k]
+
+# print(dp)
+# 1の登場回数をカウントする
+ans = 0
+for i in range(10):
+    ans += (dp[-1][1][i] + dp[-1][0][i]) * i
+
+print(ans)
