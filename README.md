@@ -174,6 +174,7 @@ def full(shape, full_value):
   - [最大長方形](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/428_DPL_3_B.py)
   - [コイン問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/412_DPL_1_A.py)
   - [ナップサックの復元](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/416_DPL_1_B_items.py)
+  - 桁DP [再帰実装1](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc007_d.py) [2](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC154/E_correct.py) [配列実装1](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc007_d.py) [2](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC154/E_correct2.py)
 
 - グラフ関係
   - [深さ優先探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC031_B.py)
