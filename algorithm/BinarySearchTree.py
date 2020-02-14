@@ -1,3 +1,5 @@
+# 注意！ atcoderで使えない！
+
 from bisect import bisect_left, bisect_right, insort_left
 from collections import deque
 
@@ -28,6 +30,16 @@ class BinarySearchTree:
 
     def insert(self, x):
         insort_left(self.bst, x)
+
+    def pop_left(self):
+        x = self.bst[0]
+        del self.bst[0]
+        return x
+
+    def pop_right(self):
+        x = self.bst[-1]
+        del self.bst[-1]
+        return x
 
     def remove(self, x):
         '''
