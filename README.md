@@ -99,16 +99,6 @@ dic = defaultdict(lambda: 0)
 from collections import Counter
 dic = Counter(なんかの配列)
 
-#1次元累積和
-from itertools import accumulate
-A=list(range(10)) #なんからのリスト
-A_accum=[0]+list(accumulate(A))
-# Aの累積和のリストがこれでできる
-# [0]は半開区間できれいに指定するため
-#A      :  1 2 3 4
-#A_accum: 0 1 3 6 10
-# A[1:3]の累積和(つまり2+3)はA_accum[3]-A_accum[1]で済む
-
 # 最小公倍数を求める
 from fractions import gcd
 #gcd(0,3)とか3と答える便利な性質がある。3だけの場合の最大公約数(つまり3)を求めることができるということ.
@@ -201,6 +191,7 @@ def full(shape, full_value):
   - [素数判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C.py) [エラトステネスの篩](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C_eratosthenes.py)
   - [約数全列挙](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc112_d.py)の問題
   - ココらへんの[スニペット](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/Prime_numbers.py)
+  - [累積和](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) [二次元累積和問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc106_d.py)
 
 
 ### 難
