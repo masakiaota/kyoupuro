@@ -15,9 +15,7 @@ def is_ok(arg):
     return A * arg + B * len(str(arg)) <= X
 
 
-def meguru_bisect():
-    ng = 10**9 + 1  # 店で買える最大の整数+1
-    ok = 0
+def meguru_bisect(ng, ok):
     while (abs(ok - ng) > 1):
         mid = (ok + ng) // 2
         if is_ok(mid):
@@ -27,4 +25,4 @@ def meguru_bisect():
     return ok
 
 
-print(meguru_bisect())
+print(meguru_bisect(10**9 + 1, 0))
