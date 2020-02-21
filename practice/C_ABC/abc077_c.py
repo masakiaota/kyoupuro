@@ -1,8 +1,9 @@
 # https://atcoder.jp/contests/abc077/tasks/arc084_a
 # bisectで行けるけどめぐる式の練習
 
-# Bを固定すると、
+# Bを固定すると、A,Cを二分探索すれば条件を満たす個数が計算できる
 
+from bisect import bisect_left, bisect_right
 import sys
 read = sys.stdin.readline
 
@@ -20,24 +21,11 @@ A = read_ints()
 B = read_ints()
 C = read_ints()
 
+A.sort()
+C.sort()
 
-def is_ok(arg):
-    # 条件を満たすかどうか？問題ごとに定義
-    pass
-
-
-MIN = -1
-MAX = 10**9
-
-
-def meguru_bisect():
-    ng = MIN  # とり得る最小の値-1
-    ok = MAX  # とり得る最大の値+1
-    # 最大最小が逆の場合はよしなにひっくり返す
-    while (abs(ok - ng) > 1):
-        mid = (ok + ng) // 2
-        if is_ok(mid):
-            ok = mid
-        else:
-            ng = mid
-    return ok
+ans = 0
+for b in B:
+    ans += bisect_left(A, b) * (N - bisect_right(C, b))
+    # Cに関しては真に大きい個数を知りたいことに注意
+print(ans)
