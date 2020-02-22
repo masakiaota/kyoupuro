@@ -151,6 +151,7 @@ def full(shape, full_value):
   - [二分探索木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BinarySearchTree.py)
   - 単調増加関数をかませるパターンの二分探索(ライブラリが使えない) [螺旋本](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/136_ALDS1_4_D.py) [ABC146](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC146/C.py)
   - めぐる式[二分探索](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/meguru_bisect.py) [ABC146](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc146_c.py)
+  - bisect for reversed list [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/bisect_for_reversedlist.py)
 
 - [priority queue (コピペ用)](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/PriorityQueue.py)
   - [実際に使われた問題](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC123/D_correct5.py)
