@@ -47,6 +47,3 @@ for num, cnt in num_and_cnt:
             total += 1
 
 print(ans)
-
-
-from math import log
