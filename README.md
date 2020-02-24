@@ -146,6 +146,7 @@ def full(shape, full_value):
 - [UnionFind木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/UnionFind.py)
   - [具体的に問題でつかってのはこれ](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC120/D_correct.py)
 - [ビット全探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ABC045_C.py) [ほかにはこれ](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc128_c.py) [1立つidxだけ考慮したりするやつ](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc147_c.py)
+    - p進数全探索 [テンプレート](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/iter_p_adic.py)
 
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
   - [二分探索木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BinarySearchTree.py)
