@@ -1,11 +1,11 @@
-# 下書き
+# Segment Tree
 # https://juppy.hatenablog.com/entry/2019/05/02/%E8%9F%BB%E6%9C%AC_python_%E3%82%BB%E3%82%B0%E3%83%A1%E3%83%B3%E3%83%88%E6%9C%A8_%E7%AB%B6%E6%8A%80%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0_Atcoder
 
 
 class SegmentTree:
     def __init__(self, ls: list, segfunc, identity_element):
         '''
-        セグ木 (下書き)
+        セグ木
         一次元のリストlsを受け取り初期化する。O(len(ls))
         区間のルールはsegfuncによって定義される
         identity elementは単位元。e.g., 最小値を求めたい→inf, 和→0, 積→1, gcd→0
@@ -60,3 +60,19 @@ class SegmentTree:
 def segfunc(x, y):
     # 処理したい内容
     return min(x, y)  # 例えばね
+
+
+# test
+test = [1, 3, 1, 3, 7, 1, 2, 5, 3, 7, 9, 1, 3, 6, 2]
+st = SegmentTree(test, min, 10 ** 10)
+print(test)
+print(st.query(0, len(test)))
+print(st.query(0, 7))
+print(st.query(7, 10))
+
+st.update(2, 100)
+st.update(10, 1)
+print(st.query(0, len(test)))
+print(st.query(2, 3))
+print(st.query(7, 11))
+# 大丈夫そう
