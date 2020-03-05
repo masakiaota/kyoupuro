@@ -14,19 +14,6 @@ def read_ints():
 def read_a_int():
     return int(read())
 
-def read_matrix(H):
-    '''
-    H is number of rows
-    '''
-    return [list(map(int, read().split())) for _ in range(H)]
-
-def read_map(H):
-    '''
-    H is number of rows
-    文字列で与えられた盤面を読み取る用
-    '''
-    return [read()[:-1] for _ in range(H)]
-
 def read_tuple(H):
     '''
     H is number of rows
@@ -49,6 +36,28 @@ def read_col(H,n_cols):
         for col in range(n_cols):
             ret[col].append(tmp[col])
     
+    return ret
+
+def read_matrix(H):
+    '''
+    H is number of rows
+    '''
+    return [list(map(int, read().split())) for _ in range(H)]
+
+def read_map(H):
+    '''
+    H is number of rows
+    文字列で与えられた盤面を読み取る用
+    '''
+    return [read()[:-1] for _ in range(H)]
+
+def read_map_as_int(H):
+    '''
+    #→1,.→0として読み込む
+    '''
+    ret=[]
+    for _ in range(H):
+        ret.append([1 if s=='#' else 0 for s in read()[:-1]])
     return ret
 ```
 
