@@ -1,6 +1,11 @@
-# 注意！ atcoderで使えない！
-# ギリギリ動くようになった
-# TODO 挿入のオーダーが軽いデータ構造を探したい
+# https://atcoder.jp/contests/abc134/tasks/abc134_e
+import sys
+read = sys.stdin.readline
+
+
+def read_a_int():
+    return int(read())
+
 
 from bisect import bisect_left, bisect_right, insort_left
 from array import array
@@ -16,8 +21,8 @@ class BinarySearchTree:
 
         ls ... 渡す初期配列
         '''
-        self.bst = array('q',
-                         sorted(ls))  # insertを爆速にするためにarray型にします。signed long long 前提です
+        self.bst = array('q', sorted(
+            ls))  # insertを爆速にするためにarray型にします。signed long long 前提です
 
     # def __repr__(self):
     #     return f'BST:{self.bst}'
@@ -97,3 +102,18 @@ class BinarySearchTree:
         else:
             self.insert(x)
             del self.bst[idx_del]
+
+
+N = read_a_int()
+bst = BinarySearchTree([-1])
+for n in range(N):
+    a = read_a_int()
+    # すべてより小さかったら、新しく追加
+    if bst.bst[0] >= a:
+        bst.insert(a)
+    else:
+        # bstのなかで、aより小さく且つ一番大きい要素をaに書き換えていく
+        idx = bst.bisect_left(a) - 1
+        bst.bst[idx] = a
+
+print(len(bst))
