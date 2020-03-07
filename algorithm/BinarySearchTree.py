@@ -1,7 +1,9 @@
 # 注意！ atcoderで使えない！
+# ギリギリ動くようになった
+# TODO 挿入のオーダーが軽いデータ構造を探したい
 
 from bisect import bisect_left, bisect_right, insort_left
-from collections import deque
+from array import array
 
 
 class BinarySearchTree:
@@ -14,10 +16,11 @@ class BinarySearchTree:
 
         ls ... 渡す初期配列
         '''
-        self.bst = deque(sorted(ls))  # insertをO(1)にするためにlistの代わりにdequeを用います
+        self.bst = array('q',
+                         sorted(ls))  # insertを爆速にするためにarray型にします。signed long long 前提です
 
-    def __repr__(self):
-        return f'BST:{self.bst}'
+    # def __repr__(self):
+    #     return f'BST:{self.bst}'
 
     def __len__(self):
         return len(self.bst)
@@ -29,6 +32,8 @@ class BinarySearchTree:
         return len(self.bst)
 
     def insert(self, x):
+        # idx = self.bisect_left(x)
+        # self.bst.insert(idx,x)
         insort_left(self.bst, x)
 
     def pop_left(self):
