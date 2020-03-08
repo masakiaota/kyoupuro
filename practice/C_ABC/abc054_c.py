@@ -1,9 +1,11 @@
 # https://atcoder.jp/contests/abc054/tasks/abc054_c
-# なんか水パフォだけどdfs書くだけじゃない？じゃないわむずいわ
-# 全探索か？
+# なんか水パフォだけど全探索するだけ
 
 import sys
 read = sys.stdin.readline
+
+
+from itertools import permutations
 
 
 def read_ints():
@@ -18,12 +20,17 @@ for m in range(M):
     graph[a].append(b)
     graph[b].append(a)
 
-# ans = 0
+
+def is_ok(p):  # 順序pにしたがってグラフがつながっているか
+    for now, nx in zip(p, p[1:]):
+        if nx not in graph[now]:
+            return 0
+    return 1
 
 
-def dfs(now, pre):  # 今いるノードnowから来たノードpreを省いて次の探索を行う
-    # 終了条件
-    if len(graph[now]) == 1:
-        return 1
+ans = 0
+for perm in permutations(range(2, N + 1)):
+    perm = [1] + list(perm)
+    ans += is_ok(perm)
 
-    ret = 0
+print(ans)
