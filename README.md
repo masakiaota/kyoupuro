@@ -4,8 +4,8 @@
 ### コピペ用
 テンプレ
 ```python
-#入力が10**5とかになったときに100ms程度早い
 import sys
+sys.setrecursionlimit(1 << 25)
 read = sys.stdin.readline
 
 def read_ints():
@@ -23,26 +23,28 @@ def read_tuple(H):
         ret.append(tuple(map(int, read().split())))
     return ret
 
-def read_col(H,n_cols):
+def read_col(H, n_cols):
     '''
     H is number of rows
     n_cols is number of cols
-    
     A列、B列が与えられるようなとき
     '''
     ret = [[] for _ in range(n_cols)]
     for _ in range(H):
-        tmp=list(map(int, read().split()))
+        tmp = list(map(int, read().split()))
         for col in range(n_cols):
             ret[col].append(tmp[col])
-    
     return ret
 
 def read_matrix(H):
     '''
     H is number of rows
     '''
-    return [list(map(int, read().split())) for _ in range(H)]
+    ret = []
+    for _ in range(H):
+        ret.append(list(map(int, read().split())))
+    return ret
+    # return [list(map(int, read().split())) for _ in range(H)] # 内包表記はpypyでは遅いため
 
 def read_map(H):
     '''
@@ -55,10 +57,23 @@ def read_map_as_int(H):
     '''
     #→1,.→0として読み込む
     '''
-    ret=[]
+    ret = []
     for _ in range(H):
-        ret.append([1 if s=='#' else 0 for s in read()[:-1]])
+        ret.append([1 if s == '#' else 0 for s in read()[:-1]])
+        # 内包表記はpypyでは若干遅いことに注意
+        # #numpy使うだろうからこれを残しておくけど
     return ret
+
+# default import
+from collections import defaultdict, Counter, deque
+from operator import itemgetter
+from itertools import product, permutations, combinations
+from fractions import gcd
+
+def lcm(a, b):
+    # 最小公約数
+    g = gcd(a, b)
+    return a * b // g
 ```
 
 
@@ -92,17 +107,9 @@ for _ in range(与えられる列数):
     node[u-1].add((v-1, w))
 
 
-#再帰の上限を緩和する(引数は適当)
-import sys
-sys.setrecursionlimit(1 << 25)
-
 #再帰メモ化
 from functools import lru_cache
 @lru_cache(maxsize=2**12)
-
-#デフォルト値を持つ辞書
-from collections import defaultdict
-dic = defaultdict(lambda: 0)
 
 #要素の数え上げ(文字数の数え上げに便利
 from collections import Counter
@@ -112,10 +119,6 @@ dic = Counter(なんかの配列)
 from fractions import gcd
 #gcd(0,3)とか3と答える便利な性質がある。3だけの場合の最大公約数(つまり3)を求めることができるということ.
 
-# 最小公倍数 (上をimportした上で使える)
-def lcm(a, b): 
-    g = gcd(a, b)
-    return a * b // g
 
 # i番目の要素でソート
 # hoge=[(1,4),(2,3),(3,2),(4,1)]みたいなやつを`1`番目の要素でソートしたい
