@@ -163,6 +163,9 @@ def full(shape, full_value):
 - [Segment Tree](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/SegmentTree.py)
   - [例題](https://github.com/masakiaota/kyoupuro/blob/master/practice/E_ABC/abc157_e.py)
 
+- imos法 パルス波をデルタ関数の積分で表現するイメージ
+  - 前から積分しながら、先に負のデルタ関数の予約するimos [■](https://github.com/masakiaota/kyoupuro/tree/master/practice/F_ABC)
+
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
   - [二分探索木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BinarySearchTree.py)
   - 単調増加関数をかませるパターンの二分探索(ライブラリが使えない) [螺旋本](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/136_ALDS1_4_D.py) [ABC146](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC146/C.py)
