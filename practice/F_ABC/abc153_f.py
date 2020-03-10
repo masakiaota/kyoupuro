@@ -47,6 +47,10 @@ for i, (x, n) in enumerate(zip(X, n_atk)):
     # 攻撃下回数を記録
     damege[i] += atk
     # 効果が切れる点を予約 # 尺取ならO(1)で次に行けるけど二分探索でも間に合うか
-    damege[bisect_left(X, x + 2 * D + 1, lo=i)] -= atk  # 効果切れを予約
+    # while j < len(X) and X[j] < x + 2 * D + 1:  # あんま高速化しないね
+    #     j += 1
+    # damege[j] -= atk  # 効果切れを予約
+    damege[bisect_left(X, x + 2 * D + 1, lo=i)] -= atk  # 二分探索で十分速い
+
 
 print(ans)
