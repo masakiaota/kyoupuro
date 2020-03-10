@@ -163,8 +163,9 @@ def full(shape, full_value):
 - [Segment Tree](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/SegmentTree.py)
   - [例題](https://github.com/masakiaota/kyoupuro/blob/master/practice/E_ABC/abc157_e.py)
 
-- imos法 パルス波をデルタ関数の積分で表現するイメージ
+- [imos法](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) パルス波をデルタ関数の積分で表現するイメージ
   - 前から積分しながら、先に負のデルタ関数の予約するimos [■](https://github.com/masakiaota/kyoupuro/tree/master/practice/F_ABC)
+  - imosした結果の最大値最小値を使う問題 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc017_c.py)
 
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
   - [二分探索木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BinarySearchTree.py)
