@@ -38,22 +38,18 @@ class SegmentTree:
         '''
         if r <= l:
             return ValueError('invalid index (l,rがありえないよ)')
-        l += self.num - 1
-        r += self.num - 2  # ここで半開区間でなく[l,r]で以下を処理する
+        l += self.num
+        r += self.num
         res = self.ide
-        while r - l > 1:  # 右から寄りながら結果を結合していくイメージ
-            if l & 1 == 0:
-                res = self.func(res, self.tree[l])
-            if r & 1 == 1:
-                res = self.func(res, self.tree[r])
+        while l < r:  # 右から寄りながら結果を結合していくイメージ
+            if l & 1:
+                res = self.func(res, self.tree[l - 1])
+                l += 1
+            if r & 1:
                 r -= 1
-            l = l // 2  # 親の一つ右に移動
-            r = (r - 1) // 2  # 親の一つ左に移動
-        if l == r:
-            res = self.func(res, self.tree[l])
-        else:
-            res = self.func(res, self.tree[l])
-            res = self.func(res, self.tree[r])
+                res = self.func(res, self.tree[r - 1])
+            l >>= 1
+            r >>= 1
         return res
 
 
