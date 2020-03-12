@@ -68,6 +68,7 @@ def read_map_as_int(H):
 from collections import defaultdict, Counter, deque
 from operator import itemgetter
 from itertools import product, permutations, combinations
+from bisect import bisect_left, bisect_right #, insort_left, insort_right
 from fractions import gcd
 
 def lcm(a, b):
