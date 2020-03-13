@@ -194,14 +194,17 @@ def full(shape, full_value):
     - [深さ優先探索を用いた閉路判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC037_B.py)
   - [再帰全探索メモ化](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/142_ALDS1_5_A.py)
   - [幅優先探索]( https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BFS.py)
-  - [Minimum Spanning Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/296_ALDS1_12_A_AtCoder.py) データを打ち込むときに疎行列を使った[バージョン](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/358_GRL_2_A_AtCoder.py)
-  - [dijkstra法](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/309_ALDS1_12_C_AtCoder.py)
-  - [warshall floyd](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/336_GRL_1_C_AtCoder.py)
   - [トポロジカルソート](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/342_GRL_4_B.py)
   - [木の直径](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/353_GRL_5_A.py)
   - [lowest link](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/lowest_link.py)
     - [関節点](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/348_GRL_3_A.py)の例
     - [橋](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc075_c.py)の例
+
+- scipy.csgraph 関係 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/scipy_csgraph.py)
+  - [dijkstra法](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/309_ALDS1_12_C_AtCoder.py)
+  - [warshall floyd](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/336_GRL_1_C_AtCoder.py)
+  - [Minimum Spanning Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/296_ALDS1_12_A_AtCoder.py) データを打ち込むときに疎行列を使った[バージョン](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/358_GRL_2_A_AtCoder.py)
+
 - [2D Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/324_DSL2_C.py)
 
 - 計算幾何
@@ -218,9 +221,7 @@ def full(shape, full_value):
 
 
 ### TODO
-- BITを実装 遅延セグ木にする
-- 遅延セグ木のバリエーション増やす
-
+- scipy_csgraph.pyの整備 (最短全域木とか)
 - 挿入などが高速に行えるデータ構造の履修(Treapとか)
 
 ### 難
