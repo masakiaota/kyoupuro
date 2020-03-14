@@ -66,3 +66,66 @@ def make_divisors(n: int, sort=False):
     if sort:
         divisors.sort()
     return divisors
+
+
+class ModInt:
+    def __init__(self, x, MOD=10 ** 9 + 7):
+        self.mod = MOD
+        self.x = x % MOD
+
+    def __str__(self):
+        return str(self.x)
+
+    __repr__ = __str__
+
+    def __add__(self, other):
+        if isinstance(other, ModInt):
+            return ModInt(self.x + other.x, self.mod)
+        else:
+            return ModInt(self.x + other, self.mod)
+
+    def __sub__(self, other):
+        if isinstance(other, ModInt):
+            return ModInt(self.x - other.x, self.mod)
+        else:
+            return ModInt(self.x - other, self.mod)
+
+    def __mul__(self, other):
+        if isinstance(other, ModInt):
+            return ModInt(self.x * other.x, self.mod)
+        else:
+            return ModInt(self.x * other, self.mod)
+
+    def __truediv__(self, other):
+        if isinstance(other, ModInt):
+            return ModInt(self.x * pow(other.x, self.mod - 2, self.mod))
+        else:
+            return ModInt(self.x * pow(other, self.mod - 2, self.mod))
+
+    def __pow__(self, other):
+        if isinstance(other, ModInt):
+            return ModInt(pow(self.x, other.x, self.mod))
+        else:
+            return ModInt(pow(self.x, other, self.mod))
+
+    __radd__ = __add__
+
+    def __rsub__(self, other):  # 演算の順序が逆
+        if isinstance(other, ModInt):
+            return ModInt(other.x - self.x, self.mod)
+        else:
+            return ModInt(other - self.x, self.mod)
+
+    __rmul__ = __mul__
+
+    def __rtruediv__(self, other):
+        if isinstance(other, ModInt):
+            return ModInt(other.x * pow(self.x, self.mod - 2, self.mod))
+        else:
+            return ModInt(other * pow(self.x, self.mod - 2, self.mod))
+
+    def __rpow__(self, other):
+        if isinstance(other, ModInt):
+            return ModInt(pow(other.x, self.x, self.mod))
+        else:
+            return ModInt(pow(other, self.x, self.mod))
