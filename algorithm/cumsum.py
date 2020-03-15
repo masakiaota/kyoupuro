@@ -73,3 +73,23 @@ class Imos1d:
         '''
         from itertools import accumulate
         return list(accumulate(self.ls[:-1]))
+
+
+# 尺取法 累積積などは数が大きくなりすぎて累積できないことが多いので
+# 例として積が114を超えない最長の区間を取得する
+arr = list(range(100))
+r = -1  # [l,r)を前提とする
+ans = 0
+for l in range(len(arr)):
+    # r = max(l, r)
+    if r <= l:  # explicitに初期cumを決める
+        r = l
+        cum = arr[r]
+    while r < len(arr) and cum <= 114:  # 初めて条件を満たさなくなるところ、というのが半開区間を使う理由
+        r += 1
+        if r == len(arr):  # 終端処理用
+            break
+        cum *= arr[r]
+    # print(cum, l, r)
+    ans = max(ans, r - l)
+    cum //= arr[l]  # ちゃんと抜く
