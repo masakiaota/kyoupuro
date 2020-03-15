@@ -1,9 +1,7 @@
 # 累積和の類
 
-# 一次元累積和クラス
 
-
-class cumsum1d:
+class cumsum1d:  # 一次元累積和クラス
     def __init__(self, ls: list):
         '''
         1次元リストを受け取る
@@ -16,10 +14,21 @@ class cumsum1d:
         return self.ls_accum[j] - self.ls_accum[i]
 
 
-# 二次元累積和クラス
+class CumXor1d:  # 一次元累積xor(供養)
+    def __init__(self, ls: list):
+        '''
+        1次元リストを受け取る
+        '''
+        self.ls_accum = [0]
+        for l in ls:
+            self.ls_accum.append(l ^ self.ls_accum[-1])
+
+    def total(self, i, j):
+        # もとの配列lsにおける[i,j)の中合計
+        return self.ls_accum[j] ^ self.ls_accum[i]
 
 
-class cumsum2d:
+class cumsum2d:  # 二次元累積和クラス
     def __init__(self, ls: list):
         '''
         2次元のリストを受け取る
