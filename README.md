@@ -218,7 +218,11 @@ def full(shape, full_value):
   - [約数全列挙](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc112_d.py)の問題
   - ココらへんの[スニペット](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/Prime_numbers.py)
   - [累積和](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) [二次元累積和問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc106_d.py)
+  - 累積xor [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py)
+  - 尺取法 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py)
 
+- 誤差関係
+  - Decimalを利用した誤差なし四捨五入 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc001_c.py)
 
 ### TODO
 - scipy_csgraph.pyの整備 (最短全域木とか)
