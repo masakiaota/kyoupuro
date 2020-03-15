@@ -64,6 +64,7 @@ def read_map_as_int(H):
         # #numpy使うだろうからこれを残しておくけど
     return ret
 
+MOD = 10**9 + 7
 # default import
 from collections import defaultdict, Counter, deque
 from operator import itemgetter
