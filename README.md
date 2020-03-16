@@ -73,7 +73,7 @@ from bisect import bisect_left, bisect_right #, insort_left, insort_right
 from fractions import gcd
 
 def lcm(a, b):
-    # 最小公約数
+    # 最小公倍数
     g = gcd(a, b)
     return a * b // g
 ```
