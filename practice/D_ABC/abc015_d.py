@@ -1,8 +1,7 @@
 # https://atcoder.jp/contests/abc015/tasks/abc015_4
-# ナップサック問題 枚数も伝播する #枚数を超えないうちで一番価値のあるものを出力すれば良い
+# ナップサック問題 k枚以下で最大の価値の状態も入れてあげる
 
 import sys
-sys.setrecursionlimit(1 << 25)
 read = sys.stdin.readline
 
 
@@ -25,44 +24,21 @@ def read_tuple(H):
 
 
 from itertools import product
+from array import array
 W = read_a_int()
 N, K = read_ints()
 AB = read_tuple(N)
 
 # 枚数も伝播するdp
-# dp[i][j]...i-1番目までの商品まで考慮したとき、重さj以下で達成できる(スクショ枚数、価値の最大値)
-# scs[i][j] ... 上記に対応するスクショ枚数
-dp = [[0] * (W + 1) for _ in range(N + 1)]  # 初期化も同時に
-scs = [[0] * (W + 1) for _ in range(N + 1)]  # 初期化も同時に #これだと貪欲的に選んでる気がするな
-
-# dpしながら答えを取得してもいい
-ans = 0
-for i, j in product(range(N), range(1, W + 1)):
+# dp[i][j][k]...i-1番目までの商品まで考慮したとき、重さj以下、枚数k以下で達成できる価値の最大値
+dp = [[[0] * (K + 1) for _ in range(W + 1)] for _ in range(2)]  # 初期化も同時に
+for i, j, k in product(range(N), range(1, W + 1), range(1, K + 1)):
     w, v = AB[i]
+    dp[(i + 1) & 1][j][k] = max(
+        dp[i & 1][j - w][k - 1] + v if j - w >= 0 else 0,
+        dp[i & 1][j][k])
 
-    notselect = dp[i][j]
-    select = dp[i][j - w] + v if j - w >= 0 else -1
-    if select > notselect:
-        s = scs[i][j - w] + 1
-    else:
-        s = scs[i][j]
-    tmp = max(select, notselect)
-    dp[i + 1][j] = tmp
-    scs[i + 1][j] = s
-    if s <= K:
-        ans = max(ans, tmp)
-print(ans)
-from pprint import pprint
-pprint(dp)
-pprint(scs)
 
-'''
-6
-4 1
-1 2
-2 2
-3 2
-3 3
-
-みたいな入力のときにこれは2を出力してしまう。正確には、取ったほうがスコアが高くなるが、取らないほうが枚数は少なく済むみたいなときに死ぬ。
-'''
+# from pprint import pprint
+# pprint(dp)
+print(dp[(i + 1) & 1][-1][-1])
