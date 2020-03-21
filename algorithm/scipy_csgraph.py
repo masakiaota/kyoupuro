@@ -1,8 +1,7 @@
 # ダイクストラなど使うとき用の整備
 
 # 疎行列
-from scipy.sparse import csr_matrix, lil_matrix
-# 変換する場合はcsrを。あとから数字を入れる場合はlilを使うと効率的
+from scipy.sparse import csr_matrix  # 自分で配列を作ってからcsrに入れよう(lilに打ち込んでいくのは非常に遅い)
 
 # ダイクストラ法 (正の単一始点最短経路) (全点間最短経路)
 from scipy.sparse.csgraph import dijkstra
