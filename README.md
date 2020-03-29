@@ -189,6 +189,9 @@ def full(shape, full_value):
   - [コイン問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/412_DPL_1_A.py)
   - [ナップサックの復元](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/416_DPL_1_B_items.py)
   - 桁DP [再帰実装1](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc007_d.py) [2](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC154/E_correct.py) [配列実装1](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc007_d.py) [2](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC154/E_correct2.py)
+  - 数列から選んだk個選んだときに合計がsになる通りの数のDP[■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc044_c.py)
+  - 数列から0つ以上選んだとき合計がtになる通りの数のDP (tは負を許す) [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc044_c.py)
+    - これの応用で重さが負のナップサックも解けそう。
 
 - グラフ関係
   - [深さ優先探索](https://github.com/masakiaota/kyoupuro/blob/master/practice/novice/ARC031_B.py)
@@ -229,7 +232,12 @@ def full(shape, full_value):
 - scipy_csgraph.pyの整備 (最短全域木とか)
 - 挿入などが高速に行えるデータ構造の履修(Treapとか)
 
-### 難
+### あとで解き直したい
+- ABC018 C [菱形カウント](https://atcoder.jp/contests/abc018/tasks/abc018_3) ... 多点からの最小マンハッタン距離を求めるDP
+
+- ABC044 C [高橋くんとカード](https://atcoder.jp/contests/abc044/tasks/arc060_a) ... 典型的なDPっぽい
+
+
 #### BeginnersSelectioin/novice
 - ABC045_C問題 ... ビット全探索。考え方は難しくないが、ビット全探索という操作の書き方はなれておくと便利そう。また文字列をpythonスクリプトとして実行することもしたので必要になったときは見るべし。
 
@@ -263,7 +271,3 @@ def full(shape, full_value):
 
 #### AGC032
 - A問題 ... きちんと想定解法を思い浮かんだのにTLEが取れなかった悔しい問題(Pythonが遅いからってのもあるが)。何かが存在する（しない）を確かめるときは、その何かの数を持っておいて更新していく方式の方が圧倒的に早い。
-
-#### ABC018
-- C [菱形カウント](https://atcoder.jp/contests/abc018/tasks/abc018_3) ... 多点からの最小マンハッタン距離を求めるDP
-
