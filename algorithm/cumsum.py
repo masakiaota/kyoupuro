@@ -103,6 +103,19 @@ class Imos1d:
         return list(accumulate(self.ls[:-1]))
 
 
+class ZaAtu:
+    def __init__(self, ls):
+        # 座標圧縮クラス(仮) #どうしたら使いやすくなるのか知らんけど
+        self.i_to_orig = sorted(set(ls))
+        self.orig_to_i = {}
+        for i, zahyou in enumerate(self.i_to_orig):
+            self.orig_to_i[zahyou] = i
+        self.len = len(self.i_to_orig)
+
+    def __len__(self):
+        return len(self.i_to_orig)
+
+
 # 尺取法 累積積などは数が大きくなりすぎて累積できないことが多いので
 # 例として積が114を超えない最長の区間を取得する
 arr = list(range(100))
