@@ -165,9 +165,14 @@ def full(shape, full_value):
 - [Segment Tree](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/SegmentTree.py)
   - [例題](https://github.com/masakiaota/kyoupuro/blob/master/practice/E_ABC/abc157_e.py)
 
-- [imos法](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) パルス波をデルタ関数の積分で表現するイメージ
-  - 前から積分しながら、先に負のデルタ関数の予約するimos [■](https://github.com/masakiaota/kyoupuro/tree/master/practice/F_ABC)
-  - imosした結果の最大値最小値を使う問題 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc017_c.py)
+- 数列系
+  - [累積和](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) [二次元累積和問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc106_d.py)
+  - 累積xor [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py)
+  - 尺取法 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py)
+  - [imos法](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) パルス波をデルタ関数の積分で表現するイメージ
+    - 前から積分しながら、先に負のデルタ関数の予約するimos [■](https://github.com/masakiaota/kyoupuro/tree/master/practice/F_ABC)
+    - imosした結果の最大値最小値を使う問題 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc017_c.py)
+  - 座標圧縮 with 二次元累積和 の問題 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc075_d.py)
 
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
   - [二分探索木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/BinarySearchTree.py)
@@ -221,9 +226,6 @@ def full(shape, full_value):
   - [素数判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C.py) [エラトステネスの篩](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C_eratosthenes.py)
   - [約数全列挙](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc112_d.py)の問題
   - ココらへんの[スニペット](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/Prime_numbers.py)
-  - [累積和](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) [二次元累積和問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc106_d.py)
-  - 累積xor [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py)
-  - 尺取法 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py)
 
 - 誤差関係
   - Decimalを利用した誤差なし四捨五入 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc001_c.py)
