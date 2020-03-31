@@ -232,6 +232,7 @@ def full(shape, full_value):
 
 ### TODO
 - scipy_csgraph.pyの整備 (最短全域木とか)
+- 木構造クラスの整備(共通ルート高速取得とかまだ)
 - 挿入などが高速に行えるデータ構造の履修(Treapとか)
 
 ### あとで解き直したい
