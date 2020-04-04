@@ -66,6 +66,7 @@ def read_map_as_int(H):
     return ret
 
 MOD = 10**9 + 7
+INF=2**31 # 2147483648 > 10**9
 # default import
 from collections import defaultdict, Counter, deque
 from operator import itemgetter
