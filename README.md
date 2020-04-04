@@ -8,6 +8,7 @@ import sys
 sys.setrecursionlimit(1 << 25)
 read = sys.stdin.readline
 rr=range
+enu=enumerate
 
 def read_ints():
     return list(map(int, read().split()))
