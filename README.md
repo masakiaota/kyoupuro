@@ -7,7 +7,7 @@
 import sys
 sys.setrecursionlimit(1 << 25)
 read = sys.stdin.readline
-rr=range
+ra=range
 enu=enumerate
 
 def read_ints():
