@@ -243,6 +243,9 @@ def full(shape, full_value):
 
 - ABC044 C [高橋くんとカード](https://atcoder.jp/contests/abc044/tasks/arc060_a) ... 典型的なDPっぽい
 
+- 住友銀行 E [colorful hat 2](https://atcoder.jp/contests/sumitrust2019/tasks/sumitb2019_e) ... 通りの数を独立に扱いたい。考慮できる情報はわからないか？
+
+- diverta C [AB Substrings](https://atcoder.jp/contests/diverta2019/tasks/diverta2019_c) ... コーナーケース見落とし
 
 #### BeginnersSelectioin/novice
 - ABC045_C問題 ... ビット全探索。考え方は難しくないが、ビット全探索という操作の書き方はなれておくと便利そう。また文字列をpythonスクリプトとして実行することもしたので必要になったときは見るべし。
