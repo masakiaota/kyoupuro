@@ -73,7 +73,7 @@ from collections import defaultdict, Counter, deque
 from operator import itemgetter
 from itertools import product, permutations, combinations
 from bisect import bisect_left, bisect_right #, insort_left, insort_right
-from fractions import gcd
+from math import gcd
 
 def lcm(a, b):
     # 最小公倍数
@@ -246,6 +246,8 @@ def full(shape, full_value):
 - 住友銀行 E [colorful hat 2](https://atcoder.jp/contests/sumitrust2019/tasks/sumitb2019_e) ... 通りの数を独立に扱いたい。考慮できる情報はわからないか？
 
 - diverta C [AB Substrings](https://atcoder.jp/contests/diverta2019/tasks/diverta2019_c) ... コーナーケース見落とし
+
+- AGC036 A [Triangle](https://atcoder.jp/contests/agc036/tasks/agc036_a) ... 天才パズルすぎる.(外積、剰余計算)
 
 #### BeginnersSelectioin/novice
 - ABC045_C問題 ... ビット全探索。考え方は難しくないが、ビット全探索という操作の書き方はなれておくと便利そう。また文字列をpythonスクリプトとして実行することもしたので必要になったときは見るべし。
