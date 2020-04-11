@@ -249,6 +249,8 @@ def full(shape, full_value):
 
 - AGC036 A [Triangle](https://atcoder.jp/contests/agc036/tasks/agc036_a) ... 天才パズルすぎる.(外積、剰余計算)
 
+- ABC150 D [Semi Common Multiple](https://atcoder.jp/contests/abc150/tasks/abc150_d) ... 必要条件見落とさない！
+
 #### BeginnersSelectioin/novice
 - ABC045_C問題 ... ビット全探索。考え方は難しくないが、ビット全探索という操作の書き方はなれておくと便利そう。また文字列をpythonスクリプトとして実行することもしたので必要になったときは見るべし。
 
