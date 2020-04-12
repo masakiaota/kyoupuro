@@ -234,6 +234,7 @@ def full(shape, full_value):
   - Decimalを利用した誤差なし四捨五入 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc001_c.py)
 
 ### TODO
+- 耳DPの習得 (これはよく使いそう？)
 - scipy_csgraph.pyの整備 (最短全域木とか)
 - 木構造クラスの整備(共通ルート高速取得とかまだ)
 - 挿入などが高速に行えるデータ構造の履修(Treapとか)
@@ -252,6 +253,8 @@ def full(shape, full_value):
 - ABC150 D [Semi Common Multiple](https://atcoder.jp/contests/abc150/tasks/abc150_d) ... 必要条件見落とさない！
 
 - ABC113 D [Number of Amidakuji](https://atcoder.jp/contests/abc113/tasks/abc113_d) ... 面白いDP。実装が重め。もう一度解きたい(今度はすばやく実装したい)
+
+水色diffは解き直してみてもいいかもしれない。
 
 #### BeginnersSelectioin/novice
 - ABC045_C問題 ... ビット全探索。考え方は難しくないが、ビット全探索という操作の書き方はなれておくと便利そう。また文字列をpythonスクリプトとして実行することもしたので必要になったときは見るべし。
