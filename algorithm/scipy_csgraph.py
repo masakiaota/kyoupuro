@@ -19,3 +19,21 @@ except NegativeCycleError:
     # 負のループはだめ
     print("NEGATIVE CYCLE")
     exit()
+
+
+# 最短距離行列Dが得られたときにs→tまでの経路を復元する
+def restore_path(s: int, t: int, edges: dict, D: list):
+    '''
+    s→tまでの最短経路を復元する
+    edgesはオリジナルの辺のリスト edges[a,b]=a,bを結ぶ辺の長さ。ないときは(INF、自分自身へもINF)
+    Dは最短経路D[s][t]=s→tの最短経路
+    '''
+    ret = []  # 経路
+    cur = s
+    while cur != t:
+        for i in range(N):  # Nはノード数 = len(D) or D.shape[0]
+            if i != cur and edges[cur, i] + D[i][t] == D[cur][t]:
+                ret.append((cur, i) if cur < i else (i, cur))  # 大小関係をはっきりさせておく
+                cur = i
+                break
+    return ret
