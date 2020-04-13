@@ -214,6 +214,7 @@ def full(shape, full_value):
 
 - scipy.csgraph 関係 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/scipy_csgraph.py)
   - [dijkstra法](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/309_ALDS1_12_C_AtCoder.py)
+    - dijkstraを用いた経路復元 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc051_d/abc051_d.py)
   - [warshall floyd](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/336_GRL_1_C_AtCoder.py)
   - [Minimum Spanning Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/296_ALDS1_12_A_AtCoder.py) データを打ち込むときに疎行列を使った[バージョン](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/358_GRL_2_A_AtCoder.py)
 
