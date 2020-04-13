@@ -74,7 +74,7 @@ def dijkstra(adj: list, s: int):
 
 # load datas
 N = int(input())
-adj = [[] for _ in range(N)]  # (node_id, 隣接要素, 隣接nodeidとコスト)の順で格納する
+adj = [[] for _ in range(N)]  # adj[node_id]=(隣接nodei,コスト)で格納する
 '''
 例
 [
