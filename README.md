@@ -255,6 +255,10 @@ def full(shape, full_value):
 
 - ABC113 D [Number of Amidakuji](https://atcoder.jp/contests/abc113/tasks/abc113_d) ... 面白いDP。実装が重め。もう一度解きたい(今度はすばやく実装したい)
 
+- ABC074 D [Restoring Road Network](https://atcoder.jp/contests/abc074/tasks/arc083_b) ... ちょっと変わったグラフの問題。水diffだけど難しい。
+
+
+
 水色diffは解き直してみてもいいかもしれない。
 
 #### BeginnersSelectioin/novice
