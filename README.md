@@ -25,18 +25,16 @@ def read_tuple(H):
         ret.append(tuple(map(int, read().split())))
     return ret
 
-def read_col(H, n_cols):
+def read_col(H):
     '''
     H is number of rows
-    n_cols is number of cols
     A列、B列が与えられるようなとき
+    ex1)A,B=read_col(H)    ex2) A,=read_col(H) #一列の場合
     '''
-    ret = [[] for _ in range(n_cols)]
+    ret = []
     for _ in range(H):
-        tmp = list(map(int, read().split()))
-        for col in range(n_cols):
-            ret[col].append(tmp[col])
-    return ret
+        ret.append(list(map(int, read().split())))
+    return tuple(map(list, zip(*ret)))
 
 def read_matrix(H):
     '''
