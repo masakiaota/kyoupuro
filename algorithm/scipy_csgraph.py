@@ -3,6 +3,27 @@
 # 疎行列
 from scipy.sparse import csr_matrix  # 自分で配列を作ってからcsrに入れよう(lilに打ち込んでいくのは非常に遅い)
 
+
+def read_graph(N: int, directed=True):
+    '''
+    graphを読み込んだcsr_matrixを返す Nはノード数
+    '''
+    from scipy.sparse import csr_matrix
+    fr, to, co = [], [], []  # from, to, cost
+    for _ in range(M):
+        a, b, c = read_ints()
+        a -= 1
+        b -= 1
+        fr.append(a)
+        to.append(b)
+        co.append(c)
+        if directed == False:
+            fr.append(b)
+            to.append(a)
+            co.append(c)
+    return csr_matrix((co, (fr, to)), shape=(N, N), dtype='int64')
+
+
 # ダイクストラ法 (正の単一始点最短経路) (全点間最短経路)
 from scipy.sparse.csgraph import dijkstra
 D = dijkstra(adj_mat, directed=True, indices=unko: int)
