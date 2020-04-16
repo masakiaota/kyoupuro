@@ -255,6 +255,7 @@ def full(shape, full_value):
 
 - ABC074 D [Restoring Road Network](https://atcoder.jp/contests/abc074/tasks/arc083_b) ... ちょっと変わったグラフの問題。水diffだけど難しい。
 
+- ABC 081 D [Non-debreasing](https://atcoder.jp/contests/abc081/tasks/arc086_b) ... 何食べたらこんなの思いつくんですか
 
 
 水色diffは解き直してみてもいいかもしれない。
