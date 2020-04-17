@@ -257,6 +257,8 @@ def full(shape, full_value):
 
 - ABC 081 D [Non-debreasing](https://atcoder.jp/contests/abc081/tasks/arc086_b) ... 何食べたらこんなの思いつくんですか
 
+- ABC 101 C [Minimization](https://atcoder.jp/contests/abc101/tasks/arc099_a) ... クソ簡単かと思いきやクソムズ
+
 
 水色diffは解き直してみてもいいかもしれない。
 
