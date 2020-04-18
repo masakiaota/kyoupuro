@@ -73,57 +73,33 @@ from collections import defaultdict, Counter, deque
 from operator import itemgetter
 from itertools import product, permutations, combinations
 from bisect import bisect_left, bisect_right  # , insort_left, insort_right
-from heapq import heapify, heappop, heappush, heappushpop
 
-
-class PriorityQueue:
-    def __init__(self, heap):
-        '''
-        heap ... list
-        '''
-        self.heap = heap
-        heapify(self.heap)
-
-    def push(self, item):
-        heappush(self.heap, item)
-
-    def pop(self):
-        return heappop(self.heap)
-
-    def pushpop(self, item):
-        return heappushpop(self.heap, item)
-
-    def __call__(self):
-        return self.heap
-
-    def __len__(self):
-        return len(self.heap)
-# s→tまでの最短経路はどうやってみ見つける?
-# grid bfs で 各点への最短距離
-# スタートから各店への最短距離たどってすでにならした地面はコスト0に置換
-# 再びgrid bfsで各店への最短距離を出す
+# s→k→tまでの最短経路はどうやってみ見つける?
+# 3点s,k,tについてmin(D[u,s]+D[u,k]+D[u,t])がs→k→tとなるときの最小距離
 
 
 H, W = read_ints()
 A = read_matrix(H)
 
 
-mv = {(0, 1), (1, 0), (0, -1), (-1, 0)}
-
-
-def grid_dijkstra(grid, si, sj):
+def grid_dijkstra(grid, si: int, sj: int):
+    '''grid上のdijkstra法。gridはそこに入るときにかかるコスト
+    si,sj は開始の座標。'''
+    from heapq import heappop, heappush
+    H = len(grid)
+    W = len(grid[0])
     D = [[-1] * W for _ in [0] * H]  # -1がINFを意味する
-    que = PriorityQueue([(0, si, sj)])
+    que = [(0, si, sj)]
     D[si][sj] = 0
     while que:
-        c, i, j = que.pop()
-        for di, dj in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+        c, i, j = heappop(que)
+        for di, dj in ((0, 1), (1, 0), (0, -1), (-1, 0)):
             ni, nj = i + di, j + dj
             if not (0 <= ni < H and 0 <= nj < W) or D[ni][nj] != -1:
                 continue
             nc = c + grid[ni][nj]
             D[ni][nj] = nc
-            que.push((nc, ni, nj))
+            heappush(que, (nc, ni, nj))
     return D
 
 
