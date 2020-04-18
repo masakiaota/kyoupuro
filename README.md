@@ -259,6 +259,7 @@ def full(shape, full_value):
 
 - ABC 101 C [Minimization](https://atcoder.jp/contests/abc101/tasks/arc099_a) ... クソ簡単かと思いきやクソムズ
 
+- ABC 095 D [Static Sushi](https://atcoder.jp/contests/abc095/tasks/arc096_b) ... 場合分けと独立に式を展開、そして累積maxを用いた高速化
 
 水色diffは解き直してみてもいいかもしれない。
 
