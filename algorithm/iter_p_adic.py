@@ -6,8 +6,7 @@ def iter_p_adic(p, length):
     所望のp進数リストを次々返してくれるiterator
     '''
     from itertools import product
-    tmp = [range(p)] * length
-    return product(*tmp)
+    return product(range(p), repeat=length)
 
 
 def g_idx(perm):  # 生成されたリストから1が立つもののidxだけ返す関数 (bit全探索用)
