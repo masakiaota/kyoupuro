@@ -56,6 +56,18 @@ class cumsum2d:  # 二次元累積和クラス pypyでも使えるよ
         return self.ls_accum[i2][j2] - self.ls_accum[i1][j2] \
             - self.ls_accum[i2][j1] + self.ls_accum[i1][j1]
 
+
+def solve_max_a_plas_b(A: list, B: list):  # 累積maxの応用
+    '''max_{i<j}(a_i + b_j)をO(n)で解く (古いpypyだとfuncが未実装かも)'''
+    from itertools import accumulate
+    assert len(A) == len(B)
+    A_accum = list(accumulate(A, func=max))
+    B_accum = list(accumulate(reversed(B), func=max))[::-1]
+    ret = 0
+    for i in range(len(A_accum) - 1):
+        ret = max(A_accum[i] + B_accum[i + 1], ret)
+    return ret
+
 # class cumsum2d:  # 二次元累積和クラス
 #     def __init__(self, ls: list):
 #         '''
