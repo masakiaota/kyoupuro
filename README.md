@@ -46,23 +46,7 @@ def read_matrix(H):
     return ret
     # return [list(map(int, read().split())) for _ in range(H)] # 内包表記はpypyでは遅いため
 
-def read_map(H):
-    '''
-    H is number of rows
-    文字列で与えられた盤面を読み取る用
-    '''
-    return [read()[:-1] for _ in range(H)]
 
-def read_map_as_int(H):
-    '''
-    #→1,.→0として読み込む
-    '''
-    ret = []
-    for _ in range(H):
-        ret.append([1 if s == '#' else 0 for s in read()[:-1]])
-        # 内包表記はpypyでは若干遅いことに注意
-        # #numpy使うだろうからこれを残しておくけど
-    return ret
 
 MOD = 10**9 + 7
 INF=2**31 # 2147483648 > 10**9
