@@ -245,6 +245,10 @@ def full(shape, full_value):
 
 - ABC 095 D [Static Sushi](https://atcoder.jp/contests/abc095/tasks/arc096_b) ... 場合分けと独立に式を展開、そして累積maxを用いた高速化
 
+- ABC 034 D [食塩水](https://atcoder.jp/contests/abc034/tasks/abc034_d) ... 嘘貪欲で通してしまった。次解くときはちゃんと解き方を考えてみよう
+
+- ABC 110 D [Factorization](https://atcoder.jp/contests/abc110/tasks/abc110_d) ... 解けるはず！
+ 
 水色diffは解き直してみてもいいかもしれない。
 
 #### BeginnersSelectioin/novice
