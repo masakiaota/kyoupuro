@@ -13,13 +13,24 @@ class SegmentTree:
         '''
         self.ide = identity_element
         self.func = segfunc
-        n = len(ls)
-        self.num = 2 ** (n - 1).bit_length()  # n以上の最小の2のべき乗
+        self.n_origin = len(ls)
+        self.num = 2 ** (self.n_origin - 1).bit_length()  # n以上の最小の2のべき乗
         self.tree = [self.ide] * (2 * self.num - 1)  # −1はぴったりに作るためだけど気にしないでいい
         for i, l in enumerate(ls):  # 木の葉に代入
             self.tree[i + self.num - 1] = l
         for i in range(self.num - 2, -1, -1):  # 子を束ねて親を更新
             self.tree[i] = segfunc(self.tree[2 * i + 1], self.tree[2 * i + 2])
+
+    def __getitem__(self, idx):  # オリジナル要素にアクセスするためのもの
+        if isinstance(idx, slice):
+            start = idx.start if idx.start else 0
+            stop = idx.stop if idx.stop else self.n_origin
+            l = start + self.num - 1
+            r = l + stop - start
+            return self.tree[l:r:idx.step]
+        elif isinstance(idx, int):
+            i = idx + self.num - 1
+            return self.tree[i]
 
     def update(self, i, x):
         '''
