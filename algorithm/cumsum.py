@@ -129,20 +129,39 @@ class ZaAtu:
 
 
 # 尺取法 累積積などは数が大きくなりすぎて累積できないことが多いので
-# 例として積が114を超えない最長の区間を取得する
-arr = list(range(100))
-r = -1  # [l,r)を前提とする
-ans = 0
-for l in range(len(arr)):
-    # r = max(l, r)
-    if r <= l:  # explicitに初期cumを決める
-        r = l
-        cum = arr[r]
-    while r < len(arr) and cum <= 114:  # 初めて条件を満たさなくなるところ、というのが半開区間を使う理由
-        r += 1
-        if r == len(arr):  # 終端処理用
-            break
-        cum *= arr[r]
-    # print(cum, l, r)
-    ans = max(ans, r - l)
-    cum //= arr[l]  # ちゃんと抜く
+
+def two_pointers(ls: list):
+    '''すべてのlに対して、条件is_okをみたすls[l:r]の中で
+    r - lが最大になるような(l,r)の集合を返す'''
+    n_ls = len(ls)
+    ret = []
+
+    def append(r, pre_states):
+        '''状態にls[r]を考慮して更新する'''
+        # 問題によって自分で定義
+        # 掛け算の例 return pre_state*ls[r]
+        pass
+
+    def pop(l, pre_states):
+        '''状態からls[l]を抜く更新をする'''
+        # 問題によって自分で定義
+        # 掛け算の例 return pre_state//ls[l]
+        pass
+
+    def is_ok(r, pre_states):
+        # 問題によって自分で定義
+        states = append(r, pre_states)
+        # 114以下の最長の範囲が知りたい例 return states<=114
+        pass
+
+    r = 0
+    states = (自分で定義 複数変数でも構わない)
+    for l in range(n_ls):
+        while r < len(n_ls) and is_ok(r, states):
+            # 更新式
+            states = append(r, states)
+            r += 1
+        ret.append((l, r))
+        # 抜けるときの更新
+        states = pop(l, states)
+    return ret
