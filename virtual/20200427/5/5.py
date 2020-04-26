@@ -97,7 +97,7 @@ def two_pointers(ls: list):
         xor_state ^= ls[r]
         return (sum_state, xor_state)
 
-    def pop(l, pre_states):
+    def popleft(l, pre_states):
         '''状態からls[l]を抜く更新をする'''
         # 問題によって自分で定義
         sum_state, xor_state = pre_states
@@ -121,7 +121,7 @@ def two_pointers(ls: list):
             r += 1
         ret.append((l, r))
         # 抜けるときの更新
-        states = pop(l, states)
+        states = popleft(l, states)
     return ret
 
 
