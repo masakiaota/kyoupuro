@@ -251,6 +251,8 @@ def full(shape, full_value):
 - ABC 034 D [食塩水](https://atcoder.jp/contests/abc034/tasks/abc034_d) ... 嘘貪欲で通してしまった。次解くときはちゃんと解き方を考えてみよう
 
 - ABC 110 D [Factorization](https://atcoder.jp/contests/abc110/tasks/abc110_d) ... 解けるはず！
+
+- ABC 164 F [Multiple of 2019](https://atcoder.jp/contests/abc164/tasks/abc164_d) ... (i,j)の組の数求めろ系の[メタ的な戦略](https://github.com/masakiaota/kyoupuro/blob/master/contests/abc164/d/editorial.png)も思い出しながら解いてみよう
  
 水色diffは解き直してみてもいいかもしれない。
 
