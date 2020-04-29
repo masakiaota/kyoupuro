@@ -116,17 +116,6 @@ hoge.sort(key=itemgetter(1))
 # mより小さい最大値 (最小値も似たようにかける)
 max(arr, key=lambda x: -INF if x>m  else x)
 
-# mod取りながらcombination
-def combination_mod(n, r, mod):
-    if r > n:
-        return 0  # このような通りの数は無いため便宜上こう定義する
-    r = min(r, n - r)
-    nf = rf = 1
-    for i in range(r):
-        nf = nf * (n - i) % mod
-        rf = rf * (i + 1) % mod
-    return nf * pow(rf, mod - 2, mod) % mod
-
 # np.full と同等のpython実装
 def full(shape, full_value):
     if isinstance(shape, tuple):
