@@ -19,6 +19,7 @@ def read_map_as(H, replace={'#': 1, '.': 0}):
     '''
     文字列のmapを置換して読み込み。デフォでは#→1,.→0
     '''
+    # TODO paddingの機能入れたいね
     ret = []
     for _ in range(H):
         ret.append([replace[s] for s in read()[:-1]])
