@@ -24,19 +24,19 @@ def read_col(H):
 MOD = 10**9 + 7
 INF = 2**31  # 2147483648 > 10**9
 # default import
-from collections import defaultdict, Counter, deque
-from operator import itemgetter
-from itertools import product, permutations, combinations
-from bisect import bisect_left, bisect_right  # , insort_left, insort_right
 
 N, K, M, R = read_ints()
+# コーナーケース
+if N == 1:
+    print(R)
+    exit()
+
 S, = read_col(N - 1)
 S.sort(reverse=True)
 
 if sum(S[:K]) >= R * K:
     print(0)
     exit()
-
 
 x = R * K - sum(S[:K - 1])
 if x > M:
