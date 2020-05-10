@@ -4,9 +4,9 @@
 from scipy.sparse import csr_matrix  # 自分で配列を作ってからcsrに入れよう(lilに打ち込んでいくのは非常に遅い)
 
 
-def read_graph(N: int, directed=True):
+def read_graph(N: int, M: int, directed=True):
     '''
-    graphを読み込んだcsr_matrixを返す Nはノード数
+    graphを読み込んだcsr_matrixを返す Nはノード数 Mは読み込み行数
     '''
     from scipy.sparse import csr_matrix
     fr, to, co = [], [], []  # from, to, cost
@@ -21,6 +21,7 @@ def read_graph(N: int, directed=True):
             fr.append(b)
             to.append(a)
             co.append(c)
+    # 二重辺がある場合はcoの値が足されてしまうので注意
     return csr_matrix((co, (fr, to)), shape=(N, N), dtype='int64')
 
 
@@ -58,3 +59,8 @@ def restore_path(s: int, t: int, edges: dict, D: list):
                 cur = i
                 break
     return ret
+
+
+# 全域最小木 クラスカル法
+from scipy.sparse.csgraph import minimum_spanning_tree
+mst = minimum_spanning_tree(adj_mat)
