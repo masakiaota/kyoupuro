@@ -54,19 +54,7 @@ def dijkstra(graph, s, N):
     return D, P
 
 
-def get_sortest_path(P, t):
-    '''P...各要素に親番号を記録した最短経路木
-    t...目的ノード'''
-    # !未verify
-    path = []
-    while t is not None:
-        path.append(t)
-        t = P[t]
-    return path  # 逆順
-
 ####################クラスカル####################
-
-
 class UnionFind:
     def __init__(self, N):
         self.N = N  # ノード数
@@ -123,3 +111,58 @@ def kruskal(N, edges):
         total_cost += c
         used_edges.append((c, s, t))
     return total_cost, used_edges
+
+####################ベルマンフォード Bellman Ford####################
+
+
+def bellman_ford(edges, s, N):
+    '''
+    edges ... (cost,from,to)を各要素に持つリスト
+    s...始点ノード
+    N...頂点数
+
+    return
+    ----------
+    D ... 各点までの最短距離
+    P ... 最短経路木における親
+    '''
+    P = [None] * N
+    inf = float('inf')
+    D = [inf] * N
+    D[s] = 0
+    for n in range(N):  # N-1回で十分だけど、N回目にもアップデートがあったらnegative loopを検出できる
+        update = False  # 早期終了用
+        for c, ot, to in edges:
+            if D[ot] != inf and D[to] > D[ot] + c:
+                update = True
+                D[to] = D[ot] + c
+                P[to] = ot
+        if not update:
+            break  # 早期終了
+        if n == len(edges) - 1:
+            raise ValueError('NegativeCycleError')
+    return D, P
+
+####################utils####################
+
+
+def graph_to_edges(graph):
+    '''(cosr,from,to)を要素に持つリストに変換'''
+    # edgeへの変換
+    edges = []
+    for ot, v in graph.items():
+        for to, c in v:
+            edges.append((c, ot, to))
+    return edges
+
+
+def get_sortest_path(P, t):
+    # 最短経路木経路復元
+    '''P...各要素に親番号を記録した最短経路木
+    t...目的ノード'''
+    # !未verify
+    path = []
+    while t is not None:
+        path.append(t)
+        t = P[t]
+    return path  # 逆順
