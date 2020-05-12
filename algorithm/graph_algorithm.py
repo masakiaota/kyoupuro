@@ -166,3 +166,22 @@ def get_sortest_path(P, t):
         path.append(t)
         t = P[t]
     return path  # 逆順
+
+
+def dist_on_tree(tree, s, N):
+    # 木上の最短距離(地味に書くことが多い)
+    '''tree...(to,cost)の隣接リスト形式
+    s...始点ノード
+    N...ノード数'''
+    from collections import deque
+    D = [-1] * N
+    D[s] = 0
+    que = deque([(s, 0)])  # 現在のノード、そこまでの距離
+    while que:
+        now, dist = que.popleft()
+        for to, cost in tree[now]:
+            if D[to] != -1:
+                continue
+            D[to] = dist + cost
+            que.append((to, dist + cost))
+    return D
