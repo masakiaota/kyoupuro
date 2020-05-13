@@ -15,16 +15,22 @@ def read_map(H):
     return [read()[:-1] for _ in range(H)]
 
 
-def read_map_as(H, replace={'#': 1, '.': 0}):
+def read_map_as(H, replace={'#': 1, '.': 0}, pad=None):
     '''
     文字列のmapを置換して読み込み。デフォでは#→1,.→0
     '''
-    # TODO paddingの機能入れたいね
-    ret = []
-    for _ in range(H):
-        ret.append([replace[s] for s in read()[:-1]])
-        # 内包表記はpypyでは若干遅いことに注意
-        # #numpy使うだろうからこれを残しておくけど
+    if pad is None:
+        ret = []
+        for _ in range(H):
+            ret.append([replace[s] for s in read()[:-1]])
+            # 内包表記はpypyでは若干遅いことに注意
+            # #numpy使うだろうからこれを残しておくけど
+    else:  # paddingする
+        ret = [[pad] * (W + 2)]  # Wはどっかで定義しておくことに注意
+        for _ in range(H):
+            ret.append([pad] + [replace[s] for s in read()[:-1]] + [pad])
+        ret.append([pad] * (W + 2))
+
     return ret
 
 
