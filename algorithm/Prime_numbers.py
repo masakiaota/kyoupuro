@@ -69,3 +69,21 @@ def make_divisors(n: int, sort=False):
     if sort:
         divisors.sort()
     return divisors
+
+
+# def extgcd(a, b):
+#     '''ax + by = gcd(a,b) を満たすgcd(a,b),x,yを返す'''
+#     if b == 0:
+#         return a, 1, 0
+#     g, x, y = extgcd(b, a % b)
+#     return g, y, x - a // b * y
+
+
+def extgcd(a, b):  # 非再帰
+    '''ax + by = gcd(a,b) を満たすgcd(a,b),x,yを返す'''
+    x0, y0, x1, y1 = 1, 0, 0, 1
+    while b != 0:  # 互除法の回数処理を行って
+        q, a, b = a // b, b, a % b  # 上に伝播させていく
+        x0, x1 = x1, x0 - q * x1
+        y0, y1 = y1, y0 - q * y1
+    return a, x0, y0
