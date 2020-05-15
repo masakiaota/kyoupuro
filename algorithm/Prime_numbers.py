@@ -5,11 +5,8 @@ def is_prime(x: int):
     # 高速素数判定
     if x == 1:
         return False
-    if x % 2 == 0:
-        if x == 2:
-            return True
-        else:
-            return False
+    if x % 2 == 0:  # 定数倍高速化
+        return x == 2
 
     for i in range(3, int(x**0.5) + 1, 2):
         if x % i == 0:
@@ -18,7 +15,7 @@ def is_prime(x: int):
     return True
 
 
-def ret_erators(N: int):
+def ret_eratos(N: int):
     # エラトステネスの篩
     is_prime = [True] * (N + 1)
 
