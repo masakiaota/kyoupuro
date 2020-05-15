@@ -1,18 +1,13 @@
 
 def ret_eratos(N: int):
-    # エラトステネスの篩
+    '''エラトステネスの篩'''
     is_prime = [True] * (N + 1)
-
-    # 0と1は素数ではない
-    is_prime[0] = False
+    is_prime[0] = False  # 0と1は素数ではない
     is_prime[1] = False
-
-    for i in range(2, int(N**0.5) + 1):
+    for i in range(2, int(N ** 0.5) + 1):
         if is_prime[i]:
-            j = i * 2  # iの倍数は素数ではない
-            while j < N + 1:
+            for j in range(i * 2, N + 1, i):  # iの倍数は素数でない
                 is_prime[j] = False
-                j += i
     return is_prime
 
 
