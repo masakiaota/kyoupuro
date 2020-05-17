@@ -3,12 +3,6 @@
 from random import randint
 from bisect import bisect_left
 
-
-def index(a, x):
-    'Locate the leftmost value exactly equal to x'
-    return -1
-
-
 n = 1000
 m = 10 ** 5  # ちょうどなってほしい数(ここでは決め打ち)
 k = [randint(1, 2 * 10 ** 6) for _ in range(n)]
