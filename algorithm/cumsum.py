@@ -157,7 +157,7 @@ def two_pointers(ls: list):
     r = 0
     states = (自分で定義 複数変数でも構わない)
     for l in range(n_ls):
-        while r < len(n_ls) and is_ok(r, states):
+        while r < n_ls and is_ok(r, states):
             # 更新式
             states = append(r, states)
             r += 1
