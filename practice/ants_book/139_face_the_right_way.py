@@ -30,7 +30,7 @@ for k in range(1, N + 1):  # Kについて全探索
         is_fliped[i] += 1
         is_fliped[i + k] -= 1
 
-    if is_valid:  # 最後まで牛を見られるときはピッタリひっくり返せたということ
+    if is_valid:
         print(k, m, is_fliped)  # 確認用
         if m < ans_M:
             ans_M = m
