@@ -142,6 +142,8 @@ def full(shape, full_value):
 - [平方分割](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/SqrtDecomposedList.py)
   - [例題](https://github.com/masakiaota/kyoupuro/blob/master/practice/E_ABC/abc157_e/abc157_e_sqrtdecompose.py)
 
+- [linked list](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/linkedlist.py)
+
 - 数列系
   - [累積和](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) [二次元累積和問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc106_d.py)
   - 累積xor [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py)
@@ -185,18 +187,18 @@ def full(shape, full_value):
   - [lowest link](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/lowest_link.py)
     - [関節点](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/348_GRL_3_A.py)の例
     - [橋](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc075_c.py)の例
+  - [2D Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/324_DSL2_C.py)
 
-- graphアルゴリズム系
-  - 自前実装 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/graph_algorithm.py)
-  - grid系 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/grid_utils.py)
+  - graphアルゴリズム系
+    - 自前実装 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/graph_algorithm.py)
+    - grid系 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/grid_utils.py)
 
-- scipy.csgraph 関係 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/scipy_csgraph.py)
-  - [dijkstra法](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/309_ALDS1_12_C_AtCoder.py)
+  - scipy.csgraph 関係 [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/scipy_csgraph.py)
+    - [dijkstra法](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/309_ALDS1_12_C_AtCoder.py)
     - dijkstraを用いた経路復元 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc051_d/abc051_d.py)
-  - [warshall floyd](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/336_GRL_1_C_AtCoder.py)
-  - [Minimum Spanning Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/296_ALDS1_12_A_AtCoder.py) データを打ち込むときに疎行列を使った[バージョン](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/358_GRL_2_A_AtCoder.py)
+    - [warshall floyd](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/336_GRL_1_C_AtCoder.py)
+    - [Minimum Spanning Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/296_ALDS1_12_A_AtCoder.py) データを打ち込むときに疎行列を使った[バージョン](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/358_GRL_2_A_AtCoder.py)
 
-- [2D Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/324_DSL2_C.py)
 
 - 計算幾何
   - [線分交差判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/387_CGL_2_B.py)
