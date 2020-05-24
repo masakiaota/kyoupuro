@@ -147,7 +147,7 @@ def full(shape, full_value):
   - [imos法](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) パルス波をデルタ関数の積分で表現するイメージ
     - 前から積分しながら、先に負のデルタ関数の予約するimos [■](https://github.com/masakiaota/kyoupuro/tree/master/practice/F_ABC)
     - imosした結果の最大値最小値を使う問題 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc017_c.py)
-  - 座標圧縮 with 二次元累積和 の問題 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc075_d.py)
+  - [座標圧縮](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/cumsum.py) with 二次元累積和 の問題 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc075_d.py) 
 
 - [二分探索]( https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC119/D_correct.py )
   - オープンソースからパクってきた[二分探索木](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/sortedlist.py)

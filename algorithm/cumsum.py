@@ -115,7 +115,7 @@ class Imos1d:
         return list(accumulate(self.ls[:-1]))
 
 
-class ZaAtu:
+class Compress:
     def __init__(self, ls):
         # 座標圧縮クラス(仮) #どうしたら使いやすくなるのか知らんけど
         self.i_to_orig = sorted(set(ls))
