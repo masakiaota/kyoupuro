@@ -162,12 +162,14 @@ def full(shape, full_value):
   - [Counting Sort](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/168_ALDS1_6_A.py) (出ないかも)
   - バブルソートをするとしたら[要素の反転数は？](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/175_ALDS1_5_D.py) O(n**2)より高速なO(nlogn)
   - [最小コストソート](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/179_ALDS1_6_D.py)...最小コストで要素をswapさせてソートしたい
+
 - DP関係
   - [共通部分文字列](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/253_ALDS1_10_C.py)
   - [連鎖行列積](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/257_ALDS1_10_B.py)
   - [最大長方形](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/428_DPL_3_B.py)
   - [コイン問題](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/412_DPL_1_A.py)
   - [ナップサックの復元](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/416_DPL_1_B_items.py)
+  - [ナップサック問題の解き方3種類](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc032_d/abc032_d.py)
   - 桁DP [再帰実装1](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc007_d.py) [2](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC154/E_correct.py) [配列実装1](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc007_d.py) [2](https://github.com/masakiaota/kyoupuro/blob/master/contests/ABC154/E_correct2.py)
   - 数列から選んだk個選んだときに合計がsになる通りの数のDP[■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc044_c.py)
   - 数列から0つ以上選んだとき合計がtになる通りの数のDP (tは負を許す) [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc044_c.py)
