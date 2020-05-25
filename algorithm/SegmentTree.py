@@ -45,7 +45,7 @@ class SegmentTree:
 
     def query(self, l, r):
         '''
-        区間[l,r)に対するクエリをO(logN)で処理する。例えばその区間の最小値、最大値、gcdなど
+        区間[l,r)に対するクエリをO(logN)で処理する。例えばその区間の最小値、最大値、gcdなど、(二項演算に順番がある場合はうまくできないので注意)
         '''
         if r <= l:
             return ValueError('invalid index (l,rがありえないよ)')
