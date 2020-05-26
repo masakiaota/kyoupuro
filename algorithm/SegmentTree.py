@@ -44,23 +44,28 @@ class SegmentTree:
                                      self.tree[i * 2 + 2])
 
     def query(self, l, r):
-        '''
-        区間[l,r)に対するクエリをO(logN)で処理する。例えばその区間の最小値、最大値、gcdなど、(二項演算に順番がある場合はうまくできないので注意)
-        '''
+        '''区間[l,r)に対するクエリをO(logN)で処理する。例えばその区間の最小値、最大値、gcdなど'''
         if r <= l:
             return ValueError('invalid index (l,rがありえないよ)')
         l += self.num
         r += self.num
-        res = self.ide
+        res_right = []
+        res_left = []
         while l < r:  # 右から寄りながら結果を結合していくイメージ
             if l & 1:
-                res = self.func(res, self.tree[l - 1])
+                res_left.append(self.tree[l - 1])
                 l += 1
             if r & 1:
                 r -= 1
-                res = self.func(res, self.tree[r - 1])
+                res_right.append(self.tree[r - 1])
             l >>= 1
             r >>= 1
+        res = self.ide
+        # 左右の順序を保って結合
+        for x in res_left:
+            res = self.func(x, res)
+        for x in reversed(res_right):
+            res = self.func(res, x)
         return res
 
 

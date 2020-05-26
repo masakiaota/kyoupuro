@@ -43,7 +43,30 @@ class SegmentTree:
             self.tree[i] = self.func(self.tree[i * 2 + 1],
                                      self.tree[i * 2 + 2])
 
-    # この問題みたいに二項演算に順番がある場合のqueryってどう書くのがいいんだろう😵
+    def query(self, l, r):
+        '''区間[l,r)に対するクエリをO(logN)で処理する'''
+        if r <= l:
+            return ValueError('invalid index (l,rがありえないよ)')
+        l += self.num
+        r += self.num
+        res_right = []
+        res_left = []
+        while l < r:  # 右から寄りながら結果を結合していくイメージ
+            if l & 1:
+                res_left.append(self.tree[l - 1])
+                l += 1
+            if r & 1:
+                r -= 1
+                res_right.append(self.tree[r - 1])
+            l >>= 1
+            r >>= 1
+        res = self.ide
+        # 左右の順序を保って結合
+        for x in res_left:
+            res = self.func(x, res)
+        for x in reversed(res_right):
+            res = self.func(res, x)
+        return res
 
 
 # セグ木の各要素は(vx,vy,ang)を持つことにする。angはそのベクトルの右側の辺が垂直から何度傾いているかを示す
@@ -66,7 +89,7 @@ def solve(N, C, L, S, A):
     for i, a in zip(S, A):
         x, y, _ = segtree[i]
         segtree.update(i, (x, y, a))
-        ansx, ansy, _ = segtree.tree[0]
+        ansx, ansy, _ = segtree.query(0, N)
         print(ansx, ansy)
 
 
