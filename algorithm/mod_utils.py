@@ -1,3 +1,15 @@
+def perm_mod(n, r, mod=10**9 + 7):
+    '''nPrをmodを取って返す'''
+    if n < r:  # そんな通りはありえない
+        return 0
+    ret = 1
+    for _ in range(r):
+        ret *= n
+        ret %= mod
+        n -= 1
+    return ret
+
+
 def combination_mod(n, r, mod=10**9 + 7):
     # mod取りながらcombination
     if r > n:
