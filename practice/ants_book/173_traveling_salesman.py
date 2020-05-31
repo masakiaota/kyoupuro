@@ -38,6 +38,11 @@ def solve(n, graph):
             dp[S | (1 << v)][v] = min(dp[S | (1 << v)][v],
                                       dp[S][u] + graph[u][v])
 
+            # # 別解 #集めるDPの発想
+            # if u == v or (S >> v) & 1 == 0:  # Sにはvが含まれている必要がある
+            #     continue
+            # dp[S][v] = min(dp[S][v],
+            #                dp[S - (1 << v)][u] + graph[u][v])
     print(dp[-1][0] if dp[-1][0] != INF else -1)
 
 
