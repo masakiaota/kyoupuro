@@ -212,6 +212,10 @@ def full(shape, full_value):
 - 誤差関係
   - Decimalを利用した誤差なし四捨五入 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc001_c.py)
 
+- 文字列関連
+  - ランレングス圧縮 (リストにも使える) [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/strings.py)
+  - Z algorithm [■](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/strings.py) [例題](https://atcoder.jp/contests/abc141/submissions/13929762)
+
 ### TODO
 - 耳DPの習得 (これはよく使いそう？)
 - scipy_csgraph.pyの整備 (最短全域木とか)
