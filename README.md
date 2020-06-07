@@ -208,6 +208,7 @@ def full(shape, full_value):
   - [素数判定](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C.py) [エラトステネスの篩](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/436_ALDS_1_C_eratosthenes.py)
   - [約数全列挙](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc112_d.py)の問題
   - ココらへんの[スニペット](https://github.com/masakiaota/kyoupuro/blob/master/algorithm/Prime_numbers.py)
+  - 行列に対する繰り返し二乗法(フィボナッチ数列を例に) [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/ants_book/180_fibonacci_matrix.py)
 
 - 誤差関係
   - Decimalを利用した誤差なし四捨五入 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/C_ABC/abc001_c.py)

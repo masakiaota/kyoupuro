@@ -21,6 +21,18 @@ def matrix_pow(mat: np.matrix, n: int, mod: int):
     return ret
 
 
+def pow(x, n, mod):  # 一般化繰り返し二乗法(メモ)
+    ret = 1  # 単位元
+    tmp = copy(x)  # 二乗していくもの #書き換えないためにコピーしておく
+    while n > 0:
+        if n & 1:  # ビットが立っているなら処理する
+            ret *= tmp
+            ret %= mod
+        tmp = tmp**2  # 二乗していく
+        n >>= 1  # ビットを処理
+    return ret
+
+
 A = np.matrix([[1, 1],
                [1, 0]])
 
