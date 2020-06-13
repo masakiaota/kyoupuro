@@ -17,36 +17,38 @@ for _ in range(n_E):
 
 
 # Topological Sort by BFS
-def topological_sort(adj, indeg):
+def topological_sort(dag, indeg):
     '''
-    adj ... default dictで定義された隣接リスト
+    dag ... default dictで定義された隣接リスト(DAGを想定)
     indeg ... 各ノードについての流入量のリスト(inputのときについでにやったほうが計算量若干少なく済むでしょ？本質じゃないけど)
     '''
     is_visited = [False] * len(indeg)  # 訪問間利用
     ret = []  # グラフをソートしたあとに返す答え
+    perm = [-1] * len(indeg)  # できる処理を一気にしようとしたときの順番
 
-    def bfs(s):  # bfsを定義する
-        # 与えた始点からbfsしていく関数。
-        que = deque([s])
-        is_visited[s] = True
-        while que:
-            u = que.popleft()  # uは流入量0のノード
-            ret.append(u)  # なので答えに加えていく
+    que = deque()  # 各要素はノード, 処理回数
+    for i, deg in enumerate(indeg):
+        if deg == 0:
+            que.append((i, 0))
+            is_visited[i] = True
 
-            for v in adj[u]:  # uに隣接するノードvについて深さ優先探索
-                indeg[v] -= 1  # 隣接するノードは流入量を減らす
-                if (indeg[v] == 0) and (not is_visited[v]):  # 未訪問かつ流入0のノードだったら
-                    que.append(v)  # 次の訪問候補に追加
-                    is_visited[v] = True
+    while que:
+        u, cnt = que.popleft()  # uは流入量0のノード
+        ret.append(u)  # なので答えに加えていく
+        perm[u] = cnt
+        for to in dag[u]:  # uに隣接するノードtoについて深さ優先探索
+            indeg[to] -= 1  # 隣接するノードは流入量を減らす
+            if indeg[to] or is_visited[to]:
+                continue  # 流入待ちか訪問済みだったら飛ばす
+            que.append((to, cnt + 1))  # 次の訪問候補に追加
+            is_visited[to] = True
 
-    # 初期bfsを駆動させるための初期(?)ループ
-    for u in range(n_V):  # すべてのノードについて
-        if (indeg[u] == 0) and (not is_visited[u]):
-            # 流入0かつ未訪問
-            bfs(u)
+    if False in is_visited:
+        print(is_visited)
+        raise ValueError('inputted graph is not DAG')
 
-    return ret
+    return ret, perm
 
 
-ans = topological_sort(adj, indeg)
+ans, _ = topological_sort(adj, indeg)
 print(*ans, sep='\n')
