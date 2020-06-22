@@ -48,9 +48,10 @@ MOD = 10**9 + 7
 INF=2**31 # 2147483648 > 10**9
 # default import
 from collections import defaultdict, Counter, deque
-from operator import itemgetter
+from operator import itemgetter, xor, add
 from itertools import product, permutations, combinations
 from bisect import bisect_left, bisect_right #, insort_left, insort_right
+from functools import reduce
 from math import gcd
 
 def lcm(a, b):
