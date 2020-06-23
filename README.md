@@ -57,7 +57,7 @@ from math import gcd
 def lcm(a, b):
     # 最小公倍数
     g = gcd(a, b)
-    return a * b // g
+    return a // g * b
 ```
 
 
