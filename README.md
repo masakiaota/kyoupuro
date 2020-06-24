@@ -13,9 +13,9 @@ enu=enumerate
 def mina(*argv, sub=1): return list(map(lambda x: x - sub, argv))
 # 受け渡されたすべての要素からsubだけ引く.リストを*をつけて展開しておくこと
 
-def read_a_int(): return int(read())
+def a_int(): return int(read())
 
-def read_ints(): return list(map(int, read().split()))
+def ints(): return list(map(int, read().split()))
 
 
 def read_col(H):
