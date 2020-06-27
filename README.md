@@ -10,8 +10,8 @@ read = sys.stdin.readline
 ra=range
 enu=enumerate
 
-def exit(text: str):
-    print(text)
+def exit(*argv,**kwarg):
+    print(*argv,**kwarg)
     sys.exit()
 
 def mina(*argv, sub=1): return list(map(lambda x: x - sub, argv))
