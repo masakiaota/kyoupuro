@@ -10,6 +10,10 @@ read = sys.stdin.readline
 ra=range
 enu=enumerate
 
+def exit(text: str):
+    print(text)
+    sys.exit()
+
 def mina(*argv, sub=1): return list(map(lambda x: x - sub, argv))
 # 受け渡されたすべての要素からsubだけ引く.リストを*をつけて展開しておくこと
 
