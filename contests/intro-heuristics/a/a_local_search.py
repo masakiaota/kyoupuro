@@ -124,9 +124,7 @@ def add_noise(T):
 
 
 while time() - t0 < 1.92:
-    # while time() - t0 < 5:
     bestT, bestscore = maximizer(add_noise(bestT), bestT, bestscore)
-    print(bestscore)
 
 # print(bestscore)
 # print(score(D, C, S, T))

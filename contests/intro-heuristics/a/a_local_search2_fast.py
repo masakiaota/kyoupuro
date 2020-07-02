@@ -1,11 +1,5 @@
-# local search is all you need
-# 「日付 d とコンテストタイプ q をランダムに選び、d 日目に開催するコンテストをタイプ q に変更する」
-# このデメリット→変化させる量が小さすぎるとすぐに行き止まり (局所最適解) に陥ってしまい、逆に、変化させる量が 大きすぎると闇雲に探す状態に近くなって、改善できる確率が低くなってしまう。
-# 今回ならば、開催日が全体的に遠すぎず近すぎない感じのlocal minimumに収束する∵d日目のコンテストをi→jに変更したとする。iの開催期間はすごく伸びると2乗でスコアが下がるため、iの開催期間が比較的近いところのiしか選ばれない
-# →じゃ2点スワップを導入して改善してみよう
-
-# あといっぱい回すためにinitやscoreも若干高速化
-
+# large n_trials is all you need
+# local searchをたくさんするためにcost計算のさらなる高速化を考えてみる
 
 from time import time
 t0 = time()
@@ -110,15 +104,19 @@ def ret_init_T():
                 tmp = S[d][i]
                 dd = d - last[i]
                 tmp += C[i] * (((dd + n_days + dd) * (n_days) // 2))
+                # tmp1 = 0
+                # for j in range(n_days):
+                #     tmp1 += C[i] * (d + j - last[i])
+                # print(tmp1, tmp2)
                 if tmp > ma:
                     t = i
                     ma = tmp
             last[t] = d  # Tを選んだあとで決める
             T.append(t)
         return T
-    T = _make_T(2)
+    T = _make_T(1)
     sco = score(D, C, S, T)
-    for i in range(3, 16):
+    for i in range(2, 17):
         T, sco = maximizer(_make_T(i), T, sco)
     return T, sco
 
@@ -149,10 +147,10 @@ def add_noise(T, thre_p, days_near):
         return ret
 
 
-while time() - t0 < 1.9:
-    for _ in range(100):
-        bestT, bestscore = maximizer(
-            add_noise(bestT, 0.8, 8), bestT, bestscore)
+while time() - t0 < 1.92:
+    # while time() - t0 < 5:
+    bestT, bestscore = maximizer(add_noise(bestT, 0.8, 8), bestT, bestscore)
+    # print(bestscore)
 
 # print(bestscore)
 # print(score(D, C, S, T))
