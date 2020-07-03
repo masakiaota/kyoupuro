@@ -196,10 +196,11 @@ def trial(sche, thre_p, days_near):
 bestT, bestscore = ret_init_T()
 sche = Schedule(bestT, T_to_date_by_contest(bestT), bestscore)
 
-while time() - t0 < 1.91:
-    for _ in range(100):
-        sche = trial(sche, 0.8, 8)
+# while time() - t0 < 1.90:
+while time() - t0 < 5:
+    for _ in range(1000):
+        sche = trial(sche, 0.9, 20)
 
-print(sche.score)
+# print(sche.score)
 # print(score(D, C, S, T))
-# print(*mina(*sche.T, sub=-1), sep='\n')
+print(*mina(*sche.T, sub=-1), sep='\n')
