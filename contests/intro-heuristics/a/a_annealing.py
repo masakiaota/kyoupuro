@@ -44,12 +44,9 @@ def read_tuple(H):
     return ret
 
 
-MOD = 10**9 + 7
 INF = 2**31  # 2147483648 > 10**9
 # default import
-from itertools import product, permutations, combinations
 from bisect import bisect_left, bisect_right, insort_left
-from functools import reduce
 from random import randint, random
 from math import exp
 
@@ -124,9 +121,9 @@ def ret_init_T():
             last[t] = d  # Tを選んだあとで決める
             T.append(t)
         return T
-    T = _make_T(2)
+    T = _make_T(3)
     sco = eval(D, C, S, T_to_date_by_contest(T))
-    for i in range(3, 16):
+    for i in range(4, 13):
         T, sco = maximizer(_make_T(i), T, sco)
     return T, sco
 
@@ -206,14 +203,15 @@ def trial(sche, thre_p, days_near, Tt):
 bestT, bestscore = ret_init_T()
 sche = Schedule(bestT, T_to_date_by_contest(bestT), bestscore)
 
-T0 = 200
-T1 = 10
-TL = 1.915
+T0 = 400
+T1 = 5
+TL = 1.91
+# TL = 5
 now = time()
 while now - t0 < TL:
     Tt = (T0**((now - t0) / TL)) * (T1**(1 - (now - t0) / TL))
-    for _ in range(2000):
-        sche = trial(sche, 0.9, 20, Tt)
+    for _ in range(3000):
+        sche = trial(sche, 0.8, 20, Tt)
     now = time()
 
 # print(sche.score)
