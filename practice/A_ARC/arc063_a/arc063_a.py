@@ -5,7 +5,7 @@
 
 def run_length_encoding(s):
     '''連長圧縮を行う
-    s ... iterable object e.g. list, str 
+    s ... iterable object e.g. list, str
     return
     ----------
     s_composed,s_num,s_idx
