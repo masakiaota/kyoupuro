@@ -1,6 +1,7 @@
 class UnionFind:
     def __init__(self, N):
         self.N = N  # ノード数
+        self.n_groups = N  # グループ数
         # 親ノードをしめす。負は自身が親ということ。
         self.parent = [-1] * N  # idxが各ノードに対応。
 
@@ -33,6 +34,7 @@ class UnionFind:
         # くっつける
         self.parent[A] += self.parent[B]  # sizeの更新
         self.parent[B] = A  # self.rootが呼び出されればBにくっついてるノードもすべて親がAだと上書きされる
+        self.n_groups -= 1
 
         return True
 
