@@ -54,6 +54,17 @@ def ret_list_comb_n(n, m, r, mod=10 ** 9 + 7):
     return ret
 
 
+def partition_number(n, m, mod=10**9 + 7):
+    # nのm分割テーブルを求める(jのi分割をdp[i][j]でアクセスできる)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    dp[0][0] = 1
+    for i in range(1, m + 1):
+        for j in range(n + 1):
+            dp[i][j] = dp[i - 1][j] + (dp[i][j - i] if j - i >= 0 else 0)
+            dp[i][j] %= mod
+    return dp
+
+
 class ModInt:
     def __init__(self, x, MOD=10 ** 9 + 7):
         '''
