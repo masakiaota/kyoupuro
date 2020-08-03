@@ -1,4 +1,7 @@
-# verify 済み
+# http://poj.org/problem?id=3468
+# 蟻本と同じだけどここに同じことが書いてある https://algo-logic.info/binary-indexed-tree/#toc_id_1
+
+
 class BIT:
     def __init__(self, n):
         self.n = n
@@ -60,3 +63,24 @@ class RangeAddBIT:  # range add query
     def _sum(self, i: int):
         '''[,i)の合計を取得'''
         return self.bit1._sum(i) * i + self.bit2._sum(i)
+
+
+N = 10
+Q = 5
+A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+queries = [(0, 4, 4),
+           (0, 1, 10),
+           (0, 2, 4),
+           (1, 3, 6, 3),
+           (0, 2, 4)]
+
+bit = RangeAddBIT(N)
+bit.init(A)
+for i in range(Q):
+    cmd, *tmp = queries[i]
+    if cmd == 0:
+        l, r = tmp
+        print(bit.sum(l - 1, r))
+    else:
+        l, r, x = tmp
+        bit.add(l - 1, r, x)
