@@ -50,7 +50,6 @@ class SqrtDecomposedList:
 
 ############# Mo's algorithm ##################
 # offline queryをlについて平方分割、rについてしゃくとり法したもの
-from collections import defaultdict
 from operator import itemgetter
 
 
@@ -103,21 +102,19 @@ class Mo:
     def process(self, queries):
         self._init_states()
 
-        idx = defaultdict(lambda: [])  # queryの順番を記録しておく
         for i, (l, r) in enumerate(queries):  # queryをbucketに格納
-            idx[l, r].append(i)
-            self.bucket[l // self.b].append((l, r))
+            self.bucket[l // self.b].append((l, r, i))
 
         for i in range(len(self.bucket)):
             self.bucket[i].sort(key=itemgetter(1))
 
         ret = [-1] * len(queries)
         for b in self.bucket:
-            for l, r in b:  # クエリに答えていく
+            for l, r, i in b:  # クエリに答えていく
                 self._one_process(l, r)
                 ########################################
                 # クエリに答える作業をここで書く
                 # ans=
-                ret[idx[l, r].pop()] = ans
+                ret[i] = ans
                 ########################################
         return ret
