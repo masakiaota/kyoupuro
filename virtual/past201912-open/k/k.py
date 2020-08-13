@@ -1,67 +1,74 @@
+# 公式解説で解く
+# https://www.youtube.com/watch?v=1V45kF40zHc&list=PLLeJZg4opYKaru-yFYYQmp4GAg4Ewyg8I&index=12&t=0s
+
 import sys
 sys.setrecursionlimit(1 << 25)
 read = sys.stdin.readline
-ra=range
-enu=enumerate
+ra = range
+enu = enumerate
 
-def read_ints():
-    return list(map(int, read().split()))
 
-def read_a_int():
-    return int(read())
+def mina(*argv, sub=1): return list(map(lambda x: x - sub, argv))
+# 受け渡されたすべての要素からsubだけ引く.リストを*をつけて展開しておくこと
 
-def read_tuple(H):
-    '''
-    H is number of rows
-    '''
-    ret = []
-    for _ in range(H):
-        ret.append(tuple(map(int, read().split())))
-    return ret
+
+def a_int(): return int(read())
+
 
 def read_col(H):
-    '''
-    H is number of rows
+    '''H is number of rows
     A列、B列が与えられるようなとき
-    ex1)A,B=read_col(H)    ex2) A,=read_col(H) #一列の場合
-    '''
+    ex1)A,B=read_col(H)    ex2) A,=read_col(H) #一列の場合'''
     ret = []
     for _ in range(H):
         ret.append(list(map(int, read().split())))
     return tuple(map(list, zip(*ret)))
 
-def read_matrix(H):
-    '''
-    H is number of rows
-    '''
-    ret = []
-    for _ in range(H):
-        ret.append(list(map(int, read().split())))
-    return ret
-    # return [list(map(int, read().split())) for _ in range(H)] # 内包表記はpypyでは遅いため
 
-def read_map(H):
-    '''
-    H is number of rows
-    文字列で与えられた盤面を読み取る用
-    '''
-    return [read()[:-1] for _ in range(H)]
+from collections import defaultdict
 
-def read_map_as_int(H):
-    '''
-    #→1,.→0として読み込む
-    '''
-    ret = []
-    for _ in range(H):
-        ret.append([1 if s == '#' else 0 for s in read()[:-1]])
-        # 内包表記はpypyでは若干遅いことに注意
-        # #numpy使うだろうからこれを残しておくけど
-    return ret
+N = a_int()
+tree = defaultdict(lambda: [])  # 単方向に直しておく
+for i in range(N):
+    p = a_int() - 1
+    tree[p].append(i)
 
-MOD = 10**9 + 7
-INF=2**31 # 2147483648 > 10**9
-# default import
-from collections import defaultdict, Counter, deque
-from operator import itemgetter
-from itertools import product, permutations, combinations
-from bisect import bisect_left, bisect_right #, insort_left, insort_right
+Q = a_int()
+A, B = read_col(Q)
+A = mina(*A)
+B = mina(*B)
+
+# dfsで初めて訪問した順を記録する
+# またそのノード以下にいくつノードがあるのかも記録しておけば、上記で作成した配列のどの範囲に子が格納しているのかわかる
+# ハッシュマップをうまく使ってクエリにO(1)で答えられるようにする
+nodes = []
+widths = {}
+
+cnt = 0  # そのノード下に何個のノードがあるのか算出用
+
+
+def dfs(u):  # 現在のノード
+    nodes.append(u)
+    global cnt
+    cnt_u = cnt
+    for nx in tree[u]:
+        cnt += 1
+        dfs(nx)
+    n_under = cnt - cnt_u
+    widths[u] = n_under
+
+
+dfs(tree[-2][0])
+
+# 位置を管理
+to_idx = {}
+for i, u in enu(nodes):
+    to_idx[u] = i
+
+# クエリに答える
+ans = []
+for a, b in zip(A, B):
+    # aの位置を調べて,bの部下範囲内(bの位置から+widthの範囲)であればYes
+    ans.append('Yes' if to_idx[b] < to_idx[a] <=
+               to_idx[b] + widths[b] else 'No')
+print(*ans, sep='\n')
