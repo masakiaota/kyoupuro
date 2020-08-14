@@ -201,6 +201,7 @@ def full(shape, full_value):
     - dijkstraを用いた経路復元 [■](https://github.com/masakiaota/kyoupuro/blob/master/practice/D_ABC/abc051_d/abc051_d.py)
     - [warshall floyd](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/336_GRL_1_C_AtCoder.py)
     - [Minimum Spanning Tree](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/296_ALDS1_12_A_AtCoder.py) データを打ち込むときに疎行列を使った[バージョン](https://github.com/masakiaota/kyoupuro/blob/master/practice/algorithm_datastructure_for_programming_contest/358_GRL_2_A_AtCoder.py)
+    - doubling ... n個次(/親)のノードを高速に取得 [例](https://github.com/masakiaota/kyoupuro/blob/master/virtual/past201912-open/k/k_doubling.py)
 
 
 - 計算幾何
