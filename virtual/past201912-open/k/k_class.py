@@ -1,9 +1,28 @@
-# 木でよく使うテクを管理する
-# オイラーツアー した結果をセグ木に乗っけるみたいなこともしたいけどね
-# 辺と頂点の2version実装したいね
-# 直径
-# LCA(ダブリング)
-# 全方位木DP?(無理)
+# ダブリングで解く
+
+import sys
+from collections import defaultdict, deque
+sys.setrecursionlimit(1 << 25)
+read = sys.stdin.readline
+ra = range
+enu = enumerate
+
+
+def mina(*argv, sub=1): return list(map(lambda x: x - sub, argv))
+# 受け渡されたすべての要素からsubだけ引く.リストを*をつけて展開しておくこと
+
+
+def a_int(): return int(read())
+
+
+def read_col(H):
+    '''H is number of rows
+    A列、B列が与えられるようなとき
+    ex1)A,B=read_col(H)    ex2) A,=read_col(H) #一列の場合'''
+    ret = []
+    for _ in range(H):
+        ret.append(list(map(int, read().split())))
+    return tuple(map(list, zip(*ret)))
 
 
 class Tree:
@@ -14,7 +33,6 @@ class Tree:
         Args:
             N (int): ノード数
         """
-        from collections import defaultdict
         self.N = N
         self.tree = defaultdict(lambda: [])
         self.dists = None
@@ -29,12 +47,11 @@ class Tree:
 
     def set_root(self, root: int):
         # ルート決定時に子方向と親方向とdistが決まるし
-        from collections import deque, defaultdict
         self.up = None  # ダブリングのやつは初期化
         self.root = root
         self.dists = [-1] * self.N
         self.parents = [-1] * self.N
-        self.children = defaultdict(lambda: [])
+        # self.children = defaultdict(lambda: []) #定数倍高速化
         que = deque([(root, -1, 0)])  # 現在のノード、前のノード、距離
         self.dists[root] = 0
         while que:
@@ -44,7 +61,7 @@ class Tree:
                 if nx == p:  # 親はもう探索しない
                     continue
                 nd = d + 1
-                self.children[u].append(nx)
+                # self.children[u].append(nx) #定数倍高速化
                 self.dists[nx] = nd
                 que.append((nx, u, nd))
 
@@ -117,6 +134,7 @@ class Tree:
     def _doubling(self):
         max_depth = max(self.dists)
         K = max_depth.bit_length()
+        K = 20
         up = [[0] * (self.N + 1)
               for _ in range(K)]  # up[k][u] はuの2^k個親のノードを指す
         up[0] = self.parents + [-1]  # 自己参照できるようにさいごに-1をつけておく
@@ -126,90 +144,26 @@ class Tree:
         self.up = up
 
 
-# # test的な
-# tree = Tree(6)
-# tree.link(0, 1)
-# tree.link(0, 5)
-# tree.link(1, 2)
-# tree.link(1, 4)
-# tree.link(2, 3)
-# tree.set_root(0)  # ok
-# print(tree.children)
-# print(tree.parents)
-# tour, inn, out = tree.node_euler_tour() #ok
-# print(tour)
-# print(inn)
-# print(out)
-# tree._doubling()  # ok
-# print(*tree.up, sep='\n')
-# print(tree.lca(2, 4))  # 1 #ok
-# print(tree.lca(3, 5))  # 0
-# print(tree.lca(4, 3))  # 1
-# print(tree.lca(3, 2))  # 2
-# print(tree.lca(2, 2))  # 2
+N = a_int()
+P, = read_col(N)
+P = mina(*P)
+tree = Tree(N)
+for i, p in enu(P):
+    if p == -2:
+        root = i
+    else:
+        tree.link(i, p)
+tree.set_root(root)
 
+Q = a_int()
+A, B = read_col(Q)
+A = mina(*A)
+B = mina(*B)
+ans = []
+for a, b in zip(A, B):
+    if tree.lca(a, b) == b:
+        ans.append('Yes')
+    else:
+        ans.append('No')
 
-# TODO
-class Tree:  # 重み付きにしたい
-    def __init__(self, N: int):
-        """N頂点の木クラス
-
-        Args:
-            N (int): ノード数
-        """
-        from collections import defaultdict
-        self.N = N
-        self.tree = defaultdict(lambda: [])
-        self.dists = None
-        self.parents = None
-        self.root = None
-
-    def _link(self, a, b, d):
-        '''
-        d is a distance between a and b
-        '''
-        self.tree[a].append((b, d))
-        self.tree[b].append((a, d))
-
-    def _init_dists(self, root=0):
-        from collections import deque
-        self.dists = [-1] * self.N
-        self.parents = [-1] * self.N
-        que = deque([(root, -1, 0)])  # 現在のノード、前のノード、距離
-        self.dists[root] = 0
-        while que:
-            u, p, d = que.popleft()
-            self.parents[u] = p
-            for nu, dadd in self.tree[u]:
-                if nu == p:  # 親はもう探索しない
-                    continue
-                nd = d + dadd
-                self.dists[nu] = nd
-                que.append((nu, u, nd))
-
-    def ret_dist(self, a, b):
-        '''
-        a,b間の距離を高速に取得する
-        '''
-        raise NotImplementedError()
-        if self.parents == None:
-            self._init_dists()
-        # aとbの共通祖先を見つける必要がある
-        # 共通祖先ってどうやって持ってくるんだろう...
-
-    def ret_dists(self, u):
-        '''
-        uを始点とした各点への距離を返す (うまくやれば二度目は高速化できそう？)
-        '''
-        ret = [-1] * self.N
-        que = deque([(u, -1, 0)])  # 現在のノード、前のノード、距離
-        ret[u] = 0
-        while que:
-            u, p, d = que.popleft()
-            for nu, dadd in self.tree[u]:
-                if nu == p:  # 親はもう探索しない
-                    continue
-                nd = d + dadd
-                ret[nu] = nd
-                que.append((nu, u, nd))
-        return ret
+print(*ans, sep='\n')
