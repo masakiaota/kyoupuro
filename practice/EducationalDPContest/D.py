@@ -1,68 +1,61 @@
 import sys
+sys.setrecursionlimit(1 << 25)
 read = sys.stdin.readline
+ra = range
+enu = enumerate
 
 
-def read_ints():
-    return list(map(int, input().split()))
+def exit(*argv, **kwarg):
+    print(*argv, **kwarg)
+    sys.exit()
 
 
-def read_a_int():
-    return int(read())
+def mina(*argv, sub=1): return list(map(lambda x: x - sub, argv))
+# 受け渡されたすべての要素からsubだけ引く.リストを*をつけて展開しておくこと
 
 
-def read_matrix(H):
-    '''
-    H is number of rows
-    '''
-    return [list(map(int, read().split())) for _ in range(H)]
+def a_int(): return int(read())
 
 
-def read_map(H):
-    '''
-    H is number of rows
-    文字列で与えられた盤面を読み取る用
-    '''
-    return [read() for _ in range(H)]
+def ints(): return list(map(int, read().split()))
 
 
-def read_col(H, n_cols):
-    '''
-    H is number of rows
-    n_cols is number of cols
-
+def read_col(H):
+    '''H is number of rows
     A列、B列が与えられるようなとき
-    '''
-    ret = [[] for _ in range(n_cols)]
+    ex1)A,B=read_col(H)    ex2) A,=read_col(H) #一列の場合'''
+    ret = []
     for _ in range(H):
-        tmp = list(map(int, read().split()))
-        for col in range(n_cols):
-            ret[col].append(tmp[col])
-
-    return ret
+        ret.append(list(map(int, read().split())))
+    return tuple(map(list, zip(*ret)))
 
 
-def main():
-    N, K = read_ints()
-    # W, V = read_col(N, 2)
+from numba import njit
+import numpy as np
 
-    dp = [[-float('inf') for _ in range(K + 1)] for _ in range(N + 1)]
 
-    dp[0] = [0] * (K + 1)
+N, K = ints()
+W, V = read_col(N)
+W = np.array(W, dtype=np.int64)
+V = np.array(V, dtype=np.int64)
+
+
+@njit('(i8,i8,i8[:],i8[:])', cache=True)
+def main(N, K, W, V):
+    dp = np.zeros((N + 1, K + 1), dtype=np.int64)
     for i in range(N + 1):
-        dp[i][0] = 0
+        dp[i, 0] = 0
 
     for i in range(N):
-        w, v = read_ints()
+        w, v = W[i], V[i]
         for sum_w in range(K + 1):
             if sum_w - w < 0:
-                dp[i + 1][sum_w] = dp[i][sum_w]
+                dp[i + 1, sum_w] = dp[i, sum_w]
             else:
-                dp[i + 1][sum_w] = max(
-                    dp[i][sum_w],
-                    dp[i][sum_w - w] + v)
-    print(dp[-1][-1])
+                dp[i + 1, sum_w] = max(
+                    dp[i, sum_w],
+                    dp[i, sum_w - w] + v)
+    print(dp[-1, -1])
 
 
-main()
-
-# pythonでもpypyでもTLE
+main(N, K, W, V)
