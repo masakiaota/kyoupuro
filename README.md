@@ -6,7 +6,7 @@
 ```python
 import sys
 sys.setrecursionlimit(1 << 25)
-read = sys.stdin.readline
+read = sys.stdin.buffer.readline
 ra=range
 enu=enumerate
 
