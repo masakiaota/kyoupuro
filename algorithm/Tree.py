@@ -63,16 +63,42 @@ class Tree:
         out = [-1] * self.N  # out[u] ... 最後にuを訪問したときの回数(tourのidxに対応)
         cnt = 0
 
-        def dfs(u):
+        def dfs(u):  # 高速stack-based dfs
+            S_args = [u]  # 引数管理のstack
+            S_cmd = [0]  # 0:into, 1:outofの処理をすべきと記録するstack
             nonlocal cnt
-            tour.append(u)
-            inn[u] = cnt
-            cnt += 1
-            for nx in self.children[u]:
-                dfs(nx)
-            tour.append(u)
-            out[u] = cnt
-            cnt += 1
+
+            def into(u):  # 入るときの処理
+                nonlocal cnt
+                inn[u] = cnt
+                tour.append(u)
+                cnt += 1
+
+            def nxt(u):  # 今の引数からみて次の引数を列挙
+                for nx in self.children[u]:
+                    _stack(nx)
+
+            def outof(u):  # 抜けるときの処理
+                nonlocal cnt
+                tour.append(u)
+                out[u] = cnt
+                cnt += 1
+
+            def _stack(u):  # お好きな引数で
+                S_args.append(u)
+                S_cmd.append(0)
+
+            while S_cmd:
+                now_args = S_args.pop()
+                cmd = S_cmd.pop()
+                if cmd == 0:
+                    into(now_args)
+                    S_args.append(now_args)  # 抜ける処理を予約
+                    S_cmd.append(1)
+                    nxt(now_args)  # 次の再帰する(次のintoを予約)
+                else:
+                    outof(now_args)
+
         dfs(self.root)
         return tour, inn, out
 
@@ -126,7 +152,7 @@ class Tree:
         self.up = up
 
 
-# # test的な
+# test的な
 # tree = Tree(6)
 # tree.link(0, 1)
 # tree.link(0, 5)
@@ -136,7 +162,7 @@ class Tree:
 # tree.set_root(0)  # ok
 # print(tree.children)
 # print(tree.parents)
-# tour, inn, out = tree.node_euler_tour() #ok
+# tour, inn, out = tree.node_euler_tour()  # ok
 # print(tour)
 # print(inn)
 # print(out)
