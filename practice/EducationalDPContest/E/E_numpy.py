@@ -28,7 +28,6 @@ def read_col(H):
 
 
 import numpy as np
-from numba import njit
 
 N, W_max = ints()
 W, V = read_col(N)
@@ -44,8 +43,9 @@ chmin(dp[i+1,j+V[i]] , dp[i, j]+W[i]) #ナップサックに入れた場合
 chmin(dp[i+1,j] , dp[i, j]) # ナップサックに入れなかった場合
 '''
 
+# numpyだけでやるならベクトル化で一括処理したほうがはやい
 
-@njit('(i8, i8, i8[:], i8[:])', cache=True)
+
 def solve(N, W_max, W, V):
     V_max = np.sum(V) + 1
     dp = np.full((N + 1, V_max), 10**12, dtype=np.int64)
@@ -54,14 +54,14 @@ def solve(N, W_max, W, V):
 
     # 更新
     for i in range(N):
-        # dp[i + 1, :] = np.minimum(dp[i + 1, :], dp[i, :])
-        # dp[i + 1, V[i]:] = np.minimum(dp[i + 1, V[i]:], dp[i, :-V[i]] + W[i])
-        # numba使うならベクトル化しないほうが早い
-        for j in range(V_max):
-            jv = j + V[i]
-            if jv < V_max:
-                dp[i + 1, jv] = min(dp[i + 1, jv], dp[i, j] + W[i])
-            dp[i + 1, j] = min(dp[i + 1, j], dp[i, j])
+        dp[i + 1, :] = np.minimum(dp[i + 1, :], dp[i, :])
+        dp[i + 1, V[i]:] = np.minimum(dp[i + 1, V[i]:], dp[i, :-V[i]] + W[i])
+        # 以下のコードを高速化
+        # for j in range(V_max):
+        #     jv = j + V[i]
+        #     if jv < V_max:
+        #         dp[i + 1, jv] = min(dp[i + 1, jv], dp[i, j] + W[i])
+        #     dp[i + 1, j] = min(dp[i + 1, j], dp[i, j])
 
     # 左から見てく
     for j in range(V_max - 1, -1, -1):
