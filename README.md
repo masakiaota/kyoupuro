@@ -6,7 +6,8 @@
 ```python
 import sys
 sys.setrecursionlimit(1 << 25)
-read = sys.stdin.buffer.readline
+readline = sys.stdin.buffer.readline
+read = sys.stdin.readline #文字列読み込む時はこっち
 ra=range
 enu=enumerate
 
@@ -17,9 +18,9 @@ def exit(*argv,**kwarg):
 def mina(*argv, sub=1): return list(map(lambda x: x - sub, argv))
 # 受け渡されたすべての要素からsubだけ引く.リストを*をつけて展開しておくこと
 
-def a_int(): return int(read())
+def a_int(): return int(readline())
 
-def ints(): return list(map(int, read().split()))
+def ints(): return list(map(int, readline().split()))
 
 
 def read_col(H):
@@ -28,21 +29,21 @@ def read_col(H):
     ex1)A,B=read_col(H)    ex2) A,=read_col(H) #一列の場合'''
     ret = []
     for _ in range(H):
-        ret.append(list(map(int, read().split())))
+        ret.append(list(map(int, readline().split())))
     return tuple(map(list, zip(*ret)))
 
 def read_tuple(H):
     '''H is number of rows'''
     ret = []
     for _ in range(H):
-        ret.append(tuple(map(int, read().split())))
+        ret.append(tuple(map(int, readline().split())))
     return ret
 
 def read_matrix(H):
     '''H is number of rows'''
     ret = []
     for _ in range(H):
-        ret.append(list(map(int, read().split())))
+        ret.append(list(map(int, readline().split())))
     return ret
     # return [list(map(int, read().split())) for _ in range(H)] # 内包表記はpypyでは遅いため
 
