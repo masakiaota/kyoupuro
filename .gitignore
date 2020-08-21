@@ -106,4 +106,4 @@ settings.json
 
 # my setting
 .vscode
-.c
+*.c
