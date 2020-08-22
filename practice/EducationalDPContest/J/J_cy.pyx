@@ -38,7 +38,6 @@ cdef LL INF= 9_223_372_036_854_775_807 #LLのmax
 # default import
 from collections import Counter
 
-
 cdef LL N = a_int()
 A = ints()
 cnt = Counter(A)
@@ -70,7 +69,7 @@ cdef double dfs(LL i, LL j, LL k,LL N):
         return 0
     if dp[i, j, k] != -1:
         return dp[i, j, k]
-    ret = 1
+    cdef double ret = 1
     ret += i / N * dfs(i - 1, j, k, N)
     ret += j / N * dfs(i + 1, j - 1, k, N)
     ret += k / N * dfs(i, j + 1, k - 1, N)
