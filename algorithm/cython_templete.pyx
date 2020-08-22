@@ -1,3 +1,5 @@
+# cython: language_level=3, boundscheck=False, wraparound=False
+
 ctypedef long long LL
 
 cdef chmin(LL *x, LL y):

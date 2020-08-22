@@ -1,3 +1,5 @@
+# cython: language_level=3, boundscheck=False, wraparound=False
+
 ctypedef long long LL
 
 
@@ -23,7 +25,7 @@ cdef LL i,j,k,_
 cdef LL R, C, K
 R, C, K=ints()
 
-cdef LL[:,:] V=zeros((R+1,C+1))
+cdef LL[:,::1] V=zeros((R+1,C+1))
 
 cdef LL r,c,v
 for _ in range(K):
@@ -31,7 +33,7 @@ for _ in range(K):
     V[r-1][c-1]=v
 
 #dpする
-cdef LL[:,:,:] dp=zeros((R+1,C+1,4))
+cdef LL[:,:,::1] dp=zeros((R+1,C+1,4)) #最後がメモリ連続って意味らしい
 #dp[0,0,0]=0
 dp[0,0,1] = V[0,0]
 
