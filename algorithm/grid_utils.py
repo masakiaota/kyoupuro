@@ -42,14 +42,14 @@ def grid_dijkstra(grid, si: int, sj: int):
     W = len(grid[0])
     D = [[-1] * W for _ in [0] * H]  # -1がINFを意味する
     que = [(0, si, sj)]
-    D[si][sj] = 0
     while que:
         c, i, j = heappop(que)
+        if D[i][j] != -1:
+            continue
+        D[i][j] = c
         for di, dj in ((0, 1), (1, 0), (0, -1), (-1, 0)):
             ni, nj = i + di, j + dj
             if not (0 <= ni < H and 0 <= nj < W) or D[ni][nj] != -1:
                 continue
-            nc = c + grid[ni][nj]
-            D[ni][nj] = nc
-            heappush(que, (nc, ni, nj))
+            heappush(que, (c + grid[ni][nj], ni, nj))
     return D
