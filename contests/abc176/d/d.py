@@ -21,33 +21,6 @@ def a_int(): return int(readline())
 def ints(): return list(map(int, readline().split()))
 
 
-def read_col(H):
-    '''H is number of rows
-    A列、B列が与えられるようなとき
-    ex1)A,B=read_col(H)    ex2) A,=read_col(H) #一列の場合'''
-    ret = []
-    for _ in range(H):
-        ret.append(list(map(int, readline().split())))
-    return tuple(map(list, zip(*ret)))
-
-
-def read_tuple(H):
-    '''H is number of rows'''
-    ret = []
-    for _ in range(H):
-        ret.append(tuple(map(int, readline().split())))
-    return ret
-
-
-def read_matrix(H):
-    '''H is number of rows'''
-    ret = []
-    for _ in range(H):
-        ret.append(list(map(int, readline().split())))
-    return ret
-    # return [list(map(int, read().split())) for _ in range(H)] # 内包表記はpypyでは遅いため
-
-
 def read_map_as(H, replace={'#': 1, '.': 0}, pad=None):
     '''
     文字列のmapを置換して読み込み。デフォでは#→1,.→0
@@ -67,7 +40,7 @@ def read_map_as(H, replace={'#': 1, '.': 0}, pad=None):
     return ret
 
 
-def grid_dijkstra(grid, si: int, sj: int):
+def grid_dijkstra(grid, si: int, sj: int):  # TLEでした
     '''grid上のdijkstra法。gridはそこに入るときにかかるコスト
     si,sj は開始の座標。'''
     from heapq import heappop, heappush
@@ -75,23 +48,19 @@ def grid_dijkstra(grid, si: int, sj: int):
     W = len(grid[0])
     D = [[-1] * W for _ in [0] * H]  # -1がINFを意味する
     que = [(0, si, sj)]
-    D[si][sj] = 0
     while que:
         c, i, j = heappop(que)
-        # 歩いて
-        for di, dj in ((0, 1), (1, 0), (0, -1), (-1, 0)):
-            ni, nj = i + di, j + dj
-            if not (0 <= ni < H and 0 <= nj < W) or D[ni][nj] != -1 or grid[ni][nj] == 1:
-                continue
-            D[ni][nj] = c
-            heappush(que, (c, ni, nj))
-        # ワープする
+        if D[i][j] != -1:
+            continue
+        D[i][j] = c
         for di, dj in product([-2, -1, 0, 1, 2], repeat=2):
             ni, nj = i + di, j + dj
             if not (0 <= ni < H and 0 <= nj < W) or D[ni][nj] != -1 or ni == nj == 0 or grid[ni][nj] == 1:
                 continue
-            nc = c + 1
-            D[ni][nj] = nc
+            if (di == 0 and abs(dj) == 1) or (dj == 0 and abs(di) == 1):  # 歩いて行ける
+                nc = c
+            else:  # ワープして行ける
+                nc = c + 1
             heappush(que, (nc, ni, nj))
     return D
 
@@ -99,18 +68,8 @@ def grid_dijkstra(grid, si: int, sj: int):
 MOD = 10**9 + 7
 INF = 2**31  # 2147483648 > 10**9
 # default import
-from collections import defaultdict, Counter, deque
-from operator import itemgetter, xor, add
 from itertools import product, permutations, combinations
-from bisect import bisect_left, bisect_right  # , insort_left, insort_right
-from functools import reduce
-from math import gcd
-
-
-def lcm(a, b):
-    # 最小公倍数
-    g = gcd(a, b)
-    return a // g * b
+from collections import deque
 
 # もし歩くだけなら簡単
 # ワープをどう処理する？
@@ -120,9 +79,24 @@ def lcm(a, b):
 H, W = ints()
 si, sj = mina(*ints())
 ti, tj = mina(*ints())
-S = read_map_as(H)
-D = grid_dijkstra(S, si, sj)
-print(D[ti][tj])
-print(*D, sep='\n')
 
-# unionfindで連結成分切り出してから、連結成分をまたぐときだけ+1するdfsかな?
+S = read_map_as(H)
+# 01bfsを実装
+D = [[-1] * W for _ in [0] * H]  # -1がINFを意味する
+que = deque([(0, si, sj)])
+while que:
+    c, i, j = que.popleft()
+    if D[i][j] != -1:
+        continue
+    D[i][j] = c
+    for di, dj in product([-2, -1, 0, 1, 2], repeat=2):
+        ni, nj = i + di, j + dj
+        if not (0 <= ni < H and 0 <= nj < W) or D[ni][nj] != -1 or ni == nj == 0 or S[ni][nj] == 1:
+            continue
+        if (di == 0 and abs(dj) == 1) or (dj == 0 and abs(di) == 1):  # 歩いて行ける
+            que.appendleft((c, ni, nj))  # コストが低いので先に出したい
+        else:  # ワープして行ける
+            que.append((c + 1, ni, nj))  # コストが高いのであとに出したい
+
+print(D[ti][tj])
+# print(*D, sep='\n')
