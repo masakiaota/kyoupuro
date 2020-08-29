@@ -1,4 +1,6 @@
 # cython: language_level=3, boundscheck=False, wraparound=False
+# cython: cdivision=True
+# False:Cython はCの型に対する除算・剰余演算子に関する仕様を、(被演算子間の符号が異なる場合の振る舞いが異なる)Pythonのintの仕様に合わせ、除算する数が0の場合にZeroDivisionErrorを送出します。この処理を行わせると、速度に 35% ぐらいのペナルティが生じます。 True:チェックを行いません。
 
 ctypedef long long LL
 
@@ -11,6 +13,8 @@ cdef chmax(LL *x,LL y):
     '''使用例 chmax(&dp[i + 1,jv], dp[i,j] +W[i])'''
     if x[0]<y:
         x[0]=y
+
+cdef extern int __builtin_popcount(unsigned int) nogil
 
 import numpy as np
 from functools import partial
