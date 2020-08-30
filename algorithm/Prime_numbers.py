@@ -15,42 +15,6 @@ def is_prime(x: int):
     return True
 
 
-def ret_eratos(N: int):
-    '''エラトステネスの篩'''
-    is_prime = [True] * (N + 1)
-    is_prime[0] = False  # 0と1は素数ではない
-    is_prime[1] = False
-    for i in range(2, int(N ** 0.5) + 1):
-        if is_prime[i]:
-            for j in range(i * 2, N + 1, i):  # iの倍数は素数でない
-                is_prime[j] = False
-    return is_prime
-
-
-def range_eratos(a, b):
-    '''[a,b)内の素数の配列 is_prime[x-a]で取得すること'''
-    root_b = int(b**0.5) + 1
-    is_prime_small = [True] * (root_b + 1)  # [0,√b)の篩
-    is_prime_small[0] = False  # 0,1は素数でない
-    is_prime_small[1] = False
-    is_prime = [True] * (b - a)  # [a,b)の篩
-    if a == 0:  # コーナーケース用
-        is_prime[0] = False
-        is_prime[1] = False
-    elif a == 1:
-        is_prime[0] = False
-    for i in range(2, root_b + 1):
-        if is_prime_small[i]:
-            # smallの更新
-            for j in range(i * 2, root_b + 1, i):
-                is_prime_small[j] = False
-            # is_primeの更新
-            s = ((a - 1) // i + 1) * i  # a以上のiの倍数で最小のもの
-            for j in range(max(2 * i, s), b, i):  # sが素数の可能性もあるのでmaxを取る
-                is_prime[j - a] = False
-    return is_prime
-
-
 def factorization(n: int):
     if n == 1:
         return []  # 1は素数ではない
@@ -103,3 +67,79 @@ def extgcd(a, b):  # 非再帰
         x0, x1 = x1, x0 - q * x1
         y0, y1 = y1, y0 - q * y1
     return a, x0, y0
+
+
+######以下複数クエリ高速判定系#######
+
+def ret_eratos(N: int):
+    '''エラトステネスの篩'''
+    is_prime = [True] * (N + 1)
+    is_prime[0] = False  # 0と1は素数ではない
+    is_prime[1] = False
+    for i in range(2, int(N ** 0.5) + 1):
+        if is_prime[i]:
+            for j in range(i * 2, N + 1, i):  # iの倍数は素数でない
+                is_prime[j] = False
+    return is_prime
+
+
+def range_eratos(a, b):
+    '''[a,b)内の素数の配列 is_prime[x-a]で取得すること'''
+    root_b = int(b**0.5) + 1
+    is_prime_small = [True] * (root_b + 1)  # [0,√b)の篩
+    is_prime_small[0] = False  # 0,1は素数でない
+    is_prime_small[1] = False
+    is_prime = [True] * (b - a)  # [a,b)の篩
+    if a == 0:  # コーナーケース用
+        is_prime[0] = False
+        is_prime[1] = False
+    elif a == 1:
+        is_prime[0] = False
+    for i in range(2, root_b + 1):
+        if is_prime_small[i]:
+            # smallの更新
+            for j in range(i * 2, root_b + 1, i):
+                is_prime_small[j] = False
+            # is_primeの更新
+            s = ((a - 1) // i + 1) * i  # a以上のiの倍数で最小のもの
+            for j in range(max(2 * i, s), b, i):  # sが素数の可能性もあるのでmaxを取る
+                is_prime[j - a] = False
+    return is_prime
+
+
+from collections import Counter
+
+
+class FastFactorization:
+    def __init__(self, N: int):
+        '''構築O(NloglogN)、クエリO(logN)'''
+        self.N = N
+        self.min_prime = self._make_minimum_prime()
+
+    def _make_minimum_prime(self):
+        # xの最小の素因数表を作成
+        min_prime = [x for x in range(self.N + 1)]
+        # min_prime[0] = 0  # 0と1は素数ではない
+        # min_prime[1] = 1
+        for i in range(2, int(self.N ** 0.5) + 1):
+            if min_prime[i] == i:  # 素数だったら更新
+                for j in range(2 * i, self.N + 1, i):  # iの倍数は素数でない
+                    if min_prime[j] == j:
+                        min_prime[j] = i
+        return min_prime
+
+    def query(self, x: int):
+        # 最小素数配列min_primeを使ってO(log N)で因数分解
+        # -> Counter[p,n] (素数,冪数) を格納
+        # xはself.N以下
+        if x == 1:
+            return Counter()  # 1は素数ではない
+
+        # 素因数分解
+        arr = []
+        tmp = x
+        while tmp != 1:
+            p = self.min_prime[tmp]
+            tmp //= p
+            arr.append(p)
+        return Counter(arr)

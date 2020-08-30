@@ -21,61 +21,54 @@ def a_int(): return int(readline())
 def ints(): return list(map(int, readline().split()))
 
 
-def factorization(n: int):
-    if n == 1:
-        return []  # 1は素数ではない
-    # 素因数分解
-    arr = []
-    temp = n
-    for i in range(2, int(n**0.5) + 1):  # ここにバグがないか心配
-        if temp % i == 0:
-            cnt = 0
-            while temp % i == 0:
-                cnt += 1
-                temp //= i
-            arr.append((i, cnt))
-            if temp == 1:
-                break
-
-    if temp != 1:
-        arr.append((temp, 1))
-
-    if arr == []:
-        arr.append((n, 1))
-
-    return arr
+from collections import Counter
 
 
-def can_factorization(n: int):
-    if n == 1:
-        return []  # 1は素数ではない
-    # 素因数分解
-    arr = []
-    temp = n
-    for i in range(2, int(n**0.5) + 1):  # ここにバグがないか心配
-        if temp % i == 0:
-            arr.append(i)
+class FastFactorization:
+    def __init__(self, N: int):
+        '''構築O(NloglogN)、クエリO(logN)'''
+        self.N = N
+        self.min_prime = self._make_minimum_prime()
 
-    if temp != 1:
-        arr.append((temp, 1))
+    def _make_minimum_prime(self):
+        # xの最小の素因数表を作成
+        min_prime = [x for x in range(self.N + 1)]
+        # min_prime[0] = 0  # 0と1は素数ではない
+        # min_prime[1] = 1
+        for i in range(2, int(self.N ** 0.5) + 1):
+            if min_prime[i] == i:  # 素数だったら更新
+                for j in range(2 * i, self.N + 1, i):  # iの倍数は素数でない
+                    if min_prime[j] == j:
+                        min_prime[j] = i
+        return min_prime
 
-    # if arr == []:
-    #     arr.append((n, 1))
+    def query(self, x: int):
+        # -> Counter[p,n] (素数,冪数) を格納
+        # 最小素数配列min_primeを使ってO(log N)で因数分解
+        if x == 1:
+            return Counter()  # 1は素数ではない
 
-    return arr
+        # 素因数分解
+        arr = []
+        tmp = x
+        while tmp != 1:
+            p = self.min_prime[tmp]
+            tmp //= p
+            arr.append(p)
+        return Counter(arr)
 
 
 MOD = 10**9 + 7
 INF = 2**31  # 2147483648 > 10**9
 # default import
 from collections import defaultdict, Counter, deque
-import random
 from math import gcd
 
 
 N = a_int()
 A = ints()
-random.shuffle(A)
+
+fact = FastFactorization(max(A))
 
 # setかはすぐわかる
 # setでなければ not coprime
@@ -88,17 +81,11 @@ flg = 1  # pairwiseであるフラグ
 for a in A:
     g_set = gcd(g_set, a)
     if flg:
-        for p, n in factorization(a):
+        for p, n in fact.query(a).items():
             if cnt[p] != 0:
                 flg = 0
             cnt[p] += n
 
-
-# print(cnt)
-# for v in cnt.values():
-#     if v > 1:
-#         flg = 0
-#         break
 
 if g_set > 1:
     print('not coprime')
