@@ -4,46 +4,29 @@
 # False:Cython はCの型に対する除算・剰余演算子に関する仕様を、(被演算子間の符号が異なる場合の振る舞いが異なる)Pythonのintの仕様に合わせ、除算する数が0の場合にZeroDivisionErrorを送出します。この処理を行わせると、速度に 35% ぐらいのペナルティが生じます。 True:チェックを行いません。
 
 ctypedef long long LL
-
-cdef extern int __builtin_popcount(unsigned int) nogil
-
-import numpy as np
-
-import sys
-readline = sys.stdin.buffer.readline
-read = sys.stdin.readline #文字列読み込む時はこっち
-
-
-cdef ints(): return np.fromstring(readline(), sep=' ', dtype=np.int64)
-
-
-cdef read_matrix(LL H,LL W):
-    #return np.ndarray shape=(H,W) matrix
-    lines=[]
-    cdef LL _
-    for _ in range(H): 
-        lines.append(read())
-    lines=' '.join(lines) #byte同士の結合ができないのでreadlineでなくreadで
-    return np.fromstring(lines, sep=' ',dtype=np.int64).reshape(H,W)
-
-# この問題をあえてグラフの構造を持つことで解く
+from libc.stdio cimport scanf
 from libcpp.vector cimport vector as vec
 
-cdef LL N,M
-N,M=ints()
-AB=read_matrix(M,2)-1
-cdef LL a,b
-
 ctypedef vec[vec[LL]] Graph
+cdef LL i,j,k,_
+
+cdef LL N,M
+scanf('%lld %lld',&N,&M)
+
 cdef Graph graph=Graph(N)
 
-for a,b in AB:
-    graph[a].push_back(b)
-    graph[b].push_back(a)
+cdef LL a,b
 
-cdef vec[int] ans
+# この問題をあえてグラフの構造を持つことで解く
+for _ in range(M):
+    scanf('%lld %lld',&a, &b)
+    graph[a-1].push_back(b-1)
+    graph[b-1].push_back(a-1)
+
+cdef vec[LL] ans
 for i in range(N):
     ans.push_back(graph[i].size())
+
 print(*ans, sep='\n')
 
 
