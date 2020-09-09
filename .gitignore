@@ -107,3 +107,4 @@ settings.json
 # my setting
 .vscode
 *.c
+*.cpp
