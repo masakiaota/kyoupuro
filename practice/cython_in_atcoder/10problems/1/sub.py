@@ -1,3 +1,4 @@
+mycode = r'''
 # distutils: language=c++
 # cython: language_level=3
 # cython: boundscheck=False
@@ -15,15 +16,7 @@ from libcpp.unordered_set cimport unordered_set as Set
 from libcpp.pair cimport pair as Pair
 from libcpp.string cimport string as Str
 from libcpp.queue cimport priority_queue as PriorityQueue
-from libcpp.typeinfo cimport type_info #type確認
-import libc.math as cmath
-
-cdef extern from "<algorithm>" namespace "std":
-    void swap[T](T& a, T& b) except +  # array overload also works
-
-cdef extern int __builtin_popcount(unsigned int) nogil #bitの数
-# TODO gcdとかも外部から取ってきたい
-
+cimport libc.math as cmath
 
 # define 
 ctypedef long long LL
@@ -38,17 +31,18 @@ ctypedef LL[:,:,:,:] Arr4d #ちなみに7次元までサポートしてる
 
 # cythonの関数定義
 # TODO LL以外の型にも対応させた
-cdef chmin(LL& x, LL y):
-    #使用例 chmin(dp[i + 1,jv], dp[i,j] +W[i])
-    cdef LL* p= &x
-    if y<x: p[0]=y
+cdef chmin(LL *x, LL y):
+    #使用例 chmin(&dp[i + 1,jv], dp[i,j] +W[i])
+    if y<x[0]:
+        x[0]=y
 
-cdef chmax(LL& x,LL y):
+cdef chmax(LL *x,LL y):
     #使用例 chmax(&dp[i + 1,jv], dp[i,j] +W[i])
-    cdef LL* p= &x
-    if x<y: p[0]=y
+    if x[0]<y:
+        x[0]=y
 
 
+cdef extern int __builtin_popcount(unsigned int) nogil #bitの数
 
 import numpy as np
 from functools import partial
@@ -73,7 +67,7 @@ def doubles(): return np.fromstring(readline(), sep=' ', dtype=np.longdouble)
 
 def py_ints() : list(map(int, readline().split()))
 
-cdef read_matrix(LL H,LL W):
+def read_matrix(LL H,LL W):
     #return np.ndarray shape=(H,W) matrix
     lines=[]
     cdef LL _
@@ -92,3 +86,17 @@ from operator import itemgetter, xor, add
 from bisect import bisect_left, bisect_right #, insort_left, insort_right
 from functools import reduce
 from math import gcd
+
+cdef LL a,b
+a,b=ints()
+print('Odd' if (a*b)&1 else 'Even')
+'''
+
+import sys
+if sys.argv[-1] == 'ONLINE_JUDGE':  # コンパイル時
+    import os
+    with open('mycode.pyx', 'w') as f:
+        f.write(mycode)
+    os.system('cythonize -i -3 -b mycode.pyx')
+
+import mycode

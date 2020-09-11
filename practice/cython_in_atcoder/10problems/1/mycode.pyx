@@ -15,14 +15,10 @@ from libcpp.unordered_set cimport unordered_set as Set
 from libcpp.pair cimport pair as Pair
 from libcpp.string cimport string as Str
 from libcpp.queue cimport priority_queue as PriorityQueue
-from libcpp.typeinfo cimport type_info #type確認
-import libc.math as cmath
-
+cimport libc.math as cmath
+#from libcpp.algorithm cimport swap #なぜかimportできねぇ
 cdef extern from "<algorithm>" namespace "std":
     void swap[T](T& a, T& b) except +  # array overload also works
-
-cdef extern int __builtin_popcount(unsigned int) nogil #bitの数
-# TODO gcdとかも外部から取ってきたい
 
 
 # define 
@@ -35,20 +31,10 @@ ctypedef LL[:,:] Arr2d
 ctypedef LL[:,:,:] Arr3d
 ctypedef LL[:,:,:,:] Arr4d #ちなみに7次元までサポートしてる
 
-
-# cythonの関数定義
-# TODO LL以外の型にも対応させた
 cdef chmin(LL& x, LL y):
     #使用例 chmin(dp[i + 1,jv], dp[i,j] +W[i])
     cdef LL* p= &x
     if y<x: p[0]=y
-
-cdef chmax(LL& x,LL y):
-    #使用例 chmax(&dp[i + 1,jv], dp[i,j] +W[i])
-    cdef LL* p= &x
-    if x<y: p[0]=y
-
-
 
 import numpy as np
 from functools import partial
@@ -61,34 +47,16 @@ import sys
 readline = sys.stdin.buffer.readline
 read = sys.stdin.readline #文字列読み込む時はこっち
 
-def exit(*argv,**kwarg):
-    print(*argv,**kwarg)
-    sys.exit()
-
-
-cdef LL a_int(): return int(readline())
 
 def ints(): return np.fromstring(readline(), sep=' ', dtype=np.int64)
-def doubles(): return np.fromstring(readline(), sep=' ', dtype=np.longdouble)
-
-def py_ints() : list(map(int, readline().split()))
-
-cdef read_matrix(LL H,LL W):
-    #return np.ndarray shape=(H,W) matrix
-    lines=[]
-    cdef LL _
-    for _ in range(H): 
-        lines.append(read())
-    lines=' '.join(lines) #byte同士の結合ができないのでreadlineでなくreadで
-    return np.fromstring(lines, sep=' ',dtype=np.int64).reshape(H,W)
 
 
-cdef LL MOD = 10**9 + 7
-cdef LL INF= 9_223_372_036_854_775_807 #LLのmax
+cdef LL a,b
+a,b=ints()
 
-# python import
-from collections import defaultdict, Counter, deque
-from operator import itemgetter, xor, add
-from bisect import bisect_left, bisect_right #, insort_left, insort_right
-from functools import reduce
-from math import gcd
+print(a,b)
+swap(a,b)
+chmin(a,b+b)
+print(a,b)
+
+print('Odd' if (a*b)&1 else 'Even')
