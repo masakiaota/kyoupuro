@@ -7,6 +7,7 @@
 # False:Cython はCの型に対する除算・剰余演算子に関する仕様を、(被演算子間の符号が異なる場合の振る舞いが異なる)Pythonのintの仕様に合わせ、除算する数が0の場合にZeroDivisionErrorを送出します。この処理を行わせると、速度に 35% ぐらいのペナルティが生じます。 True:チェックを行いません。
 
 # cythonライブラリよみこみ
+cimport cython
 from libcpp cimport bool
 from libcpp.vector cimport vector as Vec
 from libcpp.deque cimport deque as Deque
@@ -28,6 +29,9 @@ cdef extern int __builtin_popcount(unsigned int) nogil #bitの数
 # define 
 ctypedef long long LL
 ctypedef long double LD
+ctypedef fused real:
+    LL
+    LD
 ctypedef Vec[LL] VLL #vector[long long]
 ctypedef Vec[LD] VLD #vector[long double]
 ctypedef LL[:] Arr
@@ -35,19 +39,16 @@ ctypedef LL[:,:] Arr2d
 ctypedef LL[:,:,:] Arr3d
 ctypedef LL[:,:,:,:] Arr4d #ちなみに7次元までサポートしてる
 
-
 # cythonの関数定義
-# TODO LL以外の型にも対応させた
-cdef chmin(LL& x, LL y):
+cdef chmin(real& x, real y):
     #使用例 chmin(dp[i + 1,jv], dp[i,j] +W[i])
-    cdef LL* p= &x
+    cdef real* p= &x
     if y<x: p[0]=y
 
-cdef chmax(LL& x,LL y):
+cdef chmax(real& x,real y):
     #使用例 chmax(&dp[i + 1,jv], dp[i,j] +W[i])
-    cdef LL* p= &x
+    cdef real* p= &x
     if x<y: p[0]=y
-
 
 
 import numpy as np
