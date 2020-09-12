@@ -8,6 +8,7 @@
 
 # cythonライブラリよみこみ
 cimport cython
+from cython.operator cimport typeid #typeid(x).name()で一応型を確認できるっぽい？
 from libcpp cimport bool
 from libcpp.vector cimport vector as Vec
 from libcpp.deque cimport deque as Deque
@@ -17,7 +18,7 @@ from libcpp.pair cimport pair as Pair
 from libcpp.string cimport string as Str
 from libcpp.queue cimport priority_queue as PriorityQueue
 from libcpp.typeinfo cimport type_info #type確認
-import libc.math as cmath
+cimport libc.math as cmath
 
 cdef extern from "<algorithm>" namespace "std":
     void swap[T](T& a, T& b) except +  # array overload also works
@@ -86,6 +87,7 @@ cdef read_matrix(LL H,LL W):
 
 cdef LL MOD = 10**9 + 7
 cdef LL INF= 9_223_372_036_854_775_807 #LLのmax
+cdef LL i,j,k,_
 
 # python import
 from collections import defaultdict, Counter, deque

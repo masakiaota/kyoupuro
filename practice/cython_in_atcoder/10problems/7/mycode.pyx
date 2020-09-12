@@ -1,4 +1,3 @@
-mycode = r'''
 # distutils: language=c++
 # cython: language_level=3
 # cython: boundscheck=False
@@ -16,37 +15,20 @@ import sys
 readline = sys.stdin.buffer.readline
 read = sys.stdin.readline #文字列読み込む時はこっち
 
-def exit(*argv,**kwarg):
-    print(*argv,**kwarg)
-    sys.exit()
-
+cdef LL a_int(): return int(readline())
 
 def ints(): return np.fromstring(readline(), sep=' ', dtype=np.int64)
 
-cdef LL i,j,k,_
-
-cdef LL N,Y
-N,Y=ints()
-Y//=1000
-
-cdef LL a,b,c #a+b+c=Nかつ10a+5b+c=Yを満たすa,b,cを見つけたい
-for a in range(N+1):
-    for b in range(N+1):
-        c = N-a-b
-        if c<0 : break
-        if 10*a+5*b+c==Y:
-            exit(a,b,c)
-print(-1,-1,-1)
-        
+cdef read_matrix(LL H,LL W):
+    #return np.ndarray shape=(H,W) matrix
+    lines=[]
+    cdef LL _
+    for _ in range(H): 
+        lines.append(read())
+    lines=' '.join(lines) #byte同士の結合ができないのでreadlineでなくreadで
+    return np.fromstring(lines, sep=' ',dtype=np.int64).reshape(H,W)
 
 
-'''
-
-import sys
-if sys.argv[-1] == 'ONLINE_JUDGE':  # コンパイル時
-    import os
-    with open('mycode.pyx', 'w') as f:
-        f.write(mycode)
-    os.system('cythonize -i -3 -b mycode.pyx')
-
-import mycode
+N=a_int()
+D=read_matrix(N,1)[:,0]
+print(len(np.unique(D)))

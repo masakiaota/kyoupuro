@@ -1,4 +1,3 @@
-mycode = r'''
 # distutils: language=c++
 # cython: language_level=3
 # cython: boundscheck=False
@@ -39,14 +38,3 @@ for a in range(N+1):
 print(-1,-1,-1)
         
 
-
-'''
-
-import sys
-if sys.argv[-1] == 'ONLINE_JUDGE':  # コンパイル時
-    import os
-    with open('mycode.pyx', 'w') as f:
-        f.write(mycode)
-    os.system('cythonize -i -3 -b mycode.pyx')
-
-import mycode

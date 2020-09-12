@@ -1,4 +1,3 @@
-mycode = r'''
 # distutils: language=c++
 # cython: language_level=3
 # cython: boundscheck=False
@@ -45,15 +44,3 @@ if S.substr(0, idx) in [dream, dreamer, erase, eraser]:
 else:
     print('NO')
 
-
-
-'''
-
-import sys
-if sys.argv[-1] == 'ONLINE_JUDGE':  # コンパイル時
-    import os
-    with open('mycode.pyx', 'w') as f:
-        f.write(mycode)
-    os.system('cythonize -i -3 -b mycode.pyx')
-
-import mycode
