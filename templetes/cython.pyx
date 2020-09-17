@@ -9,7 +9,7 @@
 # cythonライブラリよみこみ
 cimport cython
 from cython.operator cimport typeid #typeid(x).name()で一応型を確認できるっぽい？
-from libcpp cimport bool
+from libcpp cimport Bool #pythonのboolと衝突を回避するため
 from libcpp.vector cimport vector as Vec
 from libcpp.deque cimport deque as Deque
 from libcpp.unordered_map cimport unordered_map as Map
@@ -41,15 +41,17 @@ ctypedef LL[:,:,:] Arr3d
 ctypedef LL[:,:,:,:] Arr4d #ちなみに7次元までサポートしてる
 
 # cythonの関数定義
-cdef chmin(real& x, real y):
+cdef bint chmin(real& x, real y):
     #使用例 chmin(dp[i + 1,jv], dp[i,j] +W[i])
     cdef real* p= &x
-    if y<x: p[0]=y
+    if y<x: p[0]=y; return 1
+    else: return 0
 
-cdef chmax(real& x,real y):
-    #使用例 chmax(&dp[i + 1,jv], dp[i,j] +W[i])
+cdef bint chmax(real& x,real y):
+    #使用例 chmax(dp[i + 1,jv], dp[i,j] +W[i])
     cdef real* p= &x
-    if x<y: p[0]=y
+    if x<y: p[0]=y; return 1
+    else: return 0
 
 
 import numpy as np
