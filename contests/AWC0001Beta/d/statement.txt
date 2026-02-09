@@ -1,0 +1,217 @@
+配点 :
+400
+点
+問題文
+高橋君は東西に伸びる街道沿いで商売をしている商人です。この街道には
+N
+個の町が一列に並んでおり、西から順に
+1
+番目、
+2
+番目、...、
+N
+番目と番号が付けられています。
+i
+番目の町で商売をすると
+A_i
+の利益が得られますが、滞在費として
+B_i
+円かかります。
+高橋君は、これらの町の中からいくつかを選んで商売をすることにしました。ただし、高橋君の馬車には以下の制限があります。
+訪れる町は、番号が連続している必要はないが、訪れる町の番号を小さい順に並べたとき、隣り合う番号の差がすべて
+K
+以下でなければならない。つまり、訪れる町の番号を小さい順に
+p_1, p_2, \ldots, p_m
+としたとき、すべての
+1 \leq j \leq m - 1
+について
+p_{j+1} - p_j \leq K
+が成り立つ必要がある。これは、馬車が一度に移動できる距離に限界があるためである。
+高橋君が用意できる滞在費の総額は
+M
+円です。訪れる町の滞在費の合計が
+M
+円以下となるように町を選ぶとき、得られる利益の合計の最大値を求めてください。
+なお、どの町も訪れない場合、利益の合計は
+0
+とします。
+制約
+1 \leq N \leq 200
+1 \leq M \leq 200
+1 \leq K \leq N
+1 \leq A_i \leq 10^9
+1 \leq B_i \leq M
+入力はすべて整数
+入力
+N
+M
+K
+A_1
+B_1
+A_2
+B_2
+:
+A_N
+B_N
+1
+行目には、町の数を表す
+N
+、用意できる滞在費の総額を表す
+M
+、一度に移動できる町の数の上限を表す
+K
+が、スペース区切りで与えられる。
+2
+行目から
+N + 1
+行目では、各町の情報が与えられる。
+1 + i
+行目では、
+i
+番目の町で得られる利益
+A_i
+と滞在費
+B_i
+が、スペース区切りで与えられる。
+出力
+条件を満たすように町を選んだとき、得られる利益の合計の最大値を
+1
+行で出力せよ。
+入力例 1
+5 10 2
+8 3
+5 4
+10 5
+3 2
+7 3
+出力例 1
+21
+入力例 2
+4 5 1
+100 2
+200 3
+150 2
+50 1
+出力例 2
+350
+入力例 3
+10 50 3
+1000000000 10
+500000000 8
+800000000 12
+300000000 5
+600000000 15
+900000000 20
+400000000 7
+700000000 11
+200000000 6
+550000000 9
+出力例 3
+3450000000
+Score :
+400
+pts
+Problem Statement
+Takahashi is a merchant doing business along a highway that extends from east to west. There are
+N
+towns lined up in a row along this highway, numbered
+1
+,
+2
+, ...,
+N
+from west to east. Doing business in the
+i
+-th town yields a profit of
+A_i
+, but costs
+B_i
+yen as accommodation expenses.
+Takahashi has decided to select some of these towns to do business in. However, Takahashi's carriage has the following restriction:
+The towns visited do not need to have consecutive numbers, but when the visited town numbers are arranged in ascending order, the difference between any two adjacent numbers must be at most
+K
+. In other words, if the visited town numbers in ascending order are
+p_1, p_2, \ldots, p_m
+, then
+p_{j+1} - p_j \leq K
+must hold for all
+1 \leq j \leq m - 1
+. This is because the carriage has a limit on the distance it can travel at once.
+The total accommodation expenses Takahashi can prepare is
+M
+yen. When selecting towns such that the total accommodation expenses of visited towns is at most
+M
+yen, find the maximum possible total profit.
+Note that if no town is visited, the total profit is
+0
+.
+Constraints
+1 \leq N \leq 200
+1 \leq M \leq 200
+1 \leq K \leq N
+1 \leq A_i \leq 10^9
+1 \leq B_i \leq M
+All inputs are integers
+Input
+N
+M
+K
+A_1
+B_1
+A_2
+B_2
+:
+A_N
+B_N
+The first line contains
+N
+representing the number of towns,
+M
+representing the total accommodation expenses available, and
+K
+representing the maximum number of towns that can be traveled at once, separated by spaces.
+From the 2nd line to the
+(N + 1)
+-th line, information about each town is given.
+The
+(1 + i)
+-th line contains the profit
+A_i
+obtainable in the
+i
+-th town and the accommodation expense
+B_i
+, separated by spaces.
+Output
+Output in one line the maximum possible total profit when selecting towns that satisfy the conditions.
+Sample Input 1
+5 10 2
+8 3
+5 4
+10 5
+3 2
+7 3
+Sample Output 1
+21
+Sample Input 2
+4 5 1
+100 2
+200 3
+150 2
+50 1
+Sample Output 2
+350
+Sample Input 3
+10 50 3
+1000000000 10
+500000000 8
+800000000 12
+300000000 5
+600000000 15
+900000000 20
+400000000 7
+700000000 11
+200000000 6
+550000000 9
+Sample Output 3
+3450000000

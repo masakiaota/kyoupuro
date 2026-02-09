@@ -1,0 +1,578 @@
+問題文
+高橋君はデータの加工が行いたいです。
+整数
+a, b, c
+と、文字列
+s
+が与えられます。
+a + b + c
+の計算結果と、文字列
+s
+を並べて表示しなさい。
+制約
+1\leq a, b, c \leq 1,000
+1\leq |s| \leq 100
+入力
+入力は以下の形式で与えられる。
+a
+b
+c
+s
+出力
+a+b+c
+と
+s
+を空白区切りで
+1
+行に出力せよ。
+入力例 1
+1
+2 3
+test
+出力例 1
+6 test
+1+2+3
+は
+6
+なので、上記のように出力します。
+入力例 2
+72
+128 256
+myonmyon
+出力例 2
+456 myonmyon
+72+128+256
+は
+456
+なので、上記のように出力します。
+注意！
+C
+や
+C++
+を使うときは、
+main
+関数の型を
+int
+で指定し、ちゃんと
+return 0;
+してください。
+Java
+を使うときは、クラス名を
+Main
+にしてください。
+main
+ではコンパイルエラーになります。
+補足
+以下に各言語ごとの解答例を記載しています。
+C
+C++
+Java
+C#
+PHP
+D
+Go
+Python2
+Python3
+Perl
+Ruby
+Haskell
+Pascal
+JavaScript(Node.js)
+Scala
+C での解答例
+#include<stdio.h>
+int main()
+{
+    int a,b,c;
+    char s[101];
+    // 整数の入力
+    scanf("%d", &a);
+    // スペース区切りの整数の入力
+    scanf("%d %d",&b,&c);
+    // 文字列の入力
+    scanf("%s",s);
+    // 出力
+    printf("%d %s\n",a+b+c,s);
+    return 0;
+}
+C++ での解答例
+#include<iostream>
+using namespace std;
+int main()
+{
+    // 整数の入力
+    int a;
+    cin >> a;
+    // スペース区切りの整数の入力
+    int b,c;
+    cin >> b >> c;
+    // 文字列の入力
+    string s;
+    cin >> s;
+    // 出力
+    cout << (a+b+c) << " " << s << endl;
+    return 0;
+}
+Java での解答例
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		// 整数の入力
+		int a = sc.nextInt();
+		// スペース区切りの整数の入力
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		// 文字列の入力
+		String s = sc.next();
+		// 出力
+		System.out.println((a+b+c) + " " + s);
+	}
+}
+C# での解答例
+using System;
+class Program
+{
+	static void Main(string[] args)
+	{
+		// 整数の入力
+		int a = int.Parse(Console.ReadLine());
+		// スペース区切りの整数の入力
+		string[] input = Console.ReadLine().Split(' ');
+		int b = int.Parse(input[0]);
+		int c = int.Parse(input[1]);
+		// 文字列の入力
+		string s = Console.ReadLine();
+		//出力
+		Console.WriteLine((a+b+c) + " " + s);
+	}
+}
+PHP での解答例
+<?php
+# 整数の入力
+fscanf(STDIN, "%d", $a);
+# スペース区切りの整数の入力
+fscanf(STDIN, "%d %d", $b, $c);
+# 文字列の入力
+fscanf(STDIN, "%s", $s);
+# 出力
+echo ($a+$b+$c)." ".$s."\n";
+?>
+D での解答例
+import std.stdio;
+import std.string;
+import std.conv;
+void main()
+{
+	// 整数の入力
+	int a = to!int(chomp(readln()));
+	// スペース区切りの整数の入力
+	string[] input = split(readln());
+	int b = to!int(input[0]);
+	int c = to!int(input[1]);
+	// 文字列の入力
+	string s = chomp(readln());
+	// 出力
+	writefln("%d %s", a+b+c, s);
+}
+Go での解答例
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var a, b, c int
+	var s string
+	fmt.Scanf("%d", &a)
+	fmt.Scanf("%d %d", &b, &c)
+	fmt.Scanf("%s", &s)
+	fmt.Printf("%d %s\n", a+b+c, s)
+}
+Python2 での解答例
+# -*- coding: utf-8 -*-
+# 整数の入力
+a = int(raw_input())
+# スペース区切りの整数の入力
+b, c = map(int, raw_input().split())
+# 文字列の入力
+s = raw_input()
+# 出力
+print str(a+b+c) + " " + s
+Python3 での解答例
+# -*- coding: utf-8 -*-
+# 整数の入力
+a = int(input())
+# スペース区切りの整数の入力
+b, c = map(int, input().split())
+# 文字列の入力
+s = input()
+# 出力
+print("{} {}".format(a+b+c, s))
+Perl での解答例
+# 整数の入力
+my $a = <STDIN>;
+# スペース区切りの整数の入力
+my $input = <STDIN>;
+chomp $input;
+my ($b, $c) = split / /, $input;
+$ret = $a + $b + $c;
+# 文字列の入力
+my $s = <STDIN>;
+chomp $s;
+# 出力
+print "$ret $s\n";
+Ruby での解答例
+# 整数の入力
+a = gets.to_i
+# スペース区切りの整数の入力
+b,c=gets.chomp.split(" ").map(&:to_i);
+# 文字列の入力
+s = gets.chomp
+# 出力
+print("#{a+b+c} #{s}\n")
+Haskell での解答例
+{- お客様の中でHaskellを書ける方はいらっしゃいますか？
+    と、Haskellの例がなくて困っていたところを @tanakh さんに助けて頂きました。本当にありがとうございました。-}
+import Control.Applicative
+
+main :: IO ()
+main = do
+    -- 整数の入力
+    a <- readLn
+    -- スペース区切り整数の入力
+    [b, c] <- map read . words <$> getLine
+    -- 文字列の入力
+    s <- getLine
+    -- 出力
+    putStrLn $ show (a + b + c) ++ " " ++ s
+Pascal での解答例
+var
+    a, b, c : integer;
+    s : ShortString;
+begin
+    { 整数の入力 }
+    readln(a);
+    { スペース区切りの整数の入力 }
+    read(b);
+    readln(c);
+    { 文字列の入力 }
+    readln(s);
+    { 出力 }
+    writeln(a+b+c, ' ', s);
+end.
+JavaScript(Node.js) での解答例
+// inputに入力データ全体が入る
+function Main(input) {
+	// 1行目がinput[0], 2行目がinput[1], …に入る
+	input = input.split("\n");
+	tmp = input[1].split(" ");
+	//文字列から10進数に変換するときはparseIntを使います
+	var a = parseInt(input[0], 10);
+	var b = parseInt(tmp[0], 10);
+	var c = parseInt(tmp[1], 10);
+	var s = input[2];
+	//出力
+	console.log('%d %s',a+b+c,s);
+}
+//*この行以降は編集しないでください（標準入出力から一度に読み込み、Mainを呼び出します）
+Main(require("fs").readFileSync("/dev/stdin", "utf8"));
+Scala での解答例
+// defplus @defplus さん提供
+import scala.io.StdIn.*
+object Main extends App {
+    var a = readInt
+    var num = readLine
+    var s = readLine
+    var sum = a + num.split(" ")(0).toInt + num.split(" ")(1).toInt
+    println(sum + " " + s);
+}
+Problem
+Your task is to process some data.
+You are given
+3
+integers
+a
+,
+b
+,
+c
+and a string
+s
+.
+                Output result of
+a + b + c
+and string
+s
+with a half-width break.
+Constraints
+1\leq a, b, c \leq 1,000
+1\leq |s| \leq 100
+Input
+Input will be given in the following format from Standard Input:
+a
+b
+c
+s
+Output
+Output the result of
+a+b+c
+and string
+s
+with a half-width break in one line.
+Input Example #1
+1
+2 3
+test
+Output Example #1
+6 test
+1+2+3
+equals to
+6
+.
+Input Example #2
+72
+128 256
+myonmyon
+Output Example #2
+456 myonmyon
+72+128+256
+equals to
+456
+.
+Notice
+If you are
+C
+or
+C++
+programmer, please designate the types of
+main
+function as
+int
+and not to forget
+return 0;
+.
+If you are
+Java
+programmer, please designate your class name as
+Main
+, not
+main
+.
+References
+We prepared some sample answers bellow (Not all programming languages).
+Please use these examples as reference.
+C
+C++
+Java
+C#
+PHP
+D
+Go
+Python
+Perl
+Ruby
+Haskell
+Pascal
+JavaScript(Node.js)
+Scala
+Example of C
+#include<stdio.h>
+
+int main()
+{
+    int a,b,c;
+    char s[101];
+    // get a integer
+    scanf("%d", &a);
+    // get two integers separated half-width break
+    scanf("%d %d",&b,&c);
+    // get a string
+    scanf("%s",s);
+    // output
+    printf("%d %s\n",a+b+c,s);
+    return 0;
+}
+Example of C++
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    // get a integer
+    int a;
+    cin >> a;
+    // get two integers separated with half-width break
+    int b,c;
+    cin >> b >> c;
+    // get a string
+    string s;
+    cin >> s;
+    // output
+    cout << (a+b+c) << " " << s << endl;
+    return 0;
+}
+Example of Java
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		// get a integer
+		int a = sc.nextInt();
+		// get two integers separated with half-width break
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		// get a string
+		String s = sc.next();
+		// output
+		System.out.println((a+b+c) + " " + s);
+	}
+}
+Example of C#
+using System;
+class Program
+{
+	static void Main(string[] args)
+	{
+		// get a integer
+		int a = int.Parse(Console.ReadLine());
+		// get two integers separated with half-width break
+		string[] input = Console.ReadLine().Split(' ');
+		int b = int.Parse(input[0]);
+		int c = int.Parse(input[1]);
+		// get a string
+		string s = Console.ReadLine();
+		//output
+		Console.WriteLine((a+b+c) + " " + s);
+	}
+}
+Example of PHP
+<?php
+# get a integer
+fscanf(STDIN, "%d", $a);
+# get two integers separated with half-width break
+fscanf(STDIN, "%d %d", $b, $c);
+# get a string
+fscanf(STDIN, "%s", $s);
+# output
+echo ($a+$b+$c)." ".$s."\n";
+?>
+Example of D
+import std.stdio;
+import std.string;
+import std.conv;
+void main()
+{
+	// get a integer
+	int a = to!int(chomp(readln()));
+	// get two integers separated with half-width break
+	string[] input = split(readln());
+	int b = to!int(input[0]);
+	int c = to!int(input[1]);
+	// get a string
+	string s = chomp(readln());
+	// output
+	writefln("%d %s", a+b+c, s);
+}
+Example of Go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var a, b, c int
+	var s string
+	fmt.Scanf("%d", &a)
+	fmt.Scanf("%d %d", &b, &c)
+	fmt.Scanf("%s", &s)
+	fmt.Printf("%d %s\n", a+b+c, s)
+}
+Example of Python
+# -*- coding: utf-8 -*-
+# get a integer
+a = int(raw_input())
+# get two integers separated with half-width break
+b, c = map(int, raw_input().split())
+# get a string
+s = raw_input()
+# output
+print str(a+b+c) + " " + s
+Example of Perl
+# get a integer
+my $a = <STDIN>;
+# get two integers separated with half-width break
+my $input = <STDIN>;
+chomp $input;
+my ($b, $c) = split / /, $input;
+$ret = $a + $b + $c;
+# get a string
+my $s = <STDIN>;
+chomp $s;
+# output
+print "$ret $s\n";
+Example of Ruby
+# get a integer
+a = gets.to_i
+# get two integers separated with half-width break
+b,c=gets.chomp.split(" ").map(&:to_i);
+# get a string
+s = gets.chomp
+# output
+print("#{a+b+c} #{s}\n")
+Example of Haskell
+{- supportedby @tanakh -}
+import Control.Applicative
+main :: IO ()
+main = do
+    -- get a integer
+    a <- readLn
+    -- get two integers separated with half-width break
+    [b, c] <- map read . words <$> getLine
+    -- get a string
+    s <- getLine
+    -- output
+    putStrLn $ show (a + b + c) ++ " " ++ s
+Example of Pascal
+var
+    a, b, c : integer;
+    s : ShortString;
+begin
+    { get a integer }
+    readln(a);
+    { get two integers separated with half-width break }
+    read(b);
+    readln(c);
+    { get a string }
+    readln(s);
+    { output }
+    writeln(a+b+c, ' ', s);
+end.
+Example of JavaScript(Node.js)
+// parameter "input" gets all data
+function Main(input) {
+	// the first line is assigned to input[0], the second line is assigned to input[1] similarly.
+	input = input.split("\n");
+	tmp = input[1].split(" ");
+	// convert string from integer using "parseInt"
+	var a = parseInt(input[0], 10);
+	var b = parseInt(tmp[0], 10);
+	var c = parseInt(tmp[1], 10);
+	var s = input[2];
+	//output
+	console.log('%d %s',a+b+c,s);
+}
+// Don't edit this line!
+Main(require("fs").readFileSync("/dev/stdin", "utf8"));
+Example of Scala
+// supported by @defplus
+import scala.io.StdIn.*
+object Main extends App {
+    var a = readInt
+    var num = readLine
+    var s = readLine
+    var sum = a + num.split(" ")(0).toInt + num.split(" ")(1).toInt
+    println(sum + " " + s);
+}

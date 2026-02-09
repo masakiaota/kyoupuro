@@ -1,0 +1,116 @@
+配点 :
+466
+点
+問題文
+高橋君は気象データの分析をしています。ある地域で
+N
+日間連続して気温を観測した記録があり、
+i
+日目の気温は
+H_i
+度でした。
+高橋君は、この観測データから連続する
+K
+日間を選び、その期間の気温の変動幅を調べたいと考えています。
+ここで、連続する
+K
+日間の「気温の変動幅」とは、その期間における最高気温と最低気温の差として定義されます。
+高橋君は、気温の変動幅が最大となるような連続する
+K
+日間を見つけたいと考えています。気温の変動幅の最大値を求めてください。
+制約
+1 \leq K \leq N \leq 2 \times 10^5
+-10^9 \leq H_i \leq 10^9
+入力はすべて整数
+入力
+N
+K
+H_1
+H_2
+\ldots
+H_N
+1
+行目には、観測日数を表す
+N
+と、選ぶ連続した日数を表す
+K
+が、スペース区切りで与えられる。
+2
+行目には、各日の気温を表す
+H_1, H_2, \ldots, H_N
+が、スペース区切りで与えられる。
+出力
+気温の変動幅の最大値を
+1
+行で出力してください。
+入力例 1
+5 3
+2 5 1 8 4
+出力例 1
+7
+入力例 2
+7 4
+-3 10 5 -2 8 1 6
+出力例 2
+13
+入力例 3
+12 5
+100 -50 200 150 -100 300 50 -200 250 0 -150 400
+出力例 3
+600
+Score :
+466
+pts
+Problem Statement
+Takahashi is analyzing weather data. There is a record of temperature observations taken over
+N
+consecutive days in a certain region, where the temperature on day
+i
+was
+H_i
+degrees.
+Takahashi wants to select a consecutive period of
+K
+days from this observation data and investigate the temperature variation range during that period.
+Here, the "temperature variation range" for a consecutive period of
+K
+days is defined as the difference between the maximum temperature and the minimum temperature during that period.
+Takahashi wants to find a consecutive period of
+K
+days that maximizes the temperature variation range. Find the maximum value of the temperature variation range.
+Constraints
+1 \leq K \leq N \leq 2 \times 10^5
+-10^9 \leq H_i \leq 10^9
+All inputs are integers
+Input
+N
+K
+H_1
+H_2
+\ldots
+H_N
+The first line contains
+N
+, representing the number of observation days, and
+K
+, representing the number of consecutive days to select, separated by a space.
+The second line contains
+H_1, H_2, \ldots, H_N
+, representing the temperature on each day, separated by spaces.
+Output
+Output the maximum value of the temperature variation range in one line.
+Sample Input 1
+5 3
+2 5 1 8 4
+Sample Output 1
+7
+Sample Input 2
+7 4
+-3 10 5 -2 8 1 6
+Sample Output 2
+13
+Sample Input 3
+12 5
+100 -50 200 150 -100 300 50 -200 250 0 -150 400
+Sample Output 3
+600
