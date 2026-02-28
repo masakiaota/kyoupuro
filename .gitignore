@@ -108,3 +108,5 @@ settings.json
 .vscode
 *.c
 *.cpp
+!contests/masters2026-qual/cpp/
+!contests/masters2026-qual/cpp/**/*.cpp
