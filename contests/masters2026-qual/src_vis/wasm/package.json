@@ -1,0 +1,15 @@
+{
+  "name": "masters2026_qual_vis",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "masters2026_qual_vis_bg.wasm",
+    "masters2026_qual_vis.js",
+    "masters2026_qual_vis.d.ts"
+  ],
+  "main": "masters2026_qual_vis.js",
+  "types": "masters2026_qual_vis.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

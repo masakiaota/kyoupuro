@@ -1,7 +1,16 @@
+.DS_Store
+.agents/
 node_modules/
 target/
 dist/
 out/
 out_eval/
 wasm/pkg/
+wasm/target/
+tools/target/
+public/
+tools.zip
+results/**
+!results/scores.csv
+!results/summary.csv
 *.log
