@@ -3,27 +3,77 @@
 ## 前提
 - このディレクトリがプロジェクトルートである。親ディレクトリや兄弟ディレクトリには依存しない。
 - 言語は Rust である。
-- 現在の依存環境以外は用いない。(AtCoderのジャッジ環境制約)
-- 提出するのは `src/bin/*.rs` 側のファイルを想定する。コピペで提出できるように 1 ファイルで完結させる。
-- 提出候補は `src/bin/*.rs` に複数保持してよい。提出時は対象ファイルをユーザーが直接コピーして使う。
+- AtCoder のジャッジ環境を前提にし、現在の依存環境以外は用いない。
+- 提出候補は `src/bin/*.rs` に複数保持してよい。提出時はそのファイルを直接使う前提で扱う。
+- `src/bin/*.rs` は提出時にコピペできるよう、各ファイル単体で完結している必要がある。
 - 問題文や要点は `problem_description.txt` に記録する。
-- 公式配布物は `tools/` に配置する。
+- 公式配布物は `tools/` と `samples/` に配置する。
 - visualizer 実装は `.agents/skills/make-visualizer/SKILL.md` に従う。
 
-## ディレクトリの役割
-- `src/bin/*.rs`
-  - 実験用コード兼、提出候補を置く。各ファイルは単体で完結させる。
-- `results/scores.csv`
-  - 実行ログを蓄積する。
-- `notes/`
-  - アイデアや性質のメモを残す。
-- `tools/`
-  - 公式 tester や generator を展開する。
-- `wasm/src/impl_vis.rs`
-  - 問題固有の visualizer ロジックを実装する。
-- `public/wasm/`
-  - `wasm-pack` の生成物を置く。
+## ディレクトリ構成
+主要なものだけ示す。生成物ディレクトリ (`target/`, `node_modules/`, `dist/`, `wasm/target/`) は除く。
 
-## 注意
-- 公式 tools の構成は contest ごとに異なる。共通 wrapper script はあるが、引数や bin 名は必要に応じて調整してよい。
-- `public/wasm/` は `wasm-pack` の生成先である。`wasm` 側を変更したら `./scripts/build_wasm.sh` を実行する。
+```text
+_template_heuristic/
+├── problem_description.txt
+├── Cargo.toml
+├── .agents/skills/make-visualizer/SKILL.md
+├── src/bin/
+├── scripts/
+├── notes/
+├── results/
+├── samples/
+├── tools/
+├── src_vis/main.js
+├── wasm/src/lib.rs
+├── wasm/src/impl_vis.rs
+└── public/wasm/
+```
+
+## 各ディレクトリ・ファイルの役割
+- `problem_description.txt`
+  - 問題文、制約、スコア、初動メモの保存先である。
+- `src/bin/*.rs`
+  - 実験コードと提出候補を置く場所である。
+- `src/bin/v001_template.rs`
+  - 最初の解法の叩き台である。
+- `src/bin/crate_check.rs`
+  - AtCoder 用 crate 群が解決できるかを確認するためのプログラムである。
+- `scripts/`
+  - 実行、採点、generator、tools 展開、WASM build、visualizer 起動を行う補助コマンド群である。
+- `notes/`
+  - 問題固有の発見や性質を記録する場所である。
+- `results/scores.csv`
+  - 実行ログの蓄積先である。
+- `tools/`
+  - 公式 generator / tester / scorer の配置先である。
+- `samples/`
+  - サンプル input / output の配置先である。
+- `src_vis/main.js`
+  - visualizer の UI とローカル API 連携を書く。
+- `wasm/src/impl_vis.rs`
+  - 問題固有の visualizer ロジック本体である。
+- `public/wasm/`
+  - `build_wasm.sh` の生成物が出る場所である。
+
+## shell script の役割
+- `scripts/run.sh`
+  - `cargo run --release --bin <name>` を実行し、`results/scores.csv` にログを残す。
+- `scripts/score_tools.sh`
+  - `tools` 側の scorer を呼ぶための薄い wrapper である。
+- `scripts/gen_tools.sh`
+  - `tools` 側の generator を呼ぶための薄い wrapper である。
+- `scripts/promote.sh`
+  - 指定した提出候補を release + offline でビルドし、提出前チェックを行う。
+- `scripts/unpack_tools.sh`
+  - 公式配布 zip を `tools/` に展開する。
+- `scripts/build_wasm.sh`
+  - `wasm-pack` を使って browser 用の生成物を `public/wasm/` に出力する。
+- `scripts/dev_vis.sh`
+  - 必要なら `yarn install` を行ったうえで Vite 開発サーバーを起動する。
+
+## AI が意識すること
+- 人間向けの使い方や作業順は `README.md` にある。ここでは構造・制約・役割を優先して参照する。
+- `tools/` の中身は contest ごとに異なる。wrapper script の引数や期待する bin 名は固定だと思い込まない。
+- visualizer 実装に入る前に `problem_description.txt` と `tools/src/` の存在を確認する。
+- `public/wasm/` は手書きではなく build 生成物の置き場として扱う。
