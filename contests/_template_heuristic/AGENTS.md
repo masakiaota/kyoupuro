@@ -91,8 +91,6 @@ _template_heuristic/
   - `./scripts/score_tools.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を対応付けて採点し、要約を記録する。
 - `scripts/gen_tools.sh`
   - `tools` 側の generator を呼ぶための薄い wrapper である。
-- `scripts/promote.sh`
-  - 指定した提出候補を release + offline でビルドし、提出前チェックを行う。
 - `scripts/unpack_tools.sh`
   - 公式配布 zip を `tools/` に展開する。
 - `scripts/build_wasm.sh`

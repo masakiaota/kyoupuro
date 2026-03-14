@@ -37,18 +37,10 @@ _template_heuristic/
 ### ルート
 - `problem_description.txt`
   - 問題文、入出力、スコア、制約、初動メモを書く。
-- `README.md`
-  - 人間向けの使い方を書く。
-- `AGENTS.md`
-  - AI に知っておいてほしい前提、制約、構成を書く。
 
 ### 解法・実験
 - `src/bin/`
   - 解法の各バージョンを置く。提出時はこの中のファイルを直接使う。
-- `src/bin/v001_template.rs`
-  - 最初の実装の叩き台である。
-- `src/bin/crate_check.rs`
-  - AtCoder で使える Rust crate 群が解決できるか確認するためのプログラムである。
 - `results/score_summary.csv`
   - score の要約ログを追記する。評価イベント単位で集約結果を残す。
 - `results/out/<bin_name>/`
@@ -69,14 +61,14 @@ _template_heuristic/
   - Vite 側の UI ロジックとローカル API 連携を書く。
 - `wasm/src/impl_vis.rs`
   - 問題固有の visualizer 実装本体である。
-- `public/wasm/`
-  - `build_wasm.sh` の生成物が置かれる。
 
 ## 基本的な使い方
 ### 最初にやること
 1. `problem_description.txt` を埋める
 2. 公式配布物を `tools/` と `samples/` に置く
-3. `src/bin/v001_*.rs` のようなファイルを作って実験を始める
+3. 並列評価できるように `scripts/score_tools.sh` を編集。
+4. 必要なら visualizer もつくる (適宜改善)。
+5. `src/bin/v001_*.rs` のようなファイルを作って実験を始める
 
 ### いつもの流れ
 1. `src/bin/*.rs` に解法の各バージョンを書く
@@ -84,8 +76,7 @@ _template_heuristic/
    - `input_file` 指定時は出力を `results/out/<bin_name>/<input_file_basename>` に保存する。
 3. scorer があるなら `./scripts/score_tools.sh` で公式スコアを確認する
    - デフォルトは `tools/in` と `tools/out` を使い、ケース単位で `score_tools.sh` が並列実行する
-4. 良さそうなバージョンが決まったら `./scripts/promote.sh <bin_name>` で提出候補としてビルド確認する
-5. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
+4. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
 ## shell script の役割
 - `./scripts/run.sh <bin_name> [input_file] [score]`
@@ -100,8 +91,6 @@ _template_heuristic/
   - 要約は `results/score_summary.csv` に `bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases` で追記される。
 - `./scripts/gen_tools.sh <args...>`
   - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
-- `./scripts/promote.sh <bin_name>`
-  - 指定した `src/bin/<bin_name>.rs` を release + offline でビルドし、提出候補として壊れていないか確認する。
 - `./scripts/unpack_tools.sh [tools_zip_path]`
   - `tools.zip` などの公式配布 zip を `tools/` に展開する。
 - `./scripts/build_wasm.sh`
@@ -117,7 +106,6 @@ _template_heuristic/
 ./scripts/score_tools.sh ./tools/in/0000.txt ./tools/out/0000.txt
 ./scripts/score_tools.sh
 ./scripts/score_tools.sh v001_template
-./scripts/promote.sh v001_template
 ./scripts/unpack_tools.sh ./tools.zip
 ./scripts/build_wasm.sh
 ./scripts/dev_vis.sh
@@ -130,8 +118,3 @@ cargo run --bin crate_check
 - `./scripts/build_wasm.sh` で `public/wasm/` を更新する
 - `./scripts/dev_vis.sh` でローカル server を立ち上げる
 - `src_vis/main.js` には Rust bin 実行 UI と SVG 表示 UI が入っている
-
-## 補足
-- `src/bin/*.rs` は提出時にそのまま使えるよう、1 ファイルで完結させる。
-- `notes/` は contest 固有の内容に限定し、テンプレートの使い方はこの `README.md` にまとめる。
-- 生成物は `target/`, `node_modules/`, `dist/`, `wasm/target/` に出る。
