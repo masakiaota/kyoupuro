@@ -70,12 +70,13 @@ _template_heuristic/
 4. 必要なら visualizer もつくる (適宜改善)。
 5. `src/bin/v001_*.rs` のようなファイルを作って実験を始める
 
-### いつもの流れ
+### 実験の流れ
 1. `src/bin/*.rs` に解法の各バージョンを書く
 2. `./scripts/run.sh <bin_name> [input_file] [score]` で試し、結果を標準出力で確認する  
    - `input_file` 指定時は出力を `results/out/<bin_name>/<input_file_basename>` に保存する。
 3. scorer があるなら `./scripts/score_tools.sh` で公式スコアを確認する
-   - デフォルトは `tools/in` と `tools/out` を使い、ケース単位で `score_tools.sh` が並列実行する
+   - `./scripts/score_tools.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を見て、一致するケースを `cpu//2` 並列で採点する。
+   - 公式セットを丸ごと採点したい場合は `./scripts/score_tools.sh`（`tools/in` と `tools/out` を使用）で一括実行する。
 4. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
 ## shell script の役割
@@ -87,7 +88,7 @@ _template_heuristic/
   - 単発: `./scripts/score_tools.sh <input_file> <output_file>`
   - ディレクトリ指定: `./scripts/score_tools.sh <input_dir> <output_dir>`
   - `bin_name` 指定版: `./scripts/score_tools.sh <bin_name> <input_file> <output_file>` / `./scripts/score_tools.sh <bin_name> <input_dir> <output_dir>`
-  - 入力/出力を多数持つ場合は `tools/in` と `tools/out`、または `results/out/<bin_name>` の対応ペアを自動検出する。並列数は `cpu//2`。
+  - 入力/出力を多数持つ場合は `tools/in` と `tools/out`、または `results/out/<bin_name>` の対応ペアを作り、`cpu//2` ワーカーで並列実行する。
   - 要約は `results/score_summary.csv` に `bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases` で追記される。
 - `./scripts/gen_tools.sh <args...>`
   - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
