@@ -72,16 +72,17 @@ _template_heuristic/
 
 ### 実験の流れ
 1. `src/bin/*.rs` に解法の各バージョンを書く
-2. `./scripts/run.sh <bin_name> [input_file] [score]` で試し、結果を標準出力で確認する  
-   - `input_file` 指定時は出力を `results/out/<bin_name>/<input_file_basename>` に保存する。
+2. `./scripts/run.sh <bin_name> [input_file|input_dir] [score]` で試す
+   - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
+   - `input_dir` 指定時は `input_dir` 配下を `cpu//2` で並列実行し、同名の出力を `results/out/<bin_name>/` に保存する。
 3. scorer があるなら `./scripts/score_tools.sh` で公式スコアを確認する
    - `./scripts/score_tools.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を見て、一致するケースを `cpu//2` 並列で採点する。
    - 公式セットを丸ごと採点したい場合は `./scripts/score_tools.sh`（`tools/in` と `tools/out` を使用）で一括実行する。
 4. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
 ## shell script の役割
-- `./scripts/run.sh <bin_name> [input_file] [score]`
-  - Rust bin を実行し、`bin=..., input=..., elapsed=..., score=..., output=...` を標準出力する。
+- `./scripts/run.sh <bin_name> [input_file|input_dir] [score]`
+  - input_file の1件実行、または input_dir の並列一括実行を行い、`bin=..., input=..., elapsed=..., score=..., output=...` を標準出力する。
 - `./scripts/score_tools.sh`
   - 公式 `tools` の `score` バイナリをラップする。
   - `./scripts/score_tools.sh <bin_name>` で、`tools/in` と `results/out/<bin_name>` の対応で一括採点する。
@@ -103,6 +104,7 @@ _template_heuristic/
 ```bash
 ./scripts/run.sh v001_template
 ./scripts/run.sh v001_template ./tools/in/0000.txt
+./scripts/run.sh v001_template ./tools/in
 ./scripts/score_tools.sh v001_template ./tools/in/0000.txt ./tools/out/0000.txt
 ./scripts/score_tools.sh ./tools/in/0000.txt ./tools/out/0000.txt
 ./scripts/score_tools.sh

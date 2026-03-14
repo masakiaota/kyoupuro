@@ -85,7 +85,8 @@ _template_heuristic/
 
 ## shell script の役割
 - `scripts/run.sh`
-  - `cargo run --release --bin <name>` を実行し、`bin/input/elapsed/score/output` を標準出力する。
+  - `src/bin/<name>.rs` をビルドし、1 件実行/ケース一括実行を行う。
+  - 入力ディレクトリ実行時は `cpu//2` 並列で `results/out/<name>/` に出力を作る。
 - `scripts/score_tools.sh`
   - `tools` 側の scorer を呼び、ケースを `cpu//2` 並列で走査する。
   - `./scripts/score_tools.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を対応付けて採点し、要約を記録する。
