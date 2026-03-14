@@ -8,5 +8,5 @@ wasm/target/
 tools/target/
 tools.zip
 results/**
-!results/scores.csv
+!results/score_summary.csv
 *.log

@@ -23,7 +23,8 @@ _template_heuristic/
 ├── scripts/
 ├── notes/
 ├── results/
-│   └── scores.csv
+│   ├── score_summary.csv
+│   └── out/
 ├── samples/
 ├── tools/
 ├── src_vis/
@@ -48,8 +49,10 @@ _template_heuristic/
   - 最初の実装の叩き台である。
 - `src/bin/crate_check.rs`
   - AtCoder で使える Rust crate 群が解決できるか確認するためのプログラムである。
-- `results/scores.csv`
-  - 実行ログを追記する。比較の履歴置き場である。
+- `results/score_summary.csv`
+  - score の要約ログを追記する。評価イベント単位で集約結果を残す。
+- `results/out/<bin_name>/`
+  - `run.sh` 実行時の出力を保存する。`bin` ごとにフォルダ分けされる。
 - `notes/`
   - 問題固有のアイデア、重要な性質、観察結果を書く。
 
@@ -77,16 +80,22 @@ _template_heuristic/
 
 ### いつもの流れ
 1. `src/bin/*.rs` に解法の各バージョンを書く
-2. `./scripts/run.sh <bin_name> [input_file] [score]` で試し、`results/scores.csv` に記録する
-3. scorer があるなら `./scripts/score_tools.sh ...` で公式スコアを確認する
+2. `./scripts/run.sh <bin_name> [input_file] [score]` で試し、結果を標準出力で確認する  
+   - `input_file` 指定時は出力を `results/out/<bin_name>/<input_file_basename>` に保存する。
+3. scorer があるなら `./scripts/score_tools.sh` で公式スコアを確認する
+   - デフォルトは `tools/in` と `tools/out` を使い、ケース単位で `score_tools.sh` が並列実行する
 4. 良さそうなバージョンが決まったら `./scripts/promote.sh <bin_name>` で提出候補としてビルド確認する
 5. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
 ## shell script の役割
 - `./scripts/run.sh <bin_name> [input_file] [score]`
-  - Rust bin を実行し、`results/scores.csv` に `timestamp,bin,input,elapsed_sec,score` を追記する。
-- `./scripts/score_tools.sh <args...>`
-  - 公式 `tools` の `score` バイナリをラップする。具体的な引数は contest ごとの配布物に合わせる。
+  - Rust bin を実行し、`bin=..., input=..., elapsed=..., score=..., output=...` を標準出力する。
+- `./scripts/score_tools.sh`
+  - 公式 `tools` の `score` バイナリをラップする。
+  - 単発は `./scripts/score_tools.sh <bin_name> <input_file> <output_file>`、またはディレクトリ指定 `./scripts/score_tools.sh <bin_name> <input_dir> <output_dir>` で動かす。`bin_name` は省略時 `unknown`。
+  - 旧仕様互換として `./scripts/score_tools.sh <input_file> <output_file>`、`./scripts/score_tools.sh <input_dir> <output_dir>` も利用可能。
+  - 入力/出力を多数持つケースでは、`tools/in` と `tools/out` の対応ペアを自動検出して `cpu//2` で並列評価する。
+  - 要約は `results/score_summary.csv` に `bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases` で追記される。
 - `./scripts/gen_tools.sh <args...>`
   - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
 - `./scripts/promote.sh <bin_name>`
@@ -102,7 +111,9 @@ _template_heuristic/
 ```bash
 ./scripts/run.sh v001_template
 ./scripts/run.sh v001_template ./tools/in/0000.txt
-./scripts/score_tools.sh ./tools/in/0000.txt ./out/0000.txt
+./scripts/score_tools.sh v001_template ./tools/in/0000.txt ./tools/out/0000.txt
+./scripts/score_tools.sh ./tools/in/0000.txt ./tools/out/0000.txt
+./scripts/score_tools.sh v001_template
 ./scripts/promote.sh v001_template
 ./scripts/unpack_tools.sh ./tools.zip
 ./scripts/build_wasm.sh

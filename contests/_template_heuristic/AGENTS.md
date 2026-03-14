@@ -12,7 +12,8 @@
 
 ## 生成AI利用ルール (AtCoder Heuristic Contest 生成AI利用ルール の解釈ボーダー)
 - AI は 1 つの会話で、新しく生成する解候補を 1 つまでにする。実務上は `src/bin` に増える新規ファイルを 1 本までとみなす。
-- AI は現在取り組んでいる 1 候補に対して、実行確認、デバッグ、改善をしてよい。
+  - なお、1つの会話とは、ユーザーの指示に対してAIが出力するまでである。次にユーザーの指示が入力されるときは新しい会話とみなす。そのため 1 threadのなかで複数のversionを作成することは問題ない。
+- AI は現在取り組んでいる 1 候補に対しては、実行確認、デバッグ、改善をしてよい。
 - AI が複数候補を生成し、テストケースで自動比較・自動選別しながら改善することは禁止する。
 - 複数候補の比較は、人間が明示的に指定した既存候補に対してのみ行ってよい。
 
@@ -26,6 +27,12 @@
 - `10個生成して一番スコアの良いものを選んで`
 - `改善案を複数作って自動でベンチを回し、良いものだけ残して`
 
+## 採点運用ルール
+- 評価は競技時間内のボトルネックになりやすいため、`score_tools.sh` ではケース単位で自動並列化する。
+- 並列数は CPU 数から `cpu//2` を採用する（最小 1）。
+- スクリプトは環境変数より実行ルールを内包し、ケース分割を前提にする。
+- `results/score_summary.csv` はコンテスト時の要約ログ。評価イベント単位で必ず追記する前提とする。
+
 ## ディレクトリ構成
 主要なものだけ示す。生成物ディレクトリ (`target/`, `node_modules/`, `dist/`, `wasm/target/`) は除く。
 
@@ -38,6 +45,8 @@ _template_heuristic/
 ├── scripts/
 ├── notes/
 ├── results/
+│   ├── score_summary.csv
+│   └── out/
 ├── samples/
 ├── tools/
 ├── src_vis/main.js
@@ -59,8 +68,10 @@ _template_heuristic/
   - 実行、採点、generator、tools 展開、WASM build、visualizer 起動を行う補助コマンド群である。
 - `notes/`
   - 問題固有の発見や性質を記録する場所である。
-- `results/scores.csv`
-  - 実行ログの蓄積先である。
+- `results/score_summary.csv`
+  - score の要約ログの蓄積先である。`bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases` の順で追記する。
+- `results/out/<bin_name>/...`
+  - `scripts/run.sh` の入力付き実行で生成された出力ファイルの格納場所。`bin_name` ごとに分離される。
 - `tools/`
   - 公式 generator / tester / scorer の配置先である。
 - `samples/`
@@ -74,9 +85,9 @@ _template_heuristic/
 
 ## shell script の役割
 - `scripts/run.sh`
-  - `cargo run --release --bin <name>` を実行し、`results/scores.csv` にログを残す。
+  - `cargo run --release --bin <name>` を実行し、`bin/input/elapsed/score/output` を標準出力する。
 - `scripts/score_tools.sh`
-  - `tools` 側の scorer を呼ぶための薄い wrapper である。
+  - `tools` 側の scorer を呼び、ケースを `cpu//2` 並列で走査する。
 - `scripts/gen_tools.sh`
   - `tools` 側の generator を呼ぶための薄い wrapper である。
 - `scripts/promote.sh`
