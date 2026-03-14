@@ -92,9 +92,11 @@ _template_heuristic/
   - Rust bin を実行し、`bin=..., input=..., elapsed=..., score=..., output=...` を標準出力する。
 - `./scripts/score_tools.sh`
   - 公式 `tools` の `score` バイナリをラップする。
-  - 単発は `./scripts/score_tools.sh <bin_name> <input_file> <output_file>`、またはディレクトリ指定 `./scripts/score_tools.sh <bin_name> <input_dir> <output_dir>` で動かす。`bin_name` は省略時 `unknown`。
-  - 旧仕様互換として `./scripts/score_tools.sh <input_file> <output_file>`、`./scripts/score_tools.sh <input_dir> <output_dir>` も利用可能。
-  - 入力/出力を多数持つケースでは、`tools/in` と `tools/out` の対応ペアを自動検出して `cpu//2` で並列評価する。
+  - `./scripts/score_tools.sh <bin_name>` で、`tools/in` と `results/out/<bin_name>` の対応で一括採点する。
+  - 単発: `./scripts/score_tools.sh <input_file> <output_file>`
+  - ディレクトリ指定: `./scripts/score_tools.sh <input_dir> <output_dir>`
+  - `bin_name` 指定版: `./scripts/score_tools.sh <bin_name> <input_file> <output_file>` / `./scripts/score_tools.sh <bin_name> <input_dir> <output_dir>`
+  - 入力/出力を多数持つ場合は `tools/in` と `tools/out`、または `results/out/<bin_name>` の対応ペアを自動検出する。並列数は `cpu//2`。
   - 要約は `results/score_summary.csv` に `bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases` で追記される。
 - `./scripts/gen_tools.sh <args...>`
   - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
@@ -113,6 +115,7 @@ _template_heuristic/
 ./scripts/run.sh v001_template ./tools/in/0000.txt
 ./scripts/score_tools.sh v001_template ./tools/in/0000.txt ./tools/out/0000.txt
 ./scripts/score_tools.sh ./tools/in/0000.txt ./tools/out/0000.txt
+./scripts/score_tools.sh
 ./scripts/score_tools.sh v001_template
 ./scripts/promote.sh v001_template
 ./scripts/unpack_tools.sh ./tools.zip

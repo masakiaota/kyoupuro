@@ -88,6 +88,7 @@ _template_heuristic/
   - `cargo run --release --bin <name>` を実行し、`bin/input/elapsed/score/output` を標準出力する。
 - `scripts/score_tools.sh`
   - `tools` 側の scorer を呼び、ケースを `cpu//2` 並列で走査する。
+  - `./scripts/score_tools.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を対応付けて採点し、要約を記録する。
 - `scripts/gen_tools.sh`
   - `tools` 側の generator を呼ぶための薄い wrapper である。
 - `scripts/promote.sh`

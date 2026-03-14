@@ -11,9 +11,9 @@ usage() {
     cat >&2 <<'EOF'
 Usage:
   ./scripts/score_tools.sh
-  ./scripts/score_tools.sh <bin_name>
   ./scripts/score_tools.sh <input_file> <output_file>
   ./scripts/score_tools.sh <input_dir> <output_dir>
+  ./scripts/score_tools.sh <bin_name>
   ./scripts/score_tools.sh <bin_name> <input_file> <output_file>
   ./scripts/score_tools.sh <bin_name> <input_dir> <output_dir>
 
@@ -21,56 +21,77 @@ Without bin_name, default is `unknown`.
 
 No args:
   tools/in と tools/out の対応ペアを自動で評価する（eval_set=all）
+1 arg:
+  bin 名を指定し、tools/in と results/out/<bin_name> の対応ペアを評価する（eval_set=results_out/<bin_name>）
 1 pair:
   1 つの input/output ファイルを評価する（eval_set=single）
 2 args:
   2 つのディレクトリを評価する
+3 args:
+  1 つ目を bin 名として扱い、input/output を評価する
 
 Parallel:
   評価は CPU 数の半分（最低 1）で実行する。
 EOF
 }
 
-if [ "$#" -eq 3 ]; then
+if [ "$#" -eq 0 ]; then
+    BIN_NAME="unknown"
+    INPUT_DIR="$ROOT_DIR/tools/in"
+    OUTPUT_DIR="$ROOT_DIR/tools/out"
+    EVAL_SET="all"
+elif [ "$#" -eq 1 ]; then
+    BIN_NAME="$1"
+    INPUT_DIR="$ROOT_DIR/tools/in"
+    OUTPUT_DIR="$ROOT_DIR/results/out/$BIN_NAME"
+    EVAL_SET="results_out/$BIN_NAME"
+elif [ "$#" -eq 2 ]; then
+    if [ -f "$1" ] && [ -f "$2" ]; then
+        INPUT_FILE="$1"
+        OUTPUT_FILE="$2"
+        SINGLE_PAIR=1
+        BIN_NAME="unknown"
+        EVAL_SET="single"
+    elif [ -d "$1" ] && [ -d "$2" ]; then
+        INPUT_DIR="$1"
+        OUTPUT_DIR="$2"
+        EVAL_SET=$(basename "$INPUT_DIR")
+        if [ -z "$EVAL_SET" ] || [ "$EVAL_SET" = "in" ] || [ "$EVAL_SET" = "." ]; then
+            EVAL_SET="all"
+        fi
+        BIN_NAME="unknown"
+    else
+        usage
+        exit 1
+    fi
+elif [ "$#" -eq 3 ]; then
     BIN_NAME=$1
     shift
-fi
-
-if [ "$#" -ne 0 ] && [ "$#" -ne 2 ]; then
+    if [ -f "$1" ] && [ -f "$2" ]; then
+        INPUT_FILE="$1"
+        OUTPUT_FILE="$2"
+        SINGLE_PAIR=1
+        EVAL_SET="single"
+    elif [ -d "$1" ] && [ -d "$2" ]; then
+        INPUT_DIR="$1"
+        OUTPUT_DIR="$2"
+        EVAL_SET=$(basename "$INPUT_DIR")
+        if [ -z "$EVAL_SET" ] || [ "$EVAL_SET" = "in" ] || [ "$EVAL_SET" = "." ]; then
+            EVAL_SET="all"
+        fi
+    else
+        usage
+        exit 1
+    fi
+else
     usage
     exit 1
-fi
-
-if [ -z "${BIN_NAME-}" ]; then
-    BIN_NAME="unknown"
 fi
 
 if [ ! -f "$TOOLS_MANIFEST" ]; then
     echo "error: tools manifest not found: $TOOLS_MANIFEST" >&2
     echo "hint: official tools を tools/ に展開してから実行する" >&2
     exit 1
-fi
-
-if [ "$#" -eq 0 ]; then
-    INPUT_DIR="$ROOT_DIR/tools/in"
-    OUTPUT_DIR="$ROOT_DIR/tools/out"
-    EVAL_SET="all"
-elif [ -f "$1" ] && [ -f "$2" ]; then
-    INPUT_FILE="$1"
-    OUTPUT_FILE="$2"
-    SINGLE_PAIR=1
-    EVAL_SET="single"
-else
-    INPUT_DIR="$1"
-    OUTPUT_DIR="$2"
-    if [ ! -d "$INPUT_DIR" ] || [ ! -d "$OUTPUT_DIR" ]; then
-        usage
-        exit 1
-    fi
-    EVAL_SET=$(basename "$INPUT_DIR")
-    if [ -z "$EVAL_SET" ] || [ "$EVAL_SET" = "in" ] || [ "$EVAL_SET" = "." ]; then
-        EVAL_SET="all"
-    fi
 fi
 
 if [ ! -d "$ROOT_DIR/tools" ]; then
