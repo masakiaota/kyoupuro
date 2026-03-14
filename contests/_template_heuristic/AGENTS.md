@@ -6,6 +6,7 @@
 - AtCoder のジャッジ環境を前提にし、現在の依存環境以外は用いない。
 - 提出候補は `src/bin/*.rs` に複数保持してよい。提出時はそのファイルを直接使う前提で扱う。
 - `src/bin/*.rs` は提出時にコピペできるよう、各ファイル単体で完結している必要がある。
+- `src/bin/*.rs` の各ファイル先頭に `// <file_name>.rs`（例: `// v001_template.rs`）を1行置き、提出候補の識別を明示する。
 - 問題文や要点は `problem_description.txt` に記録する。
 - 公式配布物は `tools/` と `samples/` に配置する。
 - visualizer 実装は `.agents/skills/make-visualizer/SKILL.md` に従う。
