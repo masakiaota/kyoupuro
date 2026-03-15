@@ -111,3 +111,15 @@ settings.json
 *.cpp
 !contests/masters2026-qual/cpp/
 !contests/masters2026-qual/cpp/**/*.cpp
+
+# Contest artifacts (generated outputs/tooling)
+contests/*/node_modules/
+contests/*/dist/
+contests/*/public/
+contests/*/results/**
+!contests/*/results/scores.csv
+!contests/*/results/score_summary.csv
+contests/*/target/
+contests/*/tools/target/
+contests/*/wasm/target/
+contests/*/tools/*.zip
