@@ -1,15 +1,13 @@
 # Heuristic Contest Agent Notes
 
 ## 前提
-- このディレクトリがプロジェクトルートである。親ディレクトリや兄弟ディレクトリには依存しない。
-- 言語は Rust である。
+- このディレクトリが project root である。親や兄弟ディレクトリには依存しない。
+- 言語は Rust のみである。
 - AtCoder のジャッジ環境を前提にし、現在の依存環境以外は用いない。
-- 提出候補は `src/bin/*.rs` に複数保持してよい。提出時はそのファイルを直接使う前提で扱う。
-- `src/bin/*.rs` は提出時にコピペできるよう、各ファイル単体で完結している必要がある。
-- `src/bin/*.rs` の各実験ファイルの1行目は、AtCoder上でも識別できるよう `// <file_name>.rs`（例: `// v001_template.rs`）を必ず置く。ファイル名と内容の対応を崩さない。
+- `src/bin/*.rs` には複数の候補を置いてよい。各ファイルは単体で完結し、1 行目に `// <file_name>.rs` を置く(AtCoder上でも識別できるように)。
 - 問題文や要点は `problem_description.txt` に記録する。
 - 公式配布物は `tools/` と `samples/` に配置する。
-- visualizer 実装は `.agents/skills/make-visualizer/SKILL.md` に従う。
+- visualizer実装は `.agents/skills/make-visualizer/SKILL.md` に従う。
 
 ## 生成AI利用ルール (AtCoder Heuristic Contest 生成AI利用ルール の解釈ボーダー)
 - AI は 1 つの会話で、新しく生成する解候補を 1 つまでにする。実務上は `src/bin` に増える新規ファイルを 1 本までとみなす。
@@ -28,11 +26,12 @@
 - `10個生成して一番スコアの良いものを選んで`
 - `改善案を複数作って自動でベンチを回し、良いものだけ残して`
 
-## 採点運用ルール
-- 評価は競技時間内のボトルネックになりやすいため、`score_tools.sh` ではケース単位で自動並列化する。
-- 並列数は CPU 数から `cpu//2` を採用する（最小 1）。
-- スクリプトは環境変数より実行ルールを内包し、ケース分割を前提にする。
-- `results/score_summary.csv` はコンテスト時の要約ログ。評価イベント単位で必ず追記する前提とする。
+## 評価運用ルール
+- `scripts/run.sh` は単発の手動実行専用である。
+- `scripts/eval.sh` は評価パイプライン本体である。solver と tools の score をそれぞれ 1 回だけ build し、その後は `run -> score` をケース単位で直列実行する worker を `cpu//2` 並列で回す。
+- `results/out/<bin_name>/` は最新評価の scratch/workspace である。`eval.sh` 実行時に同名 basename の出力が並ぶ前提なので、重複 basename は拒否する。
+- `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases`。全ケース成功時のみ追記する。
+- verbose は進捗表示だけに使い、追加ログを恒久保存しない。
 
 ## ディレクトリ構成
 主要なものだけ示す。生成物ディレクトリ (`target/`, `node_modules/`, `dist/`, `wasm/target/`) は除く。
@@ -40,20 +39,18 @@
 ```text
 _template_heuristic/
 ├── problem_description.txt
-├── Cargo.toml
-├── .agents/skills/make-visualizer/SKILL.md
-├── src/bin/
-├── scripts/
 ├── notes/
 ├── results/
 │   ├── score_summary.csv
 │   └── out/
 ├── samples/
 ├── tools/
-├── src_vis/main.js
-├── wasm/src/lib.rs
-├── wasm/src/impl_vis.rs
-└── public/wasm/
+├── src/
+│   └── bin/
+├── scripts/
+├── src_vis/
+├── wasm/
+└── .agents/skills/make-visualizer/SKILL.md
 ```
 
 ## 各ディレクトリ・ファイルの役割
@@ -61,18 +58,16 @@ _template_heuristic/
   - 問題文、制約、スコア、初動メモの保存先である。
 - `src/bin/*.rs`
   - 実験コードと提出候補を置く場所である。
-- `src/bin/v001_template.rs`
-  - 最初の解法の叩き台である。
-- `src/bin/crate_check.rs`
-  - AtCoder 用 crate 群が解決できるかを確認するためのプログラムである。
-- `scripts/`
-  - 実行、採点、generator、tools 展開、WASM build、visualizer 起動を行う補助コマンド群である。
+- `scripts/run.sh`
+  - 1 件の入力に対する手動実行を行う。
+- `scripts/eval.sh`
+  - 公式 scorer を使った並列評価本体である。
 - `notes/`
   - 問題固有の発見や性質を記録する場所である。
 - `results/score_summary.csv`
-  - score の要約ログの蓄積先である。`bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases` の順で追記する。
+  - score 要約の蓄積先である。
 - `results/out/<bin_name>/...`
-  - `scripts/run.sh` の入力付き実行で生成された出力ファイルの格納場所。`bin_name` ごとに分離される。
+  - `eval.sh` 実行時の出力ファイルの格納場所である。
 - `tools/`
   - 公式 generator / tester / scorer の配置先である。
 - `samples/`
@@ -86,13 +81,12 @@ _template_heuristic/
 
 ## shell script の役割
 - `scripts/run.sh`
-  - `src/bin/<name>.rs` をビルドし、1 件実行/ケース一括実行を行う。
-  - 入力ディレクトリ実行時は `cpu//2` 並列で `results/out/<name>/` に出力を作る。
-- `scripts/score_tools.sh`
-  - `tools` 側の scorer を呼び、ケースを `cpu//2` 並列で走査する。
-  - `./scripts/score_tools.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を対応付けて採点し、要約を記録する。
+  - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file を手動確認する。
+- `scripts/eval.sh`
+  - solver と score を 1 回だけ build し、ケース単位で `run -> score` を並列実行する。
+  - `./scripts/eval.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を使う。
 - `scripts/gen_tools.sh`
-  - `tools` 側の generator を呼ぶための薄い wrapper である。
+  - `tools` 側の `gen` バイナリを呼ぶための薄い wrapper である。
 - `scripts/unpack_tools.sh`
   - 公式配布 zip を `tools/` に展開する。
 - `scripts/build_wasm.sh`
@@ -101,7 +95,6 @@ _template_heuristic/
   - 必要なら `yarn install` を行ったうえで Vite 開発サーバーを起動する。
 
 ## AI が意識すること
-- 人間向けの使い方や作業順は `README.md` にある。ここでは構造・制約・役割を優先して参照する。
 - `tools/` の中身は contest ごとに異なる。wrapper script の引数や期待する bin 名は固定だと思い込まない。
 - visualizer 実装に入る前に `problem_description.txt` と `tools/src/` の存在を確認する。
 - `public/wasm/` は手書きではなく build 生成物の置き場として扱う。

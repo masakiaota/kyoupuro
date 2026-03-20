@@ -44,7 +44,7 @@ _template_heuristic/
 - `results/score_summary.csv`
   - score の要約ログを追記する。評価イベント単位で集約結果を残す。
 - `results/out/<bin_name>/`
-  - `run.sh` 実行時の出力を保存する。`bin` ごとにフォルダ分けされる。
+  - `run.sh` や `eval.sh` 実行時の出力を保存する。`bin` ごとにフォルダ分けされる。
 - `notes/`
   - 問題固有のアイデア、重要な性質、観察結果を書く。
 
@@ -66,31 +66,26 @@ _template_heuristic/
 ### 最初にやること
 1. `problem_description.txt` を埋める
 2. 公式配布物を `tools/` と `samples/` に置く
-3. 並列評価できるように `scripts/score_tools.sh` を編集。
+3. 並列評価できるように `scripts/eval.sh` が contest の scoring tool 呼び出し方に対応するように編集。
 4. 必要なら visualizer もつくる (適宜改善)。
 5. `src/bin/v001_*.rs` のようなファイルを作って実験を始める
 
 ### 実験の流れ
 1. `src/bin/*.rs` に解法の各バージョンを書く
-2. `./scripts/run.sh <bin_name> [input_file|input_dir] [score]` で試す
+2. `./scripts/run.sh <bin_name> [input_file]` で単発確認する
    - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
-   - `input_dir` 指定時は `input_dir` 配下を `cpu//2` で並列実行し、同名の出力を `results/out/<bin_name>/` に保存する。
-3. scorer があるなら `./scripts/score_tools.sh` で公式スコアを確認する
-   - `./scripts/score_tools.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を見て、一致するケースを `cpu//2` 並列で採点する。
-   - 公式セットを丸ごと採点したい場合は `./scripts/score_tools.sh`（`tools/in` と `tools/out` を使用）で一括実行する。
+3. scorer があるなら `./scripts/eval.sh [-v] <bin_name> [input_dir]` で公式スコアを確認する
+   - `input_dir` 省略時は `tools/in` を使う。
+   - 各ケースについて `run -> score` を `cpu//2` 並列で実行する。
+   - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。
 4. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
 ## shell script の役割
-- `./scripts/run.sh <bin_name> [input_file|input_dir] [score]`
-  - input_file の1件実行、または input_dir の並列一括実行を行い、`bin=..., input=..., elapsed=..., score=..., output=...` を標準出力する。
-- `./scripts/score_tools.sh`
-  - 公式 `tools` の `score` バイナリをラップする。
-  - `./scripts/score_tools.sh <bin_name>` で、`tools/in` と `results/out/<bin_name>` の対応で一括採点する。
-  - 単発: `./scripts/score_tools.sh <input_file> <output_file>`
-  - ディレクトリ指定: `./scripts/score_tools.sh <input_dir> <output_dir>`
-  - `bin_name` 指定版: `./scripts/score_tools.sh <bin_name> <input_file> <output_file>` / `./scripts/score_tools.sh <bin_name> <input_dir> <output_dir>`
-  - 入力/出力を多数持つ場合は `tools/in` と `tools/out`、または `results/out/<bin_name>` の対応ペアを作り、`cpu//2` ワーカーで並列実行する。
-  - 要約は `results/score_summary.csv` に `bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases` で追記される。
+- `./scripts/run.sh <bin_name> [input_file]`
+  - stdin または 1 つの input_file に対して手動実行する。
+- `./scripts/eval.sh [-v] <bin_name> [input_dir]`
+  - solver と公式 `score` を 1 回だけ build し、ケース単位で `run -> score` を `cpu//2` 並列実行する。
+  - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。
 - `./scripts/gen_tools.sh <args...>`
   - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
 - `./scripts/unpack_tools.sh [tools_zip_path]`
@@ -104,11 +99,8 @@ _template_heuristic/
 ```bash
 ./scripts/run.sh v001_template
 ./scripts/run.sh v001_template ./tools/in/0000.txt
-./scripts/run.sh v001_template ./tools/in
-./scripts/score_tools.sh v001_template ./tools/in/0000.txt ./tools/out/0000.txt
-./scripts/score_tools.sh ./tools/in/0000.txt ./tools/out/0000.txt
-./scripts/score_tools.sh
-./scripts/score_tools.sh v001_template
+./scripts/eval.sh v001_template
+./scripts/eval.sh -v v001_template
 ./scripts/unpack_tools.sh ./tools.zip
 ./scripts/build_wasm.sh
 ./scripts/dev_vis.sh
