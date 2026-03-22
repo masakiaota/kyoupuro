@@ -18,7 +18,7 @@ _template_heuristic/
 │           └── SKILL.md
 ├── src/
 │   └── bin/
-│       ├── v001_template.rs
+│       ├── v000_template.rs
 │       └── crate_check.rs
 ├── scripts/
 ├── notes/
@@ -68,7 +68,7 @@ _template_heuristic/
 2. 公式配布物を `tools/` と `samples/` に置く
 3. 並列評価できるように `scripts/eval.sh` が contest の scoring tool 呼び出し方に対応するように編集。
 4. 必要なら visualizer もつくる (適宜改善)。
-5. `src/bin/v001_*.rs` のようなファイルを作って実験を始める
+5. `src/bin/v000_template.rs` を複製して `v001_*.rs` のようなファイルを作り、実験を始める
 
 ### 実験の流れ
 1. `src/bin/*.rs` に解法の各バージョンを書く
@@ -97,10 +97,10 @@ _template_heuristic/
 
 ## よく使うコマンド
 ```bash
-./scripts/run.sh v001_template
-./scripts/run.sh v001_template ./tools/in/0000.txt
-./scripts/eval.sh v001_template
-./scripts/eval.sh -v v001_template
+./scripts/run.sh v000_template
+./scripts/run.sh v000_template ./tools/in/0000.txt
+./scripts/eval.sh v000_template
+./scripts/eval.sh -v v000_template
 ./scripts/unpack_tools.sh ./tools.zip
 ./scripts/build_wasm.sh
 ./scripts/dev_vis.sh
