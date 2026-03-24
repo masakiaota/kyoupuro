@@ -1,12 +1,15 @@
 ---
 name: make-visualizer
-description: AHCスタイルのヒューリスティックコンテスト用WASMビジュアライザを実装する。problem_description.txt と tools/src/ が揃っているときに使用する。フロントエンド(Vite/JavaScript)は原則変更しない。
+description: AHCスタイルのヒューリスティックコンテスト用WASMビジュアライザを実装する。problem_description.txt と tools/src/ が揃っているときに使用する。現在のテンプレートは単一問題向けで、フロントエンド(Vite/JavaScript)は原則変更しない。
 ---
 
 # make-visualizer
 
 ヒューリスティックコンテスト用ビジュアライザを実装します。
 **以下の手順を順番に実行してください。次のステップに進む前に各ステップを完了させること。**
+
+- 現在のテンプレートは単一問題前提である。問題切り替え UI や multi-robot UI は最初から入っていない。
+- 問題文に明確な必要性がない限り、多問題化・多ロボット化のための UI や API を追加しない。
 
 ---
 
@@ -93,7 +96,7 @@ Set-Content wasm/src/impl_vis.rs "$lib$impl"
 `lib.rs` から以下の関数名で呼び出されるため、**必ずこのシグネチャで実装すること**:
 
 ```rust
-pub fn generate(seed: i32, problem_id: &str) -> String
+pub fn generate(seed: i32) -> String
 pub fn calc_max_turn(input: &str, output: &str) -> usize
 pub fn visualize(input: &str, output: &str, turn: usize) -> Result<(i64, String, String), String>
 //                                                                    ^score  ^err    ^svg
@@ -101,32 +104,7 @@ pub fn visualize(input: &str, output: &str, turn: usize) -> Result<(i64, String,
 
 `calc_max_turn` の注意: **0 を返すとスライダーが動かない**。出力が空でなければ必ず 1 以上を返すこと。
 
-#### `generate` における `problem_id` の扱い
-
-`tools/src/lib.rs` の `gen` 関数が問題カテゴリ（A/B/C など）を引数に取る場合でも、**そのカテゴリが存在しない問題もある**。
-
-- `gen` が問題カテゴリを引数に取らない（引数が seed だけ）場合: `problem_id` を無視してそのまま呼ぶ
-- `gen` が問題カテゴリを引数に取る場合: `problem_id`（"A", "B", "C" など）を `char` に変換して渡す。ただし、`problem_id` が空文字列・未知の値のときはデフォルト値（最初の問題カテゴリ）にフォールバックする
-
-```rust
-// problem_id が不要な場合の例
-pub fn generate(seed: i32, _problem_id: &str) -> String {
-    let input = gen(seed as u64);
-    format!("{}", input)
-}
-
-// problem_id がある場合の例（A/B/C が存在するとき）
-pub fn generate(seed: i32, problem_id: &str) -> String {
-    let problem = match problem_id.chars().next().unwrap_or('A') {
-        'B' => 'B',
-        'C' => 'C',
-        _ => 'A',  // 未知の値は 'A' にフォールバック
-    };
-    let input = gen(seed as u64, problem);
-    format!("{}", input)
-}
-// 注意: gen 関数内の `_ => panic!(...)` も同様にデフォルト値返しに変更すること（上記のWASM非互換の項目を参照）
-```
+`generate` は単一問題テンプレートの seed 生成関数である。問題カテゴリを切り替える引数は持たない。公式 generator が追加の引数を必要とする特殊な問題では、まずその問題固有の必要性をユーザーに確認してから拡張すること。
 
 ### visualize の実装パターン
 

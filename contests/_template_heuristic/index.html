@@ -146,12 +146,6 @@
         <h1>heuristic contest Visualizer Template</h1>
 
         <div class="row top-controls">
-          <label for="problem">Problem</label>
-          <select id="problem">
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-          </select>
           <label for="seed">Seed</label>
           <input id="seed" type="number" value="0" min="0" step="1" />
           <button id="genBtn">生成</button>
@@ -165,17 +159,6 @@
           <button id="runBinBtn">bin実行→Output反映</button>
         </div>
         <div id="runStatus"></div>
-
-        <div class="row compact view-controls">
-          <label for="viewMode">View</label>
-          <select id="viewMode">
-            <option value="1">1: 担当領域</option>
-            <option value="2">2: 重複度</option>
-            <option value="3">3: ロボット単体</option>
-          </select>
-          <label for="focusRobot">Robot</label>
-          <select id="focusRobot"></select>
-        </div>
 
         <div class="row">
           <label for="turn">Turn</label>

@@ -1,10 +1,9 @@
 let wasmInit = null;
 let wasmGen = null;
 let wasmGetMaxTurn = null;
-let wasmVisMode = null;
+let wasmVis = null;
 
 const els = {
-  problem: document.getElementById("problem"),
   seed: document.getElementById("seed"),
   genBtn: document.getElementById("genBtn"),
   sampleBtn: document.getElementById("sampleBtn"),
@@ -12,8 +11,6 @@ const els = {
   refreshBinsBtn: document.getElementById("refreshBinsBtn"),
   runBinBtn: document.getElementById("runBinBtn"),
   runStatus: document.getElementById("runStatus"),
-  viewMode: document.getElementById("viewMode"),
-  focusRobot: document.getElementById("focusRobot"),
   turn: document.getElementById("turn"),
   turnValue: document.getElementById("turnValue"),
   maxTurnValue: document.getElementById("maxTurnValue"),
@@ -41,63 +38,6 @@ function getMaxTurn() {
 function getSpeed() {
   const v = Number(els.speed.value);
   return Number.isFinite(v) && v > 0 ? v : 5;
-}
-
-function getViewMode() {
-  const mode = Number(els.viewMode.value);
-  if (mode === 2 || mode === 3) {
-    return mode;
-  }
-  return 1;
-}
-
-function getFocusRobot() {
-  const focus = Number(els.focusRobot.value);
-  if (Number.isFinite(focus) && focus >= 0) {
-    return focus | 0;
-  }
-  return 0;
-}
-
-function parseRobotCount(output) {
-  const tokens = output.trim().split(/\s+/);
-  if (tokens.length === 0) {
-    return 0;
-  }
-  const k = Number(tokens[0]);
-  if (!Number.isFinite(k) || k <= 0) {
-    return 0;
-  }
-  return k | 0;
-}
-
-function updateFocusRobotOptions() {
-  const prev = els.focusRobot.value;
-  const k = parseRobotCount(els.outputArea.value);
-  els.focusRobot.innerHTML = "";
-  if (k <= 0) {
-    const opt = document.createElement("option");
-    opt.value = "0";
-    opt.textContent = "(0)";
-    els.focusRobot.appendChild(opt);
-    els.focusRobot.value = "0";
-    return;
-  }
-  for (let i = 0; i < k; i += 1) {
-    const opt = document.createElement("option");
-    opt.value = String(i);
-    opt.textContent = `R${i}`;
-    els.focusRobot.appendChild(opt);
-  }
-  if (prev && Number(prev) >= 0 && Number(prev) < k) {
-    els.focusRobot.value = prev;
-  } else {
-    els.focusRobot.value = "0";
-  }
-}
-
-function updateViewModeUi() {
-  els.focusRobot.disabled = getViewMode() !== 3;
 }
 
 function updatePlayButton() {
@@ -133,8 +73,7 @@ function stepTurn(delta) {
 
 function startPlayback() {
   const maxTurn = getMaxTurn();
-  if (maxTurn <= 0) return;
-  if (playing) return;
+  if (maxTurn <= 0 || playing) return;
 
   playing = true;
   updatePlayButton();
@@ -198,13 +137,7 @@ function render() {
   }
 
   try {
-    const ret = wasmVisMode(
-      input,
-      output,
-      turn,
-      getViewMode(),
-      getFocusRobot(),
-    );
+    const ret = wasmVis(input, output, turn);
     els.score.textContent = String(ret.score);
     els.error.textContent = ret.err || "";
     els.svgHost.innerHTML = ret.svg;
@@ -305,7 +238,6 @@ async function runSelectedRustBin() {
     }
 
     els.outputArea.value = data.output ?? "";
-    updateFocusRobotOptions();
     setTurnMax();
     render();
 
@@ -336,7 +268,6 @@ async function loadSample() {
     }
     els.inputArea.value = await iRes.text();
     els.outputArea.value = await oRes.text();
-    updateFocusRobotOptions();
     setTurnMax();
     render();
   } catch (e) {
@@ -346,9 +277,8 @@ async function loadSample() {
 
 els.genBtn.addEventListener("click", () => {
   const seed = Number(els.seed.value) | 0;
-  const problem = els.problem.value;
   try {
-    els.inputArea.value = wasmGen(seed, problem);
+    els.inputArea.value = wasmGen(seed);
     setTurnMax();
     render();
   } catch (e) {
@@ -366,15 +296,6 @@ els.refreshBinsBtn.addEventListener("click", () => {
 
 els.runBinBtn.addEventListener("click", () => {
   void runSelectedRustBin();
-});
-
-els.viewMode.addEventListener("change", () => {
-  updateViewModeUi();
-  render();
-});
-
-els.focusRobot.addEventListener("change", () => {
-  render();
 });
 
 els.prevBtn.addEventListener("click", () => {
@@ -406,7 +327,6 @@ els.inputArea.addEventListener("input", () => {
 });
 els.outputArea.addEventListener("input", () => {
   stopPlayback();
-  updateFocusRobotOptions();
   setTurnMax();
   render();
 });
@@ -450,11 +370,9 @@ async function main() {
   wasmInit = wasmModule.default;
   wasmGen = wasmModule.gen;
   wasmGetMaxTurn = wasmModule.get_max_turn;
-  wasmVisMode = wasmModule.vis_mode;
+  wasmVis = wasmModule.vis;
   await wasmInit();
   ready = true;
-  updateFocusRobotOptions();
-  updateViewModeUi();
   updatePlayButton();
   setTurnMax();
   els.error.textContent =

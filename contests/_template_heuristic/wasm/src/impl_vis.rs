@@ -18,14 +18,6 @@ struct Pos {
     x: usize,
 }
 
-fn default_problem(problem_id: &str) -> char {
-    match problem_id.chars().next().unwrap_or('A') {
-        'B' => 'B',
-        'C' => 'C',
-        _ => 'A',
-    }
-}
-
 fn parse_input(input: &str) -> Result<Input, String> {
     let mut lines = input.lines().filter(|line| !line.trim().is_empty());
     let header = lines
@@ -149,19 +141,15 @@ fn simulate(input: &Input, moves: &[char], turn: usize) -> (Vec<Pos>, Vec<Vec<us
     (history, visited)
 }
 
-fn color_for_cell(cell: char, visits: usize, mode: usize) -> &'static str {
+fn color_for_cell(cell: char, visits: usize) -> &'static str {
     if cell == '#' {
         return "#374151";
     }
-    if mode == 2 {
-        match visits {
-            0 => "#f8fafc",
-            1 => "#dbeafe",
-            2 => "#93c5fd",
-            _ => "#2563eb",
-        }
-    } else {
-        "#f8fafc"
+    match visits {
+        0 => "#f8fafc",
+        1 => "#dbeafe",
+        2 => "#93c5fd",
+        _ => "#2563eb",
     }
 }
 
@@ -171,7 +159,6 @@ fn draw_svg(
     visited: &[Vec<usize>],
     turn: usize,
     max_turn: usize,
-    mode: usize,
 ) -> String {
     let cell = 28usize;
     let pad = 24usize;
@@ -192,7 +179,7 @@ fn draw_svg(
                     .set("y", pad + y * cell)
                     .set("width", cell)
                     .set("height", cell)
-                    .set("fill", color_for_cell(input.cells[y][x], visited[y][x], mode))
+                    .set("fill", color_for_cell(input.cells[y][x], visited[y][x]))
                     .set("stroke", "#cbd5e1")
                     .set("stroke-width", 1),
             );
@@ -253,16 +240,11 @@ fn draw_svg(
     doc.to_string()
 }
 
-pub fn generate(seed: i32, problem_id: &str) -> String {
+pub fn generate(seed: i32) -> String {
     let mut rng = ChaCha20Rng::seed_from_u64(seed.max(0) as u64 + 1);
-    let problem = default_problem(problem_id);
     let h = 20usize;
     let w = 20usize;
-    let density = match problem {
-        'B' => 0.16f64,
-        'C' => 0.08f64,
-        _ => 0.12f64,
-    };
+    let density = 0.12f64;
     let mut cells = vec![vec!['.'; w]; h];
     for row in cells.iter_mut().take(h) {
         for cell in row.iter_mut().take(w) {
@@ -286,16 +268,6 @@ pub fn calc_max_turn(_input: &str, output: &str) -> usize {
 }
 
 pub fn visualize(input: &str, output: &str, turn: usize) -> Result<(i64, String, String), String> {
-    visualize_with_mode(input, output, turn, 1, 0)
-}
-
-pub fn visualize_with_mode(
-    input: &str,
-    output: &str,
-    turn: usize,
-    mode: usize,
-    _focus_robot: usize,
-) -> Result<(i64, String, String), String> {
     let input = parse_input(input)?;
     let (moves, parse_err) = parse_moves(output);
     let max_turn = moves.len();
@@ -305,19 +277,6 @@ pub fn visualize_with_mode(
         .flatten()
         .filter(|&&count| count > 0)
         .count() as i64;
-    let svg = draw_svg(&input, &history, &visited, turn.min(max_turn), max_turn, mode);
-    let err = if mode == 3 {
-        if parse_err.is_empty() {
-            "template mode: focus_robot is unused until problem-specific visualizer is implemented"
-                .to_owned()
-        } else {
-            format!(
-                "template mode: focus_robot is unused until problem-specific visualizer is implemented\n{}",
-                parse_err
-            )
-        }
-    } else {
-        parse_err
-    };
-    Ok((score, err, svg))
+    let svg = draw_svg(&input, &history, &visited, turn.min(max_turn), max_turn);
+    Ok((score, parse_err, svg))
 }
