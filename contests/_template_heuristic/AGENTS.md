@@ -6,6 +6,7 @@
 - AtCoder のジャッジ環境を前提にし、現在の依存環境以外は用いない。
 - `src/bin/*.rs` には複数の候補を置いてよい。各ファイルは単体で完結し、1 行目に `// <file_name>.rs` を置く(AtCoder上でも識別できるように)。
 - `src/bin/v000_template.rs` はコピー元のテンプレートである。実験用の解法は通常 `v001_*.rs` から作り始める。
+- わからないことに関しては(特に問題の考察に関して)、それっぽい解説をするのではなく「わからない」と認める。
 - 問題文や要点は `problem_description.txt` に記録する。
 - 公式配布物は `tools/` と `samples/` に配置する。
 - visualizer実装は `.agents/skills/make-visualizer/SKILL.md` に従う。
