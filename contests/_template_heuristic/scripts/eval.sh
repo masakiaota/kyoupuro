@@ -18,17 +18,37 @@ usage() {
 Usage:
   ./scripts/eval.sh <bin_name> [input_dir]
   ./scripts/eval.sh -v <bin_name> [input_dir]
+  ./scripts/eval.sh -j <jobs> <bin_name> [input_dir]
+  ./scripts/eval.sh --serial <bin_name> [input_dir]
 
 Without input_dir, `tools/in` is used.
-The evaluation pipeline builds once, then runs and scores cases in parallel.
+The evaluation pipeline builds once, then runs and scores cases with the requested jobs.
+By default, jobs=`cpu//2`. Use `-j 1` or `--serial` for strict serial evaluation.
 EOF
 }
 
 VERBOSE=0
+JOBS=
 while [ "$#" -gt 0 ]; do
     case "$1" in
         -v|--verbose)
             VERBOSE=1
+            shift
+            ;;
+        -j|--jobs)
+            if [ "$#" -lt 2 ]; then
+                usage
+                exit 1
+            fi
+            JOBS=$2
+            shift 2
+            ;;
+        --jobs=*)
+            JOBS=${1#--jobs=}
+            shift
+            ;;
+        --serial)
+            JOBS=1
             shift
             ;;
         --)
@@ -99,6 +119,19 @@ fi
 PARALLEL=$((CPU_COUNT / 2))
 if [ "$PARALLEL" -lt 1 ]; then
     PARALLEL=1
+fi
+if [ -n "$JOBS" ]; then
+    case "$JOBS" in
+        ''|*[!0-9]*)
+            echo "error: jobs must be a positive integer: $JOBS" >&2
+            exit 1
+            ;;
+        0)
+            echo "error: jobs must be >= 1: $JOBS" >&2
+            exit 1
+            ;;
+    esac
+    PARALLEL=$JOBS
 fi
 
 if [ "$VERBOSE" -ge 1 ]; then
