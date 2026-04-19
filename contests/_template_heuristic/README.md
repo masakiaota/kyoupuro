@@ -89,9 +89,9 @@ _template_heuristic/
    - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
 3. scorer があるなら `./scripts/eval.sh [-v] [-j jobs|--serial] <bin_name> [input_dir]` で公式スコアを確認する
    - `input_dir` 省略時は `tools/in` を使う。
-   - 既定では各ケースについて `run -> score` を `cpu//2` 並列で実行する。
+   - 既定では各ケースについて `run -> score` を `cpu//2 - 1` 並列で実行する。最小値は 1 である。
    - 発熱や計測ぶれを避けたいときは `-j 1` か `--serial` で直列実行する。
-   - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。
+   - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。経過時間は整数 ms で集計する。
 4. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
 ## shell script の役割
@@ -99,8 +99,8 @@ _template_heuristic/
   - stdin または 1 つの input_file に対して手動実行する。
 - `./scripts/eval.sh [-v] [-j jobs|--serial] <bin_name> [input_dir]`
   - solver と公式 `score` を 1 回だけ build し、ケース単位で `run -> score` を実行する。
-  - 既定ジョブ数は `cpu//2` で、`-j 1` か `--serial` で直列評価に切り替えられる。
-  - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。
+  - 既定ジョブ数は `cpu//2 - 1` で、最小値は 1 である。`-j 1` か `--serial` で直列評価に切り替えられる。
+  - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。経過時間は `avg_elapsed` と `max_elapsed` を整数 ms で出力する。
 - `./scripts/gen_tools.sh <args...>`
   - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
 - `./scripts/unpack_tools.sh [tools_zip_path]`

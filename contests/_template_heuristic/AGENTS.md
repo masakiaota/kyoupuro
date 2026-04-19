@@ -39,9 +39,9 @@
 
 ## 評価運用ルール
 - `scripts/run.sh` は単発の手動実行専用である。
-- `scripts/eval.sh` は評価パイプライン本体である。solver と tools の score をそれぞれ 1 回だけ build し、その後は `run -> score` をケース単位で実行する。既定は `cpu//2` 並列で、厳密に見たいときは `-j 1` または `--serial` を使う。
+- `scripts/eval.sh` は評価パイプライン本体である。solver と tools の score をそれぞれ 1 回だけ build し、その後は `run -> score` をケース単位で実行する。既定は `cpu//2 - 1` 並列で、最小値は 1 である。厳密に見たいときは `-j 1` または `--serial` を使う。
 - `results/out/<bin_name>/` は最新評価の scratch/workspace である。`eval.sh` 実行時に同名 basename の出力が並ぶ前提なので、重複 basename は拒否する。
-- `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases`。全ケース成功時のみ追記する。
+- `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,avg_elapsed,max_elapsed,total_sum,total_min,total_max,eval_set,total_cases` で、経過時間は整数 ms で記録する。全ケース成功時のみ追記する。
 - verbose は進捗表示だけに使い、追加ログを恒久保存しない。
 
 ## ディレクトリ構成
@@ -112,7 +112,7 @@ _template_heuristic/
   - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file を手動確認する。
 - `scripts/eval.sh`
   - solver と score を 1 回だけ build し、ケース単位で `run -> score` を実行する。
-  - 既定は `cpu//2` 並列で、必要なら `-j <jobs>` で明示指定できる。
+  - 既定は `cpu//2 - 1` 並列で、最小値は 1 である。必要なら `-j <jobs>` で明示指定できる。
   - `./scripts/eval.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を使う。
 - `scripts/gen_tools.sh`
   - `tools` 側の `gen` バイナリを呼ぶための薄い wrapper である。

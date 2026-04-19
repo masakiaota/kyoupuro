@@ -23,7 +23,7 @@ Usage:
 
 Without input_dir, `tools/in` is used.
 The evaluation pipeline builds once, then runs and scores cases with the requested jobs.
-By default, jobs=`cpu//2`. Use `-j 1` or `--serial` for strict serial evaluation.
+By default, jobs=`cpu//2 - 1` (minimum 1). Use `-j 1` or `--serial` for strict serial evaluation.
 EOF
 }
 
@@ -117,6 +117,7 @@ if [ -z "$CPU_COUNT" ] || [ "$CPU_COUNT" -le 0 ]; then
     CPU_COUNT=2
 fi
 PARALLEL=$((CPU_COUNT / 2))
+PARALLEL=$((PARALLEL - 1))
 if [ "$PARALLEL" -lt 1 ]; then
     PARALLEL=1
 fi
@@ -195,13 +196,14 @@ if tr '\n' '\0' < "$INPUT_LIST" | xargs -0 -n 1 -P "$PARALLEL" sh -c '
         printf "start: %s\n" "$base" >&2
     fi
 
-    run_start=$(date +%s)
+    run_start=$(perl -MTime::HiRes=time -e 'printf "%.0f\n", time() * 1000')
     if "$SOLVER_BIN" < "$input_file" > "$output_file" 2> "$err_file"; then
         run_status=0
     else
         run_status=$?
     fi
-    run_elapsed=$(( $(date +%s) - run_start ))
+    run_end=$(perl -MTime::HiRes=time -e 'printf "%.0f\n", time() * 1000')
+    run_elapsed=$((run_end - run_start))
 
     if [ "$run_status" -ne 0 ]; then
         {
@@ -217,13 +219,14 @@ if tr '\n' '\0' < "$INPUT_LIST" | xargs -0 -n 1 -P "$PARALLEL" sh -c '
         exit 0
     fi
 
-    score_start=$(date +%s)
+    score_start=$(perl -MTime::HiRes=time -e 'printf "%.0f\n", time() * 1000')
     if score_result=$("$SCORE_BIN" "$input_file" "$output_file" 2>> "$err_file"); then
         score_status=0
     else
         score_status=$?
     fi
-    score_elapsed=$(( $(date +%s) - score_start ))
+    score_end=$(perl -MTime::HiRes=time -e 'printf "%.0f\n", time() * 1000')
+    score_elapsed=$((score_end - score_start))
 
     if [ "$score_status" -ne 0 ]; then
         {
@@ -264,7 +267,7 @@ if tr '\n' '\0' < "$INPUT_LIST" | xargs -0 -n 1 -P "$PARALLEL" sh -c '
     } > "$meta_file"
 
     if [ "$VERBOSE" -ge 1 ]; then
-        printf "done: %s score=%s elapsed=%ss output=%s\n" "$base" "$score" "$total_elapsed" "$output_file" >&2
+        printf "done: %s score=%s elapsed=%sms output=%s\n" "$base" "$score" "$total_elapsed" "$output_file" >&2
     fi
 ' _
 then
@@ -311,6 +314,9 @@ if [ "$SUCCESS" -gt 0 ]; then
             count++
             total_sum += score
             total_elapsed += elapsed
+            if (count == 1 || elapsed > max_elapsed) {
+                max_elapsed = elapsed
+            }
             if (count == 1 || score < total_min) {
                 total_min = score
             }
@@ -322,9 +328,9 @@ if [ "$SUCCESS" -gt 0 ]; then
             if (count == 0) {
                 exit 1
             }
-            total_avg = total_sum / count
-            avg_elapsed = total_elapsed / count
-            printf "%.6f %.6f %.0f %.0f %.0f %d", total_avg, avg_elapsed, total_sum, total_min, total_max, count
+            total_avg = int((total_sum / count) + 0.5)
+            avg_elapsed = int((total_elapsed / count) + 0.5)
+            printf "%d %d %d %d %d %d %d", total_avg, avg_elapsed, max_elapsed, total_sum, total_min, total_max, count
         }
     ' "$ROWS_FILE"); then
         :
@@ -336,25 +342,27 @@ if [ "$SUCCESS" -gt 0 ]; then
     set -- $SUMMARY
     TOTAL_AVG=$1
     AVG_ELAPSED=$2
-    TOTAL_SUM=$3
-    TOTAL_MIN=$4
-    TOTAL_MAX=$5
+    MAX_ELAPSED=$3
+    TOTAL_SUM=$4
+    TOTAL_MIN=$5
+    TOTAL_MAX=$6
 else
     TOTAL_AVG=0
     AVG_ELAPSED=0
+    MAX_ELAPSED=0
     TOTAL_SUM=0
     TOTAL_MIN=0
     TOTAL_MAX=0
 fi
 
-printf 'eval: bin=%s eval_set=%s success=%s failure=%s total_avg=%s avg_elapsed=%s total_sum=%s total_min=%s total_max=%s total_cases=%s output=%s\n' \
-    "$BIN_NAME" "$EVAL_SET" "$SUCCESS" "$FAILURE" "$TOTAL_AVG" "$AVG_ELAPSED" "$TOTAL_SUM" "$TOTAL_MIN" "$TOTAL_MAX" "$INPUT_COUNT" "$OUTPUT_DIR" >&2
+printf 'eval: bin=%s eval_set=%s success=%s failure=%s total_avg=%s avg_elapsed=%s max_elapsed=%s total_sum=%s total_min=%s total_max=%s total_cases=%s output=%s\n' \
+    "$BIN_NAME" "$EVAL_SET" "$SUCCESS" "$FAILURE" "$TOTAL_AVG" "$AVG_ELAPSED" "$MAX_ELAPSED" "$TOTAL_SUM" "$TOTAL_MIN" "$TOTAL_MAX" "$INPUT_COUNT" "$OUTPUT_DIR" >&2
 
 if [ "$FAILURE" -ne 0 ] || [ "$XARGS_STATUS" -ne 0 ]; then
     exit 1
 fi
 
 if [ ! -f "$SUMMARY_CSV" ]; then
-    printf "bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases\n" > "$SUMMARY_CSV"
+    printf "bin,total_avg,avg_elapsed,max_elapsed,total_sum,total_min,total_max,eval_set,total_cases\n" > "$SUMMARY_CSV"
 fi
-printf "%s,%s,%s,%s,%s,%s,%s,%s\n" "$BIN_NAME" "$TOTAL_AVG" "$AVG_ELAPSED" "$TOTAL_SUM" "$TOTAL_MIN" "$TOTAL_MAX" "$EVAL_SET" "$INPUT_COUNT" >> "$SUMMARY_CSV"
+printf "%s,%s,%s,%s,%s,%s,%s,%s,%s\n" "$BIN_NAME" "$TOTAL_AVG" "$AVG_ELAPSED" "$MAX_ELAPSED" "$TOTAL_SUM" "$TOTAL_MIN" "$TOTAL_MAX" "$EVAL_SET" "$INPUT_COUNT" >> "$SUMMARY_CSV"
