@@ -1,0 +1,2897 @@
+// v129_faster127.rs
+use rustc_hash::FxHashMap;
+use std::cmp::{Ordering, Reverse};
+use std::collections::{BinaryHeap, VecDeque};
+use std::fmt;
+use std::io::{self, Read};
+use std::ops::{Deref, Index};
+use std::time::Instant;
+
+macro_rules! prof_inc {
+    ($($tt:tt)*) => {};
+}
+
+macro_rules! prof_set {
+    ($($tt:tt)*) => {};
+}
+
+const FIXED_CAP: usize = 16 * 16;
+const POS_HASH_BASE1: u64 = 0x9E37_79B1_85EB_CA87;
+const POS_HASH_BASE2: u64 = 0xC2B2_AE3D_27D4_EB4F;
+const COLOR_HASH_BASE1: u64 = 0x1656_67B1_9E37_79F9;
+const COLOR_HASH_BASE2: u64 = 0x27D4_EB2F_C2B2_AE63;
+const MAX_TURNS: usize = 100_000;
+const TIME_LIMIT_SEC: f64 = 1.85;
+const STAGE_BEAM: usize = 5;
+const MAX_TARGETS_PER_STAGE: usize = 10;
+const MAX_TARGETS_ENDGAME: usize = 24;
+const MAX_TARGETS_RESCUE: usize = 28;
+const VISIT_REPEAT_LIMIT: usize = 12;
+const DIRS: [(isize, isize, char); 4] = [(-1, 0, 'U'), (1, 0, 'D'), (0, -1, 'L'), (0, 1, 'R')];
+const BUDGETS_NORMAL: [(usize, usize); 3] = [(2_000, 20), (8_000, 20), (25_000, 24)];
+const BUDGETS_LATE: [(usize, usize); 3] = [(4_000, 20), (12_000, 24), (40_000, 28)];
+const BUDGETS_ENDGAME_LIGHT: [(usize, usize); 2] = [(800, 16), (2_500, 20)];
+const BUDGETS_RESCUE: [(usize, usize); 2] = [(16_000, 24), (60_000, 32)];
+const ENDGAME_REMAINING_FOOD: usize = 18;
+const ENDGAME_ELL_LEFT: usize = 24;
+const LOOKAHEAD_HORIZON: usize = 6;
+const SUFFIX_OPT_WINDOWS: [usize; 4] = [8, 12, 16, 20];
+const SUFFIX_STAGE_BEAM: usize = 5;
+const SUFFIX_OPT_TARGETS: usize = 12;
+const SUFFIX_OPT_MIN_LEFT_SEC: f64 = 0.18;
+const EMPTY_PATH_DEPTH_LIMIT: usize = 64;
+const EMPTY_PATH_EXPANSION_CAP: usize = 140_000;
+const EMPTY_PATH_REMAINING_LIMIT: usize = 12;
+const EMPTY_PATH_MIN_LEFT_SEC: f64 = 0.10;
+const FASTLANE_MIN_LEFT_SEC: f64 = 0.28;
+const FAST_SAFE_DEPTH_LIMIT: u8 = 10;
+const FAST_SAFE_NODE_LIMIT: usize = 2_500;
+const FAST_RESCUE_DEPTH_LIMIT: u8 = 16;
+const FAST_RESCUE_NODE_LIMIT: usize = 9_000;
+const FAST_FALLBACK_TARGETS: usize = 8;
+
+const fn build_hash_pows(base: u64) -> [u64; FIXED_CAP + 1] {
+    let mut pows = [0_u64; FIXED_CAP + 1];
+    pows[0] = 1;
+    let mut i = 1;
+    while i <= FIXED_CAP {
+        pows[i] = pows[i - 1].wrapping_mul(base);
+        i += 1;
+    }
+    pows
+}
+
+const POS_HASH_POW1: [u64; FIXED_CAP + 1] = build_hash_pows(POS_HASH_BASE1);
+const POS_HASH_POW2: [u64; FIXED_CAP + 1] = build_hash_pows(POS_HASH_BASE2);
+const COLOR_HASH_POW1: [u64; FIXED_CAP + 1] = build_hash_pows(COLOR_HASH_BASE1);
+const COLOR_HASH_POW2: [u64; FIXED_CAP + 1] = build_hash_pows(COLOR_HASH_BASE2);
+
+const fn mod_inv_u64_odd(x: u64) -> u64 {
+    let mut inv = x;
+    let mut i = 0;
+    while i < 6 {
+        inv = inv.wrapping_mul(2_u64.wrapping_sub(x.wrapping_mul(inv)));
+        i += 1;
+    }
+    inv
+}
+
+const POS_HASH_BASE1_INV: u64 = mod_inv_u64_odd(POS_HASH_BASE1);
+const POS_HASH_BASE2_INV: u64 = mod_inv_u64_odd(POS_HASH_BASE2);
+
+#[inline]
+fn mix64(mut x: u64) -> u64 {
+    x ^= x >> 30;
+    x = x.wrapping_mul(0xbf58_476d_1ce4_e5b9);
+    x ^= x >> 27;
+    x = x.wrapping_mul(0x94d0_49bb_1331_11eb);
+    x ^ (x >> 31)
+}
+
+#[inline]
+fn food_hash_token(cell: u16, color: u8) -> u64 {
+    if color == 0 {
+        0
+    } else {
+        mix64(((cell as u64) << 8) ^ color as u64 ^ 0xa076_1d64_78bd_642f)
+    }
+}
+
+#[inline]
+fn pos_hash_token(cell: u16) -> u64 {
+    cell as u64 + 1
+}
+
+#[inline]
+fn color_hash_token(color: u8) -> u64 {
+    color as u64 + 1
+}
+
+#[derive(Clone)]
+struct Input {
+    n: usize,
+    m: usize,
+    d: Vec<u8>,
+    food: Vec<u8>,
+}
+
+#[derive(Clone)]
+struct State {
+    n: usize,
+    food: [u8; FIXED_CAP],
+    food_hash: u64,
+    pos: InternalPosDeque,
+    colors: InternalColors,
+    pos_occupancy: InternalPosOccupancy,
+}
+
+#[derive(Clone)]
+struct BeamState {
+    state: State,
+    ops: String,
+}
+
+#[derive(Clone)]
+struct Dropped {
+    cell: u16,
+    color: u8,
+}
+
+struct StepUndoLog {
+    moved_tail: Option<u16>,
+    ate_color: u8,
+    bite_idx: Option<usize>,
+    dropped: Vec<Dropped>,
+}
+
+#[derive(Hash, Eq, PartialEq, Clone, Copy, Ord, PartialOrd)]
+struct StateFingerprint {
+    food_hash: u64,
+    pos_hash1: u64,
+    pos_hash2: u64,
+    color_hash1: u64,
+    color_hash2: u64,
+    pos_len: u16,
+    color_len: u16,
+}
+
+#[derive(Hash, Eq, PartialEq)]
+struct VisitKey {
+    head: u16,
+    neck: u16,
+    len: u16,
+    goal: u16,
+    restore_len: u16,
+}
+
+#[derive(Default)]
+struct BeamDedupMap {
+    buckets: FxHashMap<StateFingerprint, Vec<usize>>,
+    values: Vec<BeamState>,
+}
+
+#[derive(Default)]
+struct BestDepthSeen {
+    best: FxHashMap<StateFingerprint, usize>,
+}
+
+struct Node {
+    parent: Option<usize>,
+    move_seg: String,
+}
+
+struct StageHeapEntry {
+    rank: (usize, usize, usize, usize, usize),
+    depth: usize,
+    uid: usize,
+    node_idx: usize,
+    state: Box<State>,
+}
+
+struct PosNode {
+    pos: Vec<u16>,
+    parent: Option<usize>,
+    mv: char,
+}
+
+#[derive(Clone, Copy)]
+struct QuickPlanConfig {
+    depth_limit: u8,
+    node_limit: usize,
+    non_target_limit: u8,
+    bite_limit: u8,
+}
+
+#[derive(Clone)]
+struct QuickSearchNode {
+    state: Box<State>,
+    parent: usize,
+    dir: u8,
+    depth: u8,
+    non_target: u8,
+    bite: u8,
+}
+
+#[derive(Clone)]
+struct InternalPosDeque {
+    head: usize,
+    len: usize,
+    buf: [u16; FIXED_CAP],
+    hash1: u64,
+    hash2: u64,
+}
+
+impl InternalPosDeque {
+    #[inline]
+    fn new() -> Self {
+        Self {
+            head: 0,
+            len: 0,
+            buf: [0; FIXED_CAP],
+            hash1: 0,
+            hash2: 0,
+        }
+    }
+
+    #[inline]
+    fn from_slice(cells: &[u16]) -> Self {
+        let mut deque = Self::new();
+        deque.buf[..cells.len()].copy_from_slice(cells);
+        deque.len = cells.len();
+        let mut pow1 = 1_u64;
+        let mut pow2 = 1_u64;
+        for &cell in cells {
+            let x = pos_hash_token(cell);
+            deque.hash1 = deque.hash1.wrapping_add(x.wrapping_mul(pow1));
+            deque.hash2 = deque.hash2.wrapping_add(x.wrapping_mul(pow2));
+            pow1 = pow1.wrapping_mul(POS_HASH_BASE1);
+            pow2 = pow2.wrapping_mul(POS_HASH_BASE2);
+        }
+        deque
+    }
+
+    #[inline]
+    fn len(&self) -> usize {
+        self.len
+    }
+
+    #[inline]
+    fn is_empty(&self) -> bool {
+        self.len == 0
+    }
+
+    #[inline]
+    fn physical_index(&self, idx: usize) -> usize {
+        debug_assert!(idx < self.len);
+        let raw = self.head + idx;
+        if raw < FIXED_CAP {
+            raw
+        } else {
+            raw - FIXED_CAP
+        }
+    }
+
+    #[inline]
+    fn push_front(&mut self, cell: u16) {
+        let x = pos_hash_token(cell);
+        self.head = (self.head + FIXED_CAP - 1) % FIXED_CAP;
+        self.buf[self.head] = cell;
+        self.hash1 = x.wrapping_add(self.hash1.wrapping_mul(POS_HASH_BASE1));
+        self.hash2 = x.wrapping_add(self.hash2.wrapping_mul(POS_HASH_BASE2));
+        self.len += 1;
+    }
+
+    #[inline]
+    fn push_back(&mut self, cell: u16) {
+        let idx = if self.head + self.len < FIXED_CAP {
+            self.head + self.len
+        } else {
+            self.head + self.len - FIXED_CAP
+        };
+        self.buf[idx] = cell;
+        let x = pos_hash_token(cell);
+        self.hash1 = self
+            .hash1
+            .wrapping_add(x.wrapping_mul(POS_HASH_POW1[self.len]));
+        self.hash2 = self
+            .hash2
+            .wrapping_add(x.wrapping_mul(POS_HASH_POW2[self.len]));
+        self.len += 1;
+    }
+
+    #[inline]
+    fn pop_front(&mut self) -> Option<u16> {
+        if self.is_empty() {
+            return None;
+        }
+        let cell = self.buf[self.head];
+        let x = pos_hash_token(cell);
+        self.head += 1;
+        if self.head == FIXED_CAP {
+            self.head = 0;
+        }
+        self.len -= 1;
+        self.hash1 = self.hash1.wrapping_sub(x).wrapping_mul(POS_HASH_BASE1_INV);
+        self.hash2 = self.hash2.wrapping_sub(x).wrapping_mul(POS_HASH_BASE2_INV);
+        Some(cell)
+    }
+
+    #[inline]
+    fn pop_back(&mut self) -> Option<u16> {
+        if self.is_empty() {
+            return None;
+        }
+        let idx = self.physical_index(self.len - 1);
+        let cell = self.buf[idx];
+        let x = pos_hash_token(cell);
+        self.hash1 = self
+            .hash1
+            .wrapping_sub(x.wrapping_mul(POS_HASH_POW1[self.len - 1]));
+        self.hash2 = self
+            .hash2
+            .wrapping_sub(x.wrapping_mul(POS_HASH_POW2[self.len - 1]));
+        self.len -= 1;
+        Some(cell)
+    }
+
+    #[inline]
+    fn iter(&self) -> InternalPosDequeIter<'_> {
+        InternalPosDequeIter {
+            deque: self,
+            idx: 0,
+        }
+    }
+
+    #[inline]
+    fn back(&self) -> Option<u16> {
+        if self.is_empty() {
+            None
+        } else {
+            Some(self[self.len - 1])
+        }
+    }
+}
+
+impl fmt::Debug for InternalPosDeque {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_list().entries(self.iter()).finish()
+    }
+}
+
+impl Index<usize> for InternalPosDeque {
+    type Output = u16;
+
+    #[inline]
+    fn index(&self, idx: usize) -> &Self::Output {
+        &self.buf[self.physical_index(idx)]
+    }
+}
+
+struct InternalPosDequeIter<'a> {
+    deque: &'a InternalPosDeque,
+    idx: usize,
+}
+
+impl Iterator for InternalPosDequeIter<'_> {
+    type Item = u16;
+
+    #[inline]
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.idx == self.deque.len() {
+            None
+        } else {
+            let cell = self.deque[self.idx];
+            self.idx += 1;
+            Some(cell)
+        }
+    }
+}
+
+#[derive(Clone)]
+struct InternalColors {
+    buf: [u8; FIXED_CAP],
+    len: u16,
+    hash1: u64,
+    hash2: u64,
+}
+
+impl InternalColors {
+    #[inline]
+    fn new() -> Self {
+        Self {
+            buf: [0; FIXED_CAP],
+            len: 0,
+            hash1: 0,
+            hash2: 0,
+        }
+    }
+
+    #[inline]
+    fn from_slice(colors: &[u8]) -> Self {
+        let mut out = Self::new();
+        out.buf[..colors.len()].copy_from_slice(colors);
+        out.len = colors.len() as u16;
+        let mut pow1 = 1_u64;
+        let mut pow2 = 1_u64;
+        for &color in colors {
+            let x = color_hash_token(color);
+            out.hash1 = out.hash1.wrapping_add(x.wrapping_mul(pow1));
+            out.hash2 = out.hash2.wrapping_add(x.wrapping_mul(pow2));
+            pow1 = pow1.wrapping_mul(COLOR_HASH_BASE1);
+            pow2 = pow2.wrapping_mul(COLOR_HASH_BASE2);
+        }
+        out
+    }
+
+    #[inline]
+    fn push(&mut self, color: u8) {
+        let idx = self.len as usize;
+        self.buf[idx] = color;
+        let x = color_hash_token(color);
+        self.hash1 = self
+            .hash1
+            .wrapping_add(x.wrapping_mul(COLOR_HASH_POW1[idx]));
+        self.hash2 = self
+            .hash2
+            .wrapping_add(x.wrapping_mul(COLOR_HASH_POW2[idx]));
+        self.len += 1;
+    }
+
+    #[inline]
+    fn pop(&mut self) -> Option<u8> {
+        if self.len == 0 {
+            return None;
+        }
+        let idx = self.len as usize - 1;
+        let color = self.buf[idx];
+        let x = color_hash_token(color);
+        self.hash1 = self
+            .hash1
+            .wrapping_sub(x.wrapping_mul(COLOR_HASH_POW1[idx]));
+        self.hash2 = self
+            .hash2
+            .wrapping_sub(x.wrapping_mul(COLOR_HASH_POW2[idx]));
+        self.len -= 1;
+        Some(color)
+    }
+}
+
+impl Deref for InternalColors {
+    type Target = [u8];
+
+    #[inline]
+    fn deref(&self) -> &Self::Target {
+        &self.buf[..self.len as usize]
+    }
+}
+
+#[derive(Clone)]
+struct InternalPosOccupancy {
+    cnt: [u8; FIXED_CAP],
+}
+
+impl InternalPosOccupancy {
+    #[inline]
+    fn new() -> Self {
+        Self { cnt: [0; FIXED_CAP] }
+    }
+
+    #[inline]
+    fn from_pos(pos: &InternalPosDeque) -> Self {
+        let mut out = Self::new();
+        for cell in pos.iter() {
+            out.inc(cell);
+        }
+        out
+    }
+
+    #[inline]
+    fn count(&self, cell: u16) -> u8 {
+        self.cnt[cell as usize]
+    }
+
+    #[inline]
+    fn inc(&mut self, cell: u16) {
+        self.cnt[cell as usize] += 1;
+    }
+
+    #[inline]
+    fn dec(&mut self, cell: u16) {
+        self.cnt[cell as usize] -= 1;
+    }
+}
+
+impl State {
+    fn initial(input: &Input) -> Self {
+        let n = input.n;
+        let mut food = [0_u8; FIXED_CAP];
+        let mut food_hash = 0_u64;
+        for (idx, &color) in input.food.iter().enumerate() {
+            food[idx] = color;
+            food_hash ^= food_hash_token(idx as u16, color);
+        }
+        let pos = InternalPosDeque::from_slice(&[
+            cell_of(4, 0, n),
+            cell_of(3, 0, n),
+            cell_of(2, 0, n),
+            cell_of(1, 0, n),
+            cell_of(0, 0, n),
+        ]);
+        Self {
+            n,
+            food,
+            food_hash,
+            pos: pos.clone(),
+            colors: InternalColors::from_slice(&[1; 5]),
+            pos_occupancy: InternalPosOccupancy::from_pos(&pos),
+        }
+    }
+
+    #[inline]
+    fn head(&self) -> u16 {
+        self.pos[0]
+    }
+
+    #[inline]
+    fn set_food(&mut self, cell: u16, new_color: u8) {
+        let idx = cell as usize;
+        let old_color = self.food[idx];
+        if old_color == new_color {
+            return;
+        }
+        self.food_hash ^= food_hash_token(cell, old_color);
+        self.food_hash ^= food_hash_token(cell, new_color);
+        self.food[idx] = new_color;
+    }
+
+    #[inline]
+    fn pos_vec(&self) -> Vec<u16> {
+        self.pos.iter().collect()
+    }
+}
+
+#[inline]
+fn state_fingerprint(st: &State) -> StateFingerprint {
+    StateFingerprint {
+        food_hash: st.food_hash,
+        pos_hash1: st.pos.hash1,
+        pos_hash2: st.pos.hash2,
+        color_hash1: st.colors.hash1,
+        color_hash2: st.colors.hash2,
+        pos_len: st.pos.len() as u16,
+        color_len: st.colors.len,
+    }
+}
+
+#[inline]
+fn same_pos(a: &InternalPosDeque, b: &InternalPosDeque) -> bool {
+    if a.len() != b.len() || a.hash1 != b.hash1 || a.hash2 != b.hash2 {
+        return false;
+    }
+    a.iter().eq(b.iter())
+}
+
+#[inline]
+fn same_state(a: &State, b: &State) -> bool {
+    a.food_hash == b.food_hash
+        && a.colors.len == b.colors.len
+        && a.colors.hash1 == b.colors.hash1
+        && a.colors.hash2 == b.colors.hash2
+        && same_pos(&a.pos, &b.pos)
+        && a.colors[..] == b.colors[..]
+        && a.food == b.food
+}
+
+fn cmp_pos(a: &InternalPosDeque, b: &InternalPosDeque) -> Ordering {
+    a.len()
+        .cmp(&b.len())
+        .then_with(|| a.iter().cmp(b.iter()))
+}
+
+fn cmp_state(a: &State, b: &State) -> Ordering {
+    state_fingerprint(a)
+        .cmp(&state_fingerprint(b))
+        .then_with(|| cmp_pos(&a.pos, &b.pos))
+        .then_with(|| a.colors[..].cmp(&b.colors[..]))
+        .then_with(|| a.food[..].cmp(&b.food[..]))
+}
+
+#[inline]
+fn better_same_state_beam(candidate: &BeamState, current: &BeamState) -> bool {
+    candidate.ops.len() < current.ops.len()
+        || (candidate.ops.len() == current.ops.len() && candidate.ops < current.ops)
+}
+
+fn cmp_beam_next_stage(a: &BeamState, b: &BeamState, input: &Input, ellp1: usize) -> Ordering {
+    next_stage_rank(&a.state, input, ellp1)
+        .cmp(&next_stage_rank(&b.state, input, ellp1))
+        .then_with(|| a.ops.len().cmp(&b.ops.len()))
+        .then_with(|| cmp_state(&a.state, &b.state))
+        .then_with(|| a.ops.cmp(&b.ops))
+}
+
+fn cmp_beam_turn_focus(a: &BeamState, b: &BeamState, input: &Input, ellp1: usize) -> Ordering {
+    turn_focus_next_stage_rank(&a.state, input, ellp1)
+        .cmp(&turn_focus_next_stage_rank(&b.state, input, ellp1))
+        .then_with(|| a.ops.len().cmp(&b.ops.len()))
+        .then_with(|| cmp_state(&a.state, &b.state))
+        .then_with(|| a.ops.cmp(&b.ops))
+}
+
+fn cmp_beam_ops(a: &BeamState, b: &BeamState) -> Ordering {
+    a.ops.len()
+        .cmp(&b.ops.len())
+        .then_with(|| cmp_state(&a.state, &b.state))
+        .then_with(|| a.ops.cmp(&b.ops))
+}
+
+fn cmp_beam_final(a: &BeamState, b: &BeamState, input: &Input) -> Ordering {
+    final_rank(a, input)
+        .cmp(&final_rank(b, input))
+        .then_with(|| cmp_state(&a.state, &b.state))
+        .then_with(|| a.ops.cmp(&b.ops))
+}
+
+#[inline]
+fn beam_contains_state(beams: &[BeamState], st: &State) -> bool {
+    beams.iter().any(|bs| same_state(&bs.state, st))
+}
+
+impl BeamDedupMap {
+    fn insert_best(&mut self, cand: BeamState) {
+        let fp = state_fingerprint(&cand.state);
+        let bucket = self.buckets.entry(fp).or_default();
+        for &idx in bucket.iter() {
+            if same_state(&self.values[idx].state, &cand.state) {
+                if better_same_state_beam(&cand, &self.values[idx]) {
+                    self.values[idx] = cand;
+                }
+                return;
+            }
+        }
+        let idx = self.values.len();
+        self.values.push(cand);
+        bucket.push(idx);
+    }
+
+    #[inline]
+    fn len(&self) -> usize {
+        self.values.len()
+    }
+
+    #[inline]
+    fn is_empty(&self) -> bool {
+        self.values.is_empty()
+    }
+
+    fn into_values(self) -> Vec<BeamState> {
+        self.values
+    }
+}
+
+impl PartialEq for StageHeapEntry {
+    fn eq(&self, other: &Self) -> bool {
+        (self.rank, self.depth, self.uid, self.node_idx)
+            == (other.rank, other.depth, other.uid, other.node_idx)
+    }
+}
+
+impl Eq for StageHeapEntry {}
+
+impl PartialOrd for StageHeapEntry {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for StageHeapEntry {
+    fn cmp(&self, other: &Self) -> Ordering {
+        (other.rank, other.depth, other.uid, other.node_idx).cmp(&(
+            self.rank,
+            self.depth,
+            self.uid,
+            self.node_idx,
+        ))
+    }
+}
+
+impl BestDepthSeen {
+    fn insert_known(&mut self, st: &State, depth: usize) {
+        self.best.insert(state_fingerprint(st), depth);
+    }
+
+    #[inline]
+    fn best_depth(&self, st: &State) -> Option<usize> {
+        self.best.get(&state_fingerprint(st)).copied()
+    }
+
+    #[inline]
+    fn insert_or_relax(&mut self, st: &State, depth: usize) {
+        let entry = self.best.entry(state_fingerprint(st)).or_insert(depth);
+        if depth < *entry {
+            *entry = depth;
+        }
+    }
+}
+
+#[inline]
+fn cell_of(r: usize, c: usize, n: usize) -> u16 {
+    (r * n + c) as u16
+}
+
+#[inline]
+fn rc_of(cell: u16, n: usize) -> (usize, usize) {
+    let x = cell as usize;
+    (x / n, x % n)
+}
+
+#[inline]
+fn manhattan(n: usize, a: u16, b: u16) -> usize {
+    let (ar, ac) = rc_of(a, n);
+    let (br, bc) = rc_of(b, n);
+    ar.abs_diff(br) + ac.abs_diff(bc)
+}
+
+#[inline]
+fn time_over(started: &Instant) -> bool {
+    let over = started.elapsed().as_secs_f64() >= TIME_LIMIT_SEC;
+    if over {
+        prof_inc!(time_over_hits);
+    }
+    over
+}
+
+#[inline]
+fn time_left(started: &Instant) -> f64 {
+    (TIME_LIMIT_SEC - started.elapsed().as_secs_f64()).max(0.0)
+}
+
+#[inline]
+fn dir_of_char(ch: u8) -> Option<usize> {
+    match ch {
+        b'U' => Some(0),
+        b'D' => Some(1),
+        b'L' => Some(2),
+        b'R' => Some(3),
+        _ => None,
+    }
+}
+
+fn read_input() -> Input {
+    let mut s = String::new();
+    io::stdin().read_to_string(&mut s).unwrap();
+    let mut it = s.split_whitespace();
+
+    let n: usize = it.next().unwrap().parse().unwrap();
+    let m: usize = it.next().unwrap().parse().unwrap();
+    let _c: usize = it.next().unwrap().parse().unwrap();
+
+    let mut d = Vec::with_capacity(m);
+    for _ in 0..m {
+        d.push(it.next().unwrap().parse::<u8>().unwrap());
+    }
+
+    let mut food = vec![0_u8; n * n];
+    for r in 0..n {
+        for c in 0..n {
+            food[r * n + c] = it.next().unwrap().parse::<u8>().unwrap();
+        }
+    }
+
+    Input { n, m, d, food }
+}
+
+#[inline]
+fn dir_between_cells(n: usize, a: u16, b: u16) -> Option<usize> {
+    let (ar, ac) = rc_of(a, n);
+    let (br, bc) = rc_of(b, n);
+    if ar == br + 1 && ac == bc {
+        return Some(0);
+    }
+    if ar + 1 == br && ac == bc {
+        return Some(1);
+    }
+    if ar == br && ac == bc + 1 {
+        return Some(2);
+    }
+    if ar == br && ac + 1 == bc {
+        return Some(3);
+    }
+    None
+}
+
+#[inline]
+fn next_head_cell(st: &State, dir: usize) -> Option<u16> {
+    let (dr, dc, _) = DIRS[dir];
+    let (hr, hc) = rc_of(st.head(), st.n);
+    let nr = hr as isize + dr;
+    let nc = hc as isize + dc;
+    if nr < 0 || nr >= st.n as isize || nc < 0 || nc >= st.n as isize {
+        return None;
+    }
+    Some(cell_of(nr as usize, nc as usize, st.n))
+}
+
+#[inline]
+fn is_legal_dir(st: &State, dir: usize) -> bool {
+    let Some(nh) = next_head_cell(st, dir) else {
+        return false;
+    };
+    st.pos.len() < 2 || nh != st.pos[1]
+}
+
+fn legal_dirs(st: &State) -> Vec<usize> {
+    let mut out = Vec::with_capacity(4);
+    for dir in 0..4 {
+        if is_legal_dir(st, dir) {
+            out.push(dir);
+        }
+    }
+    out
+}
+
+#[inline]
+fn legal_dir_count(st: &State) -> usize {
+    let mut cnt = 0usize;
+    for dir in 0..4 {
+        if is_legal_dir(st, dir) {
+            cnt += 1;
+        }
+    }
+    cnt
+}
+
+#[inline]
+fn find_internal_bite_idx(pos: &InternalPosDeque) -> Option<usize> {
+    let head = pos[0];
+    (1..pos.len().saturating_sub(1)).find(|&idx| pos[idx] == head)
+}
+
+fn apply_step(st: &mut State, dir: usize) -> StepUndoLog {
+    prof_inc!(step_calls);
+    let nh = next_head_cell(st, dir).unwrap();
+    let ate = st.food[nh as usize];
+    let moved_tail = if ate == 0 {
+        let tail = st.pos.pop_back().unwrap();
+        st.pos_occupancy.dec(tail);
+        Some(tail)
+    } else {
+        None
+    };
+    if ate != 0 {
+        prof_inc!(step_ate);
+        st.set_food(nh, 0);
+        st.colors.push(ate);
+    }
+    let tail_bias = u8::from(st.pos.back() == Some(nh));
+    let bite = st.pos_occupancy.count(nh) > tail_bias;
+    st.pos_occupancy.inc(nh);
+    st.pos.push_front(nh);
+
+    let bite_idx = if bite {
+        find_internal_bite_idx(&st.pos)
+    } else {
+        None
+    };
+
+    let mut dropped = Vec::new();
+    if let Some(bi) = bite_idx {
+        prof_inc!(step_bite);
+        let drop_len = st.pos.len().saturating_sub(bi + 1);
+        dropped.reserve(drop_len);
+        let mut dropped_rev = Vec::with_capacity(drop_len);
+        while st.pos.len() > bi + 1 {
+            let cell = st.pos.pop_back().unwrap();
+            st.pos_occupancy.dec(cell);
+            let color = st.colors.pop().unwrap();
+            st.set_food(cell, color);
+            dropped_rev.push(Dropped { cell, color });
+        }
+        dropped_rev.reverse();
+        dropped = dropped_rev;
+    }
+
+    StepUndoLog {
+        moved_tail,
+        ate_color: ate,
+        bite_idx,
+        dropped,
+    }
+}
+
+fn undo_step(st: &mut State, log: StepUndoLog) {
+    for ent in &log.dropped {
+        st.set_food(ent.cell, 0);
+        st.pos.push_back(ent.cell);
+        st.pos_occupancy.inc(ent.cell);
+        st.colors.push(ent.color);
+    }
+
+    let head = st.pos.pop_front().unwrap();
+    st.pos_occupancy.dec(head);
+    if log.ate_color != 0 {
+        let color = st.colors.pop().unwrap();
+        debug_assert_eq!(color, log.ate_color);
+        st.set_food(head, log.ate_color);
+    } else if let Some(tail) = log.moved_tail {
+        st.pos.push_back(tail);
+        st.pos_occupancy.inc(tail);
+    }
+}
+
+fn step_in_place(st: &mut State, dir: usize) -> (u8, Option<usize>, Vec<Dropped>) {
+    let log = apply_step(st, dir);
+    (log.ate_color, log.bite_idx, log.dropped)
+}
+
+fn step(st: &State, dir: usize) -> (State, u8, Option<usize>, Vec<Dropped>) {
+    let mut ns = st.clone();
+    let (ate, bite_idx, dropped) = step_in_place(&mut ns, dir);
+    (ns, ate, bite_idx, dropped)
+}
+
+#[inline]
+fn lcp(colors: &[u8], d: &[u8]) -> usize {
+    let mut i = 0;
+    let m = colors.len().min(d.len());
+    while i < m && colors[i] == d[i] {
+        i += 1;
+    }
+    i
+}
+
+#[inline]
+fn prefix_ok(st: &State, d: &[u8], ell: usize) -> bool {
+    let keep = st.colors.len().min(ell);
+    st.colors[..keep] == d[..keep]
+}
+
+#[inline]
+fn exact_prefix(st: &State, d: &[u8], ell: usize) -> bool {
+    st.colors.len() == ell && st.colors[..ell] == d[..ell]
+}
+
+#[inline]
+fn remaining_food_count(st: &State) -> usize {
+    st.food.iter().filter(|&&c| c != 0).count()
+}
+
+fn nearest_food_dist(st: &State, color: u8) -> (usize, usize) {
+    let head = st.head();
+    let mut best = usize::MAX;
+    let mut cnt = 0usize;
+    for (idx, &col) in st.food.iter().enumerate() {
+        if col == color {
+            cnt += 1;
+            let dist = manhattan(st.n, head, idx as u16);
+            if dist < best {
+                best = dist;
+            }
+        }
+    }
+    if best == usize::MAX {
+        (1_000_000_000, cnt)
+    } else {
+        (best, cnt)
+    }
+}
+
+fn target_adjacent(st: &State, target: u8) -> Option<usize> {
+    let neck = st.pos[1];
+    for dir in 0..4 {
+        let Some(nh) = next_head_cell(st, dir) else {
+            continue;
+        };
+        if nh == neck {
+            continue;
+        }
+        if st.food[nh as usize] == target {
+            return Some(dir);
+        }
+    }
+    None
+}
+
+fn target_suffix_info(st: &State, ell: usize, target: u8) -> Option<(usize, usize)> {
+    let head = st.head();
+    let mut best: Option<(usize, usize)> = None;
+    for idx in ell..st.colors.len() {
+        if st.colors[idx] != target {
+            continue;
+        }
+        let prev = st.pos[idx - 1];
+        let cand = (manhattan(st.n, head, prev), idx);
+        if best.is_none() || cand < best.unwrap() {
+            best = Some(cand);
+        }
+    }
+    best
+}
+
+fn local_score(st: &State, input: &Input, ell: usize) -> (usize, usize, usize, usize, usize) {
+    let target = input.d[ell];
+    if exact_prefix(st, &input.d, ell) {
+        let (dist, _) = nearest_food_dist(st, target);
+        let adj = target_adjacent(st, target).is_some();
+        return (0, if adj { 0 } else { 1 }, dist, 0, st.colors.len() - ell);
+    }
+
+    if let Some((dist, idx)) = target_suffix_info(st, ell, target) {
+        return (1, 0, dist, idx - ell, st.colors.len() - ell);
+    }
+
+    let (dist, _) = nearest_food_dist(st, target);
+    (2, 0, dist, 0, st.colors.len().saturating_sub(ell))
+}
+
+fn next_stage_rank(st: &State, input: &Input, ellp1: usize) -> (usize, usize, usize) {
+    if ellp1 >= input.m {
+        return (0, 0, 0);
+    }
+    let (dist, _) = nearest_food_dist(st, input.d[ellp1]);
+    let (hr, hc) = rc_of(st.head(), st.n);
+    let center = hr.abs_diff(st.n / 2) + hc.abs_diff(st.n / 2);
+    (dist, center, 0)
+}
+
+fn greedy_future_lb_from_cell(
+    st: &State,
+    input: &Input,
+    start_cell: u16,
+    start_ell: usize,
+    horizon: usize,
+    banned: Option<u16>,
+) -> (usize, usize, usize) {
+    let mut cur = start_cell;
+    let end = (start_ell + horizon).min(input.m);
+    let mut used = Vec::with_capacity(horizon + 1);
+    if let Some(b) = banned {
+        used.push(b);
+    }
+
+    let mut miss = 0usize;
+    let mut first = 0usize;
+    let mut total = 0usize;
+
+    for idx in start_ell..end {
+        let color = input.d[idx];
+        let mut best: Option<(usize, u16)> = None;
+        for (cell_idx, &col) in st.food.iter().enumerate() {
+            if col != color {
+                continue;
+            }
+            let cell = cell_idx as u16;
+            if used.iter().any(|&x| x == cell) {
+                continue;
+            }
+            let dist = manhattan(st.n, cur, cell);
+            if best.is_none() || dist < best.unwrap().0 {
+                best = Some((dist, cell));
+            }
+        }
+
+        if let Some((dist, cell)) = best {
+            if idx == start_ell {
+                first = dist;
+            }
+            total += dist;
+            cur = cell;
+            used.push(cell);
+        } else {
+            miss += 1;
+            let penalty = st.n * st.n;
+            if idx == start_ell {
+                first = penalty;
+            }
+            total += penalty;
+        }
+    }
+
+    (miss, first, total)
+}
+
+fn turn_focus_next_stage_rank(
+    st: &State,
+    input: &Input,
+    ellp1: usize,
+) -> (usize, usize, usize, usize, usize) {
+    if ellp1 >= input.m {
+        return (0, 0, 0, 0, 0);
+    }
+    let (miss, first, total) =
+        greedy_future_lb_from_cell(st, input, st.head(), ellp1, LOOKAHEAD_HORIZON, None);
+    let adj = target_adjacent(st, input.d[ellp1]).is_some();
+    let (hr, hc) = rc_of(st.head(), st.n);
+    let center = hr.abs_diff(st.n / 2) + hc.abs_diff(st.n / 2);
+    let mobility_penalty = 4usize.saturating_sub(legal_dir_count(st));
+    (
+        miss,
+        usize::from(!adj),
+        total,
+        first,
+        center + mobility_penalty,
+    )
+}
+
+fn target_candidate_rank(
+    st: &State,
+    input: &Input,
+    ell: usize,
+    target: u16,
+) -> (usize, usize, usize, usize, usize) {
+    let head = st.head();
+    let capture_lb = manhattan(st.n, head, target);
+    let (miss, first, total) =
+        greedy_future_lb_from_cell(st, input, target, ell + 1, LOOKAHEAD_HORIZON, Some(target));
+
+    let mut goal_blocked = 1usize;
+    for nb in neighbors(st.n, target) {
+        if st.food[nb as usize] == 0 || nb == head {
+            goal_blocked = 0;
+            break;
+        }
+    }
+
+    (miss, capture_lb + total, first, goal_blocked, capture_lb)
+}
+
+fn final_rank(bs: &BeamState, input: &Input) -> (usize, Reverse<usize>, Reverse<usize>) {
+    (
+        lcp(&bs.state.colors, &input.d),
+        Reverse(remaining_food_count(&bs.state)),
+        Reverse(bs.ops.len()),
+    )
+}
+
+fn reconstruct_plan(nodes: &[Node], mut idx: usize) -> String {
+    let mut rev = Vec::new();
+    while let Some(parent) = nodes[idx].parent {
+        rev.push(nodes[idx].move_seg.clone());
+        idx = parent;
+    }
+    rev.reverse();
+
+    let mut out = String::new();
+    for seg in rev {
+        out.push_str(&seg);
+    }
+    out
+}
+
+fn reconstruct_quick_plan(nodes: &[QuickSearchNode], mut idx: usize) -> String {
+    let mut rev = Vec::new();
+    while nodes[idx].parent != usize::MAX {
+        rev.push(DIRS[nodes[idx].dir as usize].2);
+        idx = nodes[idx].parent;
+    }
+    rev.reverse();
+    rev.into_iter().collect()
+}
+
+fn state_hash64(st: &State) -> u64 {
+    let mut h = 0xcbf29ce484222325_u64;
+    let p = 0x100000001b3_u64;
+
+    h ^= st.pos.len() as u64;
+    h = h.wrapping_mul(p);
+    h ^= st.colors.len() as u64;
+    h = h.wrapping_mul(p);
+
+    for &x in &st.food {
+        h ^= x as u64;
+        h = h.wrapping_mul(p);
+    }
+    for cell in st.pos.iter() {
+        h ^= cell as u64;
+        h = h.wrapping_mul(p);
+    }
+    for &x in st.colors.iter() {
+        h ^= x as u64;
+        h = h.wrapping_mul(p);
+    }
+    h
+}
+
+fn plan_color_goal_quick(
+    bs: &BeamState,
+    input: &Input,
+    ell: usize,
+    target_color: u8,
+    cfg: QuickPlanConfig,
+    started: &Instant,
+) -> Option<BeamState> {
+    prof_inc!(plan_quick_calls);
+    let root = QuickSearchNode {
+        state: Box::new(bs.state.clone()),
+        parent: usize::MAX,
+        dir: 0,
+        depth: 0,
+        non_target: 0,
+        bite: 0,
+    };
+    let mut nodes = vec![root];
+    let mut q = VecDeque::new();
+    q.push_back(0usize);
+
+    let mut seen = FxHashMap::<(u64, u8, u8), u8>::default();
+    seen.insert((state_hash64(nodes[0].state.as_ref()), 0, 0), 0);
+
+    while let Some(cur_idx) = q.pop_front() {
+        prof_inc!(plan_quick_expansions);
+        if time_over(started) || time_left(started) < FASTLANE_MIN_LEFT_SEC {
+            return None;
+        }
+        let cur_depth = nodes[cur_idx].depth;
+        if cur_depth >= cfg.depth_limit {
+            continue;
+        }
+
+        let legal = legal_dirs(nodes[cur_idx].state.as_ref());
+        let mut work = nodes[cur_idx].state.as_ref().clone();
+        for dir in legal {
+            let log = apply_step(&mut work, dir);
+            let sim = &work;
+
+            let keep = sim.colors.len().min(ell);
+            if sim.colors[..keep] != input.d[..keep] {
+                undo_step(&mut work, log);
+                continue;
+            }
+
+            let mut non_target = nodes[cur_idx].non_target;
+            if log.ate_color != 0 && log.ate_color != target_color {
+                if non_target >= cfg.non_target_limit {
+                    undo_step(&mut work, log);
+                    continue;
+                }
+                non_target += 1;
+            }
+
+            let mut bite = nodes[cur_idx].bite;
+            if log.bite_idx.is_some() {
+                if bite >= cfg.bite_limit {
+                    undo_step(&mut work, log);
+                    continue;
+                }
+                bite += 1;
+            }
+
+            let next_depth = cur_depth + 1;
+            let is_goal =
+                sim.colors.len() >= ell + 1 && sim.colors[..=ell] == input.d[..=ell];
+            if is_goal {
+                let child_state = work.clone();
+                undo_step(&mut work, log);
+                let child = QuickSearchNode {
+                    state: Box::new(child_state),
+                    parent: cur_idx,
+                    dir: dir as u8,
+                    depth: next_depth,
+                    non_target,
+                    bite,
+                };
+                nodes.push(child);
+                let goal_idx = nodes.len() - 1;
+                let mut ops = bs.ops.clone();
+                ops.push_str(&reconstruct_quick_plan(&nodes, goal_idx));
+                prof_inc!(plan_quick_success);
+                return Some(BeamState {
+                    state: nodes[goal_idx].state.as_ref().clone(),
+                    ops,
+                });
+            }
+
+            if nodes.len() >= cfg.node_limit {
+                undo_step(&mut work, log);
+                return None;
+            }
+
+            let key = (state_hash64(sim), non_target, bite);
+            if seen
+                .get(&key)
+                .is_some_and(|&best_depth| best_depth <= next_depth)
+            {
+                undo_step(&mut work, log);
+                continue;
+            }
+            let child_state = work.clone();
+            undo_step(&mut work, log);
+            seen.insert(key, next_depth);
+            nodes.push(QuickSearchNode {
+                state: Box::new(child_state),
+                parent: cur_idx,
+                dir: dir as u8,
+                depth: next_depth,
+                non_target,
+                bite,
+            });
+            q.push_back(nodes.len() - 1);
+        }
+    }
+
+    None
+}
+
+fn extend_fastlane_one(
+    bs: &BeamState,
+    input: &Input,
+    ell: usize,
+    started: &Instant,
+) -> Option<BeamState> {
+    prof_inc!(fastlane_calls);
+    if time_over(started) || time_left(started) < FASTLANE_MIN_LEFT_SEC {
+        return None;
+    }
+
+    let target_color = input.d[ell];
+    if collect_food_cells(&bs.state, target_color).is_empty() {
+        return None;
+    }
+
+    let safe_cfg = QuickPlanConfig {
+        depth_limit: FAST_SAFE_DEPTH_LIMIT,
+        node_limit: FAST_SAFE_NODE_LIMIT,
+        non_target_limit: 0,
+        bite_limit: 0,
+    };
+    if let Some(sol) = plan_color_goal_quick(bs, input, ell, target_color, safe_cfg, started) {
+        prof_inc!(fastlane_success);
+        return Some(sol);
+    }
+
+    if time_over(started) || time_left(started) < FASTLANE_MIN_LEFT_SEC {
+        return None;
+    }
+
+    let rescue_cfg = QuickPlanConfig {
+        depth_limit: FAST_RESCUE_DEPTH_LIMIT,
+        node_limit: FAST_RESCUE_NODE_LIMIT,
+        non_target_limit: 6,
+        bite_limit: 2,
+    };
+    if let Some(sol) = plan_color_goal_quick(bs, input, ell, target_color, rescue_cfg, started) {
+        prof_inc!(fastlane_success);
+        return Some(sol);
+    }
+
+    let sols =
+        collect_exact_solutions(bs, input, ell, target_color, FAST_FALLBACK_TARGETS, started);
+    let out = sols.into_iter().min_by_key(|cand| cand.ops.len());
+    if out.is_some() {
+        prof_inc!(fastlane_success);
+    }
+    out
+}
+
+fn try_recover_exact(
+    st: &State,
+    input: &Input,
+    ell: usize,
+    dropped: &[Dropped],
+) -> Option<(State, String)> {
+    prof_inc!(try_recover_exact_calls);
+    let mut s = st.clone();
+    let need_cnt = ell as isize - s.colors.len() as isize;
+    if need_cnt < 0 || dropped.len() < need_cnt as usize {
+        return None;
+    }
+
+    let mut ops = String::new();
+    for ent in dropped.iter().take(need_cnt as usize) {
+        let need = input.d[s.colors.len()];
+        if ent.color != need {
+            return None;
+        }
+        let dir = dir_between_cells(s.n, s.head(), ent.cell)?;
+        if ent.cell == s.pos[1] {
+            return None;
+        }
+        if s.food[ent.cell as usize] != need {
+            return None;
+        }
+
+        let (ate, bite_idx, _) = step_in_place(&mut s, dir);
+        if ate != need || bite_idx.is_some() {
+            return None;
+        }
+        ops.push(DIRS[dir].2);
+        prof_inc!(try_recover_exact_steps);
+    }
+
+    if exact_prefix(&s, &input.d, ell) {
+        prof_inc!(try_recover_exact_success);
+        Some((s, ops))
+    } else {
+        None
+    }
+}
+
+fn stage_search_bestfirst(
+    start_bs: &BeamState,
+    input: &Input,
+    ell: usize,
+    budgets: &[(usize, usize)],
+    keep_solutions: usize,
+    started: &Instant,
+) -> Vec<BeamState> {
+    prof_inc!(stage_search_calls);
+    if budgets.is_empty() {
+        return Vec::new();
+    }
+    let start = start_bs.state.clone();
+
+    let max_expansions = budgets[budgets.len() - 1].0;
+    let mut nodes = Vec::with_capacity(max_expansions.min(30_000) + 8);
+    nodes.push(Node {
+        parent: None,
+        move_seg: String::new(),
+    });
+
+    let mut uid = 0usize;
+    let mut pq = BinaryHeap::new();
+    pq.push(StageHeapEntry {
+        rank: local_score(&start, input, ell),
+        depth: 0,
+        uid,
+        node_idx: 0,
+        state: Box::new(start),
+    });
+    uid += 1;
+
+    let mut seen = BestDepthSeen::default();
+    seen.insert_known(pq.peek().unwrap().state.as_ref(), 0);
+
+    let mut sols: Vec<BeamState> = Vec::new();
+    let mut expansions = 0usize;
+    let mut stage_idx = 0usize;
+    let mut stage_limit = budgets[0].0;
+    let mut extra_limit = budgets[0].1;
+    let final_limit = budgets[budgets.len() - 1].0;
+
+    while let Some(StageHeapEntry {
+        depth,
+        node_idx: idx,
+        state: st,
+        ..
+    }) = pq.pop()
+    {
+        prof_inc!(stage_search_expansions);
+        if expansions >= final_limit || sols.len() >= keep_solutions || time_over(started) {
+            break;
+        }
+
+        expansions += 1;
+
+        let st = *st;
+
+        if exact_prefix(&st, &input.d, ell)
+            && let Some(dir2) = target_adjacent(&st, input.d[ell])
+        {
+            let mut work = st.clone();
+            let log2 = apply_step(&mut work, dir2);
+            let ok = log2.bite_idx.is_none()
+                && exact_prefix(&work, &input.d, ell + 1)
+                && !beam_contains_state(&sols, &work);
+            let ns2 = if ok { Some(work.clone()) } else { None };
+            undo_step(&mut work, log2);
+            if let Some(ns2) = ns2 {
+                let mut plan = reconstruct_plan(&nodes, idx);
+                plan.push(DIRS[dir2].2);
+
+                let mut ops = start_bs.ops.clone();
+                ops.push_str(&plan);
+                sols.push(BeamState { state: ns2, ops });
+                prof_inc!(stage_search_solution_hits);
+                if sols.len() >= keep_solutions {
+                    break;
+                }
+            }
+        }
+        if sols.len() >= keep_solutions {
+            break;
+        }
+
+        {
+            let mut prefix_plan: Option<String> = None;
+            let legal1 = legal_dirs(&st);
+            let mut work1 = st.clone();
+            for dir1 in legal1 {
+                let log1 = apply_step(&mut work1, dir1);
+                if log1.bite_idx.is_none() || !prefix_ok(&work1, &input.d, ell) {
+                    undo_step(&mut work1, log1);
+                    continue;
+                }
+
+                let mut recover_ops = String::new();
+                let recovered = if work1.colors.len() < ell {
+                    let Some((rec_state, rec_ops)) =
+                        try_recover_exact(&work1, input, ell, &log1.dropped)
+                    else {
+                        undo_step(&mut work1, log1);
+                        continue;
+                    };
+                    recover_ops = rec_ops;
+                    Some(rec_state)
+                } else {
+                    None
+                };
+                let rs_ref = recovered.as_ref().unwrap_or(&work1);
+
+                if !exact_prefix(rs_ref, &input.d, ell) {
+                    undo_step(&mut work1, log1);
+                    continue;
+                }
+
+                let legal2 = legal_dirs(rs_ref);
+                let mut work2 = rs_ref.clone();
+                for dir2 in legal2 {
+                    let nh = next_head_cell(rs_ref, dir2).unwrap();
+                    if rs_ref.food[nh as usize] != input.d[ell] {
+                        continue;
+                    }
+
+                    let log2 = apply_step(&mut work2, dir2);
+                    let ok = log2.bite_idx.is_none()
+                        && exact_prefix(&work2, &input.d, ell + 1)
+                        && !beam_contains_state(&sols, &work2);
+                    let ns2 = if ok { Some(work2.clone()) } else { None };
+                    undo_step(&mut work2, log2);
+                    let Some(ns2) = ns2 else {
+                        continue;
+                    };
+
+                    let mut plan = prefix_plan.clone().unwrap_or_else(|| {
+                        let s = reconstruct_plan(&nodes, idx);
+                        prefix_plan = Some(s.clone());
+                        s
+                    });
+                    plan.push(DIRS[dir1].2);
+                    plan.push_str(&recover_ops);
+                    plan.push(DIRS[dir2].2);
+
+                    let mut ops = start_bs.ops.clone();
+                    ops.push_str(&plan);
+                    sols.push(BeamState { state: ns2, ops });
+                    prof_inc!(stage_search_solution_hits);
+                    if sols.len() >= keep_solutions {
+                        break;
+                    }
+                }
+                undo_step(&mut work1, log1);
+                if sols.len() >= keep_solutions {
+                    break;
+                }
+            }
+        }
+        if sols.len() >= keep_solutions {
+            break;
+        }
+
+        let legal = legal_dirs(&st);
+        let mut work = st.clone();
+        for dir in legal {
+            let log = apply_step(&mut work, dir);
+            let mut seg = String::new();
+            seg.push(DIRS[dir].2);
+
+            let nd = depth + seg.len();
+            let ns = if log.bite_idx.is_some() && work.colors.len() < ell {
+                if !prefix_ok(&work, &input.d, ell) {
+                    undo_step(&mut work, log);
+                    continue;
+                }
+                let Some((rec_state, rec_ops)) =
+                    try_recover_exact(&work, input, ell, &log.dropped)
+                else {
+                    undo_step(&mut work, log);
+                    continue;
+                };
+                seg.push_str(&rec_ops);
+                rec_state
+            } else {
+                if !prefix_ok(&work, &input.d, ell)
+                    || work.colors.len() > ell + extra_limit
+                    || seen.best_depth(&work).unwrap_or(usize::MAX) <= nd
+                {
+                    undo_step(&mut work, log);
+                    continue;
+                }
+                work.clone()
+            };
+            undo_step(&mut work, log);
+
+            if !prefix_ok(&ns, &input.d, ell) {
+                continue;
+            }
+            if ns.colors.len() > ell + extra_limit {
+                continue;
+            }
+
+            if seen.best_depth(&ns).unwrap_or(usize::MAX) <= nd {
+                continue;
+            }
+
+            let child = nodes.len();
+            nodes.push(Node {
+                parent: Some(idx),
+                move_seg: seg,
+            });
+            seen.insert_or_relax(&ns, nd);
+            pq.push(StageHeapEntry {
+                rank: local_score(&ns, input, ell),
+                depth: nd,
+                uid,
+                node_idx: child,
+                state: Box::new(ns),
+            });
+            uid += 1;
+        }
+
+        if !exact_prefix(&st, &input.d, ell) {
+            let legal = legal_dirs(&st);
+            let mut work = st.clone();
+            for dir in legal {
+                let log = apply_step(&mut work, dir);
+                if log.bite_idx.is_none() || !prefix_ok(&work, &input.d, ell) {
+                    undo_step(&mut work, log);
+                    continue;
+                }
+
+                let mut seg = String::new();
+                seg.push(DIRS[dir].2);
+
+                let rs = if work.colors.len() < ell {
+                    let Some((rec_state, rec_ops)) =
+                        try_recover_exact(&work, input, ell, &log.dropped)
+                    else {
+                        undo_step(&mut work, log);
+                        continue;
+                    };
+                    seg.push_str(&rec_ops);
+                    rec_state
+                } else {
+                    work.clone()
+                };
+                undo_step(&mut work, log);
+
+                if !exact_prefix(&rs, &input.d, ell) {
+                    continue;
+                }
+
+                let nd = depth + seg.len();
+                if seen.best_depth(&rs).unwrap_or(usize::MAX) <= nd {
+                    continue;
+                }
+
+                let child = nodes.len();
+                nodes.push(Node {
+                    parent: Some(idx),
+                    move_seg: seg,
+                });
+                seen.insert_or_relax(&rs, nd);
+                pq.push(StageHeapEntry {
+                    rank: local_score(&rs, input, ell),
+                    depth: nd,
+                    uid,
+                    node_idx: child,
+                    state: Box::new(rs),
+                });
+                uid += 1;
+            }
+        }
+
+        if expansions >= stage_limit {
+            if !sols.is_empty() {
+                break;
+            }
+            if stage_idx + 1 < budgets.len() {
+                stage_idx += 1;
+                stage_limit = budgets[stage_idx].0;
+                extra_limit = budgets[stage_idx].1;
+            }
+        }
+    }
+
+    sols.sort_unstable_by(|a, b| cmp_beam_next_stage(a, b, input, ell + 1));
+
+    let mut out = Vec::with_capacity(keep_solutions);
+    for bs in sols {
+        if !beam_contains_state(&out, &bs.state) {
+            out.push(bs);
+            if out.len() >= keep_solutions {
+                break;
+            }
+        }
+    }
+    out
+}
+
+fn collect_food_cells(st: &State, color: u8) -> Vec<u16> {
+    let mut out = Vec::new();
+    for (idx, &col) in st.food.iter().enumerate() {
+        if col == color {
+            out.push(idx as u16);
+        }
+    }
+    out
+}
+
+fn neighbors(n: usize, cid: u16) -> Vec<u16> {
+    let (r, c) = rc_of(cid, n);
+    let mut out = Vec::with_capacity(4);
+    for (dr, dc, _) in DIRS {
+        let nr = r as isize + dr;
+        let nc = c as isize + dc;
+        if nr >= 0 && nr < n as isize && nc >= 0 && nc < n as isize {
+            out.push(cell_of(nr as usize, nc as usize, n));
+        }
+    }
+    out
+}
+
+#[inline]
+fn can_reach_target_next_pos(n: usize, pos: &[u16], target: u16) -> bool {
+    dir_between_cells(n, pos[0], target).is_some() && (pos.len() < 2 || target != pos[1])
+}
+
+fn empty_step_pos(n: usize, food: &[u8], pos: &[u16], dir: usize, target: u16) -> Option<Vec<u16>> {
+    let (dr, dc, _) = DIRS[dir];
+    let (hr, hc) = rc_of(pos[0], n);
+    let nr = hr as isize + dr;
+    let nc = hc as isize + dc;
+    if nr < 0 || nr >= n as isize || nc < 0 || nc >= n as isize {
+        return None;
+    }
+    let nh = cell_of(nr as usize, nc as usize, n);
+    if pos.len() >= 2 && nh == pos[1] {
+        return None;
+    }
+    if nh == target || food[nh as usize] != 0 {
+        return None;
+    }
+
+    let mut new_pos = Vec::with_capacity(pos.len());
+    new_pos.push(nh);
+    new_pos.extend_from_slice(&pos[..pos.len() - 1]);
+    for &cell in &new_pos[1..new_pos.len() - 1] {
+        if cell == nh {
+            return None;
+        }
+    }
+    Some(new_pos)
+}
+
+fn reachable_goal_neighbor_count_pos(n: usize, pos: &[u16], target: u16) -> usize {
+    let mut blocked = vec![false; n * n];
+    if pos.len() >= 3 {
+        for &cell in &pos[1..pos.len() - 1] {
+            blocked[cell as usize] = true;
+        }
+    }
+
+    let start = pos[0];
+    let mut seen = vec![false; n * n];
+    let mut q = VecDeque::new();
+    seen[start as usize] = true;
+    q.push_back(start);
+
+    while let Some(cur) = q.pop_front() {
+        let (r, c) = rc_of(cur, n);
+        for (dr, dc, _) in DIRS {
+            let nr = r as isize + dr;
+            let nc = c as isize + dc;
+            if nr < 0 || nr >= n as isize || nc < 0 || nc >= n as isize {
+                continue;
+            }
+            let nxt = cell_of(nr as usize, nc as usize, n);
+            let idx = nxt as usize;
+            if blocked[idx] || seen[idx] {
+                continue;
+            }
+            seen[idx] = true;
+            q.push_back(nxt);
+        }
+    }
+
+    let neck = if pos.len() >= 2 { pos[1] } else { u16::MAX };
+    let mut cnt = 0usize;
+    for nb in neighbors(n, target) {
+        if nb != neck && seen[nb as usize] {
+            cnt += 1;
+        }
+    }
+    cnt
+}
+
+fn legal_dir_count_pos(n: usize, pos: &[u16]) -> usize {
+    let (hr, hc) = rc_of(pos[0], n);
+    let neck = if pos.len() >= 2 { pos[1] } else { u16::MAX };
+    let mut cnt = 0usize;
+    for (dr, dc, _) in DIRS {
+        let nr = hr as isize + dr;
+        let nc = hc as isize + dc;
+        if nr < 0 || nr >= n as isize || nc < 0 || nc >= n as isize {
+            continue;
+        }
+        let nh = cell_of(nr as usize, nc as usize, n);
+        if nh != neck {
+            cnt += 1;
+        }
+    }
+    cnt
+}
+
+#[inline]
+fn empty_path_rank(n: usize, pos: &[u16], target: u16) -> (usize, usize, usize, usize) {
+    (
+        usize::from(!can_reach_target_next_pos(n, pos, target)),
+        manhattan(n, pos[0], target),
+        4usize.saturating_sub(reachable_goal_neighbor_count_pos(n, pos, target)),
+        4usize.saturating_sub(legal_dir_count_pos(n, pos)),
+    )
+}
+
+#[inline]
+fn can_reach_target_next(st: &State, target: u16) -> bool {
+    let Some(_) = dir_between_cells(st.n, st.head(), target) else {
+        return false;
+    };
+    target != st.pos[1]
+}
+
+fn bfs_next_dir(
+    st: &State,
+    goal: u16,
+    target: u16,
+    avoid_food: bool,
+    strict_body: bool,
+) -> Option<usize> {
+    prof_inc!(bfs_calls);
+    let n = st.n;
+    let start = st.head();
+    if start == goal {
+        return None;
+    }
+
+    let mut blocked = vec![false; n * n];
+    if avoid_food {
+        for (idx, &col) in st.food.iter().enumerate() {
+            let cell = idx as u16;
+            if col != 0 && cell != goal && cell != target {
+                blocked[idx] = true;
+            }
+        }
+    }
+
+    if strict_body && st.pos.len() >= 3 {
+        for idx in 1..st.pos.len() - 1 {
+            let cell = st.pos[idx];
+            blocked[cell as usize] = true;
+        }
+    }
+
+    blocked[start as usize] = false;
+    if blocked[goal as usize] {
+        return None;
+    }
+
+    let mut dist = vec![-1_i16; n * n];
+    let mut first = vec![None::<usize>; n * n];
+    let mut q = VecDeque::new();
+
+    for dir in legal_dirs(st) {
+        let nid = next_head_cell(st, dir).unwrap();
+        let idx = nid as usize;
+        if blocked[idx] || dist[idx] != -1 {
+            continue;
+        }
+        dist[idx] = 1;
+        first[idx] = Some(dir);
+        q.push_back(nid);
+    }
+
+    while let Some(cid) = q.pop_front() {
+        prof_inc!(bfs_pops);
+        if cid == goal {
+            prof_inc!(bfs_success);
+            return first[cid as usize];
+        }
+        let (r, c) = rc_of(cid, n);
+        for (dr, dc, _) in DIRS {
+            let nr = r as isize + dr;
+            let nc = c as isize + dc;
+            if nr < 0 || nr >= n as isize || nc < 0 || nc >= n as isize {
+                continue;
+            }
+            let nid = cell_of(nr as usize, nc as usize, n);
+            let idx = nid as usize;
+            if blocked[idx] || dist[idx] != -1 {
+                continue;
+            }
+            dist[idx] = dist[cid as usize] + 1;
+            first[idx] = first[cid as usize];
+            q.push_back(nid);
+        }
+    }
+
+    None
+}
+
+#[inline]
+fn make_visit_key(st: &State, goal: u16, restore_len: usize) -> VisitKey {
+    let neck = if st.pos.len() >= 2 {
+        st.pos[1]
+    } else {
+        st.head()
+    };
+    VisitKey {
+        head: st.head(),
+        neck,
+        len: st.colors.len() as u16,
+        goal,
+        restore_len: restore_len as u16,
+    }
+}
+
+fn advance_with_restore_queue(
+    st: &State,
+    dir: usize,
+    target: u16,
+    ell: usize,
+    restore_queue: &mut VecDeque<Dropped>,
+) -> Option<(State, Option<usize>)> {
+    let (ns, _, bite_idx, dropped) = step(st, dir);
+    if ns.food[target as usize] == 0 {
+        return None;
+    }
+
+    if !restore_queue.is_empty() {
+        restore_queue.pop_front();
+        return Some((ns, bite_idx));
+    }
+
+    if bite_idx.is_some() && ns.colors.len() < ell {
+        let need = ell - ns.colors.len();
+        for ent in dropped.into_iter().take(need) {
+            restore_queue.push_back(ent);
+        }
+    }
+    Some((ns, bite_idx))
+}
+
+fn navigate_to_goal_safe(
+    bs: &BeamState,
+    goal: u16,
+    target: u16,
+    started: &Instant,
+) -> Option<BeamState> {
+    prof_inc!(navigate_safe_calls);
+    let mut st = bs.state.clone();
+    let mut ops = bs.ops.clone();
+    let mut seen = FxHashMap::<VisitKey, usize>::default();
+    let mut guard = 0usize;
+
+    while st.head() != goal {
+        if time_over(started) {
+            return None;
+        }
+        guard += 1;
+        if guard > st.n * st.n * 30 {
+            return None;
+        }
+
+        let key = make_visit_key(&st, goal, 0);
+        let cnt = seen.entry(key).or_insert(0);
+        *cnt += 1;
+        if *cnt > VISIT_REPEAT_LIMIT {
+            return None;
+        }
+
+        let dir = bfs_next_dir(&st, goal, target, true, true)?;
+        let (ns, ate, bite_idx, _) = step(&st, dir);
+        if ns.food[target as usize] == 0 {
+            return None;
+        }
+        if bite_idx.is_some() || ate != 0 {
+            return None;
+        }
+
+        st = ns;
+        ops.push(DIRS[dir].2);
+        prof_inc!(navigate_safe_steps);
+    }
+
+    prof_inc!(navigate_safe_success);
+    Some(BeamState { state: st, ops })
+}
+
+fn navigate_to_goal_loose(
+    bs: &BeamState,
+    goal: u16,
+    target: u16,
+    ell: usize,
+    started: &Instant,
+) -> Option<BeamState> {
+    prof_inc!(navigate_loose_calls);
+    let mut st = bs.state.clone();
+    let mut ops = bs.ops.clone();
+    let mut restore_queue: VecDeque<Dropped> = VecDeque::new();
+    let mut seen = FxHashMap::<VisitKey, usize>::default();
+    let mut bite_count = 0usize;
+    let bite_limit = st.n * st.n * 4;
+    let mut guard = 0usize;
+
+    while st.head() != goal || !restore_queue.is_empty() {
+        if time_over(started) {
+            return None;
+        }
+        guard += 1;
+        if guard > st.n * st.n * 80 {
+            return None;
+        }
+
+        let key = make_visit_key(&st, goal, restore_queue.len());
+        let cnt = seen.entry(key).or_insert(0);
+        *cnt += 1;
+        if *cnt > VISIT_REPEAT_LIMIT {
+            return None;
+        }
+
+        let dir = if let Some(front) = restore_queue.front() {
+            let dir = dir_between_cells(st.n, st.head(), front.cell)?;
+            if front.cell == st.pos[1] {
+                return None;
+            }
+            dir
+        } else {
+            if let Some(dir) = bfs_next_dir(&st, goal, target, true, false) {
+                dir
+            } else {
+                bfs_next_dir(&st, goal, target, false, false)?
+            }
+        };
+
+        let (ns, bite_idx) = advance_with_restore_queue(&st, dir, target, ell, &mut restore_queue)?;
+        if bite_idx.is_some() {
+            bite_count += 1;
+            if bite_count > bite_limit {
+                return None;
+            }
+        }
+
+        st = ns;
+        ops.push(DIRS[dir].2);
+        prof_inc!(navigate_loose_steps);
+    }
+
+    if st.colors.len() < ell {
+        return None;
+    }
+
+    prof_inc!(navigate_loose_success);
+    Some(BeamState { state: st, ops })
+}
+
+fn choose_shrink_dir(st: &State, input: &Input, ell: usize, target: u16) -> Option<usize> {
+    let anchor_idx = (ell.saturating_sub(1)).min(st.pos.len() - 1);
+    let anchor = st.pos[anchor_idx];
+
+    let mut best_bite: Option<((usize, usize, usize, usize), usize)> = None;
+    let mut best_move: Option<((usize, usize, usize, usize), usize)> = None;
+
+    for dir in legal_dirs(st) {
+        let nh = next_head_cell(st, dir).unwrap();
+        if nh == target {
+            continue;
+        }
+
+        let (sim, ate, bite_idx, _) = step(st, dir);
+        if sim.food[target as usize] == 0 {
+            continue;
+        }
+
+        let keep = sim.colors.len().min(ell);
+        if sim.colors[..keep] != input.d[..keep] {
+            continue;
+        }
+
+        let target_dist = manhattan(sim.n, sim.head(), target);
+        let anchor_dist = manhattan(sim.n, sim.head(), anchor);
+
+        if bite_idx.is_some() {
+            let under = usize::from(sim.colors.len() < ell);
+            let dist_len = sim.colors.len().abs_diff(ell);
+            let not_ready = usize::from(!can_reach_target_next(&sim, target));
+            let key = (under, dist_len, not_ready, target_dist + anchor_dist);
+            if best_bite.as_ref().is_none_or(|(k, _)| key < *k) {
+                best_bite = Some((key, dir));
+            }
+        } else {
+            let len_gap = sim.colors.len().abs_diff(ell);
+            let not_ready = usize::from(!can_reach_target_next(&sim, target));
+            let ate_penalty = usize::from(ate != 0);
+            let key = (len_gap, not_ready, target_dist + anchor_dist, ate_penalty);
+            if best_move.as_ref().is_none_or(|(k, _)| key < *k) {
+                best_move = Some((key, dir));
+            }
+        }
+    }
+
+    if let Some((_, dir)) = best_bite {
+        return Some(dir);
+    }
+    if let Some((_, dir)) = best_move {
+        return Some(dir);
+    }
+    None
+}
+
+fn shrink_to_ell(
+    bs: &BeamState,
+    input: &Input,
+    ell: usize,
+    target: u16,
+    target_color: u8,
+    started: &Instant,
+) -> Option<BeamState> {
+    prof_inc!(shrink_calls);
+    let mut st = bs.state.clone();
+    let mut ops = bs.ops.clone();
+
+    if st.colors.len() == ell {
+        return can_reach_target_next(&st, target).then_some(BeamState { state: st, ops });
+    }
+
+    let mut restore_queue: VecDeque<Dropped> = VecDeque::new();
+    let mut seen = FxHashMap::<VisitKey, usize>::default();
+    let mut bite_count = 0usize;
+    let bite_limit = st.n * st.n * 3;
+    let mut guard = 0usize;
+
+    while st.colors.len() != ell || !restore_queue.is_empty() || !can_reach_target_next(&st, target)
+    {
+        if time_over(started) {
+            return None;
+        }
+        guard += 1;
+        if guard > st.n * st.n * 60 {
+            return None;
+        }
+
+        let key = make_visit_key(&st, target, restore_queue.len());
+        let cnt = seen.entry(key).or_insert(0);
+        *cnt += 1;
+        if *cnt > VISIT_REPEAT_LIMIT {
+            return None;
+        }
+
+        let dir = if let Some(front) = restore_queue.front() {
+            let dir = dir_between_cells(st.n, st.head(), front.cell)?;
+            if front.cell == st.pos[1] {
+                return None;
+            }
+            dir
+        } else {
+            choose_shrink_dir(&st, input, ell, target)?
+        };
+
+        let (ns, bite_idx) = advance_with_restore_queue(&st, dir, target, ell, &mut restore_queue)?;
+        if bite_idx.is_some() {
+            bite_count += 1;
+            if bite_count > bite_limit {
+                return None;
+            }
+        }
+
+        st = ns;
+        ops.push(DIRS[dir].2);
+        prof_inc!(shrink_steps);
+    }
+
+    if st.colors.len() == ell
+        && st.food[target as usize] == target_color
+        && can_reach_target_next(&st, target)
+    {
+        prof_inc!(shrink_success);
+        Some(BeamState { state: st, ops })
+    } else {
+        None
+    }
+}
+
+fn finish_eat_target(bs: &BeamState, input: &Input, ell: usize, target: u16) -> Option<BeamState> {
+    let st = &bs.state;
+    let mut ops = bs.ops.clone();
+    let dir = dir_between_cells(st.n, st.head(), target)?;
+    if target == st.pos[1] {
+        return None;
+    }
+
+    let (ns, _, bite_idx, _) = step(st, dir);
+    if bite_idx.is_some() {
+        return None;
+    }
+    if ns.colors.len() >= ell + 1 && ns.colors[..=ell] == input.d[..=ell] {
+        ops.push(DIRS[dir].2);
+        Some(BeamState { state: ns, ops })
+    } else {
+        None
+    }
+}
+
+fn try_target_empty_path(
+    bs: &BeamState,
+    input: &Input,
+    ell: usize,
+    target: u16,
+    started: &Instant,
+) -> Option<BeamState> {
+    prof_inc!(try_target_empty_path_calls);
+    let st = &bs.state;
+    if !exact_prefix(st, &input.d, ell) {
+        return None;
+    }
+    if st.food[target as usize] != input.d[ell] {
+        return None;
+    }
+    if remaining_food_count(st) > EMPTY_PATH_REMAINING_LIMIT
+        || time_left(started) < EMPTY_PATH_MIN_LEFT_SEC
+    {
+        return None;
+    }
+
+    if can_reach_target_next(st, target) {
+        return finish_eat_target(bs, input, ell, target);
+    }
+    let start_pos = st.pos_vec();
+    if reachable_goal_neighbor_count_pos(st.n, &start_pos, target) > 0 {
+        return None;
+    }
+    if collect_food_cells(st, input.d[ell]).len() != 1 {
+        return None;
+    }
+
+    let mut nodes = Vec::with_capacity(EMPTY_PATH_EXPANSION_CAP.min(120_000) + 8);
+    nodes.push(PosNode {
+        pos: start_pos.clone(),
+        parent: None,
+        mv: '\0',
+    });
+
+    let mut uid = 0usize;
+    let mut pq = BinaryHeap::new();
+    pq.push(Reverse((
+        empty_path_rank(st.n, &start_pos, target),
+        0usize,
+        uid,
+        0usize,
+    )));
+    uid += 1;
+
+    let mut seen = FxHashMap::<Vec<u16>, usize>::default();
+    seen.insert(start_pos, 0);
+    let mut expansions = 0usize;
+
+    while let Some(Reverse((_, depth, _, idx))) = pq.pop() {
+        prof_inc!(try_target_empty_path_expansions);
+        if expansions >= EMPTY_PATH_EXPANSION_CAP
+            || time_over(started)
+            || time_left(started) < EMPTY_PATH_MIN_LEFT_SEC
+        {
+            break;
+        }
+        expansions += 1;
+        let pos = nodes[idx].pos.clone();
+
+        if can_reach_target_next_pos(st.n, &pos, target) {
+            let mut rev = Vec::new();
+            let mut cur = idx;
+            while let Some(parent) = nodes[cur].parent {
+                rev.push(nodes[cur].mv);
+                cur = parent;
+            }
+            rev.reverse();
+
+            let mut state = st.clone();
+            let mut ops = bs.ops.clone();
+            for ch in rev {
+                let dir = dir_of_char(ch as u8).unwrap();
+                let (ns, ate, bite_idx, _) = step(&state, dir);
+                if ate != 0 || bite_idx.is_some() {
+                    return None;
+                }
+                state = ns;
+                ops.push(ch);
+            }
+            let gate_bs = BeamState { state, ops };
+            let out = finish_eat_target(&gate_bs, input, ell, target);
+            if out.is_some() {
+                prof_inc!(try_target_empty_path_success);
+            }
+            return out;
+        }
+
+        if depth >= EMPTY_PATH_DEPTH_LIMIT {
+            continue;
+        }
+
+        for dir in 0..4 {
+            let Some(next_pos) = empty_step_pos(st.n, &st.food, &pos, dir, target) else {
+                continue;
+            };
+            let nd = depth + 1;
+            if seen.get(&next_pos).copied().unwrap_or(usize::MAX) <= nd {
+                continue;
+            }
+            seen.insert(next_pos.clone(), nd);
+            let child = nodes.len();
+            nodes.push(PosNode {
+                pos: next_pos.clone(),
+                parent: Some(idx),
+                mv: DIRS[dir].2,
+            });
+            pq.push(Reverse((
+                empty_path_rank(st.n, &next_pos, target),
+                nd,
+                uid,
+                child,
+            )));
+            uid += 1;
+        }
+    }
+
+    None
+}
+
+fn try_target_exact(
+    bs: &BeamState,
+    input: &Input,
+    ell: usize,
+    target: u16,
+    target_color: u8,
+    started: &Instant,
+) -> Vec<BeamState> {
+    prof_inc!(try_target_exact_calls);
+    let head = bs.state.head();
+    let mut cand = neighbors(bs.state.n, target);
+
+    cand.sort_unstable_by_key(|&cid| {
+        (
+            usize::from(bs.state.food[cid as usize] > 0),
+            manhattan(bs.state.n, head, cid),
+        )
+    });
+
+    let mut sols = Vec::new();
+
+    for goal in cand {
+        if time_over(started) {
+            break;
+        }
+
+        if let Some(b1) = navigate_to_goal_safe(bs, goal, target, started)
+            && let Some(b2) = shrink_to_ell(&b1, input, ell, target, target_color, started)
+            && let Some(b3) = finish_eat_target(&b2, input, ell, target)
+        {
+            sols.push(b3);
+        }
+
+        if let Some(b1) = navigate_to_goal_loose(bs, goal, target, ell, started)
+            && let Some(b2) = shrink_to_ell(&b1, input, ell, target, target_color, started)
+            && let Some(b3) = finish_eat_target(&b2, input, ell, target)
+        {
+            sols.push(b3);
+        }
+    }
+
+    if sols.is_empty()
+        && is_endgame_mode(&bs.state, input, ell)
+        && let Some(sol) = try_target_empty_path(bs, input, ell, target, started)
+    {
+        sols.push(sol);
+    }
+
+    sols.sort_unstable_by(cmp_beam_ops);
+    let mut out = Vec::new();
+    for s in sols {
+        if !beam_contains_state(&out, &s.state) {
+            out.push(s);
+        }
+    }
+    prof_inc!(try_target_exact_success, out.len());
+    out
+}
+
+#[inline]
+fn is_endgame_mode(st: &State, input: &Input, ell: usize) -> bool {
+    input.m - ell <= ENDGAME_ELL_LEFT && remaining_food_count(st) <= ENDGAME_REMAINING_FOOD
+}
+
+fn collect_exact_solutions(
+    bs: &BeamState,
+    input: &Input,
+    ell: usize,
+    target_color: u8,
+    max_targets: usize,
+    started: &Instant,
+) -> Vec<BeamState> {
+    prof_inc!(collect_exact_calls);
+    let mut sols = Vec::new();
+    let mut targets = collect_food_cells(&bs.state, target_color);
+    targets.sort_unstable_by_key(|&cid| manhattan(bs.state.n, bs.state.head(), cid));
+    if targets.len() > max_targets {
+        targets.truncate(max_targets);
+    }
+    prof_inc!(collect_exact_targets, targets.len());
+    for target in targets {
+        if time_over(started) {
+            break;
+        }
+        let cand = try_target_exact(bs, input, ell, target, target_color, started);
+        for s in cand {
+            sols.push(s);
+        }
+        if sols.len() >= STAGE_BEAM {
+            break;
+        }
+    }
+    prof_inc!(collect_exact_returned, sols.len());
+    sols
+}
+
+fn collect_exact_solutions_turn_focused(
+    bs: &BeamState,
+    input: &Input,
+    ell: usize,
+    target_color: u8,
+    max_targets: usize,
+    started: &Instant,
+) -> Vec<BeamState> {
+    prof_inc!(collect_exact_turn_calls);
+    let mut sols = Vec::new();
+    let mut targets = collect_food_cells(&bs.state, target_color);
+    targets.sort_unstable_by_key(|&cid| target_candidate_rank(&bs.state, input, ell, cid));
+    if targets.len() > max_targets {
+        targets.truncate(max_targets);
+    }
+    prof_inc!(collect_exact_turn_targets, targets.len());
+
+    for target in targets {
+        if time_over(started) {
+            break;
+        }
+        let cand = try_target_exact(bs, input, ell, target, target_color, started);
+        for s in cand {
+            sols.push(s);
+        }
+        if sols.len() >= SUFFIX_STAGE_BEAM * 2 {
+            break;
+        }
+    }
+
+    sols.sort_unstable_by(|a, b| cmp_beam_turn_focus(a, b, input, ell + 1));
+
+    let mut out = Vec::with_capacity(SUFFIX_STAGE_BEAM);
+    for bs in sols {
+        if !beam_contains_state(&out, &bs.state) {
+            out.push(bs);
+            if out.len() >= SUFFIX_STAGE_BEAM {
+                break;
+            }
+        }
+    }
+    prof_inc!(collect_exact_turn_returned, out.len());
+    out
+}
+
+fn rescue_stage(
+    beam: &[BeamState],
+    input: &Input,
+    ell: usize,
+    target_color: u8,
+    started: &Instant,
+) -> Vec<BeamState> {
+    prof_inc!(rescue_stage_calls);
+    prof_inc!(rescue_stage_beam_inputs, beam.len());
+    let mut order: Vec<usize> = (0..beam.len()).collect();
+    order.sort_unstable_by_key(|&idx| (local_score(&beam[idx].state, input, ell), beam[idx].ops.len(), idx));
+
+    let mut rescue_map = BeamDedupMap::default();
+    for &idx in &order {
+        if time_over(started) {
+            break;
+        }
+
+        let bs = &beam[idx];
+        let endgame_mode = is_endgame_mode(&bs.state, input, ell);
+
+        let mut sols = if endgame_mode {
+            collect_exact_solutions(bs, input, ell, target_color, MAX_TARGETS_RESCUE, started)
+        } else {
+            stage_search_bestfirst(bs, input, ell, &BUDGETS_RESCUE, STAGE_BEAM, started)
+        };
+
+        if sols.is_empty() && !time_over(started) {
+            if endgame_mode {
+                sols = stage_search_bestfirst(
+                    bs,
+                    input,
+                    ell,
+                    &BUDGETS_ENDGAME_LIGHT,
+                    STAGE_BEAM,
+                    started,
+                );
+            } else {
+                sols = collect_exact_solutions(
+                    bs,
+                    input,
+                    ell,
+                    target_color,
+                    MAX_TARGETS_RESCUE,
+                    started,
+                );
+            }
+        }
+
+        for s in sols {
+            if s.ops.len() > MAX_TURNS {
+                continue;
+            }
+            rescue_map.insert_best(s);
+        }
+
+        if rescue_map.len() >= STAGE_BEAM * 2 {
+            break;
+        }
+    }
+
+    let mut out: Vec<BeamState> = rescue_map.into_values();
+    out.sort_unstable_by(|a, b| cmp_beam_next_stage(a, b, input, ell + 1));
+    if out.len() > STAGE_BEAM {
+        out.truncate(STAGE_BEAM);
+    }
+    prof_inc!(rescue_stage_returned, out.len());
+    out
+}
+
+fn trim_stage_beam(
+    cands: Vec<BeamState>,
+    input: &Input,
+    next_ell: usize,
+    short_lane: Option<&BeamState>,
+) -> Vec<BeamState> {
+    prof_inc!(trim_stage_beam_calls);
+    prof_inc!(trim_stage_beam_inputs, cands.len());
+    let mut strategic = cands.clone();
+    strategic.sort_unstable_by(|a, b| cmp_beam_next_stage(a, b, input, next_ell));
+
+    let mut out = Vec::with_capacity(STAGE_BEAM);
+
+    if let Some(bs) = short_lane {
+        if !beam_contains_state(&out, &bs.state) {
+            out.push(bs.clone());
+        }
+    }
+
+    if let Some(best_short) = cands.iter().min_by_key(|bs| bs.ops.len()) {
+        if !beam_contains_state(&out, &best_short.state) {
+            out.push(best_short.clone());
+        }
+    }
+
+    for bs in strategic {
+        if !beam_contains_state(&out, &bs.state) {
+            out.push(bs);
+            if out.len() >= STAGE_BEAM {
+                break;
+            }
+        }
+    }
+
+    prof_inc!(trim_stage_beam_returned, out.len());
+    out
+}
+
+fn solve_base(input: &Input, started: &Instant) -> BeamState {
+    let init = BeamState {
+        state: State::initial(input),
+        ops: String::new(),
+    };
+    let mut beam = vec![init];
+
+    for ell in 5..input.m {
+        prof_inc!(solve_base_iters);
+        prof_inc!(solve_base_beam_inputs, beam.len());
+        if time_over(&started) {
+            break;
+        }
+
+        let target_color = input.d[ell];
+        let budgets: &[(usize, usize)] = if input.m - ell < 10 {
+            &BUDGETS_LATE
+        } else {
+            &BUDGETS_NORMAL
+        };
+
+        let short_seed = beam.iter().min_by_key(|bs| bs.ops.len()).cloned();
+        let quick_short = short_seed
+            .as_ref()
+            .and_then(|bs| extend_fastlane_one(bs, input, ell, started));
+
+        let mut new_map = BeamDedupMap::default();
+
+        if let Some(sol) = quick_short.clone() {
+            new_map.insert_best(sol);
+        }
+
+        for bs in &beam {
+            if time_over(&started) {
+                break;
+            }
+
+            let endgame_mode = is_endgame_mode(&bs.state, input, ell);
+            let mut sols = Vec::new();
+
+            if !time_over(&started) {
+                if endgame_mode {
+                    sols = collect_exact_solutions(
+                        bs,
+                        input,
+                        ell,
+                        target_color,
+                        MAX_TARGETS_ENDGAME,
+                        &started,
+                    );
+                } else {
+                    sols = stage_search_bestfirst(bs, input, ell, budgets, STAGE_BEAM, &started);
+                }
+            }
+
+            if sols.is_empty() && !time_over(&started) {
+                if endgame_mode {
+                    sols = stage_search_bestfirst(
+                        bs,
+                        input,
+                        ell,
+                        &BUDGETS_ENDGAME_LIGHT,
+                        STAGE_BEAM,
+                        &started,
+                    );
+                } else {
+                    sols = collect_exact_solutions(
+                        bs,
+                        input,
+                        ell,
+                        target_color,
+                        MAX_TARGETS_PER_STAGE,
+                        &started,
+                    );
+                }
+            }
+
+            for s in sols {
+                if s.ops.len() > MAX_TURNS {
+                    continue;
+                }
+                new_map.insert_best(s);
+            }
+        }
+
+        if new_map.is_empty() && !time_over(&started) {
+            prof_inc!(solve_base_rescue_calls);
+            let rescue = rescue_stage(&beam, input, ell, target_color, &started);
+            for s in rescue {
+                new_map.insert_best(s);
+            }
+        }
+
+        if new_map.is_empty() {
+            break;
+        }
+        prof_inc!(solve_base_new_map_size_sum, new_map.len());
+
+        let new_beam = trim_stage_beam(
+            new_map.into_values(),
+            input,
+            ell + 1,
+            quick_short.as_ref(),
+        );
+        beam = new_beam;
+    }
+
+    if beam.is_empty() {
+        return BeamState {
+            state: State::initial(input),
+            ops: String::new(),
+        };
+    }
+
+    beam.sort_unstable_by(|a, b| cmp_beam_final(a, b, input));
+    let mut best = beam.pop().unwrap();
+    if best.ops.len() > MAX_TURNS {
+        best.ops.truncate(MAX_TURNS);
+    }
+    best
+}
+
+fn reconstruct_exact_checkpoints(input: &Input, ops: &str) -> Vec<Option<(usize, State)>> {
+    let mut checkpoints = vec![None; input.m + 1];
+    let mut st = State::initial(input);
+    checkpoints[5] = Some((0, st.clone()));
+    let mut ell = 5usize;
+
+    for (t, ch) in ops.bytes().enumerate() {
+        let Some(dir) = dir_of_char(ch) else {
+            break;
+        };
+        if !is_legal_dir(&st, dir) {
+            break;
+        }
+        let (ns, _, _, _) = step(&st, dir);
+        st = ns;
+        if ell < input.m && exact_prefix(&st, &input.d, ell + 1) {
+            ell += 1;
+            checkpoints[ell] = Some((t + 1, st.clone()));
+            if ell == input.m {
+                break;
+            }
+        }
+    }
+
+    checkpoints
+}
+
+fn is_complete_exact(bs: &BeamState, input: &Input) -> bool {
+    bs.state.colors.len() == input.m
+        && bs.state.colors[..] == input.d[..]
+        && remaining_food_count(&bs.state) == 0
+}
+
+fn solve_suffix_turn_focused(
+    input: &Input,
+    start_bs: BeamState,
+    start_ell: usize,
+    started: &Instant,
+) -> BeamState {
+    let mut beam = vec![start_bs.clone()];
+
+    for ell in start_ell..input.m {
+        prof_inc!(solve_suffix_iters);
+        prof_inc!(solve_suffix_beam_inputs, beam.len());
+        if time_over(started) || time_left(started) < 0.02 {
+            break;
+        }
+
+        let target_color = input.d[ell];
+        let mut new_map = BeamDedupMap::default();
+
+        for bs in &beam {
+            if time_over(started) {
+                break;
+            }
+
+            let mut sols = collect_exact_solutions_turn_focused(
+                bs,
+                input,
+                ell,
+                target_color,
+                SUFFIX_OPT_TARGETS,
+                started,
+            );
+
+            if sols.is_empty() && !time_over(started) {
+                sols = stage_search_bestfirst(
+                    bs,
+                    input,
+                    ell,
+                    &BUDGETS_ENDGAME_LIGHT,
+                    SUFFIX_STAGE_BEAM,
+                    started,
+                );
+            }
+            if sols.is_empty() && !time_over(started) {
+                sols = stage_search_bestfirst(
+                    bs,
+                    input,
+                    ell,
+                    &BUDGETS_LATE,
+                    SUFFIX_STAGE_BEAM,
+                    started,
+                );
+            }
+            if sols.is_empty() && !time_over(started) {
+                sols = collect_exact_solutions(
+                    bs,
+                    input,
+                    ell,
+                    target_color,
+                    MAX_TARGETS_ENDGAME,
+                    started,
+                );
+            }
+
+            for s in sols {
+                if s.ops.len() > MAX_TURNS {
+                    continue;
+                }
+                new_map.insert_best(s);
+            }
+        }
+
+        if new_map.is_empty() {
+            break;
+        }
+        prof_inc!(solve_suffix_new_map_size_sum, new_map.len());
+
+        let mut new_beam: Vec<BeamState> = new_map.into_values();
+        new_beam.sort_unstable_by(|a, b| cmp_beam_turn_focus(a, b, input, ell + 1));
+        if new_beam.len() > SUFFIX_STAGE_BEAM {
+            new_beam.truncate(SUFFIX_STAGE_BEAM);
+        }
+        beam = new_beam;
+    }
+
+    if beam.is_empty() {
+        return start_bs;
+    }
+
+    beam.sort_unstable_by(|a, b| cmp_beam_final(a, b, input));
+    beam.pop().unwrap()
+}
+
+fn optimize_exact_suffix(input: &Input, base: BeamState, started: &Instant) -> BeamState {
+    if !is_complete_exact(&base, input) {
+        return base;
+    }
+
+    let mut best = base;
+
+    for &window in &SUFFIX_OPT_WINDOWS {
+        prof_inc!(optimize_suffix_windows);
+        if time_left(started) < SUFFIX_OPT_MIN_LEFT_SEC {
+            break;
+        }
+
+        let checkpoints = reconstruct_exact_checkpoints(input, &best.ops);
+        let start_ell = input.m.saturating_sub(window).max(5);
+        let Some((prefix_turns, st)) = checkpoints[start_ell].clone() else {
+            continue;
+        };
+
+        let prefix_ops = best.ops[..prefix_turns].to_string();
+        let start_bs = BeamState {
+            state: st,
+            ops: prefix_ops,
+        };
+
+        let cand = solve_suffix_turn_focused(input, start_bs, start_ell, started);
+        if is_complete_exact(&cand, input) && cand.ops.len() < best.ops.len() {
+            best = cand;
+        }
+    }
+
+    best
+}
+
+fn solve(input: &Input) -> String {
+    let started = Instant::now();
+    let base = solve_base(input, &started);
+    let mut best = optimize_exact_suffix(input, base, &started);
+    if best.ops.len() > MAX_TURNS {
+        best.ops.truncate(MAX_TURNS);
+    }
+    prof_set!(final_turns, best.ops.len());
+    best.ops
+}
+
+fn main() {
+    let input = read_input();
+    let ans = solve(&input);
+
+    let mut out = String::new();
+    for ch in ans.chars() {
+        out.push(ch);
+        out.push('\n');
+    }
+    print!("{out}");
+}

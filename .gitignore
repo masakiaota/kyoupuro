@@ -111,6 +111,8 @@ settings.json
 *.cpp
 !contests/masters2026-qual/cpp/
 !contests/masters2026-qual/cpp/**/*.cpp
+!contests/*/scripts/lib/
+!contests/*/scripts/lib/**
 
 # Heuristic contest artifacts (generated outputs/tooling)
 **/in/**
@@ -129,3 +131,10 @@ settings.json
 **/tools/*.zip
 **/src/*.zip
 **/tools/out.svg
+contests/*/.playwright-cli/
+contests/*/output/
+contests/*/tools/in/
+contests/*/tools/inB/
+contests/*/tools/in_generated/
+contests/*/out/
+contests/*/out_eval/

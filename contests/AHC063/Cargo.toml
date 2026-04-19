@@ -1,0 +1,338 @@
+[profile.release]
+lto = true # コンパイル時間が著しく長くなってしまう場合は無し
+
+[package]
+name = "main"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(profile_counts)'] }
+
+# `src/bin` の top-level は solver 候補を見渡しやすく保ち、
+# 補助的な bin は `src/bin/adhoc` に隔離して名前だけ維持する。
+[[bin]]
+name = "bench_bite_detection"
+path = "src/bin/adhoc/bench_bite_detection.rs"
+
+[[bin]]
+name = "bench_food_cow"
+path = "src/bin/adhoc/bench_food_cow.rs"
+
+[[bin]]
+name = "bench_food_cow_beam"
+path = "src/bin/adhoc/bench_food_cow_beam.rs"
+
+[[bin]]
+name = "bench_internal_colors"
+path = "src/bin/adhoc/bench_internal_colors.rs"
+
+[[bin]]
+name = "bench_internal_colors_beam"
+path = "src/bin/adhoc/bench_internal_colors_beam.rs"
+
+[[bin]]
+name = "bench_internal_food"
+path = "src/bin/adhoc/bench_internal_food.rs"
+
+[[bin]]
+name = "bench_internal_food_beam"
+path = "src/bin/adhoc/bench_internal_food_beam.rs"
+
+[[bin]]
+name = "check_body_release_overlap"
+path = "src/bin/adhoc/check_body_release_overlap.rs"
+
+[[bin]]
+name = "crate_check"
+path = "src/bin/adhoc/crate_check.rs"
+
+[[bin]]
+name = "tmp_prefix_repair_bench"
+path = "src/bin/adhoc/tmp_prefix_repair_bench.rs"
+
+[[bin]]
+name = "tmp_prefix_repair_check"
+path = "src/bin/adhoc/tmp_prefix_repair_check.rs"
+
+[[bin]]
+name = "v002_probe_log"
+path = "src/bin/adhoc/v002_probe_log.rs"
+
+[[bin]]
+name = "v004_probe_log"
+path = "src/bin/adhoc/v004_probe_log.rs"
+
+[[bin]]
+name = "v005_probe_log"
+path = "src/bin/adhoc/v005_probe_log.rs"
+
+[[bin]]
+name = "v104_probe_log"
+path = "src/bin/adhoc/v104_probe_log.rs"
+
+[[bin]]
+name = "v104_time_over_probe"
+path = "src/bin/adhoc/v104_time_over_probe.rs"
+
+[[bin]]
+name = "v107_probe_log"
+path = "src/bin/adhoc/v107_probe_log.rs"
+
+[[bin]]
+name = "probe_v137pro_hybridbeam_biteinject"
+path = "src/bin/adhoc/probe_v137pro_hybridbeam_biteinject.rs"
+
+[[bin]]
+name = "probe_inventory_build_after_place"
+path = "src/bin/adhoc/probe_inventory_build_after_place.rs"
+
+[[bin]]
+name = "search_inventory_launch"
+path = "src/bin/adhoc/search_inventory_launch.rs"
+
+[[bin]]
+name = "probe_inventory_launch"
+path = "src/bin/adhoc/probe_inventory_launch.rs"
+
+[[bin]]
+name = "probe_inventory_transport"
+path = "src/bin/adhoc/probe_inventory_transport.rs"
+
+[[bin]]
+name = "probe_inventory_departure"
+path = "src/bin/adhoc/probe_inventory_departure.rs"
+
+[[bin]]
+name = "probe_inventory_harvest"
+path = "src/bin/adhoc/probe_inventory_harvest.rs"
+
+[[bin]]
+name = "probe_inventory_harvest_v144"
+path = "src/bin/adhoc/probe_inventory_harvest_v144.rs"
+
+[[bin]]
+name = "probe_inventory_departure_v145"
+path = "src/bin/adhoc/probe_inventory_departure_v145.rs"
+
+[[bin]]
+name = "check_v145_phase_drop"
+path = "src/bin/adhoc/check_v145_phase_drop.rs"
+
+[[bin]]
+name = "probe_inventory_entry_repair"
+path = "src/bin/adhoc/probe_inventory_entry_repair.rs"
+
+[[bin]]
+name = "check_v146_phase_drop"
+path = "src/bin/adhoc/check_v146_phase_drop.rs"
+
+[[bin]]
+name = "check_v148_phase_drop"
+path = "src/bin/adhoc/check_v148_phase_drop.rs"
+
+[[bin]]
+name = "probe_v148_departure_case"
+path = "src/bin/adhoc/probe_v148_departure_case.rs"
+
+[[bin]]
+name = "v147_prepare_first"
+path = "src/bin/v147_prepare_first.rs"
+
+[[bin]]
+name = "v148_prefix_fast"
+path = "src/bin/v148_prefix_fast.rs"
+
+[[bin]]
+name = "v149_no_logs"
+path = "src/bin/v149_no_logs.rs"
+
+[[bin]]
+name = "v162_no_parked_fallback"
+path = "src/bin/v162_no_parked_fallback.rs"
+
+[dependencies]
+# 202411から:
+rpds = "=1.1.1"
+rand_xorshift = "=0.4.0"
+rand_xoshiro = "=0.7.0"
+statrs = "=0.18.0"
+primal = "=0.3.3"
+thiserror = "=2.0.16"
+# 202301から:
+ac-library-rs = "=0.2.0"
+once_cell = "=1.21.3"
+static_assertions = "=1.1.0"
+varisat = "=0.2.2"
+memoise = "=0.3.2"
+argio = "=0.2.0"
+bitvec = "=1.0.1"
+counter = "=0.7.0"
+hashbag = "=0.1.12"
+pathfinding = "=4.14.0"
+recur-fn = "=2.2.0"
+indexing = { version = "=0.4.1", features = ["experimental_pointer_ranges"] }
+amplify = { version = "=4.9.0", features = ["c_raw", "rand", "stringly_conversions"] }
+amplify_derive = "=4.0.1"
+amplify_num = { version = "=0.5.3", features = ["std"] }
+easy-ext = "=1.0.2"
+multimap = "=0.10.1"
+btreemultimap = "=0.1.1"
+bstr = "=1.12.0"
+az = "=1.2.1"
+glidesort = "=0.1.2"
+tap = "=1.0.1"
+omniswap = "=0.1.0"
+multiversion = "=0.8.0"
+# 202004から続投:
+num = "=0.4.3"
+num-bigint = "=0.4.6"
+num-complex = "=0.4.6"
+num-integer = "=0.1.46"
+num-iter = "=0.1.45"
+num-rational = "=0.4.2"
+num-traits = "=0.2.19"
+num-derive = "=0.4.2"
+ndarray = "=0.16.1"
+nalgebra = "=0.34.0"
+alga = "=0.9.3"
+libm = "=0.2.15"
+rand = "=0.9.2"
+getrandom = "=0.3.3"
+rand_chacha = "=0.9.0"
+rand_core = "=0.9.3"
+rand_hc = "=0.4.0"
+rand_pcg = "=0.9.0"
+rand_distr = "=0.5.1"
+petgraph = "=0.8.2"
+indexmap = "=2.11.0"
+regex = "=1.11.2"
+lazy_static = "=1.5.0"
+ordered-float = "=5.0.0"
+ascii = "=1.1.0"
+permutohedron = "=0.2.4"
+superslice = "=1.0.0"
+itertools = "=0.14.0"
+itertools-num = "=0.1.3"
+maplit = "=1.0.2"
+either = "=1.15.0"
+im-rc = "=15.1.0"
+fixedbitset = "=0.5.7"
+bitset-fixed = "=0.1.0"
+proconio = { version = "=0.5.0", features = ["derive"] }
+text_io = "=0.1.13"
+rustc-hash = "=2.1.1"
+smallvec = { version = "=1.15.1", features = ["const_generics", "const_new", "write", "union", "serde", "arbitrary"] }
+
+[[bin]]
+name = "check_v162_phase_drop"
+path = "src/bin/adhoc/check_v162_phase_drop.rs"
+
+[[bin]]
+name = "v163_phase_rollback"
+path = "src/bin/v163_phase_rollback.rs"
+
+[[bin]]
+name = "check_v163_phase_drop"
+path = "src/bin/adhoc/check_v163_phase_drop.rs"
+
+[[bin]]
+name = "probe_v162_v163_boundaries"
+path = "src/bin/adhoc/probe_v162_v163_boundaries.rs"
+
+[[bin]]
+name = "v164_guarded_rollback"
+path = "src/bin/v164_guarded_rollback.rs"
+
+[[bin]]
+name = "v165_guarded_rollback_no_logs"
+path = "src/bin/v165_guarded_rollback_no_logs.rs"
+
+[[bin]]
+name = "v166_phase_budget"
+path = "src/bin/v166_phase_budget.rs"
+
+[[bin]]
+name = "v167_phase_resource_budget"
+path = "src/bin/v167_phase_resource_budget.rs"
+
+[[bin]]
+name = "v168_phase_resource_budget_no_logs"
+path = "src/bin/v168_phase_resource_budget_no_logs.rs"
+
+[[bin]]
+name = "v169_static_branch_gates"
+path = "src/bin/v169_static_branch_gates.rs"
+
+[[bin]]
+name = "v170_stock6_hybrid"
+path = "src/bin/v170_stock6_hybrid.rs"
+
+[[bin]]
+name = "v171_depart_canonical"
+path = "src/bin/v171_depart_canonical.rs"
+
+[[bin]]
+name = "v172_safe_fallback"
+path = "src/bin/v172_safe_fallback.rs"
+
+[[bin]]
+name = "check_v172_phase_drop"
+path = "src/bin/adhoc/check_v172_phase_drop.rs"
+
+[[bin]]
+name = "probe_v172_departure_case"
+path = "src/bin/adhoc/probe_v172_departure_case.rs"
+
+[[bin]]
+name = "v903_ensemble_v3"
+path = "src/bin/v903_ensemble_v3.rs"
+
+[[bin]]
+name = "v904codex_ensemble"
+path = "src/bin/v904codex_ensemble.rs"
+
+[[bin]]
+name = "v905_density_table_ensemble"
+path = "src/bin/v905_density_table_ensemble.rs"
+
+[[bin]]
+name = "v906_202and149"
+path = "src/bin/v906_202and149.rs"
+
+[[bin]]
+name = "v907_202149_with_v014"
+path = "src/bin/v907_202149_with_v014.rs"
+
+[[bin]]
+name = "v908_v012scout_v202"
+path = "src/bin/v908_v012scout_v202.rs"
+
+[[bin]]
+name = "v909_v012scout_table"
+path = "src/bin/v909_v012scout_table.rs"
+
+[[bin]]
+name = "v910codex_generated_piecewise"
+path = "src/bin/v910codex_generated_piecewise.rs"
+
+[[bin]]
+name = "v911codex_generated_best"
+path = "src/bin/v911codex_generated_best.rs"
+
+[[bin]]
+name = "probe_v167_v168_boundaries"
+path = "src/bin/adhoc/probe_v167_v168_boundaries.rs"
+
+[[bin]]
+name = "probe_v167_v168_segment"
+path = "src/bin/adhoc/probe_v167_v168_segment.rs"
+
+[[bin]]
+name = "probe_v167_v169_boundaries"
+path = "src/bin/adhoc/probe_v167_v169_boundaries.rs"
+
+[[bin]]
+name = "probe_v167_v169_segment"
+path = "src/bin/adhoc/probe_v167_v169_segment.rs"
