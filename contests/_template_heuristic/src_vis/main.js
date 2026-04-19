@@ -1,3 +1,9 @@
+import init, {
+  gen as wasmGenModule,
+  get_max_turn as wasmGetMaxTurnModule,
+  vis as wasmVisModule,
+} from "./wasm/heuristic_contest_template_vis.js";
+
 let wasmInit = null;
 let wasmGen = null;
 let wasmGetMaxTurn = null;
@@ -365,12 +371,10 @@ document.addEventListener("keydown", (e) => {
 });
 
 async function main() {
-  const wasmModulePath = `/wasm/${"heuristic_contest_template_vis.js"}`;
-  const wasmModule = await import(/* @vite-ignore */ wasmModulePath);
-  wasmInit = wasmModule.default;
-  wasmGen = wasmModule.gen;
-  wasmGetMaxTurn = wasmModule.get_max_turn;
-  wasmVis = wasmModule.vis;
+  wasmInit = init;
+  wasmGen = wasmGenModule;
+  wasmGetMaxTurn = wasmGetMaxTurnModule;
+  wasmVis = wasmVisModule;
   await wasmInit();
   ready = true;
   updatePlayButton();

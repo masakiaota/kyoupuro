@@ -101,10 +101,10 @@ _template_heuristic/
 - `samples/`
   - サンプル input / output の配置先である。
 - `src_vis/main.js`
-  - visualizer の UI とローカル API 連携を書く。
+  - visualizer の UI とローカル API 連携を書く。`src_vis/wasm/` の wrapper を相対 import して使う。
 - `wasm/src/impl_vis.rs`
   - 問題固有の visualizer ロジック本体である。
-- `public/wasm/`
+- `src_vis/wasm/`
   - `build_wasm.sh` の生成物が出る場所である。
 
 ## shell script の役割
@@ -119,9 +119,9 @@ _template_heuristic/
 - `scripts/unpack_tools.sh`
   - 公式配布 zip を `tools/` に展開する。
 - `scripts/build_wasm.sh`
-  - `wasm-pack` を使って browser 用の生成物を `public/wasm/` に出力する。
+  - `wasm-pack` を使って browser 用の生成物を `src_vis/wasm/` に出力する。
 - `scripts/dev_vis.sh`
-  - 必要なら `yarn install` を行ったうえで Vite 開発サーバーを起動する。
+  - 必要なら `yarn install` を行い、WASM 生成物が無ければ自動 build したうえで Vite 開発サーバーを起動する。
 
 ## AI が意識すること
 - `v000_template.rs` には複数 solver で共有したい確定実装を寄せ、version 固有の探索ロジックや一時的な hack は `v001_*.rs` 以降に分ける。
@@ -133,4 +133,4 @@ _template_heuristic/
 - 新しい重要な性質や有力な仮説が見えたら、実装メモで終わらせず `notes/important_properties.md` に昇格させる。
 - `tools/` の中身は contest ごとに異なる。wrapper script の引数や期待する bin 名は固定だと思い込まない。
 - visualizer 実装に入る前に `problem_description.txt` と `tools/src/` の存在を確認する。
-- `public/wasm/` は手書きではなく build 生成物の置き場として扱う。
+- `src_vis/wasm/` は手書きではなく build 生成物の置き場として扱う。

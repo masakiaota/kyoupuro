@@ -4,7 +4,7 @@ set -eu
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 ROOT_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 WASM_DIR="$ROOT_DIR/wasm"
-OUT_DIR="$ROOT_DIR/public/wasm"
+OUT_DIR="$ROOT_DIR/src_vis/wasm"
 
 if ! command -v wasm-pack >/dev/null 2>&1; then
     echo "error: wasm-pack command not found" >&2

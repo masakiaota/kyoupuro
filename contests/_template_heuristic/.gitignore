@@ -5,6 +5,8 @@ dist/
 out/
 out_eval/
 wasm/target/
+src_vis/wasm/*
+!src_vis/wasm/.gitkeep
 tools/target/
 tools.zip
 results/**

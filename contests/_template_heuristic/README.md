@@ -67,7 +67,9 @@ _template_heuristic/
 - `.agents/skills/make-visualizer/SKILL.md`
   - visualizer 実装時に AI が従う手順である。
 - `src_vis/main.js`
-  - Vite 側の UI ロジックとローカル API 連携を書く。
+  - Vite 側の UI ロジックとローカル API 連携を書く。`src_vis/wasm/` の wrapper を相対 import して使う。
+- `src_vis/wasm/`
+  - wasm-pack の browser 向け生成物を置く場所である。
 - `wasm/src/impl_vis.rs`
   - 問題固有の visualizer 実装本体である。
 
@@ -104,9 +106,9 @@ _template_heuristic/
 - `./scripts/unpack_tools.sh [tools_zip_path]`
   - `tools.zip` などの公式配布 zip を `tools/` に展開する。
 - `./scripts/build_wasm.sh`
-  - `wasm-pack build --target web --out-dir ../public/wasm` を実行し、browser 用 WASM を更新する。
+  - `wasm-pack build --target web --out-dir ../src_vis/wasm` を実行し、browser 用 WASM を更新する。
 - `./scripts/dev_vis.sh`
-  - 必要なら `yarn install` を行い、Vite の開発サーバーを起動する。
+  - 必要なら `yarn install` を行い、WASM 生成物が無ければ自動 build したうえで Vite の開発サーバーを起動する。
 
 ## よく使うコマンド
 ```bash
@@ -124,6 +126,6 @@ cargo run --bin crate_check
 ## Visualizer の使い方
 - まず `problem_description.txt` と `tools/src/` を揃える
 - `wasm/src/impl_vis.rs` に問題固有の描画ロジックを入れる
-- `./scripts/build_wasm.sh` で `public/wasm/` を更新する
+- `./scripts/build_wasm.sh` で `src_vis/wasm/` を更新する
 - `./scripts/dev_vis.sh` でローカル server を立ち上げる
-- `src_vis/main.js` には Rust bin 実行 UI と SVG 表示 UI が入っている
+- `src_vis/main.js` は `src_vis/wasm/` の wrapper を相対 import しつつ、Rust bin 実行 UI と SVG 表示 UI を持つ

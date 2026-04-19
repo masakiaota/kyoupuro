@@ -1,189 +1,145 @@
 ---
 name: make-visualizer
-description: AHCスタイルのヒューリスティックコンテスト用WASMビジュアライザを実装する。problem_description.txt と tools/src/ が揃っているときに使用する。現在のテンプレートは単一問題向けで、フロントエンド(Vite/JavaScript)は原則変更しない。
+description: AHCスタイルのヒューリスティックコンテスト用WASMビジュアライザを実装する。problem_description.txt と tools/src/ が揃っているときに使用する。公式 `tools/src` と整合し、最終的に build と起動まで通る状態を完成条件とする。
 ---
 
 # make-visualizer
 
-ヒューリスティックコンテスト用ビジュアライザを実装します。
-**以下の手順を順番に実行してください。次のステップに進む前に各ステップを完了させること。**
+ヒューリスティックコンテスト用ビジュアライザを実装する。
+以下の手順を順番に実行すること。
 
+## 設計原則
+
+- visualizer のフロントエンドが Vite のとき、wasm-pack の生成物は `src_vis/wasm/` に置く。
+- `src_vis/main.js` から `./wasm/<crate_name>.js` を通常の ES module として import する。
+- `public/` は固定名の静的ファイル置き場であり、WASM wrapper を import する場所ではない。
+- `public/wasm/*.js` を source code から import してはならない。
+- `fetch("/wasm/...js")` + `Blob` + `import(blobUrl)` は暫定回避策であり、標準構成として採用しない。
+- `src_vis/wasm/` の生成物が無いときは `./scripts/dev_vis.sh` が先に `./scripts/build_wasm.sh` を呼ぶ前提である。
 - 現在のテンプレートは単一問題前提である。問題切り替え UI は最初から入っていない。
-
----
+- 入力操作系は左サイドバーに寄せ、可視化内容は右ゾーンに寄せる。
+- 左サイドバーの操作は上から下へ 1 本の流れで並べる。
 
 ## ステップ1: 前提条件チェック
 
-以下を確認し、問題があれば停止してユーザーに伝えてください:
+以下を確認し、問題があれば停止してユーザーに伝えること。
 
-- `problem_description.txt` を読んで、プレースホルダーのまま（「コンテストの問題文をここに記載してください」のような内容）であれば停止して「problem_description.txt に問題文を記載してください」と伝える
-- `tools/src/` が存在しなければ停止して「公式から配布されるテスターコードを `tools/src/` に配置してください」と伝える
-
-両方問題なければステップ2へ進む。
-
----
+- `problem_description.txt` がプレースホルダーのままではないこと
+- `tools/src/` が存在すること
+- `src_vis/main.js` が存在すること
+- `wasm/src/lib.rs` と `wasm/src/impl_vis.rs` が存在すること
 
 ## ステップ2: 問題を読んでビジュアライザ設計を提案する
 
-以下の2ファイルを読む:
+以下を読むこと。
 
-1. `problem_description.txt` — 入出力フォーマット・状態・スコア計算を確認
-2. `tools/src/lib.rs` — 構造体定義と公開関数のシグネチャを把握（**`tools/src/bin/` 以下は読まない**）
+1. `problem_description.txt`
+2. `tools/src/lib.rs`
 
-読んだら、**実装せずに**以下の内容をユーザーに提示してください:
+`tools/src/lib.rs` だけで意味論や描画ロジックの把握に不足がある場合は、`lib.rs` から参照される `tools/src` 配下の非 `bin` モジュールを追加で読むこと。
+`tools/src/bin/` は原則読まない。
 
-### 提示する内容
+読んだら、実装せずに以下をユーザーに提示すること。
 
-**【ビジュアライザ設計案】** として以下を箇条書きで示す:
+- 描画する要素
+- ターンの定義
+- ターンごとの状態変化
+- スコア表示
+- SVG の全体レイアウト
+- 色分けや強調表示の方針
+- 左サイドバーの上から順に `Rust bin`、`case`、`実行`、`Turn`、再生操作、速度、ループ、`Score`、`Error`、`Input`、`Output` を置くレイアウト
+- `case` 選択の左右に `◁` / `▷` を置くこと
+- 右側は `svgHost` を中心とした可視化領域にすること
 
-- **描画する要素**: フィールド・エージェント・目的地・障害物など、何をSVGに描くか
-- **ターンの定義**: `calc_max_turn` が返す値（出力の行数 or 操作数など）
-- **ターンごとの状態変化**: スライダーを動かすと何が変わるか
-- **スコア表示**: `visualize` が返すスコアの計算方法
+この設計でよいか承認を得てから実装に進むこと。
 
-提示した後、**「この設計で実装しますか？」とユーザーに確認を取り、承認を得てからステップ3へ進む。**
+## ステップ3: Rust 側を実装する
 
----
+- `tools/src` のうち、パース・状態遷移・スコア計算・可視化に必要なロジックを `wasm/src/impl_vis.rs` から利用できる形にする。
+- 実装手段は固定しない。必要な部分だけを移植してもよいし、補助モジュールを踏まえて組み直してもよい。
+- 外部プロセス実行、標準入出力依存、ファイル I/O など、WASM で不要な処理は除去または回避する。
+- `generate`, `calc_max_turn`, `visualize` の 3 関数はテンプレートが要求するシグネチャを維持する。
+- `calc_max_turn` は、出力が非空なら 1 以上を返すこと。
+- SVG 生成は Rust 側に寄せ、`visualize` は `(score, err, svg)` を返すこと。
+- `tools/src/bin/` は根拠にしない。`lib.rs` だけで不十分なときは、必要な非 `bin` モジュールを読んで整合性を確保すること。
 
-## ステップ3: wasm/src/impl_vis.rs を実装
-
-ユーザーの承認を得たら実装に入る。
-
-### lib.rs の内容を impl_vis.rs の先頭に結合する
-
-**まず以下のシェルコマンドを実行して**、`tools/src/lib.rs` の内容を `wasm/src/impl_vis.rs` のプレースホルダー関数の**上**に結合する:
-
-**macOS / Linux / bash 系シェル:**
-```bash
-printf '%s' "$(cat tools/src/lib.rs wasm/src/impl_vis.rs)" > wasm/src/impl_vis.rs
-```
-
-**Windows (PowerShell):**
-```powershell
-$lib = Get-Content tools/src/lib.rs -Raw
-$impl = Get-Content wasm/src/impl_vis.rs -Raw
-Set-Content wasm/src/impl_vis.rs "$lib$impl"
-```
-
-これにより `impl_vis.rs` は以下の構造になる:
-1. `tools/src/lib.rs` の全内容（構造体・ロジック・ユーティリティ）
-2. 既存のプレースホルダー関数（`generate` / `calc_max_turn` / `visualize`）
-
-**`tools/src/bin/` 以下は読まない。lib.rs のみ結合すること。**
-
-新しく書くのは主にプレースホルダーを埋める SVG 描画部分（`draw_svg` など）。
-
-### WASM 非互換な箇所だけ修正する
-
-- `eprintln!` / `println!` → 削除するか `web_sys::console::log_1` に変更
-- ファイルI/O / `fn main()` → 削除
-- `proconio::input!` はそのまま使える（`OnceSource::from(str)` 経由で）
-- `#[wasm_bindgen]` は付けない（lib.rs 側のみに付く）
-- `gen` 関数内の `_ => panic!(...)` ブランチ → WASM では panic がランタイムエラーになるため、デフォルト値を返すように置き換える
-  ```rust
-  // 変更前
-  _ => { panic!("Unknown problem: {}", problem) }
-  // 変更後（問題Aのパラメータをデフォルトとして使う例）
-  _ => (0, rng.gen_range(1..=100) as f64, rng.gen_range(1..=20) as f64 * 0.01),
-  ```
-
-**`tools/src/lib.rs` にはビジュアライザに不要なコードが含まれることがある。**
-スコア計算・状態遷移・パース関数はビジュアライザでも必要だが、外部プロセスを起動・制御するためのコード（`exec` 関数、`read_line` 関数、`use std::process::ChildStdout` などの import）はビジュアライザには不要なので、遠慮なく削除すること。
-
-### impl_vis.rs が公開する3つの関数
-
-`lib.rs` から以下の関数名で呼び出されるため、**必ずこのシグネチャで実装すること**:
+テンプレートが要求するシグネチャは以下である。
 
 ```rust
 pub fn generate(seed: i32) -> String
 pub fn calc_max_turn(input: &str, output: &str) -> usize
 pub fn visualize(input: &str, output: &str, turn: usize) -> Result<(i64, String, String), String>
-//                                                                    ^score  ^err    ^svg
 ```
 
-`calc_max_turn` の注意: **0 を返すとスライダーが動かない**。出力が空でなければ必ず 1 以上を返すこと。
+## ステップ4: フロントエンドとの接続
 
-`generate` は単一問題テンプレートの seed 生成関数である。問題カテゴリを切り替える引数は持たない。公式 generator が追加の引数を必要とする特殊な問題では、まずその問題固有の必要性をユーザーに確認してから拡張すること。
+- wasm-pack の生成物は `src_vis/wasm/` に出力すること。
+- `src_vis/main.js` では、生成された wrapper を相対 import すること。
+- 例:
 
-### visualize の実装パターン
+```js
+import init, { gen, get_max_turn, vis } from "./wasm/your_vis_crate.js";
 
-```rust
-pub fn visualize(input: &str, output: &str, turn: usize) -> Result<(i64, String, String), String> {
-    // 1. 入力をパース（コピーしたパース関数を流用）
-    // 2. 出力をパースして turn 番目までの操作を取得
-    // 3. 状態を計算（コピーしたスコア計算関数を流用）
-    // 4. SVGを描画して返す
-    let svg = draw_svg(/* 状態 */).map_err(|e| e.to_string())?;
-    Ok((score, String::new(), svg))  // (score, err, svg)
+async function main() {
+  await init();
+  // UI 初期化
 }
 ```
 
-### SVG描画の基本パターン
+- `public/wasm/` を import してはならない。
+- `fetch("/wasm/...")` や `Blob` import を追加してはならない。
+- wasm のファイル名は `wasm/Cargo.toml` の crate 名に従う。必要なら生成後に `src_vis/wasm/` を確認して import 名を合わせること。
+- `await init()` で足りない場合のみ、wrapper が要求する引数に合わせて `await init(wasmUrl)` を使うこと。
+- `Rust bin` と `case` が確定したら、その組に対応する既存の `in/out` をただちに読み込んで描画すること。
+- `out` が存在しない場合のみ、`実行` ボタンで現在の `in` に対して solver を走らせ、その結果を `Output` に反映して即時可視化すること。
+- 自動可視化時は必ず最後の turn を選ぶこと。初期 turn は終端状態と score 確認を優先する。
+- `case` セレクトの右に `◁` / `▷` を置き、前後 case へ即座に移動できるようにすること。移動後は自動で最後の turn まで描画すること。
+- `Rust bin` と `case` を変えた時点で、手動の読込ボタンは不要である。
+- 再生操作の並び順は `再生` / `◁` / `▷` に固定すること。
+- 最後の turn で `再生` を押したときは、最初の turn に戻ってから再生を開始すること。
+- `loop` は既定で `off` にすること。
+- 高速再生で描画が追いつかない場合に備え、描画更新はフレームレート基準で間引くこと。
+- 再生は `requestAnimationFrame` ベースを推奨し、速度が高い場合は 60Hz 以下の描画更新へ落とし込むこと。
+- 1 tick ごとに 1 turn 進める固定ではなく、経過時間から複数 step をまとめて消化できる実装を標準とすること。
 
-```rust
-use svg::Document;
-use svg::node::element::{Rectangle, Circle, Line};
-use svg::node::element::Text as SvgText;
+## ステップ5: ビルド
 
-fn draw_svg(/* 状態の引数 */) -> Result<String, Box<dyn std::error::Error>> {
-    let size = 600;
-    let mut doc = Document::new()
-        .set("viewBox", format!("0 0 {size} {size}"))
-        .set("width", size).set("height", size);
-
-    // 矩形
-    doc = doc.add(Rectangle::new()
-        .set("x", x).set("y", y).set("width", w).set("height", h)
-        .set("fill", "#4488cc").set("stroke", "#000").set("stroke-width", 1));
-
-    // 円
-    doc = doc.add(Circle::new()
-        .set("cx", cx).set("cy", cy).set("r", r).set("fill", "#cc4444"));
-
-    // 線
-    doc = doc.add(Line::new()
-        .set("x1", x1).set("y1", y1).set("x2", x2).set("y2", y2)
-        .set("stroke", "#000").set("stroke-width", 2));
-
-    // テキスト（svg 0.17: Text::new() は文字列を引数に取る）
-    doc = doc.add(SvgText::new("ラベル")
-        .set("x", x).set("y", y)
-        .set("text-anchor", "middle").set("font-size", 12).set("fill", "#fff"));
-
-    Ok(doc.to_string())
-}
-```
-
-> **注意**: `wasm/src/lib.rs` の確認は通常不要。`generate` / `calc_max_turn` / `visualize` 以外の関数名を使った場合のみ修正すること。
-
----
-
-## ステップ4: ビルドと動作確認
-
-まず `cargo check` でコンパイルエラーを確認し、通ったら `wasm-pack build` を実行する:
+以下を完了条件とする。
 
 ```bash
 cd wasm && cargo check
 ```
 
-エラーがなければ:
+続いて、WASM を `src_vis/wasm/` に出力する。
 
 ```bash
-wasm-pack build --target web --out-dir ../public/wasm
+cd wasm && wasm-pack build --target web --out-dir ../src_vis/wasm
 ```
 
-- `cargo check` でエラーが出たら原因を特定して修正してから `wasm-pack build` を実行する
-- クレートのバージョン不一致が原因の場合のみ `wasm/Cargo.toml` を修正する
+最後に、Vite 側が起動することを確認する。
 
-ビルドが完了したらユーザーに `./scripts/dev_vis.sh` または `yarn dev` でサーバーを起動して動作確認するよう伝える:
-1. seed 入力 → 入力エリアに問題入力が表示される（`gen` OK）
-2. 出力貼り付け → スライダーの上限が更新される（`get_max_turn` OK）
-3. スライダーを動かす → SVG が描画される（`vis` OK）
+```bash
+./scripts/dev_vis.sh
+```
 
----
+## ステップ6: 動作確認
 
-## 注意事項
+完了状態は以下の 3 つである。
 
-- `proconio::input!` は `OnceSource::from(input.as_str())` と組み合わせて使う
-- `getrandom` は `features = ["js"]` が必要（すでに Cargo.toml に設定済みのはず）
-- `impl` はRustの予約語のためモジュール名に使えない（ファイル名は `impl_vis.rs`）
+1. `cargo check` が通る
+2. `cd wasm && wasm-pack build --target web --out-dir ../src_vis/wasm` が通る
+3. `./scripts/dev_vis.sh` で起動できる
+
+入力生成、ターン操作、SVG 表示などの手動確認は有益だが、必須完了条件ではない。
+
+## 禁止事項
+
+- `public/wasm/*.js` を import すること
+- `public/wasm/*.wasm` を source import すること
+- `fetch + Blob + import(blobUrl)` を標準構成として採用すること
+- `tools/src/bin/` を読んで設計を決めること
+- `lib.rs` だけで不十分なのに、必要な非 `bin` モジュールを読まずに進めること
+- 操作系を左右に分散させること
+- `bin` / `case` 確定後に追加の「読込」ボタンを要求すること
+- 既存の `in/out` が確定しているのに手動反映前提の UX にすること
+- 高速再生でフレーム落ちを放置したまま完了扱いにすること
