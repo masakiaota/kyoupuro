@@ -39,9 +39,12 @@
 
 ## 評価運用ルール
 - `scripts/run.sh` は単発の手動実行専用である。
-- `scripts/eval.sh` は評価パイプライン本体である。solver と tools の score をそれぞれ 1 回だけ build し、その後は `run -> score` をケース単位で実行する。既定は `cpu//2 - 1` 並列で、最小値は 1 である。厳密に見たいときは `-j 1` または `--serial` を使う。
-- `results/out/<bin_name>/` は最新評価の scratch/workspace である。`eval.sh` 実行時に同名 basename の出力が並ぶ前提なので、重複 basename は拒否する。
-- `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,avg_elapsed,max_elapsed,total_sum,total_min,total_max,eval_set,total_cases` で、経過時間は整数 ms で記録する。全ケース成功時のみ追記する。
+- `scripts/eval.py` は評価パイプライン本体である。solver と tools の score をそれぞれ 1 回だけ build し、その後は `run -> score` をケース単位で実行する。既定は `cpu//2 - 1` 並列で、最小値は 1 である。厳密に見たいときは `-j 1` を使う。
+- `results/out/<bin_name>/` は最新評価の scratch/workspace である。`eval.py` 実行時に同名 basename の出力が並ぶ前提なので、重複 basename は拒否する。
+- `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at` で、経過時間は整数 ms で記録する。全ケース成功時のみ追記する。
+- `results/score_detail.csv` は `tools/in` 専用の wide-format 比較表である。列順は `bin,total_avg,max_elapsed,<case_name_1>,...,label,executed_at` で、全ケース成功時のみ追記する。
+- `results/eval_records.jsonl` は 1 行 1 case の正本ログである。失敗ケースも含めて追記する。
+- `--dry-run` は `results/score_summary.csv`、`results/score_detail.csv`、`results/eval_records.jsonl` を更新しない。
 - verbose は進捗表示だけに使い、追加ログを恒久保存しない。
 
 ## ディレクトリ構成
@@ -55,6 +58,8 @@ _template_heuristic/
 │   └── notations.md
 ├── results/
 │   ├── score_summary.csv
+│   ├── score_detail.csv
+│   ├── eval_records.jsonl
 │   └── out/
 ├── samples/
 ├── tools/
@@ -82,9 +87,11 @@ _template_heuristic/
   - `src/bin/adhoc/*.rs` を `cargo run --bin <name>` で実行できるように `[[bin]]` を明示する場所である。
 - `scripts/run.sh`
   - 1 件の入力に対する手動実行を行う。
-- `scripts/eval.sh`
+- `scripts/eval.py`
   - 公式 scorer を使った並列評価本体である。
-  - `-j <jobs>` で並列数を固定でき、`-j 1` または `--serial` で直列評価できる。
+  - `-j <jobs>` で並列数を固定でき、`-j 1` で直列評価できる。
+  - `--label` で実験ラベルを付けられ、`--dry-run` で蓄積ファイルを更新せずに確認できる。
+  - `-h` / `--help` で使い方を確認できる。
 - `notes/`
   - 問題固有の発見や性質を記録する場所である。
 - `notes/notations.md`
@@ -94,8 +101,12 @@ _template_heuristic/
   - 記号の定義は書かず、`notes/notations.md` の表記を使って性質そのものを書く。
 - `results/score_summary.csv`
   - score 要約の蓄積先である。
+- `results/score_detail.csv`
+  - `tools/in` 専用の wide-format score 比較表である。
+- `results/eval_records.jsonl`
+  - 1 行 1 case の評価記録を追記する正本である。
 - `results/out/<bin_name>/...`
-  - `eval.sh` 実行時の出力ファイルの格納場所である。
+  - `eval.py` 実行時の出力ファイルの格納場所である。
 - `tools/`
   - 公式 generator / tester / scorer の配置先である。
 - `samples/`
@@ -107,13 +118,14 @@ _template_heuristic/
 - `src_vis/wasm/`
   - `build_wasm.sh` の生成物が出る場所である。
 
-## shell script の役割
+## script の役割
 - `scripts/run.sh`
   - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file を手動確認する。
-- `scripts/eval.sh`
+- `scripts/eval.py`
   - solver と score を 1 回だけ build し、ケース単位で `run -> score` を実行する。
   - 既定は `cpu//2 - 1` 並列で、最小値は 1 である。必要なら `-j <jobs>` で明示指定できる。
-  - `./scripts/eval.sh <bin_name>` は `tools/in` と `results/out/<bin_name>` を使う。
+  - `./scripts/eval.py <bin_name>` は `tools/in` と `results/out/<bin_name>` を使う。
+  - `--dry-run` は 3 つの蓄積ファイルを更新しない。
 - `scripts/gen_tools.sh`
   - `tools` 側の `gen` バイナリを呼ぶための薄い wrapper である。
 - `scripts/unpack_tools.sh`

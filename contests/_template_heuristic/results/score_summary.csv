@@ -1,1 +1,1 @@
-bin,total_avg,avg_elapsed,total_sum,total_min,total_max,eval_set,total_cases
+bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at

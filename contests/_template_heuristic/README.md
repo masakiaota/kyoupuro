@@ -26,13 +26,14 @@ _template_heuristic/
 │   └── notations.md
 ├── results/
 │   ├── score_summary.csv
+│   ├── score_detail.csv
+│   ├── eval_records.jsonl
 │   └── out/
 ├── samples/
 ├── tools/
 ├── src_vis/
 ├── wasm/
 └── public/
-    └── wasm/
 ```
 
 ## 役割
@@ -47,9 +48,13 @@ _template_heuristic/
 - `src/bin/v001_*.rs` 以降
   - 探索戦略、評価関数、パラメータ、枝刈りなど、試行錯誤する solver を置く。提出時はこの中のファイルを直接使う。
 - `results/score_summary.csv`
-  - score の要約ログを追記する。評価イベント単位で集約結果を残す。
+  - score の要約ログを追記する。列順は `bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at` である。
+- `results/score_detail.csv`
+  - `tools/in` 専用の wide-format 比較表である。列順は `bin,total_avg,max_elapsed,<case_name_1>,...,label,executed_at` である。
+- `results/eval_records.jsonl`
+  - 1 行 1 case の評価記録を追記する正本である。`score_detail.csv` や比較表示の材料にする。
 - `results/out/<bin_name>/`
-  - `run.sh` や `eval.sh` 実行時の出力を保存する。`bin` ごとにフォルダ分けされる。
+  - `run.sh` や `eval.py` 実行時の出力を保存する。`bin` ごとにフォルダ分けされる。
 - `notes/`
   - 問題固有のアイデア、重要な性質、観察結果を書く。
 - `notes/notations.md`
@@ -77,7 +82,7 @@ _template_heuristic/
 ### 最初にやること
 1. `problem_description.txt` を埋める
 2. 公式配布物を `tools/` と `samples/` に置く
-3. 並列評価できるように `scripts/eval.sh` が contest の scoring tool 呼び出し方に対応するように編集。
+3. 並列評価できるように `scripts/eval.py` が contest の scoring tool 呼び出し方に対応するように編集。
 4. 必要な記号を `notes/notations.md` に早めに書き出し、命名と型の正本を固める。
 5. 見えてきた重要な性質や不変量を `notes/important_properties.md` に整理する。
 6. 必要なら visualizer もつくる (適宜改善)。
@@ -87,20 +92,23 @@ _template_heuristic/
 1. 共通土台は `src/bin/v000_template.rs` に書き、試行錯誤する solver は `src/bin/v001_*.rs` 以降に書く
 2. `./scripts/run.sh <bin_name> [input_file]` で単発確認する
    - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
-3. scorer があるなら `./scripts/eval.sh [-v] [-j jobs|--serial] <bin_name> [input_dir]` で公式スコアを確認する
+3. scorer があるなら `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] <bin_name> [input_dir]` で公式スコアを確認する
    - `input_dir` 省略時は `tools/in` を使う。
    - 既定では各ケースについて `run -> score` を `cpu//2 - 1` 並列で実行する。最小値は 1 である。
-   - 発熱や計測ぶれを避けたいときは `-j 1` か `--serial` で直列実行する。
-   - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。経過時間は整数 ms で集計する。
+   - 発熱や計測ぶれを避けたいときは `-j 1` で直列実行する。
+   - 通常実行では `results/score_summary.csv` と `results/eval_records.jsonl` に追記し、`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記する。
+   - `--dry-run` は蓄積ファイルを更新せず、その場の確認だけを行う。
 4. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
-## shell script の役割
+## script の役割
 - `./scripts/run.sh <bin_name> [input_file]`
   - stdin または 1 つの input_file に対して手動実行する。
-- `./scripts/eval.sh [-v] [-j jobs|--serial] <bin_name> [input_dir]`
+- `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] <bin_name> [input_dir]`
   - solver と公式 `score` を 1 回だけ build し、ケース単位で `run -> score` を実行する。
-  - 既定ジョブ数は `cpu//2 - 1` で、最小値は 1 である。`-j 1` か `--serial` で直列評価に切り替えられる。
-  - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。経過時間は `avg_elapsed` と `max_elapsed` を整数 ms で出力する。
+  - 既定ジョブ数は `cpu//2 - 1` で、最小値は 1 である。`-j 1` で直列評価に切り替えられる。
+  - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記し、全ケースの記録は `results/eval_records.jsonl` に追記する。
+  - `--dry-run` は 3 つの蓄積ファイルを更新しない。
+  - `-h` / `--help` で使い方を確認できる。
 - `./scripts/gen_tools.sh <args...>`
   - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
 - `./scripts/unpack_tools.sh [tools_zip_path]`
@@ -114,9 +122,11 @@ _template_heuristic/
 ```bash
 ./scripts/run.sh <bin_name>
 ./scripts/run.sh <bin_name> ./tools/in/0000.txt
-./scripts/eval.sh <bin_name>
-./scripts/eval.sh -j 1 <bin_name>
-./scripts/eval.sh -v <bin_name>
+./scripts/eval.py <bin_name>
+./scripts/eval.py -j 1 <bin_name>
+./scripts/eval.py -v --label baseline <bin_name>
+./scripts/eval.py --dry-run <bin_name>
+./scripts/eval.py --help
 ./scripts/unpack_tools.sh ./tools.zip
 ./scripts/build_wasm.sh
 ./scripts/dev_vis.sh
