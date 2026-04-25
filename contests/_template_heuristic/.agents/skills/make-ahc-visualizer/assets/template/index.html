@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AHC Visualizer</title>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="16" height="16" rx="3" fill="%23155e63"/><path d="M4 4h8v8H4zM6 4v8M10 4v8M4 6h8M4 10h8" stroke="white" stroke-width="1" fill="none"/></svg>' />
+    <style>
+      :root {
+        --bg: #f7f8f8;
+        --panel: #ffffff;
+        --line: #e5e7eb;
+        --line-strong: #cbd5e1;
+        --text: #111827;
+        --muted: #5b6472;
+        --accent: #155e63;
+        --accent-hover: #104f54;
+        --accent-soft: #e7f3f3;
+        --danger: #b91c1c;
+        --shadow: 0 2px 8px rgba(15, 23, 42, 0.07);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+        font-size: 14px;
+        color: var(--text);
+        background: var(--bg);
+      }
+      button, select, textarea, input {
+        font: inherit;
+      }
+      button, select {
+        height: 32px;
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--text);
+        font-size: 13px;
+      }
+      button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 11px;
+        cursor: pointer;
+      }
+      button:hover:not(:disabled) {
+        border-color: var(--accent);
+        background: #f8fbfb;
+      }
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.45;
+      }
+      select {
+        padding: 0 34px 0 12px;
+      }
+      textarea {
+        width: 100%;
+        height: 214px;
+        min-height: 160px;
+        resize: vertical;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px 14px;
+        font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+        font-size: 13px;
+        line-height: 1.55;
+        color: #1f2937;
+        background: #fff;
+      }
+      input[type="range"] {
+        accent-color: var(--accent);
+      }
+      #turn {
+        min-width: 0;
+        width: 100%;
+      }
+      .mono {
+        font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      }
+      .page {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 10px clamp(12px, 2vw, 24px) 24px;
+      }
+      .view-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: min(520px, 100%);
+        height: 34px;
+        margin: 0 auto 8px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .view-tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        color: #3f4652;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .view-tab span:first-child {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+      .view-tab.active {
+        color: #fff;
+        background: var(--accent);
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+      .control-panel {
+        margin-top: 8px;
+        padding: clamp(14px, 1.4vw, 16px) clamp(14px, 1.8vw, 22px);
+        display: grid;
+        gap: 14px;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      .control-row {
+        display: grid;
+        grid-template-columns: 116px minmax(150px, 1fr) 67px 1px 46px minmax(150px, 1fr) 67px;
+        column-gap: 6px;
+        row-gap: 12px;
+        align-items: center;
+        min-width: 760px;
+      }
+      .play-row {
+        display: grid;
+        grid-template-columns: 116px 34px 104px 67px 42px minmax(150px, 1fr) 78px;
+        column-gap: 6px;
+        row-gap: 12px;
+        align-items: center;
+        min-width: 600px;
+      }
+      #rustBin,
+      #caseName {
+        min-width: 0;
+        width: 100%;
+      }
+      .divider {
+        width: 1px;
+        height: 32px;
+        background: var(--line);
+      }
+      .label {
+        font-size: 13px;
+        color: #263241;
+      }
+      .primary {
+        border-color: var(--accent);
+        color: #fff;
+        background: var(--accent);
+        font-weight: 700;
+      }
+      .primary:hover:not(:disabled) {
+        background: var(--accent-hover);
+      }
+      .btn-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
+      .refresh-icon {
+        font-size: 1.4em;
+        transform: translateY(-0.075em);
+      }
+      .icon-btn {
+        width: 34px;
+        padding: 0;
+        font-size: 17px;
+      }
+      .step-pair {
+        display: inline-flex;
+        width: 67px;
+        align-items: center;
+      }
+      .step-pair .icon-btn {
+        border-radius: 0;
+        position: relative;
+      }
+      .step-pair .icon-btn:first-child {
+        border-radius: 6px 0 0 6px;
+      }
+      .step-pair .icon-btn:last-child {
+        margin-left: -1px;
+        border-radius: 0 6px 6px 0;
+      }
+      .step-pair .icon-btn:hover:not(:disabled),
+      .step-pair .icon-btn:focus {
+        z-index: 1;
+      }
+      #speed {
+        min-width: 104px;
+        margin-left: -4px;
+        padding-left: 12px;
+        padding-right: 30px;
+      }
+      .play-btn {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: #fff;
+        font-weight: 700;
+      }
+      .play-btn.is-active {
+        color: #fff;
+        background: var(--accent);
+      }
+      .status {
+        min-height: 18px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .turn-count {
+        display: flex;
+        justify-content: flex-end;
+        gap: 4px;
+        color: #263241;
+        font-size: 13px;
+      }
+      .score-panel {
+        margin-top: 14px;
+        min-height: 66px;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        padding: 0 24px;
+      }
+      .score-label {
+        font-size: 19px;
+      }
+      #score {
+        color: var(--accent);
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+      #error {
+        color: var(--danger);
+        white-space: pre-wrap;
+        font-size: 13px;
+      }
+      .canvas-panel {
+        margin-top: 0;
+        min-height: 0;
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 8px;
+        background-image: radial-gradient(#e7ecef 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+      #svgHost {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      #svgHost svg {
+        max-width: 100%;
+        height: auto;
+      }
+      .io-grid {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: 82px 1fr 1fr;
+        gap: 18px;
+        padding: 12px;
+      }
+      .run-rail {
+        min-height: 240px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 2px 0;
+      }
+      .run-rail button {
+        height: 34px;
+        width: 66px;
+        flex-direction: row;
+        font-size: 12px;
+      }
+      .io-panel {
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+      .io-head {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .io-title {
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .copy-btn {
+        height: 28px;
+        padding: 0 9px;
+        color: #333b47;
+      }
+      @media (max-width: 980px) {
+        .io-grid {
+          grid-template-columns: 74px 1fr 1fr;
+          gap: 12px;
+        }
+        .run-rail { min-height: auto; }
+        .run-rail button { height: 46px; width: 100%; flex-direction: row; }
+      }
+      @media (max-width: 720px) {
+        .io-grid {
+          grid-template-columns: 1fr;
+        }
+        .io-grid > .run-rail { order: 2; }
+        .io-grid > .io-panel:nth-of-type(2) { order: 1; }
+        .io-grid > .io-panel:nth-of-type(3) { order: 3; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="view-tabs" aria-label="view">
+        <a class="view-tab active" href="/"><span>▦</span><span>case visualizer</span></a>
+        <a class="view-tab" href="/eval.html"><span>▧</span><span>eval viewer</span></a>
+      </nav>
+
+      <section class="panel control-panel">
+        <div class="control-row">
+          <button id="refreshBtn" class="primary" type="button" title="一覧を更新"><span class="btn-icon refresh-icon">⟳</span><span>更新</span></button>
+          <select id="rustBin" aria-label="bin"></select>
+          <div class="step-pair" aria-label="bin step">
+            <button id="binPrevBtn" class="icon-btn" type="button" title="前の bin">‹</button>
+            <button id="binNextBtn" class="icon-btn" type="button" title="次の bin">›</button>
+          </div>
+          <div class="divider"></div>
+          <div class="label">case</div>
+          <select id="caseName" aria-label="case"></select>
+          <div class="step-pair" aria-label="case step">
+            <button id="casePrevBtn" class="icon-btn" type="button" title="前の case">‹</button>
+            <button id="caseNextBtn" class="icon-btn" type="button" title="次の case">›</button>
+          </div>
+        </div>
+
+        <div class="play-row">
+          <button id="playBtn" class="play-btn" type="button" title="再生/停止">▶ 再生</button>
+          <div class="label">速度</div>
+          <select id="speed" aria-label="speed">
+            <option value="1">x1</option>
+            <option value="2">x2</option>
+            <option value="5" selected>x5</option>
+            <option value="10">x10</option>
+            <option value="20">x20</option>
+            <option value="40">x40</option>
+            <option value="80">x80</option>
+            <option value="160">x160</option>
+          </select>
+          <div class="step-pair" aria-label="turn step">
+            <button id="prevBtn" class="icon-btn" type="button" title="1ターン戻る">‹</button>
+            <button id="nextBtn" class="icon-btn" type="button" title="1ターン進む">›</button>
+          </div>
+          <div class="label">Turn</div>
+          <input id="turn" type="range" min="0" max="0" value="0" />
+          <div class="turn-count mono">
+            <span id="turnValue">0</span><span>/</span><span id="maxTurnValue">0</span>
+          </div>
+        </div>
+        <div id="runStatus" class="status"></div>
+      </section>
+
+      <section class="panel score-panel">
+        <div class="score-label">Score</div>
+        <div id="score" class="mono">-</div>
+        <div id="error"></div>
+      </section>
+
+      <section class="panel canvas-panel">
+        <div id="svgHost"></div>
+      </section>
+
+      <section class="panel io-grid">
+        <div class="run-rail">
+          <button id="runBinBtn" class="play-btn" type="button" title="選択中の Rust bin を実行">▶ 実行</button>
+        </div>
+        <div class="io-panel">
+          <div class="io-head">
+            <div class="io-title">Input</div>
+            <button id="copyInputBtn" class="copy-btn" type="button">⧉ コピー</button>
+          </div>
+          <textarea id="inputArea" spellcheck="false"></textarea>
+        </div>
+        <div class="io-panel">
+          <div class="io-head">
+            <div class="io-title">Output</div>
+            <button id="copyOutputBtn" class="copy-btn" type="button">⧉ コピー</button>
+          </div>
+          <textarea id="outputArea" spellcheck="false"></textarea>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src_vis/main.js"></script>
+  </body>
+</html>

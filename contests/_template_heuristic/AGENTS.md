@@ -17,7 +17,7 @@
 - `notes/notations.md` は、問題で使う記号、コード上の代表名、型、制約の正本である。新しい重要記号、代表名、型、制約を導入したら、コード変更と同時に `notes/notations.md` も原則更新する。軽微なローカル変数だけは例外とする。
 - `notes/important_properties.md` は、問題から導かれる重要な性質、不変量、探索や構築で効く性質の正本である。新しい重要な性質や有力な仮説が見えたら、コード変更とあわせて `notes/important_properties.md` に整理する。
 - 公式配布物は `tools/` と `samples/` に配置する。
-- visualizer実装は `.agents/skills/make-visualizer/SKILL.md` に従う。
+- visualizer実装は `.agents/skills/make-ahc-visualizer/SKILL.md` に従う。必要な UI / WASM テンプレートは skill の同梱物から project root に展開する。
 
 ## 生成AI利用ルール (AtCoder Heuristic Contest 生成AI利用ルール の解釈ボーダー)
 - AI は 1 つの会話で、新しく生成する解候補を 1 つまでにする。実務上は `src/bin` に増える新規ファイルを 1 本までとみなす。
@@ -48,7 +48,7 @@
 - verbose は進捗表示だけに使い、追加ログを恒久保存しない。
 
 ## ディレクトリ構成
-主要なものだけ示す。生成物ディレクトリ (`target/`, `node_modules/`, `dist/`, `wasm/target/`) は除く。
+主要なものだけ示す。生成物ディレクトリ (`target/`, `node_modules/`, `dist/`, `wasm/target/`) は除く。visualizer 関連ファイルは `make-ahc-visualizer` skill 実行時に生成・配置される。
 
 ```text
 _template_heuristic/
@@ -68,9 +68,7 @@ _template_heuristic/
 │       └── adhoc/
 ├── scripts/
 │   └── adhoc/
-├── src_vis/
-├── wasm/
-└── .agents/skills/make-visualizer/SKILL.md
+└── .agents/skills/make-ahc-visualizer/SKILL.md
 ```
 
 ## 各ディレクトリ・ファイルの役割
@@ -111,12 +109,8 @@ _template_heuristic/
   - 公式 generator / tester / scorer の配置先である。
 - `samples/`
   - サンプル input / output の配置先である。
-- `src_vis/main.js`
-  - visualizer の UI とローカル API 連携を書く。`src_vis/wasm/` の wrapper を相対 import して使う。
-- `wasm/src/impl_vis.rs`
-  - 問題固有の visualizer ロジック本体である。
-- `src_vis/wasm/`
-  - `build_wasm.sh` の生成物が出る場所である。
+- `.agents/skills/make-ahc-visualizer/SKILL.md`
+  - visualizer 実装時に AI が従う手順である。UI / WASM / Vite のテンプレートはこの skill の同梱物から展開する。
 
 ## script の役割
 - `scripts/run.sh`
@@ -130,10 +124,6 @@ _template_heuristic/
   - `tools` 側の `gen` バイナリを呼ぶための薄い wrapper である。
 - `scripts/unpack_tools.sh`
   - 公式配布 zip を `tools/` に展開する。
-- `scripts/build_wasm.sh`
-  - `wasm-pack` を使って browser 用の生成物を `src_vis/wasm/` に出力する。
-- `scripts/dev_vis.sh`
-  - 必要なら `yarn install` を行い、WASM 生成物が無ければ自動 build したうえで Vite 開発サーバーを起動する。
 
 ## AI が意識すること
 - `v000_template.rs` には複数 solver で共有したい確定実装を寄せ、version 固有の探索ロジックや一時的な hack は `v001_*.rs` 以降に分ける。
@@ -144,5 +134,4 @@ _template_heuristic/
 - `notes/important_properties.md` で使う記号も `notes/notations.md` に合わせる。
 - 新しい重要な性質や有力な仮説が見えたら、実装メモで終わらせず `notes/important_properties.md` に昇格させる。
 - `tools/` の中身は contest ごとに異なる。wrapper script の引数や期待する bin 名は固定だと思い込まない。
-- visualizer 実装に入る前に `problem_description.txt` と `tools/src/` の存在を確認する。
-- `src_vis/wasm/` は手書きではなく build 生成物の置き場として扱う。
+- visualizer 実装に入る前に `problem_description.txt` と `tools/src/` の存在を確認し、`.agents/skills/make-ahc-visualizer/SKILL.md` を読む。
