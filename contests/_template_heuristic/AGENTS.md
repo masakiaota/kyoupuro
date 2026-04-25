@@ -14,6 +14,7 @@
 - `crate_check.rs` は adhoc 補助 bin として扱い、運用上は `src/bin/adhoc/` に属するものとみなす。
 - わからないことに関しては(特に問題の考察に関して)、それっぽい解説をするのではなく「わからない」と認める。
 - 問題文や要点は `problem_description.txt` に記録する。
+- problem_description作成は `.agents/skills/write-problem-description/SKILL.md` に従う。
 - `notes/notations.md` は、問題で使う記号、コード上の代表名、型、制約の正本である。新しい重要記号、代表名、型、制約を導入したら、コード変更と同時に `notes/notations.md` も原則更新する。軽微なローカル変数だけは例外とする。
 - `notes/important_properties.md` は、問題から導かれる重要な性質、不変量、探索や構築で効く性質の正本である。新しい重要な性質や有力な仮説が見えたら、コード変更とあわせて `notes/important_properties.md` に整理する。
 - 公式配布物は `tools/` と `samples/` に配置する。
@@ -68,12 +69,16 @@ _template_heuristic/
 │       └── adhoc/
 ├── scripts/
 │   └── adhoc/
-└── .agents/skills/make-ahc-visualizer/SKILL.md
+└── .agents/skills/
+    ├── write-problem-description/SKILL.md
+    └── make-ahc-visualizer/SKILL.md
 ```
 
 ## 各ディレクトリ・ファイルの役割
 - `problem_description.txt`
   - 問題文、制約、スコア、初動メモの保存先である。
+- `.agents/skills/write-problem-description/SKILL.md`
+  - problem_description 作成時に AI が従う手順である。貼り付けテキストやスクリーンショットから公式の節順を保って転記する。
 - `src/bin/*.rs`
   - top-level は `v000_template.rs` と提出候補 solver を置く場所である。
 - `src/bin/adhoc/*.rs`
@@ -134,4 +139,5 @@ _template_heuristic/
 - `notes/important_properties.md` で使う記号も `notes/notations.md` に合わせる。
 - 新しい重要な性質や有力な仮説が見えたら、実装メモで終わらせず `notes/important_properties.md` に昇格させる。
 - `tools/` の中身は contest ごとに異なる。wrapper script の引数や期待する bin 名は固定だと思い込まない。
+- problem_description を作成・更新する前に `.agents/skills/write-problem-description/SKILL.md` を読む。
 - visualizer 実装に入る前に `problem_description.txt` と `tools/src/` の存在を確認し、`.agents/skills/make-ahc-visualizer/SKILL.md` を読む。

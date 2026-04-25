@@ -14,6 +14,8 @@ _template_heuristic/
 ├── Cargo.toml
 ├── .agents/
 │   └── skills/
+│       ├── write-problem-description/
+│       │   └── SKILL.md
 │       └── make-ahc-visualizer/
 │           └── SKILL.md
 ├── src/
@@ -37,6 +39,8 @@ _template_heuristic/
 ### ルート
 - `problem_description.txt`
   - 問題文、入出力、スコア、制約、初動メモを書く。
+- `.agents/skills/write-problem-description/SKILL.md`
+  - `problem_description.txt` 作成時に AI が従う手順である。
 
 ### 解法・実験
 - `src/bin/v000_template.rs`
@@ -71,7 +75,7 @@ _template_heuristic/
 
 ## 基本的な使い方
 ### 最初にやること
-1. `problem_description.txt` を埋める
+1. `.agents/skills/write-problem-description/SKILL.md` に従って `problem_description.txt` を埋める
 2. 公式配布物を `tools/` と `samples/` に置く
 3. 並列評価できるように `scripts/eval.py` が contest の scoring tool 呼び出し方に対応するように編集。
 4. 必要な記号を `notes/notations.md` に早めに書き出し、命名と型の正本を固める。
