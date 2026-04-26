@@ -137,7 +137,7 @@ _template_heuristic/
 - adhoc Rust bin を増やしたら `Cargo.toml` の `[[bin]]` も同時に更新する。
 - 記号や代表名を導入するときは、solver 間で別名を乱立させず `notes/notations.md` を正本として揃える。
 - `notes/important_properties.md` で使う記号も `notes/notations.md` に合わせる。
-- 新しい重要な性質や有力な仮説が見えたら、実装メモで終わらせず `notes/important_properties.md` に昇格させる。
+- `notes/notations.md` や `notes/important_properties.md` はユーザーの明示的な更新指示があった場合のみ更新する。
 - `tools/` の中身は contest ごとに異なる。wrapper script の引数や期待する bin 名は固定だと思い込まない。
 - problem_description を作成・更新する前に `.agents/skills/write-problem-description/SKILL.md` を読む。
 - visualizer 実装に入る前に `problem_description.txt` と `tools/src/` の存在を確認し、`.agents/skills/make-ahc-visualizer/SKILL.md` を読む。
