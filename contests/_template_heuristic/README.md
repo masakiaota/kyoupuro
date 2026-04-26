@@ -89,7 +89,8 @@ _template_heuristic/
    - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
 3. scorer があるなら `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] <bin_name> [input_dir]` で公式スコアを確認する
    - `input_dir` 省略時は `tools/in` を使う。
-   - 既定では各ケースについて `run -> score` を `cpu//2 - 1` 並列で実行する。最小値は 1 である。
+   - build 後に先頭入力で `run -> score` を 1 回ウォームアップしてから、各ケースについて本番の `run -> score` を `cpu//2 - 1` 並列で実行する。最小値は 1 である。
+   - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
    - 発熱や計測ぶれを避けたいときは `-j 1` で直列実行する。
    - 通常実行では `results/score_summary.csv` と `results/eval_records.jsonl` に追記し、`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記する。
    - `--dry-run` は蓄積ファイルを更新せず、その場の確認だけを行う。
@@ -99,7 +100,8 @@ _template_heuristic/
 - `./scripts/run.sh <bin_name> [input_file]`
   - stdin または 1 つの input_file に対して手動実行する。
 - `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] <bin_name> [input_dir]`
-  - solver と公式 `score` を 1 回だけ build し、ケース単位で `run -> score` を実行する。
+  - solver と公式 `score` を 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、ケース単位で本番の `run -> score` を実行する。
+  - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
   - 既定ジョブ数は `cpu//2 - 1` で、最小値は 1 である。`-j 1` で直列評価に切り替えられる。
   - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記し、全ケースの記録は `results/eval_records.jsonl` に追記する。
   - `--dry-run` は 3 つの蓄積ファイルを更新しない。

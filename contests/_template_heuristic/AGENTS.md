@@ -40,7 +40,7 @@
 
 ## 評価運用ルール
 - `scripts/run.sh` は単発の手動実行専用である。
-- `scripts/eval.py` は評価パイプライン本体である。solver と tools の score をそれぞれ 1 回だけ build し、その後は `run -> score` をケース単位で実行する。既定は `cpu//2 - 1` 並列で、最小値は 1 である。厳密に見たいときは `-j 1` を使う。
+- `scripts/eval.py` は評価パイプライン本体である。solver と tools の score をそれぞれ 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、本番の `run -> score` をケース単位で実行する。ウォームアップ結果は保存・集計しない。既定は `cpu//2 - 1` 並列で、最小値は 1 である。厳密に見たいときは `-j 1` を使う。
 - `results/out/<bin_name>/` は最新評価の scratch/workspace である。`eval.py` 実行時に同名 basename の出力が並ぶ前提なので、重複 basename は拒否する。
 - `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at` で、経過時間は整数 ms で記録する。全ケース成功時のみ追記する。
 - `results/score_detail.csv` は `tools/in` 専用の wide-format 比較表である。列順は `bin,total_avg,max_elapsed,<case_name_1>,...,label,executed_at` で、全ケース成功時のみ追記する。
@@ -121,7 +121,8 @@ _template_heuristic/
 - `scripts/run.sh`
   - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file を手動確認する。
 - `scripts/eval.py`
-  - solver と score を 1 回だけ build し、ケース単位で `run -> score` を実行する。
+  - solver と score を 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、ケース単位で本番の `run -> score` を実行する。
+  - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
   - 既定は `cpu//2 - 1` 並列で、最小値は 1 である。必要なら `-j <jobs>` で明示指定できる。
   - `./scripts/eval.py <bin_name>` は `tools/in` と `results/out/<bin_name>` を使う。
   - `--dry-run` は 3 つの蓄積ファイルを更新しない。
