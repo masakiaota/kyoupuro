@@ -11,6 +11,8 @@ const MAX_RENDER_FPS = 60;
 const HOLD_DELAY_MS = 500;
 const HOLD_INTERVAL_MS = 55;
 const BIN_POLL_INTERVAL_MS = 10_000;
+const STORAGE_PREFIX = "ahc-visualizer";
+const STORAGE_VERSION = "v1";
 
 const els = {
   refreshBtn: document.getElementById("refreshBtn"),
@@ -49,8 +51,12 @@ const state = {
   bins: [],
   runnableBins: new Set(),
   cases: [],
+  projectKey: "",
+  caseStorageKey: "",
   currentBin: "",
   currentCase: null,
+  pendingTurn: null,
+  preserveEmptyBinSelection: false,
   loadSeq: 0,
   suppressInputDirty: false,
   suppressOutputDirty: false,
@@ -78,6 +84,73 @@ function setRunStatus(text, isError = false) {
   els.runStatus.style.color = isError ? "#b91c1c" : "#5b6472";
 }
 
+function makeStorageKey(projectKey) {
+  const key = typeof projectKey === "string" && projectKey ? projectKey : "unknown";
+  return `${STORAGE_PREFIX}:${key}:case:${STORAGE_VERSION}`;
+}
+
+function readSessionJson(key) {
+  try {
+    const raw = window.sessionStorage.getItem(key);
+    if (!raw) {
+      return null;
+    }
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeSessionJson(key, value) {
+  try {
+    window.sessionStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Storage errors should not break the visualizer itself.
+  }
+}
+
+function configureCaseStorage(projectKey) {
+  const nextKey = makeStorageKey(projectKey);
+  if (state.caseStorageKey === nextKey) {
+    return;
+  }
+  state.projectKey = typeof projectKey === "string" && projectKey ? projectKey : "unknown";
+  state.caseStorageKey = nextKey;
+
+  const saved = readSessionJson(nextKey);
+  if (!saved) {
+    return;
+  }
+  if (Object.prototype.hasOwnProperty.call(saved, "bin") && typeof saved.bin === "string") {
+    state.currentBin = saved.bin;
+    state.preserveEmptyBinSelection = saved.bin === "";
+  }
+  if (Object.prototype.hasOwnProperty.call(saved, "caseName") && typeof saved.caseName === "string") {
+    state.currentCase = saved.caseName;
+  }
+  const savedSpeed = String(saved.speed ?? "");
+  if (Array.from(els.speed.options).some((option) => option.value === savedSpeed)) {
+    els.speed.value = savedSpeed;
+  }
+  const savedTurn = Number(saved.turn);
+  if (Number.isFinite(savedTurn)) {
+    state.pendingTurn = Math.max(0, Math.round(savedTurn));
+  }
+}
+
+function saveCaseViewState() {
+  if (!state.caseStorageKey) {
+    return;
+  }
+  writeSessionJson(state.caseStorageKey, {
+    bin: state.currentBin || "",
+    caseName: typeof state.currentCase === "string" ? state.currentCase : CUSTOM_CASE_VALUE,
+    turn: Number(els.turn.value) || 0,
+    speed: els.speed.value,
+  });
+}
+
 function updatePlayButton() {
   els.playBtn.textContent = state.playing ? "■ 停止" : "▶ 再生";
   els.playBtn.classList.toggle("is-active", state.playing);
@@ -92,6 +165,7 @@ function stopPlayback() {
     state.rafId = null;
   }
   updatePlayButton();
+  saveCaseViewState();
 }
 
 function syncTurnDisplay() {
@@ -132,7 +206,10 @@ function setTurnMax(preferLastTurn = false) {
     }
   }
   els.turn.max = String(maxTurn);
-  if (preferLastTurn) {
+  if (Number.isFinite(state.pendingTurn)) {
+    els.turn.value = String(Math.max(0, Math.min(state.pendingTurn, maxTurn)));
+    state.pendingTurn = null;
+  } else if (preferLastTurn) {
     els.turn.value = String(maxTurn);
   } else {
     const current = Number(els.turn.value) || 0;
@@ -142,6 +219,7 @@ function setTurnMax(preferLastTurn = false) {
     stopPlayback();
   }
   syncTurnDisplay();
+  saveCaseViewState();
 }
 
 function render() {
@@ -231,6 +309,7 @@ function stepTurn(delta) {
   els.turn.value = String(next);
   state.playbackTurnFloat = next;
   render();
+  saveCaseViewState();
 }
 
 function playbackFrame(ts) {
@@ -316,10 +395,11 @@ function populateBinOptions({ preserveSelection = false } = {}) {
 
   if (previous && state.bins.includes(previous)) {
     state.currentBin = previous;
-  } else if (preserveSelection) {
+  } else if (previous === "" && preserveSelection) {
     state.currentBin = previous;
   } else {
     state.currentBin = state.bins[0] ?? "";
+    state.preserveEmptyBinSelection = state.currentBin === "";
   }
   els.rustBin.value = state.currentBin;
   updateBinButtons();
@@ -364,10 +444,11 @@ async function loadVisualizerData() {
 
 async function refreshVisualizerData({ reloadCase = false } = {}) {
   const data = await loadVisualizerData();
+  configureCaseStorage(data.projectKey);
   state.bins = Array.isArray(data.bins) ? data.bins : [];
   state.runnableBins = new Set(Array.isArray(data.runnableBins) ? data.runnableBins : []);
   state.cases = Array.isArray(data.cases) ? data.cases : [];
-  populateBinOptions();
+  populateBinOptions({ preserveSelection: state.preserveEmptyBinSelection });
   populateCaseOptions(state.currentCase === CUSTOM_CASE_VALUE);
   updateRunButton();
   setRunStatus("一覧を更新した");
@@ -405,6 +486,7 @@ async function loadSelectedCase(preferLastTurn = true) {
   if (!state.currentCase) {
     updateCaseButtons();
     updateRunButton();
+    setTurnMax(false);
     setRunStatus("custom input を表示中");
     return;
   }
@@ -508,6 +590,7 @@ function moveCase(delta) {
   }
   state.currentCase = state.cases[nextIdx];
   populateCaseOptions(false);
+  saveCaseViewState();
   void loadSelectedCase(true);
 }
 
@@ -521,12 +604,14 @@ function moveBin(delta) {
     return;
   }
   state.currentBin = state.bins[nextIdx];
+  state.preserveEmptyBinSelection = false;
   els.rustBin.value = state.currentBin;
   updateBinButtons();
   updateRunButton();
   if (state.currentCase !== CUSTOM_CASE_VALUE) {
     void loadSelectedCase(true);
   }
+  saveCaseViewState();
 }
 
 function setupHoldButton(button, delta) {
@@ -575,11 +660,13 @@ els.refreshBtn.addEventListener("click", () => {
 
 els.rustBin.addEventListener("change", () => {
   state.currentBin = els.rustBin.value;
+  state.preserveEmptyBinSelection = state.currentBin === "";
   updateBinButtons();
   updateRunButton();
   if (state.currentCase !== CUSTOM_CASE_VALUE) {
     void loadSelectedCase(true);
   }
+  saveCaseViewState();
 });
 
 els.binPrevBtn.addEventListener("click", () => moveBin(-1));
@@ -591,6 +678,7 @@ els.caseName.addEventListener("change", () => {
   if (state.currentCase !== CUSTOM_CASE_VALUE) {
     void loadSelectedCase(true);
   }
+  saveCaseViewState();
 });
 
 els.casePrevBtn.addEventListener("click", () => moveCase(-1));
@@ -609,6 +697,11 @@ els.turn.addEventListener("input", () => {
   stopPlayback();
   state.playbackTurnFloat = Number(els.turn.value) || 0;
   render();
+  saveCaseViewState();
+});
+
+els.speed.addEventListener("change", () => {
+  saveCaseViewState();
 });
 
 els.inputArea.addEventListener("input", () => {
@@ -620,6 +713,7 @@ els.inputArea.addEventListener("input", () => {
   setTurnMax(false);
   updateRunButton();
   render();
+  saveCaseViewState();
 });
 
 els.outputArea.addEventListener("input", () => {
@@ -629,6 +723,11 @@ els.outputArea.addEventListener("input", () => {
   stopPlayback();
   setTurnMax(false);
   render();
+  saveCaseViewState();
+});
+
+window.addEventListener("pagehide", () => {
+  saveCaseViewState();
 });
 
 els.copyInputBtn.addEventListener("click", () => {

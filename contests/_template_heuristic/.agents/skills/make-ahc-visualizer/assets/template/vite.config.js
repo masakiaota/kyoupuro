@@ -1,10 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 
 const ROOT_DIR = fileURLToPath(new URL(".", import.meta.url));
+const PROJECT_KEY = crypto
+  .createHash("sha256")
+  .update(path.resolve(ROOT_DIR))
+  .digest("hex")
+  .slice(0, 16);
 const SRC_BIN_DIR = path.join(ROOT_DIR, "src", "bin");
 const MANIFEST_PATH = path.join(ROOT_DIR, "Cargo.toml");
 const TOOLS_MANIFEST_PATH = path.join(ROOT_DIR, "tools", "Cargo.toml");
@@ -159,6 +165,7 @@ function rustBinApiPlugin() {
         }
         try {
           sendJson(res, 200, {
+            projectKey: PROJECT_KEY,
             bins: listRustBins(),
             runnableBins: listRunnableBins(),
             cases: listVisualizerCases(),
@@ -429,6 +436,7 @@ function buildEvalViewData() {
   }
 
   return {
+    projectKey: PROJECT_KEY,
     evalSets,
     runsByEvalSet,
     caseNamesByEvalSet: normalizedCaseNamesByEvalSet,

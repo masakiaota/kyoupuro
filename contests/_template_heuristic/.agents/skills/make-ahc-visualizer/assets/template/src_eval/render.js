@@ -8,7 +8,7 @@ import {
 import { mergeCaseSortOptions, sortCaseNames } from "./case_sorters.js";
 import { renderResultTable } from "./table.js";
 
-export function renderApp(state, els) {
+export function renderApp(state, els, onStateChange = () => {}) {
   renderEvalSetSelect(state, els);
   renderCaseSortSelect(state, els);
   renderScoreUnitSelect(state, els);
@@ -45,12 +45,14 @@ export function renderApp(state, els) {
       } else {
         state.rowSort = { key: columnKey, dir: "desc" };
       }
-      renderApp(state, els);
+      renderApp(state, els, onStateChange);
+      onStateChange();
     },
     onManualOrder(runIds) {
       state.rowSort = null;
       state.manualRunOrder = runIds;
-      renderApp(state, els);
+      renderApp(state, els, onStateChange);
+      onStateChange();
     },
   });
 }
