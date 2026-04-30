@@ -1,37 +1,77 @@
 ---
 name: rust-rollback-beam-search
-description: Manual-reference skill for Rust rollback/delta-state beam search templates. Use only when the user explicitly asks to use rust-rollback-beam-search, rollback beam search, 差分更新型ビームサーチ, or the bundled Rust templates.
+description: Rust rollback/delta-state beam search templates for AHC-style solvers. Provides bundled Rust templates for Euler Tour edge traversal, linked-tree traversal, and variable-turn rollback beam search.
 ---
 
 # rust-rollback-beam-search
 
-Rust で差分更新型ビームサーチを書くための手動参照 skill である。通常の beam search と違い、各候補に `State` を clone して持たせず、1つの `State` を `move_forward(action)` / `move_backward(action)` で進退させながら候補を展開する。
+Rust で差分更新型ビームサーチを書くためのテンプレート集である。通常の beam search と違い、候補ごとに `State` を clone せず、1つの `State` を `move_forward(action)` / `move_backward(action)` で進退させながら候補を展開する。
 
-この skill は自動利用を前提にしない。ユーザーがこの skill 名、差分更新型ビームサーチ、rollback beam search、または同梱テンプレートを明示した場合だけ参照する。
-
-## 最初に読むもの
-
-1. `references/template-usage.md`
-2. 必要に応じて `references/design-notes.md`
-3. 具体例が欲しい場合は `references/examples.md`
 
 ## テンプレート選択
 
-- 基本は `assets/rust/euler_tour_edges_rollback_beam.rs` を使う。
-- 元記事に近い二重連鎖木の構造を見たい場合は `assets/rust/linked_tree_rollback_beam.rs` を使う。
+- 基本は `assets/rust/euler_tour_edges_rollback_beam.rs` を使う。固定ターンで1手ずつ進む AHC 形式に向く。
+- 元記事に近い二重連鎖木版を見たい場合は `assets/rust/linked_tree_rollback_beam.rs` を使う。
 - 1つの `Action` が複数ターン進む問題では `assets/rust/variable_turn_rollback_beam.rs` を使う。
+
+迷ったら Euler Tour 辺列版から始める。
+
+## 導入手順
+
+solver にテンプレートをコピーする。
+
+例:
+```sh
+SKILL_DIR=".agents/skills/rust-rollback-beam-search"
+cp "$SKILL_DIR/assets/rust/euler_tour_edges_rollback_beam.rs" src/bin/v001_rollback_beam.rs
+```
+
+既存 solver に組み込む場合は、必要な型と関数だけを貼り込む。
+
+## 埋める箇所
+
+`TODO(problem)` を検索し、最低限以下を問題固有に置き換える。
+
+- `Action`: 操作、移動、配置、削除などの1手を表す。小さく `Copy` できる型にする。
+- `State`: 盤面、位置、使用済み資源、累積スコア、hash 更新用の値を持つ。
+- `State::enumerate_actions`: 現在状態から出せる候補手を列挙する。
+- `State::move_forward`: `Action` を適用して状態を進める。
+- `State::move_backward`: 同じ `Action` を使って状態を完全に戻す。
+- `State::evaluate`: beam 内の比較値を返す。小さいほど良い。
+- `State::hash_key`: 重複排除したい粒度の hash を返す。
 
 ## 実装時の原則
 
-- `Action` は小さく `Copy` できる型にする。`move_backward(action)` に必要な情報も `Action` に含める。
+- `move_backward(action)` に必要な情報は `Action` に含める。
 - `Evaluator` は `Ord + Copy` にし、小さいほど良い評価に揃える。最大化問題では符号反転する。
 - `HashKey` は同一視したい状態を表す。既定テンプレートは `u64` を使う。
 - `State` は clone しない。大きい盤面、累積スコア、差分更新用の補助情報をここへ持たせる。
-- `move_forward` と `move_backward` が完全に逆操作になることを、最初に小さい入力で検証する。
-- 問題固有に書き換える箇所は `TODO(problem)` を検索して埋める。
+- `hash_key` と `evaluate` は `move_forward` 後の状態で計算する。
+- 可変ターン版では `Action::step()` を必ず `1` 以上にする。
 
-## 出典
+最大化したいスコア `score` があるなら、基本は `Evaluator { score_key: -score, ... }` のように符号反転する。
 
-設計の背景は eijirou さんの「差分更新ビームサーチ実装」記事を参考にする。
+## 逆操作チェック
 
-https://eijirou-kyopro.hatenablog.com/entry/2024/02/01/115639
+beam 幅や評価関数を調整する前に、`move_forward` と `move_backward` が完全に逆操作になることを確認する。
+
+```rust
+let before = state.debug_snapshot();
+state.move_forward(action);
+state.move_backward(action);
+assert_eq!(before, state.debug_snapshot());
+```
+
+テンプレートには汎用の `debug_snapshot` は入れていない。問題ごとに、盤面、位置、スコア、hash など比較したい値を tuple や軽量 struct で返す関数を一時的に追加する。
+
+## AHC での運用
+
+- `beam_width` は最初は小さくし、正しく動くことを確認してから広げる。
+- `enumerate_actions` は候補数を絞る。差分更新が速くても、候補数が大きすぎると詰まる。
+- `move_backward` の漏れはスコア劣化ではなく破壊的なバグになる。assert を厚くしてよい。
+- 1会話で新規 solver 候補を複数生成して自動比較しない。既存候補の比較はユーザーが明示した場合だけ行う。
+
+## その他資料
+- `references/design-notes.md`: 通常 beam search との違い、3つのテンプレートの構造、Rust 化方針。
+- `references/examples.md`: `Action`、`Evaluator`、`hash_key`、逆操作チェックの具体例
+- このスキルは eijirou さんの「差分更新ビームサーチ実装」記事を参考に作成された。元記事を Rust 向けに書き直したものである。https://eijirou-kyopro.hatenablog.com/entry/2024/02/01/115639
