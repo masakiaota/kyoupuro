@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AHC Eval Viewer</title>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="16" height="16" rx="3" fill="%23155e63"/><path d="M4 4h8v8H4zM6 4v8M10 4v8M4 6h8M4 10h8" stroke="white" stroke-width="1" fill="none"/></svg>' />
+    <style>
+      :root {
+        --bg: #f7f8f8;
+        --panel: #ffffff;
+        --line: #e5e7eb;
+        --line-strong: #cbd5e1;
+        --text: #111827;
+        --muted: #5b6472;
+        --accent: #155e63;
+        --danger: #b91c1c;
+        --shadow: 0 2px 8px rgba(15, 23, 42, 0.07);
+        --handle-w: 28px;
+        --bin-w: 104px;
+        --avg-w: 92px;
+        --elapsed-w: 86px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+        font-size: 14px;
+        color: var(--text);
+        background: var(--bg);
+      }
+      button, select {
+        height: 32px;
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--text);
+        font: inherit;
+        font-size: 13px;
+      }
+      button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 0 12px;
+        cursor: pointer;
+      }
+      button:hover {
+        border-color: var(--accent);
+        background: #f8fbfb;
+      }
+      select {
+        min-width: 0;
+        padding: 0 34px 0 12px;
+      }
+      .mono {
+        font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      }
+      .page {
+        max-width: 1480px;
+        margin: 0 auto;
+        padding: 10px 24px 24px;
+      }
+      .view-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: min(520px, 100%);
+        height: 34px;
+        margin: 0 auto 8px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .view-tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        color: #3f4652;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .view-tab span:first-child {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+      .view-tab.active {
+        color: #fff;
+        background: var(--accent);
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+      .toolbar {
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: max-content max-content minmax(120px, 1fr);
+        align-items: center;
+        column-gap: 18px;
+        row-gap: 10px;
+        padding: 16px 22px;
+        min-width: 680px;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      .toolbar-group {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        align-items: center;
+        gap: 10px;
+      }
+      .toolbar-label {
+        color: #374151;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+      #evalSet {
+        width: clamp(220px, 26vw, 340px);
+      }
+      #caseSort {
+        width: clamp(170px, 18vw, 260px);
+      }
+      .score-unit-group {
+        justify-self: end;
+      }
+      .segmented-control {
+        display: inline-flex;
+        height: 32px;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
+        background: #fff;
+      }
+      .segment-btn {
+        min-width: 44px;
+        height: 30px;
+        padding: 0;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-radius: 0;
+        color: #374151;
+        background: #fff;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .segment-btn:last-child {
+        border-right: 0;
+      }
+      .segment-btn[aria-pressed="true"] {
+        color: #fff;
+        background: var(--accent);
+      }
+      .segment-btn:hover {
+        border-color: var(--line);
+      }
+      .table-wrap {
+        margin-top: 16px;
+        overflow: auto;
+      }
+      table {
+        width: max-content;
+        min-width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 11px;
+      }
+      th, td {
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        height: 24px;
+        padding: 3px 6px;
+        white-space: nowrap;
+        background: #fff;
+      }
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 4;
+        height: 26px;
+        background: #f8fafc;
+        font-weight: 700;
+        color: #283241;
+      }
+      tr:nth-child(even) td {
+        background: #fcfcfd;
+      }
+      body.is-row-dragging {
+        cursor: grabbing;
+        user-select: none;
+      }
+      body.is-row-dragging * {
+        cursor: grabbing !important;
+      }
+      tr.is-drag-animating {
+        transition: transform 120ms ease;
+      }
+      tr.is-dragging {
+        position: relative;
+        z-index: 8;
+        transition: none;
+      }
+      tr.is-dragging td {
+        background: #fff;
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+      }
+      tr.is-dragging .sticky {
+        z-index: 8;
+      }
+      .sticky {
+        position: sticky;
+        z-index: 3;
+      }
+      th.sticky {
+        z-index: 5;
+      }
+      .sticky-handle {
+        left: 0;
+        width: var(--handle-w);
+        min-width: var(--handle-w);
+        max-width: var(--handle-w);
+        text-align: center;
+      }
+      .sticky-bin {
+        left: var(--handle-w);
+        width: var(--bin-w);
+        min-width: var(--bin-w);
+        max-width: var(--bin-w);
+      }
+      .sticky-avg {
+        left: calc(var(--handle-w) + var(--bin-w));
+        width: var(--avg-w);
+        min-width: var(--avg-w);
+        max-width: var(--avg-w);
+      }
+      .sticky-elapsed {
+        left: calc(var(--handle-w) + var(--bin-w) + var(--avg-w));
+        width: var(--elapsed-w);
+        min-width: var(--elapsed-w);
+        max-width: var(--elapsed-w);
+      }
+      .align-right {
+        text-align: right;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .empty {
+        padding: 24px;
+        color: var(--muted);
+      }
+      .sort-btn {
+        height: 18px;
+        min-width: 18px;
+        margin-left: 3px;
+        padding: 0 2px;
+        border: 0;
+        background: transparent;
+        color: var(--accent);
+        font-weight: 800;
+        font-size: 11px;
+      }
+      .sort-btn:hover {
+        background: var(--accent-soft, #e7f3f3);
+      }
+      .drag-handle {
+        width: 18px;
+        height: 20px;
+        padding: 0;
+        border: 0;
+        color: #9ca3af;
+        background: transparent;
+        cursor: grab;
+        font-size: 14px;
+        line-height: 1;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .drag-handle:active {
+        cursor: grabbing;
+      }
+      @media (max-width: 760px) {
+        .page { padding: 12px; }
+        .toolbar {
+          grid-template-columns: max-content max-content max-content;
+          column-gap: 14px;
+          padding: 14px;
+          min-width: 660px;
+        }
+        .toolbar-group {
+          grid-auto-flow: column;
+          gap: 8px;
+        }
+        #evalSet { width: 200px; }
+        #caseSort { width: 160px; }
+        .score-unit-group {
+          justify-self: start;
+        }
+        .segment-btn { min-width: 40px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="view-tabs" aria-label="view">
+        <a class="view-tab" href="/"><span>▦</span><span>case visualizer</span></a>
+        <a class="view-tab active" href="/eval.html"><span>▧</span><span>eval viewer</span></a>
+      </nav>
+
+      <section class="panel toolbar">
+        <div class="toolbar-group">
+          <label class="toolbar-label" for="evalSet">Eval Set</label>
+          <select id="evalSet"></select>
+        </div>
+        <div class="toolbar-group">
+          <label class="toolbar-label" for="caseSort">Case Sort</label>
+          <select id="caseSort"></select>
+        </div>
+        <div class="toolbar-group score-unit-group">
+          <div class="toolbar-label" id="scoreUnitLabel">Score Unit</div>
+          <div class="segmented-control" id="scoreUnit" role="group" aria-labelledby="scoreUnitLabel">
+            <button class="segment-btn" type="button" data-score-unit="raw" aria-pressed="true">raw</button>
+            <button class="segment-btn" type="button" data-score-unit="k" aria-pressed="false">k</button>
+            <button class="segment-btn" type="button" data-score-unit="m" aria-pressed="false">M</button>
+            <button class="segment-btn" type="button" data-score-unit="cap100k" aria-pressed="false">≤100k</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel table-wrap">
+        <div class="empty" id="tableEmpty">読み込み中...</div>
+        <table id="resultTable" hidden></table>
+      </section>
+    </main>
+
+    <script type="module" src="/src_eval/main.js"></script>
+  </body>
+</html>
