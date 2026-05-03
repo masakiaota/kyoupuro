@@ -9,6 +9,7 @@ import secrets
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -65,7 +66,10 @@ def default_jobs() -> int:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="./scripts/eval.py",
-        description="Build solver and scorer once, then run solver -> score per case.",
+        description=(
+            "Build solver and scorer once, warm up with one solver -> score run, "
+            "then evaluate solver -> score per case."
+        ),
     )
     parser.add_argument("bin_name", help="Rust solver bin name under src/bin")
     parser.add_argument(
@@ -354,6 +358,39 @@ def evaluate_cases(
     return [results_by_name[path.name] for path in input_files]
 
 
+def warm_up_case(
+    case_path: Path,
+    solver_bin: Path,
+    score_bin: Path,
+    output_dir: Path,
+    verbose: bool,
+) -> None:
+    if verbose:
+        eprint(f"warmup: start case={case_path.name}")
+
+    try:
+        with tempfile.TemporaryDirectory(prefix=".warmup_", dir=output_dir) as temp_dir:
+            result = run_case(
+                case_path=case_path,
+                solver_bin=solver_bin,
+                score_bin=score_bin,
+                output_dir=Path(temp_dir),
+                verbose=False,
+            )
+    except OSError as error:
+        if verbose:
+            eprint(f"warmup: done case={case_path.name} status=setup_fail error={error}")
+        return
+
+    if verbose:
+        score = "" if result.score is None else f" score={result.score}"
+        eprint(
+            "warmup: "
+            f"done case={result.case_name} status={result.status}{score} "
+            f"elapsed={result.elapsed}ms output=discarded"
+        )
+
+
 def summarize(results: list[CaseResult]) -> tuple[int, int, int, int, int, int]:
     success_results = [result for result in results if result.status == "ok" and result.score is not None]
     if not success_results:
@@ -445,6 +482,14 @@ def main() -> int:
     executed_dt = datetime.now().astimezone()
     executed_at = executed_dt.isoformat(timespec="seconds")
     run_id = make_run_id(executed_dt, args.bin_name)
+
+    warm_up_case(
+        case_path=input_files[0],
+        solver_bin=solver_bin,
+        score_bin=score_bin,
+        output_dir=output_dir,
+        verbose=args.verbose,
+    )
 
     results = evaluate_cases(
         input_files=input_files,

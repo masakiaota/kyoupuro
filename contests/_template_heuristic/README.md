@@ -14,7 +14,9 @@ _template_heuristic/
 ├── Cargo.toml
 ├── .agents/
 │   └── skills/
-│       └── make-visualizer/
+│       ├── write-problem-description/
+│       │   └── SKILL.md
+│       └── make-ahc-visualizer/
 │           └── SKILL.md
 ├── src/
 │   └── bin/
@@ -30,16 +32,15 @@ _template_heuristic/
 │   ├── eval_records.jsonl
 │   └── out/
 ├── samples/
-├── tools/
-├── src_vis/
-├── wasm/
-└── public/
+└── tools/
 ```
 
 ## 役割
 ### ルート
 - `problem_description.txt`
   - 問題文、入出力、スコア、制約、初動メモを書く。
+- `.agents/skills/write-problem-description/SKILL.md`
+  - `problem_description.txt` 作成時に AI が従う手順である。
 
 ### 解法・実験
 - `src/bin/v000_template.rs`
@@ -69,23 +70,17 @@ _template_heuristic/
   - サンプル input / output を置く場所である。
 
 ### visualizer
-- `.agents/skills/make-visualizer/SKILL.md`
-  - visualizer 実装時に AI が従う手順である。
-- `src_vis/main.js`
-  - Vite 側の UI ロジックとローカル API 連携を書く。`src_vis/wasm/` の wrapper を相対 import して使う。
-- `src_vis/wasm/`
-  - wasm-pack の browser 向け生成物を置く場所である。
-- `wasm/src/impl_vis.rs`
-  - 問題固有の visualizer 実装本体である。
+- `.agents/skills/make-ahc-visualizer/SKILL.md`
+  - visualizer 実装時に AI が従う手順である。UI / WASM / Vite のテンプレートは skill の同梱物から project root に展開する。
 
 ## 基本的な使い方
 ### 最初にやること
-1. `problem_description.txt` を埋める
+1. `.agents/skills/write-problem-description/SKILL.md` に従って `problem_description.txt` を埋める
 2. 公式配布物を `tools/` と `samples/` に置く
 3. 並列評価できるように `scripts/eval.py` が contest の scoring tool 呼び出し方に対応するように編集。
 4. 必要な記号を `notes/notations.md` に早めに書き出し、命名と型の正本を固める。
 5. 見えてきた重要な性質や不変量を `notes/important_properties.md` に整理する。
-6. 必要なら visualizer もつくる (適宜改善)。
+6. 必要なら `.agents/skills/make-ahc-visualizer/SKILL.md` に従って visualizer を作る。
 7. `src/bin/v000_template.rs` に共通土台を整え、実験用 solver は `v001_*.rs` 以降として追加する
 
 ### 実験の流れ
@@ -94,7 +89,8 @@ _template_heuristic/
    - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
 3. scorer があるなら `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] <bin_name> [input_dir]` で公式スコアを確認する
    - `input_dir` 省略時は `tools/in` を使う。
-   - 既定では各ケースについて `run -> score` を `cpu//2 - 1` 並列で実行する。最小値は 1 である。
+   - build 後に先頭入力で `run -> score` を 1 回ウォームアップしてから、各ケースについて本番の `run -> score` を `cpu//2 - 1` 並列で実行する。最小値は 1 である。
+   - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
    - 発熱や計測ぶれを避けたいときは `-j 1` で直列実行する。
    - 通常実行では `results/score_summary.csv` と `results/eval_records.jsonl` に追記し、`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記する。
    - `--dry-run` は蓄積ファイルを更新せず、その場の確認だけを行う。
@@ -104,7 +100,8 @@ _template_heuristic/
 - `./scripts/run.sh <bin_name> [input_file]`
   - stdin または 1 つの input_file に対して手動実行する。
 - `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] <bin_name> [input_dir]`
-  - solver と公式 `score` を 1 回だけ build し、ケース単位で `run -> score` を実行する。
+  - solver と公式 `score` を 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、ケース単位で本番の `run -> score` を実行する。
+  - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
   - 既定ジョブ数は `cpu//2 - 1` で、最小値は 1 である。`-j 1` で直列評価に切り替えられる。
   - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記し、全ケースの記録は `results/eval_records.jsonl` に追記する。
   - `--dry-run` は 3 つの蓄積ファイルを更新しない。
@@ -113,10 +110,6 @@ _template_heuristic/
   - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
 - `./scripts/unpack_tools.sh [tools_zip_path]`
   - `tools.zip` などの公式配布 zip を `tools/` に展開する。
-- `./scripts/build_wasm.sh`
-  - `wasm-pack build --target web --out-dir ../src_vis/wasm` を実行し、browser 用 WASM を更新する。
-- `./scripts/dev_vis.sh`
-  - 必要なら `yarn install` を行い、WASM 生成物が無ければ自動 build したうえで Vite の開発サーバーを起動する。
 
 ## よく使うコマンド
 ```bash
@@ -128,14 +121,10 @@ _template_heuristic/
 ./scripts/eval.py --dry-run <bin_name>
 ./scripts/eval.py --help
 ./scripts/unpack_tools.sh ./tools.zip
-./scripts/build_wasm.sh
-./scripts/dev_vis.sh
 cargo run --bin crate_check
 ```
 
 ## Visualizer の使い方
 - まず `problem_description.txt` と `tools/src/` を揃える
-- `wasm/src/impl_vis.rs` に問題固有の描画ロジックを入れる
-- `./scripts/build_wasm.sh` で `src_vis/wasm/` を更新する
-- `./scripts/dev_vis.sh` でローカル server を立ち上げる
-- `src_vis/main.js` は `src_vis/wasm/` の wrapper を相対 import しつつ、Rust bin 実行 UI と SVG 表示 UI を持つ
+- `.agents/skills/make-ahc-visualizer/SKILL.md` を読み、同梱テンプレートを project root に展開する
+- skill の指示に従い、問題固有部分だけを編集して起動確認する
