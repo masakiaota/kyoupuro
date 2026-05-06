@@ -32,6 +32,7 @@ const els = {
   nextBtn: document.getElementById("nextBtn"),
   speed: document.getElementById("speed"),
   score: document.getElementById("score"),
+  elapsedTime: document.getElementById("elapsedTime"),
   error: document.getElementById("error"),
   inputArea: document.getElementById("inputArea"),
   outputArea: document.getElementById("outputArea"),
@@ -61,6 +62,7 @@ const state = {
   suppressInputDirty: false,
   suppressOutputDirty: false,
   binPollInFlight: false,
+  currentElapsedMs: null,
 };
 
 function getMaxTurn() {
@@ -77,6 +79,23 @@ function formatScore(value) {
     return "-";
   }
   return Number(value).toLocaleString("en-US");
+}
+
+function formatElapsedMs(value) {
+  const elapsed = Number(value);
+  if (!Number.isFinite(elapsed) || elapsed < 0) {
+    return "-";
+  }
+  if (elapsed < 1000) {
+    return `${Math.round(elapsed)} ms`;
+  }
+  return `${(elapsed / 1000).toFixed(3)} s`;
+}
+
+function setElapsedMs(value) {
+  const elapsed = Number(value);
+  state.currentElapsedMs = Number.isFinite(elapsed) && elapsed >= 0 ? elapsed : null;
+  els.elapsedTime.textContent = formatElapsedMs(state.currentElapsedMs);
 }
 
 function setRunStatus(text, isError = false) {
@@ -234,6 +253,7 @@ function render() {
 
   if (!input.trim()) {
     els.score.textContent = "-";
+    setElapsedMs(null);
     els.error.textContent = "";
     els.svgHost.innerHTML = "";
     return;
@@ -245,14 +265,17 @@ function render() {
     els.svgHost.innerHTML = ret.svg;
     if (output.trim()) {
       els.score.textContent = formatScore(ret.score);
+      els.elapsedTime.textContent = formatElapsedMs(state.currentElapsedMs);
       els.error.textContent = ret.err || "";
     } else {
       els.score.textContent = "-";
+      els.elapsedTime.textContent = "-";
       els.error.textContent = "";
     }
   } catch (error) {
     els.svgHost.innerHTML = "";
     els.score.textContent = "0";
+    els.elapsedTime.textContent = formatElapsedMs(state.currentElapsedMs);
     els.error.textContent = String(error);
   } finally {
     ret?.free();
@@ -486,6 +509,7 @@ async function loadSelectedCase(preferLastTurn = true) {
   if (!state.currentCase) {
     updateCaseButtons();
     updateRunButton();
+    setElapsedMs(null);
     setTurnMax(false);
     setRunStatus("custom input を表示中");
     return;
@@ -512,6 +536,7 @@ async function loadSelectedCase(preferLastTurn = true) {
 
     setTextareaValue(els.inputArea, data.input ?? "", "input");
     setTextareaValue(els.outputArea, data.output ?? "", "output");
+    setElapsedMs(data.elapsedMs);
     setTurnMax(preferLastTurn);
     render();
     updateRunButton();
@@ -529,6 +554,7 @@ async function loadSelectedCase(preferLastTurn = true) {
     }
     setTextareaValue(els.inputArea, "", "input");
     setTextareaValue(els.outputArea, "", "output");
+    setElapsedMs(null);
     setTurnMax(false);
     render();
     updateRunButton();
@@ -566,6 +592,7 @@ async function runSelectedRustBin() {
     }
 
     setTextareaValue(els.outputArea, data.output ?? "", "output");
+    setElapsedMs(data.elapsedMs);
     setTurnMax(true);
     render();
     const saved = data.savedOutputPath ? ` / saved=${data.savedOutputPath}` : "";
@@ -710,6 +737,7 @@ els.inputArea.addEventListener("input", () => {
   }
   stopPlayback();
   setCustomInputCase();
+  setElapsedMs(null);
   setTurnMax(false);
   updateRunButton();
   render();
@@ -721,6 +749,7 @@ els.outputArea.addEventListener("input", () => {
     return;
   }
   stopPlayback();
+  setElapsedMs(null);
   setTurnMax(false);
   render();
   saveCaseViewState();

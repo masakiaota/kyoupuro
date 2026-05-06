@@ -235,18 +235,37 @@
         margin-top: 14px;
         min-height: 66px;
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         gap: 26px;
-        padding: 0 24px;
+        padding: 0 24px 16px;
+        flex-wrap: wrap;
+      }
+      .score-metric {
+        display: flex;
+        align-items: flex-end;
+        gap: 14px;
       }
       .score-label {
         font-size: 19px;
+        line-height: 1;
+      }
+      .elapsed-label {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1;
       }
       #score {
         color: var(--accent);
         font-size: 28px;
         font-weight: 800;
         letter-spacing: 0.02em;
+        line-height: 1;
+      }
+      #elapsedTime {
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1;
       }
       #error {
         color: var(--danger);
@@ -383,8 +402,14 @@
       </section>
 
       <section class="panel score-panel">
-        <div class="score-label">Score</div>
-        <div id="score" class="mono">-</div>
+        <div class="score-metric">
+          <div class="score-label">Score</div>
+          <div id="score" class="mono">-</div>
+        </div>
+        <div class="score-metric">
+          <div class="elapsed-label">Elapsed</div>
+          <div id="elapsedTime" class="mono">-</div>
+        </div>
         <div id="error"></div>
       </section>
 

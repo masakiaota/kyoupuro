@@ -102,6 +102,36 @@ function safeRelativePath(filePath) {
   return path.relative(ROOT_DIR, filePath).split(path.sep).join("/");
 }
 
+function findLatestElapsedMs(binName, caseName) {
+  if (!binName || !caseName || !fs.existsSync(EVAL_RECORDS_PATH)) {
+    return null;
+  }
+  const evalSet = safeRelativePath(TOOLS_INPUT_DIR);
+  let latest = null;
+  try {
+    for (const record of readEvalRecords()) {
+      if (
+        record &&
+        typeof record === "object" &&
+        record.bin === binName &&
+        record.case_name === caseName &&
+        record.input_dir === evalSet &&
+        typeof record.elapsed === "number"
+      ) {
+        if (
+          !latest ||
+          String(record.executed_at ?? "").localeCompare(String(latest.executed_at ?? "")) > 0
+        ) {
+          latest = record;
+        }
+      }
+    }
+  } catch {
+    return null;
+  }
+  return latest ? latest.elapsed : null;
+}
+
 function buildBinary(manifestPath, binName) {
   const result = spawnSync("cargo", [
     "build",
@@ -189,14 +219,16 @@ function rustBinApiPlugin() {
 
           let output = "";
           let outputExists = false;
+          let elapsedMs = null;
           if (binName && path.basename(binName) === binName) {
             const outputPath = path.join(RESULTS_OUT_DIR, binName, caseName);
             if (fs.existsSync(outputPath) && fs.statSync(outputPath).isFile()) {
               output = fs.readFileSync(outputPath, "utf-8");
               outputExists = true;
+              elapsedMs = findLatestElapsedMs(binName, caseName);
             }
           }
-          sendJson(res, 200, { input, output, outputExists });
+          sendJson(res, 200, { input, output, outputExists, elapsedMs });
         } catch (e) {
           sendJson(res, 400, { error: String(e) });
         }
