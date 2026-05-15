@@ -232,39 +232,6 @@
         width: var(--bin-w);
         min-width: var(--bin-w);
         max-width: var(--bin-w);
-        overflow: visible;
-        white-space: nowrap;
-      }
-      .cell-clip {
-        display: block;
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .floating-tooltip {
-        position: fixed;
-        z-index: 10000;
-        max-width: min(520px, calc(100vw - 24px));
-        padding: 4px 8px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 4px;
-        color: #fff;
-        background: #111827;
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.22);
-        font-size: 11px;
-        line-height: 1.35;
-        opacity: 0;
-        pointer-events: none;
-        text-align: left;
-        visibility: hidden;
-        white-space: nowrap;
-        transition: opacity 40ms ease;
-        transition-delay: 80ms;
-      }
-      .floating-tooltip.is-visible {
-        opacity: 1;
-        visibility: visible;
       }
       .sticky-avg {
         left: calc(var(--handle-w) + var(--bin-w));

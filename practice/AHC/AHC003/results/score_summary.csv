@@ -1,0 +1,17 @@
+bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at
+v001_bayes_gibbs_lcb,967287983,96728798333,940776973,981397646,329,383,tools/in,100,bayes_gibbs_lcb_initial,2026-05-14T10:20:16+09:00
+v002_baseline_manhattan,626250055,62625005485,503306796,743261203,8,20,tools/in,100,baseline_manhattan,2026-05-14T10:27:46+09:00
+v001_bayes_gibbs_lcb,967265507,96726550659,940776973,981397646,194,232,tools/in,100,bayes_gibbs_lcb_speed_cached,2026-05-14T10:43:24+09:00
+v002_bayes_gibbs_lcb_round26,966291631,96629163081,938513832,982337454,1803,1946,tools/in,100,round26,2026-05-14T10:49:38+09:00
+v003_bayes_gibbs_lcb_frontloaded,966495475,96649547474,934629453,981888206,1547,1991,tools/in,100,frontloaded_round25_6,2026-05-14T11:06:26+09:00
+v003_bayes_gibbs_lcb_mean_update,970889991,97088999084,942472093,987125439,220,471,tools/in,100,mean_update,2026-05-14T11:21:56+09:00
+v004_bayes_gibbs_lcb_mean_frontloaded,970388045,97038804510,946364500,986605764,1605,1968,tools/in,100,mean_frontloaded_round25_6,2026-05-14T11:23:42+09:00
+v005_bayes_gibbs_lcb_path_sigma,967355695,96735569503,940557877,983556202,203,226,tools/in,100,path_sigma_from_v001,2026-05-14T22:16:31+09:00
+v006_bayes_gibbs_lcb_path_sigma_mean,970894934,97089493389,942753404,986184235,199,248,tools/in,100,path_sigma_mean,2026-05-14T22:19:37+09:00
+v007_bayes_gibbs_lcb_path_sigma_blog_beta,969989402,96998940191,943738951,986965989,179,197,tools/in,100,path_sigma_blog_beta,2026-05-14T23:28:14+09:00
+v008_bayes_gibbs_lcb_path_sigma_blog_beta_round,970381284,97038128391,945719831,985201320,381,413,tools/in,100,path_sigma_blog_beta_round,2026-05-14T23:30:37+09:00
+v009_bayes_gibbs_lcb_path_sigma_blog_beta_round4x,970185295,97018529492,944432011,984648959,1554,1967,tools/in,100,path_sigma_blog_beta_round4x,2026-05-14T23:32:58+09:00
+v010_bayes_gibbs_lcb_path_sigma_mean_edge_stats,967708070,96770807003,942491885,981381511,206,250,tools/in,100,path_sigma_mean_edge_stats,2026-05-15T00:58:23+09:00
+v011_bayes_gibbs_lcb_blog_beta_round_edge_stats,973499905,97349990489,945364064,988184201,425,477,tools/in,100,blog_beta_round_edge_stats,2026-05-15T01:03:21+09:00
+v012_bayes_gibbs_lcb_blog_beta_round3x_edge_stats,975148075,97514807500,945654881,990258234,1408,1870,tools/in,100,blog_beta_round3x_edge_stats,2026-05-15T01:06:24+09:00
+v013_bayes_gibbs_lcb_blog_quirks_round3x,974216537,97421653671,946977671,989948337,1204,1330,tools/in,100,blog_quirks_round3x_safe_lcb,2026-05-15T23:54:59+09:00

@@ -7,67 +7,6 @@ function createCell(tagName, text, className = "") {
   return element;
 }
 
-function getFloatingTooltip() {
-  let tooltip = document.querySelector(".floating-tooltip");
-  if (!tooltip) {
-    tooltip = document.createElement("div");
-    tooltip.className = "floating-tooltip mono";
-    tooltip.setAttribute("aria-hidden", "true");
-    document.body.appendChild(tooltip);
-  }
-  if (!getFloatingTooltip.hasGlobalListeners) {
-    window.addEventListener("scroll", hideFloatingTooltip, true);
-    window.addEventListener("resize", hideFloatingTooltip);
-    getFloatingTooltip.hasGlobalListeners = true;
-  }
-  return tooltip;
-}
-
-function hideFloatingTooltip() {
-  const tooltip = document.querySelector(".floating-tooltip");
-  if (tooltip) {
-    tooltip.classList.remove("is-visible");
-  }
-}
-
-function positionFloatingTooltip(tooltip, anchor) {
-  const gap = 6;
-  const margin = 8;
-  const anchorRect = anchor.getBoundingClientRect();
-  const tooltipRect = tooltip.getBoundingClientRect();
-
-  let left = anchorRect.left;
-  if (left + tooltipRect.width > window.innerWidth - margin) {
-    left = window.innerWidth - tooltipRect.width - margin;
-  }
-  left = Math.max(margin, left);
-
-  let top = anchorRect.bottom + gap;
-  if (top + tooltipRect.height > window.innerHeight - margin) {
-    top = anchorRect.top - tooltipRect.height - gap;
-  }
-  top = Math.max(margin, top);
-
-  tooltip.style.left = `${Math.round(left)}px`;
-  tooltip.style.top = `${Math.round(top)}px`;
-}
-
-function attachFloatingTooltip(anchor, text) {
-  function show() {
-    const tooltip = getFloatingTooltip();
-    tooltip.textContent = text;
-    tooltip.classList.add("is-visible");
-    tooltip.style.visibility = "hidden";
-    positionFloatingTooltip(tooltip, anchor);
-    tooltip.style.visibility = "";
-  }
-
-  anchor.addEventListener("mouseenter", show);
-  anchor.addEventListener("mouseleave", hideFloatingTooltip);
-  anchor.addEventListener("focus", show);
-  anchor.addEventListener("blur", hideFloatingTooltip);
-}
-
 function sortMark(rowSort, columnKey) {
   if (rowSort?.key !== columnKey) {
     return "<";
@@ -289,11 +228,7 @@ export function renderResultTable(table, payload) {
     handleCell.appendChild(handle);
     row.appendChild(handleCell);
 
-    const binCell = createCell("td", "", "sticky sticky-bin mono bin-tooltip");
-    const binText = createCell("span", run.bin, "cell-clip");
-    binCell.appendChild(binText);
-    attachFloatingTooltip(binCell, run.bin);
-    row.appendChild(binCell);
+    row.appendChild(createCell("td", run.bin, "sticky sticky-bin mono"));
     row.appendChild(
       createCell("td", formatScore(run.totalAvg), "sticky sticky-avg align-right mono"),
     );

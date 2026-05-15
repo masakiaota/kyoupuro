@@ -1,0 +1,25 @@
+- main [ref=e2]:
+  - navigation "view" [ref=e3]:
+    - link "▦ case visualizer" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: ▦
+      - generic [ref=e6]: case visualizer
+    - link "▧ eval viewer" [ref=e7] [cursor=pointer]:
+      - /url: /eval.html
+      - generic [ref=e8]: ▧
+      - generic [ref=e9]: eval viewer
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]: Eval Set
+      - combobox "Eval Set" [ref=e13]
+    - generic [ref=e14]:
+      - generic [ref=e15]: Case Sort
+      - combobox "Case Sort" [ref=e16]
+    - generic [ref=e17]:
+      - generic [ref=e18]: Score Unit
+      - group "Score Unit" [ref=e19]:
+        - button "raw" [pressed] [ref=e20] [cursor=pointer]
+        - button "k" [ref=e21] [cursor=pointer]
+        - button "M" [ref=e22] [cursor=pointer]
+        - button "≤100k" [ref=e23] [cursor=pointer]
+  - generic [ref=e25]: 読み込み中...
