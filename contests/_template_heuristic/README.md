@@ -59,7 +59,7 @@ _template_heuristic/
 - `notes/`
   - 問題固有のアイデア、重要な性質、観察結果を書く。
 - `notes/notations.md`
-  - 問題で使う記号と、コード上の代表名・型・制約をまとめる正本である。
+  - 問題で使う記号と、実装名・配列構造・添字規則・型・制約をまとめる正本である。
 - `notes/important_properties.md`
   - 問題から導かれる重要な性質、不変量、探索や構築で効く性質を整理する正本である。
 
@@ -78,10 +78,16 @@ _template_heuristic/
 1. `.agents/skills/write-problem-description/SKILL.md` に従って `problem_description.txt` を埋める
 2. 公式配布物を `tools/` と `samples/` に置く
 3. 並列評価できるように `scripts/eval.py` が contest の scoring tool 呼び出し方に対応するように編集。
-4. 必要な記号を `notes/notations.md` に早めに書き出し、命名と型の正本を固める。
+4. 必要な記号を `notes/notations.md` に早めに書き出し、実装名・配列構造・添字規則・型の正本を先に固める。
 5. 見えてきた重要な性質や不変量を `notes/important_properties.md` に整理する。
 6. 必要なら `.agents/skills/make-ahc-visualizer/SKILL.md` に従って visualizer を作る。
 7. `src/bin/v000_template.rs` に共通土台を整え、実験用 solver は `v001_*.rs` 以降として追加する
+
+### notation の書き方
+- 公式記号名は保持する。`N`, `M` は Rust 風の `n`, `m` へ直さない。
+- 添字は原則 0-based にし、`h[i,j]` のような配列アクセス風表記にしてよい。
+- 問題文にない実装用の状態量は `state[g]`, `X[p,g]` のようにコードとの対応が見える名前にする。
+- TeX は条件付き確率、総和、総積、比例関係などの構造だけに使い、コードフェンス内に入れない。
 
 ### 実験の流れ
 1. 共通土台は `src/bin/v000_template.rs` に書き、試行錯誤する solver は `src/bin/v001_*.rs` 以降に書く

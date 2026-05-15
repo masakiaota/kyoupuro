@@ -16,6 +16,10 @@
 - 問題文や要点は `problem_description.txt` に記録する。
 - problem_description作成は `.agents/skills/write-problem-description/SKILL.md` に従う。
 - `notes/notations.md` は、問題で使う記号、コード上の代表名、型、制約の正本である。新しい重要記号、代表名、型、制約を導入したら、コード変更と同時に `notes/notations.md` も原則更新する。軽微なローカル変数だけは例外とする。
+- notation は会話・実装・検証で迷わないことを優先し、まず `notes/notations.md` に合わせる。
+- 公式記号名は保持する。公式が `N`, `M` なら `N`, `M` と書き、Rust 風の `n`, `m` へ直さない。添字は原則 0-based の `h[i,j]` 形式にしてよい。
+- 問題文にない実装用の状態量は `state[g]`, `X[p,g]` のようにコードとの対応が見える名前にする。
+- TeX は条件付き確率、総和、総積、比例関係などの構造だけに使い、コードフェンス内に入れない。
 - `notes/important_properties.md` は、問題から導かれる重要な性質、不変量、探索や構築で効く性質の正本である。新しい重要な性質や有力な仮説が見えたら、コード変更とあわせて `notes/important_properties.md` に整理する。
 - 公式配布物は `tools/` と `samples/` に配置する。
 - visualizer実装は `.agents/skills/make-ahc-visualizer/SKILL.md` に従う。必要な UI / WASM テンプレートは skill の同梱物から project root に展開する。
@@ -138,6 +142,7 @@ _template_heuristic/
 - adhoc Rust bin を増やしたら `Cargo.toml` の `[[bin]]` も同時に更新する。
 - 記号や代表名を導入するときは、solver 間で別名を乱立させず `notes/notations.md` を正本として揃える。
 - `notes/important_properties.md` で使う記号も `notes/notations.md` に合わせる。
+- 重要な配列や状態量を説明するときは、コード上の変数名と対応する notation を併記する。例えば `params[g][p]` を議論上 `X[p,g]` と書くなら、その対応を `notes/notations.md` に残す。
 - `notes/notations.md` や `notes/important_properties.md` はユーザーの明示的な更新指示があった場合のみ更新する。
 - `tools/` の中身は contest ごとに異なる。wrapper script の引数や期待する bin 名は固定だと思い込まない。
 - problem_description を作成・更新する前に `.agents/skills/write-problem-description/SKILL.md` を読む。
