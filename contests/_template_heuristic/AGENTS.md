@@ -52,32 +52,6 @@
 - `--dry-run` は `results/score_summary.csv`、`results/score_detail.csv`、`results/eval_records.jsonl` を更新しない。
 - verbose は進捗表示だけに使い、追加ログを恒久保存しない。
 
-## ディレクトリ構成
-主要なものだけ示す。生成物ディレクトリ (`target/`, `node_modules/`, `dist/`, `wasm/target/`) は除く。visualizer 関連ファイルは `make-ahc-visualizer` skill 実行時に生成・配置される。
-
-```text
-_template_heuristic/
-├── problem_description.txt
-├── notes/
-│   ├── important_properties.md
-│   └── notations.md
-├── results/
-│   ├── score_summary.csv
-│   ├── score_detail.csv
-│   ├── eval_records.jsonl
-│   └── out/
-├── samples/
-├── tools/
-├── src/
-│   └── bin/
-│       └── adhoc/
-├── scripts/
-│   └── adhoc/
-└── .agents/skills/
-    ├── write-problem-description/SKILL.md
-    └── make-ahc-visualizer/SKILL.md
-```
-
 ## 各ディレクトリ・ファイルの役割
 - `problem_description.txt`
   - 問題文、制約、スコア、初動メモの保存先である。
@@ -93,12 +67,16 @@ _template_heuristic/
 - `Cargo.toml`
   - `src/bin/adhoc/*.rs` を `cargo run --bin <name>` で実行できるように `[[bin]]` を明示する場所である。
 - `scripts/run.sh`
-  - 1 件の入力に対する手動実行を行う。
+  - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file で手動実行する。
 - `scripts/eval.py`
-  - 公式 scorer を使った並列評価本体である。
-  - `-j <jobs>` で並列数を固定でき、`-j 1` で直列評価できる。
-  - `--label` で実験ラベルを付けられ、`--dry-run` で蓄積ファイルを更新せずに確認できる。
+  - solver と score を build し、先頭入力のウォームアップ後にケース単位で並列評価する。
+  - 既定入力は `tools/in`、出力は `results/out/<bin_name>`、`-j 1` で直列評価できる。
+  - `--label` で実験ラベルを付け、`--dry-run` で蓄積ファイルを更新せずに確認できる。
   - `-h` / `--help` で使い方を確認できる。
+- `scripts/gen_tools.sh`
+  - `tools` 側の `gen` バイナリを呼ぶ薄い wrapper である。
+- `scripts/unpack_tools.sh`
+  - 公式配布 zip を `tools/` に展開する。
 - `notes/`
   - 問題固有の発見や性質を記録する場所である。
 - `notes/notations.md`
@@ -121,23 +99,9 @@ _template_heuristic/
 - `.agents/skills/make-ahc-visualizer/SKILL.md`
   - visualizer 実装時に AI が従う手順である。UI / WASM / Vite のテンプレートはこの skill の同梱物から展開する。
 
-## script の役割
-- `scripts/run.sh`
-  - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file を手動確認する。
-- `scripts/eval.py`
-  - solver と score を 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、ケース単位で本番の `run -> score` を実行する。
-  - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
-  - 既定は `cpu//2 - 1` 並列で、最小値は 1 である。必要なら `-j <jobs>` で明示指定できる。
-  - `./scripts/eval.py <bin_name>` は `tools/in` と `results/out/<bin_name>` を使う。
-  - `--dry-run` は 3 つの蓄積ファイルを更新しない。
-- `scripts/gen_tools.sh`
-  - `tools` 側の `gen` バイナリを呼ぶための薄い wrapper である。
-- `scripts/unpack_tools.sh`
-  - 公式配布 zip を `tools/` に展開する。
-
-## AI が意識すること
+## AI が実装時に意識すること
+- fallback を勝手に実装しない。失敗時の別経路が必要に見える場合は、目的・発火条件・影響・通常経路で直せない理由を明示してから、ユーザーに許可を取る。
 - `v000_template.rs` には複数 solver で共有したい確定実装を寄せ、version 固有の探索ロジックや一時的な hack は `v001_*.rs` 以降に分ける。
-- top-level の `src/bin` を adhoc 用ファイルで埋めない。
 - Rust の補助検証コードは `src/bin/adhoc/*.rs`、shell などの補助入口は `scripts/adhoc/` に分ける。
 - adhoc Rust bin を増やしたら `Cargo.toml` の `[[bin]]` も同時に更新する。
 - 記号や代表名を導入するときは、solver 間で別名を乱立させず `notes/notations.md` を正本として揃える。
@@ -145,5 +109,3 @@ _template_heuristic/
 - 重要な配列や状態量を説明するときは、コード上の変数名と対応する notation を併記する。例えば `params[g][p]` を議論上 `X[p,g]` と書くなら、その対応を `notes/notations.md` に残す。
 - `notes/notations.md` や `notes/important_properties.md` はユーザーの明示的な更新指示があった場合のみ更新する。
 - `tools/` の中身は contest ごとに異なる。wrapper script の引数や期待する bin 名は固定だと思い込まない。
-- problem_description を作成・更新する前に `.agents/skills/write-problem-description/SKILL.md` を読む。
-- visualizer 実装に入る前に `problem_description.txt` と `tools/src/` の存在を確認し、`.agents/skills/make-ahc-visualizer/SKILL.md` を読む。
