@@ -1,6 +1,74 @@
 // v000_template.rs
 use std::time::Instant;
 
+#[cfg(feature = "local")]
+#[derive(Debug, Default, Clone)]
+struct TraceStats {
+    fallback_count: usize,
+    counts: std::collections::BTreeMap<&'static str, i64>,
+    times_ms: std::collections::BTreeMap<&'static str, f64>,
+}
+
+#[cfg(feature = "local")]
+impl TraceStats {
+    fn mark_fallback(&mut self) {
+        self.fallback_count += 1;
+    }
+
+    fn count(&mut self, key: &'static str) {
+        self.count_by(key, 1);
+    }
+
+    fn count_by(&mut self, key: &'static str, delta: i64) {
+        *self.counts.entry(key).or_insert(0) += delta;
+    }
+
+    fn add_time_ms(&mut self, key: &'static str, ms: f64) {
+        *self.times_ms.entry(key).or_insert(0.0) += ms;
+    }
+
+    fn summary(&self) {
+        eprintln!("[summary] fallback_count={}", self.fallback_count);
+        for (key, value) in &self.counts {
+            eprintln!("[summary.count] {}={}", key, value);
+        }
+        for (key, value) in &self.times_ms {
+            eprintln!("[summary.time_ms] {}={:.3}", key, value);
+        }
+    }
+}
+
+#[cfg(feature = "local")]
+#[allow(unused_macros)]
+macro_rules! local {
+    ($($body:tt)*) => {{
+        $($body)*
+    }};
+}
+
+#[cfg(not(feature = "local"))]
+#[allow(unused_macros)]
+macro_rules! local {
+    ($($body:tt)*) => {};
+}
+
+#[cfg(feature = "local")]
+#[allow(unused_macros)]
+macro_rules! local_time {
+    ($trace:expr, $key:expr, $body:block) => {{
+        let __local_time_start = std::time::Instant::now();
+        let __local_time_result = { $body };
+        $trace.add_time_ms($key, __local_time_start.elapsed().as_secs_f64() * 1000.0);
+        __local_time_result
+    }};
+}
+
+#[cfg(not(feature = "local"))]
+#[allow(unused_macros)]
+macro_rules! local_time {
+    ($trace:expr, $key:expr, $body:block) => {{ $body }};
+}
+
 #[derive(Debug, Clone)]
 struct TimeKeeper {
     start: Instant,
