@@ -8,13 +8,21 @@ BIN_PATH="$ROOT_DIR/target/release"
 usage() {
     cat >&2 <<'EOF'
 Usage:
-  ./scripts/run.sh <bin_name>
-  ./scripts/run.sh <bin_name> <input_file>
+  ./scripts/run.sh [--no-local] <bin_name>
+  ./scripts/run.sh [--no-local] <bin_name> <input_file>
 
 Run one solver manually.
+By default, the solver is built with --release --features local.
+Use --no-local for a release build without the local feature.
 Without input_file, stdin is used and stdout is left untouched.
 EOF
 }
+
+LOCAL_FEATURE=1
+if [ "${1:-}" = "--no-local" ]; then
+    LOCAL_FEATURE=0
+    shift
+fi
 
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
     usage
@@ -41,7 +49,13 @@ if [ -n "$INPUT_FILE" ]; then
 fi
 
 START_ALL=$(date +%s)
-cargo build --release --quiet --manifest-path "$ROOT_DIR/Cargo.toml" --bin "$BIN_NAME"
+if [ "$LOCAL_FEATURE" -eq 1 ]; then
+    cargo build --release --features local --quiet --manifest-path "$ROOT_DIR/Cargo.toml" --bin "$BIN_NAME"
+    LOCAL_LABEL=on
+else
+    cargo build --release --quiet --manifest-path "$ROOT_DIR/Cargo.toml" --bin "$BIN_NAME"
+    LOCAL_LABEL=off
+fi
 BIN_EXEC="$BIN_PATH/$BIN_NAME"
 
 if [ ! -x "$BIN_EXEC" ]; then
@@ -57,7 +71,7 @@ if [ -z "$INPUT_FILE" ]; then
     fi
     END_ALL=$(date +%s)
     ELAPSED_ALL=$((END_ALL - START_ALL))
-    printf 'run: bin=%s input=stdin elapsed=%ss output=stdout\n' "$BIN_NAME" "$ELAPSED_ALL" >&2
+    printf 'run: bin=%s local=%s input=stdin elapsed=%ss output=stdout\n' "$BIN_NAME" "$LOCAL_LABEL" "$ELAPSED_ALL" >&2
     exit "$STATUS"
 fi
 
@@ -70,5 +84,5 @@ fi
 cat "$OUTPUT_FILE"
 END_ALL=$(date +%s)
 ELAPSED_ALL=$((END_ALL - START_ALL))
-printf 'run: bin=%s input=%s elapsed=%ss output=%s\n' "$BIN_NAME" "$INPUT_FILE" "$ELAPSED_ALL" "$OUTPUT_FILE" >&2
+printf 'run: bin=%s local=%s input=%s elapsed=%ss output=%s\n' "$BIN_NAME" "$LOCAL_LABEL" "$INPUT_FILE" "$ELAPSED_ALL" "$OUTPUT_FILE" >&2
 exit "$STATUS"

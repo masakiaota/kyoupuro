@@ -101,6 +101,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Do not write score_summary.csv, score_detail.csv, or eval_records.jsonl",
     )
+    parser.add_argument(
+        "--no-local",
+        action="store_true",
+        help="Build the solver without the local feature",
+    )
     args = parser.parse_args()
     if args.jobs < 1:
         parser.error("jobs must be >= 1")
@@ -134,17 +139,23 @@ def ensure_tools_ready() -> None:
         raise SystemExit(f"error: tools manifest not found: {TOOLS_MANIFEST}")
 
 
-def build_binary(manifest_path: Path, bin_name: str) -> None:
+def build_binary(manifest_path: Path, bin_name: str, *, local_feature: bool = False) -> None:
     command = [
         "cargo",
         "build",
         "--release",
-        "--quiet",
-        "--manifest-path",
-        str(manifest_path),
-        "--bin",
-        bin_name,
     ]
+    if local_feature:
+        command.extend(["--features", "local"])
+    command.extend(
+        [
+            "--quiet",
+            "--manifest-path",
+            str(manifest_path),
+            "--bin",
+            bin_name,
+        ]
+    )
     result = subprocess.run(command, cwd=ROOT_DIR)
     if result.returncode != 0:
         raise SystemExit(result.returncode)
@@ -420,6 +431,7 @@ def make_records(
     bin_name: str,
     label: str,
     normalized_input_dir: str,
+    local_enabled: bool,
 ) -> list[dict[str, object]]:
     records: list[dict[str, object]] = []
     for result in results:
@@ -429,6 +441,7 @@ def make_records(
                 "executed_at": executed_at,
                 "bin": bin_name,
                 "label": label,
+                "local": local_enabled,
                 "input_dir": normalized_input_dir,
                 "case_name": result.case_name,
                 "score": result.score if result.status == "ok" else None,
@@ -454,6 +467,7 @@ def main() -> int:
 
     normalized_input_dir = normalize_dir(input_dir)
     is_tools_in = input_dir == DEFAULT_INPUT_DIR.resolve()
+    local_enabled = not args.no_local
 
     if not args.dry_run:
         ensure_csv_header(SUMMARY_CSV, SUMMARY_HEADER)
@@ -466,10 +480,11 @@ def main() -> int:
     if args.verbose:
         eprint(
             f"eval: bin={args.bin_name} input_dir={normalized_input_dir} "
+            f"local={'on' if local_enabled else 'off'} "
             f"parallel={args.jobs} output={output_dir}"
         )
 
-    build_binary(SOLVER_MANIFEST, args.bin_name)
+    build_binary(SOLVER_MANIFEST, args.bin_name, local_feature=local_enabled)
     build_binary(TOOLS_MANIFEST, "score")
 
     solver_bin = SOLVER_BIN_DIR / args.bin_name
@@ -523,6 +538,7 @@ def main() -> int:
                 bin_name=args.bin_name,
                 label=args.label,
                 normalized_input_dir=normalized_input_dir,
+                local_enabled=local_enabled,
             ),
         )
 

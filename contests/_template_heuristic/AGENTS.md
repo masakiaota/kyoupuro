@@ -24,8 +24,8 @@
 - `改善案を複数作って自動でベンチを回し、良いものだけ残して`
 
 ## 評価運用ルール
-- `scripts/run.sh` は単発の手動実行専用である。
-- `scripts/eval.py` は評価パイプライン本体である。solver と tools の score をそれぞれ 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、本番の `run -> score` をケース単位で実行する。ウォームアップ結果は保存・集計しない。既定は `cpu//2 - 1` 並列で、最小値は 1 である。厳密に見たいときは `-j 1` を使う。
+- `scripts/run.sh` は単発の手動実行専用であり、solver を既定で `--release --features local` 付きで build する。time sensitiveな実行が必要な際は `--no-local` を使う。
+- `scripts/eval.py` は評価パイプライン本体である。solver は既定で `--release --features local`、tools の score は通常の `--release` で build する。先頭入力で `run -> score` を 1 回ウォームアップしてから、本番の `run -> score` をケース単位で実行する。ウォームアップ結果は保存・集計しない。既定は `cpu//2 - 1` 並列で、最小値は 1 である。time sensitiveにチューニングする際には `-j 1 --no-local` を使う。
 - `results/out/<bin_name>/` は最新評価の scratch/workspace である。`eval.py` 実行時に同名 basename の出力が並ぶ前提なので、重複 basename は拒否する。
 - `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at` で、経過時間は整数 ms で記録する。全ケース成功時のみ追記する。
 - `results/score_detail.csv` は `tools/in` 専用の wide-format 比較表である。列順は `bin,total_avg,max_elapsed,<case_name_1>,...,label,executed_at` で、全ケース成功時のみ追記する。
@@ -48,11 +48,11 @@
 - `Cargo.toml`
   - `src/bin/adhoc/*.rs` を `cargo run --bin <name>` で実行できるように `[[bin]]` を明示する場所である。
 - `scripts/run.sh`
-  - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file で手動実行する。
+  - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file で手動実行する。既定で `local` feature を有効にし、`--no-local` で無効化する。
 - `scripts/eval.py`
   - solver と score を build し、先頭入力のウォームアップ後にケース単位で並列評価する。
   - 既定入力は `tools/in`、出力は `results/out/<bin_name>`、`-j 1` で直列評価できる。
-  - `--label` で実験ラベルを付け、`--dry-run` で蓄積ファイルを更新せずに確認できる。
+  - `--label` で実験ラベルを付け、`--dry-run` で蓄積ファイルを更新せずに確認できる。`--no-local` で solver の `local` feature を無効化する。
   - `-h` / `--help` で使い方を確認できる。
 - `scripts/gen_tools.sh`
   - `tools` 側の `gen` バイナリを呼ぶ薄い wrapper である。
