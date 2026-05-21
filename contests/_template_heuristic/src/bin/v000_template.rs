@@ -2,7 +2,7 @@
 use std::time::Instant;
 
 #[derive(Debug, Clone)]
-pub struct TimeKeeper {
+struct TimeKeeper {
     start: Instant,
     time_limit_sec: f64,
 
@@ -16,7 +16,7 @@ pub struct TimeKeeper {
 
 impl TimeKeeper {
     /// `check_interval_log2 = 8` なら 2^8 = 256 反復ごとに時計更新
-    pub fn new(time_limit_sec: f64, check_interval_log2: u32) -> Self {
+    fn new(time_limit_sec: f64, check_interval_log2: u32) -> Self {
         assert!(time_limit_sec > 0.0);
         assert!(check_interval_log2 < 63);
 
@@ -42,7 +42,7 @@ impl TimeKeeper {
     /// ホットループではこれだけ呼ぶ
     /// true: 継続, false: 打ち切り
     #[inline(always)]
-    pub fn step(&mut self) -> bool {
+    fn step(&mut self) -> bool {
         self.iter += 1;
         if (self.iter & self.check_mask) == 0 {
             self.force_update();
@@ -52,7 +52,7 @@ impl TimeKeeper {
 
     /// 明示的に時計を更新したいときに使う
     #[inline(always)]
-    pub fn force_update(&mut self) {
+    fn force_update(&mut self) {
         let elapsed = self.start.elapsed().as_secs_f64();
         self.elapsed_sec = elapsed;
         self.progress = (elapsed / self.time_limit_sec).clamp(0.0, 1.0);
@@ -61,31 +61,31 @@ impl TimeKeeper {
 
     /// batched な経過時間
     #[inline(always)]
-    pub fn elapsed_sec(&self) -> f64 {
+    fn elapsed_sec(&self) -> f64 {
         self.elapsed_sec
     }
 
     /// batched な進捗率 [0, 1]
     #[inline(always)]
-    pub fn progress(&self) -> f64 {
+    fn progress(&self) -> f64 {
         self.progress
     }
 
     /// batched な時間切れ判定
     #[inline(always)]
-    pub fn is_time_over(&self) -> bool {
+    fn is_time_over(&self) -> bool {
         self.is_over
     }
 
     /// ログ用の正確な経過時間
     #[inline]
-    pub fn exact_elapsed_sec(&self) -> f64 {
+    fn exact_elapsed_sec(&self) -> f64 {
         self.start.elapsed().as_secs_f64()
     }
 
     /// ログ用の正確な残り時間
     #[inline]
-    pub fn exact_remaining_sec(&self) -> f64 {
+    fn exact_remaining_sec(&self) -> f64 {
         (self.time_limit_sec - self.exact_elapsed_sec()).max(0.0)
     }
 }
