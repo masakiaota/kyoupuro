@@ -68,7 +68,7 @@ def parse_args() -> argparse.Namespace:
         prog="./scripts/eval.py",
         description=(
             "Build solver and scorer once, warm up with one solver -> score run, "
-            "then evaluate solver -> score per case."
+            "then evaluate solver -> score per case. Elapsed metrics exclude scorer time."
         ),
     )
     parser.add_argument("bin_name", help="Rust solver bin name under src/bin")
@@ -278,7 +278,7 @@ def run_case(
             elapsed=int(run_elapsed),
             stdout_path=stdout_path,
         )
-    run_elapsed = (time.monotonic_ns() - run_start_ns) // 1_000_000
+    run_elapsed = int((time.monotonic_ns() - run_start_ns) // 1_000_000)
     if run_result.returncode != 0:
         if verbose:
             eprint(f"fail(run): {case_name}")
@@ -286,11 +286,10 @@ def run_case(
             case_name=case_name,
             status="run_fail",
             score=None,
-            elapsed=int(run_elapsed),
+            elapsed=run_elapsed,
             stdout_path=stdout_path,
         )
 
-    score_start_ns = time.monotonic_ns()
     try:
         with err_path.open("ab") as ferr:
             score_result = subprocess.run(
@@ -300,16 +299,13 @@ def run_case(
                 text=True,
             )
     except OSError:
-        score_elapsed = (time.monotonic_ns() - score_start_ns) // 1_000_000
         return CaseResult(
             case_name=case_name,
             status="score_fail",
             score=None,
-            elapsed=int(run_elapsed + score_elapsed),
+            elapsed=run_elapsed,
             stdout_path=stdout_path,
         )
-    score_elapsed = (time.monotonic_ns() - score_start_ns) // 1_000_000
-    total_elapsed = int(run_elapsed + score_elapsed)
     if score_result.returncode != 0:
         if verbose:
             eprint(f"fail(score): {case_name}")
@@ -317,7 +313,7 @@ def run_case(
             case_name=case_name,
             status="score_fail",
             score=None,
-            elapsed=total_elapsed,
+            elapsed=run_elapsed,
             stdout_path=stdout_path,
         )
 
@@ -329,19 +325,19 @@ def run_case(
             case_name=case_name,
             status="score_parse_fail",
             score=None,
-            elapsed=total_elapsed,
+            elapsed=run_elapsed,
             stdout_path=stdout_path,
         )
 
     if verbose:
         eprint(
-            f"done: {case_name} score={score} elapsed={total_elapsed}ms output={stdout_path}"
+            f"done: {case_name} score={score} elapsed={run_elapsed}ms output={stdout_path}"
         )
     return CaseResult(
         case_name=case_name,
         status="ok",
         score=score,
-        elapsed=total_elapsed,
+        elapsed=run_elapsed,
         stdout_path=stdout_path,
     )
 
