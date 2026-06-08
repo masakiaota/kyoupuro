@@ -1,0 +1,168 @@
+[profile.release]
+lto = true # コンパイル時間が著しく長くなってしまう場合は無し
+
+[package]
+name = "main"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[features]
+local = []
+
+[dependencies]
+# 202411から:
+rpds = "=1.1.1"
+rand_xorshift = "=0.4.0"
+rand_xoshiro = "=0.7.0"
+statrs = "=0.18.0"
+primal = "=0.3.3"
+thiserror = "=2.0.16"
+# 202301から:
+ac-library-rs = "=0.2.0"
+once_cell = "=1.21.3"
+static_assertions = "=1.1.0"
+varisat = "=0.2.2"
+memoise = "=0.3.2"
+argio = "=0.2.0"
+bitvec = "=1.0.1"
+counter = "=0.7.0"
+hashbag = "=0.1.12"
+pathfinding = "=4.14.0"
+recur-fn = "=2.2.0"
+indexing = { version = "=0.4.1", features = ["experimental_pointer_ranges"] }
+amplify = { version = "=4.9.0", features = ["c_raw", "rand", "stringly_conversions"] }
+amplify_derive = "=4.0.1"
+amplify_num = { version = "=0.5.3", features = ["std"] }
+easy-ext = "=1.0.2"
+multimap = "=0.10.1"
+btreemultimap = "=0.1.1"
+bstr = "=1.12.0"
+az = "=1.2.1"
+glidesort = "=0.1.2"
+tap = "=1.0.1"
+omniswap = "=0.1.0"
+multiversion = "=0.8.0"
+# 202004から続投:
+num = "=0.4.3"
+num-bigint = "=0.4.6"
+num-complex = "=0.4.6"
+num-integer = "=0.1.46"
+num-iter = "=0.1.45"
+num-rational = "=0.4.2"
+num-traits = "=0.2.19"
+num-derive = "=0.4.2"
+ndarray = "=0.16.1"
+nalgebra = "=0.34.0"
+alga = "=0.9.3"
+libm = "=0.2.15"
+rand = "=0.9.3"
+getrandom = "=0.3.3"
+rand_chacha = "=0.9.0"
+rand_core = "=0.9.3"
+rand_hc = "=0.4.0"
+rand_pcg = "=0.9.0"
+rand_distr = "=0.5.1"
+petgraph = "=0.8.2"
+indexmap = "=2.11.0"
+regex = "=1.11.2"
+lazy_static = "=1.5.0"
+ordered-float = "=5.0.0"
+ascii = "=1.1.0"
+permutohedron = "=0.2.4"
+superslice = "=1.0.0"
+itertools = "=0.14.0"
+itertools-num = "=0.1.3"
+maplit = "=1.0.2"
+either = "=1.15.0"
+im-rc = "=15.1.0"
+fixedbitset = "=0.5.7"
+bitset-fixed = "=0.1.0"
+proconio = { version = "=0.5.0", features = ["derive"] }
+text_io = "=0.1.13"
+rustc-hash = "=2.1.1"
+smallvec = { version = "=1.15.1", features = ["const_generics", "const_new", "write", "union", "serde", "arbitrary"] }
+
+[[bin]]
+name = "bench_vec_array"
+path = "src/bin/adhoc/bench_vec_array.rs"
+
+[[bin]]
+name = "probe_v005_macro_candidates"
+path = "src/bin/adhoc/probe_v005_macro_candidates.rs"
+
+[[bin]]
+name = "route_build_probe"
+path = "src/bin/adhoc/route_build_probe.rs"
+
+[[bin]]
+name = "exact_compress_0000"
+path = "src/bin/adhoc/exact_compress_0000.rs"
+
+[[bin]]
+name = "phase_macro_search_0000"
+path = "src/bin/adhoc/phase_macro_search_0000.rs"
+
+[[bin]]
+name = "scan_orders_0000"
+path = "src/bin/adhoc/scan_orders_0000.rs"
+
+[[bin]]
+name = "prune_buttons_0000"
+path = "src/bin/adhoc/prune_buttons_0000.rs"
+
+[[bin]]
+name = "free_order_macro_search_0000"
+path = "src/bin/adhoc/free_order_macro_search_0000.rs"
+
+[[bin]]
+name = "trace_solution_0000"
+path = "src/bin/adhoc/trace_solution_0000.rs"
+
+[[bin]]
+name = "gen_transition_orders_0000"
+path = "src/bin/adhoc/gen_transition_orders_0000.rs"
+
+[[bin]]
+name = "search_s_macro_chains_0000"
+path = "src/bin/adhoc/search_s_macro_chains_0000.rs"
+
+[[bin]]
+name = "gen_local_orders_0000"
+path = "src/bin/adhoc/gen_local_orders_0000.rs"
+
+[[bin]]
+name = "q_score_probe_v163"
+path = "src/bin/adhoc/q_score_probe_v163.rs"
+
+[[bin]]
+name = "q_sa_probe_v165"
+path = "src/bin/adhoc/q_sa_probe_v165.rs"
+
+[[bin]]
+name = "mine_macro_templates_v165"
+path = "src/bin/adhoc/mine_macro_templates_v165.rs"
+
+[[bin]]
+name = "mine_macro_templates_v167_sa"
+path = "src/bin/adhoc/mine_macro_templates_v167_sa.rs"
+
+[[bin]]
+name = "mine_regex_macro_templates_v173_sa"
+path = "src/bin/adhoc/mine_regex_macro_templates_v173_sa.rs"
+
+[[bin]]
+name = "q_light_eval_corr_v176"
+path = "src/bin/adhoc/q_light_eval_corr_v176.rs"
+
+[[bin]]
+name = "q_sa_runtime_trace_v176"
+path = "src/bin/adhoc/q_sa_runtime_trace_v176.rs"
+
+[[bin]]
+name = "q_runtime_light_eval_v176"
+path = "src/bin/adhoc/q_runtime_light_eval_v176.rs"
+
+[[bin]]
+name = "speed_probe"
+path = "src/bin/adhoc/speed_probe.rs"
