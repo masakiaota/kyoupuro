@@ -93,24 +93,23 @@ _template_heuristic/
 1. 共通土台は `src/bin/v000_template.rs` に書き、試行錯誤する solver は `src/bin/v001_*.rs` 以降に書く
 2. `./scripts/run.sh [--no-local] <bin_name> [input_file]` で単発確認する
    - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
-   - 既定では solver を `--release --features local` で build する。`--no-local` で local feature を外す。
+   - 既定では solver を `--release --features local` で build する。`--no-local` は本番相当の挙動や `local` feature なしの compile 確認に限って使う。
 3. scorer があるなら `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] [--no-local] <bin_name> [input_dir]` で公式スコアを確認する
    - `input_dir` 省略時は `tools/in` を使う。
    - 既定では solver を `--release --features local`、tools の score を通常の `--release` で build する。
-   - build 後に先頭入力で `run -> score` を 1 回ウォームアップしてから、各ケースについて本番の `run -> score` を `cpu//2 - 1` 並列で実行する。最小値は 1 である。
+   - build 後に先頭入力で `run -> score` を 1 回ウォームアップしてから、各ケースについて本番の `run -> score` を実行する。
    - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
-   - 発熱や計測ぶれを避けたいときは `-j 1` で直列実行する。
+   - `--no-local` は本番相当の挙動や `local` feature なしの compile 確認に限って使う。
    - 通常実行では `results/score_summary.csv` と `results/eval_records.jsonl` に追記し、`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記する。
    - `--dry-run` は蓄積ファイルを更新せず、その場の確認だけを行う。
 4. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
 ## script の役割
 - `./scripts/run.sh [--no-local] <bin_name> [input_file]`
-  - stdin または 1 つの input_file に対して手動実行する。既定で solver を `--release --features local` で build し、`--no-local` で local feature を外す。
+  - stdin または 1 つの input_file に対して手動実行する。既定で solver を `--release --features local` で build し、`--no-local` は本番相当の挙動や `local` feature なしの compile 確認に限って使う。
 - `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] [--no-local] <bin_name> [input_dir]`
-  - solver と公式 `score` を 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、ケース単位で本番の `run -> score` を実行する。solver は既定で `--release --features local`、`--no-local` 指定時は通常の `--release` で build する。
+  - solver と公式 `score` を 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、ケース単位で本番の `run -> score` を実行する。solver は既定で `--release --features local`、`--no-local` 指定時は本番相当の通常 `--release` で build する。
   - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
-  - 既定ジョブ数は `cpu//2 - 1` で、最小値は 1 である。`-j 1` で直列評価に切り替えられる。
   - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記し、全ケースの記録は `results/eval_records.jsonl` に追記する。
   - `--dry-run` は 3 つの蓄積ファイルを更新しない。
   - `-h` / `--help` で使い方を確認できる。
@@ -125,7 +124,6 @@ _template_heuristic/
 ./scripts/run.sh <bin_name> ./tools/in/0000.txt
 ./scripts/run.sh --no-local <bin_name> ./tools/in/0000.txt
 ./scripts/eval.py <bin_name>
-./scripts/eval.py -j 1 <bin_name>
 ./scripts/eval.py -v --label baseline <bin_name>
 ./scripts/eval.py --dry-run <bin_name>
 ./scripts/eval.py --dry-run --no-local <bin_name>

@@ -24,8 +24,9 @@
 - `改善案を複数作って自動でベンチを回し、良いものだけ残して`
 
 ## 評価運用ルール
-- `scripts/run.sh` は単発の手動実行専用であり、solver を既定で `--release --features local` 付きで build する。time sensitiveな実行が必要な際は `--no-local` を使う。
-- `scripts/eval.py` は評価パイプライン本体である。solver は既定で `--release --features local`、tools の score は通常の `--release` で build する。先頭入力で `run -> score` を 1 回ウォームアップしてから、本番の `run -> score` をケース単位で実行する。ウォームアップ結果は保存・集計しない。既定は `cpu//2 - 1` 並列で、最小値は 1 である。time sensitiveにチューニングする際には `-j 1 --no-local` を使う。
+- `scripts/run.sh` は単発の手動実行専用であり、solver を既定で `--release --features local` 付きで build する。ローカルでの実行確認や評価は原則 `local` feature 付きで行い、`--no-local` は本番相当の挙動や `local` feature なしでの compile 確認に限って使う。
+- `scripts/eval.py` は評価パイプライン本体である。solver は既定で `--release --features local`、tools の score は通常の `--release` で build する。先頭入力で `run -> score` を 1 回ウォームアップしてから、本番の `run -> score` をケース単位で実行する。ウォームアップ結果は保存・集計しない。既定は `-j 2` であり、ユーザーの明示的な指定がない限りジョブ数は変更しない。ローカルでの評価や time sensitive なチューニングは原則 `local` feature 付きで行い、`--no-local` は本番相当の挙動や `local` feature なしでの compile 確認に限って使う。
+- solver 内で時間制限や打ち切り判定を実装する場合は、`v000_template.rs` の `JUDGE_TIME_LIMIT_SEC`、`LOCAL_TIME_RATIO`、`PROGRAM_TIME_LIMIT_SEC` を使う。`local` feature 時だけ `LOCAL_TIME_RATIO` を掛けた時間で探索を打ち切り、timer は `main` 開始直後を基準に作る。フェーズ切替や終了前処理などの時間系パラメータは、秒数を直書きせず `PROGRAM_TIME_LIMIT_SEC` に対する割合で指定する。
 - `results/out/<bin_name>/` は最新評価の scratch/workspace である。`eval.py` 実行時に同名 basename の出力が並ぶ前提なので、重複 basename は拒否する。
 - `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at` で、経過時間は整数 ms で記録する。全ケース成功時のみ追記する。
 - `results/score_detail.csv` は `tools/in` 専用の wide-format 比較表である。列順は `bin,total_avg,max_elapsed,<case_name_1>,...,label,executed_at` で、全ケース成功時のみ追記する。
@@ -51,7 +52,7 @@
   - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file で手動実行する。既定で `local` feature を有効にし、`--no-local` で無効化する。
 - `scripts/eval.py`
   - solver と score を build し、先頭入力のウォームアップ後にケース単位で並列評価する。
-  - 既定入力は `tools/in`、出力は `results/out/<bin_name>`、`-j 1` で直列評価できる。
+  - 既定入力は `tools/in`、出力は `results/out/<bin_name>` である。
   - `--label` で実験ラベルを付け、`--dry-run` で蓄積ファイルを更新せずに確認できる。`--no-local` で solver の `local` feature を無効化する。
   - `-h` / `--help` で使い方を確認できる。
 - `scripts/gen_tools.sh`

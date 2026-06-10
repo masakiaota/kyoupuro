@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import os
 import secrets
 import shutil
 import subprocess
@@ -59,8 +58,7 @@ def eprint(message: str) -> None:
 
 
 def default_jobs() -> int:
-    cpu_count = os.cpu_count() or 2
-    return max(1, (cpu_count // 2) - 1)
+    return 2
 
 
 def parse_args() -> argparse.Namespace:
@@ -89,7 +87,7 @@ def parse_args() -> argparse.Namespace:
         "--jobs",
         type=int,
         default=default_jobs(),
-        help="Parallel jobs (default: max(1, cpu//2 - 1))",
+        help="Parallel jobs (default: 2)",
     )
     parser.add_argument(
         "--label",
@@ -104,7 +102,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--no-local",
         action="store_true",
-        help="Build the solver without the local feature",
+        help="Build the solver without the local feature for production-like behavior/compile checks",
     )
     args = parser.parse_args()
     if args.jobs < 1:

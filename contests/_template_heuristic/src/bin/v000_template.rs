@@ -1,6 +1,17 @@
 // v000_template.rs
 use std::time::Instant;
 
+/// AtCoder 側の基準の探索打ち切り秒数。コンテストごとに調整する。
+const JUDGE_TIME_LIMIT_SEC: f64 = 1.90;
+/// local feature 時はローカル実行の速度差を見込んで探索時間を短くする。
+const LOCAL_TIME_RATIO: f64 = 0.80;
+
+const PROGRAM_TIME_LIMIT_SEC: f64 = if cfg!(feature = "local") {
+    JUDGE_TIME_LIMIT_SEC * LOCAL_TIME_RATIO
+} else {
+    JUDGE_TIME_LIMIT_SEC
+};
+
 #[cfg(feature = "local")]
 #[derive(Debug, Default, Clone)]
 struct TraceStats {
@@ -158,4 +169,8 @@ impl TimeKeeper {
     }
 }
 
-fn main() {}
+fn main() {
+    // TimeKeeper は main 開始直後に作り、探索打ち切りには PROGRAM_TIME_LIMIT_SEC を使う。
+    // フェーズ切替などの時間系パラメータは PROGRAM_TIME_LIMIT_SEC に対する割合で指定する。
+    let _time_keeper = TimeKeeper::new(PROGRAM_TIME_LIMIT_SEC, 8);
+}
