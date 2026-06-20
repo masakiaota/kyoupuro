@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "vis",
+      "runtimeExecutable": "corepack",
+      "runtimeArgs": ["yarn", "dev"],
+      "port": 5173,
+      "autoPort": true
+    }
+  ]
+}

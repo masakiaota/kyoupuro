@@ -1,0 +1,20 @@
+bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at
+v001_baseline,8090,808959,7177,8589,2,17,tools/in,100,baseline: move-above-to-next-pile then carry,2026-06-13T01:00:12+09:00
+v002_greedy,9229,922902,9110,9348,2,9,tools/in,100,greedy scalar a2.0 b0.05 g0.5,2026-06-13T02:16:37+09:00
+v002_greedy,9328,932837,9219,9410,2,12,tools/in,100,greedy near-lexico a1e7 b1e3 g300,2026-06-13T02:18:39+09:00
+v003_random_restart,9076,907572,8953,9187,1524,1533,tools/in,100,random-restart D-lexico tie-random,2026-06-13T02:33:01+09:00
+v003_random_restart,9328,932837,9219,9410,1524,1532,tools/in,100,noisy near-lexico eps0.1,2026-06-13T02:39:04+09:00
+v003_random_restart,9373,937267,9307,9432,1523,1529,tools/in,100,sparse-noisy near-lexico p0.02 s2.0 u0.5,2026-06-13T02:46:30+09:00
+v004_beam,8972,897164,8787,9122,627,788,tools/in,100,rollback-beam W=2000 cost-only eval,2026-06-13T12:19:22+09:00
+v004_beam,9328,932837,9219,9410,3,11,tools/in,100,restored v002 near-lexico D/S/U greedy,2026-06-13T12:47:01+09:00
+v004_beam,9131,913105,8968,9284,1011,1606,tools/in,100,beam W=2000 state D/S/U eval block-action,2026-06-13T12:55:16+09:00
+v004_beam,9327,932741,9218,9407,415,606,tools/in,100,beam W=500 macro-action localW=4 D/S/U,2026-06-13T13:05:28+09:00
+v004_beam,9327,932741,9218,9407,413,593,tools/in,100,beam W=500 macro-action localW=4 D/S/U best-cost leaf,2026-06-13T13:07:16+09:00
+v004_beam,9325,932544,9219,9415,119,148,tools/in,100,beam W=96 expand=8 macro-action D/S/U,2026-06-13T23:08:44+09:00
+v004_beam,9181,918096,9033,9309,206,248,tools/in,100,beam W=96 expand=32 macro-action D-cost,2026-06-14T00:03:34+09:00
+v004_beam,9101,910128,8925,9249,339,424,tools/in,100,beam W=96 expand=32 macro-action cost-D,2026-06-14T00:05:10+09:00
+v004_beam,9140,914029,8884,9301,684,1088,tools/in,100,beam W=96 expand=32 macro-action cost-D-S-U,2026-06-14T00:07:05+09:00
+v004_beam,9330,933006,9222,9409,382,469,tools/in,100,beam W=128 expand=32 v002-score hash-dedup,2026-06-14T00:12:03+09:00
+v005_beam_lookahead,9305,930492,9221,9375,456,537,tools/in,100,beam W=128 expand=32 greedy1-lookahead rank,2026-06-14T00:39:30+09:00
+v006_beam_rollout,9383,938336,9320,9455,1657,4127,tools/in,100,beam W=128 expand=32 rollout=512 greedy-complete rank,2026-06-14T01:08:00+09:00
+v999_champion_code,9539,953892,9512,9565,1537,1556,tools/in,100,champion-code rust port column-matching,2026-06-14T02:05:36+09:00
