@@ -1,0 +1,6 @@
+interface:
+  display_name: "Explain AHC Solver"
+  short_description: "AHC solver explanations with validation"
+  default_prompt: "Use $explain-ahc-solver to turn this AHC solver into a reproducible Japanese explanation."
+policy:
+  allow_implicit_invocation: false
