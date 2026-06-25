@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import argparse
 import csv
+import fcntl
 import json
+import os
 import secrets
 import shutil
 import subprocess
@@ -11,11 +13,12 @@ import sys
 import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime
 from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
-from typing import Optional
+from typing import Iterator, Optional
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -28,6 +31,8 @@ DEFAULT_INPUT_DIR = ROOT_DIR / "tools" / "in"
 SUMMARY_CSV = ROOT_DIR / "results" / "score_summary.csv"
 DETAIL_CSV = ROOT_DIR / "results" / "score_detail.csv"
 RECORDS_JSONL = ROOT_DIR / "results" / "eval_records.jsonl"
+EVAL_LOCK = ROOT_DIR / "results" / ".eval.lock"
+LOCK_BUSY_EXIT_CODE = 75
 
 SUMMARY_HEADER = [
     "bin",
@@ -103,6 +108,11 @@ def parse_args() -> argparse.Namespace:
         "--no-local",
         action="store_true",
         help="Build the solver without the local feature for production-like behavior/compile checks",
+    )
+    parser.add_argument(
+        "--wait-lock",
+        action="store_true",
+        help="Wait for another eval.py to finish instead of exiting immediately",
     )
     args = parser.parse_args()
     if args.jobs < 1:
@@ -216,6 +226,56 @@ def append_jsonl(path: Path, records: list[dict[str, object]]) -> None:
         for record in records:
             handle.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")))
             handle.write("\n")
+
+
+def make_lock_record(args: argparse.Namespace, normalized_input_dir: str) -> str:
+    record = {
+        "pid": os.getpid(),
+        "bin": args.bin_name,
+        "jobs": args.jobs,
+        "input_dir": normalized_input_dir,
+        "started_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+    }
+    return json.dumps(record, ensure_ascii=False, separators=(",", ":"))
+
+
+@contextmanager
+def acquire_eval_lock(
+    args: argparse.Namespace,
+    normalized_input_dir: str,
+) -> Iterator[None]:
+    EVAL_LOCK.parent.mkdir(parents=True, exist_ok=True)
+    with EVAL_LOCK.open("a+", encoding="utf-8") as handle:
+        try:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            handle.seek(0)
+            owner = handle.read().strip()
+            if not args.wait_lock:
+                eprint("eval: another eval.py is already running.")
+                if owner:
+                    eprint(f"eval: running eval: {owner}")
+                eprint(
+                    "eval: exit without running. "
+                    "Use --wait-lock to wait for the current eval to finish."
+                )
+                raise SystemExit(LOCK_BUSY_EXIT_CODE)
+
+            eprint("eval: another eval.py is already running; waiting...")
+            if owner:
+                eprint(f"eval: running eval: {owner}")
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+
+        handle.seek(0)
+        handle.truncate()
+        handle.write(make_lock_record(args, normalized_input_dir) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+
+        try:
+            yield
+        finally:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
 def compute_detail_header() -> list[str]:
@@ -447,22 +507,13 @@ def make_records(
     return records
 
 
-def main() -> int:
-    args = parse_args()
-    ensure_solver_exists(args.bin_name)
-    ensure_tools_ready()
-
-    input_dir = Path(args.input_dir).resolve()
-    if not input_dir.is_dir():
-        raise SystemExit(f"error: input directory not found: {args.input_dir}")
-
-    input_files = list_input_files(input_dir)
-    ensure_unique_basenames(input_files)
-
-    normalized_input_dir = normalize_dir(input_dir)
-    is_tools_in = input_dir == DEFAULT_INPUT_DIR.resolve()
-    local_enabled = not args.no_local
-
+def run_eval_locked(
+    args: argparse.Namespace,
+    input_files: list[Path],
+    normalized_input_dir: str,
+    is_tools_in: bool,
+    local_enabled: bool,
+) -> int:
     if not args.dry_run:
         ensure_csv_header(SUMMARY_CSV, SUMMARY_HEADER)
         if is_tools_in:
@@ -567,6 +618,32 @@ def main() -> int:
     if failure_count != 0:
         return 1
     return 0
+
+
+def main() -> int:
+    args = parse_args()
+    ensure_solver_exists(args.bin_name)
+    ensure_tools_ready()
+
+    input_dir = Path(args.input_dir).resolve()
+    if not input_dir.is_dir():
+        raise SystemExit(f"error: input directory not found: {args.input_dir}")
+
+    input_files = list_input_files(input_dir)
+    ensure_unique_basenames(input_files)
+
+    normalized_input_dir = normalize_dir(input_dir)
+    is_tools_in = input_dir == DEFAULT_INPUT_DIR.resolve()
+    local_enabled = not args.no_local
+
+    with acquire_eval_lock(args, normalized_input_dir):
+        return run_eval_locked(
+            args=args,
+            input_files=input_files,
+            normalized_input_dir=normalized_input_dir,
+            is_tools_in=is_tools_in,
+            local_enabled=local_enabled,
+        )
 
 
 if __name__ == "__main__":
