@@ -69,7 +69,6 @@ assert_eq!(before, state.debug_snapshot());
 - `beam_width` は最初は小さくし、正しく動くことを確認してから広げる。
 - `enumerate_actions` は候補数を絞る。差分更新が速くても、候補数が大きすぎると詰まる。
 - `move_backward` の漏れはスコア劣化ではなく破壊的なバグになる。assert を厚くしてよい。
-- 1会話で新規 solver 候補を複数生成して自動比較しない。既存候補の比較はユーザーが明示した場合だけ行う。
 
 ## その他資料
 - `references/design-notes.md`: 通常 beam search との違い、3つのテンプレートの構造、Rust 化方針。

@@ -73,6 +73,7 @@ Phase 2 は、解説 Markdown を書いただけでは完了しない。
 詳しい文章作成、検証、失敗時の扱い、再検証、最終確認は [explanation-validation.md](references/explanation-validation.md) に従う。
 subagent に渡す前の本文点検には [writing-checklist.md](references/writing-checklist.md) を使う。
 subagent を起動するときは [subagent-validation.md](references/subagent-validation.md) を使う。
+検証 agent には、読んでよいファイル、作ってよい新規ファイル、読んではいけない既存 solver を明示する。
 
 ## 参照ファイル
 
@@ -80,16 +81,6 @@ subagent を起動するときは [subagent-validation.md](references/subagent-v
 - [explanation-validation.md](references/explanation-validation.md)：Phase 2 の手順。
 - [writing-checklist.md](references/writing-checklist.md)：Phase 2 で subagent に渡す前の解説本文を、AHC solver 解説として検証可能な状態にするための点検手順。
 - [subagent-validation.md](references/subagent-validation.md)：subagent 起動時に使う検証プロンプト、読み取り制限、checksum、検証条件の汚染防止の手順。
-
-## 生成AI利用ルール
-
-新しい solver 候補を複数作って自動比較しない。
-AI が作る新規 solver は、1 会話につき 1 本までにする。
-
-複数候補を比較できるのは、ユーザーが明示した既存 solver だけである。
-
-subagent 検証でも同じ制約を守る。
-検証 agent には、読んでよいファイル、作ってよい新規ファイル、読んではいけない既存 solver を明示する。
 
 ## 最終報告
 
