@@ -25,7 +25,10 @@ _template_heuristic/
 ├── scripts/
 ├── notes/
 │   ├── important_properties.md
-│   └── notations.md
+│   ├── notations.md
+│   ├── journal.md
+│   ├── backlog.md
+│   └── deep/
 ├── results/
 │   ├── score_summary.csv
 │   ├── score_detail.csv
@@ -62,6 +65,12 @@ _template_heuristic/
   - 問題で使う記号と、実装名・配列構造・添字規則・型・制約をまとめる正本である。
 - `notes/important_properties.md`
   - 問題から導かれる重要な性質、不変量、探索や構築で効く性質を整理する正本である。
+- `notes/journal.md`
+  - 実験の正史である。1 実験 1 エントリで、着手時の事前登録 (仮説・変更・機構確認・採否基準) と判定 (結果・学び) を追記する。
+- `notes/backlog.md`
+  - 実験アイデアと確定知見の台帳である。観察・問い・未着手・実験中・決着済みで管理する。
+- `notes/deep/`
+  - journal のエントリに収まらない考察・設計・作業ログの置き場である。
 
 ### contest assets
 - `tools/`
@@ -90,11 +99,12 @@ _template_heuristic/
 - TeX は条件付き確率、総和、総積、比例関係などの構造だけに使い、コードフェンス内に入れない。
 
 ### 実験の流れ
-1. 共通土台は `src/bin/v000_template.rs` に書き、試行錯誤する solver は `src/bin/v001_*.rs` 以降に書く
-2. `./scripts/run.sh [--no-local] <bin_name> [input_file]` で単発確認する
+1. 着手前に `notes/backlog.md` と `notes/journal.md` の索引を照合し、`notes/journal.md` に事前登録する (AGENTS.md の「実験の進め方」「実験知見の記録」に従う)
+2. 共通土台は `src/bin/v000_template.rs` に書き、試行錯誤する solver は `src/bin/v001_*.rs` 以降に書く
+3. `./scripts/run.sh [--no-local] <bin_name> [input_file]` で単発確認する
    - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
    - 既定では solver を `--release --features local` で build する。`--no-local` は本番相当の挙動や `local` feature なしの compile 確認に限って使う。
-3. scorer があるなら `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] [--no-local] <bin_name> [input_dir]` で公式スコアを確認する
+4. scorer があるなら `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] [--no-local] <bin_name> [input_dir]` で公式スコアを確認する
    - `input_dir` 省略時は `tools/in` を使う。
    - 既定では solver を `--release --features local`、tools の score を通常の `--release` で build する。
    - build 後に先頭入力で `run -> score` を 1 回ウォームアップしてから、各ケースについて本番の `run -> score` を実行する。
@@ -102,7 +112,8 @@ _template_heuristic/
    - `--no-local` は本番相当の挙動や `local` feature なしの compile 確認に限って使う。
    - 通常実行では `results/score_summary.csv` と `results/eval_records.jsonl` に追記し、`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記する。
    - `--dry-run` は蓄積ファイルを更新せず、その場の確認だけを行う。
-4. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
+5. 判定を `notes/journal.md` のエントリに確定し、`notes/backlog.md` の状態を更新する
+6. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
 ## script の役割
 - `./scripts/run.sh [--no-local] <bin_name> [input_file]`
