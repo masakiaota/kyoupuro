@@ -40,13 +40,16 @@ _template_heuristic/
 
 ## 最初にやること
 
-1. `.agents/skills/write-problem-description/SKILL.md` に従って `problem_description.txt` を埋める
-2. 公式配布物を `tools/` と `samples/` に置く
+実験を始める前に、この順で土台を整える。
+
+1. 公式配布物を `tools/` と `samples/` に置く (`./scripts/unpack_tools.sh ./tools.zip`)
+2. `.agents/skills/write-problem-description/SKILL.md` に従い、`problem_description.txt` を埋め、`notes/notations.md` に記号の正本を固める
 3. `scripts/eval.py` を contest の scoring tool の呼び出し方に合わせて編集する
-4. 必要な記号を `notes/notations.md` に早めに書き出し、実装名・添字規則・型の正本を先に固める
-5. 見えてきた重要な性質を `notes/important_properties.md` に整理する
-6. 必要なら `.agents/skills/make-ahc-visualizer/SKILL.md` に従って visualizer を作る
-7. `src/bin/v000_template.rs` に共通土台を整える
+4. 必要なら `.agents/skills/make-ahc-visualizer/SKILL.md` に従って visualizer を作る
+5. `.agents/skills/make-v000-template/SKILL.md` に従い、`src/bin/v000_template.rs` に入出力・`State`・操作適用の共通土台を作る。全実験の速度がこの設計で決まるため、十分高速なデータ構造をここで固める
+6. 見えてきた重要な性質を `notes/important_properties.md` に整理する (以降も随時更新する)
+
+ここまで終えたら「実験の流れ」に入る。
 
 ## 実験の流れ
 
