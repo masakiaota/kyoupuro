@@ -1,6 +1,7 @@
 # Heuristic Contest Agent Notes
 
 ## 前提
+- 運用仕様の正本はこの AGENTS.md である。README.md は人間向けの概要とコマンド例であり、仕様が食い違ったら AGENTS.md を優先し、README.md を直す。
 - このディレクトリが project root である。親や兄弟ディレクトリには依存しない。
 - 言語は Rust のみである。
 - AtCoder のジャッジ環境を前提にし、現在の依存環境以外は用いない。

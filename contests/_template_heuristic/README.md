@@ -3,133 +3,64 @@
 このディレクトリは、AtCoder Heuristic Contest 用の作業テンプレートである。  
 解法実装、実験、採点、visualizer をこのディレクトリの中だけで進める前提で作ってある。
 
+運用仕様の正本は [AGENTS.md](AGENTS.md) である。この README は人間向けの概要とコマンド例をまとめる。
+
 ## ディレクトリ構成
-主要なものだけ示す。
+
+主要なものだけ示す。各ファイルの詳細な役割と運用ルールは AGENTS.md の「各ディレクトリ・ファイルの役割」を参照。
 
 ```text
 _template_heuristic/
-├── README.md
-├── AGENTS.md
-├── problem_description.txt
-├── Cargo.toml
-├── .agents/
-│   └── skills/
-│       ├── write-problem-description/
-│       │   └── SKILL.md
-│       └── make-ahc-visualizer/
-│           └── SKILL.md
-├── src/
-│   └── bin/
-│       ├── v000_template.rs
-│       └── crate_check.rs
+├── README.md                    # 人間向け概要 (このファイル)
+├── AGENTS.md                    # 運用仕様の正本
+├── problem_description.txt      # 問題文、制約、スコア
+├── Cargo.toml                   # 依存クレートと adhoc bin の [[bin]] 宣言
+├── .agents/skills/              # AI 用スキル (問題転記、v000 構築、visualizer ほか)
+├── .claude/commands/            # スキル起動用コマンド
+├── src/bin/
+│   ├── v000_template.rs         # 問題固有の共通土台
+│   ├── v001_*.rs 以降           # 試行錯誤する solver (提出はこのファイルを直接使う)
+│   └── adhoc/                   # bench / probe / check などの補助 bin
 ├── scripts/
+│   ├── run.sh                   # 単発の手動実行
+│   ├── eval.py                  # 並列評価パイプライン
+│   ├── gen_tools.sh             # 追加入力生成の wrapper
+│   ├── unpack_tools.sh          # 公式配布 zip の展開
+│   └── adhoc/                   # 単発の分析・検証スクリプト
 ├── notes/
-│   ├── important_properties.md
-│   ├── notations.md
-│   ├── journal.md
-│   ├── backlog.md
-│   └── deep/
-├── results/
-│   ├── score_summary.csv
-│   ├── score_detail.csv
-│   ├── eval_records.jsonl
-│   └── out/
-├── samples/
-└── tools/
+│   ├── notations.md             # 記号の正本
+│   ├── important_properties.md  # 問題から導かれる性質の正本
+│   ├── journal.md               # 実験の正史 (事前登録と判定)
+│   ├── backlog.md               # 実験アイデアと確定知見の台帳
+│   └── deep/                    # journal に収まらない深掘りメモ
+├── results/                     # 評価ログ (score_summary.csv ほか) と出力
+├── samples/                     # サンプル入出力
+└── tools/                       # 公式 generator / tester / scorer の展開先
 ```
 
-## 役割
-### ルート
-- `problem_description.txt`
-  - 問題文、入出力、スコア、制約、初動メモを書く。
-- `.agents/skills/write-problem-description/SKILL.md`
-  - `problem_description.txt` 作成時に AI が従う手順である。
+## 最初にやること
 
-### 解法・実験
-- `src/bin/v000_template.rs`
-  - 問題理解の過程で確定した共通土台を置く。
-  - 例: `State`、問題のルール再現、基本遷移、制約判定、整合性チェック、reference 実装。
-- `src/bin/v001_*.rs` 以降
-  - 探索戦略、評価関数、パラメータ、枝刈りなど、試行錯誤する solver を置く。提出時はこの中のファイルを直接使う。
-- `results/score_summary.csv`
-  - score の要約ログを追記する。列順は `bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at` である。
-- `results/score_detail.csv`
-  - `tools/in` 専用の wide-format 比較表である。列順は `bin,total_avg,max_elapsed,<case_name_1>,...,label,executed_at` である。
-- `results/eval_records.jsonl`
-  - 1 行 1 case の評価記録を追記する正本である。`score_detail.csv` や比較表示の材料にする。
-- `results/out/<bin_name>/`
-  - `run.sh` や `eval.py` 実行時の出力を保存する。`bin` ごとにフォルダ分けされる。
-- `notes/`
-  - 問題固有のアイデア、重要な性質、観察結果を書く。
-- `notes/notations.md`
-  - 問題で使う記号と、実装名・配列構造・添字規則・型・制約をまとめる正本である。
-- `notes/important_properties.md`
-  - 問題から導かれる重要な性質、不変量、探索や構築で効く性質を整理する正本である。
-- `notes/journal.md`
-  - 実験の正史である。1 実験 1 エントリで、着手時の事前登録 (仮説・変更・機構確認・採否基準) と判定 (結果・学び) を追記する。
-- `notes/backlog.md`
-  - 実験アイデアと確定知見の台帳である。観察・問い・未着手・実験中・決着済みで管理する。
-- `notes/deep/`
-  - journal のエントリに収まらない考察・設計・作業ログの置き場である。
-
-### contest assets
-- `tools/`
-  - 公式 generator / tester / scorer を展開する場所である。
-- `samples/`
-  - サンプル input / output を置く場所である。
-
-### visualizer
-- `.agents/skills/make-ahc-visualizer/SKILL.md`
-  - visualizer 実装時に AI が従う手順である。UI / WASM / Vite のテンプレートは skill の同梱物から project root に展開する。
-
-## 基本的な使い方
-### 最初にやること
 1. `.agents/skills/write-problem-description/SKILL.md` に従って `problem_description.txt` を埋める
 2. 公式配布物を `tools/` と `samples/` に置く
-3. 並列評価できるように `scripts/eval.py` が contest の scoring tool 呼び出し方に対応するように編集。
-4. 必要な記号を `notes/notations.md` に早めに書き出し、実装名・配列構造・添字規則・型の正本を先に固める。
-5. 見えてきた重要な性質や不変量を `notes/important_properties.md` に整理する。
-6. 必要なら `.agents/skills/make-ahc-visualizer/SKILL.md` に従って visualizer を作る。
-7. `src/bin/v000_template.rs` に共通土台を整え、実験用 solver は `v001_*.rs` 以降として追加する
+3. `scripts/eval.py` を contest の scoring tool の呼び出し方に合わせて編集する
+4. 必要な記号を `notes/notations.md` に早めに書き出し、実装名・添字規則・型の正本を先に固める
+5. 見えてきた重要な性質を `notes/important_properties.md` に整理する
+6. 必要なら `.agents/skills/make-ahc-visualizer/SKILL.md` に従って visualizer を作る
+7. `src/bin/v000_template.rs` に共通土台を整える
 
-### notation の書き方
-- 公式記号名は保持する。`N`, `M` は Rust 風の `n`, `m` へ直さない。
-- 添字は原則 0-based にし、`h[i,j]` のような配列アクセス風表記にしてよい。
-- 問題文にない実装用の状態量は `state[g]`, `X[p,g]` のようにコードとの対応が見える名前にする。
-- TeX は条件付き確率、総和、総積、比例関係などの構造だけに使い、コードフェンス内に入れない。
+## 実験の流れ
 
-### 実験の流れ
-1. 着手前に `notes/backlog.md` と `notes/journal.md` の索引を照合し、`notes/journal.md` に事前登録する (AGENTS.md の「実験の進め方」「実験知見の記録」に従う)
-2. 共通土台は `src/bin/v000_template.rs` に書き、試行錯誤する solver は `src/bin/v001_*.rs` 以降に書く
-3. `./scripts/run.sh [--no-local] <bin_name> [input_file]` で単発確認する
-   - `input_file` 指定時は `results/out/<bin_name>/<input_file_basename>` に出力を保存する。
-   - 既定では solver を `--release --features local` で build する。`--no-local` は本番相当の挙動や `local` feature なしの compile 確認に限って使う。
-4. scorer があるなら `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] [--no-local] <bin_name> [input_dir]` で公式スコアを確認する
-   - `input_dir` 省略時は `tools/in` を使う。
-   - 既定では solver を `--release --features local`、tools の score を通常の `--release` で build する。
-   - build 後に先頭入力で `run -> score` を 1 回ウォームアップしてから、各ケースについて本番の `run -> score` を実行する。
-   - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
-   - `--no-local` は本番相当の挙動や `local` feature なしの compile 確認に限って使う。
-   - 通常実行では `results/score_summary.csv` と `results/eval_records.jsonl` に追記し、`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記する。
-   - `--dry-run` は蓄積ファイルを更新せず、その場の確認だけを行う。
+1. 着手前に `notes/backlog.md` と `notes/journal.md` の索引を照合し、`notes/journal.md` に事前登録する
+2. 共通土台は `src/bin/v000_template.rs` に、試行錯誤する solver は `src/bin/v001_*.rs` 以降に書く
+3. `./scripts/run.sh` で単発確認する (機構確認を含む)
+4. `./scripts/eval.py` で公式スコアを確認する
 5. 判定を `notes/journal.md` のエントリに確定し、`notes/backlog.md` の状態を更新する
 6. 提出時は対象の `src/bin/<bin_name>.rs` を直接コピーして使う
 
-## script の役割
-- `./scripts/run.sh [--no-local] <bin_name> [input_file]`
-  - stdin または 1 つの input_file に対して手動実行する。既定で solver を `--release --features local` で build し、`--no-local` は本番相当の挙動や `local` feature なしの compile 確認に限って使う。
-- `./scripts/eval.py [-v] [-j jobs] [--label label] [--dry-run] [--no-local] <bin_name> [input_dir]`
-  - solver と公式 `score` を 1 回だけ build し、先頭入力で `run -> score` を 1 回ウォームアップしてから、ケース単位で本番の `run -> score` を実行する。solver は既定で `--release --features local`、`--no-local` 指定時は本番相当の通常 `--release` で build する。
-  - ウォームアップ結果は score ログ、elapsed 集計、本番出力には含めない。
-  - 出力は `results/out/<bin_name>/` に保存し、要約は `results/score_summary.csv` に追記する。`tools/in` を全ケース成功で評価したときだけ `results/score_detail.csv` にも追記し、全ケースの記録は `results/eval_records.jsonl` に追記する。
-  - `--dry-run` は 3 つの蓄積ファイルを更新しない。
-  - `-h` / `--help` で使い方を確認できる。
-- `./scripts/gen_tools.sh <args...>`
-  - 公式 `tools` の `gen` バイナリをラップする。追加入力生成用である。
-- `./scripts/unpack_tools.sh [tools_zip_path]`
-  - `tools.zip` などの公式配布 zip を `tools/` に展開する。
+script の詳細な挙動 (build オプション、warmup、ログの追記条件) と実験運用の規律 (事前登録の書式、判定ルール) は AGENTS.md を参照。
 
 ## よく使うコマンド
+
 ```bash
 ./scripts/run.sh <bin_name>
 ./scripts/run.sh <bin_name> ./tools/in/0000.txt
@@ -137,13 +68,12 @@ _template_heuristic/
 ./scripts/eval.py <bin_name>
 ./scripts/eval.py -v --label baseline <bin_name>
 ./scripts/eval.py --dry-run <bin_name>
-./scripts/eval.py --dry-run --no-local <bin_name>
 ./scripts/eval.py --help
 ./scripts/unpack_tools.sh ./tools.zip
-cargo run --bin crate_check
 ```
 
 ## Visualizer の使い方
+
 - まず `problem_description.txt` と `tools/src/` を揃える
 - `.agents/skills/make-ahc-visualizer/SKILL.md` を読み、同梱テンプレートを project root に展開する
 - skill の指示に従い、問題固有部分だけを編集して起動確認する
