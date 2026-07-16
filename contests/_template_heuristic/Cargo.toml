@@ -1,3 +1,6 @@
+[workspace]
+members = ["adhoc"]
+
 [profile.release]
 lto = true # コンパイル時間が著しく長くなってしまう場合は無し
 
@@ -9,12 +12,6 @@ publish = false
 
 [features]
 local = []
-
-# src/bin/adhoc/ 以下は cargo に自動認識されないため、[[bin]] を明示する。
-# adhoc bin を増やしたらここにも追記する (AGENTS.md 参照)。
-[[bin]]
-name = "crate_check"
-path = "src/bin/adhoc/crate_check.rs"
 
 [dependencies]
 # 202411から:

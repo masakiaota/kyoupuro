@@ -32,9 +32,15 @@ fi
 BIN_NAME=$1
 INPUT_FILE=${2:-}
 BIN_SRC="$ROOT_DIR/src/bin/$BIN_NAME.rs"
+ADHOC_SRC="$ROOT_DIR/adhoc/src/bin/$BIN_NAME.rs"
 
-if [ ! -f "$BIN_SRC" ]; then
-    echo "error: not found: $BIN_SRC" >&2
+# solver はルート、補助 bin は adhoc クレート。ソースの場所で manifest を切り替える。
+if [ -f "$BIN_SRC" ]; then
+    MANIFEST_PATH="$ROOT_DIR/Cargo.toml"
+elif [ -f "$ADHOC_SRC" ]; then
+    MANIFEST_PATH="$ROOT_DIR/adhoc/Cargo.toml"
+else
+    echo "error: not found: $BIN_SRC nor $ADHOC_SRC" >&2
     exit 1
 fi
 
@@ -50,10 +56,10 @@ fi
 
 START_ALL=$(date +%s)
 if [ "$LOCAL_FEATURE" -eq 1 ]; then
-    cargo build --release --features local --quiet --manifest-path "$ROOT_DIR/Cargo.toml" --bin "$BIN_NAME"
+    cargo build --release --features local --quiet --manifest-path "$MANIFEST_PATH" --bin "$BIN_NAME"
     LOCAL_LABEL=on
 else
-    cargo build --release --quiet --manifest-path "$ROOT_DIR/Cargo.toml" --bin "$BIN_NAME"
+    cargo build --release --quiet --manifest-path "$MANIFEST_PATH" --bin "$BIN_NAME"
     LOCAL_LABEL=off
 fi
 BIN_EXEC="$BIN_PATH/$BIN_NAME"

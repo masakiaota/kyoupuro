@@ -24,6 +24,7 @@ from typing import Iterator, Optional
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT_DIR = SCRIPT_DIR.parent
 SOLVER_MANIFEST = ROOT_DIR / "Cargo.toml"
+ADHOC_MANIFEST = ROOT_DIR / "adhoc" / "Cargo.toml"
 TOOLS_MANIFEST = ROOT_DIR / "tools" / "Cargo.toml"
 SOLVER_BIN_DIR = ROOT_DIR / "target" / "release"
 TOOLS_BIN_DIR = ROOT_DIR / "tools" / "target" / "release"
@@ -136,10 +137,15 @@ def round_half_up(numerator: int, denominator: int) -> int:
     )
 
 
-def ensure_solver_exists(bin_name: str) -> None:
+def resolve_solver_manifest(bin_name: str) -> Path:
+    """solver はルート、補助 bin は adhoc クレート。ソースの場所で manifest を切り替える。"""
     solver_src = ROOT_DIR / "src" / "bin" / f"{bin_name}.rs"
-    if not solver_src.is_file():
-        raise SystemExit(f"error: not found: {solver_src}")
+    if solver_src.is_file():
+        return SOLVER_MANIFEST
+    adhoc_src = ROOT_DIR / "adhoc" / "src" / "bin" / f"{bin_name}.rs"
+    if adhoc_src.is_file():
+        return ADHOC_MANIFEST
+    raise SystemExit(f"error: not found: {solver_src} nor {adhoc_src}")
 
 
 def ensure_tools_ready() -> None:
@@ -529,7 +535,7 @@ def run_eval_locked(
             f"parallel={args.jobs} output={output_dir}"
         )
 
-    build_binary(SOLVER_MANIFEST, args.bin_name, local_feature=local_enabled)
+    build_binary(resolve_solver_manifest(args.bin_name), args.bin_name, local_feature=local_enabled)
     build_binary(TOOLS_MANIFEST, "score")
 
     solver_bin = SOLVER_BIN_DIR / args.bin_name
@@ -622,7 +628,7 @@ def run_eval_locked(
 
 def main() -> int:
     args = parse_args()
-    ensure_solver_exists(args.bin_name)
+    resolve_solver_manifest(args.bin_name)
     ensure_tools_ready()
 
     input_dir = Path(args.input_dir).resolve()

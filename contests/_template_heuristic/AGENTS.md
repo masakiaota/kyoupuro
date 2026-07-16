@@ -23,14 +23,13 @@
 - `.agents/skills/write-problem-description/SKILL.md`
   - problem_description 作成時に AI が従う手順である。貼り付けテキストやスクリーンショットから公式の節順を保って転記する。
 - `src/bin/*.rs`
-  - top-level は `v000_template.rs` と提出候補 solver だけを置く。各ファイルは単体で完結し、1 行目に `// <file_name>.rs` を置く。
-- `src/bin/adhoc/*.rs`
-  - bench / probe / check などの補助 bin を置く場所である。
-  - `crate_check.rs` も運用上はこの扱いである。
-- `scripts/adhoc/`
-  - 単発の分析・検証・PoC 用スクリプトを置く場所である。
+  - top-level は `v000_template.rs`、提出候補 solver、`crate_check.rs` (依存一覧の検査器、固定) だけを置く。各ファイルは単体で完結し、1 行目に `// <file_name>.rs` を置く。
+- `adhoc/`
+  - ローカル専用の補助置き場である。bench / probe / check などの Rust 補助 bin は `adhoc/src/bin/*.rs` に、単発の分析・検証・PoC 用スクリプトは `adhoc/scripts/` に置く。
+  - `adhoc/src/bin/*.rs` は cargo に自動認識されるため、`[[bin]]` の登録は不要である。`run.sh` と `eval.py` は solver と同じように bin 名で実行できる。
+  - AtCoder のジャッジ環境では動かさないため、`adhoc/Cargo.toml` の依存はルートの固定一覧に縛られず自由に足してよい。
 - `Cargo.toml`
-  - `src/bin/adhoc/*.rs` を `cargo run --bin <name>` で実行できるように `[[bin]]` を明示する場所である。
+  - AtCoder のジャッジ環境と同じ依存クレートを固定する場所であり、workspace のルートである。`adhoc/` の依存はここに足さない。
 - `scripts/run.sh`
   - `src/bin/<name>.rs` をビルドし、stdin か 1 つの input file で手動実行する。既定で `local` feature を有効にし、`--no-local` で無効化する。
 - `scripts/eval.py`
@@ -84,7 +83,7 @@
 - 同じ実装に対して 2 回以上 eval してノイズの影響を測ることはしない。
 - 実験アイデアは `notes/backlog.md` の観察・問い、または `notes/important_properties.md` の性質から導く。提案時には、どの観察・性質から導いたかを 1 行で示す。
 - 実験アイデアを考える段階では journal の本文を読まない。着手を決めてから、事前登録を書く前に backlog 全体と `grep "^## " notes/journal.md` の索引を照合し、類似実験があればその本文だけを読む。決着済みの再開条件に、現在の状況で満たされるものがないかもこのとき確認する。
-- 問いのうち、solver を書かずに既存ログや `scripts/adhoc/` の分析で答えが出るものは、実験より先に潰す。
+- 問いのうち、solver を書かずに既存ログや `adhoc/` の分析で答えが出るものは、実験より先に潰す。
 
 ## 実験知見の記録
 - `notes/journal.md` は実験の正史、`notes/backlog.md` はアイデアと知見の台帳である。どちらも AI が更新する義務を負う。更新にユーザーの許可は不要であり、書き忘れが運用違反である。
@@ -112,6 +111,6 @@
 - version 固有の探索戦略、評価関数、パラメータ、ログ、暫定 hack は `v001_*.rs` 以降に分ける。
 - `v000_template.rs` 以外では、不要になったコードを残さない。使われなくなった分岐、旧実装、暫定の互換コード、デッドコードは削除し、アルゴリズムを改変したときは現在の方針に合わせて関連処理も更新する。
 - `v000_template.rs` は原則として頻繁に書き換えない。ただし、バグ修正、共通化の整理は反映してよい。その場合は、ユーザーに更新内容を説明し、更新の許可を取る。
-- Rust の補助検証コードは `src/bin/adhoc/*.rs`、shell などの補助入口は `scripts/adhoc/` に分ける。adhoc Rust bin を増やしたら `Cargo.toml` の `[[bin]]` も同時に更新する。
+- Rust の補助検証コードは `adhoc/src/bin/*.rs`、shell などの補助入口は `adhoc/scripts/` に置く。ルートの `src/bin/` には solver 以外を増やさない。
 - `notes/important_properties.md` では `notes/notations.md` の表記を使い、記号定義を重複させない。
 - `notes/notations.md` や `notes/important_properties.md` はユーザーの明示的な更新指示があった場合のみ更新する。

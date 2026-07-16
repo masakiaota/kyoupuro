@@ -14,19 +14,21 @@ _template_heuristic/
 ├── README.md                    # 人間向け概要 (このファイル)
 ├── AGENTS.md                    # 運用仕様の正本
 ├── problem_description.txt      # 問題文、制約、スコア
-├── Cargo.toml                   # 依存クレートと adhoc bin の [[bin]] 宣言
+├── Cargo.toml                   # AtCoder と同じ依存の固定 (workspace ルート)
 ├── .agents/skills/              # AI 用スキル (問題転記、v000 構築、visualizer ほか)
 ├── .claude/commands/            # スキル起動用コマンド
 ├── src/bin/
 │   ├── v000_template.rs         # 問題固有の共通土台
 │   ├── v001_*.rs 以降           # 試行錯誤する solver (提出はこのファイルを直接使う)
-│   └── adhoc/                   # bench / probe / check などの補助 bin
+│   └── crate_check.rs           # 依存一覧の検査器 (固定)
+├── adhoc/                       # ローカル専用の補助置き場 (依存は自由)
+│   ├── src/bin/                 # bench / probe / check などの補助 bin (自動認識)
+│   └── scripts/                 # 単発の分析・検証スクリプト
 ├── scripts/
 │   ├── run.sh                   # 単発の手動実行
 │   ├── eval.py                  # 並列評価パイプライン
 │   ├── gen_tools.sh             # 追加入力生成の wrapper
-│   ├── unpack_tools.sh          # 公式配布 zip の展開
-│   └── adhoc/                   # 単発の分析・検証スクリプト
+│   └── unpack_tools.sh          # 公式配布 zip の展開
 ├── notes/
 │   ├── notations.md             # 記号の正本
 │   ├── important_properties.md  # 問題から導かれる性質の正本
