@@ -1,0 +1,40 @@
+bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at
+v001_baseline,3528927,352892698,2809039,3864786,3,9,tools/in,100,baseline_tree_leaf,2026-07-18T15:14:23+09:00
+v002_hierarchical_shift,48,4814,23,91,6,9,tools/in,100,a06_hierarchical_shift_standalone,2026-07-18T16:37:40+09:00
+v003_timed_complete,3937085,393708510,3179588,4555775,1405,1411,tools/in,100,a07_hierarchical_beam_complete,2026-07-18T16:52:32+09:00
+v005_chokudai_free,3709129,370912911,2879464,4335954,1419,1434,tools/in,100,chokudai-free-delta-v1 (Claude),2026-07-18T17:09:05+09:00
+v004_differential_beam,5483797,548379665,4507081,6501516,1450,1470,tools/in,100,e01_differential_leaf_beam,2026-07-18T17:14:50+09:00
+v006_wallless_row_staging,4135690,413568975,3179588,6753615,1405,1421,tools/in,100,e03_wallless_row_staging,2026-07-18T17:18:47+09:00
+v008_chokudai_treedist,4370639,437063946,3058212,5537908,1420,1474,tools/in,100,chokudai treedist eval-swap (Claude),2026-07-18T17:29:09+09:00
+v009_chokudai_protected,5450545,545054515,4491424,6460293,1451,1497,tools/in,100,chokudai schedule on v004 protected-macro (Claude),2026-07-18T17:37:17+09:00
+v007_bidirectional_macro,5025610,502561005,4253589,5555436,1448,1452,tools/in,100,E-04_bidirectional_macro,2026-07-18T17:38:32+09:00
+v101_sol_ultra,4352635,435263527,3715602,5052577,1262,1282,tools/in,100,v101_nonartic_macro_expand,2026-07-18T17:42:04+09:00
+v011_support_expand,5709719,570971902,4584555,6880420,1449,1460,tools/in,100,IDEA-D5 support expand on v004 (Claude),2026-07-18T17:52:20+09:00
+v010_three_stage_routing,3725939,372593852,2987645,4708796,1434,1438,tools/in,100,IDEA-D8 M-01 three-stage routing,2026-07-18T17:59:37+09:00
+v012_overlap_warp,5659205,565920504,4537908,6814001,1452,1599,tools/in,100,IDEA-C18 overlap warp on v011 (Claude),2026-07-18T18:12:29+09:00
+v021_expand_quality,5765330,576533013,4589755,6920043,1449,1463,tools/in,100,min-sum expand + probe band select (Claude),2026-07-18T18:18:56+09:00
+v022_cost_weight,5893540,589353997,4803491,6861848,1448,1452,tools/in,100,EVAL_COST_WEIGHT 10 to 4 (Claude),2026-07-18T18:22:11+09:00
+v014_three_stage_halfswap,3463415,346341451,1728162,5781904,1435,1536,tools/in,100,IDEA-D9 three-stage halfswap + Konig coloring,2026-07-18T18:23:26+09:00
+v023_fixed_beam96,5750819,575081892,4617810,6853484,1576,2785,tools/in,100,IDEA-D21 fixed beam width 96 from v011,2026-07-18T18:24:44+09:00
+v023_reverse_portfolio,5878930,587892992,4835665,6810759,555,1258,tools/in,100,reverse portfolio fixed-width16 (Claude),2026-07-18T18:29:55+09:00
+v022_c17_block_exchange,5771318,577131785,4590450,6925292,1449,1473,tools/in,100,IDEA-C17 exact joint block exchange,2026-07-18T18:34:09+09:00
+v024_warp_pairwise,5884006,588400578,4740832,6851817,1449,1462,tools/in,100,warp pairwise fair comparison (Claude),2026-07-18T18:36:21+09:00
+v025_leaf_prefilter16,5890375,589037522,4785877,6848489,1448,1452,tools/in,100,IDEA-D22 leaf prefilter top16 on v022,2026-07-18T18:38:34+09:00
+v013_integrated_transport_beam,5855890,585588992,4743534,6907868,1451,1473,tools/in,100,E-07 v011 integrated transport beam,2026-07-18T18:45:24+09:00
+v026_joint_block_weight,5912369,591236915,4854736,6930560,1449,1457,tools/in,100,E-12 exact joint selection + cost weight 4,2026-07-18T18:46:39+09:00
+v027_freedom_tree,5451507,545150719,4345891,6192188,1450,1465,tools/in,100,IDEA-C13 freedom-ordered edge-corridor peeling,2026-07-18T18:50:21+09:00
+v028_wide_prefilter,5923099,592309940,4854736,6930560,1449,1452,tools/in,100,E-14 v026 adaptive wide prefilter16,2026-07-18T18:59:04+09:00
+v029_shell_frontier,5954729,595472917,4711061,6823771,1450,1451,tools/in,100,IDEA-C19 exposed outer-shell frontier on v026,2026-07-18T19:06:00+09:00
+v999_official_solution,7103898,710389751,6093356,7770837,439,964,tools/in,100,V999 user-supplied official solution,2026-07-18T19:19:39+09:00
+v998_official_simplified,7103898,710389751,6093356,7770837,636,1485,tools/in,100,explain Phase 1 S1 SmallVec to Vec,2026-07-18T19:24:15+09:00
+v030_connected_peel,6050503,605050273,4690805,6997172,1452,1478,tools/in,100,E-15_connected_peel,2026-07-18T19:30:38+09:00
+v997_no_freedom_loss,6950517,695051717,5978863,7562917,609,1386,tools/in,100,explain Phase 1 S2 remove freedom-loss objective,2026-07-18T19:31:56+09:00
+v996_fixed_new_rect,6616806,661680621,5709174,7224178,894,1861,tools/in,100,explain Phase 1 S3 fixed new rectangle,2026-07-18T19:34:31+09:00
+v995_from_explanation,7079642,707964247,5929681,7761418,1272,1770,tools/in,100,explanation validation v3,2026-07-18T20:08:10+09:00
+v993_from_explanation,7103898,710389751,6093356,7770837,547,1295,tools/in,100,explanation validation v5 local,2026-07-18T22:48:44+09:00
+v993_from_explanation,7103898,710389751,6093356,7770837,570,1461,tools/in,100,explanation validation v5 production,2026-07-18T22:49:47+09:00
+v901_bfs,6029563,602956266,5147027,6725870,7,15,tools/in,100,,2026-07-19T13:33:44+09:00
+v902_time_space_bfs,6616096,661609609,5708419,7217723,541,1188,tools/in,100,,2026-07-19T22:19:27+09:00
+v903_operation_families,7103898,710389751,6093356,7770837,388,865,tools/in,100,core2_operation_families,2026-07-20T13:32:55+09:00
+v991_from_explanation,7103898,710389751,6093356,7770837,484,1409,tools/in,100,explanation validation v7 with reading guide,2026-07-20T14:46:40+09:00
+v990_from_explanation,7103898,710389751,6093356,7770837,435,940,tools/in,100,explanation validation v8 compact trace,2026-07-20T15:22:23+09:00
