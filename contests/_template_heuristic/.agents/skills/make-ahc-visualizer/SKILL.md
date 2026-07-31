@@ -1,20 +1,33 @@
 ---
 name: make-ahc-visualizer
-description: AHC形式のRustプロジェクトで、problem_description.txt と公式 tools/src をもとに、同梱テンプレートから case visualizer / eval viewer / WASM 接続を完成させる。
+description: AHC形式のRustプロジェクトで、tools/ 内の公式配布 ZIP を必要に応じて展開し、problem_description.txt と公式 tools/src をもとに、同梱テンプレートから case visualizer / eval viewer / WASM 接続を完成させる。
 ---
 
 # make-ahc-visualizer
 
 AHC形式の visualizer を作る。UI/API/eval viewer の大枠は同梱テンプレートをコピーし、問題固有の接続だけを編集する。
 
-## 1. 前提条件チェック
+## 1. 公式配布 ZIP の展開と前提条件チェック
 
-project root は `AGENTS.md` または `README.md` があるディレクトリである。作業前に以下を確認し、不足があれば停止してユーザーに報告する。
+project root は `AGENTS.md` または `README.md` があるディレクトリである。
+
+`tools/src/` の有無を確認する**前に**、`tools/` 配下にある開始時点の `*.zip` をすべて調べる。公式配布物が `tools/<download>.zip` として置かれ、その中に `tools/src/`、`tools/in/`、`Cargo.toml` などが入っていることがあるためである。`tools/src/` がないだけで停止してはならない。
+
+ZIP があれば、各 archive を一時ディレクトリへ展開してから `tools/` にマージする。
+
+- 展開結果の直下に `tools/` があれば、その中身を project root の `tools/` にマージする
+- 直下に `tools/` がなければ、展開結果の中身を project root の `tools/` にマージする。たとえば `in/` だけを含む ZIP は `tools/in/` になる
+- `__MACOSX/` と `.DS_Store` はコピーしない。元の ZIP と、ZIP 以外の既存ファイルを削除しない
+- ZIP の展開に失敗した場合は、archive のパスとエラーを報告して停止する
+- すべての ZIP を処理し終えてから、以下の前提条件を確認する
+
+作業前に以下を確認し、不足があれば停止してユーザーに報告する。
 
 - `problem_description.txt` が存在し、プレースホルダーではない
-- `tools/src/` が存在する
+- `tools/src/` が存在する。ZIP を展開しても存在しない場合にだけ停止する
 - `Cargo.toml` が存在する
 - `corepack`, `wasm-pack`, `cargo` が実行できる
+- `tools/` 内に ZIP があった場合は `unzip` が実行できる
 
 ## 2. テンプレート配置
 
