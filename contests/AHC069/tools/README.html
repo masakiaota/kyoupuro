@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+
+</head>
+<body class="markdown-body">
+<ul>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#%E4%BD%BF%E3%81%84%E6%96%B9">使い方</a></li>
+</ul>
+<h1 id="usage">Usage</h1>
+<h2>Requirements</h2>
+<p>Please install a compiler for Rust language (see https://www.rust-lang.org).
+If a compile error occurs, the compiler version may be old.
+You can update to the latest compiler by executing the following command.</p>
+<pre><code>rustup update
+</code></pre>
+<p>For those who are not familiar with the Rust language environment, we have prepared a <a href="https://img.atcoder.jp/ahc069/AdcJXWH4_windows.zip">pre-compiled binary for Windows</a>.
+The following examples assume that you will be working in the directory where this README is located.</p>
+<h2>Input Generation</h2>
+<p>The <code>in</code> directory contains pre-generated input files for seed=0-99.
+If you want more inputs, prepare <code>seeds.txt</code> which contains a list of random seeds (unsigned 64bit integers) and execute the following command.</p>
+<pre><code>cargo run -r --bin gen seeds.txt
+</code></pre>
+<p>This will output input files into <code>in</code> directory.
+When using the precompiled binary for Windows, execute the following command.</p>
+<pre><code>./gen.exe seeds.txt
+</code></pre>
+<p>If you use the command prompt instead of WSL, use <code>gen.exe</code> instead of <code>./gen.exe</code>.</p>
+<p>The following options are available.</p>
+<ul>
+<li><code>--dir=in2</code> Change the destination of the input files to the specified one instead of <code>in</code>.</li>
+</ul>
+<h2>Local Tester</h2>
+<p>Let <code>in.txt</code> be an input file, <code>out.txt</code> be a file to which output of your program will be written, and <code>cmd</code> be a command to run your program.
+You can test your program by executing the following command.</p>
+<pre><code>cargo run -r --bin tester cmd &lt; in.txt &gt; out.txt
+</code></pre>
+<p>The above command outputs the score to standard error.
+You can specify arguments to your program by</p>
+<pre><code>cargo run -r --bin tester cmd arg1 arg2 ... &lt; in.txt &gt; out.txt
+</code></pre>
+<p>If you use the precompiled binary for Windows, replace <code>cargo run -r --bin tester</code> with <code>./tester.exe</code>.
+You can visualize the contents of the output file by pasting it into the <a href="https://img.atcoder.jp/ahc029/45e6da0b06.html?lang=en">visualizer</a>.</p>
+<h2>Visualization</h2>
+<p>Let <code>in.txt</code> be an input file and <code>out.txt</code> be an output file.
+You can visualize the output by executing the following command.</p>
+<pre><code>cargo run -r --bin vis in.txt out.txt
+</code></pre>
+<p>When using the precompiled binary for Windows,</p>
+<pre><code>./vis.exe in.txt out.txt
+</code></pre>
+<p>The above command writes a visualization result to <code>vis.html</code>.
+It also outputs the score to standard output.</p>
+<p>An optional third argument selects how the occupied regions are colored:
+<code>group</code> (a hue per group index, the default), <code>t</code> (time left until departure) or
+<code>c</code> (compactness C).</p>
+<pre><code>cargo run -r --bin vis in.txt out.txt c
+</code></pre>
+<p>You can also use a <a href="https://img.atcoder.jp/ahc069/AdcJXWH4.html?lang=en">web visualizer</a> which is more rich in features.</p>
+<h1 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h1>
+<h2>実行環境</h2>
+<p>Rust言語のコンパイル環境が必要です。
+https://www.rust-lang.org/ja を参考に各自インストールして下さい。
+コンパイルエラーになった場合、コンパイラのバージョンが古い可能性があります。
+以下のコマンド実行することで最新のコンパイラに更新が可能です。</p>
+<pre><code>rustup update
+</code></pre>
+<p>Rust言語の環境構築が面倒な方向けに、<a href="https://img.atcoder.jp/ahc069/AdcJXWH4_windows.zip">Windows用のコンパイル済みバイナリ</a>も用意してあります。
+以下の実行例では、このREADMEが置かれているディレクトリに移動して作業することを想定しています。</p>
+<h2>入力生成</h2>
+<p><code>in</code> ディレクトリに予め生成された seed=0~99 に対する入力ファイルが置かれています。
+より多くの入力が欲しい場合は、<code>seeds.txt</code> に欲しい入力ファイルの数だけ乱数seed値(符号なし64bit整数値)を記入し、以下のコマンドを実行します。</p>
+<pre><code>cargo run -r --bin gen seeds.txt
+</code></pre>
+<p>生成された入力ファイルは <code>in</code> ディレクトリに出力されます。
+Windows用のコンパイル済バイナリを使用する場合は以下のようにします。</p>
+<pre><code>./gen.exe seeds.txt
+</code></pre>
+<p>WSLではなくコマンドプロンプトを使用する場合は <code>./gen.exe</code> ではなく <code>gen.exe</code> として下さい。</p>
+<p>以下のオプションが使用可能です</p>
+<ul>
+<li><code>--dir=in2</code> 入力ファイルの出力先を <code>in</code> ではなく、指定されたものに変更</li>
+</ul>
+<h2>ローカルテスタ</h2>
+<p>入力ファイル名を<code>in.txt</code>、出力結果を書き出す先のファイル名を<code>out.txt</code>、あなたのプログラムの実行コマンドを<code>cmd</code>としたとき、以下のコマンドを実行します。</p>
+<pre><code>cargo run -r --bin tester cmd &lt; in.txt &gt; out.txt
+</code></pre>
+<p>実行が終わると、スコアが標準エラーに出力されます。
+引数が必要な場合には</p>
+<pre><code>cargo run -r --bin tester cmd arg1 arg2 ... &lt; in.txt &gt; out.txt
+</code></pre>
+<p>のようにします。</p>
+<p>Windows用のコンパイル済バイナリを使用する場合は <code>cargo run -r --bin tester</code> の部分を <code>./tester.exe</code> に置き換えて下さい。
+出力された<code>out.txt</code>の中身を<a href="https://img.atcoder.jp/ahc069/AdcJXWH4.html?lang=ja">ビジュアライザ</a>に貼り付けると、ビジュアライズが可能です。</p>
+<h2>ビジュアライザ</h2>
+<p>入力ファイル名を<code>in.txt</code>、出力ファイル名を<code>out.txt</code>としたとき、以下のコマンドを実行します。</p>
+<pre><code>cargo run -r --bin vis in.txt out.txt
+</code></pre>
+<p>Windows用のコンパイル済バイナリを使用する場合は以下のようにします。</p>
+<pre><code>./vis.exe in.txt out.txt
+</code></pre>
+<p>出力のビジュアライズ結果は <code>vis.html</code> というファイルに書き出されます。
+標準出力にはスコアを出力します。</p>
+<p>第3引数で領域の色分けを指定できます。<code>group</code> (グループ番号ごとの色相、省略時) /
+<code>t</code> (退去までの残り時間) / <code>c</code> (コンパクト度 C) のいずれかです。</p>
+<pre><code>cargo run -r --bin vis in.txt out.txt c
+</code></pre>
+<p>より機能が豊富な<a href="https://img.atcoder.jp/ahc069/AdcJXWH4.html?lang=ja">ウェブ版のビジュアライザ</a>も利用可能です。</p>
+
+</body>
+</html>

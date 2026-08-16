@@ -1,0 +1,755 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import csv
+import fcntl
+import json
+import os
+import secrets
+import signal
+import shutil
+import subprocess
+import sys
+import tempfile
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from contextlib import contextmanager
+from dataclasses import dataclass
+from datetime import datetime
+from decimal import Decimal, ROUND_HALF_UP
+from pathlib import Path
+from typing import Iterator, Optional
+
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT_DIR = SCRIPT_DIR.parent
+SOLVER_MANIFEST = ROOT_DIR / "Cargo.toml"
+ADHOC_MANIFEST = ROOT_DIR / "adhoc" / "Cargo.toml"
+TOOLS_MANIFEST = ROOT_DIR / "tools" / "Cargo.toml"
+CPU_WRAPPER = SCRIPT_DIR / "measure_solver_cpu.py"
+SOLVER_BIN_DIR = ROOT_DIR / "target" / "release"
+TOOLS_BIN_DIR = ROOT_DIR / "tools" / "target" / "release"
+DEFAULT_INPUT_DIR = ROOT_DIR / "tools" / "in"
+SUMMARY_CSV = ROOT_DIR / "results" / "score_summary.csv"
+DETAIL_CSV = ROOT_DIR / "results" / "score_detail.csv"
+RECORDS_JSONL = ROOT_DIR / "results" / "eval_records.jsonl"
+EVAL_LOCK = ROOT_DIR / "results" / ".eval.lock"
+LOCK_BUSY_EXIT_CODE = 75
+DEFAULT_CASE_TIMEOUT_SEC = 10.0
+
+SUMMARY_HEADER = [
+    "bin",
+    "total_avg",
+    "total_sum",
+    "total_min",
+    "total_max",
+    "avg_elapsed",
+    "max_elapsed",
+    "eval_set",
+    "total_cases",
+    "label",
+    "executed_at",
+]
+
+
+@dataclass(frozen=True)
+class CaseResult:
+    case_name: str
+    status: str
+    score: Optional[int]
+    elapsed: int
+    stdout_path: str
+
+
+def eprint(message: str) -> None:
+    print(message, file=sys.stderr, flush=True)
+
+
+def default_jobs() -> int:
+    return 2
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        prog="./scripts/eval.py",
+        description=(
+            "Build solver and interactive tester once, warm up with one tester run, "
+            "then evaluate each case through the tester. Elapsed metrics are solver CPU time."
+        ),
+    )
+    parser.add_argument("bin_name", help="Rust solver bin name under src/bin")
+    parser.add_argument(
+        "input_dir",
+        nargs="?",
+        default=str(DEFAULT_INPUT_DIR),
+        help="Input directory to evaluate (default: tools/in)",
+    )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Show per-case progress logs",
+    )
+    parser.add_argument(
+        "-j",
+        "--jobs",
+        type=int,
+        default=default_jobs(),
+        help="Parallel jobs (default: 2)",
+    )
+    parser.add_argument(
+        "--label",
+        default="",
+        help="Optional experiment label recorded in CSV/JSONL",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Do not write score_summary.csv, score_detail.csv, or eval_records.jsonl",
+    )
+    parser.add_argument(
+        "--no-local",
+        action="store_true",
+        help="Build the solver without the local feature for production-like behavior/compile checks",
+    )
+    parser.add_argument(
+        "--wait-lock",
+        action="store_true",
+        help="Wait for another eval.py to finish instead of exiting immediately",
+    )
+    parser.add_argument(
+        "--case-timeout",
+        type=float,
+        default=DEFAULT_CASE_TIMEOUT_SEC,
+        help="Wall-clock safety timeout per interactive case in seconds (default: 10.0)",
+    )
+    args = parser.parse_args()
+    if args.jobs < 1:
+        parser.error("jobs must be >= 1")
+    if args.case_timeout <= 0:
+        parser.error("case timeout must be > 0")
+    return args
+
+
+def normalize_dir(path: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(ROOT_DIR.resolve()).as_posix()
+    except ValueError:
+        return resolved.as_posix()
+
+
+def round_half_up(numerator: int, denominator: int) -> int:
+    return int(
+        (Decimal(numerator) / Decimal(denominator)).quantize(
+            Decimal("1"), rounding=ROUND_HALF_UP
+        )
+    )
+
+
+def resolve_solver_manifest(bin_name: str) -> Path:
+    """solver はルート、補助 bin は adhoc クレート。ソースの場所で manifest を切り替える。"""
+    solver_src = ROOT_DIR / "src" / "bin" / f"{bin_name}.rs"
+    if solver_src.is_file():
+        return SOLVER_MANIFEST
+    adhoc_src = ROOT_DIR / "adhoc" / "src" / "bin" / f"{bin_name}.rs"
+    if adhoc_src.is_file():
+        return ADHOC_MANIFEST
+    raise SystemExit(f"error: not found: {solver_src} nor {adhoc_src}")
+
+
+def ensure_tools_ready() -> None:
+    if not TOOLS_MANIFEST.is_file():
+        raise SystemExit(f"error: tools manifest not found: {TOOLS_MANIFEST}")
+
+
+def build_binary(manifest_path: Path, bin_name: str, *, local_feature: bool = False) -> None:
+    command = [
+        "cargo",
+        "build",
+        "--release",
+    ]
+    if local_feature:
+        command.extend(["--features", "local"])
+    command.extend(
+        [
+            "--quiet",
+            "--manifest-path",
+            str(manifest_path),
+            "--bin",
+            bin_name,
+        ]
+    )
+    result = subprocess.run(command, cwd=ROOT_DIR)
+    if result.returncode != 0:
+        raise SystemExit(result.returncode)
+
+
+def list_input_files(input_dir: Path) -> list[Path]:
+    files = sorted(path for path in input_dir.rglob("*") if path.is_file())
+    if not files:
+        raise SystemExit(f"error: input directory is empty: {input_dir}")
+    return files
+
+
+def ensure_unique_basenames(paths: list[Path]) -> None:
+    seen: dict[str, Path] = {}
+    duplicates: set[str] = set()
+    for path in paths:
+        base = path.name
+        if base in seen:
+            duplicates.add(base)
+        else:
+            seen[base] = path
+    if duplicates:
+        duplicate_list = "\n".join(sorted(duplicates))
+        raise SystemExit(
+            "error: input directory contains duplicate basenames; results would collide\n"
+            f"files with duplicated basename:\n{duplicate_list}"
+        )
+
+
+def ensure_csv_header(path: Path, header: list[str]) -> None:
+    expected = ",".join(header)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        with path.open("r", encoding="utf-8", newline="") as handle:
+            first_line = handle.readline().rstrip("\r\n")
+        if first_line == "":
+            with path.open("w", encoding="utf-8", newline="") as handle:
+                handle.write(expected + "\n")
+            return
+        if first_line != expected:
+            raise SystemExit(
+                f"error: CSV header mismatch: {path}\n"
+                f"expected: {expected}\n"
+                f"actual:   {first_line}"
+            )
+        return
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        handle.write(expected + "\n")
+
+
+def append_csv_row(path: Path, row: list[str | int]) -> None:
+    with path.open("a", encoding="utf-8", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(row)
+
+
+def append_jsonl(path: Path, records: list[dict[str, object]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as handle:
+        for record in records:
+            handle.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")))
+            handle.write("\n")
+
+
+def make_lock_record(args: argparse.Namespace, normalized_input_dir: str) -> str:
+    record = {
+        "pid": os.getpid(),
+        "bin": args.bin_name,
+        "jobs": args.jobs,
+        "input_dir": normalized_input_dir,
+        "started_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+    }
+    return json.dumps(record, ensure_ascii=False, separators=(",", ":"))
+
+
+@contextmanager
+def acquire_eval_lock(
+    args: argparse.Namespace,
+    normalized_input_dir: str,
+) -> Iterator[None]:
+    EVAL_LOCK.parent.mkdir(parents=True, exist_ok=True)
+    with EVAL_LOCK.open("a+", encoding="utf-8") as handle:
+        try:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            handle.seek(0)
+            owner = handle.read().strip()
+            if not args.wait_lock:
+                eprint("eval: another eval.py is already running.")
+                if owner:
+                    eprint(f"eval: running eval: {owner}")
+                eprint(
+                    "eval: exit without running. "
+                    "Use --wait-lock to wait for the current eval to finish."
+                )
+                raise SystemExit(LOCK_BUSY_EXIT_CODE)
+
+            eprint("eval: another eval.py is already running; waiting...")
+            if owner:
+                eprint(f"eval: running eval: {owner}")
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+
+        handle.seek(0)
+        handle.truncate()
+        handle.write(make_lock_record(args, normalized_input_dir) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+
+        try:
+            yield
+        finally:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+
+
+def compute_detail_header() -> list[str]:
+    tools_inputs = list_input_files(DEFAULT_INPUT_DIR)
+    ensure_unique_basenames(tools_inputs)
+    case_columns = sorted(path.name for path in tools_inputs)
+    return ["bin", "total_avg", "max_elapsed", *case_columns, "label", "executed_at"]
+
+
+def clean_output_dir(output_dir: Path) -> None:
+    if output_dir.exists():
+        shutil.rmtree(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+
+def parse_cpu_result(path: Path) -> Optional[tuple[int, int, int]]:
+    try:
+        values = dict(
+            line.split("=", 1)
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if "=" in line
+        )
+        exit_code = int(values["exit_code"])
+        term_signal = int(values["term_signal"])
+        cpu_elapsed_ns = int(values["cpu_elapsed_ns"])
+    except (OSError, KeyError, ValueError):
+        return None
+    if cpu_elapsed_ns < 0:
+        return None
+    return exit_code, term_signal, cpu_elapsed_ns
+
+
+def parse_score(stdout: str) -> Optional[int]:
+    tokens = stdout.split()
+    if not tokens:
+        return None
+    try:
+        return int(tokens[-1])
+    except ValueError:
+        return None
+
+
+def run_case(
+    case_path: Path,
+    solver_bin: Path,
+    tester_bin: Path,
+    score_bin: Path,
+    output_dir: Path,
+    verbose: bool,
+    case_timeout: float,
+) -> CaseResult:
+    case_name = case_path.name
+    output_path = output_dir / case_name
+    err_path = output_dir / f"{case_name}.err"
+    result_path = output_dir / f"{case_name}.cpu_result"
+    stdout_path = output_path.relative_to(ROOT_DIR).as_posix()
+
+    if verbose:
+        eprint(f"start: {case_name}")
+
+    try:
+        with case_path.open("rb") as fin, output_path.open("wb") as fout, err_path.open(
+            "wb"
+        ) as ferr:
+            process = subprocess.Popen(
+                [
+                    str(tester_bin),
+                    sys.executable,
+                    str(CPU_WRAPPER),
+                    "--result-file",
+                    str(result_path),
+                    str(solver_bin),
+                ],
+                stdin=fin,
+                stdout=fout,
+                stderr=ferr,
+                start_new_session=True,
+            )
+            try:
+                returncode = process.wait(timeout=case_timeout)
+            except subprocess.TimeoutExpired:
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+                process.wait()
+                result_path.unlink(missing_ok=True)
+                ferr.write(
+                    f"eval: interactive case timed out after {case_timeout:.3f}s\n".encode()
+                )
+                if verbose:
+                    eprint(f"fail(timeout): {case_name}")
+                return CaseResult(
+                    case_name=case_name,
+                    status="timeout",
+                    score=None,
+                    elapsed=0,
+                    stdout_path=stdout_path,
+                )
+    except OSError:
+        result_path.unlink(missing_ok=True)
+        return CaseResult(
+            case_name=case_name,
+            status="run_fail",
+            score=None,
+            elapsed=0,
+            stdout_path=stdout_path,
+        )
+
+    cpu_result = parse_cpu_result(result_path)
+    result_path.unlink(missing_ok=True)
+    if cpu_result is None:
+        if verbose:
+            eprint(f"fail(cpu_result): {case_name}")
+        return CaseResult(
+            case_name=case_name,
+            status="cpu_result_fail",
+            score=None,
+            elapsed=0,
+            stdout_path=stdout_path,
+        )
+
+    solver_exit_code, solver_signal, cpu_elapsed_ns = cpu_result
+    cpu_elapsed_ms = round_half_up(cpu_elapsed_ns, 1_000_000)
+    if returncode != 0 or solver_exit_code != 0 or solver_signal != 0:
+        if verbose:
+            eprint(f"fail(interactive): {case_name}")
+        return CaseResult(
+            case_name=case_name,
+            status="interactive_fail",
+            score=None,
+            elapsed=cpu_elapsed_ms,
+            stdout_path=stdout_path,
+        )
+
+    try:
+        with err_path.open("ab") as ferr:
+            score_result = subprocess.run(
+                [str(score_bin), str(case_path), str(output_path)],
+                stdout=subprocess.PIPE,
+                stderr=ferr,
+                text=True,
+            )
+    except OSError:
+        return CaseResult(
+            case_name=case_name,
+            status="score_fail",
+            score=None,
+            elapsed=cpu_elapsed_ms,
+            stdout_path=stdout_path,
+        )
+    score = parse_score(score_result.stdout)
+    if score_result.returncode != 0 or score is None:
+        if verbose:
+            eprint(f"fail(score): {case_name}")
+        return CaseResult(
+            case_name=case_name,
+            status="score_fail",
+            score=None,
+            elapsed=cpu_elapsed_ms,
+            stdout_path=stdout_path,
+        )
+
+    if verbose:
+        eprint(
+            f"done: {case_name} score={score} cpu_elapsed={cpu_elapsed_ms}ms "
+            f"output={stdout_path}"
+        )
+    return CaseResult(
+        case_name=case_name,
+        status="ok",
+        score=score,
+        elapsed=cpu_elapsed_ms,
+        stdout_path=stdout_path,
+    )
+
+
+def evaluate_cases(
+    input_files: list[Path],
+    solver_bin: Path,
+    tester_bin: Path,
+    score_bin: Path,
+    output_dir: Path,
+    jobs: int,
+    verbose: bool,
+    case_timeout: float,
+) -> list[CaseResult]:
+    if jobs == 1:
+        return [
+            run_case(
+                path,
+                solver_bin,
+                tester_bin,
+                score_bin,
+                output_dir,
+                verbose,
+                case_timeout,
+            )
+            for path in input_files
+        ]
+
+    results_by_name: dict[str, CaseResult] = {}
+    with ThreadPoolExecutor(max_workers=jobs) as executor:
+        future_map = {
+            executor.submit(
+                run_case,
+                path,
+                solver_bin,
+                tester_bin,
+                score_bin,
+                output_dir,
+                verbose,
+                case_timeout,
+            ): path
+            for path in input_files
+        }
+        for future in as_completed(future_map):
+            result = future.result()
+            results_by_name[result.case_name] = result
+    return [results_by_name[path.name] for path in input_files]
+
+
+def warm_up_case(
+    case_path: Path,
+    solver_bin: Path,
+    tester_bin: Path,
+    score_bin: Path,
+    output_dir: Path,
+    verbose: bool,
+    case_timeout: float,
+) -> None:
+    if verbose:
+        eprint(f"warmup: start case={case_path.name}")
+
+    try:
+        with tempfile.TemporaryDirectory(prefix=".warmup_", dir=output_dir) as temp_dir:
+            result = run_case(
+                case_path=case_path,
+                solver_bin=solver_bin,
+                tester_bin=tester_bin,
+                score_bin=score_bin,
+                output_dir=Path(temp_dir),
+                verbose=False,
+                case_timeout=case_timeout,
+            )
+    except OSError as error:
+        if verbose:
+            eprint(f"warmup: done case={case_path.name} status=setup_fail error={error}")
+        return
+
+    if verbose:
+        score = "" if result.score is None else f" score={result.score}"
+        eprint(
+            "warmup: "
+            f"done case={result.case_name} status={result.status}{score} "
+            f"elapsed={result.elapsed}ms output=discarded"
+        )
+
+
+def summarize(results: list[CaseResult]) -> tuple[int, int, int, int, int, int]:
+    success_results = [result for result in results if result.status == "ok" and result.score is not None]
+    if not success_results:
+        return (0, 0, 0, 0, 0, 0)
+
+    total_sum = sum(result.score for result in success_results if result.score is not None)
+    total_min = min(result.score for result in success_results if result.score is not None)
+    total_max = max(result.score for result in success_results if result.score is not None)
+    max_elapsed = max(result.elapsed for result in success_results)
+    total_avg = round_half_up(total_sum, len(success_results))
+    avg_elapsed = round_half_up(
+        sum(result.elapsed for result in success_results),
+        len(success_results),
+    )
+    return (total_avg, total_sum, total_min, total_max, avg_elapsed, max_elapsed)
+
+
+def make_run_id(executed_dt: datetime, bin_name: str) -> str:
+    timestamp = executed_dt.strftime("%Y%m%dT%H%M%S%z")
+    return f"{timestamp}_{bin_name}_{secrets.token_hex(3)}"
+
+
+def make_records(
+    results: list[CaseResult],
+    run_id: str,
+    executed_at: str,
+    bin_name: str,
+    label: str,
+    normalized_input_dir: str,
+    local_enabled: bool,
+) -> list[dict[str, object]]:
+    records: list[dict[str, object]] = []
+    for result in results:
+        records.append(
+            {
+                "run_id": run_id,
+                "executed_at": executed_at,
+                "bin": bin_name,
+                "label": label,
+                "local": local_enabled,
+                "input_dir": normalized_input_dir,
+                "case_name": result.case_name,
+                "score": result.score if result.status == "ok" else None,
+                "elapsed": result.elapsed,
+                "status": result.status,
+                "stdout_path": result.stdout_path,
+            }
+        )
+    return records
+
+
+def run_eval_locked(
+    args: argparse.Namespace,
+    input_files: list[Path],
+    normalized_input_dir: str,
+    is_tools_in: bool,
+    local_enabled: bool,
+) -> int:
+    if not args.dry_run:
+        ensure_csv_header(SUMMARY_CSV, SUMMARY_HEADER)
+        if is_tools_in:
+            ensure_csv_header(DETAIL_CSV, compute_detail_header())
+
+    output_dir = ROOT_DIR / "results" / "out" / args.bin_name
+    clean_output_dir(output_dir)
+
+    if args.verbose:
+        eprint(
+            f"eval: bin={args.bin_name} input_dir={normalized_input_dir} "
+            f"local={'on' if local_enabled else 'off'} "
+            f"parallel={args.jobs} output={output_dir}"
+        )
+
+    build_binary(resolve_solver_manifest(args.bin_name), args.bin_name, local_feature=local_enabled)
+    build_binary(TOOLS_MANIFEST, "tester")
+    build_binary(TOOLS_MANIFEST, "score")
+
+    solver_bin = SOLVER_BIN_DIR / args.bin_name
+    tester_bin = TOOLS_BIN_DIR / "tester"
+    score_bin = TOOLS_BIN_DIR / "score"
+    if not CPU_WRAPPER.is_file():
+        raise SystemExit(f"error: CPU wrapper not found: {CPU_WRAPPER}")
+    if not solver_bin.is_file():
+        raise SystemExit(f"error: solver binary not found: {solver_bin}")
+    if not tester_bin.is_file():
+        raise SystemExit(f"error: tester binary not found: {tester_bin}")
+    if not score_bin.is_file():
+        raise SystemExit(f"error: score binary not found: {score_bin}")
+
+    executed_dt = datetime.now().astimezone()
+    executed_at = executed_dt.isoformat(timespec="seconds")
+    run_id = make_run_id(executed_dt, args.bin_name)
+
+    warm_up_case(
+        case_path=input_files[0],
+        solver_bin=solver_bin,
+        tester_bin=tester_bin,
+        score_bin=score_bin,
+        output_dir=output_dir,
+        verbose=args.verbose,
+        case_timeout=args.case_timeout,
+    )
+
+    results = evaluate_cases(
+        input_files=input_files,
+        solver_bin=solver_bin,
+        tester_bin=tester_bin,
+        score_bin=score_bin,
+        output_dir=output_dir,
+        jobs=args.jobs,
+        verbose=args.verbose,
+        case_timeout=args.case_timeout,
+    )
+
+    success_count = sum(result.status == "ok" for result in results)
+    failure_count = len(results) - success_count
+    total_avg, total_sum, total_min, total_max, avg_elapsed, max_elapsed = summarize(results)
+
+    eprint(
+        "eval: "
+        f"bin={args.bin_name} eval_set={normalized_input_dir} "
+        f"success={success_count} failure={failure_count} "
+        f"total_avg={total_avg} avg_elapsed={avg_elapsed} max_elapsed={max_elapsed} "
+        f"total_sum={total_sum} total_min={total_min} total_max={total_max} "
+        f"total_cases={len(results)} output={output_dir}"
+    )
+
+    if not args.dry_run:
+        append_jsonl(
+            RECORDS_JSONL,
+            make_records(
+                results=results,
+                run_id=run_id,
+                executed_at=executed_at,
+                bin_name=args.bin_name,
+                label=args.label,
+                normalized_input_dir=normalized_input_dir,
+                local_enabled=local_enabled,
+            ),
+        )
+
+        if failure_count == 0:
+            append_csv_row(
+                SUMMARY_CSV,
+                [
+                    args.bin_name,
+                    total_avg,
+                    total_sum,
+                    total_min,
+                    total_max,
+                    avg_elapsed,
+                    max_elapsed,
+                    normalized_input_dir,
+                    len(results),
+                    args.label,
+                    executed_at,
+                ],
+            )
+            if is_tools_in:
+                score_by_case = {result.case_name: result.score for result in results}
+                detail_header = compute_detail_header()
+                case_columns = detail_header[3:-2]
+                detail_row: list[str | int] = [args.bin_name, total_avg, max_elapsed]
+                for case_name in case_columns:
+                    score = score_by_case.get(case_name)
+                    detail_row.append("" if score is None else score)
+                detail_row.extend([args.label, executed_at])
+                append_csv_row(DETAIL_CSV, detail_row)
+
+    if failure_count != 0:
+        return 1
+    return 0
+
+
+def main() -> int:
+    args = parse_args()
+    resolve_solver_manifest(args.bin_name)
+    ensure_tools_ready()
+
+    input_dir = Path(args.input_dir).resolve()
+    if not input_dir.is_dir():
+        raise SystemExit(f"error: input directory not found: {args.input_dir}")
+
+    input_files = list_input_files(input_dir)
+    ensure_unique_basenames(input_files)
+
+    normalized_input_dir = normalize_dir(input_dir)
+    is_tools_in = input_dir == DEFAULT_INPUT_DIR.resolve()
+    local_enabled = not args.no_local
+
+    with acquire_eval_lock(args, normalized_input_dir):
+        return run_eval_locked(
+            args=args,
+            input_files=input_files,
+            normalized_input_dir=normalized_input_dir,
+            is_tools_in=is_tools_in,
+            local_enabled=local_enabled,
+        )
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

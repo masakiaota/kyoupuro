@@ -1,0 +1,17 @@
+# ローカル専用の補助クレートである。AtCoder のジャッジ環境では動かさないため、
+# 依存はルートの固定一覧に縛られず、必要なものを自由に足してよい。
+[package]
+name = "adhoc"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[features]
+# run.sh / eval.py が --features local を渡しても通るように、ルートと同名の feature を定義する。
+local = []
+
+[dependencies]
+rand = { version = "=0.8.5", features = ["small_rng", "min_const_gen"] }
+rand_chacha = "=0.3.1"
+statrs = "0.18.0"
+tools = { path = "../tools" }

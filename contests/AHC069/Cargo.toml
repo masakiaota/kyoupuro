@@ -1,0 +1,11 @@
+[package]
+name = "ahc069_regular_probe"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+statrs = "=0.18.0"
+tools = { path = "/Users/masaki/Desktop/AHC069/tools" }
+
+[features]
+local = []
