@@ -31,9 +31,10 @@ _template_heuristic_cpp/
 ├── notes/
 │   ├── notations.md             # 記号の正本
 │   ├── important_properties.md  # 問題から導かれる性質の正本
-│   ├── journal.md               # 実験の正史
-│   ├── backlog.md               # 実験アイデアと確定知見の台帳
-│   └── deep/                    # journal に収まらない深掘りメモ
+│   ├── experiments/             # 1 実験 1 ファイルの実験記録
+│   │   ├── README.md            # 実験ノートの書式と運用規則
+│   │   └── vXXX.md              # 派生元、事前登録、判定、考察
+│   └── backlog.md               # 実験アイデアと確定知見の台帳
 ├── results/                     # 評価ログと出力
 ├── samples/                     # サンプル入出力
 └── tools/                       # 公式 generator / tester / scorer の展開先
@@ -62,11 +63,11 @@ CXX=/opt/homebrew/bin/g++-15 ./scripts/run.sh v001_solver ./tools/in/0000.txt
 
 ## 実験の流れ
 
-1. 着手前に `notes/backlog.md` と `notes/journal.md` の索引を照合し、`notes/journal.md` に事前登録する
+1. 着手前に `notes/backlog.md` と `notes/experiments/` のファイル名および Front Matter を照合し、`notes/experiments/vXXX.md` に事前登録する
 2. 共通土台は `src/bin/v000_template.cpp` に、試行錯誤する solver は `src/bin/v001_*.cpp` 以降に書く
 3. `./scripts/run.sh` で単発確認する
 4. `./scripts/eval.py` で公式スコアを確認する
-5. 判定を `notes/journal.md` のエントリに確定し、`notes/backlog.md` の状態を更新する
+5. 判定、結果、考察を同じ `notes/experiments/vXXX.md` に追記し、`notes/backlog.md` の状態を更新する
 6. 提出時は対象の `src/bin/<bin_name>.cpp` を直接使う
 
 ## よく使うコマンド
