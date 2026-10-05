@@ -23,10 +23,16 @@ solver にテンプレートをコピーする。
 例:
 ```sh
 SKILL_DIR=".agents/skills/rust-rollback-beam-search"
-cp "$SKILL_DIR/assets/rust/euler_tour_edges_rollback_beam.rs" src/bin/v001_rollback_beam.rs
+solver_name="v001_rollback_beam"
+awk -v file_name="${solver_name}.rs" '
+  NR == 1 { print "// " file_name }
+  { print }
+' "$SKILL_DIR/assets/rust/euler_tour_edges_rollback_beam.rs" > "src/bin/${solver_name}.rs"
 ```
 
-既存 solver に組み込む場合は、必要な型と関数だけを貼り込む。
+このコマンドは、`src/bin` の規約どおり 1 行目にファイル名コメントを置き、続く `#![allow(dead_code, non_snake_case)]` を crate 属性として有効にする。`non_snake_case` により、問題文の `N`、`M` などをそのまま使える。
+
+既存 solver に組み込む場合は、必要な型と関数だけを貼り込む。属性は途中に貼れないため、対象 solver の先頭に `#![allow(non_snake_case)]` があることを確認する。
 
 ## 埋める箇所
 

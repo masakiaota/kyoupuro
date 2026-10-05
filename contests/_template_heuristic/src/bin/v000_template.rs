@@ -1,4 +1,6 @@
 // v000_template.rs
+#![allow(non_snake_case)] // 問題文の `N`, `M` などを対応づけたまま使う。
+
 use std::time::Instant;
 
 /// AtCoder 側の基準の探索打ち切り秒数。コンテストごとに調整する。

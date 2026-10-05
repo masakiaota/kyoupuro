@@ -11,6 +11,10 @@ AHC solver の実装から、読者が方針を再現できる日本語解説を
 まず得点と時間設計を保った簡素化 solver を作り、そこから解説すべき本質を確定する。
 その後、その本質を文章に落とし込み、事情を知らない subagent が解説だけから十分な solver を再実装できるかを検証する。
 
+Phase 1 の完成 solver は、Phase 2 を通じて固定された正本かつベンチマークである。
+Phase 2 の subagent solver は、解説の品質を測るための使い捨てプローブである。
+subagent solver を新しいベースライン、改善対象、チューニング対象にしてはならない。
+
 ## ワークフロー
 
 この skill は、次の2つの phase を順に実行する。
@@ -20,7 +24,7 @@ AHC solver の実装から、読者が方針を再現できる日本語解説を
    手順は [simplification.md](references/simplification.md) に従う。
 
 2. **Phase 2：解説を作り、再現性を検証する**
-   Phase 1 で抽出した本質を日本語解説へ落とし込み、subagent による再実装で解説の品質を検証する。
+   Phase 1 の完成 solver を正本として、抽出した本質を日本語解説へ落とし込み、subagent による再実装で解説の品質を検証する。
    手順は [explanation-validation.md](references/explanation-validation.md) に従う。
 
 Phase 1 が完了するまで、Phase 2 に入らない。
@@ -67,7 +71,9 @@ Phase 2 は、解説 Markdown を書いただけでは完了しない。
 - 実装細部を書きすぎず、本質のアイデアを中心にしている
 - 新規 subagent が、v000 以外の既存 solver を読まずに再実装している
 - subagent の再実装が目標スコアを超えている
+- subagent の結果を、固定した Phase 1 の完成 solver と比較している
 - subagent の成功が過度な試行錯誤や評価後チューニングに依存していない
+- subagent solver を修正、再評価、次の検証のベースとして利用していない
 - 最終本文が subagent の読んだ検証対象本文と同一である、または意味を変えない編集だけである
 
 詳しい文章作成、検証、失敗時の扱い、再検証、最終確認は [explanation-validation.md](references/explanation-validation.md) に従う。
@@ -89,7 +95,7 @@ subagent を起動するときは [subagent-validation.md](references/subagent-v
 - Phase 1 の簡素化 solver、評価コマンド、スコア、時間設計の確認
 - Phase 1 で採用した削除と不採用にした削除
 - Phase 2 の解説ファイル
-- subagent 検証の有無、再実装 solver、評価コマンド、スコア
+- subagent 検証の有無、再実装 solver、評価コマンド、スコア、Phase 1 の完成 solver との比較
 - subagent が読んだ解説ファイル、可能なら checksum、最終解説ファイルとの同一性
 - 解説に残る曖昧点
 - 本文へ反映した改善点

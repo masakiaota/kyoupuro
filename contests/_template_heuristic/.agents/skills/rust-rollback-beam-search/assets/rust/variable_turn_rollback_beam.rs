@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(dead_code, non_snake_case)]
 
 use std::cmp::Ordering;
 use std::collections::HashMap;

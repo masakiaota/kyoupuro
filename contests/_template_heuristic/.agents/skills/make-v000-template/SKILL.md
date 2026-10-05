@@ -7,6 +7,13 @@ description: AHC形式のRustプロジェクトで、problem_description.txtを�
 
 AHC の `v000_template.rs` に、問題固有だが solver 戦略に依存しない共通土台を作る。
 
+## 記号と命名
+
+- `v000_template.rs` の 1 行目の `// v000_template.rs` に続けて、`#![allow(non_snake_case)]` を必ず残す。Rust の snake case は lint であり、問題文の `N`、`M` などをコードでもそのまま使うための設定である。
+- 入出力、`Input` の field、局所変数を設計するときは、`notes/notations.md` で定めた公式記号を同じ綴りで使う。対応づけだけを目的に `N` を `n`、`M` を `m` へ変換しない。
+- 問題文にない実装用の状態量、関数、局所変数は通常どおり Rust の命名規約に従う。
+- `src/bin` の各 solver は独立した crate である。`v000_template.rs` を複製して作る solver ではこの属性を残し、直接作る solver ではファイル名コメントの直後に追加する。
+
 ## 進め方
 
 1. `problem_description.txt`, `notes/notations.md`, 既存の `src/bin/v000_template.rs`, `Cargo.toml` を読む。

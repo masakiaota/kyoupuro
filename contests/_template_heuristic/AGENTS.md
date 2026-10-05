@@ -24,6 +24,7 @@
   - problem_description 作成時に AI が従う手順である。貼り付けテキストやスクリーンショットから公式の節順を保って転記する。
 - `src/bin/*.rs`
   - top-level は `v000_template.rs`、提出候補 solver、`crate_check.rs` (依存一覧の検査器、固定) だけを置く。各ファイルは単体で完結し、1 行目に `// <file_name>.rs` を置く。
+  - `v000_template.rs` と提出候補 solver は、1 行目のファイル名コメントに続けて `#![allow(non_snake_case)]` を置く。各 bin は独立した crate なので、この属性は `v000_template.rs` から `v001_*.rs` へ自動では引き継がれない。v000 を複製するときは残し、直接作る solver にも追加する。
 - `adhoc/`
   - ローカル専用の補助置き場である。bench / probe / check などの Rust 補助 bin は `adhoc/src/bin/*.rs` に、単発の分析・検証・PoC 用スクリプトは `adhoc/scripts/` に置く。
   - `adhoc/src/bin/*.rs` は cargo に自動認識されるため、`[[bin]]` の登録は不要である。`run.sh` と `eval.py` は solver と同じように bin 名で実行できる。
@@ -71,7 +72,8 @@
 - `notes/notations.md` は、問題で使う記号、コード上の代表名、型、制約の正本である。
 - 新しい重要記号を導入するしたいとき、 ユーザーに `notes/notations.md` に更新をしてよいか確認する。軽微なローカル変数だけnotations.md更新の例外とする。
 - notation は会話・実装・検証で迷わないことを優先し、まず `notes/notations.md` に合わせる。
-- 公式記号名は保持する。公式が `N`, `M` なら `N`, `M` と書き、Rust 風の `n`, `m` へ直さない。添字は原則 0-based の `h[i,j]` 形式にしてよい。
+- 公式記号名はコードでも保持する。公式が `N`, `M` なら、会話・メモ・Rust の変数や field でも `N`, `M` と書き、対応づけだけを目的に `n`, `m` へ直さない。Rust の `non_snake_case` はコンパイルエラーではなく lint であり、solver 冒頭の `#![allow(non_snake_case)]` で許可する。添字は原則 0-based の `h[i,j]` 形式にしてよい。
+- 問題文にない実装用の名前は、通常どおり Rust の命名規約に従う。lint の許可は公式記号との対応を保つためだけに使い、意味の異なる名前を大文字化しない。
 - 問題文にない実装用の状態量は `state[g]`, `X[p,g]` のようにコードとの対応が見える名前にする。
 - TeX は条件付き確率、総和、総積、比例関係などの構造だけに使い、コードフェンス内に入れない。
 
