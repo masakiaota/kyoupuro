@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 142,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v026_late_start_lns/0032.txt",
+  "best_sha256": "b33ecdb7815518bf2fd521c16e800ff27af8341e767a41df45cbc21c0bf834fa",
+  "attempts": []
+}

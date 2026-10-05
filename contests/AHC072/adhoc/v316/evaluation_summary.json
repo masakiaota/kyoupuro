@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "experiment": "v316",
+  "evaluated_outputs": 800,
+  "main_base": "7f744285791c5415333f9ef99f04e0343ce57d24",
+  "source_sha256": "b678291c41394ed0c8f6571ac79569f890f3cb8297553c50f743e56f5dd6ae2a",
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "LOCAL": false,
+  "workers": 2,
+  "main_budget_seconds": 1.9,
+  "lns_end_seconds": 1.8507772020725388,
+  "internal_deadline_seconds": 1.88,
+  "official_rust_executed": false,
+  "viewer_registered": false,
+  "repetitions_per_input_variant": 1,
+  "references": {"in": "Frozen historical per-case minima including v800 inherited from the previous bundle; not current leaderboard", "validation100": "Minimum of the four newly evaluated conditions; supplemental only"},
+  "sets": {
+    "in": {
+      "v314": {"total":19952,"mean":199.52,"relative":93.95277581110953,"max_wall_seconds":1.884662370000001,"over_1_9":0,"valid":100,"E_sum":0},
+      "v315": {"total":19883,"mean":198.83,"relative":94.28818081285856,"max_wall_seconds":1.8846464060000017,"over_1_9":0,"valid":100,"E_sum":0},
+      "v316_full": {"total":19901,"mean":199.01,"relative":94.33198569532684,"max_wall_seconds":1.8851536810000198,"over_1_9":0,"valid":100,"E_sum":0},
+      "v316": {"total":19928,"mean":199.28,"relative":94.11305704517419,"max_wall_seconds":1.8853009729999712,"over_1_9":0,"valid":100,"E_sum":0}
+    },
+    "validation100": {
+      "v314": {"total":22130,"mean":221.3,"relative":98.56092595412338,"max_wall_seconds":1.8844610820001435,"over_1_9":0,"valid":100,"E_sum":0},
+      "v315": {"total":22084,"mean":220.84,"relative":98.78840361360204,"max_wall_seconds":1.886395051999898,"over_1_9":0,"valid":100,"E_sum":0},
+      "v316_full": {"total":22152,"mean":221.52,"relative":98.35042069498054,"max_wall_seconds":1.885489858000028,"over_1_9":0,"valid":100,"E_sum":0},
+      "v316": {"total":22067,"mean":220.67,"relative":98.70647376288335,"max_wall_seconds":1.8849813510000786,"over_1_9":0,"valid":100,"E_sum":0}
+    }
+  },
+  "comparisons": {
+    "in": {
+      "v316_vs_v314": {"delta_total":-24,"delta_relative_pp":0.16028123406467615,"wins":43,"ties":21,"losses":36,"bootstrap_mean_95":[-1.06,0.55],"without_0005_delta_total":-21},
+      "v316_vs_v315": {"delta_total":45,"delta_relative_pp":-0.17512376768434548,"wins":38,"ties":12,"losses":50,"bootstrap_mean_95":[-0.47,1.37],"without_0005_delta_total":39},
+      "v316_vs_v316_full": {"delta_total":27,"delta_relative_pp":-0.21892865015263638,"wins":36,"ties":23,"losses":41,"bootstrap_mean_95":[-0.66,1.16],"without_0005_delta_total":17},
+      "v316_full_vs_v314": {"delta_total":-51,"delta_relative_pp":0.3792098842173125,"wins":45,"ties":25,"losses":30,"bootstrap_mean_95":[-1.41,0.39],"without_0005_delta_total":-38},
+      "v316_full_vs_v315": {"delta_total":18,"delta_relative_pp":0.04380488246829088,"wins":37,"ties":16,"losses":47,"bootstrap_mean_95":[-0.79,1.17],"without_0005_delta_total":22}
+    },
+    "validation100": {
+      "v316_vs_v314": {"delta_total":-63,"delta_relative_pp":0.14554780875996884,"wins":38,"ties":21,"losses":41,"bootstrap_mean_95":[-1.67,0.35],"without_0005_delta_total":-63},
+      "v316_vs_v315": {"delta_total":-17,"delta_relative_pp":-0.081929850718696,"wins":40,"ties":11,"losses":49,"bootstrap_mean_95":[-1.39,1.02],"without_0005_delta_total":-17},
+      "v316_vs_v316_full": {"delta_total":-85,"delta_relative_pp":0.35605306790277225,"wins":50,"ties":18,"losses":32,"bootstrap_mean_95":[-1.84,0.09],"without_0005_delta_total":-85},
+      "v316_full_vs_v314": {"delta_total":22,"delta_relative_pp":-0.21050525914280344,"wins":35,"ties":25,"losses":40,"bootstrap_mean_95":[-0.54,0.98],"without_0005_delta_total":22},
+      "v316_full_vs_v315": {"delta_total":68,"delta_relative_pp":-0.43798291862146826,"wins":39,"ties":10,"losses":51,"bootstrap_mean_95":[-0.19,1.58],"without_0005_delta_total":68}
+    }
+  },
+  "mechanism": {"states":19904,"logits":8616814,"nonbitwise_states":0,"choices_differ":0,"forced_invalidations":1001,"full_rebuilds":2881,"home_rebuilds":1780,"paths_compared":32,"full_seconds":2.146034198,"cached_seconds":0.954821489,"max_logit_error":0,"distinct_race_predicate_checks":4800},
+  "decision": {"all_valid":true,"in_time_ok":true,"all_v316_time_ok":true,"in_improves_both_parents":false,"aux_nonworse_both_parents":true,"in_mean_at_most_195":false,"candidate":false,"general_recommendation":false}
+}

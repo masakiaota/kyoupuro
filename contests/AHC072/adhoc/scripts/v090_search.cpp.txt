@@ -1,0 +1,111 @@
+struct StateHash {
+    size_t operator()(const array<uint32_t,400>& state) const {
+        uint64_t h=0x9e3779b97f4a7c15ULL;
+        for(uint32_t v:state)h^=uint64_t(v)+0x9e3779b97f4a7c15ULL+(h<<6)+(h>>2);
+        return size_t(h);
+    }
+};
+
+struct SearchResult {
+    vector<Move> path;
+    int E=0, depth=0, inferences=0, duplicates=0;
+    bool deadline=false, exhausted=false;
+};
+
+SearchResult search(const Input& input,const Board& board,const BoardState& initial,TimeKeeper& timer) {
+    SearchResult result; result.E=initial.E;
+    BoardState state=initial; vector<Move> path;
+    int64_t best_score=int64_t(initial.E)*100000;
+    uint64_t rng=90003;
+    for(const auto& row:input.C)for(char ch:row)rng=(rng^uint8_t(ch))*1099511628211ULL;
+    if(!rng)rng=90003;
+    auto uniform=[&](){rng^=rng<<13;rng^=rng>>7;rng^=rng<<17;return double(rng>>11)*0x1p-53;};
+    unordered_set<array<uint32_t,400>,StateHash> visited;
+#ifndef V090_STOCHASTIC
+    visited.reserve(4096); visited.insert(state.bits);
+#endif
+    for(int depth=0;depth<2048 && state.E>0;++depth) {
+        if(!timer.step()){result.deadline=true;break;}
+        auto moves=legal_moves(board,state);
+        if(moves.empty()){result.exhausted=true;break;}
+        const auto encoded=encode(input,board,state); ++result.inferences;
+        const auto logits=policy(board,state,*encoded,moves);
+        if(!timer.step()){result.deadline=true;break;}
+        int chosen=-1; BoardState next;
+#ifdef V090_STOCHASTIC
+        const float maximum=*max_element(logits.begin(),logits.end());
+        double total=0;
+        for(float value:logits)total+=exp(double(value-maximum));
+        const double pick=uniform()*total; double cumulative=0;
+        for(size_t i=0;i<moves.size();++i){
+            cumulative+=exp(double(logits[i]-maximum));
+            if(pick<cumulative || i+1==moves.size()){chosen=int(i);break;}
+        }
+        next=state; next.apply(board,moves[chosen]);
+#else
+        (void)uniform;
+        vector<int> order(moves.size());iota(order.begin(),order.end(),0);
+        stable_sort(order.begin(),order.end(),[&](int a,int b){return logits[a]>logits[b];});
+        for(int index:order){
+            next=state;next.apply(board,moves[index]);
+            if(visited.contains(next.bits)){++result.duplicates;continue;}
+            chosen=index;visited.insert(next.bits);break;
+        }
+        if(chosen<0){result.exhausted=true;break;}
+#endif
+        path.push_back(moves[chosen]);state=next;result.depth=int(path.size());
+        const int64_t score=int64_t(state.E)*100000+path.size();
+        if(score<best_score){best_score=score;result.E=state.E;result.path=path;}
+    }
+    return result;
+}
+
+#ifdef V090_DIAGNOSTIC
+void dump_inference(const Input& input,const Board& board,const BoardState& state) {
+    const auto started=chrono::steady_clock::now();
+    const auto features=board_features(input,board,state);const auto moves=legal_moves(board,state);
+    const auto encoded=encode(input,board,state);const auto logits=policy(board,state,*encoded,moves);
+    const double elapsed=chrono::duration<double>(chrono::steady_clock::now()-started).count();
+    cout<<setprecision(9)<<"{\"inference_seconds\":"<<elapsed<<",\"value\":"<<encoded->remaining<<",\"x\":[";
+    for(int f=0;f<400;++f)for(int c=0;c<40;++c){if(f||c)cout<<',';cout<<features[f][c];}
+    cout<<"],\"codes\":[";
+    for(size_t n=0;n<moves.size();++n){if(n)cout<<',';cout<<action_code(board,moves[n]);}
+    cout<<"],\"features\":[";
+    for(size_t n=0;n<moves.size();++n){const auto x=action_features(board,state,moves[n]);
+        for(int c=0;c<16;++c){if(n||c)cout<<',';cout<<x[c];}}
+    cout<<"],\"logits\":[";
+    for(size_t n=0;n<logits.size();++n){if(n)cout<<',';cout<<logits[n];}
+    cout<<"]}\n";
+}
+#endif
+
+int main(int argc,char** argv) {
+#ifdef V090_DIAGNOSTIC
+    TimeKeeper timer(PROGRAM_TIME_LIMIT_SEC*(argc>2 && string(argv[2])=="deadline"?.01:1.),0);
+#else
+    TimeKeeper timer(PROGRAM_TIME_LIMIT_SEC,0);
+#endif
+    ios::sync_with_stdio(false);cin.tie(nullptr);
+#ifdef LOCAL
+    TraceStats trace;
+#endif
+    LOCAL_TIME(trace,"load_model",[]{load_nn();});
+    Input input;LOCAL_TIME(trace,"read_input",[&]{input.read();});
+    const Board board=LOCAL_TIME(trace,"prepare_board",[&]{return Board(input);});
+    BoardState initial(input,board);
+#ifdef V090_DIAGNOSTIC
+    if(argc>1){ifstream snapshot(argv[1]);read_snapshot(snapshot,board,initial);}
+    if(argc>2 && string(argv[2])=="dump"){dump_inference(input,board,initial);return 0;}
+#else
+    (void)argc;(void)argv;
+#endif
+    const auto result=LOCAL_TIME(trace,"search",[&]{return search(input,board,initial,timer);});
+    for(Move m:result.path){const auto [i,j]=board.coordinates[m.p()];
+        cout<<i<<' '<<j<<' '<<m.k()<<' '<<"UDLR"[m.d()]<<' '<<m.l()<<'\n';}
+    LOCAL_ONLY(
+        trace.count_by("initial_E",initial.E);trace.count_by("E",result.E);trace.count_by("T",result.path.size());
+        trace.count_by("depth",result.depth);trace.count_by("inferences",result.inferences);
+        trace.count_by("duplicates",result.duplicates);trace.count_by("deadline",result.deadline);
+        trace.count_by("exhausted",result.exhausted);trace.summary();
+    );
+}

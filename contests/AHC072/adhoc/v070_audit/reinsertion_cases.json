@@ -1,0 +1,6002 @@
+[
+  {
+    "mode": "local",
+    "case": "0000.txt",
+    "M": 16,
+    "parent": {
+      "M": 16,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 6328,
+      "cpu_ns": [
+        1686000,
+        1521000,
+        1432000
+      ]
+    },
+    "child": {
+      "M": 16,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 6328,
+      "cpu_ns": [
+        1130000,
+        1029000,
+        983000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0001.txt",
+    "M": 29,
+    "parent": {
+      "M": 29,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 9758,
+      "cpu_ns": [
+        4677000,
+        4431000,
+        4316000
+      ]
+    },
+    "child": {
+      "M": 29,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 9758,
+      "cpu_ns": [
+        7133000,
+        6664000,
+        5836000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0002.txt",
+    "M": 43,
+    "parent": {
+      "M": 43,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 11800,
+      "cpu_ns": [
+        4359000,
+        4126000,
+        3970000
+      ]
+    },
+    "child": {
+      "M": 43,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 11800,
+      "cpu_ns": [
+        4375000,
+        3958000,
+        3962000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0003.txt",
+    "M": 37,
+    "parent": {
+      "M": 37,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 16394,
+      "cpu_ns": [
+        5205000,
+        5307000,
+        5564000
+      ]
+    },
+    "child": {
+      "M": 37,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 16394,
+      "cpu_ns": [
+        5053000,
+        5014000,
+        5100000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0004.txt",
+    "M": 88,
+    "parent": {
+      "M": 88,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 21783,
+      "cpu_ns": [
+        13485000,
+        13501000,
+        13107000
+      ]
+    },
+    "child": {
+      "M": 88,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 21783,
+      "cpu_ns": [
+        13756000,
+        13438000,
+        13848000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0005.txt",
+    "M": 122,
+    "parent": {
+      "M": 122,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 41189,
+      "cpu_ns": [
+        24976000,
+        24657000,
+        24671000
+      ]
+    },
+    "child": {
+      "M": 122,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 41189,
+      "cpu_ns": [
+        25180000,
+        25578000,
+        25181000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0006.txt",
+    "M": 48,
+    "parent": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 10573,
+      "cpu_ns": [
+        4790000,
+        4874000,
+        5252000
+      ]
+    },
+    "child": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 10573,
+      "cpu_ns": [
+        4816000,
+        4768000,
+        5104000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0007.txt",
+    "M": 47,
+    "parent": {
+      "M": 47,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 24,
+      "signature_words": 10376,
+      "cpu_ns": [
+        2615000,
+        2560000,
+        2559000
+      ]
+    },
+    "child": {
+      "M": 47,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 24,
+      "signature_words": 10376,
+      "cpu_ns": [
+        2642000,
+        2570000,
+        2570000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0008.txt",
+    "M": 44,
+    "parent": {
+      "M": 44,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 12149,
+      "cpu_ns": [
+        5225000,
+        4896000,
+        4855000
+      ]
+    },
+    "child": {
+      "M": 44,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 12149,
+      "cpu_ns": [
+        5044000,
+        4893000,
+        4922000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0009.txt",
+    "M": 24,
+    "parent": {
+      "M": 24,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 11260,
+      "cpu_ns": [
+        2959000,
+        3018000,
+        3025000
+      ]
+    },
+    "child": {
+      "M": 24,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 11260,
+      "cpu_ns": [
+        2991000,
+        2899000,
+        2900000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0010.txt",
+    "M": 25,
+    "parent": {
+      "M": 25,
+      "candidates": 32,
+      "extracted": 27,
+      "completed": 27,
+      "signature_words": 6861,
+      "cpu_ns": [
+        1711000,
+        1807000,
+        1619000
+      ]
+    },
+    "child": {
+      "M": 25,
+      "candidates": 32,
+      "extracted": 27,
+      "completed": 27,
+      "signature_words": 6861,
+      "cpu_ns": [
+        1892000,
+        1667000,
+        1618000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0011.txt",
+    "M": 64,
+    "parent": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 15352,
+      "cpu_ns": [
+        5785000,
+        5933000,
+        5804000
+      ]
+    },
+    "child": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 15352,
+      "cpu_ns": [
+        5784000,
+        5750000,
+        5768000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0012.txt",
+    "M": 39,
+    "parent": {
+      "M": 39,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 11470,
+      "cpu_ns": [
+        5265000,
+        5363000,
+        5725000
+      ]
+    },
+    "child": {
+      "M": 39,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 11470,
+      "cpu_ns": [
+        5298000,
+        5701000,
+        5392000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0013.txt",
+    "M": 49,
+    "parent": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17716,
+      "cpu_ns": [
+        5260000,
+        5712000,
+        5229000
+      ]
+    },
+    "child": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17716,
+      "cpu_ns": [
+        5276000,
+        5324000,
+        5205000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0014.txt",
+    "M": 137,
+    "parent": {
+      "M": 137,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 31722,
+      "cpu_ns": [
+        21632000,
+        21402000,
+        21173000
+      ]
+    },
+    "child": {
+      "M": 137,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 31722,
+      "cpu_ns": [
+        21734000,
+        21770000,
+        21968000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0015.txt",
+    "M": 151,
+    "parent": {
+      "M": 151,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 40574,
+      "cpu_ns": [
+        28263000,
+        28683000,
+        28229000
+      ]
+    },
+    "child": {
+      "M": 151,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 40574,
+      "cpu_ns": [
+        27523000,
+        27565000,
+        28008000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0016.txt",
+    "M": 49,
+    "parent": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 13129,
+      "cpu_ns": [
+        5663000,
+        5565000,
+        5332000
+      ]
+    },
+    "child": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 13129,
+      "cpu_ns": [
+        5324000,
+        5236000,
+        5300000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0017.txt",
+    "M": 102,
+    "parent": {
+      "M": 102,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 18737,
+      "cpu_ns": [
+        9194000,
+        9028000,
+        8987000
+      ]
+    },
+    "child": {
+      "M": 102,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 18737,
+      "cpu_ns": [
+        9500000,
+        9105000,
+        9153000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0018.txt",
+    "M": 22,
+    "parent": {
+      "M": 22,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 22,
+      "signature_words": 7559,
+      "cpu_ns": [
+        3076000,
+        2994000,
+        2975000
+      ]
+    },
+    "child": {
+      "M": 22,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 22,
+      "signature_words": 7559,
+      "cpu_ns": [
+        3096000,
+        3422000,
+        3097000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0019.txt",
+    "M": 217,
+    "parent": {
+      "M": 217,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 50741,
+      "cpu_ns": [
+        45989000,
+        46687000,
+        46047000
+      ]
+    },
+    "child": {
+      "M": 217,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 50741,
+      "cpu_ns": [
+        45466000,
+        45775000,
+        45541000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0020.txt",
+    "M": 71,
+    "parent": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 13061,
+      "cpu_ns": [
+        6463000,
+        6688000,
+        6469000
+      ]
+    },
+    "child": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 13061,
+      "cpu_ns": [
+        6736000,
+        6527000,
+        6417000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0021.txt",
+    "M": 23,
+    "parent": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 8925,
+      "cpu_ns": [
+        2619000,
+        2534000,
+        2504000
+      ]
+    },
+    "child": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 8925,
+      "cpu_ns": [
+        2789000,
+        3058000,
+        2657000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0022.txt",
+    "M": 20,
+    "parent": {
+      "M": 20,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 8431,
+      "cpu_ns": [
+        2786000,
+        2719000,
+        3204000
+      ]
+    },
+    "child": {
+      "M": 20,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 8431,
+      "cpu_ns": [
+        2935000,
+        2802000,
+        2787000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0023.txt",
+    "M": 26,
+    "parent": {
+      "M": 26,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 27,
+      "signature_words": 9525,
+      "cpu_ns": [
+        3685000,
+        3702000,
+        3628000
+      ]
+    },
+    "child": {
+      "M": 26,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 27,
+      "signature_words": 9525,
+      "cpu_ns": [
+        3722000,
+        3756000,
+        3693000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0024.txt",
+    "M": 27,
+    "parent": {
+      "M": 27,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 12587,
+      "cpu_ns": [
+        3912000,
+        3534000,
+        3418000
+      ]
+    },
+    "child": {
+      "M": 27,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 12587,
+      "cpu_ns": [
+        3474000,
+        3415000,
+        3772000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0025.txt",
+    "M": 23,
+    "parent": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 9556,
+      "cpu_ns": [
+        1918000,
+        1773000,
+        1744000
+      ]
+    },
+    "child": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 9556,
+      "cpu_ns": [
+        2347000,
+        2083000,
+        1839000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0026.txt",
+    "M": 37,
+    "parent": {
+      "M": 37,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 15536,
+      "cpu_ns": [
+        4136000,
+        3911000,
+        3858000
+      ]
+    },
+    "child": {
+      "M": 37,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 15536,
+      "cpu_ns": [
+        3979000,
+        4163000,
+        4138000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0027.txt",
+    "M": 48,
+    "parent": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 28,
+      "completed": 28,
+      "signature_words": 11439,
+      "cpu_ns": [
+        2823000,
+        2753000,
+        2744000
+      ]
+    },
+    "child": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 28,
+      "completed": 28,
+      "signature_words": 11439,
+      "cpu_ns": [
+        2838000,
+        2950000,
+        2944000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0028.txt",
+    "M": 75,
+    "parent": {
+      "M": 75,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 23193,
+      "cpu_ns": [
+        11342000,
+        10808000,
+        10633000
+      ]
+    },
+    "child": {
+      "M": 75,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 23193,
+      "cpu_ns": [
+        15992000,
+        12645000,
+        16476000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0029.txt",
+    "M": 98,
+    "parent": {
+      "M": 98,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 24308,
+      "cpu_ns": [
+        16200000,
+        15613000,
+        17951000
+      ]
+    },
+    "child": {
+      "M": 98,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 24308,
+      "cpu_ns": [
+        15489000,
+        14860000,
+        15569000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0030.txt",
+    "M": 124,
+    "parent": {
+      "M": 124,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 33881,
+      "cpu_ns": [
+        15322000,
+        13064000,
+        14507000
+      ]
+    },
+    "child": {
+      "M": 124,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 33881,
+      "cpu_ns": [
+        12161000,
+        12136000,
+        12110000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0031.txt",
+    "M": 41,
+    "parent": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 11692,
+      "cpu_ns": [
+        3589000,
+        3540000,
+        3499000
+      ]
+    },
+    "child": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 11692,
+      "cpu_ns": [
+        3832000,
+        3629000,
+        4509000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0032.txt",
+    "M": 49,
+    "parent": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 19,
+      "signature_words": 14455,
+      "cpu_ns": [
+        6477000,
+        6407000,
+        6821000
+      ]
+    },
+    "child": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 19,
+      "signature_words": 14455,
+      "cpu_ns": [
+        7000000,
+        6608000,
+        6541000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0033.txt",
+    "M": 63,
+    "parent": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 13173,
+      "cpu_ns": [
+        5795000,
+        5505000,
+        5791000
+      ]
+    },
+    "child": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 13173,
+      "cpu_ns": [
+        5744000,
+        5394000,
+        5437000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0034.txt",
+    "M": 121,
+    "parent": {
+      "M": 121,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 29073,
+      "cpu_ns": [
+        13177000,
+        12935000,
+        12877000
+      ]
+    },
+    "child": {
+      "M": 121,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 29073,
+      "cpu_ns": [
+        12778000,
+        12739000,
+        12681000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0035.txt",
+    "M": 13,
+    "parent": {
+      "M": 13,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 7321,
+      "cpu_ns": [
+        1618000,
+        1532000,
+        1494000
+      ]
+    },
+    "child": {
+      "M": 13,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 7321,
+      "cpu_ns": [
+        1719000,
+        1554000,
+        1515000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0036.txt",
+    "M": 91,
+    "parent": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 18431,
+      "cpu_ns": [
+        8059000,
+        7660000,
+        7628000
+      ]
+    },
+    "child": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 18431,
+      "cpu_ns": [
+        7537000,
+        7521000,
+        7478000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0037.txt",
+    "M": 74,
+    "parent": {
+      "M": 74,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 24239,
+      "cpu_ns": [
+        11309000,
+        11401000,
+        10928000
+      ]
+    },
+    "child": {
+      "M": 74,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 24239,
+      "cpu_ns": [
+        11146000,
+        11163000,
+        11228000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0038.txt",
+    "M": 44,
+    "parent": {
+      "M": 44,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 13920,
+      "cpu_ns": [
+        4836000,
+        4321000,
+        4198000
+      ]
+    },
+    "child": {
+      "M": 44,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 13920,
+      "cpu_ns": [
+        4581000,
+        4463000,
+        4268000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0039.txt",
+    "M": 31,
+    "parent": {
+      "M": 31,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 14675,
+      "cpu_ns": [
+        4335000,
+        4485000,
+        4363000
+      ]
+    },
+    "child": {
+      "M": 31,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 14675,
+      "cpu_ns": [
+        4345000,
+        4721000,
+        4448000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0040.txt",
+    "M": 24,
+    "parent": {
+      "M": 24,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14306,
+      "cpu_ns": [
+        5994000,
+        5816000,
+        5814000
+      ]
+    },
+    "child": {
+      "M": 24,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14306,
+      "cpu_ns": [
+        5895000,
+        6038000,
+        6399000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0041.txt",
+    "M": 43,
+    "parent": {
+      "M": 43,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 10127,
+      "cpu_ns": [
+        4951000,
+        4992000,
+        5541000
+      ]
+    },
+    "child": {
+      "M": 43,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 10127,
+      "cpu_ns": [
+        5008000,
+        4955000,
+        5012000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0042.txt",
+    "M": 115,
+    "parent": {
+      "M": 115,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 30910,
+      "cpu_ns": [
+        17813000,
+        17856000,
+        17831000
+      ]
+    },
+    "child": {
+      "M": 115,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 30910,
+      "cpu_ns": [
+        17425000,
+        17547000,
+        17519000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0043.txt",
+    "M": 39,
+    "parent": {
+      "M": 39,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 21,
+      "signature_words": 12860,
+      "cpu_ns": [
+        4217000,
+        4173000,
+        4320000
+      ]
+    },
+    "child": {
+      "M": 39,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 21,
+      "signature_words": 12860,
+      "cpu_ns": [
+        4268000,
+        4213000,
+        4716000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0044.txt",
+    "M": 63,
+    "parent": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 16900,
+      "cpu_ns": [
+        6783000,
+        6751000,
+        7007000
+      ]
+    },
+    "child": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 16900,
+      "cpu_ns": [
+        6461000,
+        6375000,
+        6338000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0045.txt",
+    "M": 84,
+    "parent": {
+      "M": 84,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 24,
+      "signature_words": 16383,
+      "cpu_ns": [
+        6851000,
+        7184000,
+        6766000
+      ]
+    },
+    "child": {
+      "M": 84,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 24,
+      "signature_words": 16383,
+      "cpu_ns": [
+        6825000,
+        6802000,
+        7017000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0046.txt",
+    "M": 61,
+    "parent": {
+      "M": 61,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 24,
+      "signature_words": 11695,
+      "cpu_ns": [
+        4798000,
+        5207000,
+        4784000
+      ]
+    },
+    "child": {
+      "M": 61,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 24,
+      "signature_words": 11695,
+      "cpu_ns": [
+        4852000,
+        5199000,
+        4890000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0047.txt",
+    "M": 114,
+    "parent": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 28788,
+      "cpu_ns": [
+        17561000,
+        17426000,
+        18166000
+      ]
+    },
+    "child": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 28788,
+      "cpu_ns": [
+        17561000,
+        17510000,
+        17289000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0048.txt",
+    "M": 104,
+    "parent": {
+      "M": 104,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 20021,
+      "cpu_ns": [
+        7823000,
+        7746000,
+        8188000
+      ]
+    },
+    "child": {
+      "M": 104,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 20021,
+      "cpu_ns": [
+        7926000,
+        8056000,
+        7869000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0049.txt",
+    "M": 91,
+    "parent": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17729,
+      "cpu_ns": [
+        8529000,
+        9028000,
+        8313000
+      ]
+    },
+    "child": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17729,
+      "cpu_ns": [
+        8291000,
+        8715000,
+        8525000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0050.txt",
+    "M": 41,
+    "parent": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 11955,
+      "cpu_ns": [
+        4567000,
+        4504000,
+        4826000
+      ]
+    },
+    "child": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 11955,
+      "cpu_ns": [
+        4775000,
+        4571000,
+        4631000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0051.txt",
+    "M": 45,
+    "parent": {
+      "M": 45,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 12405,
+      "cpu_ns": [
+        4719000,
+        4400000,
+        4344000
+      ]
+    },
+    "child": {
+      "M": 45,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 12405,
+      "cpu_ns": [
+        4779000,
+        4531000,
+        4348000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0052.txt",
+    "M": 64,
+    "parent": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 18301,
+      "cpu_ns": [
+        7363000,
+        7685000,
+        7642000
+      ]
+    },
+    "child": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 18301,
+      "cpu_ns": [
+        7722000,
+        7324000,
+        7446000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0053.txt",
+    "M": 42,
+    "parent": {
+      "M": 42,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 12679,
+      "cpu_ns": [
+        4924000,
+        4852000,
+        4766000
+      ]
+    },
+    "child": {
+      "M": 42,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 12679,
+      "cpu_ns": [
+        5877000,
+        5075000,
+        4846000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0054.txt",
+    "M": 86,
+    "parent": {
+      "M": 86,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 25,
+      "signature_words": 23827,
+      "cpu_ns": [
+        11918000,
+        11680000,
+        11405000
+      ]
+    },
+    "child": {
+      "M": 86,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 25,
+      "signature_words": 23827,
+      "cpu_ns": [
+        11606000,
+        11524000,
+        11784000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0055.txt",
+    "M": 122,
+    "parent": {
+      "M": 122,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 26860,
+      "cpu_ns": [
+        17305000,
+        17417000,
+        17551000
+      ]
+    },
+    "child": {
+      "M": 122,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 26860,
+      "cpu_ns": [
+        17281000,
+        17107000,
+        17276000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0056.txt",
+    "M": 66,
+    "parent": {
+      "M": 66,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 18377,
+      "cpu_ns": [
+        8243000,
+        8232000,
+        8616000
+      ]
+    },
+    "child": {
+      "M": 66,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 18377,
+      "cpu_ns": [
+        8272000,
+        8220000,
+        8167000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0057.txt",
+    "M": 96,
+    "parent": {
+      "M": 96,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 22038,
+      "cpu_ns": [
+        8841000,
+        9162000,
+        8979000
+      ]
+    },
+    "child": {
+      "M": 96,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 22038,
+      "cpu_ns": [
+        8961000,
+        8894000,
+        8892000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0058.txt",
+    "M": 71,
+    "parent": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 23,
+      "signature_words": 23103,
+      "cpu_ns": [
+        9727000,
+        9436000,
+        9496000
+      ]
+    },
+    "child": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 23,
+      "signature_words": 23103,
+      "cpu_ns": [
+        9842000,
+        9464000,
+        10756000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0059.txt",
+    "M": 23,
+    "parent": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 18,
+      "signature_words": 9196,
+      "cpu_ns": [
+        2149000,
+        2228000,
+        2064000
+      ]
+    },
+    "child": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 18,
+      "signature_words": 9196,
+      "cpu_ns": [
+        1750000,
+        1646000,
+        2142000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0060.txt",
+    "M": 34,
+    "parent": {
+      "M": 34,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 15582,
+      "cpu_ns": [
+        7189000,
+        7223000,
+        6906000
+      ]
+    },
+    "child": {
+      "M": 34,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 15582,
+      "cpu_ns": [
+        7173000,
+        6985000,
+        7077000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0061.txt",
+    "M": 84,
+    "parent": {
+      "M": 84,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 28,
+      "signature_words": 22119,
+      "cpu_ns": [
+        8470000,
+        8240000,
+        8395000
+      ]
+    },
+    "child": {
+      "M": 84,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 28,
+      "signature_words": 22119,
+      "cpu_ns": [
+        8480000,
+        8157000,
+        8129000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0062.txt",
+    "M": 70,
+    "parent": {
+      "M": 70,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17622,
+      "cpu_ns": [
+        8428000,
+        8318000,
+        8574000
+      ]
+    },
+    "child": {
+      "M": 70,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17622,
+      "cpu_ns": [
+        8689000,
+        8861000,
+        9559000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0063.txt",
+    "M": 69,
+    "parent": {
+      "M": 69,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 21,
+      "signature_words": 20847,
+      "cpu_ns": [
+        11285000,
+        12273000,
+        10212000
+      ]
+    },
+    "child": {
+      "M": 69,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 21,
+      "signature_words": 20847,
+      "cpu_ns": [
+        9894000,
+        9806000,
+        10551000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0064.txt",
+    "M": 63,
+    "parent": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 18546,
+      "cpu_ns": [
+        5125000,
+        4736000,
+        4877000
+      ]
+    },
+    "child": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 18546,
+      "cpu_ns": [
+        4766000,
+        4945000,
+        4719000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0065.txt",
+    "M": 32,
+    "parent": {
+      "M": 32,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 23,
+      "signature_words": 12392,
+      "cpu_ns": [
+        4269000,
+        4086000,
+        3916000
+      ]
+    },
+    "child": {
+      "M": 32,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 23,
+      "signature_words": 12392,
+      "cpu_ns": [
+        3998000,
+        3997000,
+        3931000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0066.txt",
+    "M": 93,
+    "parent": {
+      "M": 93,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 30558,
+      "cpu_ns": [
+        15718000,
+        15984000,
+        15680000
+      ]
+    },
+    "child": {
+      "M": 93,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 30558,
+      "cpu_ns": [
+        15684000,
+        15798000,
+        15872000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0067.txt",
+    "M": 50,
+    "parent": {
+      "M": 50,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 17453,
+      "cpu_ns": [
+        7162000,
+        7492000,
+        7069000
+      ]
+    },
+    "child": {
+      "M": 50,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 17453,
+      "cpu_ns": [
+        7096000,
+        7010000,
+        7422000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0068.txt",
+    "M": 157,
+    "parent": {
+      "M": 157,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 36312,
+      "cpu_ns": [
+        21887000,
+        21730000,
+        22356000
+      ]
+    },
+    "child": {
+      "M": 157,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 36312,
+      "cpu_ns": [
+        21826000,
+        21799000,
+        21719000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0069.txt",
+    "M": 42,
+    "parent": {
+      "M": 42,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 11400,
+      "cpu_ns": [
+        4315000,
+        4110000,
+        3994000
+      ]
+    },
+    "child": {
+      "M": 42,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 11400,
+      "cpu_ns": [
+        3976000,
+        3946000,
+        3922000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0070.txt",
+    "M": 114,
+    "parent": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 27,
+      "signature_words": 33196,
+      "cpu_ns": [
+        18542000,
+        18652000,
+        18077000
+      ]
+    },
+    "child": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 27,
+      "signature_words": 33196,
+      "cpu_ns": [
+        18203000,
+        18359000,
+        18199000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0071.txt",
+    "M": 116,
+    "parent": {
+      "M": 116,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 32629,
+      "cpu_ns": [
+        20110000,
+        19661000,
+        19537000
+      ]
+    },
+    "child": {
+      "M": 116,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 32629,
+      "cpu_ns": [
+        19561000,
+        19543000,
+        19442000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0072.txt",
+    "M": 25,
+    "parent": {
+      "M": 25,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 11484,
+      "cpu_ns": [
+        3504000,
+        3441000,
+        3457000
+      ]
+    },
+    "child": {
+      "M": 25,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 11484,
+      "cpu_ns": [
+        3629000,
+        3481000,
+        3445000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0073.txt",
+    "M": 93,
+    "parent": {
+      "M": 93,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 16613,
+      "cpu_ns": [
+        7599000,
+        7886000,
+        7515000
+      ]
+    },
+    "child": {
+      "M": 93,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 16613,
+      "cpu_ns": [
+        7839000,
+        7485000,
+        7505000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0074.txt",
+    "M": 41,
+    "parent": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 9112,
+      "cpu_ns": [
+        3070000,
+        2991000,
+        2950000
+      ]
+    },
+    "child": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 9112,
+      "cpu_ns": [
+        3216000,
+        3005000,
+        2978000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0075.txt",
+    "M": 105,
+    "parent": {
+      "M": 105,
+      "candidates": 32,
+      "extracted": 28,
+      "completed": 25,
+      "signature_words": 26939,
+      "cpu_ns": [
+        12940000,
+        13353000,
+        13072000
+      ]
+    },
+    "child": {
+      "M": 105,
+      "candidates": 32,
+      "extracted": 28,
+      "completed": 25,
+      "signature_words": 26939,
+      "cpu_ns": [
+        12963000,
+        13190000,
+        13067000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0076.txt",
+    "M": 91,
+    "parent": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 21015,
+      "cpu_ns": [
+        8961000,
+        8573000,
+        8521000
+      ]
+    },
+    "child": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 21015,
+      "cpu_ns": [
+        8892000,
+        8566000,
+        8802000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0077.txt",
+    "M": 34,
+    "parent": {
+      "M": 34,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 8939,
+      "cpu_ns": [
+        3306000,
+        3488000,
+        3139000
+      ]
+    },
+    "child": {
+      "M": 34,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 8939,
+      "cpu_ns": [
+        3178000,
+        3128000,
+        3113000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0078.txt",
+    "M": 86,
+    "parent": {
+      "M": 86,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 25,
+      "signature_words": 21473,
+      "cpu_ns": [
+        6840000,
+        6754000,
+        7163000
+      ]
+    },
+    "child": {
+      "M": 86,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 25,
+      "signature_words": 21473,
+      "cpu_ns": [
+        6946000,
+        6750000,
+        6693000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0079.txt",
+    "M": 19,
+    "parent": {
+      "M": 19,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 8885,
+      "cpu_ns": [
+        2928000,
+        3135000,
+        2852000
+      ]
+    },
+    "child": {
+      "M": 19,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 8885,
+      "cpu_ns": [
+        2943000,
+        2956000,
+        2864000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0080.txt",
+    "M": 71,
+    "parent": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 16790,
+      "cpu_ns": [
+        11559000,
+        11145000,
+        11053000
+      ]
+    },
+    "child": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 16790,
+      "cpu_ns": [
+        11214000,
+        11588000,
+        11499000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0081.txt",
+    "M": 142,
+    "parent": {
+      "M": 142,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 29431,
+      "cpu_ns": [
+        21849000,
+        22428000,
+        22970000
+      ]
+    },
+    "child": {
+      "M": 142,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 29431,
+      "cpu_ns": [
+        21875000,
+        22074000,
+        22125000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0082.txt",
+    "M": 109,
+    "parent": {
+      "M": 109,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 27028,
+      "cpu_ns": [
+        13377000,
+        13151000,
+        13273000
+      ]
+    },
+    "child": {
+      "M": 109,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 27028,
+      "cpu_ns": [
+        13406000,
+        13615000,
+        12924000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0083.txt",
+    "M": 64,
+    "parent": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14299,
+      "cpu_ns": [
+        6125000,
+        5783000,
+        5694000
+      ]
+    },
+    "child": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14299,
+      "cpu_ns": [
+        5734000,
+        5821000,
+        5729000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0084.txt",
+    "M": 118,
+    "parent": {
+      "M": 118,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 27,
+      "signature_words": 25258,
+      "cpu_ns": [
+        12918000,
+        13185000,
+        13193000
+      ]
+    },
+    "child": {
+      "M": 118,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 27,
+      "signature_words": 25258,
+      "cpu_ns": [
+        12808000,
+        12670000,
+        12695000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0085.txt",
+    "M": 59,
+    "parent": {
+      "M": 59,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 20145,
+      "cpu_ns": [
+        5689000,
+        5607000,
+        5616000
+      ]
+    },
+    "child": {
+      "M": 59,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 20145,
+      "cpu_ns": [
+        6051000,
+        5676000,
+        5780000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0086.txt",
+    "M": 26,
+    "parent": {
+      "M": 26,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 8656,
+      "cpu_ns": [
+        2828000,
+        2743000,
+        2749000
+      ]
+    },
+    "child": {
+      "M": 26,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 8656,
+      "cpu_ns": [
+        2850000,
+        2800000,
+        3090000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0087.txt",
+    "M": 46,
+    "parent": {
+      "M": 46,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14058,
+      "cpu_ns": [
+        4203000,
+        4146000,
+        4709000
+      ]
+    },
+    "child": {
+      "M": 46,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14058,
+      "cpu_ns": [
+        4142000,
+        4545000,
+        4327000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0088.txt",
+    "M": 60,
+    "parent": {
+      "M": 60,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 16226,
+      "cpu_ns": [
+        6099000,
+        6076000,
+        6529000
+      ]
+    },
+    "child": {
+      "M": 60,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 16226,
+      "cpu_ns": [
+        6211000,
+        6628000,
+        6136000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0089.txt",
+    "M": 114,
+    "parent": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 30411,
+      "cpu_ns": [
+        17507000,
+        17618000,
+        17515000
+      ]
+    },
+    "child": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 30411,
+      "cpu_ns": [
+        17489000,
+        17361000,
+        17085000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0090.txt",
+    "M": 33,
+    "parent": {
+      "M": 33,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 26,
+      "signature_words": 15214,
+      "cpu_ns": [
+        5956000,
+        5719000,
+        5641000
+      ]
+    },
+    "child": {
+      "M": 33,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 26,
+      "signature_words": 15214,
+      "cpu_ns": [
+        6204000,
+        5803000,
+        5918000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0091.txt",
+    "M": 46,
+    "parent": {
+      "M": 46,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 10159,
+      "cpu_ns": [
+        2659000,
+        2579000,
+        2564000
+      ]
+    },
+    "child": {
+      "M": 46,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 10159,
+      "cpu_ns": [
+        2696000,
+        2629000,
+        2608000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0092.txt",
+    "M": 169,
+    "parent": {
+      "M": 169,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 24,
+      "signature_words": 40423,
+      "cpu_ns": [
+        26926000,
+        26015000,
+        26693000
+      ]
+    },
+    "child": {
+      "M": 169,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 24,
+      "signature_words": 40423,
+      "cpu_ns": [
+        27033000,
+        28093000,
+        26676000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0093.txt",
+    "M": 22,
+    "parent": {
+      "M": 22,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 8274,
+      "cpu_ns": [
+        3273000,
+        3533000,
+        3167000
+      ]
+    },
+    "child": {
+      "M": 22,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 8274,
+      "cpu_ns": [
+        3235000,
+        3152000,
+        3142000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0094.txt",
+    "M": 47,
+    "parent": {
+      "M": 47,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 15963,
+      "cpu_ns": [
+        5126000,
+        5178000,
+        5054000
+      ]
+    },
+    "child": {
+      "M": 47,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 15963,
+      "cpu_ns": [
+        5062000,
+        5178000,
+        5022000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0095.txt",
+    "M": 97,
+    "parent": {
+      "M": 97,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 20492,
+      "cpu_ns": [
+        11485000,
+        11258000,
+        11363000
+      ]
+    },
+    "child": {
+      "M": 97,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 20492,
+      "cpu_ns": [
+        11077000,
+        11378000,
+        11170000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0096.txt",
+    "M": 40,
+    "parent": {
+      "M": 40,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 9886,
+      "cpu_ns": [
+        3105000,
+        3082000,
+        3519000
+      ]
+    },
+    "child": {
+      "M": 40,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 9886,
+      "cpu_ns": [
+        3186000,
+        3074000,
+        3066000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0097.txt",
+    "M": 116,
+    "parent": {
+      "M": 116,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 20,
+      "signature_words": 36235,
+      "cpu_ns": [
+        21299000,
+        20889000,
+        20652000
+      ]
+    },
+    "child": {
+      "M": 116,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 20,
+      "signature_words": 36235,
+      "cpu_ns": [
+        20906000,
+        20325000,
+        20264000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0098.txt",
+    "M": 48,
+    "parent": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 12494,
+      "cpu_ns": [
+        4050000,
+        4119000,
+        4036000
+      ]
+    },
+    "child": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 12494,
+      "cpu_ns": [
+        4109000,
+        4097000,
+        4229000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "local",
+    "case": "0099.txt",
+    "M": 69,
+    "parent": {
+      "M": 69,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 19155,
+      "cpu_ns": [
+        8087000,
+        8294000,
+        8015000
+      ]
+    },
+    "child": {
+      "M": 69,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 19155,
+      "cpu_ns": [
+        8045000,
+        8992000,
+        8329000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0000.txt",
+    "M": 16,
+    "parent": {
+      "M": 16,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 6328,
+      "cpu_ns": [
+        1267000,
+        1131000,
+        996000
+      ]
+    },
+    "child": {
+      "M": 16,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 6328,
+      "cpu_ns": [
+        1006000,
+        867000,
+        823000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0001.txt",
+    "M": 29,
+    "parent": {
+      "M": 29,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 9758,
+      "cpu_ns": [
+        4302000,
+        4592000,
+        4092000
+      ]
+    },
+    "child": {
+      "M": 29,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 9758,
+      "cpu_ns": [
+        5653000,
+        5990000,
+        5151000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0002.txt",
+    "M": 43,
+    "parent": {
+      "M": 43,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 11800,
+      "cpu_ns": [
+        3938000,
+        3841000,
+        3770000
+      ]
+    },
+    "child": {
+      "M": 43,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 11800,
+      "cpu_ns": [
+        3837000,
+        3804000,
+        4188000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0003.txt",
+    "M": 37,
+    "parent": {
+      "M": 37,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 16394,
+      "cpu_ns": [
+        4931000,
+        5458000,
+        4967000
+      ]
+    },
+    "child": {
+      "M": 37,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 16394,
+      "cpu_ns": [
+        4918000,
+        5357000,
+        4990000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0004.txt",
+    "M": 88,
+    "parent": {
+      "M": 88,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 21783,
+      "cpu_ns": [
+        13102000,
+        13143000,
+        12695000
+      ]
+    },
+    "child": {
+      "M": 88,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 21783,
+      "cpu_ns": [
+        13097000,
+        13096000,
+        12941000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0005.txt",
+    "M": 122,
+    "parent": {
+      "M": 122,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 41189,
+      "cpu_ns": [
+        24090000,
+        24112000,
+        24554000
+      ]
+    },
+    "child": {
+      "M": 122,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 41189,
+      "cpu_ns": [
+        24771000,
+        23621000,
+        24131000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0006.txt",
+    "M": 48,
+    "parent": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 10573,
+      "cpu_ns": [
+        4720000,
+        4623000,
+        4839000
+      ]
+    },
+    "child": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 10573,
+      "cpu_ns": [
+        4625000,
+        4541000,
+        5014000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0007.txt",
+    "M": 47,
+    "parent": {
+      "M": 47,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 24,
+      "signature_words": 10376,
+      "cpu_ns": [
+        2539000,
+        2504000,
+        2467000
+      ]
+    },
+    "child": {
+      "M": 47,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 24,
+      "signature_words": 10376,
+      "cpu_ns": [
+        2625000,
+        2525000,
+        2493000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0008.txt",
+    "M": 44,
+    "parent": {
+      "M": 44,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 12149,
+      "cpu_ns": [
+        5208000,
+        4776000,
+        4745000
+      ]
+    },
+    "child": {
+      "M": 44,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 12149,
+      "cpu_ns": [
+        4837000,
+        4709000,
+        4666000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0009.txt",
+    "M": 24,
+    "parent": {
+      "M": 24,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 11260,
+      "cpu_ns": [
+        2840000,
+        2832000,
+        2785000
+      ]
+    },
+    "child": {
+      "M": 24,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 11260,
+      "cpu_ns": [
+        2933000,
+        2798000,
+        2757000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0010.txt",
+    "M": 25,
+    "parent": {
+      "M": 25,
+      "candidates": 32,
+      "extracted": 27,
+      "completed": 27,
+      "signature_words": 6861,
+      "cpu_ns": [
+        1680000,
+        1564000,
+        1568000
+      ]
+    },
+    "child": {
+      "M": 25,
+      "candidates": 32,
+      "extracted": 27,
+      "completed": 27,
+      "signature_words": 6861,
+      "cpu_ns": [
+        1657000,
+        1546000,
+        1551000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0011.txt",
+    "M": 64,
+    "parent": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 15352,
+      "cpu_ns": [
+        5624000,
+        5625000,
+        5970000
+      ]
+    },
+    "child": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 15352,
+      "cpu_ns": [
+        5658000,
+        5627000,
+        5992000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0012.txt",
+    "M": 39,
+    "parent": {
+      "M": 39,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 11470,
+      "cpu_ns": [
+        5524000,
+        5120000,
+        5064000
+      ]
+    },
+    "child": {
+      "M": 39,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 11470,
+      "cpu_ns": [
+        5425000,
+        5139000,
+        5069000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0013.txt",
+    "M": 49,
+    "parent": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17716,
+      "cpu_ns": [
+        5077000,
+        5028000,
+        5412000
+      ]
+    },
+    "child": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17716,
+      "cpu_ns": [
+        5108000,
+        5046000,
+        5146000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0014.txt",
+    "M": 137,
+    "parent": {
+      "M": 137,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 31722,
+      "cpu_ns": [
+        20964000,
+        20642000,
+        20689000
+      ]
+    },
+    "child": {
+      "M": 137,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 31722,
+      "cpu_ns": [
+        20999000,
+        21029000,
+        21202000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0015.txt",
+    "M": 151,
+    "parent": {
+      "M": 151,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 40574,
+      "cpu_ns": [
+        27266000,
+        26914000,
+        27313000
+      ]
+    },
+    "child": {
+      "M": 151,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 40574,
+      "cpu_ns": [
+        27354000,
+        27012000,
+        26926000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0016.txt",
+    "M": 49,
+    "parent": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 13129,
+      "cpu_ns": [
+        5179000,
+        5041000,
+        4995000
+      ]
+    },
+    "child": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 13129,
+      "cpu_ns": [
+        5586000,
+        5064000,
+        4952000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0017.txt",
+    "M": 102,
+    "parent": {
+      "M": 102,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 18737,
+      "cpu_ns": [
+        8754000,
+        9045000,
+        8672000
+      ]
+    },
+    "child": {
+      "M": 102,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 18737,
+      "cpu_ns": [
+        8729000,
+        9148000,
+        8713000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0018.txt",
+    "M": 22,
+    "parent": {
+      "M": 22,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 22,
+      "signature_words": 7559,
+      "cpu_ns": [
+        2992000,
+        2905000,
+        2877000
+      ]
+    },
+    "child": {
+      "M": 22,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 22,
+      "signature_words": 7559,
+      "cpu_ns": [
+        2957000,
+        3162000,
+        3067000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0019.txt",
+    "M": 217,
+    "parent": {
+      "M": 217,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 50741,
+      "cpu_ns": [
+        44458000,
+        44872000,
+        44478000
+      ]
+    },
+    "child": {
+      "M": 217,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 50741,
+      "cpu_ns": [
+        45256000,
+        44888000,
+        44567000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0020.txt",
+    "M": 71,
+    "parent": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 13061,
+      "cpu_ns": [
+        6613000,
+        6253000,
+        6256000
+      ]
+    },
+    "child": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 13061,
+      "cpu_ns": [
+        6293000,
+        6217000,
+        7029000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0021.txt",
+    "M": 23,
+    "parent": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 8925,
+      "cpu_ns": [
+        2525000,
+        2443000,
+        2822000
+      ]
+    },
+    "child": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 8925,
+      "cpu_ns": [
+        2572000,
+        2485000,
+        2449000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0022.txt",
+    "M": 20,
+    "parent": {
+      "M": 20,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 8431,
+      "cpu_ns": [
+        2951000,
+        2698000,
+        2614000
+      ]
+    },
+    "child": {
+      "M": 20,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 8431,
+      "cpu_ns": [
+        2693000,
+        2627000,
+        2585000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0023.txt",
+    "M": 26,
+    "parent": {
+      "M": 26,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 27,
+      "signature_words": 9525,
+      "cpu_ns": [
+        3571000,
+        3595000,
+        3519000
+      ]
+    },
+    "child": {
+      "M": 26,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 27,
+      "signature_words": 9525,
+      "cpu_ns": [
+        3647000,
+        3923000,
+        3646000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0024.txt",
+    "M": 27,
+    "parent": {
+      "M": 27,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 12587,
+      "cpu_ns": [
+        3651000,
+        3342000,
+        3325000
+      ]
+    },
+    "child": {
+      "M": 27,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 12587,
+      "cpu_ns": [
+        3345000,
+        3314000,
+        3628000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0025.txt",
+    "M": 23,
+    "parent": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 9556,
+      "cpu_ns": [
+        1797000,
+        1705000,
+        1681000
+      ]
+    },
+    "child": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 9556,
+      "cpu_ns": [
+        2158000,
+        1978000,
+        1754000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0026.txt",
+    "M": 37,
+    "parent": {
+      "M": 37,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 15536,
+      "cpu_ns": [
+        3818000,
+        3804000,
+        3788000
+      ]
+    },
+    "child": {
+      "M": 37,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 15536,
+      "cpu_ns": [
+        4056000,
+        3794000,
+        3787000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0027.txt",
+    "M": 48,
+    "parent": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 28,
+      "completed": 28,
+      "signature_words": 11439,
+      "cpu_ns": [
+        2728000,
+        2671000,
+        2653000
+      ]
+    },
+    "child": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 28,
+      "completed": 28,
+      "signature_words": 11439,
+      "cpu_ns": [
+        2734000,
+        2805000,
+        3108000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0028.txt",
+    "M": 75,
+    "parent": {
+      "M": 75,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 23193,
+      "cpu_ns": [
+        10468000,
+        10607000,
+        10742000
+      ]
+    },
+    "child": {
+      "M": 75,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 23193,
+      "cpu_ns": [
+        10836000,
+        10369000,
+        10301000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0029.txt",
+    "M": 98,
+    "parent": {
+      "M": 98,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 24308,
+      "cpu_ns": [
+        12630000,
+        12523000,
+        12767000
+      ]
+    },
+    "child": {
+      "M": 98,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 24308,
+      "cpu_ns": [
+        12576000,
+        12927000,
+        12855000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0030.txt",
+    "M": 124,
+    "parent": {
+      "M": 124,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 33881,
+      "cpu_ns": [
+        11595000,
+        11807000,
+        11519000
+      ]
+    },
+    "child": {
+      "M": 124,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 33881,
+      "cpu_ns": [
+        11877000,
+        11605000,
+        11536000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0031.txt",
+    "M": 41,
+    "parent": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 11692,
+      "cpu_ns": [
+        3606000,
+        3433000,
+        3408000
+      ]
+    },
+    "child": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 11692,
+      "cpu_ns": [
+        3503000,
+        3447000,
+        3433000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0032.txt",
+    "M": 49,
+    "parent": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 19,
+      "signature_words": 14455,
+      "cpu_ns": [
+        6366000,
+        6240000,
+        6221000
+      ]
+    },
+    "child": {
+      "M": 49,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 19,
+      "signature_words": 14455,
+      "cpu_ns": [
+        6625000,
+        6291000,
+        6323000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0033.txt",
+    "M": 63,
+    "parent": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 13173,
+      "cpu_ns": [
+        5713000,
+        5249000,
+        5156000
+      ]
+    },
+    "child": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 13173,
+      "cpu_ns": [
+        5248000,
+        5146000,
+        5148000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0034.txt",
+    "M": 121,
+    "parent": {
+      "M": 121,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 29073,
+      "cpu_ns": [
+        12591000,
+        12690000,
+        12477000
+      ]
+    },
+    "child": {
+      "M": 121,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 29073,
+      "cpu_ns": [
+        12572000,
+        12553000,
+        12998000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0035.txt",
+    "M": 13,
+    "parent": {
+      "M": 13,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 7321,
+      "cpu_ns": [
+        1856000,
+        1659000,
+        1492000
+      ]
+    },
+    "child": {
+      "M": 13,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 7321,
+      "cpu_ns": [
+        1581000,
+        1756000,
+        1789000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0036.txt",
+    "M": 91,
+    "parent": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 18431,
+      "cpu_ns": [
+        7346000,
+        7752000,
+        7395000
+      ]
+    },
+    "child": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 18431,
+      "cpu_ns": [
+        7799000,
+        7352000,
+        7782000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0037.txt",
+    "M": 74,
+    "parent": {
+      "M": 74,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 24239,
+      "cpu_ns": [
+        10618000,
+        11054000,
+        10874000
+      ]
+    },
+    "child": {
+      "M": 74,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 24239,
+      "cpu_ns": [
+        11043000,
+        10715000,
+        10637000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0038.txt",
+    "M": 44,
+    "parent": {
+      "M": 44,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 13920,
+      "cpu_ns": [
+        4169000,
+        4610000,
+        4173000
+      ]
+    },
+    "child": {
+      "M": 44,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 13920,
+      "cpu_ns": [
+        4143000,
+        4289000,
+        4080000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0039.txt",
+    "M": 31,
+    "parent": {
+      "M": 31,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 14675,
+      "cpu_ns": [
+        4334000,
+        4179000,
+        4159000
+      ]
+    },
+    "child": {
+      "M": 31,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 23,
+      "signature_words": 14675,
+      "cpu_ns": [
+        4209000,
+        4146000,
+        4331000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0040.txt",
+    "M": 24,
+    "parent": {
+      "M": 24,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14306,
+      "cpu_ns": [
+        5669000,
+        5749000,
+        5782000
+      ]
+    },
+    "child": {
+      "M": 24,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14306,
+      "cpu_ns": [
+        5658000,
+        5928000,
+        5766000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0041.txt",
+    "M": 43,
+    "parent": {
+      "M": 43,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 10127,
+      "cpu_ns": [
+        4848000,
+        4827000,
+        4785000
+      ]
+    },
+    "child": {
+      "M": 43,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 10127,
+      "cpu_ns": [
+        4964000,
+        4856000,
+        4796000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0042.txt",
+    "M": 115,
+    "parent": {
+      "M": 115,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 30910,
+      "cpu_ns": [
+        17570000,
+        17425000,
+        17394000
+      ]
+    },
+    "child": {
+      "M": 115,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 30910,
+      "cpu_ns": [
+        17099000,
+        17291000,
+        17100000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0043.txt",
+    "M": 39,
+    "parent": {
+      "M": 39,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 21,
+      "signature_words": 12860,
+      "cpu_ns": [
+        4121000,
+        4063000,
+        4425000
+      ]
+    },
+    "child": {
+      "M": 39,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 21,
+      "signature_words": 12860,
+      "cpu_ns": [
+        4126000,
+        4570000,
+        4190000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0044.txt",
+    "M": 63,
+    "parent": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 16900,
+      "cpu_ns": [
+        6175000,
+        6357000,
+        6834000
+      ]
+    },
+    "child": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 16900,
+      "cpu_ns": [
+        6246000,
+        6226000,
+        6144000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0045.txt",
+    "M": 84,
+    "parent": {
+      "M": 84,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 24,
+      "signature_words": 16383,
+      "cpu_ns": [
+        6542000,
+        6812000,
+        6655000
+      ]
+    },
+    "child": {
+      "M": 84,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 24,
+      "signature_words": 16383,
+      "cpu_ns": [
+        6543000,
+        6556000,
+        6805000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0046.txt",
+    "M": 61,
+    "parent": {
+      "M": 61,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 24,
+      "signature_words": 11695,
+      "cpu_ns": [
+        4830000,
+        4657000,
+        4590000
+      ]
+    },
+    "child": {
+      "M": 61,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 24,
+      "signature_words": 11695,
+      "cpu_ns": [
+        4663000,
+        4661000,
+        4642000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0047.txt",
+    "M": 114,
+    "parent": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 28788,
+      "cpu_ns": [
+        17502000,
+        17044000,
+        17162000
+      ]
+    },
+    "child": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 28788,
+      "cpu_ns": [
+        16870000,
+        17225000,
+        16878000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0048.txt",
+    "M": 104,
+    "parent": {
+      "M": 104,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 20021,
+      "cpu_ns": [
+        7653000,
+        7596000,
+        7864000
+      ]
+    },
+    "child": {
+      "M": 104,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 20021,
+      "cpu_ns": [
+        7688000,
+        7926000,
+        7632000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0049.txt",
+    "M": 91,
+    "parent": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17729,
+      "cpu_ns": [
+        8581000,
+        8112000,
+        8478000
+      ]
+    },
+    "child": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17729,
+      "cpu_ns": [
+        8247000,
+        8313000,
+        8175000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0050.txt",
+    "M": 41,
+    "parent": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 11955,
+      "cpu_ns": [
+        4447000,
+        4373000,
+        4934000
+      ]
+    },
+    "child": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 11955,
+      "cpu_ns": [
+        4431000,
+        4356000,
+        4562000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0051.txt",
+    "M": 45,
+    "parent": {
+      "M": 45,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 12405,
+      "cpu_ns": [
+        4219000,
+        4224000,
+        4187000
+      ]
+    },
+    "child": {
+      "M": 45,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 12405,
+      "cpu_ns": [
+        4216000,
+        4222000,
+        4681000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0052.txt",
+    "M": 64,
+    "parent": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 18301,
+      "cpu_ns": [
+        7208000,
+        7508000,
+        7268000
+      ]
+    },
+    "child": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 18301,
+      "cpu_ns": [
+        7691000,
+        7245000,
+        7265000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0053.txt",
+    "M": 42,
+    "parent": {
+      "M": 42,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 12679,
+      "cpu_ns": [
+        4939000,
+        4782000,
+        4625000
+      ]
+    },
+    "child": {
+      "M": 42,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 12679,
+      "cpu_ns": [
+        5132000,
+        4681000,
+        4620000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0054.txt",
+    "M": 86,
+    "parent": {
+      "M": 86,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 25,
+      "signature_words": 23827,
+      "cpu_ns": [
+        11391000,
+        11230000,
+        11318000
+      ]
+    },
+    "child": {
+      "M": 86,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 25,
+      "signature_words": 23827,
+      "cpu_ns": [
+        11311000,
+        11346000,
+        11478000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0055.txt",
+    "M": 122,
+    "parent": {
+      "M": 122,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 26860,
+      "cpu_ns": [
+        16974000,
+        16954000,
+        16992000
+      ]
+    },
+    "child": {
+      "M": 122,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 26860,
+      "cpu_ns": [
+        16841000,
+        17060000,
+        16938000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0056.txt",
+    "M": 66,
+    "parent": {
+      "M": 66,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 18377,
+      "cpu_ns": [
+        8167000,
+        8383000,
+        8323000
+      ]
+    },
+    "child": {
+      "M": 66,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 18377,
+      "cpu_ns": [
+        8224000,
+        8600000,
+        8087000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0057.txt",
+    "M": 96,
+    "parent": {
+      "M": 96,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 22038,
+      "cpu_ns": [
+        8990000,
+        8640000,
+        9022000
+      ]
+    },
+    "child": {
+      "M": 96,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 22038,
+      "cpu_ns": [
+        8815000,
+        8583000,
+        9272000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0058.txt",
+    "M": 71,
+    "parent": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 23,
+      "signature_words": 23103,
+      "cpu_ns": [
+        9202000,
+        9236000,
+        9131000
+      ]
+    },
+    "child": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 23,
+      "signature_words": 23103,
+      "cpu_ns": [
+        9170000,
+        9493000,
+        9210000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0059.txt",
+    "M": 23,
+    "parent": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 18,
+      "signature_words": 9196,
+      "cpu_ns": [
+        1706000,
+        1592000,
+        1549000
+      ]
+    },
+    "child": {
+      "M": 23,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 18,
+      "signature_words": 9196,
+      "cpu_ns": [
+        1694000,
+        1596000,
+        1554000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0060.txt",
+    "M": 34,
+    "parent": {
+      "M": 34,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 15582,
+      "cpu_ns": [
+        7186000,
+        6865000,
+        7047000
+      ]
+    },
+    "child": {
+      "M": 34,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 15582,
+      "cpu_ns": [
+        6800000,
+        7073000,
+        6960000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0061.txt",
+    "M": 84,
+    "parent": {
+      "M": 84,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 28,
+      "signature_words": 22119,
+      "cpu_ns": [
+        8465000,
+        7933000,
+        8313000
+      ]
+    },
+    "child": {
+      "M": 84,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 28,
+      "signature_words": 22119,
+      "cpu_ns": [
+        7879000,
+        7813000,
+        7802000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0062.txt",
+    "M": 70,
+    "parent": {
+      "M": 70,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17622,
+      "cpu_ns": [
+        8505000,
+        8161000,
+        8433000
+      ]
+    },
+    "child": {
+      "M": 70,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 17622,
+      "cpu_ns": [
+        8369000,
+        8271000,
+        8285000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0063.txt",
+    "M": 69,
+    "parent": {
+      "M": 69,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 21,
+      "signature_words": 20847,
+      "cpu_ns": [
+        10061000,
+        9762000,
+        9646000
+      ]
+    },
+    "child": {
+      "M": 69,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 21,
+      "signature_words": 20847,
+      "cpu_ns": [
+        9792000,
+        9536000,
+        9866000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0064.txt",
+    "M": 63,
+    "parent": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 18546,
+      "cpu_ns": [
+        4405000,
+        4300000,
+        4351000
+      ]
+    },
+    "child": {
+      "M": 63,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 18546,
+      "cpu_ns": [
+        4832000,
+        4433000,
+        4281000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0065.txt",
+    "M": 32,
+    "parent": {
+      "M": 32,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 23,
+      "signature_words": 12392,
+      "cpu_ns": [
+        3801000,
+        3761000,
+        3966000
+      ]
+    },
+    "child": {
+      "M": 32,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 23,
+      "signature_words": 12392,
+      "cpu_ns": [
+        3756000,
+        4069000,
+        4200000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0066.txt",
+    "M": 93,
+    "parent": {
+      "M": 93,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 30558,
+      "cpu_ns": [
+        15267000,
+        15540000,
+        15686000
+      ]
+    },
+    "child": {
+      "M": 93,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 30558,
+      "cpu_ns": [
+        15787000,
+        15420000,
+        15444000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0067.txt",
+    "M": 50,
+    "parent": {
+      "M": 50,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 17453,
+      "cpu_ns": [
+        7173000,
+        6882000,
+        6909000
+      ]
+    },
+    "child": {
+      "M": 50,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 17453,
+      "cpu_ns": [
+        6890000,
+        6975000,
+        6817000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0068.txt",
+    "M": 157,
+    "parent": {
+      "M": 157,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 36312,
+      "cpu_ns": [
+        21459000,
+        21135000,
+        21552000
+      ]
+    },
+    "child": {
+      "M": 157,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 36312,
+      "cpu_ns": [
+        21045000,
+        21632000,
+        21624000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0069.txt",
+    "M": 42,
+    "parent": {
+      "M": 42,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 11400,
+      "cpu_ns": [
+        3860000,
+        4147000,
+        4060000
+      ]
+    },
+    "child": {
+      "M": 42,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 11400,
+      "cpu_ns": [
+        3888000,
+        3780000,
+        3762000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0070.txt",
+    "M": 114,
+    "parent": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 27,
+      "signature_words": 33196,
+      "cpu_ns": [
+        18005000,
+        18076000,
+        18202000
+      ]
+    },
+    "child": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 30,
+      "completed": 27,
+      "signature_words": 33196,
+      "cpu_ns": [
+        17999000,
+        17747000,
+        17753000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0071.txt",
+    "M": 116,
+    "parent": {
+      "M": 116,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 32629,
+      "cpu_ns": [
+        19327000,
+        19531000,
+        19275000
+      ]
+    },
+    "child": {
+      "M": 116,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 32629,
+      "cpu_ns": [
+        19097000,
+        19034000,
+        19107000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0072.txt",
+    "M": 25,
+    "parent": {
+      "M": 25,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 11484,
+      "cpu_ns": [
+        3430000,
+        3743000,
+        3380000
+      ]
+    },
+    "child": {
+      "M": 25,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 11484,
+      "cpu_ns": [
+        3431000,
+        3356000,
+        3314000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0073.txt",
+    "M": 93,
+    "parent": {
+      "M": 93,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 16613,
+      "cpu_ns": [
+        7757000,
+        7301000,
+        7674000
+      ]
+    },
+    "child": {
+      "M": 93,
+      "candidates": 32,
+      "extracted": 29,
+      "completed": 22,
+      "signature_words": 16613,
+      "cpu_ns": [
+        7281000,
+        7668000,
+        7328000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0074.txt",
+    "M": 41,
+    "parent": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 9112,
+      "cpu_ns": [
+        2956000,
+        2873000,
+        2844000
+      ]
+    },
+    "child": {
+      "M": 41,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 9112,
+      "cpu_ns": [
+        3004000,
+        3122000,
+        3152000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0075.txt",
+    "M": 105,
+    "parent": {
+      "M": 105,
+      "candidates": 32,
+      "extracted": 28,
+      "completed": 25,
+      "signature_words": 26939,
+      "cpu_ns": [
+        13321000,
+        13171000,
+        12932000
+      ]
+    },
+    "child": {
+      "M": 105,
+      "candidates": 32,
+      "extracted": 28,
+      "completed": 25,
+      "signature_words": 26939,
+      "cpu_ns": [
+        13160000,
+        13159000,
+        12730000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0076.txt",
+    "M": 91,
+    "parent": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 21015,
+      "cpu_ns": [
+        8451000,
+        8538000,
+        8337000
+      ]
+    },
+    "child": {
+      "M": 91,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 21015,
+      "cpu_ns": [
+        8375000,
+        8808000,
+        8361000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0077.txt",
+    "M": 34,
+    "parent": {
+      "M": 34,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 8939,
+      "cpu_ns": [
+        3075000,
+        2996000,
+        2980000
+      ]
+    },
+    "child": {
+      "M": 34,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 8939,
+      "cpu_ns": [
+        3263000,
+        3218000,
+        3039000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0078.txt",
+    "M": 86,
+    "parent": {
+      "M": 86,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 25,
+      "signature_words": 21473,
+      "cpu_ns": [
+        6595000,
+        6713000,
+        6551000
+      ]
+    },
+    "child": {
+      "M": 86,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 25,
+      "signature_words": 21473,
+      "cpu_ns": [
+        6777000,
+        6573000,
+        6605000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0079.txt",
+    "M": 19,
+    "parent": {
+      "M": 19,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 8885,
+      "cpu_ns": [
+        2827000,
+        2729000,
+        2748000
+      ]
+    },
+    "child": {
+      "M": 19,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 8885,
+      "cpu_ns": [
+        2812000,
+        3118000,
+        2954000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0080.txt",
+    "M": 71,
+    "parent": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 16790,
+      "cpu_ns": [
+        10950000,
+        11505000,
+        10936000
+      ]
+    },
+    "child": {
+      "M": 71,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 31,
+      "signature_words": 16790,
+      "cpu_ns": [
+        11067000,
+        10838000,
+        11390000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0081.txt",
+    "M": 142,
+    "parent": {
+      "M": 142,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 29431,
+      "cpu_ns": [
+        21719000,
+        21678000,
+        21752000
+      ]
+    },
+    "child": {
+      "M": 142,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 29431,
+      "cpu_ns": [
+        21827000,
+        21590000,
+        21926000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0082.txt",
+    "M": 109,
+    "parent": {
+      "M": 109,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 27028,
+      "cpu_ns": [
+        12755000,
+        12777000,
+        13136000
+      ]
+    },
+    "child": {
+      "M": 109,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 32,
+      "signature_words": 27028,
+      "cpu_ns": [
+        12804000,
+        13365000,
+        13984000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0083.txt",
+    "M": 64,
+    "parent": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14299,
+      "cpu_ns": [
+        5782000,
+        6092000,
+        6407000
+      ]
+    },
+    "child": {
+      "M": 64,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14299,
+      "cpu_ns": [
+        5683000,
+        5896000,
+        6278000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0084.txt",
+    "M": 118,
+    "parent": {
+      "M": 118,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 27,
+      "signature_words": 25258,
+      "cpu_ns": [
+        14454000,
+        15316000,
+        13450000
+      ]
+    },
+    "child": {
+      "M": 118,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 27,
+      "signature_words": 25258,
+      "cpu_ns": [
+        12829000,
+        12600000,
+        12858000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0085.txt",
+    "M": 59,
+    "parent": {
+      "M": 59,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 20145,
+      "cpu_ns": [
+        5490000,
+        5453000,
+        6053000
+      ]
+    },
+    "child": {
+      "M": 59,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 20145,
+      "cpu_ns": [
+        6308000,
+        5677000,
+        5857000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0086.txt",
+    "M": 26,
+    "parent": {
+      "M": 26,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 8656,
+      "cpu_ns": [
+        2786000,
+        2673000,
+        2644000
+      ]
+    },
+    "child": {
+      "M": 26,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 8656,
+      "cpu_ns": [
+        2733000,
+        2672000,
+        2637000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0087.txt",
+    "M": 46,
+    "parent": {
+      "M": 46,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14058,
+      "cpu_ns": [
+        4080000,
+        4002000,
+        4270000
+      ]
+    },
+    "child": {
+      "M": 46,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 14058,
+      "cpu_ns": [
+        4035000,
+        4380000,
+        4115000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0088.txt",
+    "M": 60,
+    "parent": {
+      "M": 60,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 16226,
+      "cpu_ns": [
+        5900000,
+        5885000,
+        6108000
+      ]
+    },
+    "child": {
+      "M": 60,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 28,
+      "signature_words": 16226,
+      "cpu_ns": [
+        5883000,
+        5886000,
+        6235000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0089.txt",
+    "M": 114,
+    "parent": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 30411,
+      "cpu_ns": [
+        16677000,
+        17185000,
+        16825000
+      ]
+    },
+    "child": {
+      "M": 114,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 30411,
+      "cpu_ns": [
+        17203000,
+        17051000,
+        17206000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0090.txt",
+    "M": 33,
+    "parent": {
+      "M": 33,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 26,
+      "signature_words": 15214,
+      "cpu_ns": [
+        5568000,
+        5913000,
+        5678000
+      ]
+    },
+    "child": {
+      "M": 33,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 26,
+      "signature_words": 15214,
+      "cpu_ns": [
+        5626000,
+        5608000,
+        5503000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0091.txt",
+    "M": 46,
+    "parent": {
+      "M": 46,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 10159,
+      "cpu_ns": [
+        2575000,
+        2872000,
+        2674000
+      ]
+    },
+    "child": {
+      "M": 46,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 26,
+      "signature_words": 10159,
+      "cpu_ns": [
+        2560000,
+        2505000,
+        2472000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0092.txt",
+    "M": 169,
+    "parent": {
+      "M": 169,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 24,
+      "signature_words": 40423,
+      "cpu_ns": [
+        25964000,
+        26315000,
+        25614000
+      ]
+    },
+    "child": {
+      "M": 169,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 24,
+      "signature_words": 40423,
+      "cpu_ns": [
+        26117000,
+        26063000,
+        25969000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0093.txt",
+    "M": 22,
+    "parent": {
+      "M": 22,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 8274,
+      "cpu_ns": [
+        3088000,
+        2992000,
+        3008000
+      ]
+    },
+    "child": {
+      "M": 22,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 27,
+      "signature_words": 8274,
+      "cpu_ns": [
+        3494000,
+        3132000,
+        3049000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0094.txt",
+    "M": 47,
+    "parent": {
+      "M": 47,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 15963,
+      "cpu_ns": [
+        5269000,
+        4945000,
+        4911000
+      ]
+    },
+    "child": {
+      "M": 47,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 15963,
+      "cpu_ns": [
+        4999000,
+        4957000,
+        4977000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0095.txt",
+    "M": 97,
+    "parent": {
+      "M": 97,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 20492,
+      "cpu_ns": [
+        11070000,
+        10714000,
+        10663000
+      ]
+    },
+    "child": {
+      "M": 97,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 25,
+      "signature_words": 20492,
+      "cpu_ns": [
+        10723000,
+        10693000,
+        10681000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0096.txt",
+    "M": 40,
+    "parent": {
+      "M": 40,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 9886,
+      "cpu_ns": [
+        3002000,
+        3097000,
+        3248000
+      ]
+    },
+    "child": {
+      "M": 40,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 30,
+      "signature_words": 9886,
+      "cpu_ns": [
+        3012000,
+        2984000,
+        2948000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0097.txt",
+    "M": 116,
+    "parent": {
+      "M": 116,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 20,
+      "signature_words": 36235,
+      "cpu_ns": [
+        20394000,
+        20431000,
+        20615000
+      ]
+    },
+    "child": {
+      "M": 116,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 20,
+      "signature_words": 36235,
+      "cpu_ns": [
+        20231000,
+        20019000,
+        20362000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0098.txt",
+    "M": 48,
+    "parent": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 12494,
+      "cpu_ns": [
+        3958000,
+        3986000,
+        3953000
+      ]
+    },
+    "child": {
+      "M": 48,
+      "candidates": 32,
+      "extracted": 31,
+      "completed": 28,
+      "signature_words": 12494,
+      "cpu_ns": [
+        3935000,
+        4004000,
+        3965000
+      ]
+    },
+    "exact_match": true
+  },
+  {
+    "mode": "production",
+    "case": "0099.txt",
+    "M": 69,
+    "parent": {
+      "M": 69,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 19155,
+      "cpu_ns": [
+        8384000,
+        7854000,
+        8046000
+      ]
+    },
+    "child": {
+      "M": 69,
+      "candidates": 32,
+      "extracted": 32,
+      "completed": 29,
+      "signature_words": 19155,
+      "cpu_ns": [
+        7845000,
+        8148000,
+        7768000
+      ]
+    },
+    "exact_match": true
+  }
+]

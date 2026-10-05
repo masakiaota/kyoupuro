@@ -1,0 +1,14 @@
+[
+  {
+    "old": "// v074_multi_tuning.cpp",
+    "new": "// v075_size_exponent.cpp"
+  },
+  {
+    "old": "// 修復係数は指定値に固定する。他の6項目だけを同じ新規入力で調整する。",
+    "new": "// 修復係数と他の設定を固定し、通常候補の匹数による割引だけを調整する。"
+  },
+  {
+    "old": "static_assert(0.35 <= removal_size_exponent && removal_size_exponent <= 0.95);",
+    "new": "static_assert(0.8 <= removal_size_exponent && removal_size_exponent <= 1.6);"
+  }
+]

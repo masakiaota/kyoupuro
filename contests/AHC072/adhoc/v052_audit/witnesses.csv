@@ -1,0 +1,5 @@
+label,case,before,reference,found,after,expanded,generated,beam_pruned,nonempty,ms
+consolidated_dispatch,0097,3,2,1,2,4,23,0,1,0.056
+nest_pickup,0019,3,2,1,2,6,142,0,0,0.168
+pass_before_merge,0019,4,3,1,3,11,408,0,1,0.521
+paired_orientation,0005,6,4,1,4,24,1054,74,1,0.545

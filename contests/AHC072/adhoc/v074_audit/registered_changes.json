@@ -1,0 +1,42 @@
+[
+  {
+    "old": "// v073_repair_weight.cpp",
+    "new": "// v074_multi_tuning.cpp"
+  },
+  {
+    "old": "// 修復負担を候補順位へ反映する強さ。探索条件はv073の実験ノートを参照する。\n#ifndef AHC072_REPAIR_WEIGHT\n#define AHC072_REPAIR_WEIGHT 1.0\n#endif\nconstexpr double repair_weight = AHC072_REPAIR_WEIGHT;\nstatic_assert(0.0 <= repair_weight && repair_weight <= 2.5);",
+    "new": "// 修復係数は指定値に固定する。他の6項目だけを同じ新規入力で調整する。\nconstexpr double repair_weight = 0.83;\n#ifndef AHC072_SIZE_EXPONENT\n#define AHC072_SIZE_EXPONENT 0.65\n#endif\nconstexpr double removal_size_exponent = AHC072_SIZE_EXPONENT;\nstatic_assert(0.35 <= removal_size_exponent && removal_size_exponent <= 0.95);\n#ifndef AHC072_NOISE_AMPLITUDE\n#define AHC072_NOISE_AMPLITUDE 0.10\n#endif\nconstexpr double priority_noise_amplitude = AHC072_NOISE_AMPLITUDE;\nstatic_assert(0.0 <= priority_noise_amplitude && priority_noise_amplitude <= 0.30);\n#ifndef AHC072_START_TEMPERATURE\n#define AHC072_START_TEMPERATURE 0.70\n#endif\nconstexpr double lns_start_temperature = AHC072_START_TEMPERATURE;\nstatic_assert(0.30 <= lns_start_temperature && lns_start_temperature <= 1.25);\n#ifndef AHC072_END_TEMPERATURE\n#define AHC072_END_TEMPERATURE 0.08\n#endif\nconstexpr double lns_end_temperature = AHC072_END_TEMPERATURE;\nstatic_assert(0.02 <= lns_end_temperature && lns_end_temperature <= 0.20);\n#ifndef AHC072_DEPENDENCY_INTERVAL\n#define AHC072_DEPENDENCY_INTERVAL 4\n#endif\nconstexpr int dependency_interval = AHC072_DEPENDENCY_INTERVAL;\nstatic_assert(2 <= dependency_interval && dependency_interval <= 8);\n#ifndef AHC072_COOLDOWN_FRACTION\n#define AHC072_COOLDOWN_FRACTION 0.50\n#endif\nconstexpr double regular_cooldown_fraction = AHC072_COOLDOWN_FRACTION;\nstatic_assert(0.125 <= regular_cooldown_fraction && regular_cooldown_fraction <= 1.0);\nstatic_assert(lns_end_temperature < lns_start_temperature);"
+  },
+  {
+    "old": "divisor[n]=pow(double(n),0.65);",
+    "new": "divisor[n]=pow(double(n),removal_size_exponent);"
+  },
+  {
+    "old": "const double noise=0.90+0.20*rng.unit();",
+    "new": "const double noise=(1.0-priority_noise_amplitude)+2.0*priority_noise_amplitude*rng.unit();"
+  },
+  {
+    "old": "*(0.90+0.20*rng.unit());",
+    "new": "*((1.0-priority_noise_amplitude)+2.0*priority_noise_amplitude*rng.unit());"
+  },
+  {
+    "old": "double temperature=0.70;",
+    "new": "double temperature=lns_start_temperature;"
+  },
+  {
+    "old": "temperature=0.70*pow(0.08/0.70,progress);",
+    "new": "temperature=lns_start_temperature*pow(lns_end_temperature/lns_start_temperature,progress);"
+  },
+  {
+    "old": "// 通常の除去対象の選択4回に1回を、最大8匹の依存拡張へ割り当てる。",
+    "new": "// 指定した通常選択の間隔で、最大8匹の依存拡張へ割り当てる。"
+  },
+  {
+    "old": "++regular_selections%4==0",
+    "new": "++regular_selections%dependency_interval==0"
+  },
+  {
+    "old": "int choice=-1,cooldown=max(24,min(200,int(candidates.size()/2)));",
+    "new": "int choice=-1,cooldown=max(24,min(200,int(candidates.size()*regular_cooldown_fraction)));"
+  }
+]

@@ -1,0 +1,572 @@
+{
+  "source": "frozen v050 outputs and v051 diagnostic outputs",
+  "total_saved": 4,
+  "examples": [
+    {
+      "case": "0019.txt",
+      "before_start": 49,
+      "before_end": 67,
+      "after_start": 49,
+      "after_end": 66,
+      "saved": 1,
+      "before_moves": 18,
+      "after_moves": 17,
+      "tokens": 32,
+      "cells": 23,
+      "same_full_boundary_boards": true,
+      "initial_changed_cells": {
+        "(0, 4)": "gfl",
+        "(0, 5)": "",
+        "(1, 4)": "k",
+        "(1, 5)": "j"
+      },
+      "final_changed_cells": {
+        "(0, 4)": "",
+        "(0, 5)": "",
+        "(1, 4)": "",
+        "(1, 5)": "jgflk"
+      },
+      "retained_operations": 15,
+      "retained_independent": true,
+      "before_changed_operations": [
+        {
+          "turn": 50,
+          "action": "1 4 0 U 1",
+          "source": [
+            1,
+            4
+          ],
+          "destination": [
+            0,
+            4
+          ],
+          "before": {
+            "(1, 4)": "k",
+            "(0, 4)": "gfl"
+          },
+          "moving_bottom_to_top": "k",
+          "after": {
+            "(1, 4)": "",
+            "(0, 4)": "gflk"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 66,
+          "action": "0 4 0 R 1",
+          "source": [
+            0,
+            4
+          ],
+          "destination": [
+            0,
+            5
+          ],
+          "before": {
+            "(0, 4)": "gflk",
+            "(0, 5)": ""
+          },
+          "moving_bottom_to_top": "gflk",
+          "after": {
+            "(0, 4)": "",
+            "(0, 5)": "klfg"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 67,
+          "action": "0 5 0 D 1",
+          "source": [
+            0,
+            5
+          ],
+          "destination": [
+            1,
+            5
+          ],
+          "before": {
+            "(0, 5)": "klfg",
+            "(1, 5)": "j"
+          },
+          "moving_bottom_to_top": "klfg",
+          "after": {
+            "(0, 5)": "",
+            "(1, 5)": "jgflk"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        }
+      ],
+      "after_changed_operations": [
+        {
+          "turn": 50,
+          "action": "0 4 0 D 1",
+          "source": [
+            0,
+            4
+          ],
+          "destination": [
+            1,
+            4
+          ],
+          "before": {
+            "(0, 4)": "gfl",
+            "(1, 4)": "k"
+          },
+          "moving_bottom_to_top": "gfl",
+          "after": {
+            "(0, 4)": "",
+            "(1, 4)": "klfg"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 51,
+          "action": "1 4 0 R 1",
+          "source": [
+            1,
+            4
+          ],
+          "destination": [
+            1,
+            5
+          ],
+          "before": {
+            "(1, 4)": "klfg",
+            "(1, 5)": "j"
+          },
+          "moving_bottom_to_top": "klfg",
+          "after": {
+            "(1, 4)": "",
+            "(1, 5)": "jgflk"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        }
+      ]
+    },
+    {
+      "case": "0092.txt",
+      "before_start": 172,
+      "before_end": 231,
+      "after_start": 172,
+      "after_end": 230,
+      "saved": 1,
+      "before_moves": 59,
+      "after_moves": 58,
+      "tokens": 68,
+      "cells": 46,
+      "same_full_boundary_boards": true,
+      "initial_changed_cells": {
+        "(1, 17)": "d",
+        "(1, 18)": "eed"
+      },
+      "final_changed_cells": {
+        "(1, 17)": "ddee",
+        "(1, 18)": ""
+      },
+      "retained_operations": 57,
+      "retained_independent": true,
+      "before_changed_operations": [
+        {
+          "turn": 173,
+          "action": "1 17 0 R 1",
+          "source": [
+            1,
+            17
+          ],
+          "destination": [
+            1,
+            18
+          ],
+          "before": {
+            "(1, 17)": "d",
+            "(1, 18)": "eed"
+          },
+          "moving_bottom_to_top": "d",
+          "after": {
+            "(1, 17)": "",
+            "(1, 18)": "eedd"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 231,
+          "action": "1 18 0 L 1",
+          "source": [
+            1,
+            18
+          ],
+          "destination": [
+            1,
+            17
+          ],
+          "before": {
+            "(1, 18)": "eedd",
+            "(1, 17)": ""
+          },
+          "moving_bottom_to_top": "eedd",
+          "after": {
+            "(1, 18)": "",
+            "(1, 17)": "ddee"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        }
+      ],
+      "after_changed_operations": [
+        {
+          "turn": 173,
+          "action": "1 18 0 L 1",
+          "source": [
+            1,
+            18
+          ],
+          "destination": [
+            1,
+            17
+          ],
+          "before": {
+            "(1, 18)": "eed",
+            "(1, 17)": "d"
+          },
+          "moving_bottom_to_top": "eed",
+          "after": {
+            "(1, 18)": "",
+            "(1, 17)": "ddee"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        }
+      ]
+    },
+    {
+      "case": "0092.txt",
+      "before_start": 278,
+      "before_end": 295,
+      "after_start": 277,
+      "after_end": 293,
+      "saved": 1,
+      "before_moves": 17,
+      "after_moves": 16,
+      "tokens": 37,
+      "cells": 19,
+      "same_full_boundary_boards": true,
+      "initial_changed_cells": {
+        "(8, 9)": "c",
+        "(9, 9)": "c",
+        "(9, 10)": "cc"
+      },
+      "final_changed_cells": {
+        "(8, 9)": "",
+        "(9, 9)": "cccc",
+        "(9, 10)": ""
+      },
+      "retained_operations": 14,
+      "retained_independent": true,
+      "before_changed_operations": [
+        {
+          "turn": 279,
+          "action": "9 10 1 L 1",
+          "source": [
+            9,
+            10
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "before": {
+            "(9, 10)": "cc",
+            "(9, 9)": "c"
+          },
+          "moving_bottom_to_top": "c",
+          "after": {
+            "(9, 10)": "c",
+            "(9, 9)": "cc"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 282,
+          "action": "8 9 0 D 1",
+          "source": [
+            8,
+            9
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "before": {
+            "(8, 9)": "c",
+            "(9, 9)": "cc"
+          },
+          "moving_bottom_to_top": "c",
+          "after": {
+            "(8, 9)": "",
+            "(9, 9)": "ccc"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 295,
+          "action": "9 10 0 L 1",
+          "source": [
+            9,
+            10
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "before": {
+            "(9, 10)": "c",
+            "(9, 9)": "ccc"
+          },
+          "moving_bottom_to_top": "c",
+          "after": {
+            "(9, 10)": "",
+            "(9, 9)": "cccc"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        }
+      ],
+      "after_changed_operations": [
+        {
+          "turn": 278,
+          "action": "9 10 0 L 1",
+          "source": [
+            9,
+            10
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "before": {
+            "(9, 10)": "cc",
+            "(9, 9)": "c"
+          },
+          "moving_bottom_to_top": "cc",
+          "after": {
+            "(9, 10)": "",
+            "(9, 9)": "ccc"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 279,
+          "action": "8 9 0 D 1",
+          "source": [
+            8,
+            9
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "before": {
+            "(8, 9)": "c",
+            "(9, 9)": "ccc"
+          },
+          "moving_bottom_to_top": "c",
+          "after": {
+            "(8, 9)": "",
+            "(9, 9)": "cccc"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        }
+      ]
+    },
+    {
+      "case": "0097.txt",
+      "before_start": 80,
+      "before_end": 87,
+      "after_start": 80,
+      "after_end": 86,
+      "saved": 1,
+      "before_moves": 7,
+      "after_moves": 6,
+      "tokens": 19,
+      "cells": 9,
+      "same_full_boundary_boards": true,
+      "initial_changed_cells": {
+        "(0, 8)": "fgdabdd",
+        "(0, 10)": "c",
+        "(1, 10)": "d"
+      },
+      "final_changed_cells": {
+        "(0, 8)": "f",
+        "(0, 10)": "cdddbadg",
+        "(1, 10)": ""
+      },
+      "retained_operations": 4,
+      "retained_independent": true,
+      "before_changed_operations": [
+        {
+          "turn": 81,
+          "action": "0 8 5 R 2",
+          "source": [
+            0,
+            8
+          ],
+          "destination": [
+            0,
+            10
+          ],
+          "before": {
+            "(0, 8)": "fgdabdd",
+            "(0, 10)": "c"
+          },
+          "moving_bottom_to_top": "dd",
+          "after": {
+            "(0, 8)": "fgdab",
+            "(0, 10)": "cdd"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 83,
+          "action": "1 10 0 U 1",
+          "source": [
+            1,
+            10
+          ],
+          "destination": [
+            0,
+            10
+          ],
+          "before": {
+            "(1, 10)": "d",
+            "(0, 10)": "cdd"
+          },
+          "moving_bottom_to_top": "d",
+          "after": {
+            "(1, 10)": "",
+            "(0, 10)": "cddd"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 87,
+          "action": "0 8 1 R 2",
+          "source": [
+            0,
+            8
+          ],
+          "destination": [
+            0,
+            10
+          ],
+          "before": {
+            "(0, 8)": "fgdab",
+            "(0, 10)": "cddd"
+          },
+          "moving_bottom_to_top": "gdab",
+          "after": {
+            "(0, 8)": "f",
+            "(0, 10)": "cdddbadg"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        }
+      ],
+      "after_changed_operations": [
+        {
+          "turn": 81,
+          "action": "1 10 0 U 1",
+          "source": [
+            1,
+            10
+          ],
+          "destination": [
+            0,
+            10
+          ],
+          "before": {
+            "(1, 10)": "d",
+            "(0, 10)": "c"
+          },
+          "moving_bottom_to_top": "d",
+          "after": {
+            "(1, 10)": "",
+            "(0, 10)": "cd"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        },
+        {
+          "turn": 82,
+          "action": "0 8 1 R 2",
+          "source": [
+            0,
+            8
+          ],
+          "destination": [
+            0,
+            10
+          ],
+          "before": {
+            "(0, 8)": "fgdabdd",
+            "(0, 10)": "cd"
+          },
+          "moving_bottom_to_top": "gdabdd",
+          "after": {
+            "(0, 8)": "f",
+            "(0, 10)": "cdddbadg"
+          },
+          "returned": {
+            "source": "",
+            "destination": ""
+          }
+        }
+      ]
+    }
+  ]
+}

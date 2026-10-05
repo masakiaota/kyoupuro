@@ -1,0 +1,7 @@
+{
+  "signal": "SIGTRAP",
+  "function": "FinitePlanner::plan",
+  "image_offset": 499512,
+  "index": -1,
+  "fixture": "combination_fixtures; nest table and home table were inconsistent"
+}

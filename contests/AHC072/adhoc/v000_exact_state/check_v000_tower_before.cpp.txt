@@ -1,0 +1,218 @@
+// check_v000_tower.cpp
+// 解法を実行せず、塔の操作を色の配列による独立した計算と照合する。
+#define main v000_template_main
+#include "../../src/bin/v000_template.cpp"
+#undef main
+
+static_assert(sizeof(Tower) == 4);
+static_assert(sizeof(State<400>) == 1600);
+static_assert(is_trivially_copyable_v<State<400>>);
+
+using Colors = vector<int>;
+uint64_t tower_checks = 0, pair_checks = 0;
+
+void require(bool condition, const char* message) {
+    if (!condition) throw runtime_error(message);
+}
+
+Tower pack(const Colors& colors) {
+    Tower result;
+    for (auto it = colors.rbegin(); it != colors.rend(); ++it) {
+        result.bits = result.bits * 16 + uint32_t(*it + 1);
+    }
+    return result;
+}
+
+void check_tower(const Tower& tower, const Colors& expected) {
+    require(tower.bits == pack(expected).bits, "packed colors");
+    require(tower.height() == int(expected.size()), "height");
+    require(tower.empty() == expected.empty(), "empty");
+    for (int i = 0; i < int(expected.size()); ++i) {
+        require(tower.at(i) == expected[i], "color at index");
+    }
+    if (!expected.empty()) {
+        require(tower.top() == expected.back(), "top color");
+        require(tower.bottom() == expected.front(), "bottom color");
+    }
+    ++tower_checks;
+}
+
+int ref_home(Colors& colors, int c) {
+    const int before = int(colors.size());
+    while (!colors.empty() && colors.back() == c) colors.pop_back();
+    return before - int(colors.size());
+}
+
+Colors make_colors(int h, int sample, mt19937& random) {
+    Colors colors(h);
+    for (int& c : colors) c = sample < 12 ? sample : int(random() % 12);
+    return colors;
+}
+
+void check_operations() {
+    mt19937 random(720927);
+    for (int h = 0; h <= 8; ++h) for (int sample = 0; sample < 64; ++sample) {
+        const Colors colors = make_colors(h, sample, random);
+        const Tower original = pack(colors);
+        check_tower(original, colors);
+
+        Colors flipped(colors.rbegin(), colors.rend());
+        Tower a = original, b = original;
+        a.reverse(); b.reverse(h);
+        check_tower(a, flipped); check_tower(b, flipped);
+        a.reverse(); check_tower(a, colors);
+
+        // n=0/hも含め、空塔と高さ8の32 bitシフト境界を通す。
+        for (int n = 0; n <= h; ++n) {
+            const Colors lower(colors.begin(), colors.end() - n);
+            const Colors upper(colors.end() - n, colors.end());
+            a = original; b = original;
+            const Tower top_a = a.take_top(n), top_b = b.take_top(n, h);
+            check_tower(a, lower); check_tower(b, lower);
+            check_tower(top_a, upper); check_tower(top_b, upper);
+            a.append_top(top_a); b.append_top(top_b, h - n);
+            check_tower(a, colors); check_tower(b, colors);
+        }
+        if (h > 0) {
+            a = original; a.pop_top();
+            check_tower(a, Colors(colors.begin(), colors.end() - 1));
+            a = original; a.pop_bottom();
+            check_tower(a, Colors(colors.begin() + 1, colors.end()));
+        }
+        if (h < 8) for (int c = 0; c < 12; ++c) {
+            Colors expected = colors;
+            expected.push_back(c);
+            a = original; a.push_top(c); check_tower(a, expected);
+            a.pop_top(); check_tower(a, colors);
+            expected = colors; expected.insert(expected.begin(), c);
+            a = original; a.push_bottom(c); check_tower(a, expected);
+            a.pop_bottom(); check_tower(a, colors);
+        }
+        for (int c = -1; c < 12; ++c) {
+            Colors expected = colors;
+            const int removed = ref_home(expected, c);
+            a = original; b = original;
+            require(a.home(c) == removed, "home count");
+            require(b.home(c, h) == removed, "home count with height");
+            check_tower(a, expected); check_tower(b, expected);
+        }
+        // 全色・全長の同色接尾部分を作り、途中で帰巣が止まる場合も照合する。
+        for (int c = 0; c < 12; ++c) for (int n = 0; n <= h; ++n) {
+            Colors expected = colors;
+            fill(expected.end() - n, expected.end(), c);
+            if (n < h) expected[h - n - 1] = (c + 1) % 12;
+            a = pack(expected);
+            const int removed = ref_home(expected, c);
+            require(a.home(c) == removed, "home suffix count");
+            check_tower(a, expected);
+        }
+    }
+
+    // 問題の操作順（切り出し、反転、連結、両端の帰巣）でも照合する。
+    for (int h = 1; h <= 8; ++h) for (int k = 0; k < h; ++k) {
+        const int n = h - k;
+        for (int g = 0; g + n <= 8; ++g) for (int sample = 0; sample < 64; ++sample) {
+            const int source_nest = sample % 13 - 1;
+            const int dest_nest = sample * 7 % 13 - 1;
+            Colors source_ref = make_colors(h, sample, random);
+            Colors dest_ref = make_colors(g, (sample + 5) % 64, random);
+            Tower source = pack(source_ref), dest = pack(dest_ref);
+            for (int i = h - 1; i >= k; --i) dest_ref.push_back(source_ref[i]);
+            source_ref.resize(k);
+            const int removed = ref_home(source_ref, source_nest) + ref_home(dest_ref, dest_nest);
+
+            Tower moving = source.take_top(n, h);
+            moving.reverse(n);
+            dest.append_top(moving, g);
+            const int actual = source.home(source_nest, k) + dest.home(dest_nest, g + n);
+            require(actual == removed, "pair home count");
+            check_tower(source, source_ref); check_tower(dest, dest_ref);
+            ++pair_checks;
+        }
+    }
+}
+
+void check_state(const Input& input) {
+    const Board board(input);
+    with_state_capacity(board.cell_count, [&]<int capacity>() {
+        const State<capacity> initial(input, board);
+        for (int p = 0; p < capacity; ++p) {
+            Colors expected;
+            if (p < board.cell_count) {
+                const auto [i, j] = board.coordinates[p];
+                const char ch = input.C[i][j];
+                if ('a' <= ch && ch <= 'l') expected.push_back(ch - 'a');
+            }
+            check_tower(initial.tower[p], expected);
+        }
+
+        State trial = initial;
+        for (int p = 0; p < board.cell_count; ++p) {
+            trial.tower[p].push_bottom(p % input.K);
+            require(trial.tower[p].bits != initial.tower[p].bits, "copy independence");
+        }
+        State<capacity> accepted;
+        accepted = trial;
+        for (int p = 0; p < capacity; ++p) {
+            require(accepted.tower[p].bits == trial.tower[p].bits, "copy assignment");
+        }
+        trial = initial;
+        for (int p = 0; p < capacity; ++p) {
+            require(trial.tower[p].bits == initial.tower[p].bits, "restore by assignment");
+        }
+    });
+}
+
+void check_capacity_selection() {
+    constexpr array capacities{32,64,96,128,160,192,224,256,288,320,352,384,400};
+    for (int cells = 1; cells <= 400; ++cells) {
+        int calls = 0;
+        with_state_capacity(cells, [&]<int capacity>() {
+            ++calls;
+            static_assert(sizeof(State<capacity>) == capacity * sizeof(Tower));
+            static_assert(is_trivially_copyable_v<State<capacity>>);
+            require(capacity == *lower_bound(capacities.begin(), capacities.end(), cells), "capacity selection");
+            State<capacity> state;
+            for (const auto& tower : state.tower) require(tower.bits == 0, "zero initial state");
+            // 末尾までコピーでき、コピー先の変更が元へ伝わらないことを全容量で確認する。
+            state.tower[cells - 1].push_top(2);
+            State clone = state;
+            clone.tower[capacity - 1].push_top(1);
+            require(state.tower[cells - 1].bits == 3, "copy independence at boundary");
+            require(clone.tower[capacity - 1].top() == 1, "copy tail write");
+            State<capacity> assigned;
+            assigned = clone;
+            require(memcmp(assigned.tower.data(), clone.tower.data(), sizeof(assigned)) == 0, "copy whole capacity");
+        });
+        require(calls == 1, "capacity callback count");
+    }
+}
+
+int main(int argc, char** argv) {
+    try {
+        check_operations();
+        check_capacity_selection();
+        int cases = 0;
+        for (int arg = 1; arg < argc; ++arg) {
+            ifstream in(argv[arg]);
+            require(bool(in), "cannot open input");
+            Input input; input.read(in);
+            check_state(input); ++cases;
+        }
+        Input open{20, 12, vector<string>(20, string(20, '.'))};
+        for (int c = 0; c < open.K; ++c) {
+            open.C[0][c] = char('A' + c);
+            open.C[19][c] = char('a' + c);
+        }
+        check_state(open); ++cases;
+        const State<400> empty;
+        for (const Tower& tower : empty.tower) check_tower(tower, {});
+        cout << "OK: tower_checks=" << tower_checks << ", pair_checks=" << pair_checks
+             << ", state_cases=" << cases << ", tower_bytes=" << sizeof(Tower)
+             << ", capacity_cases=400, max_state_bytes=" << sizeof(State<400>) << '\n';
+    } catch (const exception& error) {
+        cerr << error.what() << '\n';
+        return 1;
+    }
+    return 0;
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "mode": "local",
+    "command": [
+      "g++-15",
+      "-std=gnu++23",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-march=native",
+      "-pthread",
+      "-ftrivial-auto-var-init=zero",
+      "-fopenmp",
+      "-DLOCAL",
+      "/Users/masaki/Desktop/AHC072/src/bin/v207_lazy_candidate_bank.cpp",
+      "-o",
+      "/Users/masaki/Desktop/AHC072/adhoc/v207_audit/v207_local"
+    ],
+    "binary_sha256": "e7eec880f8f15e57880d0e53bd1d5064807711a3658fbba88fb9a43ed58b93b4",
+    "log_bytes": 0
+  },
+  {
+    "mode": "production",
+    "command": [
+      "g++-15",
+      "-std=gnu++23",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-march=native",
+      "-pthread",
+      "-ftrivial-auto-var-init=zero",
+      "-fopenmp",
+      "-DATCODER",
+      "-DONLINE_JUDGE",
+      "-DNOMINMAX",
+      "/Users/masaki/Desktop/AHC072/src/bin/v207_lazy_candidate_bank.cpp",
+      "-o",
+      "/Users/masaki/Desktop/AHC072/adhoc/v207_audit/v207_production"
+    ],
+    "binary_sha256": "1d7ffbd3787569ad0b75e28737a7d97429c3b822a6e07b977b9cb1d54595c411",
+    "log_bytes": 0
+  }
+]

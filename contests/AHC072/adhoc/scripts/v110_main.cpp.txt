@@ -1,0 +1,86 @@
+static uint32_t v110_code(Move m) {
+    return uint32_t(board_info.row[m.p]*20+board_info.col[m.p])|
+        (uint32_t(m.k)<<9)|(uint32_t(m.d)<<12)|(uint32_t(m.l-1)<<14);
+}
+static Move v110_decode(uint32_t code) {
+    const int p=code&511,r=p/20,c=p%20;
+    if(r>=board_info.N||c>=board_info.N)throw logic_error("invalid coordinate");
+    return {int16_t(board_info.cell_id[r][c]),uint8_t((code>>9)&7),uint8_t((code>>12)&3),uint8_t(((code>>14)&7)+1)};
+}
+static int v110_verify(const vector<Move>& moves) {
+    State state=board_info.initial;
+    for(Move move:moves)board_info.apply(state,move);
+    return board_info.count(state);
+}
+static void v110_print_moves(const vector<Move>& moves) {
+    cout<<'[';
+    for(size_t i=0;i<moves.size();++i){if(i)cout<<',';cout<<v110_code(moves[i]);}
+    cout<<']';
+}
+int main(int argc,char** argv) {
+    try {
+        if(argc!=2)throw logic_error("mode required");
+        ios::sync_with_stdio(false);cin.tie(nullptr);cout<<setprecision(10);
+        board_info.read();state_pool.prepare(board_info.cell_count);
+        const string mode=argv[1];
+        if(mode=="generate") {
+            nn::load_nn();nn::Input input;input.N=board_info.N;input.K=board_info.K;
+            input.C.assign(board_info.C,board_info.C+input.N);
+            struct UnlimitedTimer {bool step()const{return true;}} timer;
+            cout<<'[';
+            for(int sym=0;sym<8;++sym) {
+                const auto started=chrono::steady_clock::now();
+                const auto transformed=neural_transform_input(input,sym);
+                const nn::Board board(transformed);const nn::BoardState initial(transformed,board);
+                const auto result=nn::search(transformed,board,initial,timer);
+                const auto moves=neural_restore_path(board,result,sym);
+                const double seconds=chrono::duration<double>(chrono::steady_clock::now()-started).count();
+                if(v110_verify(moves)!=result.E)throw logic_error("generator replay mismatch");
+                if(state_pool.free_count!=4)throw logic_error("generation state pool leak");
+                if(sym)cout<<',';
+                cout<<"{\"sym\":"<<sym<<",\"T\":"<<moves.size()<<",\"E\":"<<result.E
+                    <<",\"inferences\":"<<result.inferences<<",\"exhausted\":"<<(result.exhausted?"true":"false")
+                    <<",\"seconds\":"<<seconds<<",\"actions\":";
+                v110_print_moves(moves);cout<<'}';
+            }
+            cout<<"]\n";return 0;
+        }
+        if(mode!="grow")throw logic_error("unknown mode");
+        int n;uint64_t seed;cin>>n>>seed;
+        if(n<=0||n>2048||!seed)throw logic_error("invalid plan or seed");
+        vector<Move> best;best.reserve(n);
+        for(int i=0;i<n;++i){uint32_t code;cin>>code;best.push_back(v110_decode(code));}
+        if(!cin||v110_verify(best))throw logic_error("incomplete plan supplied to LNS");
+        uint64_t end_rng=0;int attempts=0,accepted=0,improvements=0;bool deadline=false;
+        {
+            TemporalLNS lns;lns.random_state=seed;rng.x=seed;
+            time_keeper.start_=chrono::steady_clock::now();time_keeper.time_limit_sec=v110_targets.back();
+            try {lns.optimize(best,v110_targets.back(),0.,v110_targets.back());}
+            catch(const Deadline&){deadline=true;}
+            v110_observe(best,lns.attempts,lns.accepted,lns.improvements,true);
+            end_rng=lns.random_state;attempts=lns.attempts;accepted=lns.accepted;improvements=lns.improvements;
+        }
+        if(state_pool.free_count!=4||attempts==0)throw logic_error("LNS inactive or pool leak");
+        int previous=n;
+        for(const auto& sample:v110_samples) {
+            if(v110_verify(sample.moves)||int(sample.moves.size())>previous)throw logic_error("invalid LNS sample");
+            previous=int(sample.moves.size());
+        }
+        long long invalid=0;
+#ifdef LOCAL
+        invalid=trace.counts["lns_invalid_candidates"];
+#endif
+        cout<<"{\"initial_T\":"<<n<<",\"seed\":"<<seed<<",\"final_rng\":"<<end_rng
+            <<",\"attempts\":"<<attempts<<",\"accepted\":"<<accepted<<",\"improvements\":"<<improvements
+            <<",\"deadline\":"<<(deadline?"true":"false")<<",\"invalid_candidates\":"<<invalid
+            <<",\"state_pool_free\":"<<state_pool.free_count<<",\"samples\":[";
+        for(size_t i=0;i<v110_samples.size();++i) {
+            if(i)cout<<',';const auto& s=v110_samples[i];
+            cout<<"{\"target\":"<<s.target<<",\"elapsed\":"<<s.elapsed<<",\"T\":"<<s.moves.size()
+                <<",\"E\":0,\"attempts\":"<<s.attempts<<",\"accepted\":"<<s.accepted
+                <<",\"improvements\":"<<s.improvements<<",\"actions\":";
+            v110_print_moves(s.moves);cout<<'}';
+        }
+        cout<<"]}\n";
+    } catch(const exception& e) {cerr<<e.what()<<'\n';return 1;}
+}

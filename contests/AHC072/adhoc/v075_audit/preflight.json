@@ -1,0 +1,191 @@
+{
+  "passed": true,
+  "solver_executions": 0,
+  "source_sha256": "6a66abf5475abfbdb7b13b51d61e5b0e12c610655a1c40b762c67da9e1fdd514",
+  "parent_sha256": "3c721a9c27b9b02fbec3f158bbc439aa7f9d07cf9fa06ff2a9d913e199803b9a",
+  "runner_sha256": "b473b6a5751333ae21c3459f9f2132fa2a461e5fdcc9dc8665467bc22efae179",
+  "builds": [
+    {
+      "mode": "production",
+      "levels": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parameters": {
+        "removal_size_exponent": 0.95,
+        "priority_noise_amplitude": 0.1,
+        "lns_start_temperature": 0.7,
+        "lns_end_temperature": 0.08,
+        "dependency_interval": 4,
+        "regular_cooldown_fraction": 0.5
+      },
+      "repair_weight": 0.83,
+      "command": [
+        "g++-15",
+        "-std=gnu++23",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-march=native",
+        "-pthread",
+        "-ftrivial-auto-var-init=zero",
+        "-fopenmp",
+        "-DATCODER",
+        "-DONLINE_JUDGE",
+        "-DNOMINMAX",
+        "-DAHC072_SIZE_EXPONENT=0.95",
+        "-DAHC072_NOISE_AMPLITUDE=0.1",
+        "-DAHC072_START_TEMPERATURE=0.7",
+        "-DAHC072_END_TEMPERATURE=0.08",
+        "-DAHC072_DEPENDENCY_INTERVAL=4",
+        "-DAHC072_COOLDOWN_FRACTION=0.5",
+        "/Users/masaki/Desktop/AHC072/src/bin/v075_size_exponent.cpp",
+        "-o",
+        "/Users/masaki/Desktop/AHC072/adhoc/v075_audit/check_production_0"
+      ],
+      "binary": "adhoc/v075_audit/check_production_0",
+      "sha256": "f39fda792509dc49b2b78bb31ba4211e5ebd46d3b05874e0688babcf004ce26c",
+      "preprocessed_sha256": "dcd487e6e818a6219c7f272105ff4fd074565c67260fa203a2c2e58a99931a7b",
+      "registered_preprocessed_difference_only": true
+    },
+    {
+      "mode": "local",
+      "levels": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parameters": {
+        "removal_size_exponent": 0.95,
+        "priority_noise_amplitude": 0.1,
+        "lns_start_temperature": 0.7,
+        "lns_end_temperature": 0.08,
+        "dependency_interval": 4,
+        "regular_cooldown_fraction": 0.5
+      },
+      "repair_weight": 0.83,
+      "command": [
+        "g++-15",
+        "-std=gnu++23",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-march=native",
+        "-pthread",
+        "-ftrivial-auto-var-init=zero",
+        "-fopenmp",
+        "-DLOCAL",
+        "-DAHC072_SIZE_EXPONENT=0.95",
+        "-DAHC072_NOISE_AMPLITUDE=0.1",
+        "-DAHC072_START_TEMPERATURE=0.7",
+        "-DAHC072_END_TEMPERATURE=0.08",
+        "-DAHC072_DEPENDENCY_INTERVAL=4",
+        "-DAHC072_COOLDOWN_FRACTION=0.5",
+        "/Users/masaki/Desktop/AHC072/src/bin/v075_size_exponent.cpp",
+        "-o",
+        "/Users/masaki/Desktop/AHC072/adhoc/v075_audit/check_local_0"
+      ],
+      "binary": "adhoc/v075_audit/check_local_0",
+      "sha256": "f6d95c88848fe52e805f20eb211db2fb46a8297c6a287355e8ae10f3b7726c2e",
+      "preprocessed_sha256": "cc4285d6d71fdff6ddf5e9f4608651a0970e98979929ef9dda730eb5f4cdc2c4",
+      "registered_preprocessed_difference_only": true
+    },
+    {
+      "mode": "production",
+      "levels": [
+        5,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parameters": {
+        "removal_size_exponent": 1.6,
+        "priority_noise_amplitude": 0.1,
+        "lns_start_temperature": 0.7,
+        "lns_end_temperature": 0.08,
+        "dependency_interval": 4,
+        "regular_cooldown_fraction": 0.5
+      },
+      "repair_weight": 0.83,
+      "command": [
+        "g++-15",
+        "-std=gnu++23",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-march=native",
+        "-pthread",
+        "-ftrivial-auto-var-init=zero",
+        "-fopenmp",
+        "-DATCODER",
+        "-DONLINE_JUDGE",
+        "-DNOMINMAX",
+        "-DAHC072_SIZE_EXPONENT=1.6",
+        "-DAHC072_NOISE_AMPLITUDE=0.1",
+        "-DAHC072_START_TEMPERATURE=0.7",
+        "-DAHC072_END_TEMPERATURE=0.08",
+        "-DAHC072_DEPENDENCY_INTERVAL=4",
+        "-DAHC072_COOLDOWN_FRACTION=0.5",
+        "/Users/masaki/Desktop/AHC072/src/bin/v075_size_exponent.cpp",
+        "-o",
+        "/Users/masaki/Desktop/AHC072/adhoc/v075_audit/check_production_1"
+      ],
+      "binary": "adhoc/v075_audit/check_production_1",
+      "sha256": "99fa5f8f2b09053caa9fec28832b93e655df6b245d8387a94cba89946fa277ff",
+      "preprocessed_sha256": "e5172b6fcd599e654f2edbcb8a31c526a529876fbd762dc47770c22eb33fe288"
+    },
+    {
+      "mode": "local",
+      "levels": [
+        5,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parameters": {
+        "removal_size_exponent": 1.6,
+        "priority_noise_amplitude": 0.1,
+        "lns_start_temperature": 0.7,
+        "lns_end_temperature": 0.08,
+        "dependency_interval": 4,
+        "regular_cooldown_fraction": 0.5
+      },
+      "repair_weight": 0.83,
+      "command": [
+        "g++-15",
+        "-std=gnu++23",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-march=native",
+        "-pthread",
+        "-ftrivial-auto-var-init=zero",
+        "-fopenmp",
+        "-DLOCAL",
+        "-DAHC072_SIZE_EXPONENT=1.6",
+        "-DAHC072_NOISE_AMPLITUDE=0.1",
+        "-DAHC072_START_TEMPERATURE=0.7",
+        "-DAHC072_END_TEMPERATURE=0.08",
+        "-DAHC072_DEPENDENCY_INTERVAL=4",
+        "-DAHC072_COOLDOWN_FRACTION=0.5",
+        "/Users/masaki/Desktop/AHC072/src/bin/v075_size_exponent.cpp",
+        "-o",
+        "/Users/masaki/Desktop/AHC072/adhoc/v075_audit/check_local_1"
+      ],
+      "binary": "adhoc/v075_audit/check_local_1",
+      "sha256": "c0a00a619a81ec508570125d8a1a58cac4af3738202dc5250d5f1a79e85aee9c",
+      "preprocessed_sha256": "64f627780fa3dd9fe8149a6efdd65a6553895672897e13f7b0faef02ba033615"
+    }
+  ]
+}

@@ -1,0 +1,806 @@
+{
+  "matched": 100,
+  "pool_peak": 4,
+  "cases": [
+    {
+      "case": "0000.txt",
+      "T": 43,
+      "ticks": 15202,
+      "pool_peak": 4,
+      "pool_takes": 16190,
+      "common_keys": 134
+    },
+    {
+      "case": "0001.txt",
+      "T": 111,
+      "ticks": 15219,
+      "pool_peak": 4,
+      "pool_takes": 17815,
+      "common_keys": 134
+    },
+    {
+      "case": "0002.txt",
+      "T": 116,
+      "ticks": 15226,
+      "pool_peak": 4,
+      "pool_takes": 17540,
+      "common_keys": 134
+    },
+    {
+      "case": "0003.txt",
+      "T": 133,
+      "ticks": 15220,
+      "pool_peak": 4,
+      "pool_takes": 17234,
+      "common_keys": 134
+    },
+    {
+      "case": "0004.txt",
+      "T": 281,
+      "ticks": 15250,
+      "pool_peak": 4,
+      "pool_takes": 15719,
+      "common_keys": 134
+    },
+    {
+      "case": "0005.txt",
+      "T": 673,
+      "ticks": 15228,
+      "pool_peak": 4,
+      "pool_takes": 10268,
+      "common_keys": 134
+    },
+    {
+      "case": "0006.txt",
+      "T": 127,
+      "ticks": 15223,
+      "pool_peak": 4,
+      "pool_takes": 20659,
+      "common_keys": 134
+    },
+    {
+      "case": "0007.txt",
+      "T": 119,
+      "ticks": 15230,
+      "pool_peak": 4,
+      "pool_takes": 19552,
+      "common_keys": 134
+    },
+    {
+      "case": "0008.txt",
+      "T": 135,
+      "ticks": 15231,
+      "pool_peak": 4,
+      "pool_takes": 14651,
+      "common_keys": 134
+    },
+    {
+      "case": "0009.txt",
+      "T": 85,
+      "ticks": 15213,
+      "pool_peak": 4,
+      "pool_takes": 15103,
+      "common_keys": 134
+    },
+    {
+      "case": "0010.txt",
+      "T": 76,
+      "ticks": 15223,
+      "pool_peak": 4,
+      "pool_takes": 15194,
+      "common_keys": 134
+    },
+    {
+      "case": "0011.txt",
+      "T": 180,
+      "ticks": 15218,
+      "pool_peak": 4,
+      "pool_takes": 20939,
+      "common_keys": 134
+    },
+    {
+      "case": "0012.txt",
+      "T": 138,
+      "ticks": 15207,
+      "pool_peak": 4,
+      "pool_takes": 15883,
+      "common_keys": 134
+    },
+    {
+      "case": "0013.txt",
+      "T": 189,
+      "ticks": 15203,
+      "pool_peak": 4,
+      "pool_takes": 18775,
+      "common_keys": 134
+    },
+    {
+      "case": "0014.txt",
+      "T": 446,
+      "ticks": 15250,
+      "pool_peak": 4,
+      "pool_takes": 17499,
+      "common_keys": 134
+    },
+    {
+      "case": "0015.txt",
+      "T": 645,
+      "ticks": 15237,
+      "pool_peak": 4,
+      "pool_takes": 18131,
+      "common_keys": 134
+    },
+    {
+      "case": "0016.txt",
+      "T": 136,
+      "ticks": 15218,
+      "pool_peak": 4,
+      "pool_takes": 16520,
+      "common_keys": 134
+    },
+    {
+      "case": "0017.txt",
+      "T": 239,
+      "ticks": 15224,
+      "pool_peak": 4,
+      "pool_takes": 19074,
+      "common_keys": 134
+    },
+    {
+      "case": "0018.txt",
+      "T": 76,
+      "ticks": 15210,
+      "pool_peak": 4,
+      "pool_takes": 15361,
+      "common_keys": 134
+    },
+    {
+      "case": "0019.txt",
+      "T": 714,
+      "ticks": 15321,
+      "pool_peak": 4,
+      "pool_takes": 19992,
+      "common_keys": 134
+    },
+    {
+      "case": "0020.txt",
+      "T": 170,
+      "ticks": 15238,
+      "pool_peak": 4,
+      "pool_takes": 19076,
+      "common_keys": 134
+    },
+    {
+      "case": "0021.txt",
+      "T": 73,
+      "ticks": 15210,
+      "pool_peak": 4,
+      "pool_takes": 16271,
+      "common_keys": 134
+    },
+    {
+      "case": "0022.txt",
+      "T": 73,
+      "ticks": 15212,
+      "pool_peak": 4,
+      "pool_takes": 14979,
+      "common_keys": 134
+    },
+    {
+      "case": "0023.txt",
+      "T": 86,
+      "ticks": 15212,
+      "pool_peak": 4,
+      "pool_takes": 16229,
+      "common_keys": 134
+    },
+    {
+      "case": "0024.txt",
+      "T": 130,
+      "ticks": 15210,
+      "pool_peak": 4,
+      "pool_takes": 14172,
+      "common_keys": 134
+    },
+    {
+      "case": "0025.txt",
+      "T": 61,
+      "ticks": 15202,
+      "pool_peak": 4,
+      "pool_takes": 19128,
+      "common_keys": 134
+    },
+    {
+      "case": "0026.txt",
+      "T": 129,
+      "ticks": 15219,
+      "pool_peak": 4,
+      "pool_takes": 14053,
+      "common_keys": 134
+    },
+    {
+      "case": "0027.txt",
+      "T": 166,
+      "ticks": 15209,
+      "pool_peak": 4,
+      "pool_takes": 14628,
+      "common_keys": 134
+    },
+    {
+      "case": "0028.txt",
+      "T": 300,
+      "ticks": 15221,
+      "pool_peak": 4,
+      "pool_takes": 18442,
+      "common_keys": 134
+    },
+    {
+      "case": "0029.txt",
+      "T": 286,
+      "ticks": 15204,
+      "pool_peak": 4,
+      "pool_takes": 18219,
+      "common_keys": 134
+    },
+    {
+      "case": "0030.txt",
+      "T": 509,
+      "ticks": 15275,
+      "pool_peak": 4,
+      "pool_takes": 14381,
+      "common_keys": 134
+    },
+    {
+      "case": "0031.txt",
+      "T": 140,
+      "ticks": 15226,
+      "pool_peak": 4,
+      "pool_takes": 15724,
+      "common_keys": 134
+    },
+    {
+      "case": "0032.txt",
+      "T": 158,
+      "ticks": 15217,
+      "pool_peak": 4,
+      "pool_takes": 19199,
+      "common_keys": 134
+    },
+    {
+      "case": "0033.txt",
+      "T": 151,
+      "ticks": 15230,
+      "pool_peak": 4,
+      "pool_takes": 17002,
+      "common_keys": 134
+    },
+    {
+      "case": "0034.txt",
+      "T": 485,
+      "ticks": 15288,
+      "pool_peak": 4,
+      "pool_takes": 18440,
+      "common_keys": 134
+    },
+    {
+      "case": "0035.txt",
+      "T": 64,
+      "ticks": 15207,
+      "pool_peak": 4,
+      "pool_takes": 15513,
+      "common_keys": 134
+    },
+    {
+      "case": "0036.txt",
+      "T": 232,
+      "ticks": 15205,
+      "pool_peak": 4,
+      "pool_takes": 18255,
+      "common_keys": 134
+    },
+    {
+      "case": "0037.txt",
+      "T": 277,
+      "ticks": 15208,
+      "pool_peak": 4,
+      "pool_takes": 17476,
+      "common_keys": 134
+    },
+    {
+      "case": "0038.txt",
+      "T": 145,
+      "ticks": 15214,
+      "pool_peak": 4,
+      "pool_takes": 16652,
+      "common_keys": 134
+    },
+    {
+      "case": "0039.txt",
+      "T": 123,
+      "ticks": 15233,
+      "pool_peak": 4,
+      "pool_takes": 17219,
+      "common_keys": 134
+    },
+    {
+      "case": "0040.txt",
+      "T": 145,
+      "ticks": 15231,
+      "pool_peak": 4,
+      "pool_takes": 14449,
+      "common_keys": 134
+    },
+    {
+      "case": "0041.txt",
+      "T": 96,
+      "ticks": 15225,
+      "pool_peak": 4,
+      "pool_takes": 17113,
+      "common_keys": 134
+    },
+    {
+      "case": "0042.txt",
+      "T": 375,
+      "ticks": 15290,
+      "pool_peak": 4,
+      "pool_takes": 16857,
+      "common_keys": 134
+    },
+    {
+      "case": "0043.txt",
+      "T": 186,
+      "ticks": 15221,
+      "pool_peak": 4,
+      "pool_takes": 13777,
+      "common_keys": 134
+    },
+    {
+      "case": "0044.txt",
+      "T": 201,
+      "ticks": 15263,
+      "pool_peak": 4,
+      "pool_takes": 16058,
+      "common_keys": 134
+    },
+    {
+      "case": "0045.txt",
+      "T": 239,
+      "ticks": 15205,
+      "pool_peak": 4,
+      "pool_takes": 16293,
+      "common_keys": 134
+    },
+    {
+      "case": "0046.txt",
+      "T": 167,
+      "ticks": 15247,
+      "pool_peak": 4,
+      "pool_takes": 17526,
+      "common_keys": 134
+    },
+    {
+      "case": "0047.txt",
+      "T": 386,
+      "ticks": 15276,
+      "pool_peak": 4,
+      "pool_takes": 16467,
+      "common_keys": 134
+    },
+    {
+      "case": "0048.txt",
+      "T": 261,
+      "ticks": 15263,
+      "pool_peak": 4,
+      "pool_takes": 14835,
+      "common_keys": 134
+    },
+    {
+      "case": "0049.txt",
+      "T": 228,
+      "ticks": 15229,
+      "pool_peak": 4,
+      "pool_takes": 17383,
+      "common_keys": 134
+    },
+    {
+      "case": "0050.txt",
+      "T": 151,
+      "ticks": 15214,
+      "pool_peak": 4,
+      "pool_takes": 15307,
+      "common_keys": 134
+    },
+    {
+      "case": "0051.txt",
+      "T": 130,
+      "ticks": 15212,
+      "pool_peak": 4,
+      "pool_takes": 17275,
+      "common_keys": 134
+    },
+    {
+      "case": "0052.txt",
+      "T": 219,
+      "ticks": 15256,
+      "pool_peak": 4,
+      "pool_takes": 19331,
+      "common_keys": 134
+    },
+    {
+      "case": "0053.txt",
+      "T": 140,
+      "ticks": 15211,
+      "pool_peak": 4,
+      "pool_takes": 18362,
+      "common_keys": 134
+    },
+    {
+      "case": "0054.txt",
+      "T": 351,
+      "ticks": 15257,
+      "pool_peak": 4,
+      "pool_takes": 15862,
+      "common_keys": 134
+    },
+    {
+      "case": "0055.txt",
+      "T": 323,
+      "ticks": 15271,
+      "pool_peak": 4,
+      "pool_takes": 19372,
+      "common_keys": 134
+    },
+    {
+      "case": "0056.txt",
+      "T": 230,
+      "ticks": 15277,
+      "pool_peak": 4,
+      "pool_takes": 15618,
+      "common_keys": 134
+    },
+    {
+      "case": "0057.txt",
+      "T": 280,
+      "ticks": 15248,
+      "pool_peak": 4,
+      "pool_takes": 16665,
+      "common_keys": 134
+    },
+    {
+      "case": "0058.txt",
+      "T": 343,
+      "ticks": 15219,
+      "pool_peak": 4,
+      "pool_takes": 14660,
+      "common_keys": 134
+    },
+    {
+      "case": "0059.txt",
+      "T": 73,
+      "ticks": 15215,
+      "pool_peak": 4,
+      "pool_takes": 18144,
+      "common_keys": 134
+    },
+    {
+      "case": "0060.txt",
+      "T": 164,
+      "ticks": 15205,
+      "pool_peak": 4,
+      "pool_takes": 16978,
+      "common_keys": 134
+    },
+    {
+      "case": "0061.txt",
+      "T": 328,
+      "ticks": 15224,
+      "pool_peak": 4,
+      "pool_takes": 12207,
+      "common_keys": 134
+    },
+    {
+      "case": "0062.txt",
+      "T": 200,
+      "ticks": 15237,
+      "pool_peak": 4,
+      "pool_takes": 17379,
+      "common_keys": 134
+    },
+    {
+      "case": "0063.txt",
+      "T": 298,
+      "ticks": 15235,
+      "pool_peak": 4,
+      "pool_takes": 15924,
+      "common_keys": 134
+    },
+    {
+      "case": "0064.txt",
+      "T": 218,
+      "ticks": 15210,
+      "pool_peak": 4,
+      "pool_takes": 14818,
+      "common_keys": 134
+    },
+    {
+      "case": "0065.txt",
+      "T": 134,
+      "ticks": 15236,
+      "pool_peak": 4,
+      "pool_takes": 14018,
+      "common_keys": 134
+    },
+    {
+      "case": "0066.txt",
+      "T": 432,
+      "ticks": 15204,
+      "pool_peak": 4,
+      "pool_takes": 14865,
+      "common_keys": 134
+    },
+    {
+      "case": "0067.txt",
+      "T": 233,
+      "ticks": 15202,
+      "pool_peak": 4,
+      "pool_takes": 13769,
+      "common_keys": 134
+    },
+    {
+      "case": "0068.txt",
+      "T": 481,
+      "ticks": 15242,
+      "pool_peak": 4,
+      "pool_takes": 21662,
+      "common_keys": 134
+    },
+    {
+      "case": "0069.txt",
+      "T": 145,
+      "ticks": 15219,
+      "pool_peak": 4,
+      "pool_takes": 15528,
+      "common_keys": 134
+    },
+    {
+      "case": "0070.txt",
+      "T": 484,
+      "ticks": 15287,
+      "pool_peak": 4,
+      "pool_takes": 15762,
+      "common_keys": 134
+    },
+    {
+      "case": "0071.txt",
+      "T": 471,
+      "ticks": 15324,
+      "pool_peak": 4,
+      "pool_takes": 16920,
+      "common_keys": 134
+    },
+    {
+      "case": "0072.txt",
+      "T": 96,
+      "ticks": 15218,
+      "pool_peak": 4,
+      "pool_takes": 18625,
+      "common_keys": 134
+    },
+    {
+      "case": "0073.txt",
+      "T": 258,
+      "ticks": 15222,
+      "pool_peak": 4,
+      "pool_takes": 19481,
+      "common_keys": 134
+    },
+    {
+      "case": "0074.txt",
+      "T": 104,
+      "ticks": 15219,
+      "pool_peak": 4,
+      "pool_takes": 18507,
+      "common_keys": 134
+    },
+    {
+      "case": "0075.txt",
+      "T": 401,
+      "ticks": 15230,
+      "pool_peak": 4,
+      "pool_takes": 15201,
+      "common_keys": 134
+    },
+    {
+      "case": "0076.txt",
+      "T": 296,
+      "ticks": 15234,
+      "pool_peak": 4,
+      "pool_takes": 18706,
+      "common_keys": 134
+    },
+    {
+      "case": "0077.txt",
+      "T": 94,
+      "ticks": 15226,
+      "pool_peak": 4,
+      "pool_takes": 18392,
+      "common_keys": 134
+    },
+    {
+      "case": "0078.txt",
+      "T": 291,
+      "ticks": 15205,
+      "pool_peak": 4,
+      "pool_takes": 13530,
+      "common_keys": 134
+    },
+    {
+      "case": "0079.txt",
+      "T": 74,
+      "ticks": 15214,
+      "pool_peak": 4,
+      "pool_takes": 15448,
+      "common_keys": 134
+    },
+    {
+      "case": "0080.txt",
+      "T": 207,
+      "ticks": 15222,
+      "pool_peak": 4,
+      "pool_takes": 18313,
+      "common_keys": 134
+    },
+    {
+      "case": "0081.txt",
+      "T": 435,
+      "ticks": 15287,
+      "pool_peak": 4,
+      "pool_takes": 15962,
+      "common_keys": 134
+    },
+    {
+      "case": "0082.txt",
+      "T": 345,
+      "ticks": 15293,
+      "pool_peak": 4,
+      "pool_takes": 18538,
+      "common_keys": 134
+    },
+    {
+      "case": "0083.txt",
+      "T": 184,
+      "ticks": 15232,
+      "pool_peak": 4,
+      "pool_takes": 18366,
+      "common_keys": 134
+    },
+    {
+      "case": "0084.txt",
+      "T": 357,
+      "ticks": 15226,
+      "pool_peak": 4,
+      "pool_takes": 18947,
+      "common_keys": 134
+    },
+    {
+      "case": "0085.txt",
+      "T": 217,
+      "ticks": 15207,
+      "pool_peak": 4,
+      "pool_takes": 17434,
+      "common_keys": 134
+    },
+    {
+      "case": "0086.txt",
+      "T": 101,
+      "ticks": 15226,
+      "pool_peak": 4,
+      "pool_takes": 18129,
+      "common_keys": 134
+    },
+    {
+      "case": "0087.txt",
+      "T": 124,
+      "ticks": 15226,
+      "pool_peak": 4,
+      "pool_takes": 15529,
+      "common_keys": 134
+    },
+    {
+      "case": "0088.txt",
+      "T": 175,
+      "ticks": 15209,
+      "pool_peak": 4,
+      "pool_takes": 16428,
+      "common_keys": 134
+    },
+    {
+      "case": "0089.txt",
+      "T": 410,
+      "ticks": 15283,
+      "pool_peak": 4,
+      "pool_takes": 16092,
+      "common_keys": 134
+    },
+    {
+      "case": "0090.txt",
+      "T": 155,
+      "ticks": 15212,
+      "pool_peak": 4,
+      "pool_takes": 13660,
+      "common_keys": 134
+    },
+    {
+      "case": "0091.txt",
+      "T": 105,
+      "ticks": 15216,
+      "pool_peak": 4,
+      "pool_takes": 18737,
+      "common_keys": 134
+    },
+    {
+      "case": "0092.txt",
+      "T": 655,
+      "ticks": 15294,
+      "pool_peak": 4,
+      "pool_takes": 20406,
+      "common_keys": 134
+    },
+    {
+      "case": "0093.txt",
+      "T": 86,
+      "ticks": 15207,
+      "pool_peak": 4,
+      "pool_takes": 17036,
+      "common_keys": 134
+    },
+    {
+      "case": "0094.txt",
+      "T": 124,
+      "ticks": 15216,
+      "pool_peak": 4,
+      "pool_takes": 21772,
+      "common_keys": 134
+    },
+    {
+      "case": "0095.txt",
+      "T": 277,
+      "ticks": 15236,
+      "pool_peak": 4,
+      "pool_takes": 14693,
+      "common_keys": 134
+    },
+    {
+      "case": "0096.txt",
+      "T": 88,
+      "ticks": 15206,
+      "pool_peak": 4,
+      "pool_takes": 21112,
+      "common_keys": 134
+    },
+    {
+      "case": "0097.txt",
+      "T": 613,
+      "ticks": 15282,
+      "pool_peak": 4,
+      "pool_takes": 11465,
+      "common_keys": 134
+    },
+    {
+      "case": "0098.txt",
+      "T": 135,
+      "ticks": 15202,
+      "pool_peak": 4,
+      "pool_takes": 17861,
+      "common_keys": 134
+    },
+    {
+      "case": "0099.txt",
+      "T": 209,
+      "ticks": 15215,
+      "pool_peak": 4,
+      "pool_takes": 13932,
+      "common_keys": 134
+    }
+  ]
+}

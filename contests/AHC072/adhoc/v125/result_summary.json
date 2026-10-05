@@ -1,0 +1,150 @@
+{
+  "accepted": false,
+  "validation": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 214.984375,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 214.984375,
+      "mean_elapsed_ms": 1564.05859375,
+      "max_elapsed_ms": 1623,
+      "mean_inferences": 283.5703125,
+      "mean_depth": 283.5703125,
+      "deadline_cases": 0
+    },
+    "full": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.1171875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.1171875,
+      "mean_elapsed_ms": 1564.65234375,
+      "max_elapsed_ms": 1614,
+      "mean_inferences": 283.5703125,
+      "mean_depth": 283.5703125,
+      "deadline_cases": 0
+    },
+    "late": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.171875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.171875,
+      "mean_elapsed_ms": 1565.47265625,
+      "max_elapsed_ms": 1625,
+      "mean_inferences": 283.5703125,
+      "mean_depth": 283.5703125,
+      "deadline_cases": 0
+    }
+  },
+  "differences": {
+    "base": {
+      "common_completed": 256,
+      "mean_T_difference": 0.1875,
+      "mean_S_difference": 0.1875,
+      "wins": 102,
+      "ties": 46,
+      "losses": 108
+    },
+    "full": {
+      "common_completed": 256,
+      "mean_T_difference": 0.0546875,
+      "mean_S_difference": 0.0546875,
+      "wins": 111,
+      "ties": 29,
+      "losses": 116
+    }
+  },
+  "activation": {
+    "corridor_early_full": 566778,
+    "corridor_late_full": 221811,
+    "corridor_late_limited": 666884
+  },
+  "observations": {
+    "base": {
+      "mean_lns_attempts": 7610.9140625,
+      "nn_same_hash": 256,
+      "pool_returned": 256,
+      "errors": {
+        "lns_errors": 0,
+        "construction_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      }
+    },
+    "full": {
+      "mean_lns_attempts": 8871.125,
+      "nn_same_hash": 256,
+      "pool_returned": 256,
+      "errors": {
+        "lns_errors": 0,
+        "construction_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      }
+    },
+    "late": {
+      "mean_lns_attempts": 7794.65234375,
+      "nn_same_hash": 256,
+      "pool_returned": 256,
+      "errors": {
+        "lns_errors": 0,
+        "construction_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      },
+      "phase_active_cases": {
+        "corridor_early_full": 256,
+        "corridor_late_full": 256,
+        "corridor_late_limited": 256
+      }
+    }
+  },
+  "mechanism": {
+    "passed": true,
+    "clock_cases": 360,
+    "source_sha256": "c42b7fd06a8dc0defe6ac85d1eb2028c07ad7215c8d2eb89c3a1d04c8c8e0489",
+    "completed_at": "2026-10-04T12:16:00.314100+00:00"
+  },
+  "official_source": "results/nn_rank/v125/20261004_late_corridor_studio/result.json",
+  "completed_at": "2026-10-04T12:19:45.806071+00:00",
+  "retained": {
+    "version": "v113",
+    "source": "src/bin/v113_integrated_nn_lns.cpp",
+    "sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258"
+  },
+  "tools_in_evaluated": false,
+  "retained_final": {
+    "reused": true,
+    "source": "results/nn_rank/v113/20261004_integrated_studio/final/result.json",
+    "completed_at": "2026-10-04T09:35:55.538154+00:00",
+    "tools_in": {
+      "cases": 100,
+      "complete": 100,
+      "completion_rate": 1.0,
+      "mean_S_all": 196.75,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 196.75,
+      "mean_elapsed_ms": 1569.08,
+      "max_elapsed_ms": 1616,
+      "mean_inferences": 264.69,
+      "mean_depth": 264.69,
+      "deadline_cases": 0
+    },
+    "final_valid": true,
+    "fixed_reference_relative": 95.11718675771536,
+    "reference_sha256": "464d1544972acdc920ec199c0ed806d603ba3bae0aace912ec21845995fcd92d",
+    "goal_190": false
+  }
+}

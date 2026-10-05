@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 143,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v023_lazy_trial_undo/0027.txt",
+  "best_sha256": "778a0424f47127b7a5760f2b45ec6840ce398e220e65edd8a059d1af6cbff5a8",
+  "attempts": []
+}

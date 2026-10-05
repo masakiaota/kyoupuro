@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "solver_executions": 0,
+  "worker": [
+    {
+      "scenario": "multistart",
+      "passed": true,
+      "mock_launches": 5
+    },
+    {
+      "scenario": "continuous",
+      "passed": true,
+      "mock_launches": 1
+    },
+    {
+      "scenario": "failure",
+      "passed": true,
+      "mock_launches": 1
+    },
+    {
+      "scenario": "interrupt",
+      "passed": true,
+      "mock_launches": 1
+    },
+    {
+      "scenario": "process_limit",
+      "passed": true,
+      "actual_processes": 0
+    }
+  ],
+  "batch": [
+    "sequential_order_and_120_second_pauses",
+    "abort_on_error",
+    "shared_eval_lock_excludes_concurrent_run",
+    "unfinished_v800_is_rejected",
+    "five_stages_four_120_second_pauses",
+    "single_thread_per_process",
+    "no_repeated_started_experiments"
+  ]
+}

@@ -1,0 +1,97 @@
+static constexpr array<const char*,3> variant_names{"original","full","compact"};
+
+template<size_t capacity>
+static void write_size(ostream& out,const Case& c,const char* name) {
+    static_assert(sizeof(child::Board<capacity>)==4*capacity);
+    static_assert(sizeof(child::IdentityBoard)==sizeof(parent::IdentityBoard));
+    static_assert(sizeof(child::Geometry)==sizeof(parent::Geometry));
+    static_assert(is_trivially_copyable_v<child::Board<capacity>>);
+    out<<c.name<<','<<c.input.cell_count<<','<<name<<','<<capacity
+       <<','<<sizeof(child::Board<capacity>)<<','<<sizeof(child::IdentityBoard)
+       <<','<<sizeof(child::Geometry::dist)<<','<<sizeof(child::Geometry)
+       <<','<<sizeof(child::TemporalLNS)<<'\n';
+}
+
+int main(int argc,char** argv) {
+    if(argc!=4)throw runtime_error("usage: bench --check|--measure fixture_root output_dir");
+    const bool measuring=string(argv[1])=="--measure";
+    const filesystem::path root=argv[2],out=argv[3];
+    for(int floors=1;floors<=400;floors++) {
+        child::with_board_capacity(floors,[&]<size_t capacity>() {
+            assert(capacity==size_t(min(400,(floors+31)/32*32)));
+            static_assert(sizeof(child::Board<capacity>)==4*capacity);
+        });
+    }
+    map<string,array<uint64_t,3>> previous;
+    ifstream saved(out/"previous_checksums.csv");string line;
+    getline(saved,line);
+    while(getline(saved,line)) {
+        replace(line.begin(),line.end(),',',' ');istringstream fields(line);
+        string name;array<uint64_t,3> values{};fields>>name>>values[0]>>values[1]>>values[2];
+        if(!fields)throw runtime_error("invalid prior checksum");
+        previous[name]=values;
+    }
+    ofstream sizes(out/(measuring?"capacity_sizes.csv":"check_capacity_sizes.csv"));
+    sizes<<"case,floors,variant,capacity,board_bytes,identity_bytes,dist_bytes,geometry_bytes,lns_bytes\n";
+    vector<filesystem::path> paths;
+    for(auto entry:filesystem::directory_iterator(root/"tools/in"))if(entry.path().extension()==".txt")paths.push_back(entry.path());
+    sort(paths.begin(),paths.end());vector<Case> cases;
+    size_t replayed=0,candidate_count=0;
+    for(const auto& path:paths) {
+        cases.push_back(load_case(root,path));auto& c=cases.back();candidate_count+=c.candidates.size();
+        child::with_board_capacity(c.input.cell_count,[&]<size_t capacity>() {
+            replayed+=replay_case<400>(c);replay_case<capacity>(c);
+            sizes<<c.name<<','<<c.input.cell_count<<",original,400,"<<sizeof(parent::Board)
+                 <<','<<sizeof(parent::IdentityBoard)<<','<<sizeof(parent::Geometry::dist)
+                 <<','<<sizeof(parent::Geometry)<<','<<sizeof(parent::TemporalLNS)<<'\n';
+            write_size<400>(sizes,c,"full");write_size<capacity>(sizes,c,"compact");
+        });
+    }
+    if(cases.size()!=100||previous.size()!=100)throw runtime_error("expected 100 cases");
+    set<int> boundary{8,400};for(int p=32;p<=384;p+=32)for(int delta:{-1,0,1})boundary.insert(p+delta);
+    for(int floors:boundary) {
+        Case c;c.input.N=20;c.input.K=4;c.input.cell_count=floors;c.input.C.assign(20,string(20,'#'));
+        for(int p=0;p<floors;p++)c.input.C[p/20][p%20]=p<4?char('A'+p):p<8?char('a'+p-4):'.';
+        child::with_board_capacity(floors,[&]<size_t capacity>() {replay_case<400>(c);replay_case<capacity>(c);});
+    }
+    cout<<"verified_cases="<<cases.size()<<" replayed_moves_per_condition="<<replayed<<" boundary_cases="<<boundary.size()
+        <<" candidates="<<candidate_count<<" variants=3 dispatch_choices=400\n"<<flush;
+    if(!measuring)return 0;
+    ofstream samples(out/"fixed_work_samples.csv");
+    samples<<"round,case,capacity,variant,position,candidates,completed,build_ns,reconstruct_ns,smooth_ns,total_ns,build_wall_ns,reconstruct_wall_ns,smooth_wall_ns,total_wall_ns,checksum\n";
+    vector<vector<uint64_t>> expected(cases.size());
+    for(int round=0;round<=5;round++) {
+        for(size_t index=0;index<cases.size();index++) {
+            const auto& c=cases[index];
+            child::with_board_capacity(c.input.cell_count,[&]<size_t capacity>() {
+                array<WorkResult,3> result;
+                array<int,3> positions{};
+                // Rotate variants by round and case to distribute order effects.
+                for(int position=0;position<3;position++) {
+                    const int variant=(position+round+int(index))%3;positions[variant]=position;
+                    switch(variant) {
+                        case 0:{Parent a(c.input);result[0]=work(a,c);break;}
+                        case 1:{Compact<400> a(c.input);result[1]=work(a,c);break;}
+                        case 2:{Compact<capacity> a(c.input);result[2]=work(a,c);break;}
+                    }
+                }
+                for(int variant=1;variant<3;variant++)
+                    if(result[0].signature!=result[variant].signature)throw runtime_error("work mismatch "+c.name+" "+variant_names[variant]);
+                if(round==0)expected[index]=result[0].signature;
+                else if(result[0].signature!=expected[index])throw runtime_error("work changed "+c.name);
+                const auto prior=previous.at(c.name);
+                if(prior[0]!=c.candidates.size()||prior[1]!=uint64_t(result[0].completed)||prior[2]!=checksum(result[0].signature))
+                    throw runtime_error("changed workload relative to v034 "+c.name);
+                for(int variant=0;variant<3;variant++) {
+                    const auto& r=result[variant];const auto ns=accumulate(r.ns.begin(),r.ns.end(),uint64_t(0));
+                    const auto wall=accumulate(r.wall_ns.begin(),r.wall_ns.end(),uint64_t(0));
+                    if(!r.ns[0]||!r.ns[1]||(r.completed&&!r.ns[2]))throw runtime_error("zero active timing "+c.name);
+                    samples<<round<<','<<c.name<<','<<capacity<<','<<variant_names[variant]<<','<<positions[variant]<<','<<c.candidates.size()
+                           <<','<<r.completed<<','<<r.ns[0]<<','<<r.ns[1]<<','<<r.ns[2]<<','<<ns
+                           <<','<<r.wall_ns[0]<<','<<r.wall_ns[1]<<','<<r.wall_ns[2]<<','<<wall<<','<<checksum(r.signature)<<'\n';
+                }
+            });
+        }
+        samples.flush();cout<<"round="<<round<<" verified_cases="<<cases.size()<<" variants=3\n"<<flush;
+    }
+}

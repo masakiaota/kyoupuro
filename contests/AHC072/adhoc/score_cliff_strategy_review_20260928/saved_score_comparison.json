@@ -1,0 +1,807 @@
+{
+  "scope": "保存済みtools/in 100ケース。solverの実行なし。ケースごとの事後最良選択であり、制限時間内に同時に達成できる平均ではない。",
+  "v039_mean": 207.82,
+  "best_existing_by_case_mean": 201.89,
+  "saving_total": 593,
+  "cases": [
+    {
+      "case": "0097.txt",
+      "v039": 582,
+      "saved_best": 548,
+      "best_bin": "v029_selective_two_order_lns",
+      "gap": 34
+    },
+    {
+      "case": "0005.txt",
+      "v039": 598,
+      "saved_best": 572,
+      "best_bin": "v026_late_start_lns",
+      "gap": 26
+    },
+    {
+      "case": "0068.txt",
+      "v039": 426,
+      "saved_best": 408,
+      "best_bin": "v021_paired_event_lns",
+      "gap": 18
+    },
+    {
+      "case": "0089.txt",
+      "v039": 374,
+      "saved_best": 356,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 18
+    },
+    {
+      "case": "0063.txt",
+      "v039": 261,
+      "saved_best": 244,
+      "best_bin": "v022_dependency_lns",
+      "gap": 17
+    },
+    {
+      "case": "0060.txt",
+      "v039": 161,
+      "saved_best": 145,
+      "best_bin": "v022_dependency_lns",
+      "gap": 16
+    },
+    {
+      "case": "0082.txt",
+      "v039": 325,
+      "saved_best": 309,
+      "best_bin": "v040_search_pair_compression",
+      "gap": 16
+    },
+    {
+      "case": "0043.txt",
+      "v039": 170,
+      "saved_best": 155,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 15
+    },
+    {
+      "case": "0081.txt",
+      "v039": 384,
+      "saved_best": 369,
+      "best_bin": "v040_search_pair_compression",
+      "gap": 15
+    },
+    {
+      "case": "0032.txt",
+      "v039": 156,
+      "saved_best": 142,
+      "best_bin": "v026_late_start_lns",
+      "gap": 14
+    },
+    {
+      "case": "0076.txt",
+      "v039": 270,
+      "saved_best": 256,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 14
+    },
+    {
+      "case": "0054.txt",
+      "v039": 301,
+      "saved_best": 289,
+      "best_bin": "v020_o3_event_lns",
+      "gap": 12
+    },
+    {
+      "case": "0062.txt",
+      "v039": 180,
+      "saved_best": 168,
+      "best_bin": "v026_late_start_lns",
+      "gap": 12
+    },
+    {
+      "case": "0095.txt",
+      "v039": 255,
+      "saved_best": 243,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 12
+    },
+    {
+      "case": "0044.txt",
+      "v039": 186,
+      "saved_best": 175,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 11
+    },
+    {
+      "case": "0049.txt",
+      "v039": 197,
+      "saved_best": 186,
+      "best_bin": "v035_tower_capacity_lns",
+      "gap": 11
+    },
+    {
+      "case": "0056.txt",
+      "v039": 203,
+      "saved_best": 192,
+      "best_bin": "v028_two_order_lns",
+      "gap": 11
+    },
+    {
+      "case": "0058.txt",
+      "v039": 302,
+      "saved_best": 291,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 11
+    },
+    {
+      "case": "0078.txt",
+      "v039": 263,
+      "saved_best": 252,
+      "best_bin": "v022_dependency_lns",
+      "gap": 11
+    },
+    {
+      "case": "0033.txt",
+      "v039": 146,
+      "saved_best": 136,
+      "best_bin": "v025_fast_math",
+      "gap": 10
+    },
+    {
+      "case": "0066.txt",
+      "v039": 423,
+      "saved_best": 413,
+      "best_bin": "v031_support_pair_fast_math",
+      "gap": 10
+    },
+    {
+      "case": "0008.txt",
+      "v039": 131,
+      "saved_best": 122,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 9
+    },
+    {
+      "case": "0029.txt",
+      "v039": 257,
+      "saved_best": 248,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 9
+    },
+    {
+      "case": "0036.txt",
+      "v039": 206,
+      "saved_best": 197,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 9
+    },
+    {
+      "case": "0047.txt",
+      "v039": 336,
+      "saved_best": 327,
+      "best_bin": "v035_tower_capacity_lns",
+      "gap": 9
+    },
+    {
+      "case": "0061.txt",
+      "v039": 297,
+      "saved_best": 288,
+      "best_bin": "v040_search_pair_compression",
+      "gap": 9
+    },
+    {
+      "case": "0004.txt",
+      "v039": 259,
+      "saved_best": 251,
+      "best_bin": "v023_lazy_trial_undo",
+      "gap": 8
+    },
+    {
+      "case": "0017.txt",
+      "v039": 208,
+      "saved_best": 200,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 8
+    },
+    {
+      "case": "0034.txt",
+      "v039": 416,
+      "saved_best": 408,
+      "best_bin": "v040_search_pair_compression",
+      "gap": 8
+    },
+    {
+      "case": "0046.txt",
+      "v039": 156,
+      "saved_best": 148,
+      "best_bin": "v029_selective_two_order_lns",
+      "gap": 8
+    },
+    {
+      "case": "0050.txt",
+      "v039": 143,
+      "saved_best": 135,
+      "best_bin": "v036_inline_color_lns",
+      "gap": 8
+    },
+    {
+      "case": "0069.txt",
+      "v039": 135,
+      "saved_best": 127,
+      "best_bin": "v028_two_order_lns",
+      "gap": 8
+    },
+    {
+      "case": "0003.txt",
+      "v039": 127,
+      "saved_best": 120,
+      "best_bin": "v022_dependency_lns",
+      "gap": 7
+    },
+    {
+      "case": "0053.txt",
+      "v039": 129,
+      "saved_best": 122,
+      "best_bin": "ablate_v024_dependency",
+      "gap": 7
+    },
+    {
+      "case": "0080.txt",
+      "v039": 176,
+      "saved_best": 169,
+      "best_bin": "v025_fast_math",
+      "gap": 7
+    },
+    {
+      "case": "0086.txt",
+      "v039": 100,
+      "saved_best": 93,
+      "best_bin": "v023_lazy_trial_undo",
+      "gap": 7
+    },
+    {
+      "case": "0016.txt",
+      "v039": 129,
+      "saved_best": 123,
+      "best_bin": "v033_capacity_lns",
+      "gap": 6
+    },
+    {
+      "case": "0065.txt",
+      "v039": 125,
+      "saved_best": 119,
+      "best_bin": "v036_inline_color_lns",
+      "gap": 6
+    },
+    {
+      "case": "0073.txt",
+      "v039": 233,
+      "saved_best": 227,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 6
+    },
+    {
+      "case": "0074.txt",
+      "v039": 99,
+      "saved_best": 93,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 6
+    },
+    {
+      "case": "0093.txt",
+      "v039": 87,
+      "saved_best": 81,
+      "best_bin": "v022_dependency_lns",
+      "gap": 6
+    },
+    {
+      "case": "0002.txt",
+      "v039": 111,
+      "saved_best": 106,
+      "best_bin": "v021_paired_event_lns",
+      "gap": 5
+    },
+    {
+      "case": "0027.txt",
+      "v039": 148,
+      "saved_best": 143,
+      "best_bin": "v023_lazy_trial_undo",
+      "gap": 5
+    },
+    {
+      "case": "0031.txt",
+      "v039": 123,
+      "saved_best": 118,
+      "best_bin": "v021_paired_event_lns",
+      "gap": 5
+    },
+    {
+      "case": "0035.txt",
+      "v039": 67,
+      "saved_best": 62,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 5
+    },
+    {
+      "case": "0038.txt",
+      "v039": 133,
+      "saved_best": 128,
+      "best_bin": "v031_support_pair_fast_math",
+      "gap": 5
+    },
+    {
+      "case": "0048.txt",
+      "v039": 228,
+      "saved_best": 223,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 5
+    },
+    {
+      "case": "0090.txt",
+      "v039": 155,
+      "saved_best": 150,
+      "best_bin": "ablate_v024_dependency",
+      "gap": 5
+    },
+    {
+      "case": "0091.txt",
+      "v039": 103,
+      "saved_best": 98,
+      "best_bin": "v026_late_start_lns",
+      "gap": 5
+    },
+    {
+      "case": "0099.txt",
+      "v039": 188,
+      "saved_best": 183,
+      "best_bin": "v031_support_pair_fast_math",
+      "gap": 5
+    },
+    {
+      "case": "0023.txt",
+      "v039": 83,
+      "saved_best": 79,
+      "best_bin": "v020_o3_event_lns",
+      "gap": 4
+    },
+    {
+      "case": "0055.txt",
+      "v039": 287,
+      "saved_best": 283,
+      "best_bin": "v031_support_pair_fast_math",
+      "gap": 4
+    },
+    {
+      "case": "0079.txt",
+      "v039": 69,
+      "saved_best": 65,
+      "best_bin": "v040_search_pair_compression",
+      "gap": 4
+    },
+    {
+      "case": "0098.txt",
+      "v039": 129,
+      "saved_best": 125,
+      "best_bin": "v021_paired_event_lns",
+      "gap": 4
+    },
+    {
+      "case": "0013.txt",
+      "v039": 180,
+      "saved_best": 177,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 3
+    },
+    {
+      "case": "0015.txt",
+      "v039": 546,
+      "saved_best": 543,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 3
+    },
+    {
+      "case": "0018.txt",
+      "v039": 74,
+      "saved_best": 71,
+      "best_bin": "v031_support_pair_fast_math",
+      "gap": 3
+    },
+    {
+      "case": "0020.txt",
+      "v039": 149,
+      "saved_best": 146,
+      "best_bin": "v028_two_order_lns",
+      "gap": 3
+    },
+    {
+      "case": "0040.txt",
+      "v039": 137,
+      "saved_best": 134,
+      "best_bin": "v022_dependency_lns",
+      "gap": 3
+    },
+    {
+      "case": "0052.txt",
+      "v039": 190,
+      "saved_best": 187,
+      "best_bin": "v035_tower_capacity_lns",
+      "gap": 3
+    },
+    {
+      "case": "0077.txt",
+      "v039": 86,
+      "saved_best": 83,
+      "best_bin": "ablate_v024_dependency",
+      "gap": 3
+    },
+    {
+      "case": "0083.txt",
+      "v039": 168,
+      "saved_best": 165,
+      "best_bin": "v036_inline_color_lns",
+      "gap": 3
+    },
+    {
+      "case": "0085.txt",
+      "v039": 199,
+      "saved_best": 196,
+      "best_bin": "v033_capacity_lns",
+      "gap": 3
+    },
+    {
+      "case": "0006.txt",
+      "v039": 113,
+      "saved_best": 111,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 2
+    },
+    {
+      "case": "0007.txt",
+      "v039": 117,
+      "saved_best": 115,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 2
+    },
+    {
+      "case": "0012.txt",
+      "v039": 125,
+      "saved_best": 123,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 2
+    },
+    {
+      "case": "0019.txt",
+      "v039": 643,
+      "saved_best": 641,
+      "best_bin": "v025_fast_math",
+      "gap": 2
+    },
+    {
+      "case": "0024.txt",
+      "v039": 120,
+      "saved_best": 118,
+      "best_bin": "v026_late_start_lns",
+      "gap": 2
+    },
+    {
+      "case": "0025.txt",
+      "v039": 58,
+      "saved_best": 56,
+      "best_bin": "v020_o3_event_lns",
+      "gap": 2
+    },
+    {
+      "case": "0030.txt",
+      "v039": 447,
+      "saved_best": 445,
+      "best_bin": "v040_search_pair_compression",
+      "gap": 2
+    },
+    {
+      "case": "0037.txt",
+      "v039": 245,
+      "saved_best": 243,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 2
+    },
+    {
+      "case": "0041.txt",
+      "v039": 89,
+      "saved_best": 87,
+      "best_bin": "v022_dependency_lns",
+      "gap": 2
+    },
+    {
+      "case": "0051.txt",
+      "v039": 118,
+      "saved_best": 116,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 2
+    },
+    {
+      "case": "0067.txt",
+      "v039": 198,
+      "saved_best": 196,
+      "best_bin": "v031_support_pair_fast_math",
+      "gap": 2
+    },
+    {
+      "case": "0071.txt",
+      "v039": 407,
+      "saved_best": 405,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 2
+    },
+    {
+      "case": "0072.txt",
+      "v039": 90,
+      "saved_best": 88,
+      "best_bin": "v026_late_start_lns",
+      "gap": 2
+    },
+    {
+      "case": "0084.txt",
+      "v039": 314,
+      "saved_best": 312,
+      "best_bin": "v028_two_order_lns",
+      "gap": 2
+    },
+    {
+      "case": "0087.txt",
+      "v039": 114,
+      "saved_best": 112,
+      "best_bin": "v023_lazy_trial_undo",
+      "gap": 2
+    },
+    {
+      "case": "0092.txt",
+      "v039": 549,
+      "saved_best": 547,
+      "best_bin": "v031_support_pair_fast_math",
+      "gap": 2
+    },
+    {
+      "case": "0096.txt",
+      "v039": 84,
+      "saved_best": 82,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 2
+    },
+    {
+      "case": "0010.txt",
+      "v039": 70,
+      "saved_best": 69,
+      "best_bin": "v024_incoming_reinsertion",
+      "gap": 1
+    },
+    {
+      "case": "0014.txt",
+      "v039": 377,
+      "saved_best": 376,
+      "best_bin": "v021_paired_event_lns",
+      "gap": 1
+    },
+    {
+      "case": "0021.txt",
+      "v039": 65,
+      "saved_best": 64,
+      "best_bin": "v021_paired_event_lns",
+      "gap": 1
+    },
+    {
+      "case": "0022.txt",
+      "v039": 68,
+      "saved_best": 67,
+      "best_bin": "v022_dependency_lns",
+      "gap": 1
+    },
+    {
+      "case": "0059.txt",
+      "v039": 68,
+      "saved_best": 67,
+      "best_bin": "v025_fast_math",
+      "gap": 1
+    },
+    {
+      "case": "0064.txt",
+      "v039": 192,
+      "saved_best": 191,
+      "best_bin": "v021_paired_event_lns",
+      "gap": 1
+    },
+    {
+      "case": "0000.txt",
+      "v039": 43,
+      "saved_best": 43,
+      "best_bin": "v020_o3_event_lns",
+      "gap": 0
+    },
+    {
+      "case": "0001.txt",
+      "v039": 102,
+      "saved_best": 102,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 0
+    },
+    {
+      "case": "0009.txt",
+      "v039": 83,
+      "saved_best": 83,
+      "best_bin": "v022_dependency_lns",
+      "gap": 0
+    },
+    {
+      "case": "0011.txt",
+      "v039": 152,
+      "saved_best": 152,
+      "best_bin": "v028_two_order_lns",
+      "gap": 0
+    },
+    {
+      "case": "0026.txt",
+      "v039": 120,
+      "saved_best": 120,
+      "best_bin": "v028_two_order_lns",
+      "gap": 0
+    },
+    {
+      "case": "0028.txt",
+      "v039": 254,
+      "saved_best": 254,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 0
+    },
+    {
+      "case": "0039.txt",
+      "v039": 114,
+      "saved_best": 114,
+      "best_bin": "v027_resampled_start_lns",
+      "gap": 0
+    },
+    {
+      "case": "0042.txt",
+      "v039": 323,
+      "saved_best": 323,
+      "best_bin": "v036_inline_color_lns",
+      "gap": 0
+    },
+    {
+      "case": "0045.txt",
+      "v039": 194,
+      "saved_best": 194,
+      "best_bin": "v028_two_order_lns",
+      "gap": 0
+    },
+    {
+      "case": "0057.txt",
+      "v039": 243,
+      "saved_best": 243,
+      "best_bin": "v039_exact_board_lns",
+      "gap": 0
+    },
+    {
+      "case": "0070.txt",
+      "v039": 409,
+      "saved_best": 409,
+      "best_bin": "v037_pair_transfer_compression",
+      "gap": 0
+    },
+    {
+      "case": "0075.txt",
+      "v039": 344,
+      "saved_best": 344,
+      "best_bin": "v039_exact_board_lns",
+      "gap": 0
+    },
+    {
+      "case": "0088.txt",
+      "v039": 150,
+      "saved_best": 150,
+      "best_bin": "v028_two_order_lns",
+      "gap": 0
+    },
+    {
+      "case": "0094.txt",
+      "v039": 115,
+      "saved_best": 115,
+      "best_bin": "v033_capacity_lns",
+      "gap": 0
+    }
+  ],
+  "evaluation_count": 19,
+  "distinct_bins": 18,
+  "evaluations": [
+    {
+      "bin": "v020_o3_event_lns",
+      "label": "o3_event_lns",
+      "executed_at": "2026-09-27T08:52:53+09:00"
+    },
+    {
+      "bin": "v021_paired_event_lns",
+      "label": "paired_event_lns",
+      "executed_at": "2026-09-27T09:35:56+09:00"
+    },
+    {
+      "bin": "v022_dependency_lns",
+      "label": "dependency_lns",
+      "executed_at": "2026-09-27T15:59:46+09:00"
+    },
+    {
+      "bin": "v023_lazy_trial_undo",
+      "label": "lazy_trial_undo",
+      "executed_at": "2026-09-27T16:01:35+09:00"
+    },
+    {
+      "bin": "v024_incoming_reinsertion",
+      "label": "incoming_reinsertion",
+      "executed_at": "2026-09-27T16:33:52+09:00"
+    },
+    {
+      "bin": "ablate_v024_dependency",
+      "label": "incoming_without_dependency",
+      "executed_at": "2026-09-27T16:35:45+09:00"
+    },
+    {
+      "bin": "v025_fast_math",
+      "label": "fast_math",
+      "executed_at": "2026-09-27T16:43:41+09:00"
+    },
+    {
+      "bin": "v026_late_start_lns",
+      "label": "late_start_lns",
+      "executed_at": "2026-09-27T17:26:32+09:00"
+    },
+    {
+      "bin": "v027_resampled_start_lns",
+      "label": "resampled_start_lns",
+      "executed_at": "2026-09-27T18:20:31+09:00"
+    },
+    {
+      "bin": "v027_resampled_start_lns",
+      "label": "resampled_start_lns_rerun_after_sleep",
+      "executed_at": "2026-09-27T18:26:47+09:00"
+    },
+    {
+      "bin": "v028_two_order_lns",
+      "label": "two_order_lns",
+      "executed_at": "2026-09-27T18:45:31+09:00"
+    },
+    {
+      "bin": "v029_selective_two_order_lns",
+      "label": "selective_two_order_lns",
+      "executed_at": "2026-09-27T19:48:11+09:00"
+    },
+    {
+      "bin": "v031_support_pair_fast_math",
+      "label": "support_pair_fast_math",
+      "executed_at": "2026-09-27T20:24:50+09:00"
+    },
+    {
+      "bin": "v033_capacity_lns",
+      "label": "capacity_all",
+      "executed_at": "2026-09-27T22:04:24+09:00"
+    },
+    {
+      "bin": "v035_tower_capacity_lns",
+      "label": "tower_capacity",
+      "executed_at": "2026-09-28T00:42:46+09:00"
+    },
+    {
+      "bin": "v036_inline_color_lns",
+      "label": "inline_color",
+      "executed_at": "2026-09-28T01:34:47+09:00"
+    },
+    {
+      "bin": "v037_pair_transfer_compression",
+      "label": "pair_transfer_compression",
+      "executed_at": "2026-09-28T02:04:58+09:00"
+    },
+    {
+      "bin": "v039_exact_board_lns",
+      "label": "exact_board_pool",
+      "executed_at": "2026-09-28T09:25:03+09:00"
+    },
+    {
+      "bin": "v040_search_pair_compression",
+      "label": "search_pair_compression",
+      "executed_at": "2026-09-28T09:39:31+09:00"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "old": "// v057_search_reductions.cpp",
+    "new": "// v059_repair_priority.cpp"
+  },
+  {
+    "old": "    uint64_t hash=0;\n};\n\nclass TemporalLNS",
+    "new": "    uint64_t hash=0;\n    int broken_support_jumps=0;\n#ifdef AHC072_REPAIR_AUDIT\n    double original_priority=0;\n#endif\n};\n\nclass TemporalLNS"
+  },
+  {
+    "old": "    int growDependency(Removal& cand) const {",
+    "new": "    // Count surviving flights whose launch loses too many lower residents.\n    // This is a repair-cost proxy, not a lower bound on required extra moves.\n    int brokenSupportJumps(const vector<int>& ids) const {\n        array<bool,MV> removed{};\n        for(int id:ids)removed[id]=true;\n        int broken=0;\n        for(const auto& use:supportUses) {\n            int lost=0;\n            for(int j=0;j<use.lower.n;j++)lost+=removed[use.lower.id[j]];\n            if(lost<=use.slack)continue;\n            const auto& flight=flights[use.time];\n            for(int j=0;j<flight.n;j++)if(!removed[flight.id[j]]){++broken;break;}\n        }\n        return broken;\n    }\n    int growDependency(Removal& cand) const {"
+  },
+  {
+    "old": "        for(auto& cand:candidates) {\n            int saved=savedBy(cand.ids,int(cand.ids.size()),0);\n            cand.priority=(saved+0.25)/divisor[cand.ids.size()]*(0.90+0.20*rng.unit());\n        }",
+    "new": "        LOCAL_NOTE(const double repair_priority_start=clk.elapsed();int repair_priority_penalized=0;)\n        for(auto& cand:candidates) {\n            int saved=savedBy(cand.ids,int(cand.ids.size()),0);\n            cand.broken_support_jumps=brokenSupportJumps(cand.ids);\n            // Retain one draw at the parent's original position, even when\n            // the resulting priority is negative. No candidate is removed.\n            const double noise=0.90+0.20*rng.unit();\n            cand.priority=(saved-cand.broken_support_jumps+0.25)/divisor[cand.ids.size()]*noise;\n#ifdef AHC072_REPAIR_AUDIT\n            cand.original_priority=(saved+0.25)/divisor[cand.ids.size()]*noise;\n#endif\n            LOCAL_NOTE(repair_priority_penalized+=cand.broken_support_jumps>0;)\n        }\n        LOCAL_NOTE(trace.count_by(\"lns_repair_priority_evaluated\",int(candidates.size()));\n                   trace.count_by(\"lns_repair_priority_penalized\",repair_priority_penalized);\n                   trace.add_time_ms(\"lns_repair_priority\",(clk.elapsed()-repair_priority_start)*1000.0);)"
+  },
+  {
+    "old": "                Removal cand=candidates[choice];lastTried[cand.hash]=iteration;\n                if(dependency)",
+    "new": "                Removal cand=candidates[choice];lastTried[cand.hash]=iteration;\n                LOCAL_NOTE(repair_priority_broken=cand.broken_support_jumps;trace.count_by(\"lns_repair_priority_selected\",1);\n                           trace.count_by(\"lns_repair_priority_selected_broken_jumps\",cand.broken_support_jumps);)\n                if(dependency)"
+  },
+  {
+    "old": "            LOCAL_NOTE(int late_kind=-1;bool two_order=false;)",
+    "new": "            LOCAL_NOTE(int late_kind=-1;bool two_order=false;int repair_priority_broken=-1;)"
+  },
+  {
+    "old": "            if(!ok)continue;\n            if(sameMoves(trial,current))",
+    "new": "            if(!ok)continue;\n            LOCAL_NOTE(if(repair_priority_broken>=0){\n                trace.count_by(\"lns_repair_priority_completed\",1);\n                trace.count_by(\"lns_repair_priority_penalized_completed\",repair_priority_broken>0);\n            })\n            if(sameMoves(trial,current))"
+  },
+  {
+    "old": "                ++accepted;uphill+=delta>0;blockAccepted+=packet;flexibleAccepted+=flexible;pairedAccepted+=paired;",
+    "new": "                LOCAL_NOTE(if(repair_priority_broken>=0){\n                    trace.count_by(\"lns_repair_priority_accepted\",1);\n                    trace.count_by(\"lns_repair_priority_penalized_accepted\",repair_priority_broken>0);\n                })\n                ++accepted;uphill+=delta>0;blockAccepted+=packet;flexibleAccepted+=flexible;pairedAccepted+=paired;"
+  },
+  {
+    "old": "                    int saved=int(best.size()-polished.size());",
+    "new": "                    int saved=int(best.size()-polished.size());\n                    LOCAL_NOTE(if(repair_priority_broken>=0){\n                        trace.count_by(\"lns_repair_priority_improvements\",1);\n                        trace.count_by(\"lns_repair_priority_saved\",saved);\n                        trace.count_by(\"lns_repair_priority_penalized_saved\",repair_priority_broken>0?saved:0);\n                    })"
+  }
+]

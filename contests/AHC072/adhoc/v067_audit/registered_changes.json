@@ -1,0 +1,18 @@
+[
+  {
+    "before": "// v059_repair_priority.cpp\n",
+    "after": "// v067_repair_joint_priority.cpp\n"
+  },
+  {
+    "before": "    static constexpr array<int,4> heavy_kinds={FINAL_JOINT,FINAL_STRICT,FINAL_SLACK,FINAL_FINITE};\n",
+    "after": "#ifdef LOCAL\n    array<int64_t,FINAL_KINDS> best_created_with{};\n#endif\n    // v058: reserve 3/4 of calls for joint shortening within the same time budget.\n    // Keep each other method once per cycle; advancing still requires budget.\n    static constexpr array<int,12> heavy_kinds={\n        FINAL_JOINT,FINAL_JOINT,FINAL_JOINT,FINAL_STRICT,\n        FINAL_JOINT,FINAL_JOINT,FINAL_JOINT,FINAL_SLACK,\n        FINAL_JOINT,FINAL_JOINT,FINAL_JOINT,FINAL_FINITE,\n    };\n"
+  },
+  {
+    "before": "                count(name+\"_calls\",calls[kind]);count(name+\"_saved\",saved[kind]);count(name+\"_accepted_saved\",accepted_saved[kind]);\n",
+    "after": "                count(name+\"_calls\",calls[kind]);count(name+\"_saved\",saved[kind]);count(name+\"_accepted_saved\",accepted_saved[kind]);\n                count(name+\"_best_created_with\",best_created_with[kind]);\n"
+  },
+  {
+    "before": "                search_reductions.best_created+=before_reductions>=best.size()&&polished.size()<best.size();\n",
+    "after": "                if(before_reductions>=best.size()&&polished.size()<best.size()) {\n                    ++search_reductions.best_created;\n                    // Several reducers may contribute to the same new-best candidate.\n                    // These per-kind counts record involvement, not isolated causality.\n                    for(int kind=0;kind<FINAL_KINDS;kind++)\n                        search_reductions.best_created_with[kind]+=search_reductions.saved[kind]>savings_before[kind];\n                }\n"
+  }
+]

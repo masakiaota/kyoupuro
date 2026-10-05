@@ -1,0 +1,11 @@
+{
+  "cases": [
+    "0000.txt",
+    "0001.txt"
+  ],
+  "modes": [
+    "local",
+    "production"
+  ],
+  "fixtures": 8
+}

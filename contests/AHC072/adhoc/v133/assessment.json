@@ -1,0 +1,20 @@
+{
+  "accepted": false,
+  "difference": {
+    "common_completed": 256,
+    "mean_T_difference": 0.3125,
+    "mean_S_difference": 0.3125,
+    "wins": 102,
+    "ties": 40,
+    "losses": 114
+  },
+  "activation": {
+    "neutral_best_refresh": 489634,
+    "neutral_best_restart": 2535,
+    "neutral_best_restart_after_refresh": 2404
+  },
+  "base_valid": true,
+  "current_valid": true,
+  "base_reused": "results/nn_rank/v130/20261004_rrt_studio/base/evaluation/validation/result.json",
+  "fixed_at": "2026-10-04T16:01:33.596580+00:00"
+}

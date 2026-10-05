@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 309,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v040_search_pair_compression/0082.txt",
+  "best_sha256": "bb1079dde7ab8febc0fc3c53fca8b6439a865093249c97e22b131d17de708f46",
+  "attempts": []
+}

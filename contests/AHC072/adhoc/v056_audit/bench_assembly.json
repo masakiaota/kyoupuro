@@ -1,0 +1,16 @@
+{
+  "parent": {
+    "available": true,
+    "calls": 45,
+    "board_copy_calls": 1,
+    "mono_color_calls": 0,
+    "clock_check_calls": 2
+  },
+  "child": {
+    "available": true,
+    "calls": 46,
+    "board_copy_calls": 0,
+    "mono_color_calls": 0,
+    "clock_check_calls": 2
+  }
+}

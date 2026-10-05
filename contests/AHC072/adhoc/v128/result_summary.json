@@ -1,0 +1,98 @@
+{
+  "decision": "diagnostic_failed",
+  "diagnostic": {
+    "passed": false,
+    "cases": 511,
+    "rows": 2039,
+    "mean_difference": 0.1149706457925636,
+    "fold_differences": [
+      0.244140625,
+      0.08984375,
+      0.1830708661417323,
+      -0.056640625
+    ],
+    "changed": 94,
+    "parameters": 5441,
+    "training": [
+      {
+        "fold": 0,
+        "seconds": 1.4784636670083273,
+        "train_inputs": 383,
+        "teacher_difference": -0.27284595300261094,
+        "other_seed_difference": -0.10378590078328982,
+        "first_loss": 0.1732707506060289,
+        "final_loss": 0.03334671103787017
+      },
+      {
+        "fold": 1,
+        "seconds": 1.4788775419874582,
+        "train_inputs": 383,
+        "teacher_difference": -0.260443864229765,
+        "other_seed_difference": -0.15861618798955612,
+        "first_loss": 0.17516089543972563,
+        "final_loss": 0.031452190092042594
+      },
+      {
+        "fold": 2,
+        "seconds": 1.474189040993224,
+        "train_inputs": 384,
+        "teacher_difference": -0.2779947916666667,
+        "other_seed_difference": -0.14322916666666666,
+        "first_loss": 0.16496765799820423,
+        "final_loss": 0.031218701973557472
+      },
+      {
+        "fold": 3,
+        "seconds": 1.4770127499941736,
+        "train_inputs": 383,
+        "teacher_difference": -0.1174934725848564,
+        "other_seed_difference": 0.041122715404699736,
+        "first_loss": 0.1763466412186934,
+        "final_loss": 0.03143233428502518
+      }
+    ],
+    "parent_result_sha256": "aedcfc207e6a3f35448fab5e2da0583cb01cdf811a9f87dfaa8a08dad85d5c4a",
+    "parent_mean_difference": -0.03913894324853229,
+    "completed_at": "2026-10-04T13:29:03.912986+00:00"
+  },
+  "mechanism": {
+    "passed": true,
+    "parameters": 5441,
+    "gradient_direction": true,
+    "initial_batch_loss": 0.22543755173683167,
+    "final_batch_loss": 0.1063527837395668,
+    "diagnostic_weights_discarded": true,
+    "completed_at": "2026-10-04T13:28:57.981989+00:00"
+  },
+  "training_config_sha256": "17d42fa08672f59729882746e3bdcbf3650bec072063cb0d38fd20b9c228ad0f",
+  "retained": {
+    "version": "v113",
+    "source": "src/bin/v113_integrated_nn_lns.cpp",
+    "source_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258"
+  },
+  "retained_tools_in": {
+    "reused": true,
+    "metrics": {
+      "cases": 100,
+      "complete": 100,
+      "completion_rate": 1.0,
+      "mean_S_all": 196.75,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 196.75,
+      "mean_elapsed_ms": 1569.08,
+      "max_elapsed_ms": 1616,
+      "mean_inferences": 264.69,
+      "mean_depth": 264.69,
+      "deadline_cases": 0
+    },
+    "all_legal": true,
+    "source_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258"
+  },
+  "validation1_opened": false,
+  "solver_cross_validation_executed": false,
+  "new_256_evaluated": false,
+  "final_in_repeated": false,
+  "completed_at": "2026-10-04T13:29:03.912986+00:00",
+  "summarized_at": "2026-10-04T13:29:52.507862+00:00"
+}

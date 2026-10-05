@@ -1,0 +1,15 @@
+{
+  "name": "ahc072_vis",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "ahc072_vis_bg.wasm",
+    "ahc072_vis.js",
+    "ahc072_vis.d.ts"
+  ],
+  "main": "ahc072_vis.js",
+  "types": "ahc072_vis.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

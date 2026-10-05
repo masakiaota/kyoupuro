@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Play — AHC072 Somersault Slimes</title>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="16" height="16" rx="5" fill="%23155e63"/><path d="M4 10a4 4 0 118 0" fill="white"/></svg>' />
+    <link rel="stylesheet" href="/src_play/style.css" />
+    <link rel="stylesheet" href="/src_shared/navigation.css" />
+  </head>
+  <body>
+    <header class="app-navigation">
+      <nav class="view-tabs" aria-label="画面の切り替え">
+        <a class="view-tab" href="/"><span>▦</span><span>case visualizer</span></a>
+        <a class="view-tab" href="/eval.html"><span>▧</span><span>eval viewer</span></a>
+        <a class="view-tab active" href="/play.html" aria-current="page"><span>↗</span><span>Play</span></a>
+      </nav>
+    </header>
+    <main class="page">
+      <section class="session-bar panel" aria-label="プレイ記録">
+        <label for="sessions">プレイ記録</label><select id="sessions"><option value="">記録を選択</option></select>
+        <button id="newSession" class="primary">＋ 新しいプレイ</button>
+        <button id="refreshSessions" class="quiet" title="記録一覧を更新">↻ 更新</button>
+        <button id="copySession" class="quiet" title="AIに引き継ぐプレイIDをコピー">IDをコピー</button>
+        <span id="saveStatus" class="save-status" role="status">未選択</span>
+      </section>
+      <section class="workspace">
+        <div class="board-panel panel">
+          <div class="board-toolbar">
+            <div class="metrics" aria-label="現在の成績"><span>手数 <strong id="metricT">—</strong></span><span>残り <strong id="metricE">—</strong>匹</span><span class="score" title="絶対スコア。小さいほど良い">スコア <strong id="metricS">—</strong></span></div>
+            <div class="button-group"><button id="undo" title="一手戻す（⌘ / Ctrl Z）" disabled>↶ 一手戻す</button><button id="redo" title="一手やり直す（⌘ / Ctrl Shift Z）" disabled>↷ やり直す</button><select id="redoBranch" aria-label="やり直す分岐" hidden></select></div>
+          </div>
+          <div class="mode-bar"><span id="boardCaption">塔を選び、着地点をクリックして実行</span><div id="pastActions" class="button-group" hidden><button id="resumeHere" class="primary">ここからプレイ</button><button id="returnLive">現在位置へ</button></div><button id="clearSelection" class="quiet" disabled>選択解除</button></div>
+          <div class="status-line" aria-live="polite"><span id="notice">右クリックでも選択を解除できる</span><span id="error" role="alert" hidden></span><button id="refreshState" hidden>最新の局面を表示</button></div>
+          <div id="boardStage" class="board-stage">
+            <div id="board" class="board" tabindex="0" aria-label="ゲーム盤面。塔を選び、着地点をクリックして実行する">
+              <div class="empty-board"><h1>Play</h1><p>積んで、跳ばして、巣に帰す。</p><button id="emptyStart" class="primary">入力ケースから始める</button></div>
+            </div>
+            <div id="towerPicker" class="tower-picker" hidden aria-label="跳ばす部分を選択"><div class="picker-heading"><strong id="sourceTitle"></strong><span>上</span></div><div id="tower" class="tower"></div><div class="picker-footer"><span>下</span><span id="jumpSummary"></span></div></div>
+          </div>
+          <div class="board-footer"><span id="boardSize">数字は色と塔の高さ</span><div id="received" class="received" aria-label="色別の帰巣状況"></div></div>
+          <div class="replay-controls" aria-label="手順を閲覧"><button id="firstTurn" aria-label="最初の局面">|‹</button><button id="prevTurn" aria-label="前の局面">‹</button><button id="playReplay">▶ 再生</button><button id="nextTurn" aria-label="次の局面">›</button><input id="turnSlider" type="range" min="0" max="0" value="0" aria-label="閲覧する手数" /><span id="turnLabel">0 / 0</span><button id="lastTurn" aria-label="手順の最後の局面">›|</button></div>
+        </div>
+        <aside class="inspector panel">
+          <section class="prediction-panel" aria-label="操作の結果"><div class="section-heading"><h2 id="previewTitle">結果の予告</h2><span id="previewBadge" class="badge">未選択</span></div><p id="previewSummary" class="preview-summary">塔を選ぶと、跳べるマスが表示される。</p><div id="preview" class="preview"><p class="hint">着地点にマウスを重ねると、積み順と帰巣する匹数を確認できる。クリックで実行する。</p></div></section>
+          <section class="notes-panel" aria-label="局面のメモ"><div class="section-heading"><h2>この局面のメモ</h2><span id="noteDraftStatus" class="hint"></span></div><label class="sr-only" for="noteText">気づきや仮説</label><textarea id="noteText" rows="3" maxlength="4000" placeholder="気づいたこと、次に試したいこと"></textarea><div class="note-actions"><button id="saveNote" disabled>メモを残す</button><span id="noteNode" class="hint"></span></div><div id="notes" class="notes-list"></div></section>
+          <details class="action-note"><summary>次の一手にメモ <span id="actionDraftStatus" class="hint"></span></summary><label class="sr-only" for="actionNote">次の一手で確かめたいこと</label><textarea id="actionNote" rows="2" maxlength="4000" placeholder="この手で確かめたいこと（任意）"></textarea><p class="hint">この局面から実行した一手に添える。</p></details>
+          <details class="keyboard-help"><summary>操作のヒント</summary><p>塔を再クリック、右クリック、Escで選択解除。矢印キーで着地点を予告し、Enterでも実行できる。</p><p>⌘ / Ctrl Zで戻す。Shift付きでやり直す。</p></details>
+        </aside>
+      </section>
+      <section class="history-panel panel" aria-label="履歴">
+        <div class="section-heading"><h2>手順を振り返る</h2><div class="button-group"><button id="exportOutput">操作列を書き出す</button><button id="exportJson">記録を保存</button></div></div>
+        <div class="history-toolbar"><label for="historyBranch">表示する手順</label><select id="historyBranch" disabled></select><span id="branchHint" class="hint"></span></div>
+        <div id="history" class="history-list"><p class="hint">操作とメモは自動保存される。別の手を試しても元の手順は残る。</p></div>
+        <div class="history-pagination"><button id="earlierHistory" disabled>前の100手</button><span id="historyRange" class="hint"></span><button id="laterHistory" disabled>次の100手</button></div>
+      </section>
+      <footer class="page-footer"><span>プレイ記録はプロジェクトに保存 · メモの下書きはこのブラウザに保持</span><span id="sessionIdentity"></span></footer>
+    </main>
+    <dialog id="createDialog"><form id="createForm"><div class="section-heading"><h2>新しいプレイ</h2><button id="closeDialog" type="button" class="quiet" aria-label="閉じる">✕</button></div><label for="caseSelect">入力ケース</label><select id="caseSelect"></select><label for="sessionLabel">記録の名前（任意）</label><input id="sessionLabel" maxlength="160" placeholder="例：積み順の変化を試す" /><details><summary>入力テキスト・保存済みの解答から始める</summary><label for="inputText">入力（指定した場合は上のケース選択に優先）</label><textarea id="inputText" rows="5" spellcheck="false" placeholder="N K と盤面を貼り付け"></textarea><label class="file-label">入力ファイルを選ぶ <input id="inputFile" type="file" accept=".txt,text/plain" /></label><label for="outputText">操作列（任意。途中局面から続けられる）</label><textarea id="outputText" rows="4" spellcheck="false" placeholder="i j k d l を1行ずつ貼り付け"></textarea><label class="file-label">解答ファイルを選ぶ <input id="outputFile" type="file" accept=".txt,text/plain" /></label></details><p id="createError" class="error" role="alert" hidden></p><button id="createSubmit" class="primary" type="submit">この盤面で始める</button></form></dialog>
+    <script type="module" src="/src_play/main.js"></script>
+  </body>
+</html>

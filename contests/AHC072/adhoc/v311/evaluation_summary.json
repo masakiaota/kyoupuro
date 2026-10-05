@@ -1,0 +1,77 @@
+{
+  "experiment": "v311",
+  "verdict": "standard multistart rejected; average 200 unmet; no posthoc ablation adoption",
+  "parent": "v105_nn_lns",
+  "main_commit": "886464d2374ad81e937fde84fc25cba771307e2e",
+  "parent_sha256": "1f55b1534b9e912a2cc8db3386cd6c1fe9515e417d0462a9300562b75a51ae58",
+  "candidate_sha256": "c3f819c2715f397bee0ca95bca12be3196c6f5531dbfeb19358d0afd5f6868ea",
+  "packed_model_sha256": "42a10da08d5bb142727a0611a733414dd43d12ae4c0afc8a920dc2f52eb5acc5",
+  "parameters": 26866,
+  "retraining": false,
+  "conditions": {
+    "compiler": "GCC 14.2.0", "standard": "gnu++23", "LOCAL": false,
+    "budget_seconds": 1.9, "lns_end_seconds": 1.850777202072539,
+    "final_deadline_seconds": 1.88, "workers": 2, "runs_per_case": 1,
+    "versions_per_case_on_same_cpu": true, "order": "cycle six permutations",
+    "excluded_warmups_per_version": 1, "viewer_registered": false,
+    "reference": "frozen historical per-case minimum including v800, retained from previous bundle",
+    "validation": "100 content-SHA256-ordered validation1 inputs, in excluded; already used in v105 evaluation, not new unseen data",
+    "official_rust_binary_executed": false,
+    "independent_python_cpp_replays": true
+  },
+  "version_order": ["v105_nn_lns", "v311_single_seed", "v311_neural_multistart"],
+  "in100": {
+    "valid_outputs": [100, 100, 100], "complete": [97, 100, 100],
+    "remaining_total": [219, 0, 0],
+    "all_complete_sum_T": [null, 20451, 20474],
+    "all_complete_mean_T": [null, 204.51, 204.74],
+    "mean_official_S": [219211.05, 204.51, 204.74],
+    "relative_mean_100": [88.46845115996483, 92.07920998136214, 92.17430325579528],
+    "common_complete_97_mean_T": [196.64948453608247, 191.98969072164948, 191.5463917525773],
+    "max_wall_seconds": [1.905167978, 1.898480322, 1.932631535],
+    "wall_over_1_9": [1, 0, 1], "case0000": [43, 43, 43],
+    "standard_vs_parent_common97": {"delta_sum_T": -495, "delta_mean_T": -5.103092783505154, "wins": 54, "ties": 14, "losses": 29, "case_bootstrap_95_delta_mean_T": [-7.4845, -3.0307]},
+    "standard_vs_single100": {"delta_sum_T": 23, "delta_mean_T": 0.23, "relative_delta_pp": 0.09509327443314, "wins": 51, "ties": 9, "losses": 40, "case_bootstrap_95_delta_mean_T": [-1.34, 2.20]},
+    "common97_mean_lns_start_seconds": [0.5823389608, 0.0925623093, 0.2560183134],
+    "standard_cases_with_multiple_seeds": 91,
+    "standard_transformed_winners": 65,
+    "standard_winners_not_initial_shortest": 48
+  },
+  "validation100": {
+    "valid_outputs": [100, 100, 100], "complete": [92, 100, 99],
+    "remaining_total": [282, 0, 84],
+    "all_complete_sum_T": [null, 22727, null],
+    "all_complete_mean_T": [null, 227.27, null],
+    "mean_official_S": [282231.3, 227.27, 84226.18],
+    "max_wall_seconds": [1.913805801, 1.943509241, 2.029427881],
+    "wall_over_1_9": [6, 3, 8],
+    "standard_failure": {"case": "0285.txt", "T": 302, "E": 84, "S": 8400302, "stage": "initial NN, before extra transformations and LNS", "cause": "unresolved; no rerun or solver change"},
+    "single_vs_parent_common92_delta_sum_T": -437,
+    "standard_vs_single_common99_delta_sum_T": -23
+  },
+  "mechanism": {
+    "snapshots": 54, "logits": 10353, "selected_mismatches": 0,
+    "max_embedding_difference": 0.00000214576721191,
+    "max_policy_difference": 0.000091552734375,
+    "max_value_difference": 0.0000534057617188,
+    "transformed_steps_checked": 3092,
+    "reference_inference_seconds": 0.071855991,
+    "fast_inference_seconds": 0.01017022,
+    "local_inference_speed_ratio": 7.065333001645983,
+    "warning": "small ordered benchmark, not whole-solver speedup; floating outputs are not bit-identical"
+  },
+  "ablation_export": {
+    "source": "same measured candidate with V311_SINGLE_SEED",
+    "standalone_export_sha256": "866fdc68c591e52e98978d573d6f5aefa89b273b8cc115b715667c510f01201d",
+    "preprocessed_equal_except_diagnostic_filename": true,
+    "new_solver_execution_after_export": false
+  },
+  "limitations": [
+    "One execution per case does not measure runtime noise.",
+    "The parent was incomplete on 11 inputs on this CPU; common-complete averages are conditional.",
+    "The main candidate was incomplete on one validation input and violates timing requirements.",
+    "The single-seed ablation completed all 200 inputs but has three validation timing overruns.",
+    "The multi-seed addition did not reduce in100 total T versus the speed-only ablation.",
+    "This does not invalidate the user's GCC15 v105 results; hardware and compilation differ."
+  ]
+}

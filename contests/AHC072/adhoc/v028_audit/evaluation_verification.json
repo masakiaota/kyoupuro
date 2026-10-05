@@ -1,0 +1,69 @@
+{
+  "run_id": "20260927T184531+0900_v028_two_order_lns_c6311b",
+  "adopt": true,
+  "mean_T": 208.94,
+  "total_T": 20894,
+  "comparisons": {
+    "v026_late_start_lns": {
+      "baseline_T": 20900,
+      "baseline_mean_T": 209.0,
+      "delta_T": -6,
+      "delta_percent": -0.028708133971291867,
+      "wins": 46,
+      "ties": 10,
+      "losses": 44
+    },
+    "v022_dependency_lns": {
+      "baseline_T": 20951,
+      "baseline_mean_T": 209.51,
+      "delta_T": -57,
+      "delta_percent": -0.2720633859958952,
+      "wins": 48,
+      "ties": 9,
+      "losses": 43
+    }
+  },
+  "verified_cases": 100,
+  "max_elapsed_ms": 1543,
+  "error_count": 0,
+  "mechanism_passed": true,
+  "alternate_improved_cases": 92,
+  "pre_lns_differences": {
+    "cases": 3,
+    "total": -7
+  },
+  "relative_changes_percent": {
+    "lns_attempts": -8.525320242798074,
+    "loops": -8.21437826631538,
+    "candidate_build_time": -1.0039498052748397
+  },
+  "two_order_counts": {
+    "lns_two_order_accepted": 76395,
+    "lns_two_order_alternate_accepted": 12527,
+    "lns_two_order_alternate_failed": 146781,
+    "lns_two_order_alternate_finished": 21449,
+    "lns_two_order_alternate_improvements": 392,
+    "lns_two_order_alternate_insert_calls": 418474,
+    "lns_two_order_alternate_saved": 697,
+    "lns_two_order_alternate_selected": 21449,
+    "lns_two_order_alternate_started": 168230,
+    "lns_two_order_attempts": 168230,
+    "lns_two_order_completed": 130384,
+    "lns_two_order_improvements": 1476,
+    "lns_two_order_primary_failed": 42935,
+    "lns_two_order_primary_finished": 125295,
+    "lns_two_order_primary_insert_calls": 446671,
+    "lns_two_order_primary_started": 168230,
+    "lns_two_order_raw_saved": 21570,
+    "lns_two_order_rescued": 5089,
+    "lns_two_order_saved": 2533,
+    "lns_two_order_shorter": 16360,
+    "lns_two_order_size_2": 60079,
+    "lns_two_order_size_3": 67622,
+    "lns_two_order_size_4": 40529
+  },
+  "two_order_times_ms": {
+    "lns_two_order_alternate_search": 97.31263636363636,
+    "lns_two_order_primary_search": 152.041
+  }
+}

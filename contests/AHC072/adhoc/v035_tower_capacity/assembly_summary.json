@@ -1,0 +1,23 @@
+{
+  "binary_sha256": "d0f2a0e16535c521f08bd76533aa2e5a1624b3b032ca88de4dee0c9fff238111",
+  "functions": {
+    "original": {
+      "name": "parent::TemporalLNS::insertAt(std::array<unsigned int, 400ul> const&, std::vector<parent::Move, std::allocator<parent::Move>> const&, int, int, int, int, std::vector<parent::Move, std::allocator<parent::Move>>&)",
+      "text_bytes_to_next_symbol": 8620,
+      "instructions": 2155,
+      "call_sites": 50
+    },
+    "full": {
+      "name": "bool child::TemporalLNS::insertAt<400ul>(std::array<unsigned int, 400ul> const&, std::vector<child::Move, std::allocator<child::Move>> const&, int, int, int, int, std::vector<child::Move, std::allocator<child::Move>>&)",
+      "text_bytes_to_next_symbol": 5368,
+      "instructions": 1342,
+      "call_sites": 32
+    },
+    "compact192": {
+      "name": "bool child::TemporalLNS::insertAt<192ul>(std::array<unsigned int, 192ul> const&, std::vector<child::Move, std::allocator<child::Move>> const&, int, int, int, int, std::vector<child::Move, std::allocator<child::Move>>&)",
+      "text_bytes_to_next_symbol": 5412,
+      "instructions": 1353,
+      "call_sites": 32
+    }
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "old": "// v206_lazy_candidate_bank.cpp\n// Experiment v206, direct parent/control: uploaded v204_initial_race_tuned.cpp.\n// Retain regular ID-set nominations for at most four accepted trajectories.\n// Rebuild flight/support/checkpoint histories before use, and time-dependent\n// packet cuts on demand. Refresh NN scores against the current trajectory.\n// The 5-seed initial race and insertion/reduction algorithms are unchanged.\n// Both this solver and its v204 control share the same 1.90-second total budget\n// and 20ms output reserve. Compile without LOCAL for submission.\n// No saved test answers, per-input scores, or v800 data are embedded.\n// Original SHA256: 5d4ed7aa921a9468d5ff290e61bdce84667f9c5b989a624afaf6caece12e89d4\n",
+    "new": "// v207_lazy_candidate_bank.cpp\n// v207: 通常候補を受理4回まで保持し、履歴と選択時の評価値を更新する。直接の親はv204。\n// 持ち込み版v206_lazy_candidate_bank.cppを改番した。LOCALの時間設定は既存v204に合わせる。\n// 非LOCALの計時・探索・乱数は持ち込み版を保持し、主探索約1.850777秒、終了処理期限1.880秒。\n// 持ち込み元SHA-256: 6d3d455b1d86ea60ec23ac480c6ccf87c77628c786dfdebd86cd74e69cdb4309\n"
+  },
+  {
+    "old": "#define LOCAL_SECONDS(value) (PROGRAM_TIME_LIMIT_SEC * ((value) / 1.930) * (1.880 / 1.900))",
+    "new": "// 既存版と同じLOCAL時間配分で比較する。非LOCALは持ち込み版の式を保持する。\n#define LOCAL_SECONDS(value) (PROGRAM_TIME_LIMIT_SEC * ((value) / JUDGE_TIME_LIMIT_SEC))"
+  },
+  {
+    "old": "    const double start=time_keeper.exact_elapsed_sec(),end=LOCAL_SECONDS(1.900);",
+    "new": "#ifdef LOCAL\n    const double start=time_keeper.exact_elapsed_sec(),end=PROGRAM_TIME_LIMIT_SEC;\n#else\n    const double start=time_keeper.exact_elapsed_sec(),end=LOCAL_SECONDS(1.900);\n#endif"
+  }
+]

@@ -1,0 +1,2553 @@
+// v033_capacity_lns.cpp
+// AtCoder's default -O2 is overridden for the solver, without fast-math.
+// Reference: eijirou's public AHC007 post-contest first-place-equivalent code.
+// https://eijirou-kyopro.hatenablog.com/entry/2022/02/01/221716
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC optimize("O3,unroll-loops,omit-frame-pointer")
+#if defined(__x86_64__) && !defined(AHC072_PORTABLE)
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+#endif
+#endif
+// AHC072: accepted event-LNS baseline, fast exact reinsertion transitions,
+// two-tower suffix reconstruction, and bidirectional dependency ordering.
+#include <bits/stdc++.h>
+using namespace std;
+
+// Keep production preprocessing identical to the supplied source. Only LOCAL
+// adapts timing and adds measurement; identity macros preserve original calls.
+#ifdef LOCAL
+constexpr double JUDGE_TIME_LIMIT_SEC = 1.90;
+constexpr double LOCAL_TIME_RATIO = 0.80;
+constexpr double PROGRAM_TIME_LIMIT_SEC = JUDGE_TIME_LIMIT_SEC * LOCAL_TIME_RATIO;
+struct TraceStats {
+    map<string, int64_t> counts;
+    map<string, double> times_ms;
+    void count_by(const string& key, int64_t delta) { counts[key] += delta; }
+    void add_time_ms(const string& key, double ms) { times_ms[key] += ms; }
+    void summary() const {
+        for (const auto& [key, value] : counts)
+            cerr << "[summary.count] " << key << '=' << value << '\n';
+        const auto flags = cerr.flags();
+        const auto precision = cerr.precision();
+        cerr << fixed << setprecision(3);
+        for (const auto& [key, value] : times_ms)
+            cerr << "[summary.time_ms] " << key << '=' << value << '\n';
+        cerr.flags(flags); cerr.precision(precision);
+    }
+};
+template<class F>
+decltype(auto) local_time_impl(TraceStats& trace, const string& key, F&& body) {
+    const auto start = chrono::steady_clock::now();
+    if constexpr (is_void_v<invoke_result_t<F>>) {
+        invoke(forward<F>(body));
+        trace.add_time_ms(key, chrono::duration<double, milli>(chrono::steady_clock::now() - start).count());
+    } else {
+        auto result = invoke(forward<F>(body));
+        trace.add_time_ms(key, chrono::duration<double, milli>(chrono::steady_clock::now() - start).count());
+        return result;
+    }
+}
+#define LOCAL_NOTE(...) __VA_ARGS__
+#define LOCAL_ONLY(...) do { __VA_ARGS__; } while (false)
+#define LOCAL_TIME(trace, key, ...) local_time_impl((trace), (key), (__VA_ARGS__))
+#define LOCAL_SECONDS(value) (PROGRAM_TIME_LIMIT_SEC * ((value) / JUDGE_TIME_LIMIT_SEC))
+#else
+#define LOCAL_NOTE(...)
+#define LOCAL_SECONDS(value) value
+#endif
+
+#ifdef LOCAL
+TraceStats trace;
+// Count hot-loop events directly; format them only after the search ends.
+int64_t local_event_layers = 0, local_event_reopens = 0;
+int64_t local_single_insert_calls = 0, local_packet_insert_calls = 0;
+int64_t local_shortcut_support_states = 0, local_backward_accepted = 0;
+struct DependencyStats {
+    int64_t selected=0, generated=0, multistep=0, added=0, cooldown=0;
+    int64_t attempts=0, extracted=0, extract_failed=0, insert_failed=0, completed=0;
+    int64_t accepted=0, improvements=0, saved=0, current_improvements=0, current_saved=0;
+    int64_t gross_removed=0, net_removed=0, repaired_jumps=0, repair_extra_commands=0;
+    double seconds=0;
+    void summary() const {
+        auto count=[&](const char* key,int64_t value){trace.count_by(string("lns_dependency_")+key,value);};
+        count("selected",selected);count("generated",generated);count("multistep",multistep);
+        count("added",added);count("cooldown",cooldown);count("attempts",attempts);
+        count("extracted",extracted);count("extract_failed",extract_failed);
+        count("insert_failed",insert_failed);count("completed",completed);count("accepted",accepted);
+        count("improvements",improvements);count("saved",saved);
+        count("current_improvements",current_improvements);count("current_saved",current_saved);
+        count("gross_removed",gross_removed);count("net_removed",net_removed);
+        count("repaired_jumps",repaired_jumps);count("repair_extra_commands",repair_extra_commands);
+        trace.add_time_ms("lns_dependency",seconds*1000.0);
+    }
+} local_dependency;
+// The three uses of a later start are measured separately: keeping a parcel,
+// splitting it into individuals, and using the time as a two-tower anchor.
+struct LateStartStats {
+    int64_t builds=0,primary=0,generated=0,split_generated=0,delay_sum=0;
+    array<int64_t,3> attempts{},completed{},accepted{},improvements{},saved{};
+    array<int64_t,3> current_improvements{},current_saved{};
+    array<double,3> seconds{};
+    void summary() const {
+        auto count=[&](const string& key,int64_t value){trace.count_by("lns_late_start_"+key,value);};
+        count("builds",builds);count("primary",primary);count("generated",generated);
+        count("split_generated",split_generated);count("delay_sum",delay_sum);
+        const char* kinds[]={"packet","flexible","paired"};
+        for(int i=0;i<3;i++) {
+            const string prefix=string(kinds[i])+"_";
+            count(prefix+"attempts",attempts[i]);count(prefix+"completed",completed[i]);
+            count(prefix+"accepted",accepted[i]);count(prefix+"improvements",improvements[i]);
+            count(prefix+"saved",saved[i]);count(prefix+"current_improvements",current_improvements[i]);
+            count(prefix+"current_saved",current_saved[i]);
+            trace.add_time_ms("lns_late_start_"+string(kinds[i]),seconds[i]*1000.0);
+        }
+    }
+} local_late_start;
+bool local_late_paired_anchor=false;
+struct TwoOrderStats {
+    int64_t attempts=0,completed=0,alternate_selected=0,rescued=0,shorter=0,raw_saved=0;
+    int64_t accepted=0,improvements=0,saved=0;
+    int64_t alternate_accepted=0,alternate_improvements=0,alternate_saved=0;
+    array<int64_t,5> sizes{};
+    array<int64_t,2> started{},finished{},failed{},insert_calls{};
+    array<double,2> seconds{};
+    void summary() const {
+        auto count=[&](const string& key,int64_t value){trace.count_by("lns_two_order_"+key,value);};
+        count("attempts",attempts);count("completed",completed);
+        count("alternate_selected",alternate_selected);count("rescued",rescued);
+        count("shorter",shorter);count("raw_saved",raw_saved);
+        count("accepted",accepted);count("improvements",improvements);count("saved",saved);
+        count("alternate_accepted",alternate_accepted);
+        count("alternate_improvements",alternate_improvements);count("alternate_saved",alternate_saved);
+        for(int n=2;n<=4;n++)count("size_"+to_string(n),sizes[n]);
+        for(int branch=0;branch<2;branch++) {
+            const string prefix=branch?"alternate_":"primary_";
+            count(prefix+"started",started[branch]);count(prefix+"finished",finished[branch]);
+            count(prefix+"failed",failed[branch]);count(prefix+"insert_calls",insert_calls[branch]);
+            trace.add_time_ms("lns_two_order_"+prefix+"search",seconds[branch]*1000.0);
+        }
+    }
+} local_two_order;
+bool local_two_order_alternate=false;
+// Include failed insertions and deadline unwinding in the extra order's cost.
+struct TwoOrderTimer {
+    int branch;
+    chrono::steady_clock::time_point begin=chrono::steady_clock::now();
+    explicit TwoOrderTimer(int index):branch(index){}
+    ~TwoOrderTimer() {
+        local_two_order.seconds[branch]+=chrono::duration<double>(chrono::steady_clock::now()-begin).count();
+    }
+};
+// Include rejected attempts and deadline unwinding in the neighborhood's cost.
+struct DependencyTimer {
+    bool active;
+    chrono::steady_clock::time_point begin;
+    explicit DependencyTimer(bool enabled):active(enabled) {
+        if(active)begin=chrono::steady_clock::now();
+    }
+    ~DependencyTimer() {
+        if(active)local_dependency.seconds+=chrono::duration<double>(chrono::steady_clock::now()-begin).count();
+    }
+};
+#endif
+
+
+
+// AHC072 -- event-driven reinsertion, flexible suffix repair, and causal reordering.
+// No test-case identification, coordinates, or supplied answer sequences are embedded.
+// Compile: g++ -std=gnu++23 -O2 -march=native -DNDEBUG ahc072_paired_event_lns.cpp -o solver
+
+using Word = uint32_t;
+constexpr int INF = 30000;
+
+struct Deadline {};
+struct Clock {
+    double limit = LOCAL_SECONDS(1.89);
+#ifdef LOCAL
+    chrono::steady_clock::time_point start;
+#else
+    chrono::steady_clock::time_point start = chrono::steady_clock::now();
+#endif
+    double elapsed() const {
+        return 0.0;
+    }
+    void check() const { if (elapsed() > limit) throw Deadline(); }
+} clk;
+struct RNG {
+    uint64_t x = 0x123456789abcdefULL;
+    uint64_t next() { x ^= x<<7; x ^= x>>9; return x; }
+    // Multiplication-high maps a uniform 64-bit draw to [0,n) without
+    // integer division. The tiny finite-RNG range bias is immaterial here.
+    int operator()(int n) { return int((__uint128_t(next())*uint64_t(n))>>64); }
+    double unit() { return (next()>>11)*0x1.0p-53; }
+} rng;
+
+constexpr Word MASK[9]={0u,0xfu,0xffu,0xfffu,0xffffu,0xfffffu,0xffffffu,0xfffffffu,0xffffffffu};
+inline int height(Word a) { return a ? (32-__builtin_clz(a)+3)/4 : 0; }
+inline Word prefix(Word a,int k) { return a & MASK[k]; }
+inline Word reverseWord(Word a) {
+    if(!a)return 0;
+    int shift=(8-height(a))*4;
+    a=((a>>4)&0x0f0f0f0fu)|((a&0x0f0f0f0fu)<<4);
+    return __builtin_bswap32(a)>>shift;
+}
+inline Word joinWord(Word lower,Word upper) {
+    int h=height(lower);
+    if(h==8) {if(upper)throw logic_error("tower overflow");return lower;}
+    return lower|(upper<<(4*h));
+}
+inline int topColor(Word a) {return a ? a>>(4*(height(a)-1)) : 0;}
+inline int monoColor(Word a) {
+    if(!a)return 0;
+    int c=a&15;
+    return ((a^(0x11111111u*c))&MASK[height(a)]) ? -1 : c;
+}
+
+// Integer distance labels: graph edges have cost one. Dynamic cost buckets
+// avoid binary-heap comparisons and retain stale-entry checks at the caller.
+class IntegerQueue {
+    struct Node {int id,next;};
+    vector<int> head;
+    vector<Node> node;
+    int count=0,lowest=INF;
+public:
+    IntegerQueue():head(128,-1) {node.reserve(1600);}
+    bool empty()const{return count==0;}
+    void emplace(int cost,int id) {
+        if(cost>=int(head.size()))head.resize(cost+128,-1);
+        node.push_back({id,head[cost]});head[cost]=int(node.size())-1;
+        lowest=min(lowest,cost);++count;
+    }
+    pair<int,int> top() {
+        while(head[lowest]<0)++lowest;
+        return {lowest,node[head[lowest]].id};
+    }
+    void pop(){head[lowest]=node[head[lowest]].next;--count;}
+};
+
+inline int colorMask(Word a) {
+    int m=0;
+    for(;a;a>>=4) m|=1<<((a&15)-1);
+    return m;
+}
+inline int runs(Word a) {
+    int r=0, last=-1;
+    for(;a;a>>=4) { int c=a&15; r+=c!=last; last=c; }
+    return r;
+}
+
+struct Move { int16_t p; uint8_t k,d,l; };
+struct Input {
+    int N, K, cell_count = 0;
+    vector<string> C;
+    void read() {
+        cin >> N >> K;
+        C.resize(N);
+        for (string& row : C) {
+            cin >> row;
+            cell_count += count_if(row.begin(), row.end(), [](char c) { return c != '#'; });
+        }
+    }
+};
+
+// 入力ごとに選んだ容量で、床別の盤面・距離表・作業配列をまとめて持つ。
+template<int capacity, int tower_capacity = capacity>
+struct Solver {
+static constexpr int MV = capacity;
+using Board = array<Word, tower_capacity>;
+// 親の探索上限800は保存容量から分離する。2本の経路は合計4V-2手以下。
+static constexpr int max_pair_steps = 800;
+static constexpr int weight_count = min(max_pair_steps, 4 * capacity - 2) + 1;
+
+struct Geometry {
+    int N,K,V=0,M=0;
+    vector<int> id;
+    int row[MV], col[MV], parity[MV], nest[MV], home[13];
+    int16_t adj[MV][4], ray[MV][4][9];
+    uint8_t rayCount[MV][4]{};
+    uint16_t dist[MV][MV];
+    Board initial{};
+    const int di[4]={-1,1,0,0}, dj[4]={0,0,-1,1};
+    const char dirs[5]="UDLR";
+    void read(const Input& input) {
+        N=input.N;K=input.K;
+        id.assign(N*N,-1);memset(home,-1,sizeof(home));
+        for(int i=0;i<N;i++) for(int j=0;j<N;j++) if(input.C[i][j]!='#') {
+            int v=id[i*N+j]=V++; row[v]=i; col[v]=j; parity[v]=(i+j)&1;
+            char c=input.C[i][j]; nest[v]=0;
+            if(c>='A'&&c<='L') { nest[v]=c-'A'+1; home[nest[v]]=v; }
+            if(c>='a'&&c<='l') { initial[v]=c-'a'+1; M++; }
+        }
+        for(int v=0;v<V;v++) for(int d=0;d<4;d++) {
+            fill(ray[v][d],ray[v][d]+9,-1);
+            for(int l=1;l<=8;l++) {
+                int i=row[v]+di[d]*l,j=col[v]+dj[d]*l;
+                if(i<0||j<0||i>=N||j>=N||id[i*N+j]<0) break;
+                ray[v][d][l]=id[i*N+j];rayCount[v][d]=uint8_t(l);
+            }
+            adj[v][d]=ray[v][d][1];
+        }
+        for(int s=0;s<V;s++) {
+            fill(dist[s],dist[s]+V,uint16_t(INF));
+            int q[MV],a=0,b=0; q[b++]=s; dist[s][s]=0;
+            while(a<b) {
+                int v=q[a++];
+                for(int d=0;d<4;d++) {
+                    int w=adj[v][d];
+                    if(w>=0&&dist[s][w]==INF) { dist[s][w]=dist[s][v]+1; q[b++]=w; }
+                }
+            }
+        }
+    }
+    Word normalize(Word a,int p) const {
+        int c=nest[p];
+        if(!c||!a)return a;
+        Word different=(a^(0x11111111u*c))&MASK[height(a)];
+        return prefix(a,height(different));
+    }
+    // Validate every emitted operation, including capacity BEFORE returning home.
+    int apply(Board &b,Move m) const {
+        int p=m.p;
+        if(p<0||p>=V)throw logic_error("invalid departure cell");
+        int h=height(b[p]);
+        if(m.k>=h||m.l<1||m.l>8||m.l>m.k+1||m.d>=4)
+            throw logic_error("invalid departure");
+        int q=ray[p][m.d][m.l];
+        if(q<0) throw logic_error("wall or boundary");
+        int g=height(b[q]);
+        if(g+h-m.k>8) throw logic_error("landing capacity");
+        Word flight=reverseWord(b[p]>>(4*m.k));
+        Word left=prefix(b[p],m.k), land=joinWord(b[q],flight);
+        b[p]=normalize(left,p); b[q]=normalize(land,q);
+        return h+g-height(b[p])-height(b[q]);
+    }
+    int count(const Board &b) const {
+        int ans=0; for(int p=0;p<V;p++) ans+=height(b[p]); return ans;
+    }
+};
+// 大きなGeometryの実体は選択した型の1個だけをrun内で作る。
+static inline Geometry* geo;
+
+struct World {
+    Board b;
+    vector<Move> out;
+    int remaining;
+    explicit World(const Board &a):b(a),remaining(geo->count(a)) { out.reserve(3000); }
+    void move(Move m) { remaining-=geo->apply(b,m); out.push_back(m); }
+};
+
+// Empty-board completion potential.  Splits at color-run boundaries are used
+// for fast collection evaluation. Both tower orientations are represented.
+class EmptyDP {
+public:
+    struct Info { vector<uint16_t> cost; };
+    struct Ref {
+        const Info *p=nullptr;
+        int orientation=0, mono=0;
+        int at(int v) const {
+            if(!p) return mono ? geo->dist[v][geo->home[mono]] : 0;
+            return p->cost[orientation*geo->V+v];
+        }
+    };
+    unordered_map<Word,unique_ptr<Info>> memo;
+    EmptyDP() { memo.reserve(16000); }
+    Ref get(Word word) {
+        int mc=monoColor(word);
+        if(mc>=0) return {nullptr,0,mc};
+        Word rev=reverseWord(word), key=min(word,rev);
+        auto it=memo.find(key);
+        if(it==memo.end()) {
+            build(key);
+            it=memo.find(key);
+        }
+        return {it->second.get(),word!=key,0};
+    }
+    int value(Word word,int p) { return get(word).at(p); }
+private:
+    void build(Word key) {
+        clk.check();
+        const int V=geo->V,h=height(key);
+        Word s[2]={key,reverseWord(key)};
+        Ref left[2][8], right[2][8], trimmed[2];
+        bool use[2][8]{};
+        int tc[2];
+        for(int o=0;o<2;o++) {
+            tc[o]=topColor(s[o]);
+            trimmed[o]=get(geo->normalize(s[o],geo->home[tc[o]]));
+            for(int k=1;k<h;k++) {
+                if(((s[o]>>(4*(k-1)))&15)==((s[o]>>(4*k))&15)) continue;
+                use[o][k]=true;
+                left[o][k]=get(prefix(s[o],k));
+                right[o][k]=get(reverseWord(s[o]>>(4*k)));
+            }
+        }
+        auto info=make_unique<Info>(); info->cost.assign(2*V,INF);
+        auto &val=info->cost;
+        IntegerQueue pq;
+        for(int o=0;o<2;o++) for(int p=0;p<V;p++) {
+            int best=INF;
+            if(geo->nest[p]==tc[o]) best=trimmed[o].at(p);
+            else for(int k=1;k<h;k++) if(use[o][k]) {
+                int base=1+left[o][k].at(p);
+                if(base>=best) continue;
+                for(int d=0;d<4;d++) for(int l=1;l<=k+1;l++) {
+                    int q=geo->ray[p][d][l]; if(q<0) break;
+                    best=min(best,base+right[o][k].at(q));
+                }
+            }
+            int id=o*V+p; val[id]=best;
+            if(best<INF) pq.emplace(best,id);
+        }
+        while(!pq.empty()) {
+            auto [dv,id]=pq.top(); pq.pop();
+            if(dv!=val[id]) continue;
+            int o=id/V,p=id%V, no=o^1;
+            for(int d=0;d<4;d++) {
+                int q=geo->adj[p][d];
+                if(q<0||geo->nest[q]==tc[no]) continue;
+                int nid=no*V+q;
+                if(val[nid]>dv+1) { val[nid]=dv+1; pq.emplace(dv+1,nid); }
+            }
+        }
+        memo.emplace(key,move(info));
+    }
+};
+
+// Shortest full-packet transfer with all other towers fixed. A packet can land
+// on a resident tower and depart again leaving that resident completely intact.
+// Its departure range is resident_height+1, not necessarily one cell.
+struct Router {
+    int src,goal,h;
+    Word word;
+    int bh[MV];
+    int16_t distance[2*MV],prev[2*MV];
+    uint8_t pd[2*MV],pl[2*MV];
+    void run(const Board &b,int source,int target) {
+        src=source; goal=target; word=b[src]; h=height(word);
+        for(int p=0;p<geo->V;p++) bh[p]=height(b[p]);
+        bh[src]=0;
+        fill(distance,distance+2*geo->V,int16_t(-1));
+        int q[2*MV],head=0,tail=0;
+        int st=src*2; distance[st]=0; prev[st]=-1; q[tail++]=st;
+        int tc[2]={topColor(word),int(word&15)};
+        while(head<tail) {
+            int id=q[head++],p=id/2,o=id&1;
+            if(p!=src&&geo->nest[p]==tc[o]) continue;
+            int no=o^1;
+            for(int d=0;d<4;d++) for(int l=1;l<=bh[p]+1;l++) {
+                int v=geo->ray[p][d][l]; if(v<0) break;
+                if(bh[v]+h>8) continue;
+                if(v!=goal&&geo->nest[v]==tc[no]) continue;
+                int ni=v*2+no;
+                if(distance[ni]>=0) continue;
+                distance[ni]=distance[id]+1; prev[ni]=id; pd[ni]=d; pl[ni]=l;
+                q[tail++]=ni;
+            }
+        }
+    }
+    int cost(int o) const { return distance[goal*2+o]; }
+    vector<Move> path(int o) const {
+        vector<Move> a;
+        int id=goal*2+o;
+        if(distance[id]<0) return a;
+        while(prev[id]>=0) {
+            int z=prev[id],p=z/2;
+            a.push_back({int16_t(p),uint8_t(bh[p]),pd[id],pl[id]}); id=z;
+        }
+        reverse(a.begin(),a.end()); return a;
+    }
+};
+
+// Exact recursive split/transport DP for ONE selected packet, with all other
+// towers as fixed relay stations. Unlike EmptyDP, EVERY split position is used.
+// After a split the upper packet is completed first. Pending lower pieces are
+// ancestors of that packet, so crossing them cannot violate tower capacity.
+class DeliveryDP {
+    struct Action { uint8_t type=3,k=0,d=0,l=0; }; // 0 move, 1 split, 2 normalize
+    struct Info { vector<uint16_t> cost; vector<Action> action; };
+    struct Ref { Info *p; int o; };
+    struct Arc { int16_t p; uint8_t d,l; };
+    int bh[MV];
+    vector<Arc> incoming[MV];
+    unordered_map<Word,unique_ptr<Info>> memo;
+    Ref get(Word a) {
+        Word r=reverseWord(a),key=min(a,r);
+        auto it=memo.find(key);
+        if(it==memo.end()) { build(key); it=memo.find(key); }
+        return {it->second.get(),a!=key};
+    }
+    int value(Ref r,int p) const { return r.p->cost[r.o*geo->V+p]; }
+    void build(Word key) {
+        clk.check();
+        int V=geo->V,h=height(key);
+        auto res=make_unique<Info>();
+        res->cost.assign(2*V,INF); res->action.resize(2*V);
+        if(!key) {
+            fill(res->cost.begin(),res->cost.end(),0);
+            memo.emplace(key,move(res)); return;
+        }
+        Word s[2]={key,reverseWord(key)};
+        Ref left[2][8],right[2][8],trimmed[2];
+        int tc[2];
+        for(int o=0;o<2;o++) {
+            tc[o]=topColor(s[o]);
+            trimmed[o]=get(geo->normalize(s[o],geo->home[tc[o]]));
+            for(int k=1;k<h;k++) {
+                left[o][k]=get(prefix(s[o],k));
+                right[o][k]=get(reverseWord(s[o]>>(4*k)));
+            }
+        }
+        IntegerQueue pq;
+        for(int o=0;o<2;o++) for(int p=0;p<V;p++) {
+            if(bh[p]+h>8) continue;
+            int id=o*V+p,best=INF; Action act;
+            if(geo->nest[p]==tc[o]) {
+                best=value(trimmed[o],p); act={2,0,0,0};
+            } else for(int k=1;k<h;k++) {
+                int base=1+value(left[o][k],p);
+                if(base>=best) continue;
+                int reach=bh[p]+k+1;
+                for(int d=0;d<4;d++) for(int l=1;l<=reach;l++) {
+                    int q=geo->ray[p][d][l]; if(q<0) break;
+                    int z=base+value(right[o][k],q);
+                    if(z<best) { best=z; act={1,uint8_t(k),uint8_t(d),uint8_t(l)}; }
+                }
+            }
+            res->cost[id]=best; res->action[id]=act;
+            if(best<INF) pq.emplace(best,id);
+        }
+        while(!pq.empty()) {
+            auto [dv,id]=pq.top(); pq.pop();
+            if(dv!=res->cost[id]) continue;
+            int o=id/V,p=id%V,no=o^1;
+            for(auto e:incoming[p]) {
+                int q=e.p;
+                if(bh[q]+h>8||geo->nest[q]==tc[no]) continue;
+                int ni=no*V+q;
+                if(res->cost[ni]>dv+1) {
+                    res->cost[ni]=dv+1; res->action[ni]={0,0,e.d,e.l};
+                    pq.emplace(dv+1,ni);
+                }
+            }
+        }
+        memo.emplace(key,move(res));
+    }
+    void emit(World &w,Word word,int p) {
+        while((word=geo->normalize(word,p))) {
+            Ref ref=get(word); int id=ref.o*geo->V+p;
+            if(ref.p->cost[id]>=INF) throw logic_error("unreachable delivery");
+            Action a=ref.p->action[id]; int h=height(word);
+            int base=height(w.b[p])-h;
+            if(base<0) throw logic_error("packet disappeared");
+            if(a.type==0) {
+                int q=geo->ray[p][a.d][a.l];
+                w.move({int16_t(p),uint8_t(base),a.d,a.l});
+                word=reverseWord(word); p=q;
+            } else if(a.type==1) {
+                Word lo=prefix(word,a.k),hi=reverseWord(word>>(4*a.k));
+                int q=geo->ray[p][a.d][a.l];
+                w.move({int16_t(p),uint8_t(base+a.k),a.d,a.l});
+                emit(w,hi,q); word=lo;
+            } else throw logic_error("unexpected DP boundary");
+        }
+    }
+public:
+    DeliveryDP(const Board &b,int selected) {
+        memo.reserve(128);
+        for(int p=0;p<geo->V;p++) bh[p]=p==selected ? 0 : height(b[p]);
+        for(int p=0;p<geo->V;p++) for(int d=0;d<4;d++) {
+            int maxl=min(8,bh[p]+1);
+            for(int l=1;l<=maxl;l++) {
+                int q=geo->ray[p][d][l]; if(q<0) break;
+                incoming[q].push_back({int16_t(p),uint8_t(d),uint8_t(l)});
+            }
+        }
+    }
+    int evaluate(Word s,int p) { return value(get(s),p); }
+    void finish(World &w,int p) { Word a=w.b[p]; get(a); emit(w,a,p); }
+    // Return control at the first split or return-home event. This permits
+    // new colors to join the remaining packet after another color was delivered.
+    void firstEvent(World &w,int p) {
+        Word word=w.b[p]; const int h=height(word); get(word);
+        for(int guard=0;guard<20000;guard++) {
+            Ref r=get(word); int id=r.o*geo->V+p;
+            if(r.p->cost[id]>=INF) throw logic_error("unreachable event");
+            Action a=r.p->action[id];
+            int base=height(w.b[p])-h;
+            if(base<0) throw logic_error("bad packet base");
+            if(a.type==1) {
+                w.move({int16_t(p),uint8_t(base+a.k),a.d,a.l}); return;
+            }
+            if(a.type!=0) throw logic_error("bad event action");
+            int q=geo->ray[p][a.d][a.l];
+            w.move({int16_t(p),uint8_t(base),a.d,a.l});
+            word=reverseWord(word); p=q;
+            if(height(geo->normalize(word,p))<h) return;
+        }
+        throw logic_error("event guard");
+    }
+};
+
+// A guaranteed inexpensive completion used near the deadline. Full towers are
+// opened first; thereafter every floor can accept a single travelling slime.
+static void finishSingles(World &w) {
+    LOCAL_NOTE(trace.count_by("finish_singles_calls", 1);)
+    while(w.remaining) {
+        int s=-1,best=-1;
+        for(int p=0;p<geo->V;p++) if(w.b[p]) {
+            int h=height(w.b[p]),c=topColor(w.b[p]);
+            int score=(h==8?100000:0)+geo->dist[p][geo->home[c]]*10+h;
+            if(score>best) best=score,s=p;
+        }
+        int c=topColor(w.b[s]),goal=geo->home[c],hs=height(w.b[s]);
+        int bh[MV]; for(int p=0;p<geo->V;p++) bh[p]=height(w.b[p]);
+        bh[s]=height(geo->normalize(prefix(w.b[s],hs-1),s));
+        int16_t prev[MV]; uint8_t dd[MV],ll[MV]; fill(prev,prev+geo->V,int16_t(-2));
+        int q[MV],head=0,tail=0; prev[s]=-1;q[tail++]=s;
+        while(head<tail&&prev[goal]==-2) {
+            int p=q[head++];
+            for(int d=0;d<4;d++) for(int l=1;l<=min(8,bh[p]+1);l++) {
+                int v=geo->ray[p][d][l];if(v<0)break;
+                if(bh[v]>=8||prev[v]!=-2) continue;
+                prev[v]=p;dd[v]=d;ll[v]=l;q[tail++]=v;
+            }
+        }
+        if(prev[goal]==-2) throw logic_error("single blocked by full towers");
+        vector<Move> path;
+        for(int v=goal;prev[v]>=0;v=prev[v]) {
+            int p=prev[v];
+            path.push_back({int16_t(p),uint8_t(p==s?hs-1:bh[p]),dd[v],ll[v]});
+        }
+        reverse(path.begin(),path.end());
+        if(path.empty()) throw logic_error("empty singleton route");
+        for(auto m:path) w.move(m);
+    }
+}
+
+// Independent feasible baseline: connect each color to its nest by a randomized
+// incremental Steiner tree, then collect bottom-up with capacity-aware flushing.
+static World treeBaseline(int variant) {
+    World w(geo->initial);
+    vector<int> colors;
+    double rank[13]{};
+    for(int c=1;c<=geo->K;c++) {
+        colors.push_back(c);
+        for(int p=0;p<geo->V;p++) if(geo->initial[p]==Word(c)) rank[c]+=geo->dist[p][geo->home[c]];
+        rank[c]*=(variant==0?1.0:(0.65+0.7*rng.unit()));
+    }
+    sort(colors.begin(),colors.end(),[&](int a,int b){return rank[a]>rank[b];});
+    for(int c:colors) {
+        int root=geo->home[c];
+        bool in[MV]{}; in[root]=true;
+        int parent[MV]; fill(parent,parent+geo->V,-1);
+        vector<int> terminals;
+        for(int p=0;p<geo->V;p++) if(w.b[p]==Word(c)) terminals.push_back(p);
+        while(true) {
+            int16_t d[MV],pr[MV]; fill(d,d+geo->V,int16_t(-1));
+            int q[MV],a=0,b=0;
+            for(int p=0;p<geo->V;p++) if(in[p]) { d[p]=0;pr[p]=-1;q[b++]=p; }
+            int offset=variant?rng(4):0;
+            while(a<b) {
+                int p=q[a++];
+                for(int z=0;z<4;z++) {
+                    int dir=(z+offset)&3,v=geo->adj[p][dir];
+                    if(v>=0&&d[v]<0) { d[v]=d[p]+1;pr[v]=p;q[b++]=v; }
+                }
+            }
+            int pick=-1; double val=1e30;
+            for(int p:terminals) if(!in[p]) {
+                double z=d[p]+(variant?0.15*rng.unit():0.0);
+                if(z<val) val=z,pick=p;
+            }
+            if(pick<0) break;
+            for(int p=pick;!in[p];p=pr[p]) { in[p]=true;parent[p]=pr[p]; }
+        }
+        vector<int> children[MV];
+        for(int p=0;p<geo->V;p++) if(parent[p]>=0) children[parent[p]].push_back(p);
+        auto topCount=[&](int p) {
+            Word a=w.b[p]; int n=0;
+            while(a&&topColor(a)==c) { n++;a=prefix(a,height(a)-1); }
+            return n;
+        };
+        function<void(int)> flush=[&](int p) {
+            if(p==root) return;
+            while(topCount(p)) {
+                int v=parent[p]; if(v<0) throw logic_error("missing tree parent");
+                int amt=topCount(p),space=8-height(w.b[v]);
+                if(space<amt&&topCount(v)) { flush(v);space=8-height(w.b[v]); }
+                int take=min(amt,space);
+                if(take<=0) throw logic_error("baseline capacity");
+                int leave=height(w.b[p])-take,d=-1;
+                for(int z=0;z<4;z++) if(geo->adj[p][z]==v) d=z;
+                int len=1,dest=v;
+                // A resident of a different color can propel this packet past
+                // empty straight sections of its collection tree.
+                while(len<leave+1 && dest!=root && topCount(dest)==0) {
+                    int q=parent[dest];
+                    if(q<0||geo->adj[dest][d]!=q||height(w.b[q])+take>8) break;
+                    dest=q;len++;
+                }
+                w.move({int16_t(p),uint8_t(leave),uint8_t(d),uint8_t(len)});
+            }
+        };
+        function<void(int)> dfs=[&](int p) {
+            if(variant) shuffle(children[p].begin(),children[p].end(),std::mt19937(rng.next()));
+            for(int q:children[p]) dfs(q);
+            flush(p);
+        };
+        dfs(root);
+    }
+    if(w.remaining) throw logic_error("baseline incomplete");
+    return w;
+}
+
+struct Group {
+    bool active=true;
+    int p,h,mask,family=0;
+    Word word,canonical;
+    int value;
+    array<uint16_t,MV> distance;
+};
+struct PairCandidate {
+    double priority;
+    int a,b;
+    array<int16_t,3> meet;
+    bool operator<(const PairCandidate &x)const {return priority<x.priority;}
+};
+struct MergePlan {
+    double score=-1;
+    vector<Move> moves;
+};
+
+class Constructor {
+    EmptyDP &pot;
+    World w;
+    vector<Group> groups;
+    int at[MV];
+    priority_queue<PairCandidate> pq;
+    double weight[weight_count];
+    double searchEnd;
+    int variant,maxColors,maxRuns,familyCounter=0;
+    size_t incumbent;
+    bool collecting=true;
+    int addGroup(int p,int family) {
+        Group g;g.p=p;g.word=w.b[p];g.h=height(g.word);g.mask=colorMask(g.word);g.family=family;
+        g.canonical=geo->parity[p]?reverseWord(g.word):g.word;
+        g.value=pot.value(g.word,p);
+        fill(g.distance.begin(),g.distance.end(),uint16_t(INF));
+        int q[MV],head=0,tail=0;g.distance[p]=0;q[tail++]=p;
+        int tc[2]={topColor(g.canonical),int(g.canonical&15)};
+        while(head<tail) {
+            int v=q[head++];
+            if(v!=p&&geo->nest[v]==tc[geo->parity[v]]) continue;
+            int off=(variant&1)?1:0;
+            for(int z=0;z<4;z++) {
+                int u=geo->adj[v][(z+off)&3];
+                if(u>=0&&g.distance[u]==INF) {g.distance[u]=g.distance[v]+1;q[tail++]=u;}
+            }
+        }
+        groups.push_back(g); return at[p]=int(groups.size())-1;
+    }
+    void addPair(int ai,int bi) {
+        const Group &a=groups[ai],&b=groups[bi];
+        if(!a.active||!b.active||a.h+b.h>8) return;
+        if(a.family&&a.family==b.family) return;
+        if(__builtin_popcount(unsigned(a.mask|b.mask))>maxColors) return;
+        Word ab=joinWord(a.canonical,b.canonical),ba=joinWord(b.canonical,a.canonical);
+        if(min(runs(ab),runs(ba))>maxRuns) return;
+        auto ab0=pot.get(ab), ba0=pot.get(ba);
+        auto ab1=pot.get(reverseWord(ab)), ba1=pot.get(reverseWord(ba));
+        double bs[3]={-1,-1,-1}; int bp[3]={-1,-1,-1};
+        int old=a.value+b.value;
+        for(int p=0;p<geo->V;p++) {
+            int d=int(a.distance[p])+b.distance[p];
+            if(d>=old||d>=max_pair_steps) continue;
+            if(p!=a.p&&p!=b.p&&height(w.b[p])+a.h+b.h>8) continue;
+            int future=geo->parity[p]?min(ab1.at(p),ba1.at(p)):min(ab0.at(p),ba0.at(p));
+            int gain=old-d-future;
+            if(gain<=0) continue;
+            double sc=gain*weight[d];
+            for(int j=0;j<3;j++) if(sc>bs[j]) {
+                for(int k=2;k>j;k--) {bs[k]=bs[k-1];bp[k]=bp[k-1];}
+                bs[j]=sc;bp[j]=p;break;
+            }
+        }
+        if(bp[0]<0) return;
+        double noise=variant?0.93+0.14*rng.unit():1.0;
+        pq.push({bs[0]*noise,ai,bi,{int16_t(bp[0]),int16_t(bp[1]),int16_t(bp[2])}});
+    }
+    void sync(const Board &before,int family) {
+        vector<int> fresh;
+        for(int p=0;p<geo->V;p++) if(before[p]!=w.b[p]) {
+            if(at[p]>=0) groups[at[p]].active=false;
+            at[p]=-1;
+        }
+        for(int p=0;p<geo->V;p++) if(before[p]!=w.b[p]&&w.b[p]) fresh.push_back(addGroup(p,family));
+        if(!collecting) return;
+        for(int a:fresh) {
+            for(int b=0;b<a;b++) if(groups[b].active) {
+                if(clk.elapsed()>searchEnd) {collecting=false;return;}
+                addPair(a,b);
+            }
+        }
+    }
+    void consider(MergePlan &best,const Board &board,const vector<Move> &first,
+                  const Router &rt,int o,int old,int m) {
+        int d=rt.cost(o); if(d<0) return;
+        Word arriving=o?reverseWord(rt.word):rt.word;
+        Word end=geo->normalize(joinWord(board[m],arriving),m);
+        int future=pot.value(end,m);
+        int steps=int(first.size())+d;
+        int gain=old-steps-future;
+        if(gain<=0) return;
+        double sc=gain*weight[min(steps,max_pair_steps)];
+        if(sc<=best.score) return;
+        auto path=rt.path(o);
+        best.score=sc;best.moves=first;
+        best.moves.insert(best.moves.end(),path.begin(),path.end());
+    }
+    MergePlan planPair(const PairCandidate &cand) {
+        const Group &a=groups[cand.a],&b=groups[cand.b];
+        MergePlan best;
+        vector<int> meet;
+        for(int p:cand.meet) if(p>=0) meet.push_back(p);
+        meet.push_back(a.p);meet.push_back(b.p);
+        sort(meet.begin(),meet.end());meet.erase(unique(meet.begin(),meet.end()),meet.end());
+        for(int m:meet) {
+            if(clk.elapsed()>searchEnd) break;
+            int resident=(m==a.p||m==b.p)?0:height(w.b[m]);
+            if(a.h+b.h+resident>8) continue;
+            if(resident&&__builtin_popcount(unsigned(a.mask|b.mask|colorMask(w.b[m])))>maxColors+1) continue;
+            int old=a.value+b.value+(resident?pot.value(w.b[m],m):0);
+            if(m==a.p||m==b.p) {
+                int source=m==a.p?b.p:a.p;
+                Router rt;rt.run(w.b,source,m);
+                vector<Move> empty;
+                for(int o=0;o<2;o++) consider(best,w.b,empty,rt,o,old,m);
+                continue;
+            }
+            for(int order=0;order<2;order++) {
+                int s=order?b.p:a.p, t=order?a.p:b.p;
+                Router firstRouter;firstRouter.run(w.b,s,m);
+                for(int fo=0;fo<2;fo++) {
+                    if(firstRouter.cost(fo)<0) continue;
+                    auto first=firstRouter.path(fo);
+                    Board bb=w.b;
+                    for(auto z:first) geo->apply(bb,z);
+                    if(height(bb[m])+height(bb[t])>8) continue;
+                    Router secondRouter;secondRouter.run(bb,t,m);
+                    for(int so=0;so<2;so++) consider(best,bb,first,secondRouter,so,old,m);
+                }
+            }
+        }
+        return best;
+    }
+    void deliveryEvent(int p) {
+        Board before=w.b;
+        DeliveryDP dp(w.b,p);
+        World trial(w.b);
+        dp.firstEvent(trial,p);
+        int oldPotential=0,newPotential=0;
+        for(int v=0;v<geo->V;v++) if(before[v]!=trial.b[v]) {
+            oldPotential+=pot.value(before[v],v);
+            newPotential+=pot.value(trial.b[v],v);
+        }
+        // A split DP treats resident towers as background. Do not permanently
+        // absorb those residents at an event when that would destroy the gain.
+        // Complete the original packet instead; background towers stay intact.
+        if(newPotential+int(trial.out.size())<=oldPotential+1) {
+            for(auto m:trial.out) w.move(m);
+            sync(before,++familyCounter);
+        } else {
+            dp.finish(w,p);
+            sync(before,0);
+        }
+    }
+    int selectDelivery() {
+        int pick=-1;double best=-1;
+        for(int i=0;i<int(groups.size());i++) if(groups[i].active) {
+            const Group &g=groups[i];
+            if(g.h==8) return g.p;
+            // Farther packets go first, retaining nearer packets as relay towers.
+            double score;
+            if(variant%4==2) score=(g.h+0.5)/(g.value+2.0);
+            else if(variant%4==3) score=(g.value+2)*sqrt(double(g.h));
+            else score=g.value+1.2*g.h;
+            if(variant) score*=0.9+0.2*rng.unit();
+            if(score>best) best=score,pick=g.p;
+        }
+        return pick;
+    }
+    void finishAll() {
+        while(w.remaining) {
+            if(w.out.size()>=incumbent) throw Deadline();
+            if(clk.elapsed()>LOCAL_SECONDS(1.80)) {finishSingles(w);break;}
+            int p=-1,best=-1;
+            for(int v=0;v<geo->V;v++) if(w.b[v]) {
+                int h=height(w.b[v]);
+                int score=h*100+geo->dist[v][geo->home[topColor(w.b[v])]];
+                if(score>best) best=score,p=v;
+            }
+            DeliveryDP dp(w.b,p);dp.finish(w,p);
+        }
+    }
+public:
+    Constructor(EmptyDP &p,int var,double end,size_t best):pot(p),w(geo->initial),searchEnd(end),variant(var),incumbent(best) {
+        fill(at,at+MV,-1);groups.reserve(4096);
+        maxColors=variant%3==2?4:3;maxRuns=variant%3==1?5:4;
+        double alpha=variant==0?0.55:(variant%4==1?0.85:(variant%4==2?0.30:0.65));
+        for(int d=0;d<weight_count;d++) weight[d]=1.0/pow(d+2.0,alpha);
+    }
+    World run() {
+        for(int p=0;p<geo->V;p++) if(w.b[p]) addGroup(p,0);
+        int initial=groups.size();
+        for(int a=0;a<initial&&collecting;a++) for(int b=0;b<a;b++) {
+            if(clk.elapsed()>searchEnd) {collecting=false;break;}
+            addPair(a,b);
+        }
+        int decisions=0;
+        while(w.remaining&&collecting&&decisions<geo->M*7+40) {
+            if(clk.elapsed()>searchEnd) break;
+            if(w.out.size()>=incumbent) throw Deadline();
+            decisions++;
+            int full=-1;
+            for(int p=0;p<geo->V;p++) if(height(w.b[p])==8) {full=p;break;}
+            if(full>=0) {
+                deliveryEvent(full);continue;
+            }
+            MergePlan selected;
+            int attempts=0;
+            while(!pq.empty()&&attempts<7) {
+                auto cand=pq.top();pq.pop();
+                if(!groups[cand.a].active||!groups[cand.b].active) continue;
+                attempts++;
+                auto plan=planPair(cand);
+                if(plan.score>selected.score) selected=move(plan);
+                if(selected.score>0) break;
+                if(clk.elapsed()>searchEnd) break;
+            }
+            if(selected.score>0) {
+                Board before=w.b;
+                for(auto m:selected.moves) w.move(m);
+                sync(before,0);
+            } else {
+                if(clk.elapsed()>searchEnd) break;
+                int p=selectDelivery(); if(p<0) break;
+                deliveryEvent(p);
+            }
+        }
+        finishAll();
+        return move(w);
+    }
+};
+
+// A shortest fixed-background transfer of a specified TOP portion. The first
+// launch may use a nest stack which disappears immediately after departure.
+class PortionRouter {
+    int bg[MV], source, keep, amount;
+    Word packet;
+    int16_t ds[2*MV], parent[2*MV];
+    uint8_t dir[2*MV], len[2*MV];
+public:
+    void run(const Board& b,int s,int k,int goal,int maxLength=INF) {
+        source=s;keep=k;packet=b[s]>>(4*k);amount=height(packet);
+        for(int p=0;p<geo->V;p++) bg[p]=height(b[p]);
+        bg[s]=height(geo->normalize(prefix(b[s],k),s));
+        fill(ds,ds+2*geo->V,int16_t(-1));
+        int que[2*MV],head=0,tail=0;
+        ds[s*2]=0;parent[s*2]=-1;que[tail++]=s*2;
+        int top[2]={topColor(packet),int(packet&15)};
+        while(head<tail) {
+            int z=que[head++],p=z/2,o=z&1;
+            if(ds[z]>=maxLength)continue;
+            if(ds[goal*2]>=0&&ds[goal*2+1]>=0)break;
+            if(z!=s*2&&geo->nest[p]==top[o]) continue;
+            int reach=(z==s*2?keep:bg[p])+1;
+            for(int d=0;d<4;d++) for(int l=1;l<=min(8,reach);l++) {
+                int q=geo->ray[p][d][l];if(q<0)break;
+                if(bg[q]+amount>8)continue;
+                int no=o^1,nz=q*2+no;
+                if(q!=goal&&geo->nest[q]==top[no])continue;
+                if(ds[nz]>=0)continue;
+                ds[nz]=ds[z]+1;parent[nz]=z;dir[nz]=d;len[nz]=l;
+                que[tail++]=nz;
+            }
+        }
+    }
+    int cost(int goal,int o) const {return ds[goal*2+o];}
+    vector<Move> path(int goal,int o) const {
+        vector<Move> a;
+        int z=goal*2+o;if(ds[z]<0)return a;
+        while(parent[z]>=0) {
+            int v=parent[z],p=v/2;
+            a.push_back({int16_t(p),uint8_t(v==source*2?keep:bg[p]),dir[z],len[z]});
+            z=v;
+        }
+        reverse(a.begin(),a.end());return a;
+    }
+};
+
+// Replace uninterrupted transfers by a shorter route with the EXACT same
+// resulting board. This also exploits launch heights created by reinsertion.
+static vector<Move> smoothRoutes(const vector<Move>& answer) {
+    Board b=geo->initial;vector<Move> out;out.reserve(answer.size());
+    for(int i=0;i<int(answer.size());) {
+        if((i&31)==0)clk.check();
+        Move first=answer[i];
+        int p=first.p,k=first.k,h=height(b[p])-k;
+        Word word=b[p]>>(4*k);Board end=b;
+        int q=p,j=i;Word traveling=word;
+        for(;j<int(answer.size())&&j<i+64;j++) {
+            Move m=answer[j];
+            if(m.p!=q||height(end[q])-m.k!=h||end[q]>>(4*m.k)!=traveling)break;
+            int dest=geo->ray[q][m.d][m.l];
+            geo->apply(end,m);q=dest;traveling=reverseWord(traveling);
+            if(geo->normalize(traveling,q)!=traveling){j++;break;}
+        }
+        if(j==i) { // Defensive only: the first operation necessarily qualifies.
+            geo->apply(b,first);out.push_back(first);i++;continue;
+        }
+        vector<Move> replacement;
+        int bestLength=j-i;
+        if(bestLength>=2) {
+            PortionRouter router;router.run(b,p,k,q,bestLength-1);
+            for(int o=0;o<2;o++) {
+                int d=router.cost(q,o);if(d<0||d>=bestLength)continue;
+                auto path=router.path(q,o);Board check=b;bool ok=true;
+                try {for(auto m:path)geo->apply(check,m);}catch(const exception&){ok=false;}
+                if(ok&&check==end){bestLength=d;replacement=move(path);}
+            }
+        }
+        if(bestLength<j-i)out.insert(out.end(),replacement.begin(),replacement.end());
+        else out.insert(out.end(),answer.begin()+i,answer.begin()+j);
+        b=end;i=j;
+    }
+    if(geo->count(b))throw logic_error("smoothing incomplete");
+    return out;
+}
+
+// Persistent IDs are initial floor-cell indices. IDs of the same color may be
+// exchanged inside an otherwise identical monochrome parcel during extraction.
+struct IdentityBoard {
+    array<array<int16_t,8>,MV> a{};
+    array<uint8_t,MV> h{};
+    array<uint8_t,MV> alive{};
+    IdentityBoard(const vector<int>& deleted={}) {
+        array<bool,MV> omit{};for(int id:deleted)omit[id]=true;
+        for(int p=0;p<geo->V;p++)if(geo->initial[p]&&!omit[p]){
+            a[p][0]=p;h[p]=1;alive[p]=1;
+        }
+    }
+    Word word(int p) const {
+        Word w=0;
+        for(int i=0;i<h[p];i++)w|=geo->initial[a[p][i]]<<(4*i);
+        return w;
+    }
+    Board words() const {Board b{};for(int p=0;p<geo->V;p++)b[p]=word(p);return b;}
+    void apply(Move m) {
+        int p=m.p,q=geo->ray[p][m.d][m.l];
+        if(m.k>=h[p]||m.l<1||m.l>m.k+1||q<0||h[q]+h[p]-m.k>8)
+            throw logic_error("identity move invalid");
+        for(int i=h[p]-1;i>=m.k;i--)a[q][h[q]++]=a[p][i];
+        h[p]=m.k;
+        for(int v:{p,q})while(h[v]&&geo->initial[a[v][h[v]-1]]==Word(geo->nest[v])){
+            alive[a[v][h[v]-1]]=0;h[v]--;
+        }
+    }
+};
+
+struct Removal {
+    vector<int> ids;
+    double priority=0;
+    uint64_t hash=0;
+};
+
+class TemporalLNS {
+public:
+    // Reused open-addressed indices. Clearing a candidate bank changes an epoch
+    // instead of allocating/freeing one unordered_map node per pattern.
+    class EpochIndex {
+        struct Slot {uint64_t key=0;int value=0;uint32_t epoch=0;};
+        vector<Slot> table;
+        uint32_t epoch=0;
+        static uint64_t hash(uint64_t x) {
+            x^=x>>30;x*=0xbf58476d1ce4e5b9ULL;x^=x>>27;x*=0x94d049bb133111ebULL;return x^(x>>31);
+        }
+    public:
+        void reset(size_t expected) {
+            size_t n=16;while(n<expected*2+16)n<<=1;
+            if(table.size()<n){table.assign(n,Slot{});epoch=0;}
+            if(++epoch==0){for(auto& e:table)e.epoch=0;epoch=1;}
+        }
+        pair<int,bool> put(uint64_t key,int value) {
+            size_t at=hash(key)&(table.size()-1);
+            while(table[at].epoch==epoch) {
+                if(table[at].key==key)return {table[at].value,false};
+                at=(at+1)&(table.size()-1);
+            }
+            table[at]={key,value,epoch};return {value,true};
+        }
+    } buildSeen,buildPackets,buildPatterns;
+    struct Pattern {array<int16_t,8> ids{};int n=0;vector<int> times;};
+    vector<Pattern> patternBuffer;
+    vector<int> patternAnchors[MV];
+    vector<array<int16_t,8>> cutIds;
+
+    struct Link {int previous,time;Move move;bool extra;};
+    struct Label {
+        int cost=INF,bonus=-1000000,path=-1;
+    };
+    // One spatial closure at a fixed schedule time. A cost bucket is fully
+    // processed before the next; equal-cost updates only change its bonus.
+    // Consequently each cell/word is settled once, without a heap for ties.
+    class SpatialQueue {
+        struct Item {int state,next;};
+        vector<int> head;
+        // The upper word is an epoch, the lower word a queued cost. Resetting
+        // a schedule layer is O(number of cost buckets), not O(V * words).
+        vector<uint64_t> queued;
+        vector<Item> nodes;
+        uint32_t epoch=0;
+        int low=INF;
+    public:
+        void prepare(int states) {
+            if(int(queued.size())<states)queued.resize(states,0);
+            if(nodes.capacity()<size_t(states)*2)nodes.reserve(size_t(states)*2);
+        }
+        void reset(int cap) {
+            if(++epoch==0){fill(queued.begin(),queued.end(),0);epoch=1;}
+            head.assign(max(1,cap+1),-1);nodes.clear();low=INF;
+        }
+        void push(int state,int cost) {
+            if(cost<0||cost>=int(head.size()))return;
+            uint64_t tag=(uint64_t(epoch)<<32)|uint32_t(cost);
+            if(queued[state]==tag)return;
+            queued[state]=tag;
+            nodes.push_back({state,head[cost]});head[cost]=int(nodes.size())-1;
+            low=min(low,cost);
+        }
+        bool pop(int ceiling,int &state,int &cost) {
+            while(low<=ceiling&&low<int(head.size())&&head[low]<0)++low;
+            if(low>ceiling||low>=int(head.size()))return false;
+            int id=head[low];head[low]=nodes[id].next;
+            state=nodes[id].state;cost=low;return true;
+        }
+    } smallQueue,packetQueue;
+    vector<Label> smallLabels,packetLabels;
+    vector<array<Label,8>> packetFromP,packetFromQ;
+    static constexpr int CHECKPOINT=16;
+    vector<IdentityBoard> checkpoints;
+    struct Flight {array<int16_t,8> id{};uint8_t n=0;};
+    // A lower resident may support flights at several times and places.
+    // slack is how many lower residents can disappear without breaking this jump.
+    struct SupportUse {Flight lower;int time,slack;};
+    struct PacketCut {
+        int time=-1,keep=0,size=0,saved=0;
+        uint64_t hash=0;
+        double priority=0;
+        bool later=false,before_split=false;
+    };
+    vector<Flight> flights;
+    vector<SupportUse> supportUses;
+    vector<PacketCut> packetCuts;
+    vector<PacketCut> later_cuts;
+    vector<vector<int>> spatialCuts;
+    vector<Link> links;
+    vector<Removal> candidates;
+    unordered_map<uint64_t,int> lastTried;
+    int iteration=0;
+    int regularSelections=0;
+#ifdef LOCAL
+    friend struct DependencyProbe;
+    bool local_dependency_extract=false;
+#endif
+    int supportWeight=5,rideWeight=1;
+    double lnsStart=0;
+    // Grow only when removing the seed actually breaks a surviving flight.
+    // Completing the flight's removal releases its route for the existing DP.
+    int growDependency(Removal& cand) const {
+        if(cand.ids.size()>=8)return 0;
+        array<bool,MV> removed{};
+        for(int id:cand.ids)removed[id]=true;
+        int rounds=0;
+        while(cand.ids.size()<8) {
+            int chosen=-1,best_added=9,best_length=-1;
+            for(int i=0;i<int(supportUses.size());i++) {
+                const auto& use=supportUses[i];
+                int lost=0;
+                for(int j=0;j<use.lower.n;j++)lost+=removed[use.lower.id[j]];
+                if(lost<=use.slack)continue;
+                const auto& flight=flights[use.time];
+                int added=0;
+                for(int j=0;j<flight.n;j++)added+=!removed[flight.id[j]];
+                if(!added||cand.ids.size()+added>8)continue;
+                const int length=int(use.lower.n)+1-use.slack;
+                if(added<best_added||(added==best_added&&length>best_length)) {
+                    chosen=i;best_added=added;best_length=length;
+                }
+            }
+            if(chosen<0)break;
+            const auto& flight=flights[supportUses[chosen].time];
+            for(int j=0;j<flight.n;j++)if(!removed[flight.id[j]]) {
+                removed[flight.id[j]]=true;cand.ids.push_back(flight.id[j]);
+            }
+            ++rounds;
+        }
+        if(rounds) {
+            sort(cand.ids.begin(),cand.ids.end());
+            cand.hash=0x51ed270b3a4dc107ULL;
+            for(int id:cand.ids)cand.hash=(cand.hash^(id+1))*0x9e3779b97f4a7c15ULL;
+        }
+        return rounds;
+    }
+#ifdef LOCAL
+    int removedCommands(const vector<int>& ids) const {
+        array<bool,MV> removed{};for(int id:ids)removed[id]=true;
+        int count=0;
+        for(const auto& flight:flights) {
+            bool all=true;
+            for(int j=0;j<flight.n;j++)all&=removed[flight.id[j]];
+            count+=all;
+        }
+        return count;
+    }
+#endif
+    static bool better(int cost,int bonus,const Label& b) {
+        return cost<b.cost||(cost==b.cost&&bonus>b.bonus);
+    }
+    static Word insertToken(Word w,int gap,int color) {
+        Word upper=gap==7?0:(w>>(4*gap))<<(4*(gap+1));
+        return prefix(w,gap)|(Word(color)<<(4*gap))|upper;
+    }
+    static Word eraseToken(Word w,int gap) {
+        // Avoid a shift by 32 when the inserted token is the top eighth slime.
+        Word upper=gap==7?0:w>>(4*(gap+1));
+        return prefix(w,gap)|(upper<<(4*gap));
+    }
+    int link(int prev,int time,Move m,bool extra) {
+        links.push_back({prev,time,m,extra});return int(links.size())-1;
+    }
+    vector<Move> reconstruct(const vector<Move>& base,int ptr) const {
+        vector<int> path;
+        while(ptr>=0){path.push_back(ptr);ptr=links[ptr].previous;}
+        reverse(path.begin(),path.end());
+        vector<Move> out;out.reserve(base.size()+path.size());
+        int j=0;
+        for(int t=0;t<=int(base.size());t++) {
+            while(j<int(path.size())&&links[path[j]].time==t&&links[path[j]].extra)
+                out.push_back(links[path[j++]].move);
+            if(t<int(base.size())) {
+                if(j<int(path.size())&&links[path[j]].time==t&&!links[path[j]].extra)
+                    out.push_back(links[path[j++]].move);
+                else out.push_back(base[t]);
+            }
+        }
+        if(j!=int(path.size()))throw logic_error("reinsertion chronology");
+        return out;
+    }
+
+    // Delete a neighborhood from the current schedule. Broken long jumps are
+    // repaired, not silently shortened; newly exposed nest slimes may go home
+    // earlier. Every surviving flight keeps its original color order.
+    bool extract(const vector<Move>& original,const vector<int>& removed,
+                 vector<Move>& base,Board& initial) {
+        IdentityBoard cur(removed);initial=cur.words();
+        return extractFrom(original,cur,0,base);
+    }
+    bool extractFrom(const vector<Move>& original,IdentityBoard& cur,int start,
+                     vector<Move>& base) {
+        base.clear();base.reserve(original.size());
+        for(int t=start;t<int(original.size());t++) {
+            if((t&63)==0)clk.check();
+            Move m=original[t];int p=m.p,q=geo->ray[p][m.d][m.l];
+            array<int,8> flight;int take=0;
+            for(int i=0;i<flights[t].n;i++) {
+                int id=flights[t].id[i];if(cur.alive[id])flight[take++]=id;
+            }
+            if(take) {
+                int keep=int(cur.h[p])-take;
+                if(keep<0)return false;
+                for(int i=0;i<take;i++)if(cur.a[p][keep+i]!=flight[i])return false;
+                Move adjusted=m;adjusted.k=keep;
+                if(m.l<=keep+1&&cur.h[q]+take<=8) {
+                    cur.apply(adjusted);base.push_back(adjusted);
+                }else {
+                    Board before=cur.words();PortionRouter rt;rt.run(before,p,keep,q);
+                    Word moving=before[p]>>(4*keep);bool mono=monoColor(moving)>0;
+                    int orientation=1;
+                    if(mono&&rt.cost(q,0)>=0&&(rt.cost(q,1)<0||rt.cost(q,0)<rt.cost(q,1)))orientation=0;
+                    if(rt.cost(q,orientation)<0)return false;
+                    auto path=rt.path(q,orientation);
+                    LOCAL_NOTE(if(local_dependency_extract){
+                        ++local_dependency.repaired_jumps;
+                        local_dependency.repair_extra_commands+=int(path.size())-1;
+                    })
+                    for(auto z:path){cur.apply(z);base.push_back(z);}
+                    if(mono&&orientation==0) {
+                        // Monochrome identities are interchangeable; retain the
+                        // original identity convention for subsequent splits.
+                        bool allAlive=true;for(int i=0;i<take;i++)allAlive&=cur.alive[flight[i]];
+                        if(allAlive) {
+                            if(cur.h[q]<take)return false;
+                            for(int i=0;i<take;i++)cur.a[q][cur.h[q]-take+i]=flight[take-1-i];
+                        }
+                    }
+                }
+                if(base.size()>original.size()-start+4)return false;
+            }
+        }
+        for(int p=0;p<geo->V;p++)if(cur.h[p])return false;
+        return true;
+    }
+
+    // A genuinely useful tie-break: enough extra residents at this launch
+    // combine the next two straight monochrome flights into one command.
+    // This changes only equal-added-command choices; smoothing still certifies
+    // both the move legality and the entire boundary color board.
+    static int shortcutSupportNeed(const Board& b,const vector<Move>& base,int t,int q,int hq) {
+        if(t+1>=int(base.size()))return INF;
+        const Move& a=base[t];const Move& z=base[t+1];
+        if(z.p!=q||z.d!=a.d||z.k!=hq)return INF;
+        const int shade=monoColor(b[a.p]>>(4*a.k));
+        if(shade<=0||geo->nest[q]==shade)return INF;
+        return max(1,int(a.l)+z.l-a.k-1);
+    }
+
+    // One-token insertion into a FIXED schedule. A state is (cell, vertical gap)
+    // in the board with that token removed. Added token-only moves cost one;
+    // existing commands cost zero, with k adjusted at the split boundary.
+    // Equal-command ties favor useful rides/launch support, never a worse score.
+    bool insertAt(const Board& initial,const vector<Move>& base,int source,int color,
+                  int initialGap,int cap,vector<Move>& result) {
+        LOCAL_NOTE(++local_single_insert_calls;)
+        if(cap<0||source<0||source>=geo->V)return false;
+        int V=geo->V,GOAL=8*V,S=GOAL+1;
+        Board b=initial;
+        if(height(b[source])>=8||initialGap<0||initialGap>height(b[source]))return false;
+        // Arbitrary initial gaps permit rebuilding a preassembled tower in a
+        // different insertion order while restoring its exact original word.
+        smallLabels.assign(S,Label());auto& label=smallLabels;
+        links.clear();links.reserve(32768);
+        label[source*8+initialGap]={0,0,-1};
+        auto& queue=smallQueue;queue.prepare(V);queue.reset(cap);
+        auto ceiling=[&](){return min(cap,label[GOAL].cost);};
+        array<int,MV> h{};for(int p=0;p<V;p++)h[p]=height(b[p]);
+        auto seed=[&](int p) {
+            if(p<0||h[p]>=8)return;
+            int s=p*8+h[p];auto z=label[s];
+            if(z.cost<=ceiling())queue.push(p,z.cost);
+        };
+        auto seedNeighborhood=[&](int p,bool changed) {
+            seed(p);
+            if(!changed)return;
+            for(int d=0;d<4;d++)for(int l=1;l<=geo->rayCount[p][d];l++) {
+                int q=geo->ray[p][d][l];
+                if(h[q]<8&&l<=h[q]+1)seed(q);
+            }
+        };
+        seed(source);
+        for(int t=0;t<=int(base.size());t++) {
+            if((t&31)==0)clk.check();
+            int pops=0,queuedPosition,queuedCost;
+            while(queue.pop(ceiling(),queuedPosition,queuedCost)) {
+                int p=queuedPosition,s=p*8+h[p];
+                Label at=label[s];
+                if(at.cost!=queuedCost||h[p]>=8)continue;
+                if(at.cost>=ceiling())continue;
+                int nextCost=at.cost+1;
+                for(int d=0;d<4;d++)for(int l=1,far=min(h[p]+1,int(geo->rayCount[p][d]));l<=far;l++) {
+                    int q=geo->ray[p][d][l];
+                    if(h[q]>=8)continue;
+                    int ns=geo->nest[q]==color?GOAL:q*8+h[q];
+                    if(better(nextCost,at.bonus,label[ns])) {
+                        Move m={int16_t(p),uint8_t(h[p]),uint8_t(d),uint8_t(l)};
+                        int ptr=link(at.path,t,m,true);
+                        label[ns]={nextCost,at.bonus,ptr};
+                        if(ns!=GOAL)queue.push(q,nextCost);
+                    }
+                }
+                if((++pops&1023)==0)clk.check();
+            }
+            if(t==int(base.size()))break;
+            queue.reset(ceiling());
+            Move m=base[t];int p=m.p,q=geo->ray[p][m.d][m.l];
+            int hp=h[p],hq=h[q];
+            const int supportNeed=supportWeight?shortcutSupportNeed(b,base,t,q,hq):INF;
+            array<Label,8> fromP,fromQ;
+            for(int g=0;g<8;g++) {
+                fromP[g]=label[p*8+g];fromQ[g]=label[q*8+g];
+                label[p*8+g]=Label();label[q*8+g]=Label();
+            }
+            geo->apply(b,m);h[p]=height(b[p]);h[q]=height(b[q]);
+            // Inserting one item into a stack only changes its normalisation
+            // when it is at/above the top surviving background item. Deriving
+            // its position algebraically avoids rebuilding/reversing two words
+            // for every gap, while retaining the exact before-home height test.
+            auto transition=[&](int location,int gap,int addedKeep,const Label& at) {
+                if(at.cost>ceiling())return;
+                const bool held=location==p&&addedKeep;
+                if(!held&&hq+hp-m.k+1>8)return;
+                const int tagCell=held?p:q;
+                const int tagIndex=location==p&&!held?hq+hp-gap:gap;
+                const bool gone=geo->nest[tagCell]==color&&tagIndex>=h[tagCell];
+                int bonus=at.bonus;
+                if(location==p)bonus+=held?supportWeight:rideWeight;
+                if(held&&supportNeed<=1)bonus+=3*supportWeight;
+                LOCAL_NOTE(local_shortcut_support_states += held && supportNeed <= 1;)
+                Move adjusted=m;adjusted.k+=addedKeep;
+                if(gone||tagIndex<=h[tagCell]) {
+                    const int ns=gone?GOAL:tagCell*8+tagIndex;
+                    if(!gone&&h[tagCell]>=8)return;
+                    if(better(at.cost,bonus,label[ns])) {
+                        int ptr=at.path;
+                        if(addedKeep)ptr=link(ptr,t,adjusted,false);
+                        label[ns]={at.cost,bonus,ptr};
+                    }
+                }else if(at.cost<ceiling()) {
+                    // Non-home item above a consumed background suffix. Its
+                    // immediate departure exposes that suffix and restores the
+                    // fixed schedule exactly; it can use the suffix to launch.
+                    const int keep=tagIndex,newCost=at.cost+1;
+                    const int nb=bonus+3*keep;
+                    int ptr=at.path;
+                    if(addedKeep)ptr=link(ptr,t,adjusted,false);
+                    for(int d=0;d<4;d++)for(int l=1,far=min(keep+1,int(geo->rayCount[tagCell][d]));l<=far;l++) {
+                        const int dest=geo->ray[tagCell][d][l];
+                        if(h[dest]>=8)continue;
+                        const int ns=geo->nest[dest]==color?GOAL:dest*8+h[dest];
+                        if(!better(newCost,nb,label[ns]))continue;
+                        Move escape={int16_t(tagCell),uint8_t(keep),uint8_t(d),uint8_t(l)};
+                        int np=link(ptr,t+1,escape,true);
+                        label[ns]={newCost,nb,np};
+                        if(ns!=GOAL)queue.push(dest,newCost);
+                    }
+                }
+            };
+            if(hp<8)for(int g=0;g<=hp;g++) {
+                if(g>=m.k)transition(p,g,0,fromP[g]);
+                if(g<=m.k)transition(p,g,1,fromP[g]);
+            }
+            if(hq<8)for(int g=0;g<=hq;g++)transition(q,g,0,fromQ[g]);
+            // All other labels can simply wait. Only these cells' outgoing
+            // edges and the incoming edges to these cells have changed.
+            // Equal heights alone are insufficient: a nest event can consume
+            // a previous top-gap label. Re-open incoming edges whenever that
+            // label deteriorated, even if the physical height stayed equal.
+            bool reopenP=h[p]!=hp,reopenQ=h[q]!=hq;
+            if(hp<8&&!reopenP)reopenP=better(fromP[hp].cost,fromP[hp].bonus,label[p*8+hp]);
+            if(hq<8&&!reopenQ)reopenQ=better(fromQ[hq].cost,fromQ[hq].bonus,label[q*8+hq]);
+            LOCAL_NOTE(++local_event_layers; local_event_reopens += reopenP + reopenQ;)
+            seedNeighborhood(p,reopenP);seedNeighborhood(q,reopenQ);
+        }
+        if(label[GOAL].cost>cap)return false;
+        result=reconstruct(base,label[GOAL].path);
+        if(int(result.size())!=int(base.size())+label[GOAL].cost)
+            throw logic_error("reinsertion cost mismatch");
+        return true;
+    }
+
+    bool insert(const Board& initial,const vector<Move>& base,int token,int cap,
+                vector<Move>& result) {
+        if(initial[token])throw logic_error("insertion initial cell occupied");
+        return insertAt(initial,base,token,int(geo->initial[token]),0,cap,result);
+    }
+
+    // Keep the parent order and exchange only its first two members for the
+    // second completion. Later members see the different routes built by them.
+    bool insertTwoOrders(const Board& initial,const vector<Move>& base,
+                         const vector<pair<double,int>>& order,int allowance,
+                         vector<Move>& result) {
+        const int n=int(order.size());assert(2<=n&&n<=4);
+        LOCAL_NOTE(
+            ++local_two_order.attempts;++local_two_order.sizes[n];
+            local_two_order_alternate=false;
+        )
+        int bestLength=allowance+1;
+        for(int branch=0;branch<2;branch++) {
+            LOCAL_NOTE(++local_two_order.started[branch];TwoOrderTimer timer(branch);)
+            Board restored=initial;vector<Move> tail=base;bool ok=true;
+            for(int j=0;j<n;j++) {
+                clk.check();
+                const int at=branch&&j<2?1-j:j,id=order[at].second;
+                vector<Move> next;
+                // Reinsertion only adds commands. Once a completion exists,
+                // prune the second order unless it can be strictly shorter.
+                const int cap=min(allowance,bestLength-1)-int(tail.size());
+                LOCAL_NOTE(++local_two_order.insert_calls[branch];)
+                if(!insert(restored,tail,id,cap,next)){ok=false;break;}
+                ++insertions;tail=move(next);restored[id]=geo->initial[id];
+            }
+            if(!ok){LOCAL_NOTE(++local_two_order.failed[branch];)continue;}
+            LOCAL_NOTE(
+                ++local_two_order.finished[branch];
+                if(branch) {
+                    ++local_two_order.alternate_selected;local_two_order_alternate=true;
+                    if(bestLength<=allowance) {
+                        ++local_two_order.shorter;
+                        local_two_order.raw_saved+=bestLength-int(tail.size());
+                    }else ++local_two_order.rescued;
+                }
+            )
+            bestLength=int(tail.size());result=move(tail);
+        }
+        const bool ok=bestLength<=allowance;
+        LOCAL_NOTE(local_two_order.completed+=ok;)
+        return ok;
+    }
+
+    // Reinsert a contiguous parcel as a unit. Its word can reverse and lose
+    // its top color run on a nest. The state set is the closure of those two
+    // operations, rather than every possible permutation/subset of its IDs.
+    bool insertPacket(const Board& initial,const vector<Move>& base,int source,
+                      Word packet,int cap,vector<Move>& result) {
+        LOCAL_NOTE(++local_packet_insert_calls;)
+        if(cap<0||!packet)return false;
+        vector<Word> words;unordered_map<Word,int> index;
+        auto addWord=[&](Word w) {
+            if(!w||index.count(w))return;
+            int id=words.size();index.emplace(w,id);words.push_back(w);
+        };
+        addWord(packet);
+        for(int i=0;i<int(words.size());i++) {
+            Word w=words[i];addWord(reverseWord(w));
+            addWord(geo->normalize(w,geo->home[topColor(w)]));
+        }
+        int W=words.size(),V=geo->V,stride=V*8,GOAL=W*stride;
+        vector<int> sz(W),rev(W);vector<array<int,13>> trimmed(W);
+        for(int i=0;i<W;i++) {
+            sz[i]=height(words[i]);rev[i]=index.at(reverseWord(words[i]));
+            for(int c=0;c<=geo->K;c++) {
+                Word w=c?geo->normalize(words[i],geo->home[c]):words[i];
+                trimmed[i][c]=w?index.at(w):-1;
+            }
+        }
+        Board b=initial;array<int,MV> h{};
+        for(int p=0;p<V;p++)h[p]=height(b[p]);
+        if(h[source]+height(packet)>8||geo->normalize(b[source],source)!=b[source])return false;
+        packetLabels.assign(GOAL+1,Label());auto& labels=packetLabels;
+        labels[source*8+h[source]]={0,0,-1};
+        links.clear();links.reserve(32768);
+        auto& queue=packetQueue;queue.prepare(W*V);queue.reset(cap);
+        auto ceiling=[&](){return min(cap,labels[GOAL].cost);};
+        auto seed=[&](int p) {
+            if(p<0)return;
+            for(int i=0;i<W;i++)if(h[p]+sz[i]<=8) {
+                const Label& a=labels[i*stride+p*8+h[p]];
+                if(a.cost<=ceiling())queue.push(i*V+p,a.cost);
+            }
+        };
+        auto seedNeighborhood=[&](int p,bool changed) {
+            seed(p);if(!changed)return;
+            for(int d=0;d<4;d++)for(int l=1;l<=8;l++) {
+                int q=geo->ray[p][d][l];if(q<0)break;
+                if(l<=h[q]+1)seed(q);
+            }
+        };
+        packetFromP.resize(W);packetFromQ.resize(W);
+        auto& fromP=packetFromP;auto& fromQ=packetFromQ;
+        seed(source);
+        for(int t=0;t<=int(base.size());t++) {
+            if((t&15)==0)clk.check();
+            int state,queuedCost,pops=0;
+            while(queue.pop(ceiling(),state,queuedCost)) {
+                int i=state/V,p=state%V,n=sz[i];
+                if(h[p]+n>8)continue;
+                Label at=labels[i*stride+p*8+h[p]];
+                if(at.cost!=queuedCost||at.cost>=ceiling())continue;
+                int nc=at.cost+1,ri=rev[i];
+                for(int d=0;d<4;d++)for(int l=1,far=min(h[p]+1,int(geo->rayCount[p][d]));l<=far;l++) {
+                    int q=geo->ray[p][d][l];
+                    if(h[q]+n>8)continue;
+                    int ni=trimmed[ri][geo->nest[q]];
+                    int ns=ni<0?GOAL:ni*stride+q*8+h[q];
+                    if(!better(nc,at.bonus,labels[ns]))continue;
+                    Move m={int16_t(p),uint8_t(h[p]),uint8_t(d),uint8_t(l)};
+                    labels[ns]={nc,at.bonus,link(at.path,t,m,true)};
+                    if(ni>=0)queue.push(ni*V+q,nc);
+                }
+                if((++pops&2047)==0)clk.check();
+            }
+            if(t==int(base.size()))break;
+            queue.reset(ceiling());
+            Move m=base[t];int p=m.p,q=geo->ray[p][m.d][m.l];
+            int hp=h[p],hq=h[q];
+            const int supportNeed=supportWeight?shortcutSupportNeed(b,base,t,q,hq):INF;
+            for(int i=0;i<W;i++)for(int g=0;g<8;g++) {
+                fromP[i][g]=labels[i*stride+p*8+g];
+                fromQ[i][g]=labels[i*stride+q*8+g];
+                labels[i*stride+p*8+g]=Label();
+                labels[i*stride+q*8+g]=Label();
+            }
+            geo->apply(b,m);h[p]=height(b[p]);h[q]=height(b[q]);
+            auto transition=[&](int i,int location,int gap,bool retained,const Label& at) {
+                if(at.cost>ceiling())return;
+                const int n=sz[i];
+                const bool held=location==p&&retained;
+                if(!held&&hq+hp-m.k+n>8)return;
+                const int add=held?n:0;
+                const int tagCell=held?p:q;
+                const int tagIndex=location==p&&!held?hq+hp-gap:gap;
+                const int wi=location==p&&!held?rev[i]:i;
+                // A background non-home item above the parcel protects all of
+                // it. Otherwise only its own top home-colour run is removed.
+                const int ni=tagIndex<h[tagCell]?wi:trimmed[wi][geo->nest[tagCell]];
+                const int remain=ni<0?0:sz[ni];
+                int bonus=at.bonus;
+                if(location==p)bonus+=(held?supportWeight:rideWeight)*n;
+                if(held&&supportNeed<=n)bonus+=3*supportWeight;
+                LOCAL_NOTE(local_shortcut_support_states += held && supportNeed <= n;)
+                Move adj=m;adj.k+=add;
+                if(!remain||tagIndex<=h[tagCell]) {
+                    const int ns=ni<0?GOAL:ni*stride+tagCell*8+tagIndex;
+                    if(ni>=0&&h[tagCell]+remain>8)return;
+                    if(better(at.cost,bonus,labels[ns])) {
+                        int ptr=at.path;if(add)ptr=link(ptr,t,adj,false);
+                        labels[ns]={at.cost,bonus,ptr};
+                    }
+                }else if(at.cost<ceiling()) {
+                    const int nc=at.cost+1,nb=bonus+3*tagIndex;
+                    int ptr=at.path;if(add)ptr=link(ptr,t,adj,false);
+                    const int ri=rev[ni];
+                    for(int d=0;d<4;d++)for(int l=1,far=min(tagIndex+1,int(geo->rayCount[tagCell][d]));l<=far;l++) {
+                        const int dest=geo->ray[tagCell][d][l];
+                        if(h[dest]+remain>8)continue;
+                        const int next=trimmed[ri][geo->nest[dest]];
+                        const int ns=next<0?GOAL:next*stride+dest*8+h[dest];
+                        if(!better(nc,nb,labels[ns]))continue;
+                        Move escape={int16_t(tagCell),uint8_t(tagIndex),uint8_t(d),uint8_t(l)};
+                        labels[ns]={nc,nb,link(ptr,t+1,escape,true)};
+                        if(next>=0)queue.push(next*V+dest,nc);
+                    }
+                }
+            };
+            for(int i=0;i<W;i++) {
+                if(hp+sz[i]<=8)for(int g=0;g<=hp;g++) {
+                    if(g>=m.k)transition(i,p,g,false,fromP[i][g]);
+                    if(g<=m.k)transition(i,p,g,true,fromP[i][g]);
+                }
+                if(hq+sz[i]<=8)for(int g=0;g<=hq;g++)transition(i,q,g,false,fromQ[i][g]);
+            }
+            bool reopenP=h[p]!=hp,reopenQ=h[q]!=hq;
+            for(int i=0;i<W;i++) {
+                if(!reopenP&&hp+sz[i]<=8)
+                    reopenP=better(fromP[i][hp].cost,fromP[i][hp].bonus,labels[i*stride+p*8+hp]);
+                if(!reopenQ&&hq+sz[i]<=8)
+                    reopenQ=better(fromQ[i][hq].cost,fromQ[i][hq].bonus,labels[i*stride+q*8+hq]);
+            }
+            LOCAL_NOTE(++local_event_layers; local_event_reopens += reopenP + reopenQ;)
+            seedNeighborhood(p,reopenP);seedNeighborhood(q,reopenQ);
+        }
+        if(labels[GOAL].cost>cap)return false;
+        result=reconstruct(base,labels[GOAL].path);
+        if(int(result.size())!=int(base.size())+labels[GOAL].cost)
+            throw logic_error("packet reinsertion cost mismatch");
+        return true;
+    }
+
+    bool packetNeighbor(const vector<Move>& current,const PacketCut& cut,int slack,
+                        vector<Move>& result) {
+        IdentityBoard cur=checkpointAt(current,cut.time);
+        int source=current[cut.time].p;
+        Word before=cur.word(source),packet=before>>(4*cut.keep);
+        if(height(packet)<2||geo->normalize(prefix(before,cut.keep),source)!=prefix(before,cut.keep))return false;
+        for(int i=cut.keep;i<cur.h[source];i++)cur.alive[cur.a[source][i]]=0;
+        cur.h[source]=cut.keep;Board initial=cur.words();
+        vector<Move> base;
+        if(!extractFrom(current,cur,cut.time,base))return false;
+        int cap=int(current.size())-cut.time+slack-int(base.size());
+        vector<Move> tail;
+        if(!insertPacket(initial,base,source,packet,cap,tail))return false;
+        result.assign(current.begin(),current.begin()+cut.time);
+        result.insert(result.end(),tail.begin(),tail.end());
+        return true;
+    }
+
+    IdentityBoard checkpointAt(const vector<Move>& current,int time) const {
+        IdentityBoard b=checkpoints[time/CHECKPOINT];
+        for(int t=time/CHECKPOINT*CHECKPOINT;t<time;t++)b.apply(current[t]);
+        return b;
+    }
+
+    // Delete an already assembled top parcel from a suffix, then restore its
+    // individual colors in arbitrary order. Initial vertical gaps are derived
+    // from the original ranks, so every reconstruction starts from EXACTLY the
+    // same tower. Once inserted, the members may split, ride, and meet again.
+    bool flexibleNeighbor(const vector<Move>& current,const PacketCut& cut,int slack,
+                          vector<Move>& result) {
+        IdentityBoard cur=checkpointAt(current,cut.time);
+        int source=current[cut.time].p;
+        Word before=cur.word(source),packet=before>>(4*cut.keep);
+        const int n=height(packet);
+        if(n<2||n>8||geo->normalize(prefix(before,cut.keep),source)!=prefix(before,cut.keep))return false;
+        for(int i=cut.keep;i<cur.h[source];i++)cur.alive[cur.a[source][i]]=0;
+        cur.h[source]=uint8_t(cut.keep);
+        const Board initial=cur.words();
+        vector<Move> skeleton;
+        if(!extractFrom(current,cur,cut.time,skeleton))return false;
+        const int allowance=int(current.size())-cut.time+slack;
+        int bestLength=allowance+1;
+        vector<Move> bestTail;
+        int mode=rng(4),rounds=n<=4?2:1;
+        for(int round=0;round<rounds;round++) {
+            clk.check();
+            array<int,8> order{};
+            iota(order.begin(),order.begin()+n,0);
+            int style=(mode+round)%4;
+            if(style==0)reverse(order.begin(),order.begin()+n);
+            else if(style==2) {
+                stable_sort(order.begin(),order.begin()+n,[&](int a,int b){
+                    int ca=int((packet>>(4*a))&15),cb=int((packet>>(4*b))&15);
+                    return geo->dist[source][geo->home[ca]]>geo->dist[source][geo->home[cb]];
+                });
+            }else if(style==3) {
+                for(int j=n-1;j>0;j--)swap(order[j],order[rng(j+1)]);
+            }
+            // The genuine top never matches this nest. Install it first to
+            // avoid an unnormalised intermediate start when rebuilding a nest.
+            if(geo->nest[source]) {
+                auto at=find(order.begin(),order.begin()+n,n-1);
+                rotate(order.begin(),at,at+1);
+            }
+            Board restored=initial;unsigned inserted=0;
+            vector<Move> tail=skeleton;bool ok=true;
+            for(int j=0;j<n;j++) {
+                int rank=order[j],c=int((packet>>(4*rank))&15);
+                int gap=cut.keep+__builtin_popcount(inserted&((1u<<rank)-1));
+                Word nextInitial=insertToken(restored[source],gap,c);
+                if(geo->normalize(nextInitial,source)!=nextInitial){ok=false;break;}
+                vector<Move> next;
+                int cap=min(allowance,bestLength-1)-int(tail.size());
+                if(!insertAt(restored,tail,source,c,gap,cap,next)){ok=false;break;}
+                ++insertions;tail=move(next);restored[source]=nextInitial;inserted|=1u<<rank;
+            }
+            if(ok&&restored[source]==before&&int(tail.size())<bestLength) {
+                bestLength=int(tail.size());bestTail=move(tail);
+            }
+        }
+        if(bestLength>allowance)return false;
+        result.assign(current.begin(),current.begin()+cut.time);
+        result.insert(result.end(),bestTail.begin(),bestTail.end());
+        return true;
+    }
+
+    // Replan top portions of TWO towers at one exact intermediate boundary.
+    // Each removed member retains (source, original rank); reinsertion can use
+    // unrelated trajectories and reassemble either mixed or monochrome parcels.
+    // The prefix is never altered and the complete initial color board is restored.
+    bool pairedNeighbor(const vector<Move>& current,int slack,vector<Move>& result) {
+        LOCAL_NOTE(local_late_paired_anchor=false;)
+        const int T=int(current.size());if(T<3)return false;
+        int time;
+        if(!packetCuts.empty()&&rng(3)) {
+            int z=rng(4)?min(rng(int(packetCuts.size())),rng(int(packetCuts.size()))):rng(int(packetCuts.size()));
+            time=packetCuts[z].time;
+            LOCAL_NOTE(
+                local_late_paired_anchor=packetCuts[z].later;
+                local_late_start.attempts[2]+=local_late_paired_anchor;
+            )
+        } else {
+            // Bias towards an early/intermediate boundary without always
+            // destroying the initial gathering work that has already been paid.
+            time=min(rng(T),rng(T));
+        }
+        IdentityBoard cur=checkpointAt(current,time);
+        const Board boundary=cur.words();
+        int p=current[time].p,hp=cur.h[p];
+        if(!hp)return false;
+        const int totalLimit=rng(4)?6:8;
+        auto keepFor=[&](int cell,int maximum,bool randomize) {
+            const int h=cur.h[cell];int ks[8],count=0;
+            for(int k=max(0,h-maximum);k<h;k++)
+                if(geo->normalize(prefix(boundary[cell],k),cell)==prefix(boundary[cell],k))ks[count++]=k;
+            if(!count)return -1;
+            return ks[randomize?rng(count):0];
+        };
+        int keepP=keepFor(p,min(hp,totalLimit-1),rng(4)==0);
+        if(keepP<0)return false;
+        int np=hp-keepP;
+        unsigned pc=unsigned(colorMask(boundary[p]>>(4*keepP)));
+        struct Partner {int cell,keep;double cost;};
+        vector<Partner> partners;partners.reserve(geo->M);
+        int firstDestination=geo->ray[p][current[time].d][current[time].l];
+        for(int q=0;q<geo->V;q++)if(q!=p&&cur.h[q]) {
+            int distance=geo->dist[p][q];
+            if(distance>10)continue;
+            int k=keepFor(q,min(int(cur.h[q]),totalLimit-np),false);
+            if(k<0)continue;
+            unsigned qc=unsigned(colorMask(boundary[q]>>(4*k)));
+            int homeDistance=INF;
+            for(unsigned a=pc;a;a&=a-1)for(unsigned b=qc;b;b&=b-1) {
+                int ca=1+__builtin_ctz(a),cb=1+__builtin_ctz(b);
+                homeDistance=min(homeDistance,int(geo->dist[geo->home[ca]][geo->home[cb]]));
+            }
+            double score=distance+0.22*homeDistance-0.45*(q==firstDestination);
+            partners.push_back({q,k,score});
+        }
+        if(partners.empty())return false;
+        sort(partners.begin(),partners.end(),[](const Partner& a,const Partner& b){
+            return a.cost<b.cost||(a.cost==b.cost&&a.cell<b.cell);
+        });
+        int pool=min(12,int(partners.size()));
+        int at=rng(4)?min(rng(pool),rng(pool)):rng(int(partners.size()));
+        int q=partners[at].cell,keepQ=partners[at].keep;
+        if(rng(4)==0)keepQ=keepFor(q,totalLimit-np,true);
+        if(keepQ<0)return false;
+        struct Member {int source,rank,shade,id;};
+        array<Member,8> members{};int n=0;
+        uint64_t key=0xb5ad4eceda1ce2a9ULL;
+        for(auto [cell,keep]:{pair<int,int>{p,keepP},pair<int,int>{q,keepQ}}) {
+            for(int k=keep;k<cur.h[cell];k++) {
+                int id=cur.a[cell][k];
+                members[n++]={cell,k,int(geo->initial[id]),id};
+                key=(key^uint64_t(id+1))*0x9e3779b97f4a7c15ULL;
+                cur.alive[id]=0;
+            }
+            cur.h[cell]=uint8_t(keep);
+        }
+        auto seen=lastTried.find(key);
+        if(seen!=lastTried.end()&&iteration-seen->second<24)return false;
+        lastTried[key]=iteration;
+        const Board initial=cur.words();
+        vector<Move> skeleton;
+        if(!extractFrom(current,cur,time,skeleton))return false;
+        const int allowance=T-time+slack;
+        int bestLength=allowance+1;
+        vector<Move> bestTail;
+        const int mode=rng(5),rounds=n<=3?2:1;
+        for(int round=0;round<rounds;round++) {
+            clk.check();Board restored=initial;
+            vector<Move> tail=skeleton;
+            unsigned inserted=0;bool ok=true;
+            const int style=(mode+round)%5;
+            array<double,8> priority{};
+            for(int j=0;j<n;j++) {
+                const auto& m=members[j];
+                double d=geo->dist[m.source][geo->home[m.shade]];
+                if(style==0)priority[j]=d*(0.8+0.4*rng.unit());
+                else if(style==1)priority[j]=-d+0.2*rng.unit();
+                else if(style==2)priority[j]=rng.unit()*32;
+                else if(style==3)priority[j]=(m.source==p?16:0)-m.rank;
+                else priority[j]=(m.source==q?16:0)+m.rank;
+            }
+            for(int j=0;j<n;j++) {
+                int who=-1;
+                for(int k=0;k<n;k++)if(!(inserted>>k&1)) {
+                    const auto& m=members[k];bool eligible=true;
+                    // On a nest, install the original non-home top first. All
+                    // other members can then be inserted below that cover.
+                    if(geo->nest[m.source])for(int z=0;z<n;z++)
+                        if(members[z].source==m.source&&members[z].rank>m.rank&&!(inserted>>z&1))eligible=false;
+                    if(eligible&&(who<0||priority[k]>priority[who]))who=k;
+                }
+                if(who<0){ok=false;break;}
+                const auto& m=members[who];int gap=m.source==p?keepP:keepQ;
+                for(int k=0;k<n;k++)if((inserted>>k&1)&&members[k].source==m.source&&members[k].rank<m.rank)++gap;
+                Word nextInitial=insertToken(restored[m.source],gap,m.shade);
+                if(geo->normalize(nextInitial,m.source)!=nextInitial){ok=false;break;}
+                vector<Move> next;
+                const int cap=min(allowance,bestLength-1)-int(tail.size());
+                if(!insertAt(restored,tail,m.source,m.shade,gap,cap,next)){ok=false;break;}
+                ++insertions;restored[m.source]=nextInitial;tail=move(next);inserted|=1u<<who;
+            }
+            if(ok&&restored==boundary&&int(tail.size())<bestLength) {
+                bestLength=int(tail.size());bestTail=move(tail);
+            }
+        }
+        if(bestLength>allowance)return false;
+        result.assign(current.begin(),current.begin()+time);
+        result.insert(result.end(),bestTail.begin(),bestTail.end());
+        return true;
+    }
+
+    static bool sameMoves(const vector<Move>& a,const vector<Move>& b) {
+        if(a.size()!=b.size())return false;
+        for(size_t i=0;i<a.size();i++)
+            if(a[i].p!=b[i].p||a[i].k!=b[i].k||a[i].d!=b[i].d||a[i].l!=b[i].l)return false;
+        return true;
+    }
+
+    // Operations sharing either endpoint retain their original order. All
+    // other operations commute: intervening tower heights do not constrain a
+    // jump. Topological ordering can join previously separated packet flights
+    // and exposes different ride/launch opportunities to the subsequent LNS.
+    vector<Move> causalReorder(const vector<Move>& original,int style) {
+        const int n=int(original.size());
+        vector<array<int,2>> next(n,array<int,2>{-1,-1}),prev(n,array<int,2>{-1,-1});
+        vector<uint8_t> degree(n),outDegree(n);
+        vector<int> destination(n),ready;ready.reserve(n);
+        array<int,MV> previous;previous.fill(-1);
+        auto edge=[&](int a,int b) {
+            if(a<0)return;
+            next[a][outDegree[a]++]=b;prev[b][degree[b]++]=a;
+        };
+        for(int t=0;t<n;t++) {
+            int p=original[t].p,q=destination[t]=geo->ray[p][original[t].d][original[t].l];
+            int a=previous[p],b=previous[q];edge(a,t);if(b!=a)edge(b,t);
+            previous[p]=previous[q]=t;
+        }
+        const bool backward=style>=3;style%=3;
+        vector<Move> out;out.reserve(n);
+        Board b=geo->initial;
+        if(backward) {
+            vector<Word> departing(n),landing(n);
+            for(int t=0;t<n;t++) {
+                const Move& m=original[t];departing[t]=b[m.p]>>(4*m.k);
+                landing[t]=geo->normalize(reverseWord(departing[t]),destination[t]);
+                geo->apply(b,m);
+                if(!outDegree[t])ready.push_back(t);
+            }
+            int nextCell=-1;Word required=0;
+            while(!ready.empty()) {
+                if((out.size()&63)==0)clk.check();
+                int chosen=0;int64_t bestPriority=LLONG_MIN;
+                for(int j=0;j<int(ready.size());j++) {
+                    int t=ready[j];
+                    bool continuation=destination[t]==nextCell&&required&&landing[t]==required;
+                    int64_t priority=continuation?1000000:0;
+                    if(style==1)priority-=t;
+                    else if(style==2)priority+=int(rng.next()&255)+2*t;
+                    else priority+=t;
+                    if(priority>bestPriority){bestPriority=priority;chosen=j;}
+                }
+                int t=ready[chosen];ready[chosen]=ready.back();ready.pop_back();
+                out.push_back(original[t]);nextCell=original[t].p;required=departing[t];
+                for(int j=0;j<degree[t];j++) {
+                    int u=prev[t][j];if(--outDegree[u]==0)ready.push_back(u);
+                }
+            }
+            reverse(out.begin(),out.end());b=geo->initial;
+            for(const Move& m:out)geo->apply(b,m);
+        } else {
+            for(int t=0;t<n;t++)if(!degree[t])ready.push_back(t);
+            int lastCell=-1;Word travelling=0;
+            while(!ready.empty()) {
+                if((out.size()&63)==0)clk.check();
+                int chosen=0;int64_t bestPriority=LLONG_MIN;
+                for(int j=0;j<int(ready.size());j++) {
+                    int t=ready[j];const Move& m=original[t];
+                    bool continuation=m.p==lastCell&&travelling&&(b[m.p]>>(4*m.k))==travelling;
+                    int64_t priority=continuation?1000000:0;
+                    if(style==1)priority+=t;
+                    else if(style==2)priority+=int(rng.next()&255)-2*t;
+                    else priority-=t;
+                    if(priority>bestPriority){bestPriority=priority;chosen=j;}
+                }
+                int t=ready[chosen];ready[chosen]=ready.back();ready.pop_back();
+                Move m=original[t];Word flying=b[m.p]>>(4*m.k);
+                geo->apply(b,m);out.push_back(m);
+                lastCell=destination[t];travelling=geo->normalize(reverseWord(flying),lastCell);
+                for(int j=0;j<outDegree[t];j++) {
+                    int u=next[t][j];if(--degree[u]==0)ready.push_back(u);
+                }
+            }
+        }
+        if(int(out.size())!=n||geo->count(b))throw logic_error("causal reorder invariant");
+        return out;
+    }
+
+    void initializeSpatialCuts() {
+        vector<int> tokens;for(int p=0;p<geo->V;p++)if(geo->initial[p])tokens.push_back(p);
+        for(int p:tokens) {
+            vector<pair<double,int>> near,same,different;
+            for(int q:tokens)if(q!=p) {
+                double d=geo->dist[p][q]+0.20*geo->dist[geo->home[geo->initial[p]]][geo->home[geo->initial[q]]];
+                near.emplace_back(d,q);
+                if(geo->initial[p]==geo->initial[q])same.emplace_back(d,q);
+                else different.emplace_back(d,q);
+            }
+            for(auto* list:{&near,&same,&different}) {
+                sort(list->begin(),list->end());vector<int> ids{p};
+                int limit=list==&different?1:2;
+                for(int j=0;j<min(limit,int(list->size()));j++) {
+                    ids.push_back((*list)[j].second);spatialCuts.push_back(ids);
+                }
+            }
+        }
+    }
+    static uint64_t laterStartHash(uint64_t hash,int time) {
+        // Keep the first cut's old key. A different time must not share its
+        // cooldown, or the added start could be suppressed after trying it.
+        return hash^((uint64_t(time)+1)*0x94d049bb133111ebULL);
+    }
+    void makeCandidates(const vector<Move>& answer) {
+        candidates.clear();packetCuts.clear();flights.clear();checkpoints.clear();
+        supportUses.clear();later_cuts.clear();
+        flights.reserve(answer.size());checkpoints.reserve((answer.size()+CHECKPOINT-1)/CHECKPOINT);
+        IdentityBoard board;
+        // At most eight runs, a flight, a lower parcel and a resident union
+        // per command, plus the fixed spatial/single/colour candidates.
+        buildSeen.reset(12*answer.size()+spatialCuts.size()+geo->M+geo->K+64);
+        buildPackets.reset(3*answer.size()+16);buildPatterns.reset(answer.size()+16);
+        auto& patterns=patternBuffer;int patternCount=0;
+        auto& anchored=patternAnchors;
+        for(int p=0;p<geo->V;p++)anchored[p].clear();
+        cutIds.clear();
+        auto hashOf=[](const vector<int>& ids) {
+            uint64_t hash=0x51ed270b3a4dc107ULL;
+            for(int id:ids)hash=(hash^(id+1))*0x9e3779b97f4a7c15ULL;
+            return hash;
+        };
+        auto add=[&](vector<int> ids) {
+            if(ids.empty()||ids.size()>12)return;
+            sort(ids.begin(),ids.end());ids.erase(unique(ids.begin(),ids.end()),ids.end());
+            uint64_t hash=hashOf(ids);
+            if(buildSeen.put(hash,int(candidates.size())).second)candidates.push_back({move(ids),0,hash});
+        };
+        vector<int> colors[13];
+        for(int p=0;p<geo->V;p++)if(geo->initial[p]) {
+            add({p});colors[geo->initial[p]].push_back(p);
+        }
+        for(int c=1;c<=geo->K;c++)add(colors[c]);
+        for(const auto& ids:spatialCuts)add(ids);
+        for(int t=0;t<int(answer.size());t++) {
+            if((t&127)==0)clk.check();
+            if(t%CHECKPOINT==0)checkpoints.push_back(board);
+            Move m=answer[t];int p=m.p;
+            vector<int> flight;Flight f;
+            flight.reserve(8);
+            for(int i=m.k;i<board.h[p];i++) {
+                int id=board.a[p][i];flight.push_back(id);f.id[f.n++]=id;
+            }
+            flights.push_back(f);add(flight);
+            if(m.l>1) {
+                SupportUse use{{},t,int(m.k)+1-int(m.l)};
+                for(int i=0;i<m.k;i++)use.lower.id[use.lower.n++]=board.a[p][i];
+                supportUses.push_back(use);
+            }
+            sort(flight.begin(),flight.end());uint64_t fh=hashOf(flight);
+            auto ins=buildPatterns.put(fh,patternCount);
+            if(ins.second){
+                const int at=patternCount++;
+                anchored[flight.front()].push_back(at);
+                if(at==int(patterns.size()))patterns.emplace_back();
+                auto& pat=patterns[at];pat.n=int(flight.size());
+                copy(flight.begin(),flight.end(),pat.ids.begin());
+                pat.times.clear();pat.times.push_back(t);
+            }else patterns[ins.first].times.push_back(t);
+            vector<int> run;
+            for(int i=0;i<board.h[p];i++) {
+                int id=board.a[p][i];
+                if(!run.empty()&&geo->initial[run.back()]!=geo->initial[id]){add(run);run.clear();}
+                run.push_back(id);
+            }
+            add(run);
+            if(m.k){vector<int> lower;for(int i=0;i<m.k;i++)lower.push_back(board.a[p][i]);add(lower);}
+            // Include whole towers, flying parcels, and their upper pair. The
+            // flexible decoder can split them instead of treating them as atomic.
+            Word word=board.word(p);
+            for(int k:{0,int(m.k),int(board.h[p])-2}) {
+                int n=int(board.h[p])-k;if(k<0||n<2)continue;
+                if(geo->normalize(prefix(word,k),p)!=prefix(word,k))continue;
+                vector<int> ids;for(int i=k;i<board.h[p];i++)ids.push_back(board.a[p][i]);
+                sort(ids.begin(),ids.end());uint64_t hash=hashOf(ids)^0xd1b54a32d192ed03ULL;
+                const bool before_split=k<int(m.k);
+                auto slot=buildPackets.put(hash,int(packetCuts.size()));
+                if(slot.second){
+                    packetCuts.push_back({t,k,n,0,hash,0.0,false,before_split});
+                    later_cuts.emplace_back();
+                    array<int16_t,8> selected{};
+                    for(int i=0;i<n;i++)selected[i]=int16_t(ids[i]);
+                    cutIds.push_back(selected);
+                }else if(t>packetCuts[slot.first].time) {
+                    // One extra slot per set. Prefer a boundary at which this
+                    // set separates; among equal kinds retain the latest time.
+                    auto& late=later_cuts[slot.first];
+                    if(late.time<0||before_split>late.before_split||
+                       (before_split==late.before_split&&t>late.time))
+                        late={t,k,n,0,laterStartHash(hash,t),0.0,true,before_split};
+                }
+            }
+            // Interacting parcels are a stronger initial-state removal set
+            // than spatial distance alone: they have shared a real endpoint.
+            int dest=geo->ray[p][m.d][m.l];
+            if(board.h[dest]&&board.h[dest]+f.n<=8){
+                vector<int> both=flight;
+                for(int i=0;i<board.h[dest];i++)both.push_back(board.a[dest][i]);
+                add(move(both));
+            }
+            board.apply(m);
+        }
+        // Append only after collecting the original cuts. Their order, and
+        // their priority noise before the added cuts, stay as in the parent.
+        const int primary_count=int(packetCuts.size());
+        LOCAL_NOTE(++local_late_start.builds;local_late_start.primary+=primary_count;)
+        for(int i=0;i<primary_count;i++)if(later_cuts[i].time>=0) {
+            LOCAL_NOTE(
+                ++local_late_start.generated;
+                local_late_start.split_generated+=later_cuts[i].before_split;
+                local_late_start.delay_sum+=later_cuts[i].time-packetCuts[i].time;
+            )
+            packetCuts.push_back(later_cuts[i]);
+            const auto ids=cutIds[i];cutIds.push_back(ids);
+        }
+        array<int,MV> member{};int stamp=0;
+        // A pattern has one anchor: its lowest ID. Thus only patterns anchored
+        // in a removed set can be subsets. Occurrence lists give suffix costs
+        // without rescanning every remaining flight for every packet cut.
+        auto savedBy=[&](const auto& ids,int n,int start) {
+            ++stamp;for(int j=0;j<n;j++)member[ids[j]]=stamp;
+            int saved=0;
+            for(int j=0;j<n;j++)for(int pi:anchored[ids[j]]) {
+                const auto& p=patterns[pi];if(p.n>n)continue;
+                bool all=true;
+                for(int k=0;k<p.n;k++)if(member[p.ids[k]]!=stamp){all=false;break;}
+                if(all)saved+=int(p.times.end()-lower_bound(p.times.begin(),p.times.end(),start));
+            }
+            return saved;
+        };
+        double divisor[13],packetDivisor[9];
+        for(int n=1;n<=12;n++)divisor[n]=pow(double(n),0.65);
+        for(int n=1;n<=8;n++)packetDivisor[n]=pow(double(n),0.45);
+        for(auto& cand:candidates) {
+            int saved=savedBy(cand.ids,int(cand.ids.size()),0);
+            cand.priority=(saved+0.25)/divisor[cand.ids.size()]*(0.90+0.20*rng.unit());
+        }
+        for(size_t i=0;i<packetCuts.size();i++) {
+            auto& cut=packetCuts[i];cut.saved=savedBy(cutIds[i],cut.size,cut.time);
+            cut.priority=(cut.saved+0.25)/packetDivisor[cut.size]*(0.90+0.20*rng.unit());
+        }
+        sort(candidates.begin(),candidates.end(),[](const Removal&a,const Removal&b){return a.priority>b.priority;});
+        sort(packetCuts.begin(),packetCuts.end(),[](const PacketCut&a,const PacketCut&b){return a.priority>b.priority;});
+    }
+
+public:
+    int attempts=0,insertions=0,accepted=0,improvements=0,shortcuts=0;
+    int blockAttempts=0,blockAccepted=0,blockImprovements=0,uphill=0,restarts=0;
+    int flexibleAttempts=0,flexibleAccepted=0,flexibleImprovements=0,flexibleSaved=0;
+    int reorderAttempts=0,reorderImprovements=0,reorderSaved=0,duplicates=0;
+    int pairedAttempts=0,pairedAccepted=0,pairedImprovements=0,pairedSaved=0;
+    int backwardAttempts=0,backwardImprovements=0,backwardSaved=0;
+    double pairedSeconds=0;
+    double blockSeconds=0,buildSeconds=0,startedAt=0;
+    void optimize(vector<Move>& best) {
+        startedAt=clk.elapsed();
+        auto current=smoothRoutes(best);
+        LOCAL_NOTE(trace.count_by("lns_initial_shortcut_saved", int(best.size()) - int(current.size()));)
+        shortcuts+=int(best.size())-int(current.size());
+        if(current.size()<best.size())best=current;
+        // First try the conservative endpoint-preserving order. An equal-length
+        // alternative is kept for later, rather than replacing this initial seed.
+        auto reordered=causalReorder(current,0);++reorderAttempts;
+        if(!sameMoves(reordered,current)) {
+            auto polished=smoothRoutes(reordered);
+            if(polished.size()<current.size()) {
+                LOCAL_NOTE(trace.count_by("lns_initial_reorder_saved", int(current.size()) - int(polished.size()));)
+                ++reorderImprovements;reorderSaved+=int(current.size()-polished.size());
+                current=move(polished);if(current.size()<best.size())best=current;
+            }
+        }
+        initializeSpatialCuts();
+        auto rebuild=[&](){double t=clk.elapsed();makeCandidates(current);buildSeconds+=clk.elapsed()-t;};
+        rebuild();lnsStart=clk.elapsed();int stagnant=0;
+        const double end=LOCAL_SECONDS(1.900);
+        double temperature=0.70;
+        while(clk.elapsed()<end) {
+            clk.check();++iteration;++stagnant;
+            if(stagnant>max(100,geo->M*3)&&current.size()>best.size()) {
+                current=best;stagnant=0;++restarts;rebuild();
+            }
+            if((iteration&31)==1) {
+                double progress=clamp((clk.elapsed()-lnsStart)/max(LOCAL_SECONDS(0.02),end-lnsStart),0.0,1.0);
+                temperature=0.70*pow(0.08/0.70,progress);
+            }
+            // Draw independently from the neighborhood type. In the preceding
+            // version every ninth (packet) attempt always had zero support weight.
+            int tieMode=rng(12);
+            supportWeight=tieMode==0?0:tieMode==1?2:tieMode==2?8:5;
+            rideWeight=tieMode==3?4:1;
+            vector<Move> trial;
+            bool reorder=iteration%113==0;
+            bool paired=!reorder&&iteration%17==0&&
+                        pairedSeconds<0.11*max(LOCAL_SECONDS(0.03),clk.elapsed()-lnsStart);
+            bool backward=false;
+            bool packet=!reorder&&!paired&&!packetCuts.empty()&&iteration%7==0&&
+                        blockSeconds<0.22*max(LOCAL_SECONDS(0.03),clk.elapsed()-lnsStart);
+            bool flexible=packet&&(rng(3)!=0);
+            // Spend one quarter of ordinary selections on bounded dependency
+            // growth. Other neighborhood schedules and the insertion order stay fixed.
+            bool dependency=!reorder&&!paired&&!packet&&++regularSelections%4==0;
+            LOCAL_NOTE(DependencyTimer dependency_timer(dependency);)
+            bool ok=true;
+            LOCAL_NOTE(int late_kind=-1;bool two_order=false;)
+            if(reorder) {
+                ++attempts;++reorderAttempts;
+                int style=rng(6);backward=style>=3;backwardAttempts+=backward;
+                trial=causalReorder(current,style);
+            }else if(paired) {
+                ++attempts;++pairedAttempts;double begin=clk.elapsed();
+                LOCAL_NOTE(const double previous_paired_seconds=pairedSeconds;)
+                ok=pairedNeighbor(current,3,trial);
+                pairedSeconds+=clk.elapsed()-begin;
+                LOCAL_NOTE(if(local_late_paired_anchor){
+                    late_kind=2;local_late_start.completed[2]+=ok;
+                    local_late_start.seconds[2]+=pairedSeconds-previous_paired_seconds;
+                })
+            }else if(packet) {
+                int choice=-1,cooldown=max(24,min(160,int(packetCuts.size()/2)));
+                uint64_t salt=flexible?0xa0761d6478bd642fULL:0;
+                if(rng(4)==0)choice=rng(int(packetCuts.size()));
+                else for(int i=0;i<int(packetCuts.size());i++) {
+                    auto it=lastTried.find(packetCuts[i].hash^salt);
+                    if(it==lastTried.end()||iteration-it->second>cooldown){choice=i;break;}
+                }
+                if(choice<0)choice=rng(int(packetCuts.size()));
+                PacketCut cut=packetCuts[choice];lastTried[cut.hash^salt]=iteration;
+                ++attempts;++blockAttempts;double begin=clk.elapsed();
+                LOCAL_NOTE(
+                    const double previous_block_seconds=blockSeconds;
+                    if(cut.later){late_kind=flexible?1:0;++local_late_start.attempts[late_kind];}
+                )
+                if(flexible){++flexibleAttempts;ok=flexibleNeighbor(current,cut,3,trial);}
+                else {ok=packetNeighbor(current,cut,3,trial);if(ok)++insertions;}
+                blockSeconds+=clk.elapsed()-begin;
+                LOCAL_NOTE(if(late_kind>=0){
+                    local_late_start.completed[late_kind]+=ok;
+                    local_late_start.seconds[late_kind]+=blockSeconds-previous_block_seconds;
+                })
+            }else {
+                if(candidates.empty())break;
+                int choice=-1,cooldown=max(24,min(200,int(candidates.size()/2)));
+                int mode=rng(10);
+                if(mode==0)choice=rng(int(candidates.size()));
+                else if(mode<=2)choice=rng(min(100,int(candidates.size())));
+                else for(int i=0;i<int(candidates.size());i++) {
+                    auto it=lastTried.find(candidates[i].hash);
+                    if(it==lastTried.end()||iteration-it->second>cooldown){choice=i;break;}
+                }
+                if(choice<0)choice=rng(int(candidates.size()));
+                Removal cand=candidates[choice];lastTried[cand.hash]=iteration;
+                if(dependency) {
+                    LOCAL_NOTE(++local_dependency.selected;const int seed_size=int(cand.ids.size());)
+                    const int rounds=growDependency(cand);
+                    if(!rounds)continue;
+                    LOCAL_NOTE(
+                        ++local_dependency.generated;local_dependency.multistep+=rounds>1;
+                        local_dependency.added+=int(cand.ids.size())-seed_size;
+                    )
+                    auto previous=lastTried.find(cand.hash);
+                    if(previous!=lastTried.end()&&iteration-previous->second<24) {
+                        LOCAL_NOTE(++local_dependency.cooldown;)
+                        continue;
+                    }
+                    lastTried[cand.hash]=iteration;
+                    LOCAL_NOTE(++local_dependency.attempts;)
+                }
+                ++attempts;
+                vector<Move> base;Board initial;
+                LOCAL_NOTE(local_dependency_extract=dependency;)
+                const bool extracted=extract(current,cand.ids,base,initial);
+                LOCAL_NOTE(local_dependency_extract=false;)
+                if(!extracted) {
+                    LOCAL_NOTE(local_dependency.extract_failed+=dependency;)
+                    continue;
+                }
+                LOCAL_NOTE(if(dependency){
+                    ++local_dependency.extracted;
+                    local_dependency.gross_removed+=removedCommands(cand.ids);
+                    local_dependency.net_removed+=int(current.size())-int(base.size());
+                })
+                vector<pair<double,int>> order;order.reserve(cand.ids.size());
+                for(int id:cand.ids) {
+                    double weight=geo->dist[id][geo->home[geo->initial[id]]];
+                    weight*=0.6+0.8*rng.unit();order.emplace_back(-weight,id);
+                }
+                sort(order.begin(),order.end());
+                if(order.size()>=2&&order.size()<=4) {
+                    LOCAL_NOTE(two_order=true;)
+                    vector<Move> rebuilt;
+                    ok=insertTwoOrders(initial,base,order,int(current.size())+4,rebuilt);
+                    if(ok)base=move(rebuilt);
+                    else {LOCAL_NOTE(local_dependency.insert_failed+=dependency;)}
+                }else {
+                    for(auto [unused,id]:order) {
+                        clk.check();vector<Move> next;
+                        int cap=int(current.size())+4-int(base.size());
+                        if(!insert(initial,base,id,cap,next)){
+                            LOCAL_NOTE(local_dependency.insert_failed+=dependency;)
+                            ok=false;break;
+                        }
+                        ++insertions;base=move(next);initial[id]=geo->initial[id];
+                    }
+                }
+                if(ok){trial=move(base);LOCAL_NOTE(local_dependency.completed+=dependency;)}
+            }
+            if(!ok)continue;
+            if(sameMoves(trial,current)){++duplicates;continue;}
+            vector<Move> polished;
+            // Smoothing replays and validates every command, verifies each
+            // changed boundary, and checks that the final board is empty.
+            try{polished=smoothRoutes(trial);}catch(const exception&){LOCAL_NOTE(trace.count_by("lns_invalid_candidates", 1);)continue;}
+            shortcuts+=int(trial.size())-int(polished.size());
+            if(sameMoves(polished,current)){++duplicates;continue;}
+            int delta=int(polished.size())-int(current.size());
+            LOCAL_NOTE(if(dependency&&delta<0){
+                ++local_dependency.current_improvements;local_dependency.current_saved-=delta;
+            })
+            LOCAL_NOTE(if(late_kind>=0&&delta<0){
+                ++local_late_start.current_improvements[late_kind];
+                local_late_start.current_saved[late_kind]-=delta;
+            })
+            bool accept=delta<=0||(delta<=2&&polished.size()<=best.size()+4&&rng.unit()<exp(-delta/temperature));
+            if(accept) {
+                ++accepted;uphill+=delta>0;blockAccepted+=packet;flexibleAccepted+=flexible;pairedAccepted+=paired;
+                LOCAL_NOTE(local_backward_accepted += backward;)
+                LOCAL_NOTE(local_dependency.accepted+=dependency;)
+                LOCAL_NOTE(if(two_order){
+                    ++local_two_order.accepted;
+                    local_two_order.alternate_accepted+=local_two_order_alternate;
+                })
+                LOCAL_NOTE(if(late_kind>=0)++local_late_start.accepted[late_kind];)
+                if(polished.size()<best.size()) {
+                    int saved=int(best.size()-polished.size());
+                    LOCAL_NOTE(if(two_order){
+                        ++local_two_order.improvements;local_two_order.saved+=saved;
+                        if(local_two_order_alternate){
+                            ++local_two_order.alternate_improvements;local_two_order.alternate_saved+=saved;
+                        }
+                    })
+                    LOCAL_NOTE(if(dependency){++local_dependency.improvements;local_dependency.saved+=saved;})
+                    LOCAL_NOTE(if(late_kind>=0){
+                        ++local_late_start.improvements[late_kind];local_late_start.saved[late_kind]+=saved;
+                    })
+                    LOCAL_NOTE(
+                        trace.count_by("lns_best_saved", saved);
+                        trace.count_by("lns_regular_saved", !packet && !reorder && !paired ? saved : 0);
+                        trace.count_by("lns_packet_saved", packet && !flexible ? saved : 0);
+                    )
+                    ++improvements;blockImprovements+=packet;
+                    flexibleImprovements+=flexible;flexibleSaved+=flexible?saved:0;
+                    reorderImprovements+=reorder;reorderSaved+=reorder?saved:0;
+                    pairedImprovements+=paired;pairedSaved+=paired?saved:0;
+                    backwardImprovements+=backward;backwardSaved+=backward?saved:0;
+                    best=polished;stagnant=0;
+                }
+                current=move(polished);rebuild();
+            }
+        }
+    }
+
+};
+
+#ifdef LOCAL
+// Replay using individual identities and dynamic towers, independently of the
+// packed-word simulator and the extraction/reinsertion state representation.
+static void validateOutput(const vector<Move>& answer) {
+    array<vector<int>, MV> tower;
+    array<bool, MV> returned{};
+    int E = geo->M, long_jumps = 0, mixed_moves = 0, max_height = 1, max_packet = 0;
+    for (int p = 0; p < geo->V; ++p) if (geo->initial[p]) tower[p].push_back(p);
+    assert(answer.size() <= 100000);
+    for (const auto& op : answer) {
+        assert(0 <= op.p && op.p < geo->V && op.d < 4);
+        const int p = op.p, h = int(tower[p].size()), k = op.k, l = op.l;
+        assert(0 <= k && k < h && 1 <= l && l <= k + 1);
+        int q = -1;
+        for (int step = 1; step <= l; ++step) {
+            const int row = geo->row[p] + geo->di[op.d] * step;
+            const int col = geo->col[p] + geo->dj[op.d] * step;
+            assert(0 <= row && row < geo->N && 0 <= col && col < geo->N);
+            q = geo->id[row*geo->N+col];
+            assert(q >= 0);
+        }
+        const int g = int(tower[q].size());
+        assert(g + h - k <= 8);
+        bool mixed = false;
+        for (int j = k + 1; j < h; ++j)
+            mixed |= geo->initial[tower[p][j]] != geo->initial[tower[p][k]];
+        mixed_moves += mixed;
+        long_jumps += l > 1;
+        max_height = max(max_height, g + h - k);
+        max_packet = max(max_packet, h - k);
+        while (int(tower[p].size()) > k) {
+            tower[q].push_back(tower[p].back());
+            tower[p].pop_back();
+        }
+        for (int v : {p, q}) {
+            while (!tower[v].empty() && geo->initial[tower[v].back()] == Word(geo->nest[v])) {
+                const int id = tower[v].back();
+                assert(!returned[id]);
+                returned[id] = true;
+                tower[v].pop_back();
+                --E;
+            }
+        }
+    }
+    for (int p = 0; p < geo->V; ++p) {
+        assert(tower[p].empty());
+        if (geo->initial[p]) assert(returned[p]);
+    }
+    assert(E == 0);
+    trace.count_by("T", answer.size());
+    trace.count_by("E", E);
+    trace.count_by("validated_moves", answer.size());
+    trace.count_by("delivered_slimes", geo->M);
+    trace.count_by("output_long_jumps", long_jumps);
+    trace.count_by("output_mixed_moves", mixed_moves);
+    trace.count_by("output_max_height", max_height);
+    trace.count_by("output_max_packet", max_packet);
+}
+#endif
+
+static int run(const Input& input) {
+    Geometry geometry{};
+    geo = &geometry;
+    geo->read(input);
+    for(int p=0;p<geo->V;p++)rng.x=(rng.x^(geo->initial[p]+17*geo->nest[p]+p))*0x9e3779b97f4a7c15ULL;
+    vector<Move> best;size_t baseline=0;
+    int completed=0,attempts=0;
+    try {
+        for(int v=0;v<3;v++) {
+            World w=treeBaseline(v);
+            if(best.empty()||w.out.size()<best.size())best=move(w.out);
+        }
+        baseline=best.size();
+    }catch(const exception& e) {
+        LOCAL_NOTE(trace.count_by("baseline_recovery", 1);)cerr<<"baseline diagnostic: "<<e.what()<<'\n';
+        World w(geo->initial);finishSingles(w);best=move(w.out);baseline=best.size();
+    }
+    EmptyDP potential;
+    clk.limit=LOCAL_SECONDS(0.69);
+    int constructionStale=0;double lastConstructionGain=clk.elapsed();
+    while(clk.elapsed()<LOCAL_SECONDS(0.65)) {
+        if(constructionStale>=20&&clk.elapsed()>LOCAL_SECONDS(0.32)&&clk.elapsed()-lastConstructionGain>LOCAL_SECONDS(0.15))break;
+        size_t oldBest=best.size();
+        double duration=attempts==0?LOCAL_SECONDS(0.28):LOCAL_SECONDS(0.18);
+        double end=min(LOCAL_SECONDS(0.64),clk.elapsed()+duration);
+        try {
+            Constructor solver(potential,attempts++,end,best.size());
+            World result=solver.run();
+            if(!result.remaining){completed++;if(result.out.size()<best.size())best=move(result.out);}
+        }catch(const Deadline&){LOCAL_NOTE(trace.count_by("construction_deadlines", 1);)if(clk.elapsed()>LOCAL_SECONDS(0.67))break;}
+         catch(const exception& e){LOCAL_NOTE(trace.count_by("construction_errors", 1);)cerr<<"construction diagnostic: "<<e.what()<<'\n';}
+        if(best.size()<oldBest){constructionStale=0;lastConstructionGain=clk.elapsed();}
+        else ++constructionStale;
+    }
+    size_t beforeLNS=best.size();
+#ifdef LOCAL
+    trace.add_time_ms("construction", clk.elapsed() * 1000.0);
+    const auto local_lns_started = chrono::steady_clock::now();
+#endif
+    clk.limit=LOCAL_SECONDS(1.930);
+    TemporalLNS lns;
+    try {lns.optimize(best);}
+    catch(const Deadline&){LOCAL_NOTE(trace.count_by("lns_deadlines", 1);)}
+    catch(const exception& e){LOCAL_NOTE(trace.count_by("lns_errors", 1);)cerr<<"LNS diagnostic: "<<e.what()<<'\n';}
+#ifdef LOCAL
+    trace.add_time_ms("temporal_lns", chrono::duration<double, milli>(chrono::steady_clock::now() - local_lns_started).count());
+#endif
+    try {
+        Board check=geo->initial;
+        for(auto m:best)geo->apply(check,m);
+        if(geo->count(check)||best.size()>100000)throw logic_error("final answer check");
+    }catch(const exception& e) {
+        LOCAL_NOTE(trace.count_by("final_recovery", 1);)cerr<<"final diagnostic: "<<e.what()<<'\n';
+        World w(geo->initial);finishSingles(w);best=move(w.out);
+    }
+    cerr<<"baseline="<<baseline<<" best="<<best.size()<<" pre_lns="<<beforeLNS
+        <<" completed="<<completed<<" attempts="<<attempts<<" dp_words="<<potential.memo.size()
+        <<" lns_attempts="<<lns.attempts<<" insertions="<<lns.insertions
+        <<" accepted="<<lns.accepted<<" improvements="<<lns.improvements<<" shortcuts="<<lns.shortcuts
+        <<" block_attempts="<<lns.blockAttempts<<" block_accepted="<<lns.blockAccepted
+        <<" block_improvements="<<lns.blockImprovements<<" uphill="<<lns.uphill<<" restarts="<<lns.restarts
+        <<" flexible_attempts="<<lns.flexibleAttempts<<" flexible_accepted="<<lns.flexibleAccepted
+        <<" flexible_improvements="<<lns.flexibleImprovements<<" flexible_saved="<<lns.flexibleSaved
+        <<" reorder_attempts="<<lns.reorderAttempts<<" reorder_improvements="<<lns.reorderImprovements
+        <<" reorder_saved="<<lns.reorderSaved<<" duplicates="<<lns.duplicates
+        <<" build_seconds="<<lns.buildSeconds<<" lns_start="<<lns.startedAt
+        <<" block_seconds="<<lns.blockSeconds
+        <<" paired_attempts="<<lns.pairedAttempts<<" paired_accepted="<<lns.pairedAccepted
+        <<" paired_improvements="<<lns.pairedImprovements<<" paired_saved="<<lns.pairedSaved
+        <<" paired_seconds="<<lns.pairedSeconds
+        <<" backward_attempts="<<lns.backwardAttempts<<" backward_improvements="<<lns.backwardImprovements
+        <<" backward_saved="<<lns.backwardSaved
+        <<" elapsed="<<fixed<<setprecision(6)<<clk.elapsed()<<'\n';
+#ifdef LOCAL
+    LOCAL_ONLY(
+        LOCAL_TIME(trace, "validate", [&] { validateOutput(best); });
+        trace.count_by("baseline_ops", baseline);
+        trace.count_by("pre_lns_ops", beforeLNS);
+        trace.count_by("final_ops", best.size());
+        trace.count_by("construction_completed", completed);
+        trace.count_by("construction_attempts", attempts);
+        trace.count_by("dp_words", potential.memo.size());
+        trace.count_by("lns_attempts", lns.attempts);
+        trace.count_by("lns_insertions", lns.insertions);
+        trace.count_by("lns_accepted", lns.accepted);
+        trace.count_by("lns_improvements", lns.improvements);
+        trace.count_by("lns_candidate_shortcuts", lns.shortcuts);
+        trace.count_by("lns_saved", int(beforeLNS) - int(best.size()));
+        trace.add_time_ms("search_limit", LOCAL_SECONDS(1.930) * 1000.0);
+        trace.add_time_ms("total", clk.elapsed() * 1000.0);
+        trace.count_by("lns_block_attempts", lns.blockAttempts);
+        trace.count_by("lns_block_accepted", lns.blockAccepted);
+        trace.count_by("lns_block_improvements", lns.blockImprovements);
+        trace.count_by("lns_flexible_attempts", lns.flexibleAttempts);
+        trace.count_by("lns_flexible_accepted", lns.flexibleAccepted);
+        trace.count_by("lns_flexible_improvements", lns.flexibleImprovements);
+        trace.count_by("lns_flexible_saved", lns.flexibleSaved);
+        trace.count_by("lns_reorder_attempts", lns.reorderAttempts);
+        trace.count_by("lns_reorder_improvements", lns.reorderImprovements);
+        trace.count_by("lns_reorder_saved", lns.reorderSaved);
+        trace.count_by("lns_uphill", lns.uphill);
+        trace.count_by("lns_restarts", lns.restarts);
+        trace.count_by("lns_duplicates", lns.duplicates);
+        trace.count_by("event_layers", local_event_layers);
+        trace.count_by("event_reopens", local_event_reopens);
+        trace.count_by("single_insert_calls", local_single_insert_calls);
+        trace.count_by("packet_insert_calls", local_packet_insert_calls);
+        trace.add_time_ms("lns_candidate_build", lns.buildSeconds * 1000.0);
+        trace.add_time_ms("lns_block_search", lns.blockSeconds * 1000.0);
+        trace.add_time_ms("lns_start", lns.startedAt * 1000.0);
+        trace.count_by("lns_paired_attempts", lns.pairedAttempts);
+        trace.count_by("lns_paired_accepted", lns.pairedAccepted);
+        trace.count_by("lns_paired_improvements", lns.pairedImprovements);
+        trace.count_by("lns_paired_saved", lns.pairedSaved);
+        trace.count_by("lns_backward_attempts", lns.backwardAttempts);
+        trace.count_by("lns_backward_improvements", lns.backwardImprovements);
+        trace.count_by("lns_backward_saved", lns.backwardSaved);
+        trace.count_by("lns_backward_accepted", local_backward_accepted);
+        trace.count_by("shortcut_support_states", local_shortcut_support_states);
+        trace.add_time_ms("lns_paired_search", lns.pairedSeconds * 1000.0);
+        local_dependency.summary();local_late_start.summary();local_two_order.summary();
+        trace.count_by("floor_cells", geo->V);
+        trace.count_by("cell_capacity", capacity);
+        trace.count_by("board_bytes", sizeof(Board));
+        trace.count_by("identity_board_bytes", sizeof(IdentityBoard));
+        trace.count_by("geometry_bytes", sizeof(Geometry) + geo->id.size()*sizeof(int));
+        trace.count_by("floor_dist_bytes", sizeof(geo->dist));
+        trace.count_by("group_bytes", sizeof(Group));
+        trace.count_by("router_bytes", sizeof(Router));
+        trace.count_by("portion_router_bytes", sizeof(PortionRouter));
+        trace.count_by("constructor_bytes", sizeof(Constructor));
+        trace.count_by("temporal_lns_bytes", sizeof(TemporalLNS));
+        trace.count_by("weight_bytes", weight_count*sizeof(double));
+        trace.summary();
+    );
+#endif
+    for(auto m:best)cout<<geo->row[m.p]<<' '<<geo->col[m.p]<<' '<<int(m.k)<<' '
+                         <<geo->dirs[m.d]<<' '<<int(m.l)<<'\n';
+    return 0;
+}
+};
+
+// 探索中の容量分岐・盤面ごとの動的確保を避け、型の選択は入力後の1回だけ行う。
+template<class F>
+decltype(auto) with_capacity(int cell_count, F&& body) {
+    switch ((cell_count - 1) / 32) {
+        case 0: return body.template operator()<32>();
+        case 1: return body.template operator()<64>();
+        case 2: return body.template operator()<96>();
+        case 3: return body.template operator()<128>();
+        case 4: return body.template operator()<160>();
+        case 5: return body.template operator()<192>();
+        case 6: return body.template operator()<224>();
+        case 7: return body.template operator()<256>();
+        case 8: return body.template operator()<288>();
+        case 9: return body.template operator()<320>();
+        case 10: return body.template operator()<352>();
+        case 11: return body.template operator()<384>();
+        case 12: return body.template operator()<400>();
+    }
+    unreachable();
+}
+

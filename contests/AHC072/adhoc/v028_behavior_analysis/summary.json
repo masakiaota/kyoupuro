@@ -1,0 +1,362 @@
+{
+  "scope": "Existing logs and completed diagnostic routes only; no solver execution, no new routes.",
+  "source_run_ids": [
+    "20260927T172632+0900_v026_late_start_lns_973c99",
+    "20260927T184531+0900_v028_two_order_lns_c6311b"
+  ],
+  "input_hashes": {
+    "adhoc/v026_evaluation_summary.json": "6f02e3a60ade99a15f9329839774708c9385e351a24f866cd6c90ca86e032f3c",
+    "adhoc/v028_evaluation_summary.json": "0622c011aa800866a19658f8b1722a943f7ffff5d95851901f4ae68840bd0d6a",
+    "adhoc/v028_audit/diagnostic.csv": "3c901975cea2813eae633287f30c1a38e45dc65db6e7826fa621b2f070a34361",
+    "adhoc/v028_audit/diagnostic_moves.jsonl": "f9ef42ed0e1f0ca83f412bf996d530e52f45b084015785f56ccc92ee14cb4640"
+  },
+  "solver_hashes": {
+    "v026_late_start_lns": "83fbf8fd338c22f4f5809a5b4a5be5df751cc2e137323ce76027187c4dca04ed",
+    "v028_two_order_lns": "29aa1b31304a06d63db75ad152be6a9e52c2aa752c7e8d7b516b506e9334e717"
+  },
+  "evaluation_99": {
+    "attempts": 168230,
+    "primary_completed": 125295,
+    "primary_failed": 42935,
+    "alternate_selected": 21449,
+    "shorter": 16360,
+    "rescued": 5089,
+    "selected_percent": 12.749806812102479,
+    "shorter_given_primary_completed_percent": 13.057185043297817,
+    "rescued_given_primary_failed_percent": 11.852800745312681,
+    "primary_completed_share_of_alternate_selection_percent": 76.27395216560213,
+    "alternate_mean_ms": 97.31263636363636,
+    "alternate_share_of_total_lns_percent": 8.650064778845522,
+    "scheduling": {
+      "block": {
+        "parent_attempts": 98750,
+        "child_attempts": 90618,
+        "attempt_change_percent": -8.234936708860763,
+        "parent_mean_ms": 74.22503030303031,
+        "child_mean_ms": 67.5370202020202,
+        "share_of_total_lns_percent": 6.003327230131196,
+        "max_case_share_of_total_lns_percent": 11.685165700181168,
+        "source_time_cap_fraction": 0.22
+      },
+      "paired": {
+        "parent_attempts": 43194,
+        "child_attempts": 39649,
+        "attempt_change_percent": -8.207158401629854,
+        "parent_mean_ms": 23.96758585858586,
+        "child_mean_ms": 21.795454545454547,
+        "share_of_total_lns_percent": 1.9373855312896988,
+        "max_case_share_of_total_lns_percent": 3.1015014539771713,
+        "source_time_cap_fraction": 0.11
+      },
+      "dependency": {
+        "parent_attempts": 79011,
+        "child_attempts": 70431,
+        "attempt_change_percent": -10.859247446558074,
+        "parent_mean_ms": 208.60370707070706,
+        "child_mean_ms": 192.5260606060606,
+        "share_of_total_lns_percent": 17.11353178877264,
+        "max_case_share_of_total_lns_percent": 29.00804752201867,
+        "source_time_cap_fraction": null
+      }
+    },
+    "schedule_accounting": {
+      "parent": {
+        "totals": {
+          "loops": 740896,
+          "paired_scheduled": 43194,
+          "paired_attempted": 43194,
+          "block_scheduled": 98750,
+          "block_attempted": 98750
+        },
+        "block_skipped_cases": [],
+        "paired_time_cap_blocked_attempts": 0,
+        "block_missing_reason": "An empty packet candidate bank or its time cap; logs do not separate these."
+      },
+      "child": {
+        "totals": {
+          "loops": 680036,
+          "paired_scheduled": 39649,
+          "paired_attempted": 39649,
+          "block_scheduled": 90631,
+          "block_attempted": 90618
+        },
+        "block_skipped_cases": [
+          {
+            "case": "0068.txt",
+            "block_skipped": 13
+          }
+        ],
+        "paired_time_cap_blocked_attempts": 0,
+        "block_missing_reason": "An empty packet candidate bank or its time cap; logs do not separate these."
+      }
+    }
+  },
+  "diagnostic_99": {
+    "total": {
+      "candidates": 6319,
+      "extracted": 5878,
+      "alternate_selected": 741,
+      "rescued": 192,
+      "raw_saved": 742,
+      "primary_completed": 4149,
+      "alternate_completed": 4082,
+      "skip_if_primary_not_longer": 1071,
+      "filtered_result_changed": 2,
+      "filtered_raw_loss": 2,
+      "alternate_below_current": 15,
+      "both_completed": 3890,
+      "equal_length": 2717,
+      "equal_length_different_moves": 1104,
+      "identical_moves": 1613,
+      "duplicate_primary_equal_alternative": 11
+    },
+    "by_size": {
+      "3": {
+        "candidates": 2640,
+        "extracted": 2456,
+        "alternate_selected": 319,
+        "rescued": 85,
+        "raw_saved": 325,
+        "primary_completed": 1735,
+        "alternate_completed": 1708,
+        "skip_if_primary_not_longer": 368,
+        "filtered_result_changed": 1,
+        "filtered_raw_loss": 1,
+        "alternate_below_current": 7,
+        "both_completed": 1623,
+        "identical_moves": 706,
+        "equal_length": 1126,
+        "equal_length_different_moves": 420,
+        "duplicate_primary_equal_alternative": 2
+      },
+      "4": {
+        "candidates": 1579,
+        "extracted": 1427,
+        "alternate_selected": 159,
+        "rescued": 69,
+        "raw_saved": 126,
+        "primary_completed": 672,
+        "alternate_completed": 656,
+        "skip_if_primary_not_longer": 109,
+        "filtered_result_changed": 0,
+        "filtered_raw_loss": 0,
+        "alternate_below_current": 4,
+        "both_completed": 587,
+        "equal_length": 390,
+        "equal_length_different_moves": 176,
+        "identical_moves": 214
+      },
+      "2": {
+        "candidates": 2100,
+        "extracted": 1995,
+        "alternate_selected": 263,
+        "rescued": 38,
+        "raw_saved": 291,
+        "primary_completed": 1742,
+        "alternate_completed": 1718,
+        "skip_if_primary_not_longer": 594,
+        "filtered_result_changed": 1,
+        "filtered_raw_loss": 1,
+        "both_completed": 1680,
+        "equal_length": 1201,
+        "equal_length_different_moves": 508,
+        "identical_moves": 693,
+        "alternate_below_current": 4,
+        "duplicate_primary_equal_alternative": 9
+      }
+    },
+    "by_primary_status": {
+      "primary_longer": {
+        "candidates": 3078,
+        "extracted": 3078,
+        "alternate_selected": 547,
+        "rescued": 0,
+        "raw_saved": 740,
+        "primary_completed": 3078,
+        "alternate_completed": 2830,
+        "skip_if_primary_not_longer": 0,
+        "filtered_result_changed": 0,
+        "filtered_raw_loss": 0,
+        "alternate_below_current": 1,
+        "both_completed": 2830,
+        "equal_length": 1923,
+        "equal_length_different_moves": 839,
+        "identical_moves": 1084
+      },
+      "primary_failed": {
+        "candidates": 1729,
+        "extracted": 1729,
+        "alternate_selected": 192,
+        "rescued": 192,
+        "raw_saved": 0,
+        "primary_completed": 0,
+        "alternate_completed": 192,
+        "skip_if_primary_not_longer": 0,
+        "filtered_result_changed": 0,
+        "filtered_raw_loss": 0,
+        "alternate_below_current": 0
+      },
+      "primary_equal_different": {
+        "candidates": 947,
+        "extracted": 947,
+        "alternate_selected": 1,
+        "rescued": 0,
+        "raw_saved": 1,
+        "primary_completed": 947,
+        "alternate_completed": 937,
+        "skip_if_primary_not_longer": 947,
+        "filtered_result_changed": 1,
+        "filtered_raw_loss": 1,
+        "both_completed": 937,
+        "equal_length": 702,
+        "equal_length_different_moves": 250,
+        "identical_moves": 452,
+        "alternate_below_current": 1
+      },
+      "primary_duplicate": {
+        "candidates": 102,
+        "extracted": 102,
+        "alternate_selected": 0,
+        "rescued": 0,
+        "raw_saved": 0,
+        "primary_completed": 102,
+        "alternate_completed": 101,
+        "skip_if_primary_not_longer": 102,
+        "filtered_result_changed": 0,
+        "filtered_raw_loss": 0,
+        "both_completed": 101,
+        "equal_length": 80,
+        "equal_length_different_moves": 11,
+        "identical_moves": 69,
+        "alternate_below_current": 0,
+        "duplicate_primary_equal_alternative": 11
+      },
+      "extract_failed": {
+        "candidates": 441,
+        "extracted": 0,
+        "alternate_selected": 0,
+        "rescued": 0,
+        "raw_saved": 0,
+        "primary_completed": 0,
+        "alternate_completed": 0,
+        "skip_if_primary_not_longer": 0,
+        "filtered_result_changed": 0,
+        "filtered_raw_loss": 0,
+        "alternate_below_current": 0
+      },
+      "primary_shorter": {
+        "candidates": 22,
+        "extracted": 22,
+        "alternate_selected": 1,
+        "rescued": 0,
+        "raw_saved": 1,
+        "primary_completed": 22,
+        "alternate_completed": 22,
+        "skip_if_primary_not_longer": 22,
+        "filtered_result_changed": 1,
+        "filtered_raw_loss": 1,
+        "both_completed": 22,
+        "identical_moves": 8,
+        "alternate_below_current": 13,
+        "equal_length": 12,
+        "equal_length_different_moves": 4
+      }
+    },
+    "skip_fraction_of_extracted_percent": 18.220483157536577,
+    "filtered_raw_loss_share_percent": 0.2695417789757412,
+    "gate_losses": [
+      {
+        "case": "0019.txt",
+        "hash": "13238775954865505954",
+        "size": 2,
+        "current_T": 678,
+        "primary_T": 678,
+        "alternate_T": 677
+      },
+      {
+        "case": "0092.txt",
+        "hash": "15035112843666268224",
+        "size": 3,
+        "current_T": 563,
+        "primary_T": 562,
+        "alternate_T": 561
+      }
+    ],
+    "equal_route_examples": [
+      {
+        "case": "0007.txt",
+        "hash": "10506369772025653282",
+        "size": 2,
+        "T": 119
+      },
+      {
+        "case": "0008.txt",
+        "hash": "6305556642176040816",
+        "size": 2,
+        "T": 124
+      },
+      {
+        "case": "0017.txt",
+        "hash": "12977809639999223274",
+        "size": 3,
+        "T": 211
+      },
+      {
+        "case": "0027.txt",
+        "hash": "7844952045305371204",
+        "size": 2,
+        "T": 152
+      },
+      {
+        "case": "0027.txt",
+        "hash": "14328492472129652112",
+        "size": 3,
+        "T": 152
+      },
+      {
+        "case": "0030.txt",
+        "hash": "1504897678861046270",
+        "size": 2,
+        "T": 458
+      },
+      {
+        "case": "0030.txt",
+        "hash": "6094041999776586170",
+        "size": 2,
+        "T": 458
+      },
+      {
+        "case": "0034.txt",
+        "hash": "4128523519445342415",
+        "size": 2,
+        "T": 446
+      },
+      {
+        "case": "0049.txt",
+        "hash": "16948310571505519940",
+        "size": 2,
+        "T": 190
+      },
+      {
+        "case": "0058.txt",
+        "hash": "13829871790667353365",
+        "size": 2,
+        "T": 313
+      },
+      {
+        "case": "0076.txt",
+        "hash": "8872158659932150860",
+        "size": 2,
+        "T": 271
+      }
+    ]
+  },
+  "limits": [
+    "The diagnostic samples final v026 solutions, with fixed weights and at most 64 sets per case; it is not the search-time distribution.",
+    "No per-attempt timings or best improvements cross-tabulated by primary length, size, or dependency kind were logged.",
+    "The gate's call count and raw selected routes can be compared exactly on this dataset; its runtime or final score cannot.",
+    "Equal-length distinct routes may merge or change ranking under smoothRoutes; that has not been evaluated here.",
+    "The paired time cap is checked by exact modulo counts, not by the final time share. The 13 missing block attempts cannot be separated into time-cap skips and empty-bank skips.",
+    "Dependency timings overlap part of the two-order timings; those durations must not be summed as disjoint phases."
+  ]
+}

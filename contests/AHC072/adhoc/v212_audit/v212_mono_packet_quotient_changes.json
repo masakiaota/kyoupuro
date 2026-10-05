@@ -1,0 +1,47 @@
+[
+  {
+    "old": "// v210_collection_color_quotient.cpp\n// v210: v209の同色再挿入・候補保持と、v208の3塔以上の同色集荷構築を併用する。\n// 集荷の計画と採否判定はv208からそのまま継承する。\n// LOCAL・非LOCALとも時間管理、初期解選抜、探索と終了処理はv209を継承する。\n",
+    "new": "// v212_mono_packet_quotient.cpp\n// v212: 単色の束の再挿入で、同じ色列になる隙間のラベルを共有する。\n// v210を親とし、構築・候補選択・1匹再挿入・時間設定を保持する。\n",
+    "offset": 0
+  },
+  {
+    "old": "",
+    "new": "struct PacketAliasStats {\n    int64_t mono_calls=0,closures=0,gap_relaxations=0,top_relaxations=0,cost_relaxations=0,completed=0;\n    void summary() const {\n        auto count=[&](const char* key,int64_t value){trace.count_by(string(\"packet_alias_\")+key,value);};\n        count(\"mono_calls\",mono_calls);count(\"closures\",closures);\n        count(\"gap_relaxations\",gap_relaxations);count(\"top_relaxations\",top_relaxations);\n        count(\"cost_relaxations\",cost_relaxations);count(\"completed\",completed);\n    }\n} local_packet_alias;\n",
+    "offset": 3248
+  },
+  {
+    "old": "",
+    "new": "        const int packet_color=mono_color_code(packet);\n        LOCAL_NOTE(local_packet_alias.mono_calls+=packet_color>0;)\n",
+    "offset": 153728
+  },
+  {
+    "old": "",
+    "new": "        // 単色の束は反転しても同じ列で、帰巣時には全体が消えるため語は1種類だけである。\n        // 背景の同色連続部分をまたいでも実盤面は一致し、追加操作なしで足場役と乗客役を交換できる。\n        auto close_packet_gaps=[&](int p,bool top_only) {\n            if(packet_color<=0)return;\n            LOCAL_NOTE(++local_packet_alias.closures;)\n            const int hp=h[p];\n            if(!hp||hp+sz[0]>8)return;\n            Label* row=labels.data()+p*8;\n            const TowerBits word=b[p];\n            if(top_only) {\n                if(int((word>>(4*(hp-1)))&15)!=packet_color)return;\n                int first=hp-1;\n                while(first>0&&int((word>>(4*(first-1)))&15)==packet_color)--first;\n                Label best=row[hp];\n                for(int g=first;g<hp;g++)if(better(row[g].cost,row[g].bonus,best))best=row[g];\n                if(better(best.cost,best.bonus,row[hp])) {\n                    LOCAL_NOTE(++local_packet_alias.top_relaxations;\n                               local_packet_alias.cost_relaxations+=best.cost<row[hp].cost;)\n                    row[hp]=best;\n                }\n                return;\n            }\n            for(int first=0;first<hp;) {\n                if(int((word>>(4*first))&15)!=packet_color){++first;continue;}\n                int last=first+1;\n                while(last<hp&&int((word>>(4*last))&15)==packet_color)++last;\n                Label best=row[first];\n                for(int g=first+1;g<=last;g++)if(better(row[g].cost,row[g].bonus,best))best=row[g];\n                for(int g=first;g<=last;g++)if(better(best.cost,best.bonus,row[g])) {\n                    LOCAL_NOTE(++local_packet_alias.gap_relaxations;\n                               local_packet_alias.cost_relaxations+=best.cost<row[g].cost;)\n                    row[g]=best;\n                }\n                first=last;\n            }\n        };\n",
+    "offset": 155394
+  },
+  {
+    "old": "",
+    "new": "        close_packet_gaps(source,true);\n",
+    "offset": 157840
+  },
+  {
+    "old": "",
+    "new": "            close_packet_gaps(p,false);close_packet_gaps(q,false);\n",
+    "offset": 159335
+  },
+  {
+    "old": "",
+    "new": "            close_packet_gaps(p,true);close_packet_gaps(q,true);\n",
+    "offset": 162480
+  },
+  {
+    "old": "",
+    "new": "        LOCAL_NOTE(local_packet_alias.completed+=packet_color>0;)\n",
+    "offset": 163342
+  },
+  {
+    "old": "",
+    "new": "        local_packet_alias.summary();\n",
+    "offset": 230300
+  }
+]

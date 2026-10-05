@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "self_test": {
+    "self_tests": 7,
+    "original_span": 4,
+    "saved": 2,
+    "uses_outside": true,
+    "deadline_restored": true
+  },
+  "cases": [
+    {
+      "case": "0015",
+      "attempts": 64,
+      "returned": 40,
+      "completed": 1139,
+      "shortened": 0,
+      "saved": 0,
+      "best_saved": 0,
+      "outside": 5,
+      "elapsed_ms": 98.408,
+      "time_gate_ms": 194.56,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0019",
+      "attempts": 64,
+      "returned": 36,
+      "completed": 633,
+      "shortened": 5,
+      "saved": 5,
+      "best_saved": 1,
+      "outside": 6,
+      "elapsed_ms": 98.374,
+      "time_gate_ms": 194.56,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0034",
+      "attempts": 64,
+      "returned": 47,
+      "completed": 1525,
+      "shortened": 0,
+      "saved": 0,
+      "best_saved": 0,
+      "outside": 6,
+      "elapsed_ms": 97.162,
+      "time_gate_ms": 194.56,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0075",
+      "attempts": 64,
+      "returned": 58,
+      "completed": 1720,
+      "shortened": 0,
+      "saved": 0,
+      "best_saved": 0,
+      "outside": 3,
+      "elapsed_ms": 97.527,
+      "time_gate_ms": 194.56,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0081",
+      "attempts": 64,
+      "returned": 46,
+      "completed": 1012,
+      "shortened": 0,
+      "saved": 0,
+      "best_saved": 0,
+      "outside": 2,
+      "elapsed_ms": 98.352,
+      "time_gate_ms": 194.56,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0092",
+      "attempts": 64,
+      "returned": 39,
+      "completed": 1417,
+      "shortened": 0,
+      "saved": 0,
+      "best_saved": 0,
+      "outside": 1,
+      "elapsed_ms": 97.765,
+      "time_gate_ms": 194.56,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    }
+  ],
+  "independently_replayed_candidates": 266,
+  "returned": 266,
+  "saved": 5,
+  "best_saved_sum": 1,
+  "time_gate": true,
+  "solver_revisions_after_execution": 0
+}

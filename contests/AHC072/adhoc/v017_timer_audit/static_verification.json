@@ -1,0 +1,18 @@
+{
+  "local_directives_identical": true,
+  "normalized_sha256": "859ad321f0a96b963be9c624ab503982d081e50a9f75c71505808b4c89613386",
+  "non_local_original_clock_order": true,
+  "both_builds_succeeded": true,
+  "non_local_main_first_calls": [
+    "__ZNSt8ios_base15sync_with_stdioEb",
+    "__Znwm",
+    "__ZNSt6chrono3_V212steady_clock3nowEv",
+    "_memset",
+    "_memset",
+    "__ZN12_GLOBAL__N_15GraphC1Ev",
+    "__ZNSirsERi",
+    "__ZNSirsERi"
+  ],
+  "local_search_limit_ms": 1472.0,
+  "submission_search_limit_ms": 1840.0
+}

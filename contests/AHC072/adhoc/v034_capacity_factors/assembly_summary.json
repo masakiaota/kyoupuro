@@ -1,0 +1,35 @@
+{
+  "binary_sha256": "81f6a31d1abefaa67bad476d3764077cbf444cb7fb77f462d7fd08aaa4d22d67",
+  "functions": {
+    "original": {
+      "name": "parent::TemporalLNS::insertAt(std::array<unsigned int, 400ul> const&, std::vector<parent::Move, std::allocator<parent::Move>> const&, int, int, int, int, std::vector<parent::Move, std::allocator<parent::Move>>&)",
+      "text_bytes_to_next_symbol": 8080,
+      "instructions": 2020,
+      "call_sites": 40
+    },
+    "full": {
+      "name": "child::Solver<400, 400>::TemporalLNS::insertAt(std::array<unsigned int, 400ul> const&, std::vector<child::Move, std::allocator<child::Move>> const&, int, int, int, int, std::vector<child::Move, std::allocator<child::Move>>&)",
+      "text_bytes_to_next_symbol": 10340,
+      "instructions": 2585,
+      "call_sites": 62
+    },
+    "tower192": {
+      "name": "child::Solver<400, 192>::TemporalLNS::insertAt(std::array<unsigned int, 192ul> const&, std::vector<child::Move, std::allocator<child::Move>> const&, int, int, int, int, std::vector<child::Move, std::allocator<child::Move>>&)",
+      "text_bytes_to_next_symbol": 10368,
+      "instructions": 2592,
+      "call_sites": 62
+    },
+    "other192": {
+      "name": "child::Solver<192, 400>::TemporalLNS::insertAt(std::array<unsigned int, 400ul> const&, std::vector<child::Move, std::allocator<child::Move>> const&, int, int, int, int, std::vector<child::Move, std::allocator<child::Move>>&)",
+      "text_bytes_to_next_symbol": 10296,
+      "instructions": 2574,
+      "call_sites": 62
+    },
+    "compact192": {
+      "name": "child::Solver<192, 192>::TemporalLNS::insertAt(std::array<unsigned int, 192ul> const&, std::vector<child::Move, std::allocator<child::Move>> const&, int, int, int, int, std::vector<child::Move, std::allocator<child::Move>>&)",
+      "text_bytes_to_next_symbol": 10296,
+      "instructions": 2574,
+      "call_sites": 62
+    }
+  }
+}

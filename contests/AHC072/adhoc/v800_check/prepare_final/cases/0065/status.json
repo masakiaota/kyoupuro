@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 118,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v051_joint_polish/0065.txt",
+  "best_sha256": "9e99ce2ccbb75ed23e94592a78aeb3fce352de3f16f2ea1d3ceec3376e234bb1",
+  "attempts": []
+}

@@ -1,0 +1,8 @@
+{
+  "argv": [
+    "/Users/masaki/Desktop/AHC072/adhoc/v044_joint_temporal/probe_local",
+    "/Users/masaki/Desktop/AHC072"
+  ],
+  "diagnostic_parallelism": 1,
+  "search_label_limit": 1000000
+}

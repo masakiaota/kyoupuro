@@ -1,0 +1,42 @@
+[
+  {
+    "old": "// v207_lazy_candidate_bank.cpp\n// v207: 通常候補を受理4回まで保持し、履歴と選択時の評価値を更新する。直接の親はv204。\n// 持ち込み版v206_lazy_candidate_bank.cppを改番した。LOCALの時間設定は既存v204に合わせる。\n// 非LOCALの計時・探索・乱数は持ち込み版を保持し、主探索約1.850777秒、終了処理期限1.880秒。\n// 持ち込み元SHA-256: 6d3d455b1d86ea60ec23ac480c6ccf87c77628c786dfdebd86cd74e69cdb4309\n",
+    "new": "// v209_color_quotient_reinsertion.cpp\n// v209: 同じ色順になる1個体の再挿入位置を、追加操作なしで同一視する。直接の親はv207。\n// 添付版v207_color_quotient_reinsertion.cppを改番した。候補保持は既に含まれる。\n// LOCALの時間は既登録v207へ揃え、非LOCALの計時と処理は添付版を保持する。\n// 添付元SHA-256: 5e67c951c4ea3abb067a399007fc2c0824e12bcdd777bc462bf9d778463fa4dc\n",
+    "offset": 0
+  },
+  {
+    "old": "",
+    "new": "    // Gaps at the two sides of a background slime of color_code yield the\n    // same physical tower. Transitivity holds only through consecutive equal\n    // colors; it must NOT cross a differently colored slime. A copied path is\n    // valid because its entire colored board, not merely the multiset, agrees.\n    // At event boundaries all gaps matter. Between events only the top gap\n    // can make an extra move, so promoting that representative is sufficient.\n    void close_color_gaps(int p,TowerBits word,int h,int color_code,bool top_only) {\n        ++alias_closures;\n        if(h==0||h>=8)return;\n        Label* labels=small_labels.data()+8*p;\n        if(top_only) {\n            if(int((word>>(4*(h-1)))&15)!=color_code)return;\n            int first=h-1;\n            while(first>0&&int((word>>(4*(first-1)))&15)==color_code)--first;\n            Label best=labels[h];\n            for(int g=first;g<h;g++)if(better(labels[g].cost,labels[g].bonus,best))best=labels[g];\n            if(better(best.cost,best.bonus,labels[h])) {\n                alias_cost_relaxations+=best.cost<labels[h].cost;\n                ++alias_top_relaxations;labels[h]=best;\n            }\n            return;\n        }\n        // Each nibble is independent: (d & 7)+7 has no carry into its next\n        // nibble. A high bit is zero iff the original nibble was zero.\n        const TowerBits diff=word^(0x11111111u*unsigned(color_code));\n        TowerBits matches=~(((diff&0x77777777u)+0x77777777u)|diff)&0x88888888u;\n        while(matches) {\n            const int first=__builtin_ctz(matches)/4;\n            int last=first+1;\n            while(last<h&&int((word>>(4*last))&15)==color_code)++last;\n            Label best=labels[first];\n            for(int g=first+1;g<=last;g++)if(better(labels[g].cost,labels[g].bonus,best))best=labels[g];\n            for(int g=first;g<=last;g++)if(better(best.cost,best.bonus,labels[g])) {\n                alias_cost_relaxations+=best.cost<labels[g].cost;\n                ++alias_gap_relaxations;labels[g]=best;\n            }\n            matches&=~tower_mask[last];\n        }\n    }\n\n",
+    "offset": 128638
+  },
+  {
+    "old": "",
+    "new": "        close_color_gaps(source,b[source],h[source],color_code,true);\n",
+    "offset": 136477
+  },
+  {
+    "old": "",
+    "new": "            close_color_gaps(p,b[p],hp,color_code,false);\n            close_color_gaps(q,b[q],hq,color_code,false);\n",
+    "offset": 138010
+  },
+  {
+    "old": "",
+    "new": "            close_color_gaps(p,b[p],h[p],color_code,true);\n            close_color_gaps(q,b[q],h[q],color_code,true);\n",
+    "offset": 140991
+  },
+  {
+    "old": "",
+    "new": "    uint64_t alias_closures=0,alias_gap_relaxations=0,alias_top_relaxations=0,alias_cost_relaxations=0;\n",
+    "offset": 182146
+  },
+  {
+    "old": "",
+    "new": "        alias_closures+=other.alias_closures;alias_gap_relaxations+=other.alias_gap_relaxations;\n        alias_top_relaxations+=other.alias_top_relaxations;alias_cost_relaxations+=other.alias_cost_relaxations;\n",
+    "offset": 182327
+  },
+  {
+    "old": "",
+    "new": "        <<\" alias_closures=\"<<lns.alias_closures<<\" alias_gap_relaxations=\"<<lns.alias_gap_relaxations\n        <<\" alias_top_relaxations=\"<<lns.alias_top_relaxations<<\" alias_cost_relaxations=\"<<lns.alias_cost_relaxations\n",
+    "offset": 214221
+  }
+]

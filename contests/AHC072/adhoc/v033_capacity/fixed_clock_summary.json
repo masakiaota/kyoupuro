@@ -1,0 +1,810 @@
+{
+  "verified_cases": 100,
+  "output_equal": true,
+  "all_shared_counts_equal": true,
+  "rng_equal": true,
+  "ticks_equal": true,
+  "child_ubsan_trap": true,
+  "cases": [
+    {
+      "case": "0000.txt",
+      "T": 43,
+      "ticks": 15202,
+      "rng": 14191670995697650111,
+      "sha256": "57ba179a362bc018f60b28a265ad7a1e64882121d2fdcf8b4110b9269d40a5d9",
+      "count_keys": 127
+    },
+    {
+      "case": "0001.txt",
+      "T": 111,
+      "ticks": 15219,
+      "rng": 16359219953920069965,
+      "sha256": "af1f25ad371134ceb9c64ae7b62d9d989393510c608ec4bdc73db24ee5b97394",
+      "count_keys": 127
+    },
+    {
+      "case": "0002.txt",
+      "T": 116,
+      "ticks": 15226,
+      "rng": 2200278748246816520,
+      "sha256": "7fc8d1a4fe11b56bc9f51e7b164db0ef5c7c9de23cb3f3f856beaa1a3a0b8b18",
+      "count_keys": 127
+    },
+    {
+      "case": "0003.txt",
+      "T": 133,
+      "ticks": 15220,
+      "rng": 9153310161446200170,
+      "sha256": "2e22e85d4c466c7358a1efa30b8025f8d9c4ee4348899c37c25c0bda5d2590cf",
+      "count_keys": 127
+    },
+    {
+      "case": "0004.txt",
+      "T": 281,
+      "ticks": 15250,
+      "rng": 18434064885016406816,
+      "sha256": "adabc882de3bf8ea06d649595753b936f490b2a0d485149cf972c8308eca759f",
+      "count_keys": 127
+    },
+    {
+      "case": "0005.txt",
+      "T": 674,
+      "ticks": 15228,
+      "rng": 17755700448491939076,
+      "sha256": "613469b89195ce458c0cac271645a15d21a4d1726d2a77ddccdb4635835115b3",
+      "count_keys": 127
+    },
+    {
+      "case": "0006.txt",
+      "T": 127,
+      "ticks": 15223,
+      "rng": 3660223647206335695,
+      "sha256": "53bb55cf5ed7643252fc54f6d6a7e834a729885427eb5b4db6291a5841077564",
+      "count_keys": 127
+    },
+    {
+      "case": "0007.txt",
+      "T": 119,
+      "ticks": 15230,
+      "rng": 186552726900822132,
+      "sha256": "0be03dd139ffa64cdf08989265647e9d6782a7a0f040c2330cb5e120f9a6b85e",
+      "count_keys": 127
+    },
+    {
+      "case": "0008.txt",
+      "T": 135,
+      "ticks": 15231,
+      "rng": 4117749696908786757,
+      "sha256": "232f87a5b66d978bf3252159ebc6469f92931baee096f4f694536f02cc81fac4",
+      "count_keys": 127
+    },
+    {
+      "case": "0009.txt",
+      "T": 85,
+      "ticks": 15213,
+      "rng": 2821281718078577065,
+      "sha256": "e9b798ccbc8a36558e7857a39920a16f8e450904ebeeeca7a27120116acdd5af",
+      "count_keys": 127
+    },
+    {
+      "case": "0010.txt",
+      "T": 76,
+      "ticks": 15223,
+      "rng": 2343216081912924737,
+      "sha256": "c338294a7d4813d820fa416c9e01b0ca638af58b821728f5ed1d549ff4e20314",
+      "count_keys": 127
+    },
+    {
+      "case": "0011.txt",
+      "T": 180,
+      "ticks": 15218,
+      "rng": 9604251171330142090,
+      "sha256": "8710c7dc205dad7e97dd10ddbf79dbca5ed6d8fe497b41409bae6d3b5db73159",
+      "count_keys": 127
+    },
+    {
+      "case": "0012.txt",
+      "T": 139,
+      "ticks": 15207,
+      "rng": 17216951505975300619,
+      "sha256": "2d7fa26674db444b4c633b80d99b936cdfeaee806c6e6b29b09255d97e84b989",
+      "count_keys": 127
+    },
+    {
+      "case": "0013.txt",
+      "T": 189,
+      "ticks": 15203,
+      "rng": 8373864271026871438,
+      "sha256": "866db9932aaa8620c32f0c424efd8483ec63e10b1539be156664479975f126a9",
+      "count_keys": 127
+    },
+    {
+      "case": "0014.txt",
+      "T": 447,
+      "ticks": 15250,
+      "rng": 1418792096814627534,
+      "sha256": "859f474bd4a7dfae79076ee9939e2589d458795db5e618eff802c3cc08406bab",
+      "count_keys": 127
+    },
+    {
+      "case": "0015.txt",
+      "T": 647,
+      "ticks": 15237,
+      "rng": 15758931992406010189,
+      "sha256": "ca807849b0435a077bd54f9fddf902162f3bc548abfddf40be8d72937efe3b7c",
+      "count_keys": 127
+    },
+    {
+      "case": "0016.txt",
+      "T": 136,
+      "ticks": 15218,
+      "rng": 12759800732509192076,
+      "sha256": "5bf8e53aa6d7bd4274534cc78f0d72a4e432d07f1e0a7c8329770220b75d93b4",
+      "count_keys": 127
+    },
+    {
+      "case": "0017.txt",
+      "T": 239,
+      "ticks": 15224,
+      "rng": 11961992615085857810,
+      "sha256": "bdd97134767ffff71e6275cf76f0c2a133c2d3c114d54d867a5b9fcfc8c09685",
+      "count_keys": 127
+    },
+    {
+      "case": "0018.txt",
+      "T": 76,
+      "ticks": 15210,
+      "rng": 13822421457048644239,
+      "sha256": "3297ad968353a13f843db732af8654e14ecea5fbc0fa77fe34b1fb15ce918f5a",
+      "count_keys": 127
+    },
+    {
+      "case": "0019.txt",
+      "T": 714,
+      "ticks": 15321,
+      "rng": 10452736803642028129,
+      "sha256": "4e362573ff24dafd053079f82bf571c702934bb0b16ae518dec9928b7d2a61f0",
+      "count_keys": 127
+    },
+    {
+      "case": "0020.txt",
+      "T": 170,
+      "ticks": 15238,
+      "rng": 1320716598119659350,
+      "sha256": "03b2cc25cb854920b6002661688f07088f5c3b7b0333f9bb9c7a49fdaf98311f",
+      "count_keys": 127
+    },
+    {
+      "case": "0021.txt",
+      "T": 73,
+      "ticks": 15210,
+      "rng": 7078014837103470095,
+      "sha256": "868be4cf422057034e8b920ff5ea08a4bc725984abe462516c5d861c9a6d5a61",
+      "count_keys": 127
+    },
+    {
+      "case": "0022.txt",
+      "T": 73,
+      "ticks": 15212,
+      "rng": 15759967281420161985,
+      "sha256": "c435d24eedf2f81a3f693736d952f49c25f31c294c611cb3c8d3882d7e20adf5",
+      "count_keys": 127
+    },
+    {
+      "case": "0023.txt",
+      "T": 87,
+      "ticks": 15212,
+      "rng": 7162170439146606479,
+      "sha256": "81eef3cb182158001ec6a710b4f90ac12fa1ce7491398137fe346c4b9a5700ce",
+      "count_keys": 127
+    },
+    {
+      "case": "0024.txt",
+      "T": 130,
+      "ticks": 15210,
+      "rng": 10685067967541656539,
+      "sha256": "d3d105f07325e8b1c913146fab958526f51b117aade34691e6b4d93d119003cf",
+      "count_keys": 127
+    },
+    {
+      "case": "0025.txt",
+      "T": 61,
+      "ticks": 15202,
+      "rng": 7054316505019431550,
+      "sha256": "df35ed31e44b0542f7172c3d724a062d83f54cb2e4e86702a48c0ea556f0acf3",
+      "count_keys": 127
+    },
+    {
+      "case": "0026.txt",
+      "T": 129,
+      "ticks": 15219,
+      "rng": 4832761111085670654,
+      "sha256": "e5df2c19c7055b70277602d6ccd9da194a106d195b6c09ca177688ca20a70d23",
+      "count_keys": 127
+    },
+    {
+      "case": "0027.txt",
+      "T": 167,
+      "ticks": 15209,
+      "rng": 3982672989030218598,
+      "sha256": "db9c1176cff449f911b18e543ea823f81cc87a2760cbb44b985e28290cfccfb1",
+      "count_keys": 127
+    },
+    {
+      "case": "0028.txt",
+      "T": 300,
+      "ticks": 15221,
+      "rng": 4411467116814182498,
+      "sha256": "44c8c6266858b173fd703859e2caa0e992b9570f742fe314d51711867943a189",
+      "count_keys": 127
+    },
+    {
+      "case": "0029.txt",
+      "T": 286,
+      "ticks": 15204,
+      "rng": 12774877439851761351,
+      "sha256": "3b362efb739ee9596d071b836059fdee6e97f6c063718f4ef63f69ad93c80c02",
+      "count_keys": 127
+    },
+    {
+      "case": "0030.txt",
+      "T": 511,
+      "ticks": 15275,
+      "rng": 9659942608643168112,
+      "sha256": "34026ea8e569a8857f6204c94e06efd3e18d299a6e131bb10994debf6cde7dec",
+      "count_keys": 127
+    },
+    {
+      "case": "0031.txt",
+      "T": 140,
+      "ticks": 15226,
+      "rng": 15466850366034284548,
+      "sha256": "6b4c47db78ba3c84da1f84166f94cf9646bf0fcbdad27d4e14bbc08314146d89",
+      "count_keys": 127
+    },
+    {
+      "case": "0032.txt",
+      "T": 159,
+      "ticks": 15217,
+      "rng": 2458168068404114033,
+      "sha256": "1281e49318869dfbdb35a05bb0bf0f97731e8e3f9481e640c0c208a58e61093f",
+      "count_keys": 127
+    },
+    {
+      "case": "0033.txt",
+      "T": 151,
+      "ticks": 15230,
+      "rng": 17659120760197068946,
+      "sha256": "3747c1b8dc99155687a05dc7404d572587ffc1fd3ba9175cad5d7a46ba613de7",
+      "count_keys": 127
+    },
+    {
+      "case": "0034.txt",
+      "T": 488,
+      "ticks": 15288,
+      "rng": 13798946865454214188,
+      "sha256": "0bbf0a8035bedaac0270cdac7609a058b9e4ff38fbed75843ba17f29d7bc5b9d",
+      "count_keys": 127
+    },
+    {
+      "case": "0035.txt",
+      "T": 64,
+      "ticks": 15207,
+      "rng": 4478824644222950341,
+      "sha256": "137a57a123816581a9da76fb6dd80715048625059d42516a8d7429cdd344ff43",
+      "count_keys": 127
+    },
+    {
+      "case": "0036.txt",
+      "T": 232,
+      "ticks": 15205,
+      "rng": 15503717661005254646,
+      "sha256": "b3aa12153f828e1bc6d8853812b93e5fbe12aa7ac151c88589e1afb74d7272f0",
+      "count_keys": 127
+    },
+    {
+      "case": "0037.txt",
+      "T": 278,
+      "ticks": 15208,
+      "rng": 5549041740809490548,
+      "sha256": "dfd2cc41eee843d7528b7b087d625de01e2cea42ba14389f06cb95c6efaa02eb",
+      "count_keys": 127
+    },
+    {
+      "case": "0038.txt",
+      "T": 145,
+      "ticks": 15214,
+      "rng": 8547856993979761344,
+      "sha256": "da6da60fbcd0528b9354e61e2085b4bae9d09eab0bbb16a0c7c85e3e7299fa05",
+      "count_keys": 127
+    },
+    {
+      "case": "0039.txt",
+      "T": 123,
+      "ticks": 15233,
+      "rng": 15668646044419026006,
+      "sha256": "fe3ce135a5298f3223f167e9638b643829c492283e6d5cffb23f14b5fa9418f1",
+      "count_keys": 127
+    },
+    {
+      "case": "0040.txt",
+      "T": 145,
+      "ticks": 15231,
+      "rng": 10284485838434464319,
+      "sha256": "6f709116ec212fc436a0d1e6fae6b5807cb82b63f1656f123657e04b848c4146",
+      "count_keys": 127
+    },
+    {
+      "case": "0041.txt",
+      "T": 96,
+      "ticks": 15225,
+      "rng": 5881556699649387860,
+      "sha256": "220b1a48348db2cfa1353b229a48d519df211691e1887066890da4a0bb1d5c54",
+      "count_keys": 127
+    },
+    {
+      "case": "0042.txt",
+      "T": 375,
+      "ticks": 15290,
+      "rng": 6904490907339524723,
+      "sha256": "1d24f032e93f98675739ff46844db1f0d5d16ba82c607e51636a41a35d07dfd3",
+      "count_keys": 127
+    },
+    {
+      "case": "0043.txt",
+      "T": 186,
+      "ticks": 15221,
+      "rng": 4896026029964157768,
+      "sha256": "94740f892ece007516b34dee5f7273650850228761c3f01c3709a6c7ecd6c4b9",
+      "count_keys": 127
+    },
+    {
+      "case": "0044.txt",
+      "T": 201,
+      "ticks": 15263,
+      "rng": 14269034211800405483,
+      "sha256": "550baaf162b283e71d6562f30870e02272a869353b55bc20952796de3eaccf1b",
+      "count_keys": 127
+    },
+    {
+      "case": "0045.txt",
+      "T": 239,
+      "ticks": 15205,
+      "rng": 3339364161006889087,
+      "sha256": "7c85732ace9c0791c33d89ba6f400be94558f9339889ae4295036e28ecbabbd8",
+      "count_keys": 127
+    },
+    {
+      "case": "0046.txt",
+      "T": 167,
+      "ticks": 15247,
+      "rng": 15633314232371889819,
+      "sha256": "7733ab16a11b2bb909263ceefcd6715ea66ef7e2325a5ec5d17e6bb2e7aec33d",
+      "count_keys": 127
+    },
+    {
+      "case": "0047.txt",
+      "T": 386,
+      "ticks": 15276,
+      "rng": 8962429113493646992,
+      "sha256": "2254bfd3b35c514b0a12958f069a70b9afb103168cbea30dccd012b0d906978c",
+      "count_keys": 127
+    },
+    {
+      "case": "0048.txt",
+      "T": 261,
+      "ticks": 15263,
+      "rng": 3545871627940185517,
+      "sha256": "1609219417be444bd036e4f871cc5656c82ffe4cc44bab9ae8475c7365a0a83e",
+      "count_keys": 127
+    },
+    {
+      "case": "0049.txt",
+      "T": 228,
+      "ticks": 15229,
+      "rng": 11407391989953647691,
+      "sha256": "d629140c4b7c8c9d14ef650517af547f0481b5151a628f7407f06fb4ed138bd7",
+      "count_keys": 127
+    },
+    {
+      "case": "0050.txt",
+      "T": 151,
+      "ticks": 15214,
+      "rng": 1408138459233620596,
+      "sha256": "5c3a1aa2df9e7b27a2e24b4ed3ebdb3fb97cfc6c8544245b4e2b04f3eae1eef8",
+      "count_keys": 127
+    },
+    {
+      "case": "0051.txt",
+      "T": 130,
+      "ticks": 15212,
+      "rng": 7225811019446402616,
+      "sha256": "c27571a9ceb95e3070f20d638d331acedc40f04c67ae02b358c88499218d515e",
+      "count_keys": 127
+    },
+    {
+      "case": "0052.txt",
+      "T": 220,
+      "ticks": 15256,
+      "rng": 6311231703856754914,
+      "sha256": "1f3e3e2006b6985c0932a6d8424146eb066d3c0cd5a791373fedf0c9403cfeac",
+      "count_keys": 127
+    },
+    {
+      "case": "0053.txt",
+      "T": 141,
+      "ticks": 15211,
+      "rng": 3190788543478751256,
+      "sha256": "4b165cd46130a940b70bff1c58b651b8e62387283640d0fe37c5e273c86e4b1b",
+      "count_keys": 127
+    },
+    {
+      "case": "0054.txt",
+      "T": 352,
+      "ticks": 15257,
+      "rng": 15966278591023906111,
+      "sha256": "3362532a0bd57e5df5450fc6de22d63bf4b9516768e61ddf0945a8899679a625",
+      "count_keys": 127
+    },
+    {
+      "case": "0055.txt",
+      "T": 323,
+      "ticks": 15271,
+      "rng": 12073536040639244747,
+      "sha256": "cba47c725cb84568bf3e16146558897483fd679ac1768bfa093c30287291b53a",
+      "count_keys": 127
+    },
+    {
+      "case": "0056.txt",
+      "T": 231,
+      "ticks": 15277,
+      "rng": 10923263933245131207,
+      "sha256": "99c249e0266ff6bcf40f1bccfd321791f716e291d223aecaa7d7b74f0d8559c1",
+      "count_keys": 127
+    },
+    {
+      "case": "0057.txt",
+      "T": 280,
+      "ticks": 15248,
+      "rng": 15198651814737240024,
+      "sha256": "aed474d289177a1a07cf6c9b696b7af130fd87b8c5b725bb9c32bc5f23c067eb",
+      "count_keys": 127
+    },
+    {
+      "case": "0058.txt",
+      "T": 345,
+      "ticks": 15219,
+      "rng": 5290011196205181221,
+      "sha256": "9bd92fe56ba5e7d8f68edceea1cd9a23cfa9b6253ca2568fe6d83ad1bcf4b1f7",
+      "count_keys": 127
+    },
+    {
+      "case": "0059.txt",
+      "T": 73,
+      "ticks": 15215,
+      "rng": 159262522625702344,
+      "sha256": "28b4d7d037141865019223da1771ae76783ec8b9e106bea4fa78f1a962502b9d",
+      "count_keys": 127
+    },
+    {
+      "case": "0060.txt",
+      "T": 164,
+      "ticks": 15205,
+      "rng": 6921985246691940374,
+      "sha256": "76745d4cc83cb9e259f9a6c3f9f2d35d1b4236710669a2610bd06a36a0a9cd7c",
+      "count_keys": 127
+    },
+    {
+      "case": "0061.txt",
+      "T": 329,
+      "ticks": 15224,
+      "rng": 6617258248198616455,
+      "sha256": "fe72989e3fd86b30c40fea74dccc44218ce7adc45e1df01f02c4f9921b28e18e",
+      "count_keys": 127
+    },
+    {
+      "case": "0062.txt",
+      "T": 200,
+      "ticks": 15237,
+      "rng": 10017646655216049947,
+      "sha256": "fb335f108a577e3918e045c91eaad4a7fc646908dc775c13b54d76eaf24c5729",
+      "count_keys": 127
+    },
+    {
+      "case": "0063.txt",
+      "T": 298,
+      "ticks": 15235,
+      "rng": 8476381467812668979,
+      "sha256": "4f0213d17a70449b76aa735f234a9ca2aff5f5f9ea24d173b780d10d72189c61",
+      "count_keys": 127
+    },
+    {
+      "case": "0064.txt",
+      "T": 218,
+      "ticks": 15210,
+      "rng": 5701490067576708690,
+      "sha256": "35ccfe54816e9beb51f36ec1c3422033c0f235ebe5417f11a7e3f6f4c4aa047f",
+      "count_keys": 127
+    },
+    {
+      "case": "0065.txt",
+      "T": 134,
+      "ticks": 15236,
+      "rng": 2208796406754210360,
+      "sha256": "698a216ff24eecfaf728af30275f4ffba7627750768d2bf3f59ca1237d9e987d",
+      "count_keys": 127
+    },
+    {
+      "case": "0066.txt",
+      "T": 432,
+      "ticks": 15204,
+      "rng": 5370484010231546570,
+      "sha256": "bf22f08977145481cca1a61fb5a6ff68366e99106ed368544a173182374dad1d",
+      "count_keys": 127
+    },
+    {
+      "case": "0067.txt",
+      "T": 233,
+      "ticks": 15202,
+      "rng": 10227761857789547804,
+      "sha256": "b5af9fb714e928437e54c84ce53985ab4175cf38f5200146aaf8d1eff01abcf5",
+      "count_keys": 127
+    },
+    {
+      "case": "0068.txt",
+      "T": 481,
+      "ticks": 15242,
+      "rng": 16470566014261320150,
+      "sha256": "4a025d24fb98069a1caefcdc91ba7fc52882de2300a2f144b36bbf42222f7d99",
+      "count_keys": 127
+    },
+    {
+      "case": "0069.txt",
+      "T": 145,
+      "ticks": 15219,
+      "rng": 17701229316326027689,
+      "sha256": "e0ff7e31d102e00870aabbf925f912963d88ad8b63f452ce45cc184ee412f39c",
+      "count_keys": 127
+    },
+    {
+      "case": "0070.txt",
+      "T": 485,
+      "ticks": 15287,
+      "rng": 173140119932977946,
+      "sha256": "a137927ced3812a555fe97e9e43f0396255beccea4150fd1e340932f415dbcb8",
+      "count_keys": 127
+    },
+    {
+      "case": "0071.txt",
+      "T": 474,
+      "ticks": 15324,
+      "rng": 5894452248317742053,
+      "sha256": "86321a7b64c8d1a8d6eaf35a8af000d6ad01aca2b141a6994cf4806e878e66b9",
+      "count_keys": 127
+    },
+    {
+      "case": "0072.txt",
+      "T": 96,
+      "ticks": 15218,
+      "rng": 13322471825024057270,
+      "sha256": "b77781008271c0d0f983328cd937699e1a27dd7b023a15ede8f9818f1ad7282d",
+      "count_keys": 127
+    },
+    {
+      "case": "0073.txt",
+      "T": 259,
+      "ticks": 15222,
+      "rng": 4243578828075044131,
+      "sha256": "fb20e32e70ac1cb57937d333a237526c5a5be7929369a3df9d9eebdb4675c982",
+      "count_keys": 127
+    },
+    {
+      "case": "0074.txt",
+      "T": 104,
+      "ticks": 15219,
+      "rng": 6999443075169503691,
+      "sha256": "1e99785ad40d44f5f7a3cda7729a80114b1c08ebb86a936adb4f9edd75964415",
+      "count_keys": 127
+    },
+    {
+      "case": "0075.txt",
+      "T": 401,
+      "ticks": 15230,
+      "rng": 10498852938906420970,
+      "sha256": "7cf434f1fb780b8190b30df9106ae5e5353f7fb1f8722e24214963e89b225f2a",
+      "count_keys": 127
+    },
+    {
+      "case": "0076.txt",
+      "T": 297,
+      "ticks": 15234,
+      "rng": 7342651660178283680,
+      "sha256": "188423d146ea3664a91c63c36f79b64d405f1969224136f03a5db371f4ce4e8e",
+      "count_keys": 127
+    },
+    {
+      "case": "0077.txt",
+      "T": 94,
+      "ticks": 15226,
+      "rng": 11557370739808196873,
+      "sha256": "192ca94069f4fede6cb71ec774a0ea4ab4502c27933f84e6e73c004c2b13ca6b",
+      "count_keys": 127
+    },
+    {
+      "case": "0078.txt",
+      "T": 291,
+      "ticks": 15205,
+      "rng": 902215115892646296,
+      "sha256": "b7c26344a514afbe79f0f348e01c834c00a3f9a3c71d17016819c89461dcb13f",
+      "count_keys": 127
+    },
+    {
+      "case": "0079.txt",
+      "T": 74,
+      "ticks": 15214,
+      "rng": 1780097116612662768,
+      "sha256": "ad8fda2f8a2b912e5a77b6ce38370d27311dcf4ddbece86c4ef44c1fa4c10091",
+      "count_keys": 127
+    },
+    {
+      "case": "0080.txt",
+      "T": 207,
+      "ticks": 15222,
+      "rng": 17488062772168137538,
+      "sha256": "32b4a6ea169e891a07e551bedd095376e3d2cdaf54d590ac4f5be62b20725715",
+      "count_keys": 127
+    },
+    {
+      "case": "0081.txt",
+      "T": 435,
+      "ticks": 15287,
+      "rng": 11900939407263674358,
+      "sha256": "707ecddb3865c2900af46ea729b0ee15ff9274eff6a40281336e999c549497ba",
+      "count_keys": 127
+    },
+    {
+      "case": "0082.txt",
+      "T": 345,
+      "ticks": 15293,
+      "rng": 15182090842245606671,
+      "sha256": "bf0e277b4a2ddd706202886dc2327f151e78f893872fa533c880a1626e459199",
+      "count_keys": 127
+    },
+    {
+      "case": "0083.txt",
+      "T": 184,
+      "ticks": 15232,
+      "rng": 10189143927912302718,
+      "sha256": "70f949753019e3b91e38b9440a60accb1c0ac7054b5c9e4e5609a3b1fd7d7c3f",
+      "count_keys": 127
+    },
+    {
+      "case": "0084.txt",
+      "T": 358,
+      "ticks": 15226,
+      "rng": 7041155394867037963,
+      "sha256": "087764b862e4bed3f0b28a9141f1276232be72115f283c66150079c8380c9d01",
+      "count_keys": 127
+    },
+    {
+      "case": "0085.txt",
+      "T": 217,
+      "ticks": 15207,
+      "rng": 8380890726017767897,
+      "sha256": "a68c9d9e851aae0241840688fc0e2d34d9d37ccc8d5568987fcb7e7155fa0cc2",
+      "count_keys": 127
+    },
+    {
+      "case": "0086.txt",
+      "T": 101,
+      "ticks": 15226,
+      "rng": 11644068781362117648,
+      "sha256": "f9c19dd4d0ce6a8ad882556d4fdaf912a33d419690b1a7612c96c06b87ef1bc7",
+      "count_keys": 127
+    },
+    {
+      "case": "0087.txt",
+      "T": 124,
+      "ticks": 15226,
+      "rng": 8123111928037439163,
+      "sha256": "c215f5dca327e5a946214693593043f158ce0434a93dca4ff531e63fc64bd67a",
+      "count_keys": 127
+    },
+    {
+      "case": "0088.txt",
+      "T": 175,
+      "ticks": 15209,
+      "rng": 6907869774680210105,
+      "sha256": "17ceeb9b5631ab6572bbaffbcca155f73ddbd267df77fcdd59d9b6b1b60c8e4e",
+      "count_keys": 127
+    },
+    {
+      "case": "0089.txt",
+      "T": 412,
+      "ticks": 15283,
+      "rng": 9974006653431056185,
+      "sha256": "7d3d50785061cb8dc7df607fed9ac7cc8ff9983106c2cb1b26b01d842c14b4aa",
+      "count_keys": 127
+    },
+    {
+      "case": "0090.txt",
+      "T": 155,
+      "ticks": 15212,
+      "rng": 12489655943889189528,
+      "sha256": "f7821f07fa301f26ab968f99a80df48f0966b68ff02818574362cac3ce917d48",
+      "count_keys": 127
+    },
+    {
+      "case": "0091.txt",
+      "T": 105,
+      "ticks": 15216,
+      "rng": 17815659124266098258,
+      "sha256": "6946004fa78920dcddb0e404597d489dc773bb9fe522ab6604279e9fac7725e6",
+      "count_keys": 127
+    },
+    {
+      "case": "0092.txt",
+      "T": 655,
+      "ticks": 15294,
+      "rng": 14352221148158322946,
+      "sha256": "d05dfcd28e9e60b2255157a955b1aa7bb1e786f1dd5c9580078570b674d039b7",
+      "count_keys": 127
+    },
+    {
+      "case": "0093.txt",
+      "T": 86,
+      "ticks": 15207,
+      "rng": 10342400213913538394,
+      "sha256": "f158031b12ac78ed4a291daa60023ddb3363fa8720ff621149db56151095c640",
+      "count_keys": 127
+    },
+    {
+      "case": "0094.txt",
+      "T": 124,
+      "ticks": 15216,
+      "rng": 15993868203068780391,
+      "sha256": "6d463747f9ad39c3b3cc9a9369c4754b173932ac64ee2548ae148512c0d80aaa",
+      "count_keys": 127
+    },
+    {
+      "case": "0095.txt",
+      "T": 277,
+      "ticks": 15236,
+      "rng": 5281844307042699240,
+      "sha256": "8fc4ee1cea88c998ce3839401c73ec9c4be3056247e6caf881d093d919b1d691",
+      "count_keys": 127
+    },
+    {
+      "case": "0096.txt",
+      "T": 88,
+      "ticks": 15206,
+      "rng": 17149338232577461167,
+      "sha256": "38b02a34d22347b6ae1e2ebf76d15c0d5b7efd694ef80551c664ab6a9baed28d",
+      "count_keys": 127
+    },
+    {
+      "case": "0097.txt",
+      "T": 613,
+      "ticks": 15282,
+      "rng": 4655360160220473981,
+      "sha256": "ea864333f82005921dd56e69a385d57bfac9c5dda01cd6ab39330ae931d044c0",
+      "count_keys": 127
+    },
+    {
+      "case": "0098.txt",
+      "T": 135,
+      "ticks": 15202,
+      "rng": 1375760616554841375,
+      "sha256": "e84651d13e7137d7747083edc314194381033151df048b6bc653b48cb9995764",
+      "count_keys": 127
+    },
+    {
+      "case": "0099.txt",
+      "T": 209,
+      "ticks": 15215,
+      "rng": 1205223515825023019,
+      "sha256": "2ce5245f5baff9904a28f3c18cae2e5f730c4146b067fa8ead6759616ca6592a",
+      "count_keys": 127
+    }
+  ]
+}

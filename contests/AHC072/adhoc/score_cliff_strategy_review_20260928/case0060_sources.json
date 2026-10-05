@@ -1,0 +1,10 @@
+{
+  "purpose": "保存解の観測のみ。solver実行なし。",
+  "files": {
+    "tools/in/0060.txt": "416cf7b14c44924568dc201482a7e78177fcb7925796d4b4aa663d4b04536d71",
+    "src/bin/v039_exact_board_lns.cpp": "ce92df43dcfcba97d48ab98e8523b86fd92bd9545e5e2bed2c73e669acb52970",
+    "adhoc/scripts/analyze_saved_pair_0060.py": "a0cb8b8192f4cc007cae8e110d2e100969b04d5c2201bf3e7cf7f4ea1f05798b",
+    "results/out/v022_dependency_lns/0060.txt": "4f545dc1aa610fd8ec568a8b4316de833594867ed93f671bc299ca0751421700",
+    "results/out/v039_exact_board_lns/0060.txt": "fe583e231a938aef03b89286db8dad6cd46461179287b4cccd15100f9b715184"
+  }
+}

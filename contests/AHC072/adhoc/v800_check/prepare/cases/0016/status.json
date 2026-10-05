@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 123,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v033_capacity_lns/0016.txt",
+  "best_sha256": "4a3b311ef276843676d447bddbc7b47da0ec1259a8b4231014b5112e39eece91",
+  "attempts": []
+}

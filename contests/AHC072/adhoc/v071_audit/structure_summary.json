@@ -1,0 +1,135 @@
+{
+  "v059_repair_priority": {
+    "lines": 3787,
+    "comment_lines": 211,
+    "blank_lines": 68,
+    "bytes": 187070
+  },
+  "v071_refactored": {
+    "lines": 3624,
+    "comment_lines": 106,
+    "blank_lines": 63,
+    "bytes": 188907
+  },
+  "assembly": {
+    "local": {
+      "v059_repair_priority": {
+        "calls": 36,
+        "call_targets": {
+          "__ZN5BoardC1ERKS_": 1,
+          "__Znwm": 4,
+          "__ZdlPvm": 5,
+          "__ZN11TemporalLNS12SpatialQueue7prepareEi": 1,
+          "__ZN11TemporalLNS12SpatialQueue5resetEi": 2,
+          "_memset": 1,
+          "__ZNK8Geometry5applyER5Board4Move.constprop.0.isra.0": 1,
+          "__ZN11TemporalLNS12SpatialQueue4pushEii": 5,
+          "_memcpy": 2,
+          "__ZNK5Clock5checkEv.constprop.0": 2,
+          "__ZZN11TemporalLNS8insertAtERK5BoardRKSt6vectorI4MoveSaIS4_EEiiiiRS6_ENKUliiiRKNS_5LabelEE_clEiiiSC_": 3,
+          "__ZNK11TemporalLNS11reconstructERKSt6vectorI4MoveSaIS1_EEi": 1,
+          "__ZNSt6vectorI4MoveSaIS0_EE14_M_move_assignEOS2_St17integral_constantIbLb1EE.isra.0": 1,
+          "___cxa_allocate_exception": 1,
+          "__ZNSt11logic_errorC1EPKc": 1,
+          "___cxa_throw": 1,
+          "__Unwind_Resume": 1,
+          "___cxa_free_exception": 1,
+          "__ZSt20__throw_length_errorPKc": 2
+        }
+      },
+      "v071_refactored": {
+        "calls": 36,
+        "call_targets": {
+          "__ZN5StateC1ERKS_": 1,
+          "__Znwm": 4,
+          "__ZdlPvm": 5,
+          "__ZN11TemporalLNS12SpatialQueue7prepareEi": 1,
+          "__ZN11TemporalLNS12SpatialQueue5resetEi": 2,
+          "_memset": 1,
+          "__ZNK5Board5applyER5State4Move.constprop.0.isra.0": 1,
+          "__ZN11TemporalLNS12SpatialQueue4pushEii": 5,
+          "_memcpy": 2,
+          "__ZNK10TimeKeeper5checkEv.constprop.0": 2,
+          "__ZZN11TemporalLNS9insert_atERK5StateRKSt6vectorI4MoveSaIS4_EEiiiiRS6_ENKUliiiRKNS_5LabelEE_clEiiiSC_": 3,
+          "__ZNK11TemporalLNS11reconstructERKSt6vectorI4MoveSaIS1_EEi": 1,
+          "__ZNSt6vectorI4MoveSaIS0_EE14_M_move_assignEOS2_St17integral_constantIbLb1EE.isra.0": 1,
+          "___cxa_allocate_exception": 1,
+          "__ZNSt11logic_errorC1EPKc": 1,
+          "___cxa_throw": 1,
+          "__Unwind_Resume": 1,
+          "___cxa_free_exception": 1,
+          "__ZSt20__throw_length_errorPKc": 2
+        }
+      }
+    },
+    "production": {
+      "v059_repair_priority": {
+        "calls": 42,
+        "call_targets": {
+          "__ZN5BoardC1ERKS_": 1,
+          "__Znwm": 5,
+          "__ZdlPvm": 6,
+          "__ZN11TemporalLNS12SpatialQueue7prepareEi": 1,
+          "__ZN11TemporalLNS12SpatialQueue5resetEi": 1,
+          "_memset": 6,
+          "__ZNK8Geometry5applyER5Board4Move.constprop.0.isra.0": 1,
+          "__ZN11TemporalLNS12SpatialQueue4pushEii": 5,
+          "_memcpy": 2,
+          "__ZNK5Clock5checkEv.constprop.0": 2,
+          "__ZZN11TemporalLNS8insertAtERK5BoardRKSt6vectorI4MoveSaIS4_EEiiiiRS6_ENKUliiiRKNS_5LabelEE_clEiiiSC_": 3,
+          "__ZNK11TemporalLNS11reconstructERKSt6vectorI4MoveSaIS1_EEi": 1,
+          "__ZNSt6vectorI4MoveSaIS0_EE14_M_move_assignEOS2_St17integral_constantIbLb1EE.isra.0": 1,
+          "___cxa_allocate_exception": 1,
+          "__ZNSt11logic_errorC1EPKc": 1,
+          "___cxa_throw": 1,
+          "__Unwind_Resume": 1,
+          "___cxa_free_exception": 1,
+          "__ZSt20__throw_length_errorPKc": 2
+        }
+      },
+      "v071_refactored": {
+        "calls": 42,
+        "call_targets": {
+          "__ZN5StateC1ERKS_": 1,
+          "__Znwm": 5,
+          "__ZdlPvm": 6,
+          "__ZN11TemporalLNS12SpatialQueue7prepareEi": 1,
+          "__ZN11TemporalLNS12SpatialQueue5resetEi": 1,
+          "_memset": 6,
+          "__ZNK5Board5applyER5State4Move.constprop.0.isra.0": 1,
+          "__ZN11TemporalLNS12SpatialQueue4pushEii": 5,
+          "_memcpy": 2,
+          "__ZNK10TimeKeeper5checkEv.constprop.0": 2,
+          "__ZZN11TemporalLNS9insert_atERK5StateRKSt6vectorI4MoveSaIS4_EEiiiiRS6_ENKUliiiRKNS_5LabelEE_clEiiiSC_": 3,
+          "__ZNK11TemporalLNS11reconstructERKSt6vectorI4MoveSaIS1_EEi": 1,
+          "__ZNSt6vectorI4MoveSaIS0_EE14_M_move_assignEOS2_St17integral_constantIbLb1EE.isra.0": 1,
+          "___cxa_allocate_exception": 1,
+          "__ZNSt11logic_errorC1EPKc": 1,
+          "___cxa_throw": 1,
+          "__Unwind_Resume": 1,
+          "___cxa_free_exception": 1,
+          "__ZSt20__throw_length_errorPKc": 2
+        }
+      }
+    }
+  },
+  "renames": 153,
+  "edits_by_reason": {
+    "comment": 96,
+    "inactive audit hook": 11,
+    "unused function": 2,
+    "unused audit output parameter": 2,
+    "unused audit output branch": 1,
+    "unused null audit argument": 2,
+    "template macros": 1,
+    "shared timed call": 3,
+    "timer member names": 1,
+    "timer member use": 4,
+    "timer start use": 1,
+    "state log key": 5,
+    "board member names": 1,
+    "board member use": 14,
+    "construction state names": 1,
+    "construction state use": 47
+  }
+}

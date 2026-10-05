@@ -1,0 +1,10 @@
+{
+  "local": {
+    "time_macro_expansions": 15,
+    "lns_end_changes": 1,
+    "expected_only": true
+  },
+  "production": {
+    "equal_after_diagnostic_normalization": true
+  }
+}

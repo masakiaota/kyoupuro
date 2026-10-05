@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "self_test": {
+    "self_tests": 8,
+    "long_span": 72,
+    "saved": 2,
+    "dense_sparse_equal": true
+  },
+  "cases": [
+    {
+      "case": "0015",
+      "attempts": 64,
+      "returned": 16,
+      "completed": 213,
+      "skipped_layers": 115371,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0019",
+      "attempts": 64,
+      "returned": 14,
+      "completed": 156,
+      "skipped_layers": 97834,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0034",
+      "attempts": 64,
+      "returned": 7,
+      "completed": 263,
+      "skipped_layers": 46566,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0075",
+      "attempts": 64,
+      "returned": 19,
+      "completed": 148,
+      "skipped_layers": 28842,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0081",
+      "attempts": 64,
+      "returned": 24,
+      "completed": 465,
+      "skipped_layers": 126582,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    },
+    {
+      "case": "0092",
+      "attempts": 64,
+      "returned": 18,
+      "completed": 285,
+      "skipped_layers": 88548,
+      "rng_unchanged": true,
+      "metadata_unchanged": true
+    }
+  ],
+  "independently_replayed_candidates": 98
+}

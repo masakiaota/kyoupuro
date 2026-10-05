@@ -1,0 +1,4 @@
+tag,best,status,labels,expanded,transition_checks,physical_checks,bound_checks
+fixture_0,3,optimal_in_model,9,4,4,26,16
+fixture_1,3,exhausted_no_improvement,2,2,2,14,8
+fixture_2,3,optimal_in_model,7,5,5,22,11

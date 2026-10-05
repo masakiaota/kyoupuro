@@ -1,0 +1,708 @@
+{
+  "solver_executions": 0,
+  "cases": [
+    {
+      "case": "0000.txt",
+      "completed": 298,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0001.txt",
+      "completed": 27,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0002.txt",
+      "completed": 23,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0003.txt",
+      "completed": 20,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 9
+    },
+    {
+      "case": "0004.txt",
+      "completed": 9,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 8
+    },
+    {
+      "case": "0005.txt",
+      "completed": 0,
+      "seeds": 3,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0006.txt",
+      "completed": 16,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 1
+    },
+    {
+      "case": "0007.txt",
+      "completed": 22,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 5
+    },
+    {
+      "case": "0008.txt",
+      "completed": 19,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0009.txt",
+      "completed": 27,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0010.txt",
+      "completed": 45,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 2
+    },
+    {
+      "case": "0011.txt",
+      "completed": 18,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0012.txt",
+      "completed": 18,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 2
+    },
+    {
+      "case": "0013.txt",
+      "completed": 22,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0014.txt",
+      "completed": 7,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 4
+    },
+    {
+      "case": "0015.txt",
+      "completed": 5,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0016.txt",
+      "completed": 22,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0017.txt",
+      "completed": 14,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0018.txt",
+      "completed": 36,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0019.txt",
+      "completed": 3,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0020.txt",
+      "completed": 21,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 1
+    },
+    {
+      "case": "0021.txt",
+      "completed": 61,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 2
+    },
+    {
+      "case": "0022.txt",
+      "completed": 58,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0023.txt",
+      "completed": 24,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0024.txt",
+      "completed": 44,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0025.txt",
+      "completed": 69,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 1
+    },
+    {
+      "case": "0026.txt",
+      "completed": 35,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0027.txt",
+      "completed": 2,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 6
+    },
+    {
+      "case": "0028.txt",
+      "completed": 11,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 26
+    },
+    {
+      "case": "0029.txt",
+      "completed": 9,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 8
+    },
+    {
+      "case": "0030.txt",
+      "completed": 0,
+      "seeds": 3,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0031.txt",
+      "completed": 23,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 1
+    },
+    {
+      "case": "0032.txt",
+      "completed": 11,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 5
+    },
+    {
+      "case": "0033.txt",
+      "completed": 13,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 2
+    },
+    {
+      "case": "0034.txt",
+      "completed": 1,
+      "seeds": 4,
+      "winner_rank": 1,
+      "winner_initial_extra": 7
+    },
+    {
+      "case": "0035.txt",
+      "completed": 149,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0036.txt",
+      "completed": 14,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 1
+    },
+    {
+      "case": "0037.txt",
+      "completed": 11,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0038.txt",
+      "completed": 19,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0039.txt",
+      "completed": 23,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 2
+    },
+    {
+      "case": "0040.txt",
+      "completed": 26,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0041.txt",
+      "completed": 19,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0042.txt",
+      "completed": 6,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0043.txt",
+      "completed": 32,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 9
+    },
+    {
+      "case": "0044.txt",
+      "completed": 17,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0045.txt",
+      "completed": 12,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 20
+    },
+    {
+      "case": "0046.txt",
+      "completed": 15,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0047.txt",
+      "completed": 9,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 9
+    },
+    {
+      "case": "0048.txt",
+      "completed": 14,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0049.txt",
+      "completed": 15,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 11
+    },
+    {
+      "case": "0050.txt",
+      "completed": 21,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 7
+    },
+    {
+      "case": "0051.txt",
+      "completed": 19,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 4
+    },
+    {
+      "case": "0052.txt",
+      "completed": 14,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 4
+    },
+    {
+      "case": "0053.txt",
+      "completed": 28,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 5
+    },
+    {
+      "case": "0054.txt",
+      "completed": 11,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0055.txt",
+      "completed": 9,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 5
+    },
+    {
+      "case": "0056.txt",
+      "completed": 12,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0057.txt",
+      "completed": 11,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 9
+    },
+    {
+      "case": "0058.txt",
+      "completed": 14,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 11
+    },
+    {
+      "case": "0059.txt",
+      "completed": 45,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0060.txt",
+      "completed": 16,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0061.txt",
+      "completed": 4,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0062.txt",
+      "completed": 13,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 16
+    },
+    {
+      "case": "0063.txt",
+      "completed": 12,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 4
+    },
+    {
+      "case": "0064.txt",
+      "completed": 16,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0065.txt",
+      "completed": 15,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0066.txt",
+      "completed": 6,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 26
+    },
+    {
+      "case": "0067.txt",
+      "completed": 26,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 2
+    },
+    {
+      "case": "0068.txt",
+      "completed": 6,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0069.txt",
+      "completed": 22,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0070.txt",
+      "completed": 6,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 20
+    },
+    {
+      "case": "0071.txt",
+      "completed": 6,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0072.txt",
+      "completed": 25,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0073.txt",
+      "completed": 10,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0074.txt",
+      "completed": 17,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 7
+    },
+    {
+      "case": "0075.txt",
+      "completed": 12,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0076.txt",
+      "completed": 10,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 18
+    },
+    {
+      "case": "0077.txt",
+      "completed": 17,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0078.txt",
+      "completed": 10,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 26
+    },
+    {
+      "case": "0079.txt",
+      "completed": 38,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0080.txt",
+      "completed": 15,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0081.txt",
+      "completed": 7,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0082.txt",
+      "completed": 10,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 24
+    },
+    {
+      "case": "0083.txt",
+      "completed": 14,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0084.txt",
+      "completed": 8,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 13
+    },
+    {
+      "case": "0085.txt",
+      "completed": 17,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 4
+    },
+    {
+      "case": "0086.txt",
+      "completed": 41,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0087.txt",
+      "completed": 13,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0088.txt",
+      "completed": 19,
+      "seeds": 5,
+      "winner_rank": 2,
+      "winner_initial_extra": 2
+    },
+    {
+      "case": "0089.txt",
+      "completed": 6,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0090.txt",
+      "completed": 13,
+      "seeds": 5,
+      "winner_rank": 4,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0091.txt",
+      "completed": 20,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0092.txt",
+      "completed": 7,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 1
+    },
+    {
+      "case": "0093.txt",
+      "completed": 55,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 1
+    },
+    {
+      "case": "0094.txt",
+      "completed": 20,
+      "seeds": 5,
+      "winner_rank": 1,
+      "winner_initial_extra": 1
+    },
+    {
+      "case": "0095.txt",
+      "completed": 17,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0096.txt",
+      "completed": 20,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 3
+    },
+    {
+      "case": "0097.txt",
+      "completed": 0,
+      "seeds": 3,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0098.txt",
+      "completed": 16,
+      "seeds": 5,
+      "winner_rank": 3,
+      "winner_initial_extra": 0
+    },
+    {
+      "case": "0099.txt",
+      "completed": 16,
+      "seeds": 5,
+      "winner_rank": 0,
+      "winner_initial_extra": 0
+    }
+  ],
+  "winner_initially_longer": 55,
+  "fifth_seed_won": 9,
+  "at_least_eight_constructions": 83
+}

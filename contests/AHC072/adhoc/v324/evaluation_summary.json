@@ -1,0 +1,145 @@
+{
+  "compiler": "GCC 14.2.0, C++23",
+  "mode": "non-LOCAL",
+  "budget_seconds": 1.9,
+  "workers": 2,
+  "runs_per_input_version": 1,
+  "source_sha256": "914b966c5675db6ea1e8a236477fee573c4ba919a8e685ddc99e58dc0fba2518",
+  "parent_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+  "source_git_blob": "3097574455f88b7621cc29429862c96c73b384fa",
+  "validation1_used": false,
+  "valid_outputs": 456,
+  "total_outputs": 456,
+  "official_rust_vis": true,
+  "independent_python_replay": true,
+  "all_external_within_1_9": true,
+  "score_criteria_met": false,
+  "verdict": "not adopted",
+  "adopted_control": "v113",
+  "external_max": {
+    "fresh128": {
+      "v113": 1.886480132,
+      "v324": 1.883668906
+    },
+    "in": {
+      "v113": 1.885924086,
+      "v324": 1.885671445
+    }
+  },
+  "input_bootstrap_95_mean_difference": {
+    "fresh128": [
+      -0.5859375,
+      1.609375
+    ],
+    "in": [
+      -0.72,
+      0.97
+    ]
+  },
+  "mechanism": {
+    "fixed_saved_inputs": 16,
+    "unbounded_extraction_comparisons": 2939,
+    "successful_extractions": 2578,
+    "bounded_extraction_comparisons": 5156,
+    "changed_to_shorter_skeleton": 1549,
+    "local_reinsertion_pairs": 247,
+    "parent_completed": 75,
+    "new_completed": 109,
+    "common_completed": 68,
+    "wins": 59,
+    "ties": 5,
+    "losses": 4,
+    "parent_only_success": 7,
+    "new_only_success": 41,
+    "common_parent_total": 10654,
+    "common_new_total": 10519,
+    "independent_python_checked_outputs": 1733
+  },
+  "in_tournament": {
+    "eligible": 129212,
+    "calls": 129208,
+    "budget_skips": 4,
+    "probes": 216173,
+    "completed": 54378,
+    "capped": 157822,
+    "changed": 49006,
+    "skeleton_saved": 154198,
+    "finished": 38440,
+    "accepted": 23316,
+    "best_updates": 1091,
+    "best_saved": 2389,
+    "budget_admission_overruns": 2,
+    "total_seconds": 2.45467475
+  },
+  "fresh_tournament": {
+    "eligible": 129291,
+    "calls": 129275,
+    "budget_skips": 16,
+    "probes": 227241,
+    "completed": 64603,
+    "capped": 157684,
+    "changed": 57835,
+    "skeleton_saved": 184439,
+    "finished": 45584,
+    "accepted": 28233,
+    "best_updates": 1466,
+    "best_saved": 3126,
+    "budget_admission_overruns": 2,
+    "total_seconds": 2.82778348
+  },
+  "lns_attempts_mean": {
+    "in": {
+      "v113": 6337.67,
+      "v324": 6041.25
+    },
+    "fresh128": {
+      "v113": 5083.171875,
+      "v324": 4947.390625
+    }
+  },
+  "first_neural_path_hash_matches": {
+    "in": 100,
+    "fresh128": 128
+  },
+  "initial_candidate_origin_and_length_matches": {
+    "in": 100,
+    "fresh128": 127
+  },
+  "sets": {
+    "fresh128": {
+      "n": 128,
+      "delta_sum": 66,
+      "delta_mean": 0.515625,
+      "wins": 54,
+      "ties": 14,
+      "losses": 60,
+      "v113": {
+        "sum": 28871,
+        "mean": 225.5546875
+      },
+      "v324": {
+        "sum": 28937,
+        "mean": 226.0703125
+      }
+    },
+    "in": {
+      "n": 100,
+      "delta_sum": 12,
+      "delta_mean": 0.12,
+      "wins": 42,
+      "ties": 14,
+      "losses": 44,
+      "v113": {
+        "sum": 19777,
+        "mean": 197.77,
+        "relative_v800": 94.71665530809703
+      },
+      "v324": {
+        "sum": 19789,
+        "mean": 197.89,
+        "relative_v800": 94.65052041748902
+      },
+      "relative_delta": -0.06613489060801214
+    }
+  }
+}

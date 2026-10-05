@@ -1,0 +1,883 @@
+{
+  "source": "results/out/v028_two_order_lns",
+  "cases": 100,
+  "totalMoves": 20894,
+  "consecutive": [
+    {
+      "case": "0014.txt",
+      "first": 35,
+      "last": 36,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 11,
+          "j": 3,
+          "k": 4,
+          "d": "L",
+          "l": 1
+        },
+        {
+          "i": 11,
+          "j": 2,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        3,
+        4
+      ]
+    },
+    {
+      "case": "0014.txt",
+      "first": 44,
+      "last": 45,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 1,
+          "j": 5,
+          "k": 6,
+          "d": "D",
+          "l": 1
+        },
+        {
+          "i": 1,
+          "j": 5,
+          "k": 0,
+          "d": "D",
+          "l": 1
+        }
+      ],
+      "moved": [
+        1,
+        6
+      ]
+    },
+    {
+      "case": "0014.txt",
+      "first": 175,
+      "last": 176,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 5,
+          "j": 15,
+          "k": 1,
+          "d": "L",
+          "l": 1
+        },
+        {
+          "i": 5,
+          "j": 15,
+          "k": 0,
+          "d": "L",
+          "l": 1
+        }
+      ],
+      "moved": [
+        1,
+        1
+      ]
+    },
+    {
+      "case": "0014.txt",
+      "first": 180,
+      "last": 181,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 7,
+          "j": 14,
+          "k": 0,
+          "d": "U",
+          "l": 1
+        },
+        {
+          "i": 6,
+          "j": 14,
+          "k": 0,
+          "d": "D",
+          "l": 1
+        }
+      ],
+      "moved": [
+        1,
+        8
+      ]
+    },
+    {
+      "case": "0014.txt",
+      "first": 201,
+      "last": 202,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 6,
+          "j": 12,
+          "k": 2,
+          "d": "U",
+          "l": 1
+        },
+        {
+          "i": 6,
+          "j": 12,
+          "k": 0,
+          "d": "U",
+          "l": 1
+        }
+      ],
+      "moved": [
+        4,
+        2
+      ]
+    },
+    {
+      "case": "0019.txt",
+      "first": 133,
+      "last": 134,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 5,
+          "j": 3,
+          "k": 0,
+          "d": "D",
+          "l": 1
+        },
+        {
+          "i": 6,
+          "j": 3,
+          "k": 0,
+          "d": "U",
+          "l": 1
+        }
+      ],
+      "moved": [
+        1,
+        3
+      ]
+    },
+    {
+      "case": "0019.txt",
+      "first": 361,
+      "last": 362,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 7,
+          "j": 15,
+          "k": 0,
+          "d": "L",
+          "l": 1
+        },
+        {
+          "i": 7,
+          "j": 14,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        2,
+        8
+      ]
+    },
+    {
+      "case": "0019.txt",
+      "first": 614,
+      "last": 615,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 15,
+          "j": 9,
+          "k": 1,
+          "d": "U",
+          "l": 1
+        },
+        {
+          "i": 15,
+          "j": 9,
+          "k": 0,
+          "d": "U",
+          "l": 1
+        }
+      ],
+      "moved": [
+        5,
+        1
+      ]
+    },
+    {
+      "case": "0019.txt",
+      "first": 651,
+      "last": 652,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 11,
+          "j": 4,
+          "k": 4,
+          "d": "D",
+          "l": 1
+        },
+        {
+          "i": 11,
+          "j": 4,
+          "k": 0,
+          "d": "D",
+          "l": 1
+        }
+      ],
+      "moved": [
+        4,
+        4
+      ]
+    },
+    {
+      "case": "0030.txt",
+      "first": 356,
+      "last": 357,
+      "distance": 2,
+      "actions": [
+        {
+          "i": 15,
+          "j": 9,
+          "k": 5,
+          "d": "L",
+          "l": 2
+        },
+        {
+          "i": 15,
+          "j": 9,
+          "k": 1,
+          "d": "L",
+          "l": 2
+        }
+      ],
+      "moved": [
+        3,
+        4
+      ]
+    },
+    {
+      "case": "0044.txt",
+      "first": 163,
+      "last": 164,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 9,
+          "j": 6,
+          "k": 0,
+          "d": "L",
+          "l": 1
+        },
+        {
+          "i": 9,
+          "j": 5,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        5,
+        8
+      ]
+    },
+    {
+      "case": "0049.txt",
+      "first": 128,
+      "last": 129,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 12,
+          "j": 3,
+          "k": 0,
+          "d": "L",
+          "l": 1
+        },
+        {
+          "i": 12,
+          "j": 2,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        5,
+        8
+      ]
+    },
+    {
+      "case": "0057.txt",
+      "first": 52,
+      "last": 53,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 15,
+          "j": 4,
+          "k": 2,
+          "d": "R",
+          "l": 1
+        },
+        {
+          "i": 15,
+          "j": 5,
+          "k": 0,
+          "d": "L",
+          "l": 1
+        }
+      ],
+      "moved": [
+        3,
+        4
+      ]
+    },
+    {
+      "case": "0092.txt",
+      "first": 51,
+      "last": 52,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 6,
+          "j": 3,
+          "k": 0,
+          "d": "L",
+          "l": 1
+        },
+        {
+          "i": 6,
+          "j": 2,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        2,
+        8
+      ]
+    },
+    {
+      "case": "0092.txt",
+      "first": 347,
+      "last": 348,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 8,
+          "j": 11,
+          "k": 1,
+          "d": "U",
+          "l": 1
+        },
+        {
+          "i": 7,
+          "j": 11,
+          "k": 0,
+          "d": "D",
+          "l": 1
+        }
+      ],
+      "moved": [
+        5,
+        7
+      ]
+    },
+    {
+      "case": "0097.txt",
+      "first": 449,
+      "last": 450,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 11,
+          "j": 14,
+          "k": 2,
+          "d": "R",
+          "l": 1
+        },
+        {
+          "i": 11,
+          "j": 14,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        4,
+        2
+      ]
+    }
+  ],
+  "separated": [
+    {
+      "case": "0015.txt",
+      "first": 76,
+      "last": 82,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 2,
+          "j": 14,
+          "k": 0,
+          "d": "U",
+          "l": 1
+        },
+        {
+          "i": 1,
+          "j": 14,
+          "k": 0,
+          "d": "D",
+          "l": 1
+        }
+      ],
+      "moved": [
+        1,
+        3
+      ]
+    },
+    {
+      "case": "0015.txt",
+      "first": 109,
+      "last": 116,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 6,
+          "j": 9,
+          "k": 1,
+          "d": "L",
+          "l": 1
+        },
+        {
+          "i": 6,
+          "j": 8,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        4,
+        5
+      ]
+    },
+    {
+      "case": "0034.txt",
+      "first": 242,
+      "last": 245,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 11,
+          "j": 11,
+          "k": 3,
+          "d": "R",
+          "l": 1
+        },
+        {
+          "i": 11,
+          "j": 11,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        5,
+        3
+      ]
+    },
+    {
+      "case": "0075.txt",
+      "first": 274,
+      "last": 281,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 15,
+          "j": 12,
+          "k": 3,
+          "d": "U",
+          "l": 1
+        },
+        {
+          "i": 15,
+          "j": 12,
+          "k": 0,
+          "d": "U",
+          "l": 1
+        }
+      ],
+      "moved": [
+        1,
+        3
+      ]
+    },
+    {
+      "case": "0081.txt",
+      "first": 234,
+      "last": 236,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 8,
+          "j": 11,
+          "k": 1,
+          "d": "R",
+          "l": 1
+        },
+        {
+          "i": 8,
+          "j": 11,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        }
+      ],
+      "moved": [
+        1,
+        1
+      ]
+    },
+    {
+      "case": "0081.txt",
+      "first": 13,
+      "last": 259,
+      "distance": 1,
+      "actions": [
+        {
+          "i": 7,
+          "j": 15,
+          "k": 0,
+          "d": "R",
+          "l": 1
+        },
+        {
+          "i": 7,
+          "j": 16,
+          "k": 0,
+          "d": "L",
+          "l": 1
+        }
+      ],
+      "moved": [
+        1,
+        2
+      ]
+    }
+  ],
+  "retainedNestEpisodes": [
+    {
+      "case": "0001.txt",
+      "start": 47,
+      "position": "3,10",
+      "color": 3,
+      "uses": [
+        {
+          "turn": 51,
+          "distance": 5,
+          "moved": 3
+        },
+        {
+          "turn": 55,
+          "distance": 4,
+          "moved": 3
+        }
+      ],
+      "maxOwnColorCount": 1,
+      "end": 58
+    },
+    {
+      "case": "0019.txt",
+      "start": 356,
+      "position": "7,10",
+      "color": 5,
+      "uses": [
+        {
+          "turn": 518,
+          "distance": 5,
+          "moved": 1
+        },
+        {
+          "turn": 531,
+          "distance": 5,
+          "moved": 2
+        },
+        {
+          "turn": 555,
+          "distance": 5,
+          "moved": 1
+        }
+      ],
+      "maxOwnColorCount": 5,
+      "end": 569
+    },
+    {
+      "case": "0020.txt",
+      "start": 79,
+      "position": "1,3",
+      "color": 5,
+      "uses": [
+        {
+          "turn": 115,
+          "distance": 2,
+          "moved": 1
+        },
+        {
+          "turn": 120,
+          "distance": 4,
+          "moved": 2
+        }
+      ],
+      "maxOwnColorCount": 1,
+      "end": 123
+    },
+    {
+      "case": "0021.txt",
+      "start": 45,
+      "position": "8,8",
+      "color": 3,
+      "uses": [
+        {
+          "turn": 52,
+          "distance": 4,
+          "moved": 1
+        },
+        {
+          "turn": 54,
+          "distance": 4,
+          "moved": 4
+        }
+      ],
+      "maxOwnColorCount": 1,
+      "end": 59
+    },
+    {
+      "case": "0048.txt",
+      "start": 124,
+      "position": "10,0",
+      "color": 1,
+      "uses": [
+        {
+          "turn": 128,
+          "distance": 2,
+          "moved": 2
+        },
+        {
+          "turn": 129,
+          "distance": 2,
+          "moved": 1
+        }
+      ],
+      "maxOwnColorCount": 3,
+      "end": 138
+    },
+    {
+      "case": "0049.txt",
+      "start": 68,
+      "position": "5,5",
+      "color": 2,
+      "uses": [
+        {
+          "turn": 71,
+          "distance": 4,
+          "moved": 2
+        },
+        {
+          "turn": 91,
+          "distance": 2,
+          "moved": 5
+        }
+      ],
+      "maxOwnColorCount": 1,
+      "end": 100
+    },
+    {
+      "case": "0056.txt",
+      "start": 130,
+      "position": "7,6",
+      "color": 5,
+      "uses": [
+        {
+          "turn": 131,
+          "distance": 2,
+          "moved": 1
+        },
+        {
+          "turn": 132,
+          "distance": 1,
+          "moved": 1
+        },
+        {
+          "turn": 142,
+          "distance": 2,
+          "moved": 4
+        },
+        {
+          "turn": 164,
+          "distance": 6,
+          "moved": 3
+        }
+      ],
+      "maxOwnColorCount": 2,
+      "end": 165
+    },
+    {
+      "case": "0060.txt",
+      "start": 75,
+      "position": "9,4",
+      "color": 9,
+      "uses": [
+        {
+          "turn": 76,
+          "distance": 5,
+          "moved": 1
+        },
+        {
+          "turn": 77,
+          "distance": 1,
+          "moved": 2
+        }
+      ],
+      "maxOwnColorCount": 1,
+      "end": 79
+    },
+    {
+      "case": "0062.txt",
+      "start": 141,
+      "position": "7,8",
+      "color": 9,
+      "uses": [
+        {
+          "turn": 147,
+          "distance": 5,
+          "moved": 2
+        },
+        {
+          "turn": 162,
+          "distance": 4,
+          "moved": 1
+        },
+        {
+          "turn": 169,
+          "distance": 1,
+          "moved": 1
+        }
+      ],
+      "maxOwnColorCount": 3,
+      "end": 170
+    },
+    {
+      "case": "0074.txt",
+      "start": 61,
+      "position": "1,7",
+      "color": 4,
+      "uses": [
+        {
+          "turn": 67,
+          "distance": 4,
+          "moved": 4
+        },
+        {
+          "turn": 80,
+          "distance": 2,
+          "moved": 3
+        }
+      ],
+      "maxOwnColorCount": 2,
+      "end": 89
+    },
+    {
+      "case": "0077.txt",
+      "start": 40,
+      "position": "2,4",
+      "color": 7,
+      "uses": [
+        {
+          "turn": 41,
+          "distance": 5,
+          "moved": 1
+        },
+        {
+          "turn": 54,
+          "distance": 4,
+          "moved": 2
+        }
+      ],
+      "maxOwnColorCount": 1,
+      "end": 55
+    },
+    {
+      "case": "0078.txt",
+      "start": 207,
+      "position": "9,10",
+      "color": 2,
+      "uses": [
+        {
+          "turn": 209,
+          "distance": 4,
+          "moved": 1
+        },
+        {
+          "turn": 216,
+          "distance": 4,
+          "moved": 3
+        }
+      ],
+      "maxOwnColorCount": 4,
+      "end": 255
+    },
+    {
+      "case": "0083.txt",
+      "start": 109,
+      "position": "3,5",
+      "color": 10,
+      "uses": [
+        {
+          "turn": 111,
+          "distance": 3,
+          "moved": 1
+        },
+        {
+          "turn": 125,
+          "distance": 3,
+          "moved": 2
+        }
+      ],
+      "maxOwnColorCount": 2,
+      "end": 130
+    },
+    {
+      "case": "0096.txt",
+      "start": 54,
+      "position": "5,10",
+      "color": 6,
+      "uses": [
+        {
+          "turn": 72,
+          "distance": 3,
+          "moved": 2
+        },
+        {
+          "turn": 73,
+          "distance": 1,
+          "moved": 1
+        }
+      ],
+      "maxOwnColorCount": 1,
+      "end": 77
+    }
+  ]
+}

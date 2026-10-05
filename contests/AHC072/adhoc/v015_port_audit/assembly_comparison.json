@@ -1,0 +1,52 @@
+{
+  "original_functions": 163,
+  "ported_functions": 163,
+  "changed_count": 9,
+  "changed": [
+    {
+      "symbol": "_main",
+      "original_instructions": 629,
+      "ported_instructions": 630
+    },
+    {
+      "symbol": "__ZN12_GLOBAL__N_16Solver12branchOutputERKNS_5BoardERKSt6vectorINS_4MoveESaIS5_EE",
+      "original_instructions": 4124,
+      "ported_instructions": 4128
+    },
+    {
+      "symbol": "__GLOBAL__sub_I_ahc072_mixed_tree.cpp",
+      "original_instructions": 1,
+      "ported_instructions": 0
+    },
+    {
+      "symbol": "__ZN12_GLOBAL__N_16Solver16assembleSupportsERNS_9ExecutionESt6vectorIiSaIiEEi",
+      "original_instructions": 2460,
+      "ported_instructions": 2464
+    },
+    {
+      "symbol": "__ZN12_GLOBAL__N_16Solver18tallScaffoldSearchENS0_4PlanEd.constprop.0",
+      "original_instructions": 864,
+      "ported_instructions": 866
+    },
+    {
+      "symbol": "__ZSt16__introsort_loopIN9__gnu_cxx17__normal_iteratorIPN12_GLOBAL__N_16Solver15RepairCandidateESt6vectorIS4_SaIS4_EEEElNS0_5__ops15_Iter_comp_iterIZNS3_22collectLocalCandidatesERKS6_INS2_4MoveESaISC_EERKS6_ISt5arrayIjLm400EESaISI_EEEUlRKS4_SO_E_EEEvT_SR_T0_T1_.isra.0",
+      "original_instructions": 602,
+      "ported_instructions": 531
+    },
+    {
+      "symbol": "__GLOBAL__sub_I_v015_mixed_tree.cpp",
+      "original_instructions": 0,
+      "ported_instructions": 1
+    },
+    {
+      "symbol": "__ZN12_GLOBAL__N_16Solver3runEv",
+      "original_instructions": 3380,
+      "ported_instructions": 3386
+    },
+    {
+      "symbol": "__ZNK12_GLOBAL__N_16Solver10makeGraphsERKNS_9ExecutionERNS_12PacketGraphsE.part.0",
+      "original_instructions": 10,
+      "ported_instructions": 10
+    }
+  ]
+}

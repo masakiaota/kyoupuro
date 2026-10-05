@@ -1,0 +1,178 @@
+{
+  "version": "v320",
+  "verdict": "rejected",
+  "sets": {
+    "train": {
+      "v111": {
+        "cases": 320,
+        "sum": 73740,
+        "mean": 230.4375,
+        "delta_vs_v111": 0,
+        "wins_vs_v111": 0,
+        "ties_vs_v111": 320,
+        "losses_vs_v111": 0
+      },
+      "v113": {
+        "cases": 320,
+        "sum": 73587,
+        "mean": 229.959375,
+        "delta_vs_v111": -153,
+        "wins_vs_v111": 144,
+        "ties_vs_v111": 63,
+        "losses_vs_v111": 113
+      },
+      "v315": {
+        "cases": 320,
+        "sum": 73988,
+        "mean": 231.2125,
+        "delta_vs_v111": 248,
+        "wins_vs_v111": 145,
+        "ties_vs_v111": 29,
+        "losses_vs_v111": 146
+      },
+      "v210": {
+        "cases": 320,
+        "sum": 76336,
+        "mean": 238.55,
+        "delta_vs_v111": 2596,
+        "wins_vs_v111": 80,
+        "ties_vs_v111": 17,
+        "losses_vs_v111": 223
+      }
+    },
+    "holdout": {
+      "v111": {
+        "cases": 128,
+        "sum": 28644,
+        "mean": 223.78125,
+        "delta_vs_v111": 0,
+        "wins_vs_v111": 0,
+        "ties_vs_v111": 128,
+        "losses_vs_v111": 0
+      },
+      "v113": {
+        "cases": 128,
+        "sum": 28534,
+        "mean": 222.921875,
+        "delta_vs_v111": -110,
+        "wins_vs_v111": 66,
+        "ties_vs_v111": 17,
+        "losses_vs_v111": 45
+      },
+      "v315": {
+        "cases": 128,
+        "sum": 28645,
+        "mean": 223.7890625,
+        "delta_vs_v111": 1,
+        "wins_vs_v111": 62,
+        "ties_vs_v111": 15,
+        "losses_vs_v111": 51
+      },
+      "v210": {
+        "cases": 128,
+        "sum": 29298,
+        "mean": 228.890625,
+        "delta_vs_v111": 654,
+        "wins_vs_v111": 25,
+        "ties_vs_v111": 12,
+        "losses_vs_v111": 91
+      },
+      "v320": {
+        "cases": 128,
+        "sum": 28586,
+        "mean": 223.328125,
+        "delta_vs_v111": -58,
+        "wins_vs_v111": 61,
+        "ties_vs_v111": 20,
+        "losses_vs_v111": 47
+      }
+    },
+    "in": {
+      "v111": {
+        "cases": 100,
+        "sum": 20037,
+        "mean": 200.37,
+        "delta_vs_v111": 0,
+        "wins_vs_v111": 0,
+        "ties_vs_v111": 100,
+        "losses_vs_v111": 0,
+        "v800_relative": 93.74050614028687
+      },
+      "v113": {
+        "cases": 100,
+        "sum": 19995,
+        "mean": 199.95,
+        "delta_vs_v111": -42,
+        "wins_vs_v111": 42,
+        "ties_vs_v111": 24,
+        "losses_vs_v111": 34,
+        "v800_relative": 93.89944433294946
+      },
+      "v315": {
+        "cases": 100,
+        "sum": 20169,
+        "mean": 201.69,
+        "delta_vs_v111": 132,
+        "wins_vs_v111": 40,
+        "ties_vs_v111": 11,
+        "losses_vs_v111": 49,
+        "v800_relative": 93.3624817446617
+      },
+      "v320": {
+        "cases": 100,
+        "sum": 20052,
+        "mean": 200.52,
+        "delta_vs_v111": 15,
+        "wins_vs_v111": 34,
+        "ties_vs_v111": 17,
+        "losses_vs_v111": 49,
+        "v800_relative": 93.58708839827166
+      }
+    }
+  },
+  "source_sha256": "9230c3d0ee6ec5ad955f862b81eec70ce682b3f4087983631f67948ab60d23f8",
+  "csv_sha256": "d4a8bdcb8f489b237f0589c465d188c6ebdce743a027a6ec49427412e95bf490",
+  "source_snapshot": "85cbc6a8c5919810612c51097ca306bede7e32b2",
+  "compiler": "GCC14.2 C++23",
+  "local_macro": false,
+  "parent_nominal_budget_seconds": 1.9,
+  "parallel_jobs": 2,
+  "official_and_independent_valid_outputs": 2320,
+  "validation1_solver_runs": 0,
+  "validation1_training_rows": 0,
+  "v320_final_cases": 228,
+  "v320_external_max_seconds": 1.9312339969997083,
+  "v320_external_over_1_9": 223,
+  "v320_external_over_2": 0,
+  "all_experts_external_max_seconds": 2.0475952990000224,
+  "all_experts_external_over_2": 3,
+  "routing_features": 17,
+  "selected_depth": 1,
+  "threshold": 0.10574372577025097,
+  "dispatch": {
+    "train": {
+      "v315": 80,
+      "v113": 240
+    },
+    "holdout": {
+      "v315": 27,
+      "v113": 101
+    },
+    "in": {
+      "v315": 32,
+      "v113": 68
+    }
+  },
+  "routing_startup_mean_us": {
+    "holdout": 250.38777343750004,
+    "in": 241.86148
+  },
+  "cpp_python_feature_max_error": 0,
+  "final_choice_mismatches": 0,
+  "source_changed_after_freeze": false,
+  "fixed_expert_selector_replay": {
+    "holdout": 28551,
+    "in": 20027
+  },
+  "uncertainty": "One timed measurement per input and version, excluding warmup. Runtime noise was not remeasured."
+}

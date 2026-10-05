@@ -1,0 +1,15 @@
+{
+  "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "cpu": "Apple M3",
+  "source_sha256": {
+    "adhoc/bin/v032_state_capacity_atcoder_bench.cpp": "0e4b9fb13d8495643f981620934ea5e3d62a811ab5049a01abd4a2d72907c55a",
+    "src/bin/v000_template.cpp": "090805a6c4a255f202ef4c02156626714f6304b8663f1cb6a0723717153442ae",
+    "notes/experiments/v032.md": "a5476abc3a23e478f33c73d4a708a9b80e899f6f05d84c5e299400a6af2e276e"
+  },
+  "purpose": "revision 2: one local completion check, not an adoption comparison",
+  "started_at": "2026-09-27T21:01:35+0900",
+  "returncode": 0,
+  "stderr": "",
+  "finished_at": "2026-09-27T21:01:36+0900",
+  "unchanged_during_smoke": true
+}

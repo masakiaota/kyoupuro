@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 248,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v037_pair_transfer_compression/0029.txt",
+  "best_sha256": "59f6b9b1ae79395222c474456c34fa0e7e782b2f259b9046aa09b7152bac4e56",
+  "attempts": []
+}

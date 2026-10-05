@@ -1,0 +1,695 @@
+[
+  {
+    "case": "0001",
+    "M": 29,
+    "T": 102,
+    "fractional_transport": 20.341666666666665,
+    "lower_bound": 29
+  },
+  {
+    "case": "0002",
+    "M": 43,
+    "T": 111,
+    "fractional_transport": 26.561904761904763,
+    "lower_bound": 43
+  },
+  {
+    "case": "0003",
+    "M": 37,
+    "T": 127,
+    "fractional_transport": 23.658333333333335,
+    "lower_bound": 37
+  },
+  {
+    "case": "0004",
+    "M": 88,
+    "T": 259,
+    "fractional_transport": 63.55238095238095,
+    "lower_bound": 88
+  },
+  {
+    "case": "0005",
+    "M": 122,
+    "T": 598,
+    "fractional_transport": 217.25,
+    "lower_bound": 218
+  },
+  {
+    "case": "0006",
+    "M": 48,
+    "T": 113,
+    "fractional_transport": 29.939285714285713,
+    "lower_bound": 48
+  },
+  {
+    "case": "0007",
+    "M": 47,
+    "T": 117,
+    "fractional_transport": 37.68333333333333,
+    "lower_bound": 47
+  },
+  {
+    "case": "0008",
+    "M": 44,
+    "T": 131,
+    "fractional_transport": 33.12738095238095,
+    "lower_bound": 44
+  },
+  {
+    "case": "0009",
+    "M": 24,
+    "T": 83,
+    "fractional_transport": 17.567857142857143,
+    "lower_bound": 24
+  },
+  {
+    "case": "0010",
+    "M": 25,
+    "T": 70,
+    "fractional_transport": 18.557142857142857,
+    "lower_bound": 25
+  },
+  {
+    "case": "0011",
+    "M": 64,
+    "T": 152,
+    "fractional_transport": 36.298809523809524,
+    "lower_bound": 64
+  },
+  {
+    "case": "0012",
+    "M": 39,
+    "T": 125,
+    "fractional_transport": 35.54047619047619,
+    "lower_bound": 39
+  },
+  {
+    "case": "0013",
+    "M": 49,
+    "T": 180,
+    "fractional_transport": 53.845238095238095,
+    "lower_bound": 54
+  },
+  {
+    "case": "0014",
+    "M": 137,
+    "T": 377,
+    "fractional_transport": 90.18690476190476,
+    "lower_bound": 137
+  },
+  {
+    "case": "0015",
+    "M": 151,
+    "T": 546,
+    "fractional_transport": 144.7,
+    "lower_bound": 151
+  },
+  {
+    "case": "0016",
+    "M": 49,
+    "T": 129,
+    "fractional_transport": 28.370238095238093,
+    "lower_bound": 49
+  },
+  {
+    "case": "0017",
+    "M": 102,
+    "T": 208,
+    "fractional_transport": 53.16547619047619,
+    "lower_bound": 102
+  },
+  {
+    "case": "0018",
+    "M": 22,
+    "T": 74,
+    "fractional_transport": 11.316666666666666,
+    "lower_bound": 22
+  },
+  {
+    "case": "0019",
+    "M": 217,
+    "T": 643,
+    "fractional_transport": 144.14166666666668,
+    "lower_bound": 217
+  },
+  {
+    "case": "0020",
+    "M": 71,
+    "T": 149,
+    "fractional_transport": 35.64523809523809,
+    "lower_bound": 71
+  },
+  {
+    "case": "0021",
+    "M": 23,
+    "T": 65,
+    "fractional_transport": 11.875,
+    "lower_bound": 23
+  },
+  {
+    "case": "0022",
+    "M": 20,
+    "T": 68,
+    "fractional_transport": 11.116666666666667,
+    "lower_bound": 20
+  },
+  {
+    "case": "0023",
+    "M": 26,
+    "T": 83,
+    "fractional_transport": 14.523809523809524,
+    "lower_bound": 26
+  },
+  {
+    "case": "0024",
+    "M": 27,
+    "T": 120,
+    "fractional_transport": 32.746428571428574,
+    "lower_bound": 33
+  },
+  {
+    "case": "0025",
+    "M": 23,
+    "T": 58,
+    "fractional_transport": 10.035714285714286,
+    "lower_bound": 23
+  },
+  {
+    "case": "0026",
+    "M": 37,
+    "T": 120,
+    "fractional_transport": 26.239285714285714,
+    "lower_bound": 37
+  },
+  {
+    "case": "0027",
+    "M": 48,
+    "T": 148,
+    "fractional_transport": 47.70952380952381,
+    "lower_bound": 48
+  },
+  {
+    "case": "0028",
+    "M": 75,
+    "T": 254,
+    "fractional_transport": 69.17023809523809,
+    "lower_bound": 75
+  },
+  {
+    "case": "0029",
+    "M": 98,
+    "T": 257,
+    "fractional_transport": 56.87023809523809,
+    "lower_bound": 98
+  },
+  {
+    "case": "0030",
+    "M": 124,
+    "T": 447,
+    "fractional_transport": 171.06785714285715,
+    "lower_bound": 172
+  },
+  {
+    "case": "0031",
+    "M": 41,
+    "T": 123,
+    "fractional_transport": 27.14761904761905,
+    "lower_bound": 41
+  },
+  {
+    "case": "0032",
+    "M": 49,
+    "T": 156,
+    "fractional_transport": 32.445238095238096,
+    "lower_bound": 49
+  },
+  {
+    "case": "0033",
+    "M": 63,
+    "T": 146,
+    "fractional_transport": 31.408333333333335,
+    "lower_bound": 63
+  },
+  {
+    "case": "0034",
+    "M": 121,
+    "T": 416,
+    "fractional_transport": 133.58928571428572,
+    "lower_bound": 134
+  },
+  {
+    "case": "0035",
+    "M": 13,
+    "T": 67,
+    "fractional_transport": 10.233333333333333,
+    "lower_bound": 13
+  },
+  {
+    "case": "0036",
+    "M": 91,
+    "T": 206,
+    "fractional_transport": 45.24047619047619,
+    "lower_bound": 91
+  },
+  {
+    "case": "0037",
+    "M": 74,
+    "T": 245,
+    "fractional_transport": 63.38928571428571,
+    "lower_bound": 74
+  },
+  {
+    "case": "0038",
+    "M": 44,
+    "T": 133,
+    "fractional_transport": 35.858333333333334,
+    "lower_bound": 44
+  },
+  {
+    "case": "0039",
+    "M": 31,
+    "T": 114,
+    "fractional_transport": 19.49642857142857,
+    "lower_bound": 31
+  },
+  {
+    "case": "0040",
+    "M": 24,
+    "T": 137,
+    "fractional_transport": 28.545238095238094,
+    "lower_bound": 29
+  },
+  {
+    "case": "0041",
+    "M": 43,
+    "T": 89,
+    "fractional_transport": 19.766666666666666,
+    "lower_bound": 43
+  },
+  {
+    "case": "0042",
+    "M": 115,
+    "T": 323,
+    "fractional_transport": 78.12857142857143,
+    "lower_bound": 115
+  },
+  {
+    "case": "0043",
+    "M": 39,
+    "T": 170,
+    "fractional_transport": 43.13690476190476,
+    "lower_bound": 44
+  },
+  {
+    "case": "0044",
+    "M": 63,
+    "T": 186,
+    "fractional_transport": 42.194047619047616,
+    "lower_bound": 63
+  },
+  {
+    "case": "0045",
+    "M": 84,
+    "T": 194,
+    "fractional_transport": 64.43690476190476,
+    "lower_bound": 84
+  },
+  {
+    "case": "0046",
+    "M": 61,
+    "T": 156,
+    "fractional_transport": 45.00595238095238,
+    "lower_bound": 61
+  },
+  {
+    "case": "0047",
+    "M": 114,
+    "T": 336,
+    "fractional_transport": 91.78690476190476,
+    "lower_bound": 114
+  },
+  {
+    "case": "0048",
+    "M": 104,
+    "T": 228,
+    "fractional_transport": 61.9,
+    "lower_bound": 104
+  },
+  {
+    "case": "0049",
+    "M": 91,
+    "T": 197,
+    "fractional_transport": 49.56309523809524,
+    "lower_bound": 91
+  },
+  {
+    "case": "0050",
+    "M": 41,
+    "T": 143,
+    "fractional_transport": 34.76190476190476,
+    "lower_bound": 41
+  },
+  {
+    "case": "0051",
+    "M": 45,
+    "T": 118,
+    "fractional_transport": 28.946428571428573,
+    "lower_bound": 45
+  },
+  {
+    "case": "0052",
+    "M": 64,
+    "T": 190,
+    "fractional_transport": 43.09761904761905,
+    "lower_bound": 64
+  },
+  {
+    "case": "0053",
+    "M": 42,
+    "T": 129,
+    "fractional_transport": 31.37857142857143,
+    "lower_bound": 42
+  },
+  {
+    "case": "0054",
+    "M": 86,
+    "T": 301,
+    "fractional_transport": 79.35238095238095,
+    "lower_bound": 86
+  },
+  {
+    "case": "0055",
+    "M": 122,
+    "T": 287,
+    "fractional_transport": 70.56309523809524,
+    "lower_bound": 122
+  },
+  {
+    "case": "0056",
+    "M": 66,
+    "T": 203,
+    "fractional_transport": 49.50952380952381,
+    "lower_bound": 66
+  },
+  {
+    "case": "0057",
+    "M": 96,
+    "T": 243,
+    "fractional_transport": 63.36666666666667,
+    "lower_bound": 96
+  },
+  {
+    "case": "0058",
+    "M": 71,
+    "T": 302,
+    "fractional_transport": 91.93095238095238,
+    "lower_bound": 92
+  },
+  {
+    "case": "0059",
+    "M": 23,
+    "T": 68,
+    "fractional_transport": 11.13452380952381,
+    "lower_bound": 23
+  },
+  {
+    "case": "0060",
+    "M": 34,
+    "T": 161,
+    "fractional_transport": 34.90238095238095,
+    "lower_bound": 35
+  },
+  {
+    "case": "0061",
+    "M": 84,
+    "T": 297,
+    "fractional_transport": 102.20595238095238,
+    "lower_bound": 103
+  },
+  {
+    "case": "0062",
+    "M": 70,
+    "T": 180,
+    "fractional_transport": 38.93214285714286,
+    "lower_bound": 70
+  },
+  {
+    "case": "0063",
+    "M": 69,
+    "T": 261,
+    "fractional_transport": 66.87261904761905,
+    "lower_bound": 69
+  },
+  {
+    "case": "0064",
+    "M": 63,
+    "T": 192,
+    "fractional_transport": 66.80952380952381,
+    "lower_bound": 67
+  },
+  {
+    "case": "0065",
+    "M": 32,
+    "T": 125,
+    "fractional_transport": 25.995238095238093,
+    "lower_bound": 32
+  },
+  {
+    "case": "0066",
+    "M": 93,
+    "T": 423,
+    "fractional_transport": 151.01190476190476,
+    "lower_bound": 152
+  },
+  {
+    "case": "0067",
+    "M": 50,
+    "T": 198,
+    "fractional_transport": 61.60952380952381,
+    "lower_bound": 62
+  },
+  {
+    "case": "0068",
+    "M": 157,
+    "T": 426,
+    "fractional_transport": 115.98333333333333,
+    "lower_bound": 157
+  },
+  {
+    "case": "0069",
+    "M": 42,
+    "T": 135,
+    "fractional_transport": 32.458333333333336,
+    "lower_bound": 42
+  },
+  {
+    "case": "0070",
+    "M": 114,
+    "T": 409,
+    "fractional_transport": 98.39285714285714,
+    "lower_bound": 114
+  },
+  {
+    "case": "0071",
+    "M": 116,
+    "T": 407,
+    "fractional_transport": 106.7202380952381,
+    "lower_bound": 116
+  },
+  {
+    "case": "0072",
+    "M": 25,
+    "T": 90,
+    "fractional_transport": 18.860714285714284,
+    "lower_bound": 25
+  },
+  {
+    "case": "0073",
+    "M": 93,
+    "T": 233,
+    "fractional_transport": 66.68214285714286,
+    "lower_bound": 93
+  },
+  {
+    "case": "0074",
+    "M": 41,
+    "T": 99,
+    "fractional_transport": 23.455952380952382,
+    "lower_bound": 41
+  },
+  {
+    "case": "0075",
+    "M": 105,
+    "T": 344,
+    "fractional_transport": 101.70714285714286,
+    "lower_bound": 105
+  },
+  {
+    "case": "0076",
+    "M": 91,
+    "T": 270,
+    "fractional_transport": 78.21071428571429,
+    "lower_bound": 91
+  },
+  {
+    "case": "0077",
+    "M": 34,
+    "T": 86,
+    "fractional_transport": 18.988095238095237,
+    "lower_bound": 34
+  },
+  {
+    "case": "0078",
+    "M": 86,
+    "T": 263,
+    "fractional_transport": 66.94761904761904,
+    "lower_bound": 86
+  },
+  {
+    "case": "0079",
+    "M": 19,
+    "T": 69,
+    "fractional_transport": 11.082142857142857,
+    "lower_bound": 19
+  },
+  {
+    "case": "0080",
+    "M": 71,
+    "T": 176,
+    "fractional_transport": 39.93928571428572,
+    "lower_bound": 71
+  },
+  {
+    "case": "0081",
+    "M": 142,
+    "T": 384,
+    "fractional_transport": 99.55357142857143,
+    "lower_bound": 142
+  },
+  {
+    "case": "0082",
+    "M": 109,
+    "T": 325,
+    "fractional_transport": 82.91666666666667,
+    "lower_bound": 109
+  },
+  {
+    "case": "0083",
+    "M": 64,
+    "T": 168,
+    "fractional_transport": 44.97142857142857,
+    "lower_bound": 64
+  },
+  {
+    "case": "0084",
+    "M": 118,
+    "T": 314,
+    "fractional_transport": 83.66666666666667,
+    "lower_bound": 118
+  },
+  {
+    "case": "0085",
+    "M": 59,
+    "T": 199,
+    "fractional_transport": 53.12738095238095,
+    "lower_bound": 59
+  },
+  {
+    "case": "0086",
+    "M": 26,
+    "T": 100,
+    "fractional_transport": 21.04642857142857,
+    "lower_bound": 26
+  },
+  {
+    "case": "0087",
+    "M": 46,
+    "T": 114,
+    "fractional_transport": 24.945238095238096,
+    "lower_bound": 46
+  },
+  {
+    "case": "0088",
+    "M": 60,
+    "T": 150,
+    "fractional_transport": 39.45357142857143,
+    "lower_bound": 60
+  },
+  {
+    "case": "0089",
+    "M": 114,
+    "T": 374,
+    "fractional_transport": 83.01190476190476,
+    "lower_bound": 114
+  },
+  {
+    "case": "0090",
+    "M": 33,
+    "T": 155,
+    "fractional_transport": 39.57142857142857,
+    "lower_bound": 40
+  },
+  {
+    "case": "0091",
+    "M": 46,
+    "T": 103,
+    "fractional_transport": 25.25952380952381,
+    "lower_bound": 46
+  },
+  {
+    "case": "0092",
+    "M": 169,
+    "T": 549,
+    "fractional_transport": 169.02142857142857,
+    "lower_bound": 170
+  },
+  {
+    "case": "0093",
+    "M": 22,
+    "T": 87,
+    "fractional_transport": 16.886904761904763,
+    "lower_bound": 22
+  },
+  {
+    "case": "0094",
+    "M": 47,
+    "T": 115,
+    "fractional_transport": 23.341666666666665,
+    "lower_bound": 47
+  },
+  {
+    "case": "0095",
+    "M": 97,
+    "T": 255,
+    "fractional_transport": 69.60952380952381,
+    "lower_bound": 97
+  },
+  {
+    "case": "0096",
+    "M": 40,
+    "T": 84,
+    "fractional_transport": 16.15595238095238,
+    "lower_bound": 40
+  },
+  {
+    "case": "0097",
+    "M": 116,
+    "T": 582,
+    "fractional_transport": 177.4857142857143,
+    "lower_bound": 178
+  },
+  {
+    "case": "0098",
+    "M": 48,
+    "T": 129,
+    "fractional_transport": 28.382142857142856,
+    "lower_bound": 48
+  },
+  {
+    "case": "0099",
+    "M": 69,
+    "T": 188,
+    "fractional_transport": 44.68214285714286,
+    "lower_bound": 69
+  }
+]

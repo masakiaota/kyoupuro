@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 150,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v027_resampled_start_lns/0090.txt",
+  "best_sha256": "4ac78c3a67f6b31be12013a64a9f29acdbf42da1e42b5a3cfc793f597562f8ba",
+  "attempts": []
+}

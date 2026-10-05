@@ -1,0 +1,18 @@
+[
+  {
+    "old": "// v079_nn_immediate.cpp",
+    "new": "// v201_floor_nn_selector.cpp"
+  },
+  {
+    "old": "struct ConstructionState {",
+    "new": "// 未使用500件の5分割比較で決めた入力条件。NNの重みと探索時間は親から保持する。\n// 特徴の順序: floors。最終200件の結果による条件調整はしない。\nstatic array<double,1> nn_selector_features() {\n    [[maybe_unused]] const Board &b=board_info;\n    return {double(b.cell_count)};\n}\nstatic bool nn_selector_choice([[maybe_unused]] const array<double,1> &f) {\n    return (f[0]<=192.5 ? false : true);\n}\n\nstruct ConstructionState {"
+  },
+  {
+    "old": "    void optimize(vector<Move>& best) {",
+    "new": "    void optimize(vector<Move>& best) {\n        const auto selector_values=nn_selector_features();\n        const bool use_nn=nn_selector_choice(selector_values);\n        LOCAL_NOTE(trace.count_by(\"selector_nn_enabled\",use_nn); trace.count_by(\"selector_M\",board_info.M);)"
+  },
+  {
+    "old": "const bool nn_eligible=!dependency&&mode>=3&&choice>=0;",
+    "new": "const bool nn_eligible=use_nn&&!dependency&&mode>=3&&choice>=0;"
+  }
+]

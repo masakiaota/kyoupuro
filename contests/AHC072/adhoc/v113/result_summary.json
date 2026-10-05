@@ -1,0 +1,526 @@
+{
+  "selected": "hr",
+  "conditions": {
+    "base": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 216.13671875,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 216.13671875,
+        "mean_elapsed_ms": 1563.84375,
+        "max_elapsed_ms": 1618,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "b5b2a7c4c2d2384e3760b4f63b0c99748d4953099b08e6f806da50a0c383611a",
+      "vs_v111": {
+        "mean_difference": 0.0,
+        "total_difference": 0,
+        "interval95": [
+          0.0,
+          0.0
+        ],
+        "wins": 0,
+        "ties": 256,
+        "losses": 0,
+        "control_relative": 100.0
+      },
+      "activation": {}
+    },
+    "h": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 215.94140625,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 215.94140625,
+        "mean_elapsed_ms": 1563.5546875,
+        "max_elapsed_ms": 1610,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "0f445699d2e15646409c7ce54c121f363d1bfbfc12017370fec7c54d7b813f42",
+      "vs_v111": {
+        "mean_difference": -0.1953125,
+        "total_difference": -50,
+        "interval95": [
+          -0.66796875,
+          0.28125
+        ],
+        "wins": 104,
+        "ties": 57,
+        "losses": 95,
+        "control_relative": 100.08711251152779
+      },
+      "activation": {
+        "v318_history_builds": 692717,
+        "v318_history_queries": 55531919,
+        "v318_feature_reuses": 8784896
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    },
+    "r": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 216.3984375,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 216.3984375,
+        "mean_elapsed_ms": 1565.00390625,
+        "max_elapsed_ms": 1618,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "48e15cbe1f740c1f3eda25eb03a87ec39f4e96285ab680ce933c8173fef0ba2c",
+      "vs_v111": {
+        "mean_difference": 0.26171875,
+        "total_difference": 67,
+        "interval95": [
+          -0.2734375,
+          0.8046875
+        ],
+        "wins": 101,
+        "ties": 50,
+        "losses": 105,
+        "control_relative": 99.98336959644136
+      },
+      "activation": {
+        "v315_slices": 3328,
+        "v315_challenges": 195
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    },
+    "s": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 216.65625,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 216.65625,
+        "mean_elapsed_ms": 1564.5703125,
+        "max_elapsed_ms": 1616,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "5a1bccaf9424dbb8b03534108c34cd32e2da4728581ffcc0d5650ecec50ce2f3",
+      "vs_v111": {
+        "mean_difference": 0.51953125,
+        "total_difference": 133,
+        "interval95": [
+          -0.0546875,
+          1.12109375
+        ],
+        "wins": 96,
+        "ties": 29,
+        "losses": 131,
+        "control_relative": 99.8355927027033
+      },
+      "activation": {
+        "v314_calls": 112544,
+        "v314_conditioned_completed": 102651,
+        "v314_accepted": 39581
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    },
+    "hr": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 215.6640625,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 215.6640625,
+        "mean_elapsed_ms": 1565.5546875,
+        "max_elapsed_ms": 1627,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "044027db69c343eff388812326ada7a5525984ff71e84cdb2ad0cc00f89db7a5",
+      "vs_v111": {
+        "mean_difference": -0.47265625,
+        "total_difference": -121,
+        "interval95": [
+          -0.99609375,
+          0.07431640624999858
+        ],
+        "wins": 119,
+        "ties": 43,
+        "losses": 94,
+        "control_relative": 100.24824750294768
+      },
+      "activation": {
+        "v318_history_builds": 691737,
+        "v318_history_queries": 55731272,
+        "v318_feature_reuses": 8718432,
+        "v315_slices": 3328,
+        "v315_challenges": 193
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    },
+    "hs": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 216.01953125,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 216.01953125,
+        "mean_elapsed_ms": 1563.09765625,
+        "max_elapsed_ms": 1612,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "bbfbc5fb5dff0fa7defac432339b75f84d3e82c2dc62b3b0bd2b834a7890923c",
+      "vs_v111": {
+        "mean_difference": -0.1171875,
+        "total_difference": -30,
+        "interval95": [
+          -0.703125,
+          0.4921875
+        ],
+        "wins": 116,
+        "ties": 26,
+        "losses": 114,
+        "control_relative": 100.05268884531185
+      },
+      "activation": {
+        "v318_history_builds": 719115,
+        "v318_history_queries": 58558688,
+        "v318_feature_reuses": 8479648,
+        "v314_calls": 117187,
+        "v314_conditioned_completed": 107048,
+        "v314_accepted": 40812
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    },
+    "rs": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 216.41015625,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 216.41015625,
+        "mean_elapsed_ms": 1565.37109375,
+        "max_elapsed_ms": 1628,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "788208cedc82de72edc83185802072a1613f00baee36f02f1276c1934c3f11b1",
+      "vs_v111": {
+        "mean_difference": 0.2734375,
+        "total_difference": 70,
+        "interval95": [
+          -0.28515625,
+          0.8359375
+        ],
+        "wins": 114,
+        "ties": 21,
+        "losses": 121,
+        "control_relative": 99.91769793701192
+      },
+      "activation": {
+        "v315_slices": 3328,
+        "v315_challenges": 220,
+        "v314_calls": 114570,
+        "v314_conditioned_completed": 104658,
+        "v314_accepted": 40538
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    },
+    "hrs": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 215.9921875,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 215.9921875,
+        "mean_elapsed_ms": 1565.5078125,
+        "max_elapsed_ms": 1633,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "1536615a2b25fb809c8b671f9ddc6be12cd07c845e018ae3fea64256ea97d5c4",
+      "vs_v111": {
+        "mean_difference": -0.14453125,
+        "total_difference": -37,
+        "interval95": [
+          -0.6953125,
+          0.4296875
+        ],
+        "wins": 106,
+        "ties": 40,
+        "losses": 110,
+        "control_relative": 100.04275678461947
+      },
+      "activation": {
+        "v318_history_builds": 711898,
+        "v318_history_queries": 57717261,
+        "v318_feature_reuses": 8422048,
+        "v315_slices": 3328,
+        "v315_challenges": 210,
+        "v314_calls": 116858,
+        "v314_conditioned_completed": 106662,
+        "v314_accepted": 41062
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    },
+    "hrp": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 215.71875,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 215.71875,
+        "mean_elapsed_ms": 1565.15234375,
+        "max_elapsed_ms": 1614,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "931b5b40e4595c9a500f1d5a2f978e067fc867a26137d8b9a55f4d13e5ee8cbb",
+      "vs_v111": {
+        "mean_difference": -0.41796875,
+        "total_difference": -107,
+        "interval95": [
+          -0.96484375,
+          0.12109375
+        ],
+        "wins": 113,
+        "ties": 40,
+        "losses": 103,
+        "control_relative": 100.23783009762988
+      },
+      "activation": {
+        "v318_history_builds": 702603,
+        "v318_history_queries": 56962888,
+        "v318_feature_reuses": 8882976,
+        "v315_slices": 3328,
+        "v315_challenges": 195,
+        "actor_destination_hits": 18574354,
+        "actor_destination_projects": 12062949,
+        "actor_source_hits": 6736125,
+        "actor_source_projects": 3868999
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    }
+  },
+  "final": {
+    "candidate": {
+      "condition": "hr",
+      "source": "src/bin/v113_integrated_nn_lns.cpp",
+      "source_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+      "model_parent": "v111",
+      "fixed_at": "2026-10-04T09:34:25.916355+00:00"
+    },
+    "accepted": true,
+    "validation": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 215.6640625,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 215.6640625,
+        "mean_elapsed_ms": 1565.5546875,
+        "max_elapsed_ms": 1627,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "source_sha256": "044027db69c343eff388812326ada7a5525984ff71e84cdb2ad0cc00f89db7a5",
+      "vs_v111": {
+        "mean_difference": -0.47265625,
+        "total_difference": -121,
+        "interval95": [
+          -0.99609375,
+          0.07431640624999858
+        ],
+        "wins": 119,
+        "ties": 43,
+        "losses": 94,
+        "control_relative": 100.24824750294768
+      },
+      "activation": {
+        "v318_history_builds": 691737,
+        "v318_history_queries": 55731272,
+        "v318_feature_reuses": 8718432,
+        "v315_slices": 3328,
+        "v315_challenges": 193
+      },
+      "initial_first_hash_matched": 256,
+      "retained_count_matched": 256
+    },
+    "test": {
+      "metrics": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 218.875,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 218.875,
+        "mean_elapsed_ms": 1565.1171875,
+        "max_elapsed_ms": 1633,
+        "mean_inferences": 291.90625,
+        "mean_depth": 291.90625,
+        "deadline_cases": 0
+      },
+      "vs_v111": {
+        "mean_difference": -0.51171875,
+        "total_difference": -131,
+        "interval95": [
+          -1.09375,
+          0.05078125
+        ],
+        "wins": 113,
+        "ties": 44,
+        "losses": 99,
+        "control_relative": 100.12085902545891
+      }
+    },
+    "tools_in": {
+      "metrics": {
+        "cases": 100,
+        "complete": 100,
+        "completion_rate": 1.0,
+        "mean_S_all": 196.75,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 196.75,
+        "mean_elapsed_ms": 1569.08,
+        "max_elapsed_ms": 1616,
+        "mean_inferences": 264.69,
+        "mean_depth": 264.69,
+        "deadline_cases": 0
+      },
+      "vs_v111": {
+        "mean_difference": -0.12,
+        "total_difference": -12,
+        "interval95": [
+          -0.93,
+          0.7
+        ],
+        "wins": 37,
+        "ties": 24,
+        "losses": 39,
+        "control_relative": 99.9639804717054
+      }
+    }
+  },
+  "mechanism": {
+    "passed": true,
+    "sources": {
+      "base": "dd45427b0e3e791bf40c1a7f7560c734abde1d20452ffa6c34cd878fd8c02316",
+      "h": "0f445699d2e15646409c7ce54c121f363d1bfbfc12017370fec7c54d7b813f42",
+      "r": "48e15cbe1f740c1f3eda25eb03a87ec39f4e96285ab680ce933c8173fef0ba2c",
+      "s": "5a1bccaf9424dbb8b03534108c34cd32e2da4728581ffcc0d5650ecec50ce2f3",
+      "hr": "044027db69c343eff388812326ada7a5525984ff71e84cdb2ad0cc00f89db7a5",
+      "hs": "bbfbc5fb5dff0fa7defac432339b75f84d3e82c2dc62b3b0bd2b834a7890923c",
+      "rs": "788208cedc82de72edc83185802072a1613f00baee36f02f1276c1934c3f11b1",
+      "hrs": "1536615a2b25fb809c8b671f9ddc6be12cd07c845e018ae3fea64256ea97d5c4",
+      "hrp": "931b5b40e4595c9a500f1d5a2f978e067fc867a26137d8b9a55f4d13e5ee8cbb"
+    },
+    "components": {
+      "features": 9606,
+      "synthetic": 131072,
+      "ordinary": 53,
+      "conditioned": 64,
+      "demands": 90,
+      "race_checks": 15360
+    },
+    "fixed_clock": [
+      {
+        "mode": "local",
+        "case": "000000.txt",
+        "audit": "clock_calls=15449 rng=15208951925941631551 M=44 pool_free=4"
+      },
+      {
+        "mode": "local",
+        "case": "000124.txt",
+        "audit": "clock_calls=15448 rng=6901088785868871329 M=81 pool_free=4"
+      },
+      {
+        "mode": "local",
+        "case": "000252.txt",
+        "audit": "clock_calls=15448 rng=17433994747985955210 M=27 pool_free=4"
+      },
+      {
+        "mode": "local",
+        "case": "000380.txt",
+        "audit": "clock_calls=15448 rng=11338329526897348274 M=77 pool_free=4"
+      },
+      {
+        "mode": "judge",
+        "case": "000000.txt",
+        "audit": "clock_calls=18805 rng=15358385726180455813 M=44 pool_free=4"
+      },
+      {
+        "mode": "judge",
+        "case": "000124.txt",
+        "audit": "clock_calls=18804 rng=14943289698566419356 M=81 pool_free=4"
+      },
+      {
+        "mode": "judge",
+        "case": "000252.txt",
+        "audit": "clock_calls=18805 rng=8759280243741680912 M=27 pool_free=4"
+      },
+      {
+        "mode": "judge",
+        "case": "000380.txt",
+        "audit": "clock_calls=18804 rng=15687504473624069477 M=77 pool_free=4"
+      }
+    ],
+    "unchanged_blocks": [
+      "namespace nn {",
+      "struct TimeKeeper",
+      "struct Board {",
+      "struct NNSharedDeadline",
+      "static pair<int,int> neural_transform_cell"
+    ],
+    "completed_at": "2026-10-04T09:24:01.517777+00:00",
+    "v319_original_preprocessing_identical": true,
+    "v319_weights_identical_to_v111": true,
+    "v319_completed_at": "2026-10-04T09:27:17.651380+00:00"
+  },
+  "completed_at": "2026-10-04T09:35:55.554742+00:00",
+  "analysis_at": "2026-10-04T09:36:56.656836+00:00",
+  "limits": [
+    "各入力各条件1回の時間依存探索。入力再標本化の区間は再実行ノイズを含まない。",
+    "7条件から選んだ検証上の最良差には選別の影響がある。",
+    "保留とinは過去測定済みの固定比較集合。今回の選別には使っていない。"
+  ]
+}

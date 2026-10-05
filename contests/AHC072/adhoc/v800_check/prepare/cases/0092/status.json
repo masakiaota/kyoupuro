@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 530,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v015_mixed_tree/0092.txt",
+  "best_sha256": "2cea0fa3e7ed6e90e97e6bc49e8bef1bc3c68cfeb50a7d94ba988130c411a6fd",
+  "attempts": []
+}

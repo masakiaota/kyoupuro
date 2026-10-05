@@ -1,0 +1,6602 @@
+{
+  "schema_version": 1,
+  "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+  "current_node_id": "n80",
+  "exported_node_id": "n80",
+  "events": [
+    {
+      "type": "create",
+      "schema_version": 1,
+      "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+      "revision": 0,
+      "input": "12 9\n.D.a..d..b.i\ndF..e.....a.\n.f.d.gcd..Ce\n...i.e...I.i\niB...d....fE\n..e...fe.ed.\nd.a.gi..eifi\n.di......dad\na..g...id..a\n.idAafdi.d.G\n.icf.bhdee..\nH.i.d.ice.i.\n",
+      "input_sha256": "45595bbe340e4ca48174c6cf687d22516de062e866447b5055f6885f4ab98ec0",
+      "output": "",
+      "label": "全盤面の輸送設計：高密度での容量と共用経路",
+      "case_name": "0033.txt",
+      "engine_hash": "22b000a8d27ba7088afacb4149492cdce1880d101c91d25180d3ee321c4313a5",
+      "actor": "ai",
+      "at": "2026-09-28T00:56:23.290Z"
+    },
+    {
+      "type": "step",
+      "request_id": "c1a49aae-d947-48d3-8159-399e6c9f8019",
+      "request_digest": "50aa51a5c96463cd37e3369e49f06131ae81e7ac6c27aef4d829ed2a6a6d65da",
+      "revision": 1,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.014Z",
+      "node_id": "n1",
+      "parent_id": "n0",
+      "action": {
+        "d": "U",
+        "i": 11,
+        "j": 8,
+        "k": 0,
+        "l": 1
+      },
+      "note": "7匹の混載便を作り、既存の1匹の塔に着地して2マスずつ跳ぶ。近くの色3を8匹目として取り込まず残す。",
+      "result": {
+        "E": 63,
+        "S": 6300001,
+        "T": 1,
+        "action": {
+          "d": "U",
+          "i": 11,
+          "j": 8,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4
+            ],
+            "i": 11,
+            "j": 8,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4
+            ],
+            "before": [
+              4
+            ],
+            "i": 10,
+            "j": 8,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 8
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 1,
+        "node_id": "n1"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "45249697-2073-4fd2-be05-5700421b047e",
+      "request_digest": "7e6aedd5eeada7790a3aef45f6ccba29784306d1b90e53bf42d5ec0af6f26d5d",
+      "revision": 2,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.021Z",
+      "node_id": "n2",
+      "parent_id": "n1",
+      "action": {
+        "d": "R",
+        "i": 10,
+        "j": 8,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300002,
+        "T": 2,
+        "action": {
+          "d": "R",
+          "i": 10,
+          "j": 8,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4,
+              4
+            ],
+            "i": 10,
+            "j": 8,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4,
+              4
+            ],
+            "before": [
+              4
+            ],
+            "i": 10,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 9
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 2,
+        "node_id": "n2"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "a317d7d1-da05-437c-adb3-1e8802aaf0d7",
+      "request_digest": "0eea9c2882501dc33b50b694ed21d892a509ec5af5eb8747fdd03d0044526980",
+      "revision": 3,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.028Z",
+      "node_id": "n3",
+      "parent_id": "n2",
+      "action": {
+        "d": "D",
+        "i": 9,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300003,
+        "T": 3,
+        "action": {
+          "d": "D",
+          "i": 9,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3
+            ],
+            "i": 9,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4,
+              4,
+              3
+            ],
+            "before": [
+              4,
+              4,
+              4
+            ],
+            "i": 10,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 9
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 3,
+        "node_id": "n3"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "02b14faf-0192-47e8-ae62-309c525e33b6",
+      "request_digest": "806f78bab35582a09d06d36caeaae0725289c0f2a88ad9d439761ac78fd4ad9f",
+      "revision": 4,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.034Z",
+      "node_id": "n4",
+      "parent_id": "n3",
+      "action": {
+        "d": "L",
+        "i": 11,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300004,
+        "T": 4,
+        "action": {
+          "d": "L",
+          "i": 11,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8
+            ],
+            "i": 11,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              8
+            ],
+            "before": [],
+            "i": 11,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 11,
+          "j": 9
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 4,
+        "node_id": "n4"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "af7a8168-4897-4fa9-b5c5-287d3df7e776",
+      "request_digest": "c8a92129dd8f6bce144672d8dce07843de69eda7ce3cff758c0346dfb2777756",
+      "revision": 5,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.042Z",
+      "node_id": "n5",
+      "parent_id": "n4",
+      "action": {
+        "d": "U",
+        "i": 11,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300005,
+        "T": 5,
+        "action": {
+          "d": "U",
+          "i": 11,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8
+            ],
+            "i": 11,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4,
+              4,
+              3,
+              8
+            ],
+            "before": [
+              4,
+              4,
+              4,
+              3
+            ],
+            "i": 10,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 9
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 5,
+        "node_id": "n5"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "7396bd47-3713-4929-93e7-6c6219e73224",
+      "request_digest": "2794bf392d149f6733f6b9456d0483ea20269c8dd928385cc8f6e768a4e989f4",
+      "revision": 6,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.050Z",
+      "node_id": "n6",
+      "parent_id": "n5",
+      "action": {
+        "d": "U",
+        "i": 9,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300006,
+        "T": 6,
+        "action": {
+          "d": "U",
+          "i": 9,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8
+            ],
+            "i": 9,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              8
+            ],
+            "before": [
+              8
+            ],
+            "i": 8,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 7
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 6,
+        "node_id": "n6"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "46897dcb-53a2-4385-ad20-0bb048cd53b6",
+      "request_digest": "d083a771d861fce0db0486be2025fd050662c418180d82c2e6ea301cfedc4603",
+      "revision": 7,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.059Z",
+      "node_id": "n7",
+      "parent_id": "n6",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300007,
+        "T": 7,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8,
+              8
+            ],
+            "i": 8,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              8,
+              8
+            ],
+            "before": [
+              3
+            ],
+            "i": 8,
+            "j": 8,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 8
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 7,
+        "node_id": "n7"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "866cf4d3-1245-4d89-b590-c33d5a35bfd3",
+      "request_digest": "2930ca511cd465ab1eeac4a8e49c9df169983196b22752995bcd3acc60a52cb1",
+      "revision": 8,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.067Z",
+      "node_id": "n8",
+      "parent_id": "n7",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 8,
+        "k": 1,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300008,
+        "T": 8,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 8,
+          "k": 1,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              3
+            ],
+            "before": [
+              3,
+              8,
+              8
+            ],
+            "i": 8,
+            "j": 8,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              8
+            ],
+            "before": [],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 10
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 8,
+        "node_id": "n8"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "9ee21dcd-c6a2-4ffb-97fb-9d3bb361a6ca",
+      "request_digest": "00456c9ae1a3829a7fae2f570a03725d221719a9bdebe4f7cb76e35d8458c3ff",
+      "revision": 9,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.074Z",
+      "node_id": "n9",
+      "parent_id": "n8",
+      "action": {
+        "d": "D",
+        "i": 8,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300009,
+        "T": 9,
+        "action": {
+          "d": "D",
+          "i": 8,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8,
+              8
+            ],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              8
+            ],
+            "before": [],
+            "i": 9,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 9,
+          "j": 10
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 9,
+        "node_id": "n9"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "15d818a8-c3f7-47a1-8212-82736210860d",
+      "request_digest": "59acfb9e50bef8b01a97f46a8ec10fb2f0371aaae7dd9c7a813acd1b0d1d1ad4",
+      "revision": 10,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.083Z",
+      "node_id": "n10",
+      "parent_id": "n9",
+      "action": {
+        "d": "D",
+        "i": 9,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300010,
+        "T": 10,
+        "action": {
+          "d": "D",
+          "i": 9,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8,
+              8
+            ],
+            "i": 9,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              8
+            ],
+            "before": [],
+            "i": 10,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 10
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 10,
+        "node_id": "n10"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "8e690c14-b357-44ca-9a89-73c2bbcdf33e",
+      "request_digest": "c29971c2a67e7032d78eab06daf4a0fa3391a22484b34f10bda2e9f7762ec56e",
+      "revision": 11,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.090Z",
+      "node_id": "n11",
+      "parent_id": "n10",
+      "action": {
+        "d": "L",
+        "i": 10,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300011,
+        "T": 11,
+        "action": {
+          "d": "L",
+          "i": 10,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8,
+              8
+            ],
+            "i": 10,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4,
+              4,
+              3,
+              8,
+              8,
+              8
+            ],
+            "before": [
+              4,
+              4,
+              4,
+              3,
+              8
+            ],
+            "i": 10,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 9
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 11,
+        "node_id": "n11"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "76369688-9811-4c4b-8c69-a4ad6d7aa3c7",
+      "request_digest": "37a2770570b131d1c2dbb55821963e35e40222deeba7da7827fe0c3a11bf8087",
+      "revision": 12,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.097Z",
+      "node_id": "n12",
+      "parent_id": "n11",
+      "action": {
+        "d": "R",
+        "i": 10,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300012,
+        "T": 12,
+        "action": {
+          "d": "R",
+          "i": 10,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4,
+              4,
+              4,
+              3,
+              8,
+              8,
+              8
+            ],
+            "i": 10,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              8,
+              8,
+              3,
+              4,
+              4,
+              4
+            ],
+            "before": [],
+            "i": 10,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 10
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 12,
+        "node_id": "n12"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "e9299d6e-a973-4a37-b75c-602666ae04f3",
+      "request_digest": "c2a3cfcd68945148683f13b48a54f6ff2b139a90b711ba1193589329e4e9863a",
+      "revision": 13,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.103Z",
+      "node_id": "n13",
+      "parent_id": "n12",
+      "action": {
+        "d": "U",
+        "i": 10,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300013,
+        "T": 13,
+        "action": {
+          "d": "U",
+          "i": 10,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8,
+              8,
+              8,
+              3,
+              4,
+              4,
+              4
+            ],
+            "i": 10,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4,
+              4,
+              3,
+              8,
+              8,
+              8
+            ],
+            "before": [],
+            "i": 9,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 9,
+          "j": 10
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 13,
+        "node_id": "n13"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "5d1e0b71-a2cd-4b89-8e0c-ccea9d84c851",
+      "request_digest": "9430552ac53db7426ff8428273d0ae67e262f69e1276e585db15e497bf821c22",
+      "revision": 14,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.111Z",
+      "node_id": "n14",
+      "parent_id": "n13",
+      "action": {
+        "d": "U",
+        "i": 9,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300014,
+        "T": 14,
+        "action": {
+          "d": "U",
+          "i": 9,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4,
+              4,
+              4,
+              3,
+              8,
+              8,
+              8
+            ],
+            "i": 9,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              8,
+              8,
+              3,
+              4,
+              4,
+              4
+            ],
+            "before": [],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 10
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 14,
+        "node_id": "n14"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "74f36747-ab0b-4e7f-9716-3864e91a8a0a",
+      "request_digest": "a069309e51f6dad2582a5bccdc43883ae91c84c70e9efcf9b811544f21906b87",
+      "revision": 15,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.120Z",
+      "node_id": "n15",
+      "parent_id": "n14",
+      "action": {
+        "d": "U",
+        "i": 8,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300015,
+        "T": 15,
+        "action": {
+          "d": "U",
+          "i": 8,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8,
+              8,
+              8,
+              3,
+              4,
+              4,
+              4
+            ],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              4,
+              4,
+              4,
+              3,
+              8,
+              8,
+              8
+            ],
+            "before": [
+              0
+            ],
+            "i": 7,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 7,
+          "j": 10
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 15,
+        "node_id": "n15"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "10f25951-a2b7-4272-a02d-07072418b5fc",
+      "request_digest": "3aabf8354eb4e204c8dd7d25c7b848456d86d287957b9effcfbac3207f71ac27",
+      "revision": 16,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.128Z",
+      "node_id": "n16",
+      "parent_id": "n15",
+      "action": {
+        "d": "U",
+        "i": 7,
+        "j": 10,
+        "k": 1,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300016,
+        "T": 16,
+        "action": {
+          "d": "U",
+          "i": 7,
+          "j": 10,
+          "k": 1,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0
+            ],
+            "before": [
+              0,
+              4,
+              4,
+              4,
+              3,
+              8,
+              8,
+              8
+            ],
+            "i": 7,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              8,
+              8,
+              8,
+              3,
+              4,
+              4,
+              4
+            ],
+            "before": [
+              3
+            ],
+            "i": 5,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 5,
+          "j": 10
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 16,
+        "node_id": "n16"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "ebde58bc-da56-4fa8-8a5c-d08e7d594576",
+      "request_digest": "e8cb8a54b669fcc118fa6f8c69bf9fa8f0b214dbf3e479fa62761e11e58593bd",
+      "revision": 17,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.137Z",
+      "node_id": "n17",
+      "parent_id": "n16",
+      "action": {
+        "d": "R",
+        "i": 5,
+        "j": 10,
+        "k": 1,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 63,
+        "S": 6300017,
+        "T": 17,
+        "action": {
+          "d": "R",
+          "i": 5,
+          "j": 10,
+          "k": 1,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [
+              3
+            ],
+            "before": [
+              3,
+              8,
+              8,
+              8,
+              3,
+              4,
+              4,
+              4
+            ],
+            "i": 5,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4,
+              4,
+              3,
+              8,
+              8,
+              8
+            ],
+            "before": [],
+            "i": 5,
+            "j": 11,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 5,
+          "j": 11
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 17,
+        "node_id": "n17"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "21105808-6488-4b1e-a109-4130c6c83f71",
+      "request_digest": "ee99481fe2b4a3cae59f68e3f5baff63f22a2fadc79f0ec4b8355a12b36214fb",
+      "revision": 18,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.144Z",
+      "node_id": "n18",
+      "parent_id": "n17",
+      "action": {
+        "d": "U",
+        "i": 5,
+        "j": 11,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 60,
+        "S": 6000018,
+        "T": 18,
+        "action": {
+          "d": "U",
+          "i": 5,
+          "j": 11,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4,
+              4,
+              4,
+              3,
+              8,
+              8,
+              8
+            ],
+            "i": 5,
+            "j": 11,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              8,
+              8,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 11,
+            "nest": 4
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -3,
+          "S": -299999,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 11
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [
+              4,
+              4,
+              4
+            ],
+            "count": 3
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 18,
+        "node_id": "n18"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "2e378011-3833-4c7f-a7d7-ac781f9afaa9",
+      "request_digest": "833a11725913bbdc95dd24e3d9acc1b922aa29be454e47404da84f64287d0a46",
+      "revision": 19,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.150Z",
+      "node_id": "n19",
+      "parent_id": "n18",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 11,
+        "k": 3,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 60,
+        "S": 6000019,
+        "T": 19,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 11,
+          "k": 3,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              8,
+              8,
+              8
+            ],
+            "before": [
+              8,
+              8,
+              8,
+              3
+            ],
+            "i": 4,
+            "j": 11,
+            "nest": 4
+          },
+          {
+            "after": [
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 9
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 19,
+        "node_id": "n19"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "3f4ab8a6-c5ea-49e2-8871-eebb41775845",
+      "request_digest": "4e3b6b99ed726d84c9d006242bcd9833475de79aabc2c72aac3dedb07673b61f",
+      "revision": 20,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.156Z",
+      "node_id": "n20",
+      "parent_id": "n19",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 11,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 60,
+        "S": 6000020,
+        "T": 20,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 11,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8,
+              8,
+              8
+            ],
+            "i": 4,
+            "j": 11,
+            "nest": 4
+          },
+          {
+            "after": [
+              5,
+              8,
+              8,
+              8
+            ],
+            "before": [
+              5
+            ],
+            "i": 4,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 10
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 20,
+        "node_id": "n20"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "ff5537e3-b486-4a7a-b26a-8be21bcee027",
+      "request_digest": "4adc4234749c5400e34c6fc2b13a3ac48eec2bbdd4bc747925c4846843df835f",
+      "revision": 21,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.164Z",
+      "node_id": "n21",
+      "parent_id": "n20",
+      "action": {
+        "d": "U",
+        "i": 4,
+        "j": 10,
+        "k": 1,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 60,
+        "S": 6000021,
+        "T": 21,
+        "action": {
+          "d": "U",
+          "i": 4,
+          "j": 10,
+          "k": 1,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [
+              5
+            ],
+            "before": [
+              5,
+              8,
+              8,
+              8
+            ],
+            "i": 4,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              8,
+              8
+            ],
+            "before": [],
+            "i": 3,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 3,
+          "j": 10
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 21,
+        "node_id": "n21"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "6289b5c5-5a10-4e6f-9cb3-d04a94272620",
+      "request_digest": "c870db37926678fbef955494017c18a29d4861cfe1a8764d15539533dec7c228",
+      "revision": 22,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.171Z",
+      "node_id": "n22",
+      "parent_id": "n21",
+      "action": {
+        "d": "L",
+        "i": 3,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700022,
+        "T": 22,
+        "action": {
+          "d": "L",
+          "i": 3,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              8,
+              8,
+              8
+            ],
+            "i": 3,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 3,
+            "j": 9,
+            "nest": 8
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -3,
+          "S": -299999,
+          "T": 1
+        },
+        "destination": {
+          "i": 3,
+          "j": 9
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [
+              8,
+              8,
+              8
+            ],
+            "count": 3
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 22,
+        "node_id": "n22"
+      }
+    },
+    {
+      "type": "note",
+      "request_id": "63e97d76-dbc7-4399-baf3-bf8c42d3e41c",
+      "request_digest": "1cf5d14037197bcbf4a3030b41eb51e954d3de4b6d5fd45cd37f326e75eec4c4",
+      "revision": 23,
+      "actor": "ai",
+      "at": "2026-09-28T00:57:41.178Z",
+      "node_id": "n22",
+      "text": "7匹を運ぶ間は既存の高さ1の塔に着地し、その1匹を残して次へ飛べた。色4と8を各3匹帰し、色3を北へ進めた。8匹にすると同じ経路の(7,10)と(5,10)に着地できない。既知の高さ制限の戦略上の帰結であり、新しい性質とはしない。",
+      "result": {
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 23,
+        "node_id": "n22",
+        "text": "7匹を運ぶ間は既存の高さ1の塔に着地し、その1匹を残して次へ飛べた。色4と8を各3匹帰し、色3を北へ進めた。8匹にすると同じ経路の(7,10)と(5,10)に着地できない。既知の高さ制限の戦略上の帰結であり、新しい性質とはしない。"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "ab7b34f5-762d-45e2-8321-20569388ed9f",
+      "request_digest": "b6b476eeaa7df7ce486dec2c9710379a0686ddfc58e5eaf9493d50270b49541c",
+      "revision": 24,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.329Z",
+      "node_id": "n23",
+      "parent_id": "n22",
+      "action": {
+        "d": "U",
+        "i": 6,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "北西の隣り合う巣へ向かう2色を途中から混載。東西の長い共通区間を1便で運ぶ。",
+      "result": {
+        "E": 57,
+        "S": 5700023,
+        "T": 23,
+        "action": {
+          "d": "U",
+          "i": 6,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 6,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              5
+            ],
+            "before": [
+              3
+            ],
+            "i": 5,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 5,
+          "j": 10
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 24,
+        "node_id": "n23"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "8f09304b-abdd-428e-bc11-1e4c62badf9f",
+      "request_digest": "e111c9326445750cde67f959f9f5ce2b76beb82d91642f0eb95ad9671703c5ce",
+      "revision": 25,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.341Z",
+      "node_id": "n24",
+      "parent_id": "n23",
+      "action": {
+        "d": "U",
+        "i": 5,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700024,
+        "T": 24,
+        "action": {
+          "d": "U",
+          "i": 5,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              5
+            ],
+            "i": 5,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              3
+            ],
+            "before": [
+              5
+            ],
+            "i": 4,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 10
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 25,
+        "node_id": "n24"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "9bb91d2b-9317-4aff-aab1-065baf733494",
+      "request_digest": "ca57f5f8c630f5787d8f406c350fb4c2e2574be8e138bddb4f992a26e542378e",
+      "revision": 26,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.350Z",
+      "node_id": "n25",
+      "parent_id": "n24",
+      "action": {
+        "d": "R",
+        "i": 4,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700025,
+        "T": 25,
+        "action": {
+          "d": "R",
+          "i": 4,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3
+            ],
+            "i": 4,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              3,
+              3
+            ],
+            "before": [
+              5,
+              5,
+              3
+            ],
+            "i": 4,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 10
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 26,
+        "node_id": "n25"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "22130594-ce5e-4b3b-a4df-6b785d6c80b7",
+      "request_digest": "6c9ca367e48643423f71bb729cb5a5438136d97c04f4fad1eb25e5c06eccab75",
+      "revision": 27,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.359Z",
+      "node_id": "n26",
+      "parent_id": "n25",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700026,
+        "T": 26,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              5,
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 9
+        },
+        "moved": 4,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 27,
+        "node_id": "n26"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "7e88c295-ae69-474e-a9d3-cddccf64763a",
+      "request_digest": "e7979974db4312b01a238646a60ab03dfef8607fa2ba8ac5321347ae97eb6c0c",
+      "revision": 28,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.371Z",
+      "node_id": "n27",
+      "parent_id": "n26",
+      "action": {
+        "d": "U",
+        "i": 5,
+        "j": 6,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700027,
+        "T": 27,
+        "action": {
+          "d": "U",
+          "i": 5,
+          "j": 6,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 5,
+            "j": 6,
+            "nest": null
+          },
+          {
+            "after": [
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 6,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 6
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 28,
+        "node_id": "n27"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "163f1eec-02d1-466e-98aa-1eb3554aee32",
+      "request_digest": "9e584503d7630b20ea9dc822a6a24cd9b2a1cdc6f010cd4a746b90d276d4659d",
+      "revision": 29,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.378Z",
+      "node_id": "n28",
+      "parent_id": "n27",
+      "action": {
+        "d": "R",
+        "i": 4,
+        "j": 6,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700028,
+        "T": 28,
+        "action": {
+          "d": "R",
+          "i": 4,
+          "j": 6,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 4,
+            "j": 6,
+            "nest": null
+          },
+          {
+            "after": [
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 7
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 29,
+        "node_id": "n28"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "7f32b4c8-1992-4b99-95ac-3b1bb68f349c",
+      "request_digest": "b31485f4e79a7c082ab03059e9e1ec9ec1cec30279103cbe268e877d5621bb03",
+      "revision": 30,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.385Z",
+      "node_id": "n29",
+      "parent_id": "n28",
+      "action": {
+        "d": "R",
+        "i": 4,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700029,
+        "T": 29,
+        "action": {
+          "d": "R",
+          "i": 4,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 4,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 8,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 8
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 30,
+        "node_id": "n29"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "7d3d1218-41c1-4095-98cb-a77da0c90a5a",
+      "request_digest": "cd44f8a20810450ea021200767afaf9c8f07f69af2d0e65f851e675c701299ec",
+      "revision": 31,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.392Z",
+      "node_id": "n30",
+      "parent_id": "n29",
+      "action": {
+        "d": "R",
+        "i": 4,
+        "j": 8,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700030,
+        "T": 30,
+        "action": {
+          "d": "R",
+          "i": 4,
+          "j": 8,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 4,
+            "j": 8,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [
+              3,
+              3,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 9
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 31,
+        "node_id": "n30"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "850d8116-ee74-420f-b08b-0187bf9ac37e",
+      "request_digest": "69871b70d6c98ce255c89ba26bffc976603fbe42db734adb3415de5551571c1b",
+      "revision": 32,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.402Z",
+      "node_id": "n31",
+      "parent_id": "n30",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700031,
+        "T": 31,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 8,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 8
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 32,
+        "node_id": "n31"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "54bbac4a-d486-4a7b-9fba-73f7f7469cae",
+      "request_digest": "3171ecbc25c9c2b582f0b4cfa7e0c06ab403a47332b4484cdfa04d04b9a1bf3e",
+      "revision": 33,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.409Z",
+      "node_id": "n32",
+      "parent_id": "n31",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 8,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700032,
+        "T": 32,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 8,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 8,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 7
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 33,
+        "node_id": "n32"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "03117faa-887d-435f-854c-53b8426519dd",
+      "request_digest": "c69317ffb3e5c1e9a64e6c4f8168bf9c4cef773002ac579bee7d114f3975853a",
+      "revision": 34,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.417Z",
+      "node_id": "n33",
+      "parent_id": "n32",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700033,
+        "T": 33,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 6,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 6
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 34,
+        "node_id": "n33"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "ca5a9df4-cc0e-4367-a3f6-cb52d1192248",
+      "request_digest": "97a329482e4fbe32e470ed5b183bc5065cdeaaaedafc9754ab6e802aa303082f",
+      "revision": 35,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.425Z",
+      "node_id": "n34",
+      "parent_id": "n33",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 6,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700034,
+        "T": 34,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 6,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 6,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [
+              3
+            ],
+            "i": 4,
+            "j": 5,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 5
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 35,
+        "node_id": "n34"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "8473ef95-b32b-4724-9e90-086580ff8be2",
+      "request_digest": "e29f3f16d7834cfa81bb18e5d71c8d608a96f63cb5fd70f5dd1de6e1ca813009",
+      "revision": 36,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.432Z",
+      "node_id": "n35",
+      "parent_id": "n34",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 5,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700035,
+        "T": 35,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 5,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 5,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 4
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 36,
+        "node_id": "n35"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "8c90ddb7-65b6-44cf-b584-69e1ba878404",
+      "request_digest": "3ae5a45afe5bbc3bc61ceb058a56636e2c18797282877abb279ce1960ff076dc",
+      "revision": 37,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.443Z",
+      "node_id": "n36",
+      "parent_id": "n35",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 4,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700036,
+        "T": 36,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 4,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 3
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 37,
+        "node_id": "n36"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "4cbbc78b-6450-4275-ac94-b60ac05ed702",
+      "request_digest": "3ac5d2787b066d31ad344fb21cefe9c7bda01b94d446043367ccc19c6be2ba16",
+      "revision": 38,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.450Z",
+      "node_id": "n37",
+      "parent_id": "n36",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700037,
+        "T": 37,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 2,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 2
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 38,
+        "node_id": "n37"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "79c9d4db-9dfb-42dc-9f2b-6e82b9114a6f",
+      "request_digest": "66ddd33bf82722da112ab66155df1dcf12bc0332d7d53a79042e35da6ed091b3",
+      "revision": 39,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.458Z",
+      "node_id": "n38",
+      "parent_id": "n37",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 2,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700038,
+        "T": 38,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 2,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 2,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 1,
+            "nest": 1
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 1
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 39,
+        "node_id": "n38"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "1b7020eb-f682-494f-9313-ae118b842540",
+      "request_digest": "158bae15b9138ea57395b1c010f72daa7d5cf59a474df6299aac189a118fd0c0",
+      "revision": 40,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.465Z",
+      "node_id": "n39",
+      "parent_id": "n38",
+      "action": {
+        "d": "U",
+        "i": 4,
+        "j": 1,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700039,
+        "T": 39,
+        "action": {
+          "d": "U",
+          "i": 4,
+          "j": 1,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 1,
+            "nest": 1
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 3,
+            "j": 1,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 3,
+          "j": 1
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 40,
+        "node_id": "n39"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "f9185ddd-a883-43b6-9007-b145e9836760",
+      "request_digest": "0cadf0b2ff3a6cbf71d90a07d53e8d9c6021f03a70504b942e2a0dcbbf3724f8",
+      "revision": 41,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.473Z",
+      "node_id": "n40",
+      "parent_id": "n39",
+      "action": {
+        "d": "U",
+        "i": 3,
+        "j": 1,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700040,
+        "T": 40,
+        "action": {
+          "d": "U",
+          "i": 3,
+          "j": 1,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "i": 3,
+            "j": 1,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [
+              5
+            ],
+            "i": 2,
+            "j": 1,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 2,
+          "j": 1
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 41,
+        "node_id": "n40"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "09db7834-7e33-47fd-a7bd-321fc8bd3427",
+      "request_digest": "f6a7886f48ef869fdb2992a53ef839f54a20d3dd9313ea23060a27c10a284df4",
+      "revision": 42,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.481Z",
+      "node_id": "n41",
+      "parent_id": "n40",
+      "action": {
+        "d": "U",
+        "i": 2,
+        "j": 1,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 56,
+        "S": 5600041,
+        "T": 41,
+        "action": {
+          "d": "U",
+          "i": 2,
+          "j": 1,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 2,
+            "j": 1,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 1,
+            "j": 1,
+            "nest": 5
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -1,
+          "S": -99999,
+          "T": 1
+        },
+        "destination": {
+          "i": 1,
+          "j": 1
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [
+              5
+            ],
+            "count": 1
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 42,
+        "node_id": "n41"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "66187a6b-e449-483b-bb6b-f5db000ddbe6",
+      "request_digest": "43cd17394fe5440eb6a05a31981c75e86d8c8acce0b411ae41d43e5c0f2fafb8",
+      "revision": 43,
+      "actor": "ai",
+      "at": "2026-09-28T00:58:45.488Z",
+      "node_id": "n42",
+      "parent_id": "n41",
+      "action": {
+        "d": "U",
+        "i": 1,
+        "j": 1,
+        "k": 3,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000042,
+        "T": 42,
+        "action": {
+          "d": "U",
+          "i": 1,
+          "j": 1,
+          "k": 3,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "i": 1,
+            "j": 1,
+            "nest": 5
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 0,
+            "j": 1,
+            "nest": 3
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -6,
+          "S": -599999,
+          "T": 1
+        },
+        "destination": {
+          "i": 0,
+          "j": 1
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [
+              3,
+              3,
+              3
+            ],
+            "count": 3
+          },
+          "source": {
+            "colors": [
+              5,
+              5,
+              5
+            ],
+            "count": 3
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 43,
+        "node_id": "n42"
+      }
+    },
+    {
+      "type": "checkout",
+      "request_id": "9e44ef6f-3e15-4466-9a77-71c2034ab5d2",
+      "request_digest": "9435475de6ecf017eabba1481d7c66bb130109374aceefc623c77a48621b81d8",
+      "revision": 44,
+      "actor": "ai",
+      "at": "2026-09-28T00:59:28.017Z",
+      "node_id": "n25",
+      "result": {
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 44,
+        "node_id": "n25",
+        "T": 25,
+        "E": 57,
+        "S": 5700025,
+        "completed": false
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "43978bb6-0e11-4010-a331-577ed59eb987",
+      "request_digest": "624ab4c9c04d5d3cbfb134f1a480f55528966d491ca147e36b4035d513267a41",
+      "revision": 45,
+      "actor": "ai",
+      "at": "2026-09-28T00:59:28.025Z",
+      "node_id": "n43",
+      "parent_id": "n25",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "合流点を(4,9)から(4,7)へ移し、西へ進む便の途中で合流する。積み順を同じに保てる。",
+      "result": {
+        "E": 57,
+        "S": 5700026,
+        "T": 26,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              5,
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 9
+        },
+        "moved": 4,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 45,
+        "node_id": "n43"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "c5b66f4c-33dd-41f3-8145-5fd580e76817",
+      "request_digest": "df07bf79ea2581ac270c23a28965193d3a6240b8cd9ef6d70010da522f2199a3",
+      "revision": 46,
+      "actor": "ai",
+      "at": "2026-09-28T00:59:28.031Z",
+      "node_id": "n44",
+      "parent_id": "n43",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700027,
+        "T": 27,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 8,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 8
+        },
+        "moved": 4,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 46,
+        "node_id": "n44"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "3a2574d4-b77e-41af-a8b5-156aac81a451",
+      "request_digest": "e19ea6b18c13fe326bf4f062c2d2f6c3f97d02a88f052ce3f49accc5d2c59bb5",
+      "revision": 47,
+      "actor": "ai",
+      "at": "2026-09-28T00:59:28.037Z",
+      "node_id": "n45",
+      "parent_id": "n44",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 8,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700028,
+        "T": 28,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 8,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 8,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              5,
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 7
+        },
+        "moved": 4,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 47,
+        "node_id": "n45"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "69449c81-97b8-4953-8105-86c739704794",
+      "request_digest": "8691542a32c5fe2b4df48ff9fd7cf54827d6ae3be3c538e207f128f218e99d76",
+      "revision": 48,
+      "actor": "ai",
+      "at": "2026-09-28T00:59:28.044Z",
+      "node_id": "n46",
+      "parent_id": "n45",
+      "action": {
+        "d": "U",
+        "i": 5,
+        "j": 6,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700029,
+        "T": 29,
+        "action": {
+          "d": "U",
+          "i": 5,
+          "j": 6,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 5,
+            "j": 6,
+            "nest": null
+          },
+          {
+            "after": [
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 6,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 6
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 48,
+        "node_id": "n46"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "f2bad9cb-3459-4928-a5f1-8013b23b41f5",
+      "request_digest": "80733b4d8341d8b382bb53c7519606e29b379e342dcf698bc8ac56798e0a5dde",
+      "revision": 49,
+      "actor": "ai",
+      "at": "2026-09-28T00:59:28.051Z",
+      "node_id": "n47",
+      "parent_id": "n46",
+      "action": {
+        "d": "R",
+        "i": 4,
+        "j": 6,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700030,
+        "T": 30,
+        "action": {
+          "d": "R",
+          "i": 4,
+          "j": 6,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 4,
+            "j": 6,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [
+              3,
+              3,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 7
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 49,
+        "node_id": "n47"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "aeedec6f-62b8-45aa-9c8f-15e20d5fe8d6",
+      "request_digest": "90d04f176dbec3a80a97420df9db7ce9197958ed01e9b6ad38f194154e82366b",
+      "revision": 50,
+      "actor": "ai",
+      "at": "2026-09-28T00:59:28.058Z",
+      "node_id": "n48",
+      "parent_id": "n47",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700031,
+        "T": 31,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 6,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 6
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 50,
+        "node_id": "n48"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "8be1d06c-fecf-4a33-998c-e3e8f4d8a68b",
+      "request_digest": "4ac157cfc8d7c9c28dc22e161ec6c68d69ca997c254d10cfda20bef31f26c80a",
+      "revision": 51,
+      "actor": "ai",
+      "at": "2026-09-28T00:59:28.065Z",
+      "node_id": "n49",
+      "parent_id": "n48",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 6,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700032,
+        "T": 32,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 6,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 6,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [
+              3
+            ],
+            "i": 4,
+            "j": 5,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 5
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 51,
+        "node_id": "n49"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "41e00a9b-0b6b-49fa-b91b-afcbccb8136d",
+      "request_digest": "52dfdf8bb78b573a3d0943025c9f2ffa3bbebdd7918d3081a030b13212df673f",
+      "revision": 52,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.235Z",
+      "node_id": "n50",
+      "parent_id": "n49",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 5,
+        "k": 0,
+        "l": 1
+      },
+      "note": "変更した合流点から同じ配送を終える。",
+      "result": {
+        "E": 57,
+        "S": 5700033,
+        "T": 33,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 5,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 5,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 4
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 52,
+        "node_id": "n50"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "3c70cf57-93df-446c-a9fb-cef4ccfa5f6f",
+      "request_digest": "f24fdd1481ec98c925e59844a03fd0fb21a9e76e996546598b32e2c8a3b64da1",
+      "revision": 53,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.244Z",
+      "node_id": "n51",
+      "parent_id": "n50",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 4,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700034,
+        "T": 34,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 4,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 3
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 53,
+        "node_id": "n51"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "03ff251e-d12b-47dc-b332-67f9fc559c38",
+      "request_digest": "d3056922e43df5d574631a829395ffd4a751eb24003cb6ccd5b5161d33b05531",
+      "revision": 54,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.251Z",
+      "node_id": "n52",
+      "parent_id": "n51",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700035,
+        "T": 35,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 2,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 2
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 54,
+        "node_id": "n52"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "733670cb-f6b2-491e-8cad-ffa642412448",
+      "request_digest": "5e6ab40ea01d0ad9c048835b52ed28005cfadd7d4043f175571d49fad434e115",
+      "revision": 55,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.258Z",
+      "node_id": "n53",
+      "parent_id": "n52",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 2,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700036,
+        "T": 36,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 2,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 2,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [],
+            "i": 4,
+            "j": 1,
+            "nest": 1
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 1
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 55,
+        "node_id": "n53"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "902ced9a-7a22-49de-9e00-03853c7a34e1",
+      "request_digest": "dbc48c60200661a57da263d507e93e5117375462cb4c7569e38530c22566d709",
+      "revision": 56,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.266Z",
+      "node_id": "n54",
+      "parent_id": "n53",
+      "action": {
+        "d": "U",
+        "i": 4,
+        "j": 1,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700037,
+        "T": 37,
+        "action": {
+          "d": "U",
+          "i": 4,
+          "j": 1,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 4,
+            "j": 1,
+            "nest": 1
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 3,
+            "j": 1,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 3,
+          "j": 1
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 56,
+        "node_id": "n54"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "5fdd9a6f-6d3f-4370-86fc-9903fcabaaa0",
+      "request_digest": "c9f3faabb661986b8c3f28bdd07ebb545da23d8570077d35cbd6d7cf3c1a8053",
+      "revision": 57,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.274Z",
+      "node_id": "n55",
+      "parent_id": "n54",
+      "action": {
+        "d": "U",
+        "i": 3,
+        "j": 1,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 57,
+        "S": 5700038,
+        "T": 38,
+        "action": {
+          "d": "U",
+          "i": 3,
+          "j": 1,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "i": 3,
+            "j": 1,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "before": [
+              5
+            ],
+            "i": 2,
+            "j": 1,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 2,
+          "j": 1
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 57,
+        "node_id": "n55"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "e129b747-211a-4c71-b571-1dd4566928ce",
+      "request_digest": "30df29c705474d6ccb828026a4e1988a88b03eada5f8bc9ac3a33ab54af113b3",
+      "revision": 58,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.280Z",
+      "node_id": "n56",
+      "parent_id": "n55",
+      "action": {
+        "d": "U",
+        "i": 2,
+        "j": 1,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 56,
+        "S": 5600039,
+        "T": 39,
+        "action": {
+          "d": "U",
+          "i": 2,
+          "j": 1,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "i": 2,
+            "j": 1,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "before": [],
+            "i": 1,
+            "j": 1,
+            "nest": 5
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -1,
+          "S": -99999,
+          "T": 1
+        },
+        "destination": {
+          "i": 1,
+          "j": 1
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [
+              5
+            ],
+            "count": 1
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 58,
+        "node_id": "n56"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "ec83c345-f44e-4e97-a151-4afc2c372685",
+      "request_digest": "04d5d482df31b0b14dfc9a5ce24c8abac4cfae830fce5e969036ef762480ccc3",
+      "revision": 59,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.288Z",
+      "node_id": "n57",
+      "parent_id": "n56",
+      "action": {
+        "d": "U",
+        "i": 1,
+        "j": 1,
+        "k": 3,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000040,
+        "T": 40,
+        "action": {
+          "d": "U",
+          "i": 1,
+          "j": 1,
+          "k": 3,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5,
+              5,
+              5,
+              3,
+              3,
+              3
+            ],
+            "i": 1,
+            "j": 1,
+            "nest": 5
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 0,
+            "j": 1,
+            "nest": 3
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -6,
+          "S": -599999,
+          "T": 1
+        },
+        "destination": {
+          "i": 0,
+          "j": 1
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [
+              3,
+              3,
+              3
+            ],
+            "count": 3
+          },
+          "source": {
+            "colors": [
+              5,
+              5,
+              5
+            ],
+            "count": 3
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 59,
+        "node_id": "n57"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "bcf8f015-a038-43f2-9678-7bde4612244c",
+      "request_digest": "c41562eb0bb653da04dcc2eee578cf5a668c74f44c89f3abb2ad664959a71616",
+      "revision": 60,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.297Z",
+      "node_id": "n58",
+      "parent_id": "n57",
+      "action": {
+        "d": "D",
+        "i": 2,
+        "j": 5,
+        "k": 0,
+        "l": 1
+      },
+      "note": "離れた色6を段階的に集め、下側の東向き通路を共用して帰す。途中の色4、8、0を踏み台として維持する。",
+      "result": {
+        "E": 50,
+        "S": 5000041,
+        "T": 41,
+        "action": {
+          "d": "D",
+          "i": 2,
+          "j": 5,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6
+            ],
+            "i": 2,
+            "j": 5,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              6
+            ],
+            "before": [
+              4
+            ],
+            "i": 3,
+            "j": 5,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 3,
+          "j": 5
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 60,
+        "node_id": "n58"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "93955d87-129b-4a34-91c7-20a872782e7b",
+      "request_digest": "c8049badddc88f7eea25f21b03ecd7fe24e551235d846e5e7603be59b07313de",
+      "revision": 61,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.304Z",
+      "node_id": "n59",
+      "parent_id": "n58",
+      "action": {
+        "d": "D",
+        "i": 3,
+        "j": 5,
+        "k": 1,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000042,
+        "T": 42,
+        "action": {
+          "d": "D",
+          "i": 3,
+          "j": 5,
+          "k": 1,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              4
+            ],
+            "before": [
+              4,
+              6
+            ],
+            "i": 3,
+            "j": 5,
+            "nest": null
+          },
+          {
+            "after": [
+              6
+            ],
+            "before": [],
+            "i": 5,
+            "j": 5,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 5,
+          "j": 5
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 61,
+        "node_id": "n59"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "53bc4d9f-cc09-4843-8b0d-129ae9a48939",
+      "request_digest": "6e086eca17c858238fcce9be0527ac523a130997d8ad4268c074f23bdf317e31",
+      "revision": 62,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.311Z",
+      "node_id": "n60",
+      "parent_id": "n59",
+      "action": {
+        "d": "D",
+        "i": 5,
+        "j": 5,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000043,
+        "T": 43,
+        "action": {
+          "d": "D",
+          "i": 5,
+          "j": 5,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6
+            ],
+            "i": 5,
+            "j": 5,
+            "nest": null
+          },
+          {
+            "after": [
+              8,
+              6
+            ],
+            "before": [
+              8
+            ],
+            "i": 6,
+            "j": 5,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 6,
+          "j": 5
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 62,
+        "node_id": "n60"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "b6648715-541f-4c6c-a1be-21c5a1e2f8a6",
+      "request_digest": "afec00ee6709da4c2c5668e217f5bcea4adf8455e1dbf418ce946873c626a712",
+      "revision": 63,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.318Z",
+      "node_id": "n61",
+      "parent_id": "n60",
+      "action": {
+        "d": "L",
+        "i": 6,
+        "j": 5,
+        "k": 1,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000044,
+        "T": 44,
+        "action": {
+          "d": "L",
+          "i": 6,
+          "j": 5,
+          "k": 1,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [
+              8
+            ],
+            "before": [
+              8,
+              6
+            ],
+            "i": 6,
+            "j": 5,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6
+            ],
+            "before": [
+              6
+            ],
+            "i": 6,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 6,
+          "j": 4
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 63,
+        "node_id": "n61"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "d7f9d26e-30c1-404a-b321-2d6d67253aec",
+      "request_digest": "4a00bd1032728b9f07c1243544c0f17086c68b3294ae3e267d20fc796b4d8a8a",
+      "revision": 64,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.325Z",
+      "node_id": "n62",
+      "parent_id": "n61",
+      "action": {
+        "d": "L",
+        "i": 6,
+        "j": 4,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000045,
+        "T": 45,
+        "action": {
+          "d": "L",
+          "i": 6,
+          "j": 4,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6
+            ],
+            "i": 6,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6
+            ],
+            "before": [],
+            "i": 6,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 6,
+          "j": 3
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 64,
+        "node_id": "n62"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "bb4cf38f-328d-470a-b08b-d60764fbbc82",
+      "request_digest": "48a41b35f2a8c7c796dd5e5f38550bb89028f673b8082befc0478c165221f5c7",
+      "revision": 65,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.332Z",
+      "node_id": "n63",
+      "parent_id": "n62",
+      "action": {
+        "d": "D",
+        "i": 6,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000046,
+        "T": 46,
+        "action": {
+          "d": "D",
+          "i": 6,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6
+            ],
+            "i": 6,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6
+            ],
+            "before": [],
+            "i": 7,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 7,
+          "j": 3
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 65,
+        "node_id": "n63"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "0610bd15-1de7-444b-b74f-9f5f9485eef6",
+      "request_digest": "9633903f0ee1adc416afffa5495c249db5f66731bec4b92468cb8e2f0303cf4c",
+      "revision": 66,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.339Z",
+      "node_id": "n64",
+      "parent_id": "n63",
+      "action": {
+        "d": "D",
+        "i": 7,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000047,
+        "T": 47,
+        "action": {
+          "d": "D",
+          "i": 7,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6
+            ],
+            "i": 7,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6,
+              6
+            ],
+            "before": [
+              6
+            ],
+            "i": 8,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 3
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 66,
+        "node_id": "n64"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "15d6ae0d-ef54-4e7c-a2aa-d269575f0b00",
+      "request_digest": "74f4d79be8d482a31afd76d558dc68a2166261a3519096f03a0d21da69fb2801",
+      "revision": 67,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.347Z",
+      "node_id": "n65",
+      "parent_id": "n64",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000048,
+        "T": 48,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6,
+              6
+            ],
+            "before": [],
+            "i": 8,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 4
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 67,
+        "node_id": "n65"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "26949f28-ea55-4285-aa65-5cebfd9f9c36",
+      "request_digest": "241f85f817bbc806f5f85f31c9539d7b908a72c88e29a6a538a6165ad59dc5d2",
+      "revision": 68,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.354Z",
+      "node_id": "n66",
+      "parent_id": "n65",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 4,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000049,
+        "T": 49,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 4,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6,
+              6
+            ],
+            "before": [],
+            "i": 8,
+            "j": 5,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 5
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 68,
+        "node_id": "n66"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "8c2226a4-1420-436c-9582-237c622653e1",
+      "request_digest": "3fd4add709ff2cfbb55864e4245023897086a1aa4ec217a922c93136a1e399fd",
+      "revision": 69,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.361Z",
+      "node_id": "n67",
+      "parent_id": "n66",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 5,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000050,
+        "T": 50,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 5,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 5,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6,
+              6
+            ],
+            "before": [],
+            "i": 8,
+            "j": 6,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 6
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 69,
+        "node_id": "n67"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "c68a26e4-3e59-4539-8844-25143a29f61a",
+      "request_digest": "831332a2e084a5d788231b5894aa00f41e5de9b1c38eda8acdcade13acd76770",
+      "revision": 70,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.368Z",
+      "node_id": "n68",
+      "parent_id": "n67",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 6,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000051,
+        "T": 51,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 6,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 6,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6,
+              6
+            ],
+            "before": [],
+            "i": 8,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 7
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 70,
+        "node_id": "n68"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "e5d55b6d-cd59-4dc4-8c37-7f5165e48a6a",
+      "request_digest": "e0761f8b7266117e3c903eb2c0ebf1d58e31df80bfa0e8a5b1e944c395794a9f",
+      "revision": 71,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.375Z",
+      "node_id": "n69",
+      "parent_id": "n68",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 7,
+        "k": 1,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000052,
+        "T": 52,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 7,
+          "k": 1,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              6
+            ],
+            "before": [
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6
+            ],
+            "before": [],
+            "i": 8,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 9
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 71,
+        "node_id": "n69"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "5ab6f7ca-05fe-4a6b-bf46-d717e2d9e481",
+      "request_digest": "318e1e6e0225eb6478182fc8271b9f1e63ca2bafe61f91c6b5562ac11520bcd8",
+      "revision": 72,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.382Z",
+      "node_id": "n70",
+      "parent_id": "n69",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000053,
+        "T": 53,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6
+            ],
+            "before": [],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 10
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 72,
+        "node_id": "n70"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "4577b113-ed98-4a6c-aca6-bf3171f50d43",
+      "request_digest": "e3088e9bb41e6a053ba0da2d263e6f029e9b7c28571a40377cd5663023793f52",
+      "revision": 73,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.389Z",
+      "node_id": "n71",
+      "parent_id": "n70",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000054,
+        "T": 54,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              6,
+              6
+            ],
+            "before": [
+              0
+            ],
+            "i": 8,
+            "j": 11,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 11
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 73,
+        "node_id": "n71"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "7aab8d36-8f4a-4df0-b46a-42a6e3645477",
+      "request_digest": "b0aba3b29782153d4ecf7f9b97f8ae7591583eeaabb52f80265b212844a229c7",
+      "revision": 74,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.396Z",
+      "node_id": "n72",
+      "parent_id": "n71",
+      "action": {
+        "d": "D",
+        "i": 8,
+        "j": 11,
+        "k": 1,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 48,
+        "S": 4800055,
+        "T": 55,
+        "action": {
+          "d": "D",
+          "i": 8,
+          "j": 11,
+          "k": 1,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0
+            ],
+            "before": [
+              0,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 11,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 9,
+            "j": 11,
+            "nest": 6
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -2,
+          "S": -199999,
+          "T": 1
+        },
+        "destination": {
+          "i": 9,
+          "j": 11
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [
+              6,
+              6
+            ],
+            "count": 2
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 74,
+        "node_id": "n72"
+      }
+    },
+    {
+      "type": "note",
+      "request_id": "608b668f-9e64-4892-b762-d0e989f3efdc",
+      "request_digest": "f5775affdbccfb1d5d36cba076fa2a5fe66ef32e31c40585a0dc3a29718f1235",
+      "revision": 75,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:14.402Z",
+      "node_id": "n72",
+      "text": "南東の色4/8、北西の色3/5、南東へ向かう色6を地理的な便として輸送した。55手で16匹帰巣、E=47。全帰巣まで比較していないので完成スコアの改善とは扱わない。",
+      "result": {
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 75,
+        "node_id": "n72",
+        "text": "南東の色4/8、北西の色3/5、南東へ向かう色6を地理的な便として輸送した。55手で16匹帰巣、E=47。全帰巣まで比較していないので完成スコアの改善とは扱わない。"
+      }
+    },
+    {
+      "type": "note",
+      "request_id": "3d34261a-26ef-465f-8c15-6a0b58d48b27",
+      "request_digest": "33371345d001ded939ed6794fe0c9b74e89b6ebacb59048e2546eee542e93a15",
+      "revision": 76,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.432Z",
+      "node_id": "n72",
+      "text": "訂正: n72時点はE=48。先に色8を運び出した(8,7)には踏み台がなく、色6を1匹残して跳んでいた。局面に残る支持の消失を見落とした。",
+      "result": {
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 76,
+        "node_id": "n72",
+        "text": "訂正: n72時点はE=48。先に色8を運び出した(8,7)には踏み台がなく、色6を1匹残して跳んでいた。局面に残る支持の消失を見落とした。"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "061a5833-aabc-4a7e-8c39-743db6b0a40c",
+      "request_digest": "2bfc486e953ba4dbfdc6b5209b6121880c8714103d4b9ed4736b13492590f54e",
+      "revision": 77,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.441Z",
+      "node_id": "n73",
+      "parent_id": "n72",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "残してしまった色6を、隣の色3を踏み台に回収する。",
+      "result": {
+        "E": 48,
+        "S": 4800056,
+        "T": 56,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6
+            ],
+            "i": 8,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              6
+            ],
+            "before": [
+              3
+            ],
+            "i": 8,
+            "j": 8,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 8
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 77,
+        "node_id": "n73"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "b4eee3e4-c51f-42ce-9a5b-3a6b39d55268",
+      "request_digest": "78d95809c997d29968d40a1ab49654e6b0b3e9522cc2a6598e88bb2702e996e8",
+      "revision": 78,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.448Z",
+      "node_id": "n74",
+      "parent_id": "n73",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 8,
+        "k": 1,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 48,
+        "S": 4800057,
+        "T": 57,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 8,
+          "k": 1,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              3
+            ],
+            "before": [
+              3,
+              6
+            ],
+            "i": 8,
+            "j": 8,
+            "nest": null
+          },
+          {
+            "after": [
+              6
+            ],
+            "before": [],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 10
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 78,
+        "node_id": "n74"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "70837174-3255-4871-ad07-4b91dfe21197",
+      "request_digest": "9f14d30defc5815f6071ae3b0d6733887b546bf6c9bcea2f91126d2550d01264",
+      "revision": 79,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.455Z",
+      "node_id": "n75",
+      "parent_id": "n74",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 48,
+        "S": 4800058,
+        "T": 58,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6
+            ],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              6
+            ],
+            "before": [
+              0
+            ],
+            "i": 8,
+            "j": 11,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 11
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 79,
+        "node_id": "n75"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "3ccda281-418d-40be-a7a4-02842b2efe9e",
+      "request_digest": "b2e7c0fb35484f7803b1072a58d9399c104c1d86a140742f87fae7417d4b8dae",
+      "revision": 80,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.462Z",
+      "node_id": "n76",
+      "parent_id": "n75",
+      "action": {
+        "d": "D",
+        "i": 8,
+        "j": 11,
+        "k": 1,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 47,
+        "S": 4700059,
+        "T": 59,
+        "action": {
+          "d": "D",
+          "i": 8,
+          "j": 11,
+          "k": 1,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0
+            ],
+            "before": [
+              0,
+              6
+            ],
+            "i": 8,
+            "j": 11,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 9,
+            "j": 11,
+            "nest": 6
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -1,
+          "S": -99999,
+          "T": 1
+        },
+        "destination": {
+          "i": 9,
+          "j": 11
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [
+              6
+            ],
+            "count": 1
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 80,
+        "node_id": "n76"
+      }
+    },
+    {
+      "type": "checkout",
+      "request_id": "91d77595-61dc-4fee-b799-e22040b0a58e",
+      "request_digest": "fd1d6bfe788e994e0cc0be9f4178b9ffdb68134b4e3febcb02440526f4a09c26",
+      "revision": 81,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.469Z",
+      "node_id": "n68",
+      "result": {
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 81,
+        "node_id": "n68",
+        "T": 51,
+        "E": 50,
+        "S": 5000051,
+        "completed": false
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "d0aa7c96-f8cc-4e4e-aba1-1c3665efcd8b",
+      "request_digest": "90aec42bca11f486414347dc51bdb3bc9615fb0424eb0de97b1c433f69f4b974",
+      "revision": 82,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.475Z",
+      "node_id": "n77",
+      "parent_id": "n68",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "3匹を分けず、隣の既存踏み台へ載せてから跳ぶ。",
+      "result": {
+        "E": 50,
+        "S": 5000052,
+        "T": 52,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              3,
+              6,
+              6,
+              6
+            ],
+            "before": [
+              3
+            ],
+            "i": 8,
+            "j": 8,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 8
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 82,
+        "node_id": "n77"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "ddee510a-63b9-4349-a1e4-b15065f25a73",
+      "request_digest": "bead4c5c2a7f5f040b2fed9df0c5113d4a184618c310701cd83e11ea71b253a4",
+      "revision": 83,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.482Z",
+      "node_id": "n78",
+      "parent_id": "n77",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 8,
+        "k": 1,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000053,
+        "T": 53,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 8,
+          "k": 1,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              3
+            ],
+            "before": [
+              3,
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 8,
+            "nest": null
+          },
+          {
+            "after": [
+              6,
+              6,
+              6
+            ],
+            "before": [],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 10
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 83,
+        "node_id": "n78"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "eeaf77ad-e137-46d8-9e11-e12d63d0edb3",
+      "request_digest": "a4e801e8d7100dda8c5176404e89b10ac6b9b48cfa4bcf1ba2c71aff2c1b112d",
+      "revision": 84,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.487Z",
+      "node_id": "n79",
+      "parent_id": "n78",
+      "action": {
+        "d": "R",
+        "i": 8,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 50,
+        "S": 5000054,
+        "T": 54,
+        "action": {
+          "d": "R",
+          "i": 8,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              6,
+              6,
+              6
+            ],
+            "before": [
+              0
+            ],
+            "i": 8,
+            "j": 11,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 11
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 84,
+        "node_id": "n79"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "a73a0a1c-7c69-4364-aa6e-a44f1fa2198e",
+      "request_digest": "f6bc557701944b0c915fd6a789e1b4a70b30a0b8671f144ce84d78dc45d3865e",
+      "revision": 85,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.494Z",
+      "node_id": "n80",
+      "parent_id": "n79",
+      "action": {
+        "d": "D",
+        "i": 8,
+        "j": 11,
+        "k": 1,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 47,
+        "S": 4700055,
+        "T": 55,
+        "action": {
+          "d": "D",
+          "i": 8,
+          "j": 11,
+          "k": 1,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0
+            ],
+            "before": [
+              0,
+              6,
+              6,
+              6
+            ],
+            "i": 8,
+            "j": 11,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 9,
+            "j": 11,
+            "nest": 6
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -3,
+          "S": -299999,
+          "T": 1
+        },
+        "destination": {
+          "i": 9,
+          "j": 11
+        },
+        "moved": 3,
+        "returned": {
+          "destination": {
+            "colors": [
+              6,
+              6,
+              6
+            ],
+            "count": 3
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 85,
+        "node_id": "n80"
+      }
+    },
+    {
+      "type": "note",
+      "request_id": "2b7c64ea-b23d-4cf7-a8a3-a13fa558ad34",
+      "request_digest": "72e6d4e3f38f460f3d9165acc910da6b5f036d8d265134ed95557ce6e713e034",
+      "revision": 86,
+      "actor": "ai",
+      "at": "2026-09-28T01:01:41.503Z",
+      "node_id": "n80",
+      "text": "3匹を分割して2マス跳び、残り1匹を回収する案は59手。隣の既存踏み台まで一緒に進んでから全員を跳ばす案は55手。同じ盤面、E=47で4手差。支持に使った荷物の回収費を含める必要がある既知の例。",
+      "result": {
+        "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+        "revision": 86,
+        "node_id": "n80",
+        "text": "3匹を分割して2マス跳び、残り1匹を回収する案は59手。隣の既存踏み台まで一緒に進んでから全員を跳ばす案は55手。同じ盤面、E=47で4手差。支持に使った荷物の回収費を含める必要がある既知の例。"
+      }
+    }
+  ],
+  "input": "12 9\n.D.a..d..b.i\ndF..e.....a.\n.f.d.gcd..Ce\n...i.e...I.i\niB...d....fE\n..e...fe.ed.\nd.a.gi..eifi\n.di......dad\na..g...id..a\n.idAafdi.d.G\n.icf.bhdee..\nH.i.d.ice.i.\n",
+  "output": "11 8 0 U 1\n10 8 0 R 1\n9 9 0 D 1\n11 10 0 L 1\n11 9 0 U 1\n9 7 0 U 1\n8 7 0 R 1\n8 8 1 R 2\n8 10 0 D 1\n9 10 0 D 1\n10 10 0 L 1\n10 9 0 R 1\n10 10 0 U 1\n9 10 0 U 1\n8 10 0 U 1\n7 10 1 U 2\n5 10 1 R 1\n5 11 0 U 1\n4 11 3 L 2\n4 11 0 L 1\n4 10 1 U 1\n3 10 0 L 1\n6 10 0 U 1\n5 10 0 U 1\n4 9 0 R 1\n4 10 0 L 1\n4 9 0 L 1\n4 8 0 L 1\n5 6 0 U 1\n4 6 0 R 1\n4 7 0 L 1\n4 6 0 L 1\n4 5 0 L 1\n4 4 0 L 1\n4 3 0 L 1\n4 2 0 L 1\n4 1 0 U 1\n3 1 0 U 1\n2 1 0 U 1\n1 1 3 U 1\n2 5 0 D 1\n3 5 1 D 2\n5 5 0 D 1\n6 5 1 L 1\n6 4 0 L 1\n6 3 0 D 1\n7 3 0 D 1\n8 3 0 R 1\n8 4 0 R 1\n8 5 0 R 1\n8 6 0 R 1\n8 7 0 R 1\n8 8 1 R 2\n8 10 0 R 1\n8 11 1 D 1\n"
+}

@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "throwaway_model": true,
+  "model_source": "results/nn_rank/v126/20261004_pair_allocation_studio/training/fold_0/model.json",
+  "model_sha256": "6ba3bf685047ccca646ff13ec4b44e447d1e0a17165383447d77f7033ad13ddf",
+  "source_sha256": "7ffdd46d463e57894c8b1d718c61d680fc4057de94554298656d09123455e050"
+}

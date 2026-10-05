@@ -1,0 +1,16 @@
+namespace allocation_policy {
+struct Track {
+    int raw=0,last_gain=0,attempts=0,improvements=0;
+    double used=0,last_duration=0,last_end=0;
+};
+array<float,18> features(const Track& t,int current,int shortest,double now,double start,double end) {
+    const double budget=max(1e-9,end-start);
+    const double used=t.used/budget,last=t.last_duration/budget;
+    return {board_info.N/20.f,board_info.K/12.f,board_info.M/256.f,board_info.cell_count/400.f,
+            t.raw/800.f,current/800.f,(t.raw-current)/80.f,(current-shortest)/40.f,
+            float(used),t.last_gain/20.f,float(last),float(max(0.0,now-t.last_end)/budget),
+            float(clamp((now-start)/budget,0.0,1.0)),float(max(0.0,end-now)/budget),
+            t.attempts/10000.f,t.improvements/1000.f,
+            float((t.raw-current)/max(.02,used)/200),float(t.last_gain/max(.02,last)/200)};
+}
+}

@@ -1,0 +1,52 @@
+{
+  "session_id": "p_c5535532-0c2e-4a76-9c6e-373039483b5d",
+  "started_at": "2026-09-28T16:01:24Z",
+  "ended_at": "2026-09-28T16:16:32Z",
+  "elapsed_seconds": 908,
+  "solver_runs": 0,
+  "solver_changes": 0,
+  "reference_T": 62,
+  "new_best_below_reference": false,
+  "candidates": [
+    {
+      "name": "reference_62",
+      "node_id": "n62",
+      "T": 62,
+      "E": 0,
+      "completed": true,
+      "sha256": "c7540212d775539c6bd5fece24660a0ff97d2d0574cfde1f5f1a2771fa163fea"
+    },
+    {
+      "name": "candidate_a_63",
+      "node_id": "n112",
+      "T": 63,
+      "E": 0,
+      "completed": true,
+      "sha256": "cce0d049a3d29c450192b4ad2cb06529e8d529276af7a3d58f7200e3c0f3066d"
+    },
+    {
+      "name": "candidate_b_65",
+      "node_id": "n135",
+      "T": 65,
+      "E": 0,
+      "completed": true,
+      "sha256": "d0eb78d3404cf5a9af816efe2f09f775504b4f11d119bb3ac194c6bdca7b3c97"
+    },
+    {
+      "name": "candidate_c_partial",
+      "node_id": "n99",
+      "T": 53,
+      "E": 11,
+      "completed": false,
+      "sha256": "15efd7c163895cab0cb1a551c9e826b953c398dfb9103a651d1d08a45496b0fd"
+    },
+    {
+      "name": "candidate_d_63",
+      "node_id": "n147",
+      "T": 63,
+      "E": 0,
+      "completed": true,
+      "sha256": "27b1dd5de9ed520caa2823be0a38d62632f0c161f7b3e76a295cb720ad8d6126"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+// 成功前の実際の受理列だけを有界に保持する。標本化は探索用rngに触れない。
+struct TeacherChoice {
+    uint64_t rng_start=0,candidate_hash=0;
+    int rank=-1,reorder_style=-1;
+    int packet_time=-1,packet_keep=-1,packet_size=-1,packet_later=-1,packet_before_split=-1;
+    int paired_time=-1,paired_p=-1,paired_q=-1,paired_keep_p=-1,paired_keep_q=-1;
+    int support_weight=-1,ride_weight=-1;
+    double temperature=0;
+    vector<int> ids,insertion_order;
+    void reset(){
+        rng_start=0;candidate_hash=0;rank=reorder_style=-1;
+        packet_time=packet_keep=packet_size=packet_later=packet_before_split=-1;
+        paired_time=paired_p=paired_q=paired_keep_p=paired_keep_q=-1;
+        support_weight=ride_weight=-1;temperature=0;
+        ids.clear();insertion_order.clear();
+    }
+};
+uint64_t teacher_hash(const vector<Move>& plan){
+    uint64_t hash=1469598103934665603ULL;
+    for(auto m:plan){
+        const uint64_t value=uint64_t(m.p)|(uint64_t(m.k)<<16)|(uint64_t(m.d)<<24)|(uint64_t(m.l)<<32);
+        hash=(hash^value)*1099511628211ULL;
+    }
+    return hash;
+}
+void teacher_write_moves(ostream& out,const vector<Move>& plan){
+    out<<'[';for(size_t i=0;i<plan.size();i++){
+        if(i)out<<',';
+        const auto m=plan[i];out<<'['<<m.p<<','<<int(m.k)<<','<<int(m.d)<<','<<int(m.l)<<']';
+    }out<<']';
+}
+void teacher_write_ids(ostream& out,const vector<int>& ids){
+    out<<'[';for(size_t i=0;i<ids.size();i++){if(i)out<<',';out<<ids[i];}out<<']';
+}
+class TeacherEpisodes {
+    struct Transition {
+        uint64_t id,rng_end,before_hash,after_hash;
+        int64_t iteration;
+        int best_T;
+        string kind;
+        TeacherChoice choice;
+        shared_ptr<const vector<Move>> before,after;
+    };
+    struct Episode {
+        uint64_t id;
+        int best_before_T,best_after_T;
+        vector<shared_ptr<const Transition>> transitions;
+    };
+    static constexpr size_t ring_limit=64,episode_limit=64;
+    filesystem::path root;
+    string teacher_name;
+    uint64_t run_seed=0,sample_state=85001;
+    deque<shared_ptr<const Transition>> ring;
+    vector<Episode> episodes;
+    shared_ptr<const vector<Move>> last_plan;
+    uint64_t last_hash=0;
+    uint64_t accepted=0,changed=0,neutral=0,uphill=0,downhill=0,resets=0,episodes_seen=0;
+    uint64_t random_index(uint64_t n){
+        // 剰余の偏りを棄却法で除く。状態は固定85001から始める。
+        const uint64_t threshold=uint64_t(-n)%n;
+        while(true){
+            uint64_t value=(sample_state+=0x9e3779b97f4a7c15ULL);
+            value=(value^(value>>30))*0xbf58476d1ce4e5b9ULL;
+            value=(value^(value>>27))*0x94d049bb133111ebULL;value^=value>>31;
+            if(value>=threshold)return value%n;
+        }
+    }
+    string id(const char* kind,uint64_t value)const{return teacher_name+":"+to_string(run_seed)+":"+kind+to_string(value);}
+public:
+    void configure(const filesystem::path& directory,uint64_t seed,const string& name){root=directory;run_seed=seed;teacher_name=name;}
+    void reset(){ring.clear();last_plan.reset();last_hash=0;++resets;}
+    void observe(const char* kind,const vector<Move>& before,const vector<Move>& after,size_t best_T,
+                 int64_t iteration,const TeacherChoice& choice,uint64_t rng_end){
+        ++accepted;const uint64_t before_hash=teacher_hash(before),after_hash=teacher_hash(after);
+        bool same=before.size()==after.size();
+        if(same)for(size_t i=0;i<before.size();i++){
+            const auto a=before[i],b=after[i];if(a.p!=b.p||a.k!=b.k||a.d!=b.d||a.l!=b.l){same=false;break;}
+        }
+        if(same)return;
+        if(last_plan&&before_hash!=last_hash)throw logic_error("teacher path discontinuity");
+        if(!last_plan)last_plan=make_shared<const vector<Move>>(before);
+        auto next=make_shared<const vector<Move>>(after);
+        auto item=make_shared<Transition>();
+        item->id=++changed;item->rng_end=rng_end;item->before_hash=before_hash;item->after_hash=after_hash;
+        item->iteration=iteration;item->best_T=int(min(best_T,after.size()));item->kind=kind;item->choice=choice;
+        item->before=last_plan;item->after=next;
+        neutral+=after.size()==before.size();uphill+=after.size()>before.size();downhill+=after.size()<before.size();
+        ring.push_back(item);if(ring.size()>ring_limit)ring.pop_front();last_plan=move(next);last_hash=after_hash;
+        if(after.size()<best_T){
+            const uint64_t number=++episodes_seen;
+            const uint64_t slot=episodes.size()<episode_limit?episodes.size():random_index(number);
+            if(slot<episode_limit){
+                Episode episode{number,int(best_T),int(after.size()),{ring.begin(),ring.end()}};
+                if(slot==episodes.size())episodes.push_back(move(episode));else episodes[slot]=move(episode);
+            }
+        }
+    }
+    void save(const string& status,uint64_t solver_rng,uint64_t nn_calls,uint64_t reduction_candidates,
+              uint64_t reduction_heavy_calls,uint64_t reduction_shortened,uint64_t reduction_saved,
+              bool has_nn,bool has_search_reductions){
+        ofstream out(root/"episodes.jsonl");if(!out)throw runtime_error("cannot create episodes");
+        out<<setprecision(17);
+        sort(episodes.begin(),episodes.end(),[](const Episode& a,const Episode& b){return a.id<b.id;});
+        for(const auto& episode:episodes){
+            out<<"{\"schema_version\":1,\"teacher\":"<<json_string(teacher_name)<<",\"run_seed\":"<<json_string(to_string(run_seed))
+               <<",\"episode_id\":"<<json_string(id("e",episode.id))<<",\"improvement_index\":"<<episode.id
+               <<",\"best_before_T\":"<<episode.best_before_T<<",\"best_after_T\":"<<episode.best_after_T<<",\"start\":";
+            teacher_write_moves(out,*episode.transitions.front()->before);out<<",\"transitions\":[";
+            for(size_t i=0;i<episode.transitions.size();i++){
+                if(i)out<<',';
+                const auto& t=*episode.transitions[i];const auto& c=t.choice;
+                out<<"{\"transition_id\":"<<json_string(id("t",t.id))<<",\"kind\":"<<json_string(t.kind)
+                   <<",\"iteration\":"<<t.iteration<<",\"before_T\":"<<t.before->size()<<",\"after_T\":"<<t.after->size()
+                   <<",\"best_T\":"<<t.best_T<<",\"rng_start\":"<<json_string(to_string(c.rng_start))
+                   <<",\"rng_end\":"<<json_string(to_string(t.rng_end))<<",\"before_hash\":"<<json_string(to_string(t.before_hash))
+                   <<",\"after_hash\":"<<json_string(to_string(t.after_hash))<<",\"after\":";
+                teacher_write_moves(out,*t.after);
+                out<<",\"selection\":{\"candidate_rank\":"<<c.rank<<",\"candidate_hash\":"<<json_string(to_string(c.candidate_hash))<<",\"ids\":";
+                teacher_write_ids(out,c.ids);out<<",\"insertion_order\":";teacher_write_ids(out,c.insertion_order);
+                out<<",\"reorder_style\":"<<c.reorder_style<<",\"packet_time\":"<<c.packet_time<<",\"packet_keep\":"<<c.packet_keep
+                   <<",\"packet_size\":"<<c.packet_size<<",\"packet_later\":"<<c.packet_later<<",\"packet_before_split\":"<<c.packet_before_split
+                   <<",\"paired_time\":"<<c.paired_time<<",\"paired_p\":"<<c.paired_p<<",\"paired_q\":"<<c.paired_q
+                   <<",\"paired_keep_p\":"<<c.paired_keep_p<<",\"paired_keep_q\":"<<c.paired_keep_q
+                   <<",\"support_weight\":"<<c.support_weight<<",\"ride_weight\":"<<c.ride_weight<<",\"temperature\":"<<c.temperature
+                   <<"},\"unknown\":[\"adopted_insertion_order\",\"internal_round\",\"rejected_trials\",\"full_search_memory\"]}";
+            }
+            out<<"]}\n";
+        }
+        out.close();if(!out)throw runtime_error("episode write failed");
+        ofstream stats(root/"teacher_stats.json");if(!stats)throw runtime_error("cannot create teacher stats");
+        stats<<"{\"schema_version\":1,\"teacher\":"<<json_string(teacher_name)<<",\"run_seed\":"<<json_string(to_string(run_seed))
+             <<",\"status\":"<<json_string(status)<<",\"accepted\":"<<accepted<<",\"changed\":"<<changed
+             <<",\"neutral\":"<<neutral<<",\"uphill\":"<<uphill<<",\"downhill\":"<<downhill<<",\"unchanged\":"<<accepted-changed
+             <<",\"resets\":"<<resets<<",\"episodes_seen\":"<<episodes_seen<<",\"episodes_saved\":"<<episodes.size()
+             <<",\"ring_limit\":"<<ring_limit<<",\"episode_limit\":"<<episode_limit<<",\"reservoir_seed\":85001"
+             <<",\"nn_calls\":"<<nn_calls<<",\"search_reduction_candidates\":"<<reduction_candidates
+             <<",\"search_reduction_heavy_calls\":"<<reduction_heavy_calls<<",\"search_reduction_shortened\":"<<reduction_shortened
+             <<",\"search_reduction_saved\":"<<reduction_saved<<",\"solver_rng_at_save\":"<<json_string(to_string(solver_rng))
+             <<",\"capabilities\":{\"nn\":"<<(has_nn?"true":"false")<<",\"search_reductions\":"<<(has_search_reductions?"true":"false")<<'}'
+             <<",\"schema\":{\"move\":\"[p,k,d,l]; p=zero-based row-major floor ID; d=0:U,1:D,2:L,3:R\","
+               "\"hash\":\"uint64 h=1469598103934665603; each move v=p|(k<<16)|(d<<24)|(l<<32); h=((h^v)*1099511628211) mod 2^64; decimal string\","
+               "\"rng_start\":\"before per-iteration tie-mode draw\",\"rng_end\":\"after accept decision, before candidate rebuild\","
+               "\"insertion_order\":\"initial proposed regular/dependency order; adopted alternate order is unknown\","
+               "\"selection_unknown\":\"-1 means not captured or not applicable; empty IDs/order mean unknown for that neighborhood; adopted order and internal round are not recorded\","
+               "\"path\":\"accepted changed operation sequences only; reset clears ring; omitted rejected trials prevent exact search replay\"}}\n";
+        stats.close();if(!stats)throw runtime_error("teacher stats write failed");
+    }
+} teacher_episodes;

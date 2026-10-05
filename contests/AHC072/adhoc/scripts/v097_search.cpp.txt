@@ -1,0 +1,88 @@
+struct StateHash {
+    size_t operator()(const array<uint32_t,400>& state)const{
+        uint64_t h=0x9e3779b97f4a7c15ULL;for(uint32_t v:state)h^=uint64_t(v)+0x9e3779b97f4a7c15ULL+(h<<6)+(h>>2);return size_t(h);
+    }
+};
+using Visited=unordered_set<array<uint32_t,400>,StateHash>;
+
+int choose(const Board& b,const BoardState& state,const Encoded& e,const FactoredActions& a,const Visited& visited,BoardState& next) {
+    vector<int> towers;vector<float> pl;
+    for(int p=0;p<b.cell_count;++p)if(a.tower[p].valid()){towers.push_back(p);pl.push_back(tower_logit(e,a,p));}
+    if(towers.empty())return -1;
+    const auto po=descending(pl);const auto pp=log_probabilities(pl);ConditionalActor actor(b,e);
+    auto unseen=[&](int index){next=state;next.apply(b,a.moves[index]);if(visited.contains(next.bits)){++factor_counts.duplicates;return false;}return true;};
+#ifdef V097_TOP2
+    for(size_t start=0;start<po.size();start+=2){
+        vector<pair<double,int>> candidates;
+        for(size_t ti=start;ti<min(start+2,po.size());++ti){
+            int slot=po[ti],p=towers[slot];vector<int> ks;vector<float> kl;
+            for(int k=0;k<8;++k)if(a.split[p][k].valid()){ks.push_back(k);kl.push_back(split_logit(e,a,p,k));}
+            auto kp=log_probabilities(kl);
+            for(size_t ki=0;ki<ks.size();++ki){const auto& ids=a.groups[p][ks[ki]];vector<float> dl;
+                for(int index:ids)dl.push_back(actor.logit(a.moves[index],a.features[index]));auto dp=log_probabilities(dl);
+                for(size_t j=0;j<ids.size();++j)candidates.emplace_back(pp[slot]+kp[ki]+dp[j],ids[j]);}
+        }
+        stable_sort(candidates.begin(),candidates.end(),[](auto a,auto b){return a.first==b.first ? a.second<b.second : a.first>b.first;});
+        for(auto [prob,index]:candidates){(void)prob;if(unseen(index))return index;}
+    }
+#else
+    for(int slot:po){int p=towers[slot];vector<int> ks;vector<float> kl;
+        for(int k=0;k<8;++k)if(a.split[p][k].valid()){ks.push_back(k);kl.push_back(split_logit(e,a,p,k));}
+        for(int ki:descending(kl)){const auto& ids=a.groups[p][ks[ki]];vector<float> dl;
+            for(int index:ids)dl.push_back(actor.logit(a.moves[index],a.features[index]));
+            for(int j:descending(dl))if(unseen(ids[j]))return ids[j];}
+    }
+#endif
+    return -1;
+}
+
+#ifdef V097_DIAGNOSTIC
+void dump_factor(const Input& input,const Board& board,const BoardState& state) {
+    auto e=encode(input,board,state);auto a=make_unique<FactoredActions>(board,state);ConditionalActor actor(board,*e);
+    vector<int> ps;vector<float> pl;for(int p=0;p<board.cell_count;++p)if(a->tower[p].valid()){ps.push_back(p);pl.push_back(tower_logit(*e,*a,p));}
+    auto pp=log_probabilities(pl);vector<double> joint(a->moves.size());
+    cout<<setprecision(9)<<"{\"p\":[";
+    for(size_t i=0;i<ps.size();++i){if(i)cout<<',';cout<<'['<<flat_cell(board,ps[i])<<','<<pl[i]<<']';}
+    cout<<"],\"k\":[";bool comma=false;
+    for(size_t i=0;i<ps.size();++i){int p=ps[i];vector<int> ks;vector<float> kl;
+        for(int k=0;k<8;++k)if(a->split[p][k].valid()){ks.push_back(k);kl.push_back(split_logit(*e,*a,p,k));}
+        auto kp=log_probabilities(kl);
+        for(size_t j=0;j<ks.size();++j){int k=ks[j];if(comma)cout<<',';comma=true;cout<<'['<<flat_cell(board,p)<<','<<k<<','<<kl[j]<<']';
+            const auto& ids=a->groups[p][k];vector<float> dl;for(int idx:ids)dl.push_back(actor.logit(a->moves[idx],a->features[idx]));
+            auto dp=log_probabilities(dl);for(size_t n=0;n<ids.size();++n)joint[ids[n]]=pp[i]+kp[j]+dp[n];}
+    }
+    cout<<"],\"actions\":[";
+    for(size_t i=0;i<a->moves.size();++i){if(i)cout<<',';cout<<'['<<action_code(board,a->moves[i])<<','<<actor.logit(a->moves[i],a->features[i])<<','<<joint[i]<<']';}
+    cout<<"]}\n";
+}
+#endif
+
+int main(int argc,char** argv) {
+    TimeKeeper timer(PROGRAM_TIME_LIMIT_SEC,0);ios::sync_with_stdio(false);cin.tie(nullptr);
+#ifdef LOCAL
+    TraceStats trace;
+#endif
+    LOCAL_TIME(trace,"load_model",[]{load_nn();});Input input;input.read();const Board board(input);BoardState state(input,board);
+#ifdef V097_DIAGNOSTIC
+    if(argc>1){ifstream snapshot(argv[1]);read_snapshot(snapshot,board,state);}
+    if(argc>2 && string(argv[2])=="dump"){dump_factor(input,board,state);return 0;}
+#else
+    (void)argc;(void)argv;
+#endif
+    Visited visited;visited.reserve(4096);visited.insert(state.bits);vector<Move> path,best_path;int best_E=state.E;
+    int64_t best_score=int64_t(state.E)*100000;int inferences=0,depth=0;bool deadline=false,exhausted=false;
+    for(;depth<2048 && state.E>0;++depth){
+        if(!timer.step()){deadline=true;break;}
+        const auto e=encode(input,board,state);auto actions=make_unique<FactoredActions>(board,state);++inferences;
+        factor_counts.legal_actions+=actions->moves.size();BoardState next;int selected=choose(board,state,*e,*actions,visited,next);
+        if(!timer.step()){deadline=true;break;}
+        if(selected<0){exhausted=true;break;}
+        path.push_back(actions->moves[selected]);state=next;visited.insert(state.bits);
+        int64_t score=int64_t(state.E)*100000+path.size();if(score<best_score){best_score=score;best_E=state.E;best_path=path;}
+    }
+    for(Move m:best_path){auto [i,j]=board.coordinates[m.p()];cout<<i<<' '<<j<<' '<<m.k()<<' '<<"UDLR"[m.d()]<<' '<<m.l()<<'\n';}
+    LOCAL_ONLY(trace.count_by("E",best_E);trace.count_by("T",best_path.size());trace.count_by("depth",depth);
+        trace.count_by("inferences",inferences);trace.count_by("deadline",deadline);trace.count_by("exhausted",exhausted);
+        trace.count_by("duplicates",factor_counts.duplicates);trace.count_by("tower_scores",factor_counts.towers);
+        trace.count_by("split_scores",factor_counts.splits);trace.count_by("action_scores",factor_counts.actions);trace.count_by("legal_actions",factor_counts.legal_actions);trace.summary(););
+}

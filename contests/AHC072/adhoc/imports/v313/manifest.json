@@ -1,0 +1,17 @@
+{
+  "imported_at": "2026-10-04T14:17:25.930393+09:00",
+  "source": "src/bin/v313_neural_rollout_grafting.cpp",
+  "source_sha256": "19ed3103b15d612b8089514ee71147cf290a667c0761b7b3fca11ab154ab8b82",
+  "original_name": "/Users/masaki/Downloads/v313_neural_rollout_grafting.cpp",
+  "original_sha256": "19ed3103b15d612b8089514ee71147cf290a667c0761b7b3fca11ab154ab8b82",
+  "local_port": "none",
+  "external_backlog_id": null,
+  "local_backlog_id": "B-164",
+  "files": [
+    {
+      "path": "adhoc/imports/v313/next_steps.md",
+      "sha256": "f7ec97d94fcd3727305bfb9de6dacf94813beb1c57f6b7a56ac54820c0b85ad9",
+      "bytes": 9005
+    }
+  ]
+}

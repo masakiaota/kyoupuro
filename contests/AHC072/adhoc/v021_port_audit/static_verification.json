@@ -1,0 +1,37 @@
+{
+  "original_sha256": "0c4d00f6cdd6bc161a2331852415b29c62220363bda01a7abd62072cbe077b2f",
+  "solver_sha256": "b0064f908e7dde07765feedf800f9a80b490a9f17ef2ba78f8297f92fcacedee",
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "architecture": "arm64",
+  "flags": [
+    "-std=gnu++23",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-march=native",
+    "-pthread",
+    "-ftrivial-auto-var-init=zero",
+    "-fopenmp"
+  ],
+  "production_defines": [
+    "-DATCODER",
+    "-DONLINE_JUDGE",
+    "-DNOMINMAX"
+  ],
+  "preprocessing": "-E -P; full macro expansion",
+  "nonlocal_preprocessed_equal_except_whitespace": true,
+  "solver_executions_during_audit": 0,
+  "nonlocal_assembly_equal_except_filename_symbol": true,
+  "local_preprocessed_diff_reviewed": true,
+  "local_and_nonlocal_builds": "passed without warnings",
+  "normalized_nonlocal_assembly_sha256": "ce62358086ff205aca1098855262d49af33824a6c72a4e799ebbf615e6259135",
+  "local_changes": [
+    "common time scaling, ratio 0.80, deadline 1.544 seconds",
+    "main-entry timer",
+    "phase measurement, counters, summary",
+    "independent final-output validation"
+  ],
+  "assembly_differences": [
+    "file-derived static initializer symbol"
+  ]
+}

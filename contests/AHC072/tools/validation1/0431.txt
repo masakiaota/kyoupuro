@@ -1,0 +1,16 @@
+15 5
+.d...dd.db.#..e
+.#......d..e.#d
+...dd........E.
+......e..d#.bdd
+e..e.#.........
+dee..bbA..#dBc.
+#.a..d...#b..b#
+...Ccd..d...dd.
+.ba.a..#.....dd
+#..db.e.be..e..
+bd...cdc#.#.#b.
+.c.d.dd.#...ac.
+..c.#..d..c.c.e
+b.#b##.....edDb
+e##...bde.ddbd.

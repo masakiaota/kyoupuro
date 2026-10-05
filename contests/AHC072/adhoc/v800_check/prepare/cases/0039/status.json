@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 109,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v046_shared_route_events/0039.txt",
+  "best_sha256": "5f9281cd050ed975b582e7ae7fec75b121a086bcc29340cb9a7f9f73394623f8",
+  "attempts": []
+}

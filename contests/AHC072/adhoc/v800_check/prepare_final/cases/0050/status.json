@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 135,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v036_inline_color_lns/0050.txt",
+  "best_sha256": "7508968619684b9e1a3fdcb1e7d6be0a6a058a3fe8014d4e5d365fb39e8919dc",
+  "attempts": []
+}

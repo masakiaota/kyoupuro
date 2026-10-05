@@ -1,0 +1,67 @@
+{
+  "cases": [
+    {
+      "case": "0060.txt",
+      "baseline": "v039_exact_board_lns",
+      "session_id": "p_a6846979-9801-4095-be0e-8339ba4d4d05",
+      "original_T": 161,
+      "edited_T": 159,
+      "saved": 2,
+      "end_node": "n279",
+      "unchanged_prefix_operations": 41,
+      "unchanged_suffix_operations": 102,
+      "original_sha256": "fe583e231a938aef03b89286db8dad6cd46461179287b4cccd15100f9b715184",
+      "edited_sha256": "800cd1f398bf81c0f320d8e0285732b5f25f49b5898472fda1bb3650101c7912",
+      "official_E": 0,
+      "independent_E": 0
+    },
+    {
+      "case": "0035.txt",
+      "baseline": "v039_exact_board_lns",
+      "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+      "original_T": 67,
+      "edited_T": 64,
+      "saved": 3,
+      "end_node": "n103",
+      "unchanged_prefix_operations": 28,
+      "unchanged_suffix_operations": 0,
+      "original_sha256": "f608bf5523c22c5325d329f014b094ac2c59e24c53cacf8c6db87ac00badaadf",
+      "edited_sha256": "88b854276864d9a12e0825921602e5779151f44f4dd6aed1cd76fb3d730089c5",
+      "official_E": 0,
+      "independent_E": 0
+    }
+  ],
+  "verification": "Official State via play API plus independent Python replay",
+  "operations": [
+    {
+      "case": "v039_0060",
+      "method": "checkout",
+      "count": 1
+    },
+    {
+      "case": "v039_0060",
+      "method": "step",
+      "count": 118
+    },
+    {
+      "case": "v039_0060",
+      "method": "note",
+      "count": 2
+    },
+    {
+      "case": "v039_0035",
+      "method": "checkout",
+      "count": 1
+    },
+    {
+      "case": "v039_0035",
+      "method": "step",
+      "count": 36
+    },
+    {
+      "case": "v039_0035",
+      "method": "note",
+      "count": 1
+    }
+  ]
+}

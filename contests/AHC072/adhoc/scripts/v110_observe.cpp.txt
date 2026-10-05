@@ -1,0 +1,15 @@
+// 1本の探索を中断せず、指定時刻を越えた最初の反復境界で最良列を写す。
+struct V110Sample {
+    double target,elapsed;
+    vector<Move> moves;
+    int attempts,accepted,improvements;
+};
+static vector<V110Sample> v110_samples;
+static constexpr array<double,3> v110_targets{0.05,0.20,1.20};
+static void v110_observe(const vector<Move>& best,int attempts,int accepted,int improvements,bool force=false) {
+    if(v110_samples.size()==v110_targets.size())return;
+    const double elapsed=time_keeper.exact_elapsed_sec();
+    while(v110_samples.size()<v110_targets.size() && (force||elapsed>=v110_targets[v110_samples.size()])) {
+        v110_samples.push_back({v110_targets[v110_samples.size()],elapsed,best,attempts,accepted,improvements});
+    }
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "mode": "local",
+    "case": 1,
+    "base_cpu": 0.048747,
+    "speed_cpu": 0.044535,
+    "audit": "clock_calls=15449 rng=3021544179737305729 M=25 pool_free=4",
+    "T": 82
+  },
+  {
+    "mode": "local",
+    "case": 2,
+    "base_cpu": 0.086068,
+    "speed_cpu": 0.071094,
+    "audit": "clock_calls=15448 rng=11325021688258008263 M=80 pool_free=4",
+    "T": 229
+  },
+  {
+    "mode": "local",
+    "case": 3,
+    "base_cpu": 0.114432,
+    "speed_cpu": 0.091381,
+    "audit": "clock_calls=15448 rng=13725867745949985033 M=94 pool_free=4",
+    "T": 248
+  },
+  {
+    "mode": "local",
+    "case": 5,
+    "base_cpu": 0.077583,
+    "speed_cpu": 0.061305,
+    "audit": "clock_calls=15448 rng=17778533521581813497 M=45 pool_free=4",
+    "T": 186
+  },
+  {
+    "mode": "local",
+    "case": 6,
+    "base_cpu": 0.073107,
+    "speed_cpu": 0.058797,
+    "audit": "clock_calls=15448 rng=3896131038082752233 M=57 pool_free=4",
+    "T": 140
+  },
+  {
+    "mode": "local",
+    "case": 7,
+    "base_cpu": 0.203395,
+    "speed_cpu": 0.154704,
+    "audit": "clock_calls=15449 rng=11805426290772175604 M=159 pool_free=4",
+    "T": 604
+  },
+  {
+    "mode": "local",
+    "case": 9,
+    "base_cpu": 0.064416,
+    "speed_cpu": 0.053494,
+    "audit": "clock_calls=15448 rng=16805104356571970493 M=56 pool_free=4",
+    "T": 150
+  },
+  {
+    "mode": "local",
+    "case": 10,
+    "base_cpu": 0.200077,
+    "speed_cpu": 0.152283,
+    "audit": "clock_calls=15448 rng=1507569442814383425 M=144 pool_free=4",
+    "T": 352
+  },
+  {
+    "mode": "judge",
+    "case": 1,
+    "base_cpu": 0.044853,
+    "speed_cpu": 0.046902,
+    "audit": "clock_calls=18785 rng=543942770158075552 M=25 pool_free=4",
+    "T": 80
+  },
+  {
+    "mode": "judge",
+    "case": 2,
+    "base_cpu": 0.090822,
+    "speed_cpu": 0.075227,
+    "audit": "clock_calls=18804 rng=14598675303587756586 M=80 pool_free=4",
+    "T": 227
+  },
+  {
+    "mode": "judge",
+    "case": 3,
+    "base_cpu": 0.118041,
+    "speed_cpu": 0.098072,
+    "audit": "clock_calls=18804 rng=9815289177005455826 M=94 pool_free=4",
+    "T": 246
+  },
+  {
+    "mode": "judge",
+    "case": 5,
+    "base_cpu": 0.080592,
+    "speed_cpu": 0.065483,
+    "audit": "clock_calls=18804 rng=7540038427744852136 M=45 pool_free=4",
+    "T": 186
+  },
+  {
+    "mode": "judge",
+    "case": 6,
+    "base_cpu": 0.070121,
+    "speed_cpu": 0.058195,
+    "audit": "clock_calls=18805 rng=5172360817376293123 M=57 pool_free=4",
+    "T": 139
+  },
+  {
+    "mode": "judge",
+    "case": 7,
+    "base_cpu": 0.269463,
+    "speed_cpu": 0.205234,
+    "audit": "clock_calls=18803 rng=11285128184110345091 M=159 pool_free=4",
+    "T": 597
+  },
+  {
+    "mode": "judge",
+    "case": 9,
+    "base_cpu": 0.070503,
+    "speed_cpu": 0.058972,
+    "audit": "clock_calls=18804 rng=10857145036454179181 M=56 pool_free=4",
+    "T": 149
+  },
+  {
+    "mode": "judge",
+    "case": 10,
+    "base_cpu": 0.202792,
+    "speed_cpu": 0.154866,
+    "audit": "clock_calls=18804 rng=6055752568361406144 M=144 pool_free=4",
+    "T": 349
+  }
+]

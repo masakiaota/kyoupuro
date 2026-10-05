@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>v076のしくみ | 構築、LNS、短縮と出力</title>
+<meta name="description" content="AHC072のv076を、全体像、主要な判断と数値、細かな制約と理由の順に図で理解する解説資料。">
+<style>
+:root{--paper:#f6f5ef;--surface:#fff;--ink:#192e38;--muted:#597078;--line:#dce4e0;--accent:#16735e;--accent-soft:#e7f3ec;--blue:#39749d;--blue-soft:#eaf2f8;--orange:#b96824;--orange-soft:#fff2e5;--purple:#795da0;--red:#b65360;--radius:18px;--shadow:0 8px 30px #21383106;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;font-size:16px;line-height:1.85}a{color:var(--accent);text-underline-offset:4px}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.45}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--orange);outline-offset:4px}button{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 16px;border-radius:9px;line-height:1.5}button:hover{background:var(--accent-soft)}button[aria-pressed=true],button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}input[type=range]{accent-color:var(--accent);width:100%}input[type=number],select{width:100%;padding:8px 10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px}h1,h2,h3,h4,p,figure{margin:0}h1{font-size:clamp(34px,4.2vw,58px);line-height:1.35;letter-spacing:-.035em}h2{font-size:clamp(27px,3vw,36px);line-height:1.5;letter-spacing:-.025em}h3{font-size:23px;line-height:1.6;margin-bottom:14px}h4{font-size:17px;margin-bottom:6px}p+p{margin-top:13px}strong{font-weight:650}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.87em;background:#eff3f1;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{overflow:auto;padding:18px;border-radius:12px;background:#1d333b;color:#e4f2eb;line-height:1.65;font-size:13px}pre code{background:none;color:inherit;padding:0}svg{display:block;max-width:100%;overflow:visible}svg text{font-family:inherit;fill:var(--ink);font-size:14px}svg .muted{fill:var(--muted)}svg .edge{stroke:var(--muted);stroke-width:1.6;fill:none}svg .flow-edge{stroke:var(--accent);stroke-width:2.5;fill:none}svg .node{fill:var(--surface);stroke:var(--line);stroke-width:1.5}svg .soft{fill:var(--accent-soft)}svg .blue-soft{fill:var(--blue-soft)}.muted{color:var(--muted)}.small{font-size:13px;line-height:1.7}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums}.eyebrow{color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:650}.tag{display:inline-block;border-radius:5px;background:var(--accent-soft);color:var(--accent);font-size:12px;padding:2px 7px;line-height:1.7}.tag.example{background:var(--blue-soft);color:var(--blue)}.tag.reason{background:var(--orange-soft);color:var(--orange)}.badge{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;background:var(--accent);color:white;border-radius:50%;font-size:14px;font-weight:600}.layout{max-width:1500px;margin:auto;display:grid;grid-template-columns:210px minmax(0,1fr);gap:44px;padding:0 38px}.sidebar{position:sticky;top:34px;align-self:start;height:calc(100vh - 68px);padding-top:26px;display:flex;flex-direction:column;gap:24px}.brand{font-size:20px;font-weight:650;letter-spacing:-.02em}.sidebar .subtitle{font-size:12px;color:var(--muted);line-height:1.8}.side-nav{display:grid;gap:20px}.side-group{display:grid;gap:5px}.side-group>a{font-size:14px;text-decoration:none;color:var(--ink);padding:9px 12px;border-radius:9px;border-left:3px solid transparent}.side-group>a.active{background:var(--accent-soft);border-left-color:var(--accent);color:var(--accent)}.side-group>a span{color:var(--muted);font-size:11px;display:block}.side-group .minor{font-size:12px;padding:3px 15px;color:var(--muted)}.reading-track{height:4px;background:var(--line);border-radius:5px;margin-top:8px}.reading-track>span{display:block;width:0;height:100%;background:var(--accent);border-radius:5px}.sidebar-footer{margin-top:auto;font-size:11px;color:var(--muted);line-height:1.7}.content{min-width:0;max-width:1120px;padding-bottom:70px}.hero{padding:58px 0 44px}.hero .lead{font-size:18px;max-width:780px;line-height:1.9;margin-top:22px}.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}.overview-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}.overview-strip a{text-decoration:none;background:var(--surface);border:1px solid var(--line);padding:20px;border-radius:14px;color:var(--ink);display:flex;gap:15px;align-items:flex-start}.overview-strip b{display:block;font-size:17px}.overview-strip p{font-size:13px;color:var(--muted);margin-top:5px}.level{margin-bottom:64px}.level-head{border-top:1px solid var(--ink);padding:32px 0 16px;display:flex;gap:24px;align-items:flex-start}.level-number{font-size:62px;font-weight:500;line-height:1.1;color:var(--accent);letter-spacing:-.04em}.level-head p{margin-top:10px;color:var(--muted);max-width:750px}.chapter{margin:36px 0 48px}.chapter>p{max-width:850px}.chapter-heading{display:flex;align-items:center;gap:12px;margin-bottom:12px}.chapter-heading h3{margin:0}.figure{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin:22px 0;box-shadow:var(--shadow)}.figure-header{display:flex;justify-content:space-between;gap:16px;align-items:start;margin-bottom:18px}.figure-header h4{margin:0}.figure figcaption,.caption{font-size:13px;color:var(--muted);margin-top:15px;line-height:1.75}.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.tile{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:13px}.tile p{font-size:14px;line-height:1.8}.tile .big{font-size:30px;line-height:1.4;font-weight:600;color:var(--accent)}.callout{padding:18px 22px;border-left:4px solid var(--accent);background:var(--accent-soft);margin:22px 0;border-radius:0 12px 12px 0;font-size:15px}.callout.reason{border-color:var(--orange);background:var(--orange-soft)}.callout.blue{border-color:var(--blue);background:var(--blue-soft)}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:15px 0}.controls label{display:block;font-size:13px;color:var(--muted)}.control-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:20px 0}.control-grid label{display:block;font-size:13px;color:var(--muted)}.control-grid input{margin-top:7px}.result-box{padding:16px 20px;border-radius:12px;background:var(--accent-soft);margin-top:18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}.result-box strong{font-size:27px;line-height:1.4;color:var(--accent)}.formula{font-size:18px;text-align:center;padding:20px;border-radius:12px;background:#f3f6f3;line-height:2.2;overflow-wrap:anywhere}.fraction{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 5px;line-height:1.9}.fraction .top{border-bottom:1px solid var(--ink);padding:0 12px}.fraction .bottom{padding:0 8px}.formula .factor{white-space:nowrap}.sequence{display:flex;align-items:stretch;gap:12px}.sequence>.step{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 15px;min-width:0}.sequence>.arrow{align-self:center;color:var(--muted);font-size:24px}.sequence b{display:block;font-size:15px}.sequence p{font-size:12px;color:var(--muted);line-height:1.8;margin-top:5px}.lane-label{font-size:13px;color:var(--muted);min-width:85px}.op-lane{display:flex;gap:5px;flex-wrap:wrap;padding:13px 0;align-items:center}.op{padding:6px 11px;border-radius:5px;background:var(--blue-soft);color:var(--blue);font-size:13px;min-width:35px;text-align:center}.op.removed{background:var(--orange-soft);color:var(--orange);text-decoration:line-through;opacity:.65}.op.new{background:var(--accent-soft);color:var(--accent)}.op.dim{opacity:.2}.op.repair{background:#f1ebf8;color:var(--purple)}.demo-caption{min-height:58px;padding:15px 0 0;color:var(--muted);font-size:14px}.demo-steps{display:flex;gap:6px;flex-wrap:wrap}.demo-steps button{font-size:13px}.tower-pieces{display:flex;flex-direction:column-reverse;gap:4px;align-items:center;min-height:156px;justify-content:start}.piece{display:flex;justify-content:center;align-items:center;background:var(--accent-soft);border:1px solid #aacfc1;color:var(--accent);width:52px;height:30px;border-radius:12px 12px 7px 7px;font-size:13px;font-weight:600}.piece.red{background:#f9e5e6;border-color:#e7b0b4;color:#9d3847}.piece.blue{background:#e6f0f8;border-color:#abc7db;color:#2f668d}.piece.gold{background:#fbf0d6;border-color:#e6cc86;color:#8c6514}.piece.purple{background:#eee6f5;border-color:#c7afde;color:#715098}.tower-cell{background:#f0f3ef;border:1px solid var(--line);border-radius:12px;padding:20px 10px 12px;text-align:center}.tower-cell .nest{margin-top:8px;font-size:13px}.jump-layout{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:16px;align-items:end}.jump-middle{align-self:center;text-align:center}.flight{display:flex;gap:5px;justify-content:center;align-items:center;min-height:60px}.flight .piece{width:45px}.jump-arrow{color:var(--accent);font-size:40px;line-height:1.2}.mini-cells{display:flex;gap:6px;justify-content:center;margin:10px 0}.mini-cells i{width:22px;height:15px;border:1px solid var(--line);background:var(--paper);border-radius:2px}.source-note{font-size:12px;color:var(--muted);margin-top:15px}.source-note a{text-decoration:none}.source-details{margin-top:15px;border-top:1px solid var(--line);padding-top:10px}.source-details summary{cursor:pointer;font-size:13px;color:var(--muted)}.source-details .body{font-size:13px;padding-top:10px}table{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:12px;color:var(--muted);font-weight:600;background:#eef2ee}td.num{font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,monospace;white-space:nowrap}.table-wrap{overflow-x:auto}.divider{display:flex;align-items:center;gap:18px;margin:44px 0;color:var(--muted);font-size:13px}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}.next-level{display:flex;justify-content:space-between;align-items:center;padding:24px;background:var(--accent);color:#fff;border-radius:14px;text-decoration:none;gap:20px}.next-level strong{display:block;font-size:20px}.next-level p{font-size:13px;color:#d5e8df}.next-level>span{font-size:30px}.comparison-bars{display:grid;gap:14px}.bar-row{display:grid;grid-template-columns:90px 1fr 48px;gap:12px;align-items:center;font-size:14px}.bar-track{height:24px;background:#eef2ee;border-radius:5px;overflow:hidden}.bar-fill{height:100%;background:var(--accent);border-radius:5px;min-width:1px}.stat-inline{display:flex;gap:20px;flex-wrap:wrap}.stat-inline div{font-size:13px;color:var(--muted)}.stat-inline strong{display:block;font-size:24px;color:var(--ink)}.pill-row{display:flex;flex-wrap:wrap;gap:8px}.pill{background:#eff3f0;border-radius:7px;padding:7px 10px;font-size:13px}.shorteners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}.shortener{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--surface)}.shortener .visual{font-family:ui-monospace,monospace;font-size:17px;letter-spacing:.04em;line-height:1.8;color:var(--accent);margin:12px 0}.shortener p{font-size:13px;color:var(--muted)}.shortener.wide{grid-column:1/-1}.switch-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.switch-row label{font-size:13px;color:var(--muted)}.chip-grid{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:4px;margin:18px 0}.iteration-chip{background:#eef3f0;border-radius:5px;min-height:34px;display:flex;align-items:center;justify-content:center;font-size:11px}.iteration-chip.packet{background:var(--blue-soft);color:var(--blue)}.iteration-chip.paired{background:#eee6f5;color:var(--purple)}.iteration-chip.reorder{background:var(--orange-soft);color:var(--orange)}.key{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--muted);margin:12px 0}.key span:before{content:"";display:inline-block;vertical-align:middle;width:10px;height:10px;border-radius:3px;background:var(--accent);margin-right:6px}.key .packet:before{background:var(--blue)}.key .paired:before{background:var(--purple)}.key .reorder:before{background:var(--orange)}.print-button{font-size:12px;margin-top:12px}.check-list{list-style:none;padding:0;margin:0}.check-list li{position:relative;padding:9px 0 9px 26px;font-size:14px}.check-list li:before{content:"✓";position:absolute;left:0;color:var(--accent)}.footnotes{font-size:13px;color:var(--muted);line-height:1.8}.footnotes p{margin-top:12px}.source-map code{font-size:12px}.footer{border-top:1px solid var(--ink);padding-top:26px;margin-top:50px}.no-js{padding:14px;background:var(--orange-soft)}
+.sidebar{overflow-y:auto;scrollbar-width:thin}.sidebar>*{flex-shrink:0}.tower-pieces{justify-content:flex-start;border-bottom:1px solid var(--line)}
+@media(max-width:1150px){.layout{grid-template-columns:175px minmax(0,1fr);gap:28px;padding:0 24px}.sidebar{top:20px}.sequence{gap:7px}.sequence>.step{padding:14px 11px}.sequence>.arrow{font-size:18px}.overview-strip{gap:10px}.overview-strip a{padding:16px;gap:10px}.overview-strip b{font-size:15px}.control-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.layout{display:block;padding:0 22px}.sidebar{height:auto;position:sticky;z-index:10;top:0;background:var(--paper);padding:12px 0;border-bottom:1px solid var(--line);gap:10px;display:block}.sidebar .brand,.sidebar .subtitle,.sidebar-footer,.reading-status,.side-group .minor{display:none}.side-nav{display:flex;gap:6px}.side-group{flex:1}.side-group>a{font-size:13px;padding:7px 10px;line-height:1.5}.side-group>a span{display:none}.hero{padding-top:32px}.overview-strip a{display:block}.overview-strip .badge{margin-bottom:10px}.level-head{gap:18px}.level-number{font-size:48px}html{scroll-padding-top:80px}.grid-3{grid-template-columns:1fr}.sequence{flex-wrap:wrap}.sequence>.step{flex:1 1 25%;min-width:130px}.sequence>.arrow{display:none}.chip-grid{grid-template-columns:repeat(12,minmax(0,1fr))}}
+@media(max-width:560px){body{font-size:15px;line-height:1.85}.layout{padding:0 16px}.hero .lead{font-size:16px}.hero{padding-bottom:28px}.overview-strip{grid-template-columns:1fr}.overview-strip a{display:flex;align-items:center;padding:14px}.overview-strip .badge{margin-bottom:0;flex-shrink:0}.overview-strip p{margin-top:0}.level-head{gap:12px}.level-head p{font-size:14px}.level-number{font-size:41px}.chapter{margin-top:28px}h3{font-size:20px}.figure{padding:17px 15px;border-radius:14px}.grid-2,.shorteners{grid-template-columns:1fr}.figure-header{flex-direction:column;gap:7px}.control-grid{gap:12px}.formula{font-size:15px;padding:14px 8px}.fraction .top{padding:0 4px}.jump-layout{gap:8px;grid-template-columns:1fr .95fr 1fr}.tower-cell{padding:15px 4px 10px}.piece{width:43px;height:28px;font-size:12px}.flight{flex-direction:column;gap:3px}.flight .piece{width:37px}.tower-pieces{min-height:146px}.jump-arrow{font-size:30px}.jump-middle .small{font-size:11px}.chip-grid{grid-template-columns:repeat(9,minmax(0,1fr))}.bar-row{grid-template-columns:67px 1fr 40px;gap:8px}.sequence>.step{min-width:110px;flex-basis:40%}.next-level strong{font-size:18px}.op{padding:6px 8px}.stat-inline{gap:15px}.figure svg text{font-size:14px}th,td{padding:10px;font-size:13px}.shortener.wide{grid-column:auto}.level{margin-bottom:45px}}
+@media(max-width:850px){.sidebar{overflow:visible}.side-group>a{font-size:12px;padding:8px 6px;white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{body{background:#fff;font-size:11px}.layout{display:block;padding:0}.sidebar,.controls,.demo-steps,.print-button,.next-level{display:none}.content{max-width:none;padding:0}.hero{padding:0 0 20px}h1{font-size:30px}h2{font-size:23px}h3{font-size:18px}.level-number{font-size:40px}.figure{box-shadow:none;break-inside:avoid;padding:14px}.tile,.callout,.shortener{break-inside:avoid}.level{break-before:page}.hero+.level{break-before:auto}.source-details[open] .body{display:block}.overview-strip{margin-top:18px}.chapter{margin:24px 0}.figure svg{max-height:300px}a{color:inherit}.footer{break-inside:avoid}}
+
+.build-flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:18px}.build-lane{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--paper)}.build-lane h4{margin-bottom:5px}.build-lane .small{margin-bottom:16px}.build-step{padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font-size:14px;line-height:1.7}.build-step b{display:block}.build-step p{font-size:13px;margin-top:4px}.build-arrow{text-align:center;color:var(--accent);font-size:22px;line-height:1.6}.build-choice{display:grid;gap:10px;border-left:3px solid var(--blue);padding-left:12px}.build-choice .tag{margin-bottom:4px}.build-loop{border:1px dashed var(--blue);border-radius:9px;color:var(--blue);padding:10px 12px;margin-top:12px;font-size:13px}.build-result{text-align:center;padding:14px;border-radius:9px;background:var(--accent-soft);font-size:14px}.build-result b{display:block}.build-flow+ .build-arrow{margin-top:10px}@media(max-width:850px){.build-flow{grid-template-columns:1fr}}
+
+.process-group{border-top:2px solid var(--line);margin:38px 0;padding-top:25px}.process-head{display:flex;gap:15px;align-items:flex-start}.process-head>span{display:grid;place-items:center;flex-shrink:0;width:38px;height:38px;border-radius:9px;background:var(--blue);color:white;font-size:20px}.process-head h3{margin-bottom:4px}.process-head p{font-size:14px;color:var(--muted)}.technical{margin:26px 0}.technical>summary{font-weight:600;padding:15px 18px}.technical .chapter{margin:22px 0 35px}.technical .badge{border-radius:6px;font-size:11px;min-width:38px;padding:0 5px}.technical .chapter-heading h3{font-size:20px}.algorithm-flow a{font-size:12px}.algorithm-flow{margin-top:12px}.side-nav{gap:12px}.side-group>a{padding:7px 9px}.side-group .minor{padding:2px 12px;font-size:11px}.hero .overview-strip{margin-bottom:10px}@media(max-width:850px){html{scroll-padding-top:85px}.side-group>a{font-size:11px;padding:8px 4px;white-space:nowrap}.side-nav{gap:3px}.side-group{min-width:0}}@media(max-width:560px){.algorithm-flow{flex-direction:column}.algorithm-flow>.arrow{display:block;transform:rotate(90deg);line-height:1.1}.technical .body{padding:12px}.technical .figure{padding:12px}.technical .chapter-heading{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar" aria-label="目次">
+  <div><div class="brand">v076 のしくみ</div><div class="subtitle">AHC072 / Somersault Slimes<br>構築からLNS、短縮と出力へ</div></div>
+  <nav class="side-nav">
+    <div class="side-group"><a href="#high" data-level="high">01 全体像<span>処理の流れと時間配分</span></a><a class="minor" href="#algorithm-map">プログラムの全体図</a><a class="minor" href="#h-rule">ジャンプの規則</a><a class="minor" href="#m-time">時間配分</a></div>
+    <div class="side-group"><a href="#middle" data-level="middle">02 構築<span>初期盤面から完成解へ</span></a><a class="minor" href="#h-build">2つの構築方式</a><a class="minor" href="#m-build">全体手順と合流の利益</a><a class="minor" href="#l-dp">配送DPの詳細</a></div>
+    <div class="side-group"><a href="#low" data-level="low">03 LNS<span>完成解の一部を作り直す</span></a><a class="minor" href="#m-priority">1 対象選択</a><a class="minor" href="#l-extract">2 除去と修復</a><a class="minor" href="#m-insert">3 再挿入</a><a class="minor" href="#m-accept">4 短縮と採否</a><a class="minor" href="#m-neighbors">候補生成の別経路</a></div>
+    <div class="side-group"><a href="#finish" data-level="finish">04 短縮<span>短縮処理と最後の出力</span></a><a class="minor" href="#m-reduce">7種類の短縮</a><a class="minor" href="#l-finish">仕上げと検証</a></div>
+    <div class="side-group"><a href="#reference" data-level="reference">05 補足<span>共通基盤と調整値</span></a><a class="minor" href="#l-model">盤面の表現</a><a class="minor" href="#l-parameters">調整値</a><a class="minor" href="#source-map">コードとの対応</a></div>
+  </nav>
+  <div class="reading-status"><div class="small muted">読んだ位置 <span id="read-percent" class="mono">0%</span></div><div class="reading-track"><span id="read-bar"></span></div><button class="print-button" type="button" id="print-button">印刷 / PDFに保存</button></div>
+  <div class="sidebar-footer">2026-10-01<br>v076のコードと保存済み実験記録に基づく。<br><a href="#source-map">参照箇所一覧</a></div>
+</aside>
+<main class="content">
+  <header class="hero">
+    <p class="eyebrow">AHC072の実装を読む</p>
+    <h1>v076のしくみを、<br>処理の流れから読む。</h1>
+    <p class="lead">全スライムを帰巣させる操作列を作る。その一部を何度も作り直し、同乗と踏み台を使って手数を減らす。最後に、残った冗長な手順をまとめて短縮する。</p>
+    <div class="hero-meta"><span class="tag">対象：v076_relative_tuned.cpp</span><span class="tag">単独で開ける解説資料</span><span class="tag example">図の小さな盤面と手数は教材例</span></div>
+    <p class="small muted">01で全体像を確認し、02の構築、03のLNS、04の短縮と出力へ進む。細かな制約や調整値は折りたたみにまとめた。操作できる図はボタンやスライダーで切り替えられる。</p>
+    <div class="overview-strip">
+      <a href="#middle"><span class="badge">02</span><div><b>構築</b><p>初期盤面 → 最短の完成解</p></div></a>
+      <a href="#low"><span class="badge">03</span><div><b>LNS</b><p>対象選択 → 除去 → 再挿入 → 採否</p></div></a>
+      <a href="#finish"><span class="badge">04</span><div><b>短縮と出力</b><p>最良解 → 仕上げ → 検証と出力</p></div></a>
+    </div><noscript><p class="no-js">対話図を操作するにはJavaScriptを有効にする。文章、表、静的な図はそのまま読める。</p></noscript>
+  </header>
+
+<section class="level" id="high" data-reading-level="high"><header class="level-head"><div class="level-number">01</div><div><h2>全体の流れ</h2><p>構築で作った完成解をLNSへ渡し、最後に最良解を仕上げて出力する。</p></div></header><figure class="figure" id="algorithm-map"><div class="figure-header"><h4>プログラム全体の流れ</h4><span class="tag">渡すものは操作列</span></div>
+<div class="sequence algorithm-flow"><div class="step"><b>初期盤面</b><p>地形とスライムの位置を読む。</p></div><span class="arrow" aria-hidden="true">→</span><div class="step"><b>構築</b><p>全帰巣する解を複数作り、最短の1解を選ぶ。</p><a href="#middle">02へ</a></div><span class="arrow" aria-hidden="true">→</span><div class="step"><b>LNS</b><p>その解の一部を繰り返し作り直し、最良解を保存する。</p><a href="#low">03へ</a></div><span class="arrow" aria-hidden="true">→</span><div class="step"><b>仕上げと出力</b><p>最良解を短縮し、検証して出力する。</p><a href="#finish">04へ</a></div></div>
+<figcaption>構築は初期盤面から解を作る。LNSは完成した操作列を受け取り、その一部を編集する。LNSが終わると、保存した最良解を仕上げる。</figcaption></figure>
+<div class="callout blue">LNSは「一部を除去して作り直す」候補の作り方だ。焼きなましは、作った候補を現在解へ採用するか決める方法としてLNSの中で使う。</div><article class="chapter" id="h-rule">
+      <div class="chapter-heading"><span class="badge">A</span><h3>1命令で、塔の上側が反転して跳ぶ</h3></div>
+      <p>塔の下側を残すほど、上側は遠くへ跳べる。上側は上下を反転して着地し、巣の色と最上段の色が一致している間だけ帰巣する。この積み順が、まとめて運ぶ経路を選ぶときに効いてくる。</p>
+      <figure class="figure">
+        <div class="figure-header"><h4>1回の宙返りジャンプ</h4><span class="tag example">公式ルールに従う縮小例</span></div>
+        <div class="demo-steps" id="jump-buttons"><button type="button" data-jump="0" aria-pressed="true">① 操作前</button><button type="button" data-jump="1" aria-pressed="false">② 下に残す</button><button type="button" data-jump="2" aria-pressed="false">③ 反転して着地</button><button type="button" data-jump="3" aria-pressed="false">④ 帰巣</button></div>
+        <div class="jump-layout" style="margin-top:22px">
+          <div class="tower-cell"><div class="tower-pieces" id="jump-source"><span class="piece red">赤</span><span class="piece blue">青</span><span class="piece gold">黄</span><span class="piece purple">紫</span></div><div class="nest">出発点（巣なし）</div></div>
+          <div class="jump-middle"><div class="flight" id="jump-flight"></div><div class="jump-arrow">⟶</div><div class="mini-cells" aria-hidden="true"><i></i><i></i><i></i></div><p class="small">下に2匹を残す<br>最大3マスまで跳べる</p></div>
+          <div class="tower-cell"><div class="tower-pieces" id="jump-dest"><span class="piece blue">青</span></div><div class="nest">黄の巣</div></div>
+        </div>
+        <p class="demo-caption" id="jump-caption" aria-live="polite">出発点の高さは4。下の2匹を残し、上の黄と紫を3マス先へ送る。着地先には青が1匹いる。</p>
+        <figcaption>黄と紫は反転して「紫が下、黄が上」で着地する。その後、黄だけが帰巣する。着地容量は帰巣より前に検査する。</figcaption>
+      </figure>
+      <div class="callout">目標は全帰巣、つまり <code>E=0</code> を満たしながら、操作回数 <code>T</code> を減らすことだ。絶対スコアは <code>S=T+100000E</code> なので、1匹残る影響は非常に大きい。</div>
+    </article><article class="chapter" id="m-time">
+      <div class="chapter-heading"><span class="badge">B</span><h3>構築は前半、作り直しは1.90秒まで</h3></div>
+      <p>本番相当の設定では、構築を始める条件が経過0.65秒未満、LNSの反復条件が経過1.90秒未満だ。探索中の期限チェックと終了前の共同短縮には、1.93秒の期限を設定する。</p>
+      <figure class="figure"><div class="figure-header"><h4>起点からの経過時間</h4><div class="controls" style="margin:0"><button type="button" id="time-production" aria-pressed="true">本番相当</button><button type="button" id="time-local" aria-pressed="false">LOCAL</button></div></div><div id="time-chart" aria-label="構築、LNS、終了前の処理の時間条件"></div><div class="stat-inline" style="margin-top:20px"><div>新規構築の開始条件<strong id="time-construction">0.650秒未満</strong></div><div>LNSの反復条件<strong id="time-lns">1.900秒未満</strong></div><div>探索の期限チェック<strong id="time-end">1.930秒</strong></div></div><figcaption>LOCALでは各秒数を0.80倍する。構築の終了とLNSの開始は、更新状況と処理時間によって変わる。棒の構築部分は配分の目安であり、実測時間ではない。</figcaption></figure>
+      <div class="callout reason">構築にも複数の試行を使うが、同じ操作列を作り直す時間を後半に残す。これらの期限は打ち切り条件であり、最終検証や線形走査の費用まで含めた実行時間を保証する値ではない。</div>
+      <p class="source-note">コード：<a href="#source-map">時間管理 L23、TimeKeeper L221、main L3505、optimize L3207</a></p>
+    </article><a class="next-level" href="#middle"><div><strong>次は、構築の手順</strong></div><span>↓</span></a></section>
+
+  <section class="level" id="middle" data-reading-level="middle"><header class="level-head"><div class="level-number">02</div><div><h2>構築</h2><p>初期盤面から全帰巣する操作列を作る。集荷木と合流の各試行は、同じ初期盤面から別々に始める。</p></div></header>
+
+    <article class="chapter" id="h-build">
+      <div class="chapter-heading"><span class="badge">A</span><h3>最初に、完成した操作列を用意する</h3></div>
+      <p>集荷木では同色を巣へ集め、合流構築では異色を含む塔もまとめて運ぶ。両方式とも初期盤面から全帰巣する操作列を作り、そのうち最短の1解をLNSへ渡す。</p>
+      <figure class="figure"><div class="figure-header"><h4>集荷木で同色をまとめて運ぶ</h4><span class="tag example">位置関係の概念図</span></div><div id="build-tree" class="diagram" aria-label="同色の塔が中継点へ集まり、巣へ運ばれる木の図"></div><figcaption>図は集荷木による輸送だ。合流構築の手順は次の節で扱う。</figcaption></figure>
+      <p class="small muted">全帰巣する操作列を保存するため、構築の後にそのままLNSを始められる。2方式の関係と合流の反復は、次の図で示す。</p>
+      <p class="source-note">コード：<a href="#source-map">main L3480、tree_baseline L654、Constructor L746</a></p>
+    </article><article class="chapter" id="m-build">
+      <div class="chapter-heading"><span class="badge">B</span><h3>構築の全体手順と、合流の利益</h3></div>
+      <p>構築では、全スライムが帰巣する完成解を2つの方式で作る。
+      先に「集荷木」で3通りの解を作り、続いて「合流」の選び方を変えて解を作る。
+      各試行は初期盤面から始め、完成した解のうち最短の操作列をLNSへ渡す。</p>
+      <figure class="figure" id="construction-flow">
+        <div class="figure-header"><h4>初期盤面から完成解を作る2つの方式</h4><span class="tag">上から下へ読む</span></div>
+        <div class="build-result"><b>共通の出発点：初期盤面</b>各方式の各試行で、ここから運び始める。</div>
+        <div class="build-flow">
+          <section class="build-lane" aria-label="集荷木による構築の手順">
+            <h4>① 集荷木で同色を集める</h4>
+            <p class="small muted">色の処理順などを変えて3通り作る。</p>
+            <div class="build-step"><b>巣を根として、同色の個体を木につなぐ</b><p>まだつながっていない個体から、木に最も近いものを選び、床上の経路を追加する。</p></div>
+            <div class="build-arrow" aria-hidden="true">↓</div>
+            <div class="build-step"><b>木の末端から巣へ運ぶ</b><p>途中で同色を束にし、経路を共有する。着地先の容量が足りなければ、先に親の束を送って空ける。</p></div>
+            <div class="build-arrow" aria-hidden="true">↓</div>
+            <div class="build-step"><b>すべての色を帰巣させる</b><p>色ごとに木の作成と輸送を繰り返し、完成解を得る。</p></div>
+          </section>
+          <section class="build-lane" aria-label="合流による構築の手順">
+            <h4>② 合流と帰巣を繰り返す</h4>
+            <p class="small muted">時間内で選び方を変え、複数の解を作る。</p>
+            <div class="build-step"><b>2つの塔を合流させる利益を調べる</b><p>異色の塔も候補にする。別々に帰す場合より手数を省けるか、下の費用比較で判断する。</p></div>
+            <div class="build-arrow" aria-hidden="true">↓</div>
+            <div class="build-choice">
+              <div class="build-step"><span class="tag">有益な合流がある</span><b>選んだ場所へ運んで重ねる</b></div>
+              <div class="build-step"><span class="tag example">有益な合流がない</span><b>塔を1つ選び、帰巣を進める</b><p>配送DPで移動と分割を選ぶ。一部帰巣や分割の後は、残った束の合流を再検討する。</p></div>
+            </div>
+            <div class="build-loop">↺ どちらの処理後も、更新した盤面で合流の利益を調べ直す。高さ8の塔は先に帰巣を進める。</div>
+            <div class="build-arrow" aria-hidden="true">↓</div>
+            <div class="build-step"><b>合流探索を終え、残る塔をすべて帰す</b><p>時間や判断回数の上限で合流探索を終え、配送DPで完成解にする。</p></div>
+          </section>
+        </div>
+        <div class="build-arrow" aria-hidden="true">↓</div>
+        <div class="build-result"><b>両方式で得た完成解のうち、最短の操作列を保存 → LNSへ</b></div>
+        <figcaption>完成前に既存の最良手数へ達した試行は中断する。
+        集荷木の具体的な輸送は<a href="#l-build">集荷木の詳細</a>、配送DPの移動と分割は<a href="#l-dp">配送DPの詳細</a>で詳しく扱う。</figcaption>
+      </figure>
+      <p>合流方式では、2つの塔を別々に帰す費用と、合流させてから帰す費用を比べる。
+      合流した後の残り費用には、周囲の塔を無視した帰巣費用の表を使う。</p>
+      <figure class="figure"><div class="figure-header"><h4>合流を選ぶための費用比較</h4><span class="tag example">見積もりの数値例</span></div><div class="grid-2"><div class="tile"><h4>別々に帰す</h4><p>塔Aの残り費用 <b>8手</b><br>塔Bの残り費用 <b>7手</b></p><div class="big" style="margin-top:15px">15手</div></div><div class="tile"><h4>合流して帰す</h4><p>合流まで <b>3手</b><br>合流した塔の残り費用 <b>8手</b></p><div class="big" style="margin-top:15px">11手</div></div></div><div class="result-box"><strong>利益 4手</strong><span>近い合流を選びやすいよう、合流までの手数で割り引いて順位を付ける。</span></div><figcaption>残り費用は簡略化した条件での見積もりだ。候補を実行するときは、現在の塔の高さと積み順を使って合法な経路を求める。</figcaption></figure>
+      <p>合流候補は塔の合計高さ8以下に絞る。基本は3色まで、積み順の同色連続部分は4つまでに制限し、試行によって4色または5つの連続部分も許す。大きく複雑な塔を無制限に作ると、帰巣費用の計算が重くなる。</p>
+      <p class="source-note">コード：<a href="#source-map">tree_baseline L654、EmptyDP L375、add_pair L775、plan_pair L835、Constructor L919、main L3495〜3520</a></p>
+    </article><details class="source-details technical"><summary>構築の詳細：集荷木の輸送、合流候補、配送DP</summary><div class="body"><article class="chapter" id="l-build">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>木による集荷と、合流による構築</h3></div>
+      <p>集荷木は、色ごとの巣から始める。まだ木につながっていない同色の個体のうち、木まで近いものを順に接続する。輸送では葉から集め、着地容量が足りなければ先に親の塔を送って空きを作る。</p>
+      <figure class="figure"><div class="figure-header"><h4>容量を空けてから、子の束を送る</h4><span class="tag example">高さだけを示す図</span></div><div id="capacity-chart" aria-label="親が満杯になる前に先へ送り、子の束を受け入れる図"></div><figcaption>各色の輸送対象は塔の最上段に連続する同色部分だ。下段の異色を残すと、その高さを使って木の空いた直線区間を飛び越せる。</figcaption></figure>
+      <div class="table-wrap"><table><thead><tr><th>段階</th><th>数値</th><th>処理と役割</th></tr></thead><tbody>
+        <tr><td>集荷木の試行</td><td class="num">3種類</td><td>最初は決定的な順序、残り2つは色順位、隣接方向、子の順序へ乱数を加える。</td></tr>
+        <tr><td>色の処理順</td><td class="num">距離の合計</td><td>巣までの距離の合計が大きい色を先に扱う。乱数を入れる試行は、その合計へ0.65〜1.35の倍率を掛ける。</td></tr>
+        <tr><td>木への接続の同点付近</td><td class="num">+0〜0.15</td><td>木までの距離に小さな乱数を足し、近い接続の選び方を変える。</td></tr>
+        <tr><td>構築1試行の合流候補</td><td class="num">最大7候補</td><td>優先度が高い組を取り出して実経路を調べる。有益な案が得られればそこで進む。</td></tr>
+        <tr><td>構築の判断回数</td><td class="num">7M+40</td><td>合流と配送を繰り返す回数の上限。探索期限や既存の最良手数でも打ち切る。</td></tr>
+      </tbody></table></div>
+      <p>合流先の候補は、見積もりの上位3マスと元の2マスだ。第三のマスで合流する場合は、2塔のどちらを先に運ぶか、各塔をどの向きで着地させるかも調べる。高さ8の塔は、合流を続ける前に帰巣の処理へ回す。</p>
+      <div class="formula">合流の順位 = <span class="fraction"><span class="top">別々の残り費用 − 合流までの手数 − 合流後の残り費用</span><span class="bottom">(合流までの手数 + 2)<sup>α</sup></span></span></div>
+      <p class="small muted" style="margin-top:12px">αは最初の試行で0.55。以後は試行番号に応じて0.85、0.30、0.65を使う。利益が正の合流だけを候補にする。数値は既存構築の設定を引き継いでおり、この解説では最適性を確認していない。</p>
+      <details class="source-details"><summary>帰巣する塔の選び方と、構築の終了条件</summary><div class="body"><p>基本は「残り費用+1.2×高さ」で順位を付け、遠い束を先に帰す。近い束が残れば、後の踏み台に利用できる。試行によっては<code>(高さ+0.5)/(残り費用+2)</code>または<code>(残り費用+2)×√高さ</code>を使い、最初以外の試行は0.9〜1.1の乱数倍率を掛ける。</p><p>合流を終えたら、残る塔を配送DPで全帰巣させる。手数が既存の最良解以上になった構築は、後で短くなれないため中断する。完成して<code>E=0</code>となった場合だけ、最良解の候補にする。</p><p>新規構築の開始条件は0.65秒未満、合流部分の期限は最初0.28秒、以後0.18秒を目安に、絶対時刻0.64秒以内へ収める。構築中の期限チェックは0.69秒。20試行以上改善せず、経過0.32秒を過ぎ、直近の改善から0.15秒を超えると新規構築を終える。すべてLOCALでは0.80倍だ。</p></div></details>
+      <p class="source-note">コード：<a href="#source-map">tree_baseline L654、Constructor L746〜964、main L3495〜3520</a></p>
+    </article><article class="chapter" id="l-dp">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>2つの帰巣費用の表を使い分ける</h3></div>
+      <p>合流の順位を付ける表と、現在の塔を実際に帰す表は、前提が違う。両方とも塔を下側と反転した上側に分け、小さい塔の費用から大きい塔の費用を組み立てる。</p>
+      <figure class="figure"><div class="figure-header"><h4>分割の後には、より小さい束が残る</h4><span class="tag example">DPの分割関係</span></div><div id="split-chart" aria-label="塔の下側と反転した上側に分け、再帰的に帰巣費用を求める図"></div><figcaption>各位置と2つの向きを評価する。束全体の移動は向きを反転する辺、分割は2つの小さい束の費用につながる。</figcaption></figure>
+      <div class="table-wrap"><table><thead><tr><th></th><th>合流の順位を付ける表</th><th>現在の塔を配送する表</th></tr></thead><tbody>
+        <tr><td>コード</td><td><code>EmptyDP</code></td><td><code>DeliveryDP</code></td></tr>
+        <tr><td>周囲の塔</td><td>無視した簡略条件で見積もる。</td><td>選択した束以外の塔を背景として固定する。</td></tr>
+        <tr><td>分割位置</td><td>同色連続部分の境界に絞る。</td><td>すべての分割位置を調べる。</td></tr>
+        <tr><td>同色の束</td><td>巣までの隣接床距離を費用として返す。</td><td>周囲の塔の高さを踏み台にする輸送も評価する。</td></tr>
+        <tr><td>実行</td><td>費用を返す。全問題の最適解を保証する表ではない。</td><td>選んだ移動と分割を実行し、上側を帰してから下側を扱う。</td></tr>
+      </tbody></table></div>
+      <p>構築中の配送は、分割または一部帰巣が起きた時点で制御を構築へ戻す。残った束に別の色を合流させる機会を作るためだ。ただし、1回だけ進めた盤面の見積もりが悪くなる場合は、元の束を最後まで帰す。</p>
+      <div class="callout">部分配送を採用する条件は、<b>新しい残り費用 + 実行した手数 ≤ 元の残り費用 + 1</b>。この判定は、配送DPの利益を周囲の合流で失うことを避ける。</div>
+      <p class="source-note">コード：<a href="#source-map">EmptyDP L375〜449、DeliveryDP L494〜617、delivery_event L869</a></p>
+    </article></div></details><a class="next-level" href="#low"><div><strong>次は、LNSの反復</strong></div><span>↓</span></a></section>
+
+  <section class="level" id="low" data-reading-level="low"><header class="level-head"><div class="level-number">03</div><div><h2>LNS</h2><p>構築から受け取った1つの完成解を出発点に、次の4段階を繰り返す。</p></div></header><figure class="figure"><div class="figure-header"><h4>LNSの1反復</h4><span class="tag">現在解を更新しながら繰り返す</span></div><div class="sequence algorithm-flow"><div class="step"><b>1 対象選択</b><p>作り直す個体を選ぶ。</p><a href="#m-priority">対象の順位</a></div><span class="arrow" aria-hidden="true">→</span><div class="step"><b>2 除去と修復</b><p>個体の移動を消し、残る便を直す。</p><a href="#l-extract">残す手順</a></div><span class="arrow" aria-hidden="true">→</span><div class="step"><b>3 再挿入</b><p>個体を戻し、完成候補を作る。</p><a href="#m-insert">戻し方</a></div><span class="arrow" aria-hidden="true">→</span><div class="step"><b>4 短縮と採否</b><p>短縮後の手数で受理を決める。</p><a href="#m-accept">焼きなまし</a></div></div><div class="build-loop">↺ 受理したら現在解を更新し、受理しなければ元の現在解を保つ。次の反復はその現在解から始める。これまでの最短解は別に保存する。</div><figcaption>図は通常の除去と再挿入を示す。束や2塔の作り直し、操作順の変更も候補生成の別経路として使う。短縮処理の中身は04で扱う。</figcaption></figure><article class="chapter" id="h-lns">
+      <div class="chapter-heading"><span class="badge">A</span><h3>操作列の一部を取り除いて、運び方を作り直す</h3></div>
+      <p>構築した操作列から、何匹かの移動を取り除く。残るスライムの手順を維持しながら、取り除いたスライムを戻す。この「解の一部を除いて作り直す探索」を、<strong>LNS</strong>と呼ぶ。</p>
+      <figure class="figure"><div class="figure-header"><h4>1回の作り直しで何が変わるか</h4><span class="tag example">手数だけを追う教材例</span></div>
+        <div class="demo-steps" id="lns-buttons"><button type="button" data-lns="0" aria-pressed="true">① 現在解</button><button type="button" data-lns="1" aria-pressed="false">② 除去</button><button type="button" data-lns="2" aria-pressed="false">③ 修復</button><button type="button" data-lns="3" aria-pressed="false">④ 再挿入</button><button type="button" data-lns="4" aria-pressed="false">⑤ 短縮と採否</button></div>
+        <div id="lns-lanes" style="margin-top:20px"><div class="op-lane"><span class="lane-label">現在解 14手</span><span class="op">1</span><span class="op">2</span><span class="op">3</span><span class="op">4</span><span class="op">5</span><span class="op">6</span><span class="op">7</span><span class="op">8</span><span class="op">9</span><span class="op">10</span><span class="op">11</span><span class="op">12</span><span class="op">13</span><span class="op">14</span></div></div>
+        <p class="demo-caption" id="lns-caption" aria-live="polite">現在解から、作り直すスライムの集合を選ぶ。盤面上の色だけでなく、どの個体がどのジャンプに乗っていたかを追う。</p>
+        <figcaption>この手数列は特定盤面の解や実測ではない。除去で省いた手数、残る手順の修復費、再挿入費、短縮の効果を区別するための例だ。</figcaption>
+      </figure>
+      <p>再挿入では、既存のジャンプに一緒に乗ったり、下段に残って踏み台になったりできる。残した手順を時間表として使うので、個体を単独で巣へ運ぶだけの場合より、追加操作を減らせる。</p>
+      <p class="source-note">コード：<a href="#source-map">TemporalLNS L2151、extract_from L2343、insert_at L2401</a></p>
+    </article><div class="process-group"><div class="process-head"><span>1</span><div><h3>対象を選ぶ</h3><p>ここでは作り直す範囲を決める。候補の採否は段階4で判断する。</p></div></div><article class="chapter" id="m-priority">
+      <div class="chapter-heading"><span class="badge">B</span><h3>省ける手数から、踏み台を壊す負担を引く</h3></div>
+      <p>除去候補は、単独の個体、同じ便に乗った集合、同色の連続部分、下段の支持、互いに合流した集合、空間的に近い集合などから作る。通常候補の大きさは最大12匹だ。</p>
+      <figure class="figure"><div class="figure-header"><h4>通常の除去候補に付ける優先度</h4><span class="tag">v076の式</span></div>
+        <div class="formula"><span class="fraction"><span class="top">省ける操作数 − <b>0.83</b> × 壊れるジャンプ数 + 0.25</span><span class="bottom">対象匹数<sup><b>0.95</b></sup></span></span><span class="factor">× (0.8 + 0.4u)</span></div>
+        <div class="control-grid"><label for="priority-saved">省ける操作数<input id="priority-saved" type="number" min="0" max="50" step="1" value="6"></label><label for="priority-broken">壊れるジャンプ数<input id="priority-broken" type="number" min="0" max="50" step="1" value="2"></label><label for="priority-size">対象匹数（1〜12）<input id="priority-size" type="number" min="1" max="12" step="1" value="3"></label><label for="priority-noise">乱数 u：<output id="priority-u">0.50</output><input id="priority-noise" type="range" min="0" max="100" step="1" value="50"></label></div>
+        <div class="result-box" aria-live="polite"><strong id="priority-value">1.616</strong><span id="priority-detail">修復の代理負担は1.66、乱数の倍率は1.00。</span></div>
+        <figcaption>「壊れるジャンプ数」は追加手数そのものではない。除去で下段の支持を失い、なお乗客が残るジャンプの件数を数える。乱数を掛け、常に同じ候補ばかり試す偏りを和らげる。</figcaption>
+      </figure>
+      <div class="grid-3"><div class="tile"><h4>省ける操作数</h4><p>そのジャンプの乗客を全員除くと、操作自体を省ける。乗客が残る便は残す。</p></div><div class="tile"><h4>修復負担 0.83</h4><p>踏み台不足を起こしやすい候補の順位を下げる。負の優先度も候補として保持する。</p></div><div class="tile"><h4>匹数の指数 0.95</h4><p>同じ利益なら少人数を先に試す。大きい集合は再挿入の費用が増える。</p></div></div>
+      <p class="source-note">コード：<a href="#source-map">make_candidates L3030、broken_support_jumps_value L2247、順位式 L3148</a></p>
+    </article><details class="source-details technical"><summary>対象選択の詳細：踏み台の依存と選択の偏り</summary><div class="body"><article class="chapter" id="l-support">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>踏み台を失うと、別の個体の便が壊れる</h3></div>
+      <p>距離<code>l</code>を跳ぶには、下段に少なくとも<code>l−1</code>匹が必要だ。元の操作で下に<code>k</code>匹を残していたなら、失ってよい支持の匹数は<code>k+1−l</code>となる。</p>
+      <figure class="figure"><div class="figure-header"><h4>4匹の下段で、4マスのジャンプを支える</h4><span class="tag example">k=4、l=4、余裕1匹</span></div><label for="support-lost" class="small">下段から除く匹数：<output id="support-lost-value">1匹</output></label><input id="support-lost" type="range" min="0" max="4" value="1"><div id="support-chart" aria-label="下段の支持が足りる場合と不足する場合を比較する図"></div><label class="small" style="display:flex;gap:8px;align-items:center;margin-top:12px"><input type="checkbox" id="support-all-removed">乗客も全員除去する</label><p class="demo-caption" id="support-caption" aria-live="polite">1匹失っても下段は3匹。最大4マス跳べるので、残る便は壊れない。</p><figcaption>下段の喪失が余裕を超え、なお乗客が1匹以上残る便だけを「壊れるジャンプ」と数える。乗客を全員除くなら、その便は省ける。</figcaption></figure>
+      <p>依存拡張では、壊れる便の乗客も除去集合に加える。踏み台を残すために経路を修復する代わりに、利用側の経路まで一緒に作り直す。追加後も別の便が壊れれば、同じ判定を繰り返す。</p>
+      <figure class="figure"><div class="figure-header"><h4>支持する側から、利用する側へ広げる</h4><span class="tag">合計8匹まで</span></div><div id="dependency-chart" aria-label="個体Aの除去からB、さらにCの再構築へ広がる支持の依存図"></div><figcaption>複数の壊れる便があれば、追加が少ない便を優先する。同じ追加数なら、元の飛距離が長い便を優先する。通常選択の3回に1回が対象で、追加できなかった場合はその反復を見送る。</figcaption></figure>
+      <div class="callout reason">依存拡張はv022の「踏み台の利用側も解き直し、修復負担と経路の固定を減らす」という仮説から導入された。上限8匹は再挿入の規模を抑える制約だ。修復負担の減点はv059系から引き継ぐ。</div>
+      <p class="source-note">コード：<a href="#source-map">SupportUse L2218、broken_support_jumps_value L2247、grow_dependency L2261</a>。経緯：<a href="../notes/experiments/v022.md">v022</a>、<a href="../notes/experiments/v059.md">v059</a>。</p>
+    </article><article class="chapter" id="l-select">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>順位の高い候補へ寄せ、無作為な選択も残す</h3></div>
+      <p>優先度順に並べた通常候補は、毎回先頭だけを選ぶわけではない。全体からの無作為、上位100からの無作為、再試行待ちを過ぎた最上位の3方式を混ぜる。</p>
+      <figure class="figure"><div class="figure-header"><h4>通常候補の選択</h4><span class="tag">抽選の配分</span></div><div class="comparison-bars"><div class="bar-row"><span>全体から</span><div class="bar-track"><div class="bar-fill" style="width:10%;background:var(--blue)"></div></div><span class="mono">10%</span></div><div class="bar-row"><span>上位100</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--purple)"></div></div><span class="mono">20%</span></div><div class="bar-row"><span>待ち後の先頭</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="mono">70%</span></div></div><figcaption>待ち後の先頭が見つからなければ全体から無作為に選ぶ。待ち時間は絶対的な禁止ではなく、繰り返し同じ候補を選ぶ偏りを和らげる仕組みだ。</figcaption></figure>
+      <div class="formula">通常候補の待ち = <b>候補数 × 0.75</b> を整数にし、<b>24〜200反復</b>に収める</div>
+      <div class="grid-2" style="margin-top:18px"><div class="tile"><h4>途中の束</h4><p>全体から無作為が25%、待ち後の最上位が75%。待ちは候補数/2を24〜160反復に収める。束のままと分解する試行の履歴を分ける。</p></div><div class="tile"><h4>依存拡張と2塔</h4><p>拡張後の集合と2塔の集合には、24反復の再試行待ちを設ける。元の集合とは別のキーで記録する。</p></div></div>
+      <p>最良解が更新されず、現在解が最良解より長い状態が<code>max(100,3M)</code>反復を超えると、最良解へ戻る。候補の一覧も作り直す。受理したときにも候補を再構築し、便や支持の履歴を最新の操作列に合わせる。</p>
+      <details class="source-details"><summary>途中の束の優先度が通常候補と異なる点</summary><div class="body"><p>途中の束では、その開始時刻以降に省ける操作数を使い、順位を「(省ける操作数+0.25) / 束の匹数<sup>0.45</sup> × 乱数の倍率」で決める。通常候補で使う壊れるジャンプ数の減点はここには入れない。匹数の指数も、通常候補の0.95より小さい。</p></div></details>
+      <p class="source-note">コード：<a href="#source-map">通常選択 L3272、束選択 L3249、停滞時の再出発 L3209、受理後の再構築 L3414</a></p>
+    </article></div></details></div><div class="process-group"><div class="process-head"><span>2</span><div><h3>除去して、残る手順を修復する</h3><p>選んだ個体を消すと、同乗便や踏み台を使う便も影響を受ける。残る個体が運べる手順へ直す。</p></div></div><article class="chapter" id="l-extract">
+      <div class="chapter-heading"><span class="badge">C</span><h3>除去後の手順を再生し、残存便を修復する</h3></div>
+      <p>元の操作列を再生しながら、各便に乗る生存個体だけを取り出す。乗客が全員消えた便は省く。乗客が残る便は、下に残す匹数を調整し、元の着地点へ輸送する。</p>
+      <figure class="figure"><div class="sequence"><div class="step"><b>乗客が残る？</b><p>残らなければ、その命令を省く。</p></div><span class="arrow">→</span><div class="step"><b>元のジャンプが合法？</b><p>支持と着地容量を再検査する。</p></div><span class="arrow">→</span><div class="step"><b>短い経路で修復</b><p>元の着地点と色順を復元する。</p></div><span class="arrow">→</span><div class="step"><b>全帰巣の骨格</b><p>残存個体がすべて帰った手順を残す。</p></div></div><figcaption>残る乗客が塔の上側に想定どおり並んでいない、修復経路がない、手数上限を超えるなどの場合は、この候補を見送る。</figcaption></figure>
+      <div class="grid-2"><div class="tile"><h4>色順を保つ修復</h4><p>通常は元の1ジャンプと同じ反転後の向きを要求する。同色だけの束なら上下反転しても色列は同じなので、短い向きを使える。必要なら個体IDの割り当てを交換する。</p></div><div class="tile"><h4>除去の利益と修復費</h4><p>候補の「省ける操作数」は、便全体が消える回数を数えた値だ。修復で追加操作が発生すれば、その利益を使う。除去の時点で元の区間+4手を超えたら見送る。</p></div></div>
+      <p>巣の上で除去により同色が露出し、予定より早く帰巣する場合も扱う。すでに帰った個体を、後の元の便へ戻すことはしない。最後に、残存個体が全帰巣していることを確認してから再挿入へ進む。</p>
+      <p class="source-note">コード：<a href="#source-map">extract L2338、extract_from L2343〜2385、PortionRouter L967</a></p>
+    </article></div><div class="process-group"><div class="process-head"><span>3</span><div><h3>取り除いた個体を再挿入する</h3><p>残した操作列へ同乗や踏み台の利用を組み込み、全帰巣する候補へ戻す。</p></div></div><article class="chapter" id="m-insert">
+      <div class="chapter-heading"><span class="badge">D</span><h3>残した操作列を、動く時間表として使う</h3></div>
+      <p>再挿入は、時刻ごとの盤面をたどる動的計画法（DP）だ。新しく出す命令は追加費用1、すでに予定されている命令への同乗や支持は追加費用0とする。待機して次の便を利用することもできる。</p>
+      <figure class="figure"><div class="figure-header"><h4>同じ時間表に戻す3つの動き</h4><span class="tag example">追加費用を示す概念図</span></div><div class="controls" id="insert-buttons"><button type="button" data-insert="ride" aria-pressed="true">既存の便に同乗</button><button type="button" data-insert="support" aria-pressed="false">下に残って支持</button><button type="button" data-insert="extra" aria-pressed="false">自分の命令で跳ぶ</button></div><div id="insert-chart" aria-label="横軸が予定時刻、縦軸が位置の再挿入図"></div><p class="demo-caption" id="insert-caption" aria-live="polite">予定されているジャンプへ同乗する。乗客が1匹増えても命令数は増えないので、この遷移の追加費用は0。</p><figcaption>図は遷移の役割を示す。実際には、各位置に加えて「塔のどの段の隙間にいるか」を追い、積み順と容量も満たす。</figcaption></figure>
+      <div class="callout">優先されるのは追加操作数の少なさだ。同じ追加操作数の候補が複数あるときに、支持や同乗の補助点が高い方を残す。</div>
+    </article><details class="source-details technical"><summary>再挿入の詳細：塔内の位置、途中時刻、挿入順</summary><div class="body"><article class="chapter" id="l-insert">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>再挿入では、位置と塔内の隙間を追う</h3></div>
+      <p>1匹の再挿入で追う状態は、予定時刻、位置、塔内の隙間だ。隙間は下から何匹の上にいるかを表す。背景が最大7匹なら、下端から上端まで8つの挿入位置を持てる。背景が8匹の場所には追加できない。</p>
+      <figure class="figure"><div class="figure-header"><h4>塔内の境界で、同乗と支持の両方を試せる</h4><span class="tag example">下に2匹を残す予定操作</span></div><div id="gap-chart" aria-label="塔の隙間が予定操作の分割位置に一致し、同乗または支持を選べる図"></div><figcaption>追加個体が分割位置の境界にいるときは、上側と一緒に飛ぶか、下段として残るかを選べる。残る場合は元の命令のkを1増やす。</figcaption></figure>
+      <div class="table-wrap"><table><thead><tr><th>遷移</th><th>追加費用</th><th>守る条件</th></tr></thead><tbody>
+        <tr><td>追加個体が自力で跳ぶ</td><td class="num">1</td><td>背景の最上段にいる場合だけ出発できる。下段の高さ+1まで跳べる。着地前の容量を満たす。</td></tr>
+        <tr><td>予定の便に同乗する</td><td class="num">0</td><td>色順を反転して隙間を更新する。追加個体を含めた着地容量を満たす。</td></tr>
+        <tr><td>予定の便の下に残る</td><td class="num">0</td><td>予定命令のkを1増やし、支持として残る。元の背景の動きを保つ。</td></tr>
+        <tr><td>その位置で待つ</td><td class="num">0</td><td>予定の操作が触れない場所では状態を保持する。上に背景が積まれた個体も次の操作を待てる。</td></tr>
+        <tr><td>自分の巣で帰る</td><td class="num">0</td><td>巣の色に一致し、背景の帰巣後の最上段以上に露出すると終了状態へ移る。</td></tr>
+      </tbody></table></div>
+      <div class="callout reason">追加した異色の個体が背景の帰巣を止める場合は、直後にその個体を跳ばす遷移を試す。追加費用は1。この出発で背景の予定を復元でき、露出した下段を支持にも使える。</div>
+      <p>同じ時刻での追加移動は、費用の小さい順に調べる。予定の命令が進むと、変更された出発点と着地点、その場所へ入る辺を開き直す。他の位置の状態は引き継ぐ。高さが変わらなくても、帰巣で状態が悪化する場合は再探索が必要だ。</p>
+      <figure class="figure"><div class="figure-header"><h4>予定が1つ進むと、必要な場所だけを更新する</h4><span class="tag">時刻に沿った探索</span></div><div id="event-chart" aria-label="背景の予定操作の前後で、出発点と着地点付近だけを再探索する図"></div><figcaption>1匹の基本状態数は「8×床数+帰巣状態」。束の再挿入では、この上に束の色列の種類を加える。束の色列は、反転と最上段の帰巣で得られる列だけを列挙する。</figcaption></figure>
+      <details class="source-details"><summary>同費用で使う補助点</summary><div class="body"><p>比較の第一基準は追加操作数、第二基準が補助点だ。支持の重みは0、2、8がそれぞれ1/12、5が9/12の確率で選ばれる。同乗の重みは4が1/12、1が11/12だ。両方は同じ12通りの抽選から決めるため、抽選は独立ではない。</p><p>予定の同色2便をまとめる支持を作れれば、さらに「3×支持の重み」を加える。帰巣を止めた個体がすぐ出発する場合は、露出する下段の匹数に比例した補助点「3×下段の匹数」を加える。これらは同じ追加費用の経路を選ぶための設定で、追加操作数を補助点で相殺しない。</p></div></details>
+      <p class="source-note">コード：<a href="#source-map">Labelとbetter L2181、L2305、insert_at L2401〜2520、insert_packet L2570〜2713、重みの抽選 L3217</a></p>
+    </article><article class="chapter" id="l-orders">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>途中までの集荷を残し、挿入順を変える</h3></div>
+      <p>通常の除去は初期状態から作り直す。途中の束や2塔の方式は、ある時刻までの操作をそのまま残し、それ以降だけを作り直す。すでに行った集荷の利益を捨てずに、束の分離や同乗の組み合わせを変えられる。</p>
+      <figure class="figure"><div class="figure-header"><h4>固定する前半と、作り直す後半</h4><span class="tag">開始盤面も復元する</span></div><div id="prefix-chart" aria-label="途中時刻までは固定し、後半だけ再構築する図"></div><figcaption>個体を戻すたび、出発点の元の段に相当する隙間を求める。すべて戻した開始盤面が元と一致した候補だけを完成とする。</figcaption></figure>
+      <div class="table-wrap"><table><thead><tr><th>方式</th><th>順序と数値</th><th>理由と制約</th></tr></thead><tbody>
+        <tr><td>通常の再挿入</td><td>巣までの距離×0.6〜1.4の乱数倍率が大きい順。</td><td>遠い個体を先に処理しつつ、順序の偏りを変える。先に入れた個体の便を、後の個体も利用できる。</td></tr>
+        <tr><td>通常の2〜4匹</td><td>基本順と、先頭2匹だけを交換した順の2種類。</td><td>全順列は調べない。第2順序は第1順序の完成解より短くなる範囲だけ探索する。</td></tr>
+        <tr><td>途中の束を保つ</td><td>2〜8匹の束を1単位で挿入。</td><td>途中の分割は行わず、反転と一部帰巣による色列だけを追う。</td></tr>
+        <tr><td>途中の束を分解</td><td>4匹以下は2順序、5〜8匹は1順序。</td><td>上から、下から、巣までの距離順、乱数順の4方式から選ぶ。元の積み順を開始盤面で復元する。</td></tr>
+        <tr><td>途中の2塔</td><td>合計上限6匹が3/4、8匹が1/4。3匹以下は2順序、それ以外は1順序。</td><td>5種類の順位を使い、各個体の出発点と元の段を保つ。相手の塔は床距離10以内から選ぶ。</td></tr>
+      </tbody></table></div>
+      <p>巣の上で途中の塔を復元する場合は、元の最上段から置く。そこが巣と異色なら、先に置いた下段が途中で帰巣することを防げる。2塔でも同じ出発点の上段を先に戻す制約を持つ。</p>
+      <details class="source-details"><summary>途中の開始時刻と、2塔の相手の選択</summary><div class="body"><p>同じ束について、最初の開始時刻に加え、もう1つの開始時刻を保存する。分割の前の時刻を優先し、同条件なら遅い時刻を選ぶ。異なる時刻には異なる再試行キーを付ける。</p><p>2塔の開始時刻は、2/3の確率で束候補の時刻を使い、それ以外は2つの無作為な時刻の小さい方を使う。束候補を選ぶ場合も、上位を選びやすい抽選を混ぜる。集荷を残しつつ早い開始時刻へ寄せる。</p><p>相手の塔の順位は「塔間の床距離+0.22×巣間の最小距離−0.45×元の最初の着地点であるか」。上位12候補を中心に、無作為な相手も選ぶ。挿入順は、距離に乱数を掛けて遠い順、近い順、乱数順、出発塔を優先する2方式の計5方式だ。</p><p>操作列の途中盤面は16操作ごとに保存し、指定時刻まで最大15操作を再生して復元する。</p></div></details>
+      <p class="source-note">コード：<a href="#source-map">insert_two_orders L2529、packet_neighbor L2715、flexible_neighbor L2741、paired_neighbor L2800、開始時刻候補 L3087</a></p>
+    </article></div></details></div><div class="process-group"><div class="process-head"><span>4</span><div><h3>候補を短縮し、採否を決める</h3><p>候補の短縮後に焼きなましで現在解の更新を決める。最良解は改善したときだけ更新する。</p></div></div><article class="chapter" id="m-accept">
+      <div class="chapter-heading"><span class="badge">E</span><h3>短縮後の手数で採否を決める</h3></div>
+      <p>候補が現在解以下の手数なら受理する。長くなった候補は、現在解より2手以内、かつ最良解より4手以内の場合に限り、<code>exp(−増加手数 / 温度)</code> の確率で受理する。温度は探索の進行に応じて0.70から0.12へ下がる。</p>
+      <figure class="figure"><div class="figure-header"><h4>悪化受理の確率</h4><span class="tag">式から計算する値</span></div><div class="grid-2"><div><label for="anneal-progress" class="small">LNSの進行：<output id="anneal-progress-value">0%</output></label><input id="anneal-progress" type="range" min="0" max="100" value="0"><div class="controls"><label for="anneal-delta">現在解からの増加</label><select id="anneal-delta" style="width:130px"><option value="-1">−1手</option><option value="0">0手</option><option value="1" selected>+1手</option><option value="2">+2手</option><option value="3">+3手</option></select></div><label for="anneal-best" class="small">候補が最良解より長い手数</label><input type="number" id="anneal-best" min="-5" max="10" value="1" style="max-width:130px;margin-top:8px"></div><div><div class="stat-inline"><div>温度<strong id="anneal-temp">0.700</strong></div><div>受理確率<strong id="anneal-prob">23.965%</strong></div></div><div class="bar-track" style="margin-top:24px;height:30px"><div class="bar-fill" id="anneal-bar" style="width:23.965%"></div></div><p class="small" id="anneal-status" style="margin-top:14px" aria-live="polite">手数の上限内なので、焼きなましの確率で採否を決める。</p></div></div><div id="anneal-chart" style="margin-top:24px" aria-label="探索進行とともに1手悪化、2手悪化の受理確率が下がるグラフ"></div><figcaption>1手悪化の受理確率は、開始時約24%、終了時約0.024%。3手悪化は温度にかかわらず受理しない。候補作成の手数上限とは別の条件だ。</figcaption></figure>
+      <div class="callout reason">作り直す途中は通常方式で現在解+4手まで、途中の束や2塔では+3手まで許す。その後の短縮で手数が下がる可能性があるため、候補作成の上限は受理の上限より緩い。</div>
+      <details class="source-details"><summary>温度の更新間隔</summary><div class="body"><p>温度は反復回数で直線的に下げるのではなく、LNSの経過時間の割合から計算し、32反復ごとに更新する。図はその指数的な変化を連続曲線で示す。</p></div></details>
+      <p class="source-note">コード：<a href="#source-map">温度更新 L3214、再挿入上限 L3328、受理式 L3367</a></p>
+    </article><details class="source-details technical"><summary>現在解と最良解の動き</summary><div class="body"><article class="chapter" id="h-keep">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>現在解を動かしながら、最良解を保存する</h3></div>
+      <p><strong>現在解</strong>は次に作り直す操作列だ。少し長くなった候補も一定確率で採用し、違う運び方へ移る。<strong>最良解</strong>は、これまで得た最短の操作列として別に保存する。</p>
+      <figure class="figure"><div class="figure-header"><h4>探索の足場と、出力に残す解</h4><span class="tag example">架空の5回の受理例</span></div><div id="best-chart" aria-label="現在解は悪化することがあり、最良解は悪化しない折れ線図"></div><figcaption>現在解が13手から14手へ移っても、最良解は13手を保持する。後で12手の解が得られれば、両方を更新する。</figcaption></figure>
+      <div class="callout blue">同じ手数でも、積み順や操作の順序が違えば、次の同乗や踏み台の機会が変わる。v076は同手数の別解を受理する。</div>
+    </article></div></details></div><article class="chapter" id="m-neighbors">
+      <div class="chapter-heading"><span class="badge">F</span><h3>通常の除去以外にも、束と順序を作り直す</h3></div>
+      <p>毎回同じ単位で作り直すと、途中ですでに集まった塔や、別々の塔の連携を扱いにくい。v076は4種類の候補作成を切り替える。通常選択の3回に1回は、踏み台の依存を追って除去集合を最大8匹まで広げる。</p>
+      <div class="grid-2" style="margin-top:20px"><div class="tile"><h4>通常の除去と再挿入</h4><p>初期位置から何匹かを除き、個体ごとに戻す。中心となる方式だ。</p><p class="small muted" style="margin-top:10px">依存拡張は通常選択の3回ごと。</p></div><div class="tile"><h4>途中の束を再構築</h4><p>7反復ごとが対象。束を保って戻すか、個体へ分解して戻す。分解を選ぶ確率は2/3。</p><p class="small muted" style="margin-top:10px">累積処理時間に22%の目安上限。</p></div><div class="tile"><h4>途中の2塔を再構築</h4><p>17反復ごとが対象。同じ時点の2塔から、合計6匹または8匹までを一緒に作り直す。</p><p class="small muted" style="margin-top:10px">累積処理時間に11%の目安上限。</p></div><div class="tile"><h4>操作順序を並べ替え</h4><p>113反復ごと。同じマスに触れる順序を保ち、独立な操作を交換する。6つの選び方を使う。</p><p class="small muted" style="margin-top:10px">前から3方式、後ろから3方式。</p></div></div>
+      <figure class="figure"><div class="figure-header"><h4>分岐の順序で選ぶ</h4><span class="tag example">時間予算が残っている場合</span></div><div class="sequence"><div class="step"><b>113の倍数？</b><p>並べ替えを選ぶ。</p></div><span class="arrow">→</span><div class="step"><b>17の倍数？</b><p>予算内なら2塔を選ぶ。</p></div><span class="arrow">→</span><div class="step"><b>7の倍数？</b><p>予算内なら途中の束を選ぶ。</p></div><span class="arrow">→</span><div class="step"><b>それ以外</b><p>通常候補を選ぶ。</p></div></div><div class="chip-grid" id="iteration-chips"></div><div class="key"><span>通常</span><span class="packet">途中の束</span><span class="paired">2塔</span><span class="reorder">並べ替え</span></div><div class="controls"><label for="iteration-input">反復番号</label><input id="iteration-input" type="number" min="1" max="10000" value="119" style="width:100px"><strong id="iteration-result" style="font-size:14px">2塔を再構築</strong></div><figcaption>119は7と17の両方の倍数なので、先に判定される2塔の方式を選ぶ。7分の1や17分の1は最終的な実行割合ではない。先行分岐と時間予算により見送る回がある。</figcaption></figure>
+      <p class="source-note">コード：<a href="#source-map">optimizeの分岐 L3217、packet_neighbor L2715、flexible_neighbor L2741、paired_neighbor L2800、causal_reorder L2932</a></p>
+    </article><details class="source-details technical"><summary>別の候補生成：操作の並べ替え</summary><div class="body"><article class="chapter" id="l-reorder">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>同じマスに触れる順序を保って並べ替える</h3></div>
+      <p>ある操作の出発点と着地点に、それ以前に触れた操作から依存の辺を張る。各マスでの接触順序を保つ範囲で、独立な操作を交換できる。途中で飛び越す床の塔は変化せず、支持にも使わないため、接触の対象は両端だ。</p>
+      <figure class="figure"><div class="figure-header"><h4>依存の辺を守りながら、便をつなげる</h4><span class="tag example">操作の依存図</span></div><div id="reorder-chart" aria-label="独立な操作は交換でき、同じマスに触れる操作は順序を保つ依存図"></div><figcaption>並べ替えそのものは操作数を変えない。同じ束が続けて動く順序に寄せると、後の経路短縮や再挿入に別の機会が生まれる。</figcaption></figure>
+      <p>前から選ぶ3方式と、後ろから選んで最後に逆順へ戻す3方式を使う。連続輸送になる操作を大きな優先点で先に選び、そのほかは元の時刻順や乱数で順位を変える。並べ替えた操作列を実際に再生し、全帰巣を確認する。</p>
+      <p class="source-note">コード：<a href="#source-map">causal_reorder L2932〜3005</a></p>
+    </article></div></details><a class="next-level" href="#finish"><div><strong>次は、短縮と出力</strong></div><span>↓</span></a></section>
+
+  <section class="level" id="finish" data-reading-level="finish"><header class="level-head"><div class="level-number">04</div><div><h2>短縮と出力</h2><p>短縮はLNSの候補にも、探索終了後の最良解にも使う。終了後は最良解を仕上げ、全操作を検証して出力する。</p></div></header>
+
+    <article class="chapter" id="h-finish">
+      <div class="chapter-heading"><span class="badge">A</span><h3>短縮を探索中にも、最後にも適用する</h3></div>
+      <p>作り直した候補は、採否を決める前に短縮する。短縮できた構造を次の探索に引き継ぐためだ。探索終了後も、最良解へ短縮を繰り返してから、合法性と全帰巣を確認して出力する。</p>
+      <figure class="figure"><div class="sequence"><div class="step"><b>作り直す</b><p>除去と再挿入などで候補を作る。</p></div><span class="arrow">→</span><div class="step"><b>候補を短縮</b><p>遠回り、往復、冗長な分割を減らす。</p></div><span class="arrow">→</span><div class="step"><b>採否を判断</b><p>短縮後の手数で現在解と比べる。</p></div><span class="arrow">→</span><div class="step"><b>最良解を仕上げる</b><p>残る時間で共同短縮し、再生して出力。</p></div></div><figcaption>採用した候補が次の「作り直す」へ戻る。完成した最良解だけを終了前の処理へ渡す。</figcaption></figure>
+      <p class="source-note">コード：<a href="#source-map">SearchReductions L2021、optimize L3182、polish_final_reductions L1976</a></p>
+    </article><article class="chapter" id="m-reduce">
+      <div class="chapter-heading"><span class="badge">B</span><h3>7種類の短縮で、違う形の冗長さを取る</h3></div>
+      <p>短縮は、置換区間の出口で全盤面を一致させ、後の操作をつなげられる形で行う。経路、2マス間の転送、同色の分割便に加え、複数の塔をまとめて探索する処理も使う。</p>
+      <div class="shorteners">
+        <div class="shortener"><h4>① 経路の短縮</h4><div class="visual">p → a → b → q　⇒　p → q</div><p>同じ束の輸送を、出口の積み順まで等しい短い経路に置き換える。</p></div>
+        <div class="shortener"><h4>② 2マス間の転送圧縮</h4><div class="visual">p ⇄ q ⇄ p　⇒　正味の転送</div><p>帰巣がない区間で、往復や細切れの転送をまとめる。</p></div>
+        <div class="shortener"><h4>③ 4マス共同短縮</h4><div class="visual">{p, q, r, s} の操作列を解き直す</div><p>3〜4マスの入口と出口を固定し、途中の分割や合流を変える。</p></div>
+        <div class="shortener"><h4>④ 同色の分割便を集約</h4><div class="visual">p → q ＋ p → r → q　⇒　1〜2手</div><p>同色を分けて送る3操作を、一括輸送へ置き換える。</p></div>
+        <div class="shortener"><h4>⑤ 向きの共同変更（厳しい条件）</h4><div class="visual">反転の差 → 後続へ引き継ぐ → 一致</div><p>最初の輸送を短縮し、変わった積み順を後の輸送まで追う。</p></div>
+        <div class="shortener"><h4>⑥ 向きの共同変更（1手超過を許す）</h4><div class="visual">途中 +1手 → 後で回収 → 全体を短縮</div><p>区間全体の累積手数で考え、向きを変えるための一時的な増加を許す。</p></div>
+        <div class="shortener wide"><h4>⑦ 巣を含む有限区間の共同探索</h4><div class="visual">区間の入口 → 合流 / 分割 / 帰巣 → 指定した出口</div><p>巣や5マス以上の相互作用を扱う。探索を限定し、出口に塔が残る場合も積み順を復元する。</p></div>
+      </div>
+      <div class="grid-2"><div class="tile"><h4>探索中</h4><p>軽い圧縮は候補ごとに行う。重い4種類は有望な候補に絞り、LNS経過時間の3%を目安とする予算内で均等に呼ぶ。</p></div><div class="tile"><h4>探索終了後</h4><p>転送圧縮と4マス共同短縮の後、6種類の巡回を手数不変まで繰り返す。有限区間探索で短くなれば、もう一度6種類を適用する。</p></div></div>
+      <p class="source-note">コード：<a href="#source-map">短縮処理 L1012〜1937、SearchReductions L2021、終了前の巡回 L1976</a></p>
+    </article><article class="chapter" id="l-finish">
+      <div class="chapter-heading"><span class="badge">C</span><h3>最良解を仕上げ、再生して出力する</h3></div>
+      <p>LNSが終了すると、最良解へ転送圧縮と4マス共同短縮を適用する。その後は、経路、転送、共同、同色、厳しい向き、緩い向きの6種類を順に巡回する。手数が変わらなくなるまで巡回し、有限区間探索で短くなれば6種類へ戻る。</p>
+      <figure class="figure"><div class="figure-header"><h4>終了前の反復</h4><span class="tag">期限内に完了した短縮を残す</span></div><div id="finish-chart" aria-label="6種類を手数不変まで巡回し、有限区間で短くなると再度巡回する終了処理図"></div><figcaption>有限区間を始める期限は、全体の終了期限よりわずかに早くする。有限区間で得た短縮を、軽い処理でもう一度圧縮する時間を残すためだ。</figcaption></figure>
+      <p>出力前には初期盤面から全命令を再生し、合法性、全帰巣、100,000操作以内を確認する。LOCALでは、可変長の個体列による独立再生と色の個体数の保存も確認し、処理回数と時間を出力する。</p>
+      <details class="source-details"><summary>期限到達と、コードに存在する作り直しの経路</summary><div class="body"><p>構築やLNSの途中で期限に達した場合は、それまで保存した最良解を使う。各候補が手数や合法性の条件を満たせず見送られることは、探索の通常の経路だ。</p><p>集荷木の構築に例外が起きたときと、最後の回答検査で例外が起きたときには、診断を出して1匹ずつ帰巣する操作列を作る経路が既存コードにある。高さ8の塔を先に空ける。これは主探索の改善機構とは分けて読む。</p><p>保存済みv076の100件では、全件<code>E=0</code>、既存のエラー計数0、盤面領域4枚の全返却が記録されている。この解説の作成時にはsolverを実行していない。</p></div></details>
+      <div class="callout blue">同じ初期乱数でも、実時間が変わると試行回数、温度、打ち切り、探索経路が変わり得る。LOCALと本番相当は時間補正に加え、計時の開始位置と計測の有無にも違いがある。</div>
+      <div class="table-wrap"><table><thead><tr><th></th><th>本番相当（非LOCAL）</th><th>LOCAL</th></tr></thead><tbody><tr><td>計時開始</td><td>大域のTimeKeeperの初期化時。</td><td>mainの開始直後。</td></tr><tr><td>時間の倍率</td><td class="num">1.00</td><td class="num">0.80</td></tr><tr><td>探索終了の反復条件</td><td class="num">1.900秒</td><td class="num">1.520秒</td></tr><tr><td>探索の期限チェック</td><td class="num">1.930秒</td><td class="num">1.544秒</td></tr><tr><td>追加の確認</td><td>通常の再生と回答検査。</td><td>独立再生、計数、処理時間、領域返却を追加。</td></tr></tbody></table></div>
+      <p class="source-note">コード：<a href="#source-map">polish_final_reductions L1976、validate_output L3423、main L3526〜3634</a></p>
+    </article><details class="source-details technical"><summary>短縮の詳細：置換する区間と探索中の時間予算</summary><div class="body"><article class="chapter" id="l-reduce">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>短縮の探索範囲を制限し、出口を一致させる</h3></div>
+      <p>局所的な置換を後続へつなげるには、出口の全盤面が一致している必要がある。向きの共同変更では途中の色順の差を許すが、置換を確定する出口では差を閉じる。</p>
+      <figure class="figure"><div class="figure-header"><h4>入口から出口までを置き換える契約</h4><span class="tag">出口の全盤面一致</span></div><div id="boundary-chart" aria-label="元の区間と短い置換区間が同じ入口と出口につながる図"></div><figcaption>途中で通る位置、分割、合流が変わっても、出口を一致させれば後続の命令を保持できる。置換は最終的に元より短い場合だけ使う。</figcaption></figure>
+      <div class="table-wrap"><table><thead><tr><th>処理</th><th>具体的な範囲</th><th>扱う変化</th></tr></thead><tbody>
+        <tr><td>経路短縮</td><td>同じ束の連続輸送を最大64操作まで読む。</td><td>元の出口の色順と全盤面が一致する、より短い経路を求める。</td></tr>
+        <tr><td>2マス間の転送</td><td>両端へ他の操作が触れず、帰巣がない転送をまとめる。</td><td>一方を下から、他方を上から連結した列の不変性を使う。独立な操作をまたげる。</td></tr>
+        <tr><td>同色便の集約</td><td>先64操作の中の3便を、2操作以内へ置き換える。</td><td>p→q、p→r、r→qをまとめる。3マスへの他の接触は許さない。</td></tr>
+        <tr><td>4マス共同短縮</td><td>3〜4マス、関連操作3〜8個、先64操作。巣は含めない。両方向の合計状態数16,384まで。</td><td>入口と出口から双方向BFSを行い、分割と合流を自由に変える。参加匹数の合計は8以下に限定しない。</td></tr>
+        <tr><td>向きの共同変更</td><td>最大8輸送区間、元の64操作以内。途中の全マスの高さは一致、色順が違う塔は2つ以下、候補4本。</td><td>厳しい条件は最初の輸送を短縮し、後続の各輸送を増やさない。緩い条件は累積で元+1手まで許す。</td></tr>
+        <tr><td>有限区間の共同探索</td><td>開始時の8マス以内、16匹以内、6塔以内、関連操作12個以内、先64操作。巣を含むか、5マス以上の区間に適用。</td><td>対象外の塔を背景として固定し、対象の束の分割、合流、帰巣を探索する。対象が移動する中継点は開始時の8マスに限定しない。</td></tr>
+      </tbody></table></div>
+      <details class="source-details"><summary>有限区間の探索で、さらに絞るもの</summary><div class="body"><p>候補区間の優先度が正のものを選び、1回の呼び出しで最大32区間を試す。各探索は幅12の候補を残し、展開する状態は最大192個、1区間の期限は<code>0.003×PROGRAM_TIME_LIMIT_SEC</code>だ。これは本番相当で5.7ms、LOCALで4.56msとなる。</p><p>着地点の候補は、区間のマス、関係する色の巣と隣接床、2つの開始塔から近い合流候補の上位4マス、現在の塔があるマスだ。全床を無制限に枝として残さない。</p><p>出口へ残すために必要な色の匹数を下回る状態は捨てる。帰巣した個体は戻せないためだ。枝刈りには、少なくとも動かす必要がある出発塔数と、完成させる必要がある到着塔数の最大値を下界として使う。</p><p>距離と未確定の積み順は、<code>下界+0.5×距離/想定飛距離+0.125×未確定匹数</code>という探索順位に使う。この見積もり自体で不可能判定をしない。</p></div></details>
+      <div class="callout reason">向きの共同変更で途中の+1手を許す理由は、向きを変えるために一度増やした手数を、後の輸送で回収できるからだ。v054にこの狙いが記録されている。候補数や区間長の上限は探索費を抑える制約だが、各上限値の最適性は確認されていない。</div>
+      <p class="source-note">コード：<a href="#source-map">経路 L1012、転送 L1051、共同 L1147、同色 L1362、向き L1498、有限区間 L1731</a>。経緯：<a href="../notes/experiments/v048.md">v048</a>、<a href="../notes/experiments/v049.md">v049</a>、<a href="../notes/experiments/v052.md">v052</a>、<a href="../notes/experiments/v054.md">v054</a>。</p>
+    </article><article class="chapter" id="l-reduce-budget">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>探索中の短縮を、反復と時間予算で絞る</h3></div>
+      <p>候補には、まず経路短縮を行う。その後、転送圧縮と同色便の集約を適用し、短くなったら経路短縮をやり直す。軽い巡回は時間内で手数不変まで続ける。</p>
+      <figure class="figure"><div class="figure-header"><h4>重い短縮を呼ぶまでの条件</h4><span class="tag">均等なのは呼び出し回数</span></div><div class="sequence"><div class="step"><b>4反復ごと</b><p>候補が現在解+2以内、最良解+4以内。</p></div><span class="arrow">→</span><div class="step"><b>変更付近を選ぶ</b><p>違いのある区間の前後64操作まで広げる。</p></div><span class="arrow">→</span><div class="step"><b>予算が残る</b><p>累積の重い処理を、LNS経過時間の3%へ収める。</p></div><span class="arrow">→</span><div class="step"><b>1種類を呼ぶ</b><p>共同、厳しい向き、緩い向き、有限区間を巡回。</p></div></div><figcaption>1候補で重い4種類すべてを呼ぶわけではない。処理ごとの時間も同じではない。途中までに完了した置換を使い、短縮できたら軽い巡回を再適用する。</figcaption></figure>
+      <div class="table-wrap"><table><thead><tr><th>制約</th><th>PROGRAM_TIME_LIMIT_SECとの関係</th><th>本番相当</th><th>LOCAL</th></tr></thead><tbody>
+        <tr><td>開始直後の予算用経過時間</td><td>下限2%を3%予算へ使う。</td><td class="num">38msを基準</td><td class="num">30.4msを基準</td></tr>
+        <tr><td>呼び出しに必要な残予算</td><td>0.05%以上。</td><td class="num">0.95ms</td><td class="num">0.76ms</td></tr>
+        <tr><td>1呼び出しの期限</td><td>0.15%、残予算、LNS期限の最小。</td><td class="num">最大2.85ms</td><td class="num">最大2.28ms</td></tr>
+        <tr><td>終了前の向き変更 / 有限区間1試行</td><td>0.3%以内、全体の期限も守る。</td><td class="num">最大5.7ms</td><td class="num">最大4.56ms</td></tr>
+        <tr><td>有限区間の後に残す時間</td><td>終了期限から0.1%を差し引く。</td><td class="num">1.9ms</td><td class="num">1.52ms</td></tr>
+      </tbody></table></div>
+      <p>変更付近を選ぶことは、探索対象を減らすための判断だ。合法性や出口の一致は、各短縮処理で別に確認する。重い処理の呼び出し回数はv059と同じ均等配分で、v058の共同短縮75%配分は使わない。</p>
+      <p class="source-note">コード：<a href="#source-map">SearchFocus L2008、SearchReductions L2021〜2113</a>。導入理由：<a href="../notes/experiments/v057.md">v057</a>。</p>
+    </article></div></details><a class="next-level" href="#reference"><div><strong>次は、共通基盤と調整値</strong></div><span>↓</span></a></section>
+
+  <section class="level" id="reference" data-reading-level="reference"><header class="level-head"><div class="level-number">05</div><div><h2>共通基盤と調整値</h2><p>処理の流れを理解した後、必要な実装の詳細を参照する。</p></div></header><details class="source-details technical"><summary>盤面の表現と地形の前計算</summary><div class="body"><article class="chapter" id="l-model">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>地形、色の積み順、個体の履歴を分ける</h3></div>
+      <p>地形と巣は動かない。構築や経路探索では、各塔の色の積み順を使う。操作列から特定の個体を除くときは、初期位置を個体IDとして、同色の別個体も追跡する。</p>
+      <figure class="figure"><div class="figure-header"><h4>同じ塔を、2つの粒度で読む</h4><span class="tag example">表現の模式図</span></div><div class="grid-2"><div class="tile"><h4>色の積み順</h4><div class="tower-pieces" style="min-height:110px;margin:15px 0"><span class="piece red">赤</span><span class="piece blue">青</span><span class="piece red">赤</span></div><p>合法性、反転、帰巣、輸送経路の計算に使う。</p></div><div class="tile"><h4>個体の積み順</h4><div class="tower-pieces" style="min-height:110px;margin:15px 0"><span class="piece red" style="width:85px">赤 ID17</span><span class="piece blue" style="width:85px">青 ID42</span><span class="piece red" style="width:85px">赤 ID91</span></div><p>どの個体が便に乗り、どの個体が下段の支持だったかを記録する。</p></div></div><figcaption>色だけが同じでも、通常の除去では指定したIDを追う。修復中の同色の束では、色順を保ったままIDの割り当てを交換する処理がある。</figcaption></figure>
+      <div class="grid-3"><div class="tile"><h4>直線の跳躍先</h4><p>各床から4方向、距離1〜8の着地点を保存する。壁や盤面外で打ち切る。</p></div><div class="tile"><h4>床上の距離</h4><p>すべての床からBFSを行う。これは隣接床を歩く距離で、踏み台込みの最少命令数とは区別する。</p></div><div class="tile"><h4>塔の2つの向き</h4><p>ジャンプごとに上下が反転するので、輸送経路の状態は位置と向きの組で持つ。</p></div></div>
+      <details class="source-details"><summary>実装との対応と、高速化のための表現</summary><div class="body"><p><code>Board</code>は地形、<code>State</code>は塔の色列、<code>IdentityState</code>は個体列だ。色<code>c</code>を内部では<code>c+1</code>の4bitで持ち、8匹の塔を32bitに詰める。0は空を表す。</p><p>盤面の領域は床数分を4枚用意して再利用する。2塔の再構築で3枚、再挿入で1枚を同時に使う。候補の索引と探索の待ち行列も領域を再利用し、反復ごとの確保や全初期化を減らす。</p><p class="source-note">参照：L165〜218、L241〜261、L297〜363、L2116〜2241。</p></div></details>
+    </article></div></details><details class="source-details technical"><summary>v076の調整値と採用理由</summary><div class="body"><article class="chapter" id="l-parameters">
+      <div class="chapter-heading"><span class="badge">詳細</span><h3>v076で選んだ7つの調整値</h3></div>
+      <p>v076は、v059系を整理したコードを土台に、保存済みの調整結果から一組の設定を選んだ版だ。選ぶときは、ケースごとの短縮率を反映する擬似相対スコアを優先した。</p>
+      <div class="table-wrap"><table><thead><tr><th>設定</th><th>v059系の基準 → v076</th><th>処理への作用</th><th>記録された選定理由</th></tr></thead><tbody>
+        <tr><td>修復負担の係数</td><td class="num">1.00 → 0.83</td><td>踏み台を壊す候補の減点を弱める。</td><td>v073の平滑化で、絶対合計と擬似相対の両指標が良い範囲に入った。</td></tr>
+        <tr><td>対象匹数の指数</td><td class="num">0.65 → 0.95</td><td>人数の多い除去集合を、以前より強く割り引く。</td><td>v074で改善し、別入力のv075では擬似相対が最良だった。</td></tr>
+        <tr><td>順位の乱数振幅</td><td class="num">0.10 → 0.20</td><td>順位に掛ける倍率を0.9〜1.1から0.8〜1.2へ広げる。</td><td>v074の単独変更と3種類の加算モデルで改善方向だった。</td></tr>
+        <tr><td>開始温度</td><td class="num">0.70 → 0.70</td><td>探索開始時の悪化受理を保つ。</td><td>変更の利得がモデル間でそろわず、基準値を維持した。</td></tr>
+        <tr><td>終了温度</td><td class="num">0.08 → 0.12</td><td>終盤にも少量の悪化受理を残す。</td><td>単独変更と加算モデルで両指標を改善する方向だった。</td></tr>
+        <tr><td>依存拡張の間隔</td><td class="num">4回 → 3回</td><td>通常候補から支持の依存を追う機会を増やす。</td><td>v074の単独変更で擬似相対が最良だった。値の局所的優位は未確定だ。</td></tr>
+        <tr><td>通常候補の再試行待ち係数</td><td class="num">0.50 → 0.75</td><td>同じ候補の再試行までの間隔を長くする。</td><td>短すぎる待ちを避け、単独変更と加算モデルで改善方向だった。</td></tr>
+      </tbody></table></div>
+      <figure class="figure"><div class="figure-header"><h4>実装の系統と、v076の変更範囲</h4><span class="tag">実験ノートの派生関係</span></div><div id="version-chart" aria-label="v057からv058とv059が派生し、v059の整理版と調整を経てv076へ至る図"></div><figcaption>v071は命名と不要な記述の整理、v073〜v075は調整。v076は選定した定数を固定した。探索の候補、再挿入の仕組み、短縮の部品は同じ系統だ。</figcaption></figure>
+      <div class="callout reason">採用理由が記録されているのは、上の7つの調整値だ。0.25の加算、113反復、候補数の上限などにはコードから読み取れる役割があるが、具体的な値の選定根拠や最適性はこの資料では未確認とする。</div>
+      <p>「相対スコアを優先した」は、設定を選んだ実験の基準を指す。実行中は各ケースの操作回数<code>T</code>を減らしている。保存100件の比較では、v059より擬似相対平均が高く、絶対手数の合計は17手多かった。係数ごとの寄与や、他参加者を含む公式相対スコアは、この単回評価からは確定していない。</p>
+      <p class="source-note">コード：<a href="#source-map">選定定数 L12〜20</a>。理由の正本：<a href="../notes/experiments/v076.md">v076の実験ノート</a>。整理の経緯：<a href="../notes/experiments/v071.md">v071</a>。</p>
+    </article></div></details><article class="chapter" id="l-reading-map">
+      <h3>コードを読むときの対応</h3>
+      <p>ここまでの処理は、下の3つのまとまりに対応する。まずmainで順序を確認し、再挿入の仕組みは個体1匹の処理から追うと、束や2塔の拡張を読みやすい。</p>
+      <figure class="figure"><div class="grid-3"><div class="tile"><h4>構築</h4><p>集荷木<br>合流の利益<br>2つの配送費用表</p><p style="margin-top:10px"><code>tree_baseline</code><br><code>Constructor</code></p></div><div class="tile"><h4>作り直し</h4><p>候補と依存<br>除去と修復<br>時刻に沿う再挿入</p><p style="margin-top:10px"><code>TemporalLNS</code><br><code>insert_at</code></p></div><div class="tile"><h4>短縮と出力</h4><p>採否の前の短縮<br>終了前の巡回<br>全操作の再生</p><p style="margin-top:10px"><code>SearchReductions</code><br><code>main</code></p></div></div></figure>
+    </article></section>
+
+  <section class="source-map footer" id="source-map">
+    <p class="eyebrow">参照箇所</p><h2 style="margin-top:7px">説明をコードと記録に戻す</h2>
+    <p class="small muted" style="margin-top:12px">参照したコード：<a href="../src/bin/v076_relative_tuned.cpp">src/bin/v076_relative_tuned.cpp</a>（3,634行、2026-10-01に確認）。リンクはプロジェクト内の原資料を開く。行番号はこの版に対応する。</p>
+    <div class="table-wrap"><table><thead><tr><th>説明対象</th><th>コードのまとまり</th><th>開始行</th></tr></thead><tbody>
+      <tr><td>7つの調整値、時間補正</td><td><code>constexpr</code>、<code>LOCAL_SECONDS</code></td><td class="num">12、23</td></tr>
+      <tr><td>地形と操作規則</td><td><code>Board</code>、<code>apply</code></td><td class="num">297、345</td></tr>
+      <tr><td>空盤面の見積もり / 実際の配送</td><td><code>EmptyDP</code> / <code>DeliveryDP</code></td><td class="num">375 / 494</td></tr>
+      <tr><td>木と合流の初期構築</td><td><code>tree_baseline</code>、<code>Constructor</code></td><td class="num">654、746</td></tr>
+      <tr><td>経路 / 転送 / 共同の短縮</td><td><code>smooth_routes</code>、<code>compress_pair_transfers</code>、<code>compress_joint_windows</code></td><td class="num">1012、1051、1291</td></tr>
+      <tr><td>同色 / 向き / 有限区間の短縮</td><td><code>compress_mono_dispatch</code>、<code>polish_coupled_routes</code>、<code>compress_finite_windows</code></td><td class="num">1418、1586、1894</td></tr>
+      <tr><td>終了前 / 探索中の短縮</td><td><code>polish_final_reductions</code> / <code>SearchReductions</code></td><td class="num">1976 / 2021</td></tr>
+      <tr><td>踏み台の減点と依存拡張</td><td><code>broken_support_jumps_value</code>、<code>grow_dependency</code></td><td class="num">2247、2261</td></tr>
+      <tr><td>除去と修復</td><td><code>extract</code>、<code>extract_from</code></td><td class="num">2338、2343</td></tr>
+      <tr><td>個体 / 2順序 / 束の再挿入</td><td><code>insert_at</code>、<code>insert_two_orders</code>、<code>insert_packet</code></td><td class="num">2401、2529、2570</td></tr>
+      <tr><td>途中の束 / 個体分解 / 2塔</td><td><code>packet_neighbor</code>、<code>flexible_neighbor</code>、<code>paired_neighbor</code></td><td class="num">2715、2741、2800</td></tr>
+      <tr><td>並べ替え / 候補 / 探索の反復</td><td><code>causal_reorder</code>、<code>make_candidates</code>、<code>optimize</code></td><td class="num">2932、3030、3182</td></tr>
+      <tr><td>独立再生 / 全体の順序</td><td><code>validate_output</code> / <code>main</code></td><td class="num">3423 / 3480</td></tr>
+    </tbody></table></div>
+    <div class="footnotes"><p><b>資料の根拠：</b>動作と数値は現在のv076のコードに、調整値の採用理由は<a href="../notes/experiments/v076.md">v076の実験ノート</a>に基づく。導入時の狙いにはv022、v048、v049、v052、v054、v057、v059の記録を参照した。問題規則は<a href="../problem_description.txt">problem_description.txt</a>、記号は<a href="../notes/notations.md">notations.md</a>に合わせた。</p><p><b>図の扱い：</b>小さい盤面、費用比較、操作列、折れ線の手数は理解のための教材例だ。受理確率と優先度はv076の式から計算する。solverの実行結果を生成した資料ではない。</p><p><b>ソースの識別：</b><span class="mono" style="overflow-wrap:anywhere">SHA-256 88b6eadd6d328bf980b53afc96b17320cff1df15f3717cb457ab7df91e3316f4</span></p></div>
+  </section>
+  <script>
+  (() => {
+    'use strict';
+    const $ = id => document.getElementById(id);
+    const colors = {ink:'#192e38',muted:'#597078',line:'#dce4e0',green:'#16735e',soft:'#e7f3ec',blue:'#39749d',blueSoft:'#eaf2f8',orange:'#b96824',orangeSoft:'#fff2e5',purple:'#795da0',red:'#b65360'};
+    const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const text = (x,y,s,anchor='middle',size=14,fill=colors.ink,weight=400) => `<text x="${x}" y="${y}" text-anchor="${anchor}" style="font-size:${size}px;fill:${fill};font-weight:${weight}">${esc(s)}</text>`;
+    const rect = (x,y,w,h,fill='#fff',stroke=colors.line,r=10) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" stroke="${stroke}"/>`;
+    const line = (x1,y1,x2,y2,stroke=colors.muted,width=1.5,dash='') => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${width}"${dash?` stroke-dasharray="${dash}"`:''}/>`;
+    const circle = (x,y,r,fill=colors.green,stroke='none') => `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${stroke}"/>`;
+    const node = (x,y,w,h,title,sub='',fill='#fff') => rect(x-w/2,y-h/2,w,h,fill)+text(x,y+(sub?-5:5),title,'middle',15,colors.ink,600)+(sub?text(x,y+18,sub,'middle',12,colors.muted):'');
+    const paths = points => points.map((p,i)=>`${i?'L':'M'}${p[0]},${p[1]}`).join(' ');
+    const seriesPath = (points,color,width=2,dash='') => `<path d="${paths(points)}" fill="none" stroke="${color}" stroke-width="${width}" stroke-linejoin="round"${dash?` stroke-dasharray="${dash}"`:''}/>`;
+    const charts = new Map();
+    function chart(id,title,draw){
+      const root=$(id); let lastWidth=-1;
+      function redraw(force=false){
+        const w=Math.max(260,Math.round(root.getBoundingClientRect().width));
+        if(!force&&w===lastWidth)return; lastWidth=w;
+        const marker=`arrow-${id}`;
+        const arrow=(x1,y1,x2,y2,color=colors.muted,dash='')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="1.7"${dash?` stroke-dasharray="${dash}"`:''} marker-end="url(#${marker})"/>`;
+        const bent=(points,color=colors.muted,dash='')=>`<path d="${paths(points)}" fill="none" stroke="${color}" stroke-width="1.7"${dash?` stroke-dasharray="${dash}"`:''} marker-end="url(#${marker})"/>`;
+        const [height,body]=draw(w,{arrow,bent});
+        root.innerHTML=`<svg role="img" aria-label="${esc(title)}" viewBox="0 0 ${w} ${height}" width="${w}" height="${height}"><title>${esc(title)}</title><defs><marker id="${marker}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3.5 L0,7 Z" fill="context-stroke"/></marker></defs>${body}</svg>`;
+      }
+      charts.set(id,()=>redraw(true)); new ResizeObserver(()=>redraw()).observe(root); redraw();
+    }
+    const pieceColors={red:['#f9e5e6','#9d3847','赤'],blue:['#e6f0f8','#2f668d','青'],gold:['#fbf0d6','#8c6514','黄'],purple:['#eee6f5','#715098','紫'],green:['#e7f3ec','#16735e','追加']};
+    function svgTower(x,bottom,pieces,size=40){
+      let out=''; pieces.forEach((c,i)=>{const [bg,fg,label]=pieceColors[c];out+=rect(x-size/2,bottom-28*(i+1),size,24,bg,'none',7)+text(x,bottom-28*i-11,label,'middle',12,fg,500);});
+      return out+line(x-size/2-6,bottom,x+size/2+6,bottom,colors.muted,1.3);
+    }
+    function htmlPieces(ids){return ids.map(c=>`<span class="piece ${c}">${pieceColors[c][2]}</span>`).join('');}
+
+    const jumpCaptions=[
+      '出発点の高さは4。下の2匹を残し、上の黄と紫を3マス先へ送る。着地先には青が1匹いる。',
+      '下の赤と青はそのまま残る。黄と紫の2匹が跳ぶ。下に2匹いるので、飛距離の上限は2+1=3マス。',
+      '上側が反転し、着地先は下から「青、紫、黄」となる。着地前の高さは1+2=3で、容量8以内。',
+      '黄の巣で最上段の黄が帰巣する。次の紫は異色なので止まる。着地先には下から「青、紫」が残る。'
+    ];
+    $('jump-buttons').addEventListener('click',e=>{
+      const b=e.target.closest('[data-jump]');if(!b)return;const s=Number(b.dataset.jump);
+      $('jump-buttons').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+      $('jump-source').innerHTML=htmlPieces(s===0?['red','blue','gold','purple']:['red','blue']);
+      $('jump-flight').innerHTML=s===1?htmlPieces(['gold','purple']):'';
+      $('jump-dest').innerHTML=htmlPieces(s<2?['blue']:s===2?['blue','purple','gold']:['blue','purple']);
+      $('jump-caption').textContent=jumpCaptions[s];
+    });
+    const removedOps=new Set([3,4,6,7,10,11]);
+    const lnsCaptions=[
+      '現在解から、作り直すスライムの集合を選ぶ。盤面上の色だけでなく、どの個体がどのジャンプに乗っていたかを追う。',
+      '6つの命令は乗客が全員消えるため省ける。残る便の支持と積み順を調整する。14−6=8手。',
+      '踏み台を失った残存便の経路を修復する。この例では2手増え、残存個体を帰す骨格は10手となる。',
+      '取り除いた個体を、骨格の時間表へ戻す。同乗も利用し、この例では追加5手で15手の候補ができる。',
+      '短縮が2手を削り、13手の候補となる。現在解14手より短いので受理し、最良解も13手へ更新する。'
+    ];
+    $('lns-buttons').addEventListener('click',e=>{
+      const b=e.target.closest('[data-lns]');if(!b)return;const s=Number(b.dataset.lns);
+      $('lns-buttons').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+      let out='<div class="op-lane"><span class="lane-label">元の14手</span>';
+      for(let i=1;i<=14;i++)out+=`<span class="op ${s&&removedOps.has(i)?'removed':''}">${i}</span>`;out+='</div>';
+      if(s>0){out+=`<div class="op-lane"><span class="lane-label">${s===1?'除去後 8手':s===2?'修復後 10手':s===3?'候補 15手':'短縮後 13手'}</span>`;
+        for(let i=1;i<=14;i++){if(removedOps.has(i))continue;out+=`<span class="op">${i}</span>`;if(s>=2&&i===5)out+='<span class="op repair">修復1</span><span class="op repair">修復2</span>';}
+        if(s>=3)for(let i=1;i<=(s===3?5:3);i++)out+=`<span class="op new">追加${i}</span>`;out+='</div>';
+      }
+      $('lns-lanes').innerHTML=out;$('lns-caption').textContent=lnsCaptions[s];
+    });
+
+    chart('build-tree','同色を中継点へ集めて巣へ運ぶ木',(w,{arrow})=>{
+      let out='';
+      if(w>570){const a=65,b=w*.47,c=w-90;
+        out+=node(a,48,104,54,'同色の塔','葉')+node(a,168,104,54,'同色の塔','葉');
+        out+=arrow(a+54,48,b-62,104,colors.green)+arrow(a+54,168,b-62,112,colors.green);
+        out+=node(b,108,120,70,'中継点','同色を束にする',colors.soft)+arrow(b+62,108,c-58,108,colors.green);
+        out+=node(c,108,112,70,'同色の巣','全帰巣へ',colors.soft);return [212,out];}
+      out+=node(w*.25,38,110,56,'同色の塔','葉')+node(w*.75,38,110,56,'同色の塔','葉');
+      out+=arrow(w*.25,68,w/2-22,105,colors.green)+arrow(w*.75,68,w/2+22,105,colors.green);
+      out+=node(w/2,139,144,64,'中継点','同色を束にする',colors.soft)+arrow(w/2,173,w/2,203,colors.green);
+      out+=node(w/2,237,144,64,'同色の巣','全帰巣へ',colors.soft);return [280,out];
+    });
+    chart('best-chart','現在解と最良解の手数の違い',(w)=>{
+      const left=40,right=w-16,top=54,bottom=218;
+      const current=[14,13,14,12,12,11],best=[14,13,13,12,12,11];
+      const xx=i=>left+(right-left)*i/5,yy=v=>bottom-(v-10.5)/4.5*(bottom-top);
+      let out=text(0,20,'操作回数 T','start',12,colors.muted);
+      [11,12,13,14,15].forEach(n=>{out+=line(left,yy(n),right,yy(n),colors.line,1)+text(left-12,yy(n)+5,n,'end',12,colors.muted);});
+      out+=line(left,bottom,right,bottom,colors.muted);
+      const legendX=w>500?w-260:5;
+      out+=line(legendX,36,legendX+25,36,colors.green,2.5)+text(legendX+32,41,'現在解','start',12);
+      out+=line(legendX+115,36,legendX+140,36,colors.blue,2.5,'5 4')+text(legendX+147,41,'最良解','start',12);
+      out+=seriesPath(best.map((v,i)=>[xx(i),yy(v)]),colors.blue,5,'5 4');
+      out+=seriesPath(current.map((v,i)=>[xx(i),yy(v)]),colors.green,2.5);
+      current.forEach((v,i)=>{out+=circle(xx(i),yy(v),4,colors.green)+text(xx(i),yy(v)-13,v,'middle',13,colors.green,600);if(v!==best[i])out+=circle(xx(i),yy(best[i]),4,colors.blue)+text(xx(i),yy(best[i])+22,best[i],'middle',13,colors.blue,600);});
+      for(let i=0;i<6;i++)if(w>500||i%2===0||i===5)out+=text(xx(i),242,i===0?'探索前':`受理${i}`,'middle',12,colors.muted);
+      return [255,out];
+    });
+    let timeRatio=1;
+    chart('time-chart','構築とLNSの時間条件',(w,{arrow})=>{
+      const left=10,right=w-10,at=v=>left+(right-left)*v/1.93;
+      let out=rect(left,40,at(.65)-left,52,colors.blueSoft,'none',6)+rect(at(.65),40,at(1.9)-at(.65),52,colors.soft,'none',0)+rect(at(1.9),40,right-at(1.9),52,colors.orangeSoft,'none',0);
+      out+=text((left+at(.65))/2,64,'構築','middle',15,colors.blue,600)+text((left+at(.65))/2,83,'終了は状況で変わる','middle',11,colors.muted);
+      out+=text((at(.65)+at(1.9))/2,71,'LNSで作り直す','middle',15,colors.green,600);
+      out+=line(left,107,right,107,colors.muted)+line(left,101,left,113)+text(left,131,'0秒','start',12,colors.muted);
+      out+=line(at(.65),24,at(.65),107,colors.blue,1.2,'4 3')+text(at(.65),16,`${(.65*timeRatio).toFixed(3)}秒`,'middle',12,colors.blue);
+      out+=line(at(1.9),33,at(1.9),107,colors.green,1.2)+text(right,15,`${(1.9*timeRatio).toFixed(3)}秒まで反復`,'end',12,colors.green);
+      out+=arrow(right,98,right,143,colors.orange)+text(right,165,`${(1.93*timeRatio).toFixed(3)}秒：期限チェック`,'end',12,colors.orange)+text(right,186,'残り時間で終了前の共同短縮','end',12,colors.muted);
+      return [200,out];
+    });
+    function setTime(r){timeRatio=r;$('time-production').setAttribute('aria-pressed',String(r===1));$('time-local').setAttribute('aria-pressed',String(r===.8));$('time-construction').textContent=(.65*r).toFixed(3)+'秒未満';$('time-lns').textContent=(1.9*r).toFixed(3)+'秒未満';$('time-end').textContent=(1.93*r).toFixed(3)+'秒';charts.get('time-chart')();}
+    $('time-production').addEventListener('click',()=>setTime(1));$('time-local').addEventListener('click',()=>setTime(.8));
+
+    function priority(){
+      const saved=Math.max(0,Number($('priority-saved').value)||0),broken=Math.max(0,Number($('priority-broken').value)||0),size=Math.min(12,Math.max(1,Number($('priority-size').value)||1)),u=Number($('priority-noise').value)/100;
+      const value=(saved-.83*broken+.25)/Math.pow(size,.95)*(.8+.4*u);
+      $('priority-u').textContent=u.toFixed(2);$('priority-value').textContent=value.toFixed(3);
+      $('priority-detail').textContent=`修復の代理負担は${(.83*broken).toFixed(2)}、乱数の倍率は${(.8+.4*u).toFixed(2)}。${value<0?'負の優先度も候補から除外しない。':'値の大きい候補を先に試す。'}`;
+    }
+    ['priority-saved','priority-broken','priority-size','priority-noise'].forEach(id=>$(id).addEventListener('input',priority));priority();
+
+    let insertMode='ride';
+    chart('insert-chart','時間表への同乗、支持、追加ジャンプ',(w,{arrow})=>{
+      const left=w<430?64:88,right=w-18,top=45,bottom=198;
+      const xx=i=>left+(right-left)*i/4,yy=i=>top+i*76;
+      let out=text(0,18,'位置','start',12,colors.muted);
+      ['出発点p','中継点q','自分の巣'].forEach((s,i)=>{out+=text(left-9,yy(i)+5,s,'end',12,colors.muted)+line(left,yy(i),right,yy(i),colors.line,1);});
+      for(let t=0;t<=4;t++){out+=line(xx(t),top-12,xx(t),bottom+15,colors.line,1,'3 4')+text(xx(t),228,`t${t}`,'middle',12,colors.muted);}
+      out+=arrow(xx(1),yy(0),xx(2),yy(1),colors.blue,'5 4')+arrow(xx(2),yy(0),xx(3),yy(1),colors.blue,'5 4')+arrow(xx(3),yy(1),xx(4),yy(2),colors.blue,'5 4');
+      const points=insertMode==='extra'?[[0,0],[1,1],[2,1],[3,2],[4,2]]:insertMode==='support'?[[0,0],[1,0],[2,0],[3,1],[4,2]]:[[0,0],[1,0],[2,1],[3,1],[4,2]];
+      out+=seriesPath(points.map(([x,y])=>[xx(x),yy(y)]),colors.green,3.2);
+      points.forEach(([x,y],i)=>{out+=circle(xx(x),yy(y),6,colors.green,'#fff');if(i===0)out+=text(xx(x),yy(y)-16,'追加個体','start',12,colors.green);});
+      if(insertMode==='ride'){out+=text((xx(1)+xx(2))/2+8,86,'同乗 0','middle',12,colors.green,600)+text((xx(3)+xx(4))/2-12,170,'同乗 0','middle',12,colors.green,600);}
+      else if(insertMode==='support'){out+=text(xx(2),yy(0)-17,'支持 0','middle',12,colors.green,600)+text((xx(2)+xx(3))/2+12,89,'同乗 0','middle',12,colors.green,600);}
+      else{out+=text((xx(0)+xx(1))/2+8,84,'追加 1','middle',12,colors.green,600)+text((xx(2)+xx(3))/2+8,166,'追加 1','middle',12,colors.green,600);}
+      out+=line(left,251,left+25,251,colors.blue,1.7,'5 4')+text(left+33,256,'背景に予定された便','start',12,colors.muted);
+      return [270,out];
+    });
+    $('insert-buttons').addEventListener('click',e=>{
+      const b=e.target.closest('[data-insert]');if(!b)return;insertMode=b.dataset.insert;
+      $('insert-buttons').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+      $('insert-caption').textContent=insertMode==='ride'?'予定されているジャンプへ同乗する。乗客が1匹増えても命令数は増えないので、この遷移の追加費用は0。':insertMode==='support'?'下段へ残って便の支持になる。元の命令のkを調整し、命令を増やさずに予定を進める。その後の便への同乗も試せる。':'自分のために新しい命令を出す。矢印1つにつき追加費用1。この図では2回の追加ジャンプで巣へ戻る。';
+      charts.get('insert-chart')();
+    });
+    const branch=i=>i%113===0?'reorder':i%17===0?'paired':i%7===0?'packet':'regular';
+    const branchNames={reorder:'操作の並べ替え',paired:'2塔を再構築',packet:'途中の束を再構築',regular:'通常の除去と再挿入'};
+    $('iteration-chips').innerHTML=Array.from({length:126},(_,j)=>{const i=j+1,b=branch(i);return `<span class="iteration-chip ${b}" title="${i}：${branchNames[b]}">${i}</span>`;}).join('');
+    $('iteration-input').addEventListener('input',()=>{const i=Math.max(1,Math.round(Number($('iteration-input').value)||1));$('iteration-result').textContent=branchNames[branch(i)];});
+
+    const temperature=p=>.70*Math.pow(.12/.70,p);
+    const pct=v=>v===0?'0%':v>=.01?(v*100).toFixed(v===1?0:3)+'%':(v*100).toFixed(8).replace(/0+$/,'').replace(/\.$/,'')+'%';
+    chart('anneal-chart','LNS進行と悪化受理の確率',(w)=>{
+      const left=44,right=w-16,top=42,bottom=198;
+      const xx=p=>left+(right-left)*p,yy=v=>bottom-v/.30*(bottom-top);
+      let out=text(0,17,'受理確率','start',12,colors.muted);
+      [0,.1,.2,.3].forEach(v=>{out+=line(left,yy(v),right,yy(v),colors.line,1)+text(left-8,yy(v)+4,`${v*100}%`,'end',12,colors.muted);});
+      [0,.25,.5,.75,1].forEach(p=>{if(w<430&&(p===.25||p===.75))return;out+=text(xx(p),222,`${p*100}%`,'middle',12,colors.muted);});
+      out+=text((left+right)/2,248,'LNSの進行（経過時間の割合）','middle',12,colors.muted);
+      [1,2].forEach(d=>{const pts=Array.from({length:101},(_,i)=>[xx(i/100),yy(Math.exp(-d/temperature(i/100)))]);out+=seriesPath(pts,d===1?colors.green:colors.blue,2.5,d===2?'5 3':'');});
+      const legendX=w>540?w-260:left;
+      out+=line(legendX,31,legendX+20,31,colors.green,2.5)+text(legendX+26,35,'1手悪化','start',12)+line(legendX+113,31,legendX+133,31,colors.blue,2.5,'5 3')+text(legendX+139,35,'2手悪化','start',12);
+      const p=Number($('anneal-progress').value)/100;out+=line(xx(p),top,xx(p),bottom,colors.orange,1.2,'3 3');
+      [1,2].forEach(d=>out+=circle(xx(p),yy(Math.exp(-d/temperature(p))),4.5,d===1?colors.green:colors.blue,'#fff'));
+      return [260,out];
+    });
+    function anneal(){
+      const p=Number($('anneal-progress').value)/100,d=Number($('anneal-delta').value),gap=Number($('anneal-best').value)||0,t=temperature(p);
+      const probability=d<=0?1:(d<=2&&gap<=4?Math.exp(-d/t):0);
+      $('anneal-progress-value').textContent=Math.round(p*100)+'%';$('anneal-temp').textContent=t.toFixed(3);$('anneal-prob').textContent=pct(probability);$('anneal-bar').style.width=(probability*100)+'%';
+      $('anneal-status').textContent=d<=0?'現在解以下の手数なので、同一の操作列を除いて受理する。':d>2?'現在解より3手以上長いので、温度にかかわらず見送る。':gap>4?'最良解より4手を超えて長いので、温度にかかわらず見送る。':'手数の上限内なので、焼きなましの確率で採否を決める。';charts.get('anneal-chart')();
+    }
+    ['anneal-progress','anneal-delta','anneal-best'].forEach(id=>$(id).addEventListener('input',anneal));anneal();
+
+    chart('capacity-chart','親の容量を空けてから子の束を送る',(w,{arrow})=>{
+      const wide=w>650,centers=wide?[w/6,w/2,w*5/6]:[w/2,w/2,w/2];let out='';
+      const titles=['① そのままは着地できない','② 親の束を先へ送る','③ 空いた親へ集める'];
+      for(let i=0;i<3;i++){
+        const cx=centers[i],base=wide?180:i*185+173,dx=wide?38:65;
+        out+=text(cx,base-143,titles[i],'middle',13,colors.ink,600);
+        const child=i<2?4:0,parent=i===0?6:i===1?1:5;
+        for(let j=0;j<child;j++)out+=rect(cx-dx-18,base-21*(j+1),36,17,colors.blueSoft,'none',4);
+        for(let j=0;j<parent;j++)out+=rect(cx+dx-18,base-21*(j+1),36,17,colors.soft,'none',4);
+        out+=text(cx-dx,base+22,`子 ${child}匹`,'middle',12,colors.blue)+text(cx+dx,base+22,`親 ${parent}匹`,'middle',12,colors.green);
+        if(i===0)out+=text(cx,base-68,'4+6 > 8','middle',12,colors.orange);
+        if(i===1)out+=arrow(cx+dx+20,base-72,cx+dx+45,base-114,colors.green);
+        if(i===2)out+=arrow(cx-dx+20,base-35,cx+dx-21,base-35,colors.blue);
+      }
+      return [wide?218:574,out];
+    });
+    chart('split-chart','塔の分割と反転した上側の帰巣費用',(w,{arrow})=>{
+      const left=w<470?w*.23:w*.25,right=w*.7;
+      let out=text(left,20,'元の束','middle',14,colors.ink,600)+svgTower(left,185,['red','blue','gold','purple'],52);
+      out+=line(left-40,125,left+40,125,colors.orange,2,'4 3')+text(left,205,'k=2で分割','middle',12,colors.orange);
+      out+=arrow(left+32,151,right-31,206,colors.green)+arrow(left+32,87,right-31,87,colors.purple);
+      out+=svgTower(right,232,['red','blue'],52)+text(right,258,'下側の費用','middle',13,colors.green);
+      out+=svgTower(right,114,['purple','gold'],52)+text(right,38,'反転した上側の費用','middle',13,colors.purple);
+      out+=text(w/2,287,'1回の分割 + 下側の費用 + 上側の費用','middle',w<470?12:14,colors.muted);
+      return [304,out];
+    });
+    chart('support-chart','下段の支持の喪失とジャンプの成立',(w,{arrow})=>{
+      const lost=Number($('support-lost').value),all=$('support-all-removed').checked,remaining=4-lost;
+      const px=w*.23,qx=w*.79,bottom=189;
+      let out=text(px,20,'下段の支持','middle',13,colors.ink,600);
+      for(let i=0;i<4;i++){const y=bottom-(i+1)*30;out+=rect(px-27,y,54,25,i<remaining?colors.soft:colors.orangeSoft,'none',7)+text(px,y+18,i<remaining?'残る':'除去','middle',12,i<remaining?colors.green:colors.orange);}
+      out+=circle(px,bottom-146,14,all?colors.line:colors.blue)+text(px,bottom-142,all?'−':'乗客','middle',all?14:11,all?colors.muted:'#fff');
+      out+=line(px-36,bottom,px+36,bottom);
+      out+=arrow(px+34,43,qx-30,43,all?colors.muted:remaining>=3?colors.green:colors.orange,remaining<3&&!all?'5 4':'');
+      out+=node(qx,88,94,64,'着地点','4マス先');
+      out+=text((px+qx)/2,29,all?'便も省く':remaining>=3?'予定の便は成立':'支持が不足','middle',13,all?colors.muted:remaining>=3?colors.green:colors.orange);
+      out+=text(qx,161,`残る支持 ${remaining}匹`,'middle',12,colors.muted)+text(qx,185,`最大 ${remaining+1}マス`,'middle',14,remaining>=3?colors.green:colors.orange,600);
+      return [212,out];
+    });
+    function support(){const lost=Number($('support-lost').value),remain=4-lost,all=$('support-all-removed').checked;$('support-lost-value').textContent=lost+'匹';$('support-caption').textContent=all?'乗客も全員除くので便自体を省ける。下段が不足していても、修復が必要な残存便としては数えない。':lost<=1?`${lost}匹失っても下段は${remain}匹。最大${remain+1}マス跳べるので、残る便は壊れない。`:`${lost}匹失うと下段は${remain}匹。最大${remain+1}マスしか跳べず、4マスの予定便は壊れる。修復するか、乗客も除いて解き直す。`;charts.get('support-chart')();}
+    $('support-lost').addEventListener('input',support);$('support-all-removed').addEventListener('change',support);support();
+
+    chart('dependency-chart','支持の依存を利用側へ追って広げる',(w,{arrow})=>{
+      const wide=w>650;let out='';
+      if(wide){const xs=[w/6,w/2,w*5/6];['Aを除く','Bも除く','Cも除く'].forEach((s,i)=>out+=node(xs[i],76,132,65,s,['元の集合 2匹','乗客 3匹を追加','さらに2匹を追加'][i],colors.soft));for(let i=0;i<2;i++){out+=arrow(xs[i]+68,76,xs[i+1]-68,76,colors.green)+text((xs[i]+xs[i+1])/2,34,'便が壊れる','middle',12,colors.orange);}out+=text(w/2,143,'2匹 → 5匹 → 7匹。追加後も支持不足を再検査する。','middle',13,colors.muted);return [164,out];}
+      [57,163,269].forEach((y,i)=>{out+=node(w/2,y,176,65,['Aを除く','Bも除く','Cも除く'][i],['元の集合 2匹','乗客3匹を追加：計5匹','さらに2匹を追加：計7匹'][i],colors.soft);if(i<2)out+=arrow(w/2,y+34,w/2,y+71,colors.green)+text(w/2+12,y+58,'便が壊れる','start',12,colors.orange);});return [317,out];
+    });
+    chart('gap-chart','分割境界の追加個体が同乗か支持を選ぶ',(w,{arrow})=>{
+      const wide=w>650;let out='';const sx=wide?w*.19:w/2,sy=wide?204:178;
+      out+=svgTower(sx,sy,['red','blue','green','gold','purple'],48)+text(sx,wide?28:18,'元の塔の隙間2へ入れる','middle',13,colors.ink,600);
+      out+=line(sx-35,sy-70,sx+35,sy-70,colors.orange,1.5,'4 3');
+      const ry=wide?sy:385,x1=wide?w*.51:w*.27,x2=wide?w*.83:w*.75;
+      out+=svgTower(x1,ry,['red','blue','green'],48)+text(x1,ry+30,'下に残る','middle',14,colors.green,600)+text(x1,ry+53,'kを2→3へ','middle',12,colors.muted);
+      out+=svgTower(x2,ry,['red','blue'],48)+text(x2,ry+30,'上側と飛ぶ','middle',14,colors.blue,600)+text(x2,ry+53,'kは2のまま','middle',12,colors.muted);
+      out+=text(x1,ry-118,'上側：黄と紫','middle',12,colors.muted)+text(x2,ry-118,'上側：追加、黄、紫','middle',12,colors.muted);
+      if(wide)out+=arrow(sx+34,sy-70,x1-34,ry-60,colors.green)+arrow(sx+34,sy-98,x2-34,ry-100,colors.blue);
+      else out+=arrow(sx-12,sy+7,x1,ry-142,colors.green)+arrow(sx+12,sy+7,x2,ry-142,colors.blue);
+      return [wide?273:452,out];
+    });
+    chart('event-chart','予定操作で変わった2マス付近の状態を更新する',(w,{arrow})=>{
+      const wide=w>650,centers=wide?[w*.24,w*.76]:[w/2,w/2];let out='';
+      centers.forEach((cx,i)=>{const base=wide?115:96+i*195,dx=wide?62:70;
+        out+=text(cx,base-70,i===0?'予定操作の前':'予定操作の後','middle',14,colors.ink,600);
+        out+=node(cx-dx,base-14,90,48,'p','出発点',i?colors.soft:'#fff')+node(cx+dx,base-14,90,48,'q','着地点',i?colors.soft:'#fff');
+        out+=node(cx-dx,base+55,90,48,'r','待機状態')+node(cx+dx,base+55,90,48,'s','待機状態');
+        out+=arrow(cx-dx+46,base-14,cx+dx-46,base-14,i?colors.green:colors.blue);
+        if(i){out+=line(cx-dx,base+30,cx-dx,base+8,colors.green,1.5,'4 3')+line(cx+dx,base+30,cx+dx,base+8,colors.green,1.5,'4 3');}
+      });
+      if(wide)out+=arrow(w*.45,108,w*.55,108,colors.orange);else out+=arrow(w/2,179,w/2,214,colors.orange);
+      return [wide?230:390,out];
+    });
+    chart('prefix-chart','固定した前半と再構築する後半',(w)=>{
+      const left=10,right=w-10,cut=left+(right-left)*.42;
+      let out=rect(left,55,cut-left-4,43,'#edf0ed','none',6)+rect(cut+4,55,right-cut-4,43,colors.blueSoft,'none',6)+rect(left,130,cut-left-4,43,'#edf0ed','none',6)+rect(cut+4,130,right-cut-4,43,colors.soft,'none',6);
+      out+=text((left+cut)/2,82,'固定する前半','middle',13,colors.muted)+text((cut+right)/2,82,'元の後半','middle',13,colors.blue);
+      out+=text((left+cut)/2,157,'同じ前半','middle',13,colors.muted)+text((cut+right)/2,157,'作り直した後半','middle',13,colors.green);
+      out+=line(cut,35,cut,186,colors.orange,1.5,'4 3')+text(cut,22,'開始時刻','middle',13,colors.orange);
+      out+=text(w/2,218,'境界の元の塔を復元し、後半をつなぐ','middle',13,colors.muted);
+      return [237,out];
+    });
+    chart('reorder-chart','接触順序の依存を守った操作の並べ替え',(w,{arrow})=>{
+      const wide=w>570;let out='';
+      if(wide){const x1=w*.19,x2=w*.51,x3=w*.83;
+        out+=node(x1,54,136,59,'① p→q','qに触れる')+node(x2,54,136,59,'③ q→r','qに触れる')+node(x3,54,120,59,'④ r→s','rに触れる');
+        out+=arrow(x1+70,54,x2-70,54,colors.green)+arrow(x2+70,54,x3-62,54,colors.green);
+        out+=node(x1,164,136,59,'② u→v','上の列と独立',colors.blueSoft)+text(x2,168,'②は①と③の間から動かせる','middle',13,colors.blue);
+        out+=text(w/2,225,'①→③→④の順序は保つ。独立な②の位置を変える。','middle',13,colors.muted);return [245,out];
+      }
+      out+=node(w/2,37,176,58,'① p→q','qに触れる')+arrow(w/2,68,w/2,97,colors.green)+node(w/2,130,176,58,'③ q→r','qに触れる')+arrow(w/2,161,w/2,190,colors.green)+node(w/2,224,176,58,'④ r→s','rに触れる');
+      out+=node(w/2,319,176,58,'② u→v','上の列と独立',colors.blueSoft)+text(w/2,374,'②は上の接触順序に影響しない','middle',12,colors.blue);return [393,out];
+    });
+    chart('boundary-chart','同じ入口と出口を持つ短い置換区間',(w,{bent})=>{
+      const left=45,right=w-45,mid=w/2,box=Math.min(200,w-125);
+      let out=node(left,118,78,78,'入口','同じ盤面')+node(right,118,78,78,'出口','同じ盤面');
+      out+=rect(mid-box/2,20,box,62,colors.blueSoft,'none',10)+text(mid,47,'元の区間','middle',14,colors.blue,600)+text(mid,68,'6操作','middle',12,colors.muted);
+      out+=rect(mid-box/2,157,box,62,colors.soft,'none',10)+text(mid,184,'置換した区間','middle',14,colors.green,600)+text(mid,205,'4操作','middle',12,colors.muted);
+      out+=bent([[left,77],[left,51],[mid-box/2-4,51]],colors.blue)+bent([[mid+box/2+4,51],[right,51],[right,77]],colors.blue);
+      out+=bent([[left,160],[left,188],[mid-box/2-4,188]],colors.green)+bent([[mid+box/2+4,188],[right,188],[right,160]],colors.green);
+      out+=text(mid,257,'途中の積み順や経路は変えてよい','middle',13,colors.muted);return [278,out];
+    });
+    chart('version-chart','v076の派生関係',(w,{arrow})=>{
+      let out='';if(w>790){const xs=[65,w*.285,w*.495,w*.705,w-65];
+        out+=node(xs[0],120,110,58,'v057','共通の土台');out+=node(xs[1],52,110,58,'v058','共同75%',colors.blueSoft)+node(xs[1],176,110,58,'v059','修復負担',colors.soft);
+        out+=arrow(xs[0]+58,105,xs[1]-58,64,colors.blue)+arrow(xs[0]+58,137,xs[1]-58,165,colors.green);
+        out+=node(xs[2],176,110,58,'v071','命名を整理',colors.soft)+node(xs[3],176,126,58,'v073〜v075','設定の調整',colors.soft)+node(xs[4],176,110,58,'v076','一組を固定',colors.soft);
+        for(let i=1;i<4;i++)out+=arrow(xs[i]+(i===3?66:58),176,xs[i+1]-(i===2?67:58),176,colors.green);return [220,out];}
+      const lhs=w*.23,rhs=w*.72;
+      out+=node(w/2,34,144,58,'v057','共通の土台')+arrow(w/2-28,65,lhs,102,colors.blue)+arrow(w/2+28,65,rhs,102,colors.green);
+      out+=node(lhs,137,116,60,'v058','共同75%',colors.blueSoft)+node(rhs,137,116,60,'v059','修復負担',colors.soft);
+      out+=arrow(rhs,168,rhs,201,colors.green)+node(rhs,232,116,58,'v071','命名を整理',colors.soft)+arrow(rhs,263,rhs,296,colors.green);
+      out+=node(rhs,328,142,58,'v073〜v075','設定の調整',colors.soft)+arrow(rhs,359,rhs,392,colors.green)+node(rhs,424,116,58,'v076','一組を固定',colors.soft);
+      out+=text(lhs,230,'同じ探索本体','middle',12,colors.muted)+text(lhs,251,'局所的な差分','middle',12,colors.muted);return [468,out];
+    });
+    chart('finish-chart','終了前の短縮の反復',(w,{arrow,bent})=>{
+      const cx=w/2,nw=Math.min(w-100,330);let out='';
+      out+=node(cx,42,nw,70,'6種類を順に巡回','短くなる間は繰り返す',colors.soft);
+      out+=arrow(cx,79,cx,110,colors.green)+node(cx,142,Math.min(nw,190),58,'手数が不変？','変われば6種類を再適用');
+      out+=bent([[cx-nw/2,142],[18,142],[18,42],[cx-nw/2-4,42]],colors.green)+text(22,98,'短縮','start',12,colors.green);
+      out+=arrow(cx,173,cx,208,colors.green)+text(cx+10,196,'不変','start',12,colors.muted);
+      out+=node(cx,242,nw,62,'有限区間の共同探索','期限と探索予算の範囲で試す',colors.blueSoft);
+      out+=bent([[cx+nw/2+3,242],[w-17,242],[w-17,42],[cx+nw/2+3,42]],colors.green)+`<g transform="translate(${w-25},154) rotate(-90)">${text(0,0,'短縮したら戻る','middle',12,colors.green)}</g>`;
+      out+=arrow(cx,275,cx,309,colors.muted)+node(cx,337,Math.min(nw,200),54,'終了','短縮なし、または期限');return [379,out];
+    });
+
+    function revealHash(){
+      const id=decodeURIComponent(location.hash.slice(1));if(!id)return;
+      const target=$(id);if(!target)return;
+      let parent=target.parentElement;
+      while(parent){if(parent.tagName==='DETAILS')parent.open=true;parent=parent.parentElement;}
+      requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));
+    }
+    addEventListener('hashchange',revealHash);
+    document.querySelectorAll('.technical').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)charts.forEach(redraw=>redraw());}));
+    revealHash();
+    function reading(){const total=document.documentElement.scrollHeight-innerHeight,progress=total>0?Math.min(100,Math.max(0,scrollY/total*100)):0;$('read-percent').textContent=Math.round(progress)+'%';$('read-bar').style.width=progress+'%';let active='high';document.querySelectorAll('[data-reading-level]').forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.35)active=s.dataset.readingLevel;});document.querySelectorAll('[data-level]').forEach(a=>{const isActive=a.dataset.level===active;a.classList.toggle('active',isActive);if(isActive)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}
+    addEventListener('scroll',reading,{passive:true});addEventListener('resize',reading);reading();
+    $('print-button').addEventListener('click',()=>window.print());
+  })();
+  </script>
+</main>
+</div>
+</body>
+</html>

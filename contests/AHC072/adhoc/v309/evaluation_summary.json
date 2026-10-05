@@ -1,0 +1,31 @@
+{
+  "provenance": {
+    "source": "AHC072_v309_v310_evaluation_bundle.zip/v309_delivery/results/summary.json",
+    "publication_note": "Selected fields copied from the preserved experiment; no new solver execution or training. Full outputs and case records remain in the conversation archive.",
+    "original_main": "ab24ffd99df59fba6af1b3fb968496f8b7ea37a0",
+    "publication_base": "e06427c79f4c576f71ecf5759ccf5a5430c9d996",
+    "parent_sha256": "4be4bd07bee152643fe4620f50573764a5a74167a81d5f9c280f0655789feaed",
+    "compiler": "GCC 14.2.0",
+    "local": false,
+    "workers": 2,
+    "runs_per_case_per_version": 1,
+    "relative_reference": "Frozen minimum over previously saved solvers including v800; not the official competition leaderboard.",
+    "eval_viewer_registered": false
+  },
+  "in100": {
+    "v210": {"sum_T": 20832, "mean_T": 208.32, "relative_mean_100": 90.55767130733706, "max_wall_seconds": 1.9298719079999955},
+    "v309": {"sum_T": 20942, "mean_T": 209.42, "relative_mean_100": 90.20068197983875, "max_wall_seconds": 2.1131987689999505, "wins_ties_losses": [36,14,50], "CI95_delta_mean": [-0.03,2.32]},
+    "v310": {"sum_T": 21248, "mean_T": 212.48, "relative_mean_100": 89.56610677437884, "max_wall_seconds": 1.930331193000029, "wins_ties_losses": [37,7,56], "CI95_delta_mean": [2.28,6.23]}
+  },
+  "validation100": {
+    "v210": {"sum_T": 23301, "mean_T": 233.01},
+    "v309": {"sum_T": 23433, "mean_T": 234.33},
+    "v310": {"sum_T": 23879, "mean_T": 238.79}
+  },
+  "validation": {"measured_outputs": 600, "all_legal": true, "all_E_zero": true, "python_cpp_scorers_agree": true, "official_rust_scorer_executed": false, "all_external_within_1_9": false},
+  "decision": {"v309_adopted": false, "v310_adopted": false, "mean_at_most_200": false},
+  "source_sha256": {
+    "v309": "4fa4171c1ab9d0990b8eb278aad4dbb624fbea0656ee168647ccab611035b625",
+    "v310": "4137c141490a09805952290ff2812a8590a17f2047197cc6347d0f90580b9219"
+  }
+}

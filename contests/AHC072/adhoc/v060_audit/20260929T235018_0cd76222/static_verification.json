@@ -1,0 +1,12 @@
+{
+  "search_matches_frozen_v800": true,
+  "parent_sha256": "974610eec5377d946857c10b7b1898dfc332f66dc9860e5ab4abe7109c57e99d",
+  "source_sha256": "84d7a5219ebc8aa3b1207cba1f1b92d10ad933e8202f5bae97bff07cc8ae8bbe",
+  "config": {
+    "workers": 2,
+    "minutes_per_case": 5,
+    "restart_seconds": 60,
+    "progress_seconds": 10,
+    "seed": 80020260929
+  }
+}

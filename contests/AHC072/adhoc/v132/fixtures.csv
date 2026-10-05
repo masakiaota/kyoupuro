@@ -1,0 +1,4 @@
+tag,best,status,labels,expanded,transition_checks,physical_checks,bound_checks
+fixture_0,3,first_improvement,9,4,4,126,28
+fixture_1,3,restricted_exhausted,2,2,2,30,5
+fixture_2,4,first_improvement,6,1,1,50,7

@@ -1,0 +1,66 @@
+[
+  {
+    "old": "// v055_final_reductions.cpp",
+    "new": "// v057_search_reductions.cpp"
+  },
+  {
+    "old": "// v055 additions: invoked only after v050's existing final reductions.",
+    "new": "// Endpoint-preserving reductions shared by candidate and final polishing."
+  },
+  {
+    "old": "JointWindowStats& stats) {\n    vector<JointWindow> windows;Board boundary=geo.initial;",
+    "new": "JointWindowStats& stats,int first_begin=0,int first_end=INT_MAX) {\n    vector<JointWindow> windows;Board boundary=geo.initial;"
+  },
+  {
+    "old": "if((first&15)==0&&clk.elapsed()>=deadline){++stats.deadlines;break;}\n        array<int16_t,MV> local;",
+    "new": "if((first&15)==0&&clk.elapsed()>=deadline){++stats.deadlines;break;}\n        if(first<first_begin||first>=first_end){geo.apply(boundary,answer[first]);continue;}\n        array<int16_t,MV> local;"
+  },
+  {
+    "old": "JointWindowStats& stats,vector<JointPatch>* audit=nullptr) {\n    auto windows=collectJointWindows(answer,deadline,stats);",
+    "new": "JointWindowStats& stats,vector<JointPatch>* audit=nullptr,\n                                 int first_begin=0,int first_end=INT_MAX) {\n    auto windows=collectJointWindows(answer,deadline,stats,first_begin,first_end);"
+  },
+  {
+    "old": "int& saved,bool allow_slack=true) {\n    CoupledRoutesTimer timer;",
+    "new": "int& saved,bool allow_slack=true,\n                                 int first_begin=0,int first_end=INT_MAX) {\n    CoupledRoutesTimer timer;"
+  },
+  {
+    "old": "int shorter=0;const int end=coupleTransferWindow(answer,i,board,output,shorter,deadline,allow_slack);",
+    "new": "if(i<first_begin||i>=first_end){geo.apply(board,answer[i]);output.push_back(answer[i++]);continue;}\n        int shorter=0;const int end=coupleTransferWindow(answer,i,board,output,shorter,deadline,allow_slack);"
+  },
+  {
+    "old": "vector<FiniteWindow> collect_finite_windows(const vector<Move>& answer,double deadline,FiniteStats& stats) {",
+    "new": "vector<FiniteWindow> collect_finite_windows(const vector<Move>& answer,double deadline,FiniteStats& stats,\n                                            int first_begin=0,int first_end=INT_MAX) {"
+  },
+  {
+    "old": "if((first&15)==0&&clk.elapsed()>=deadline){++stats.global_deadlines;break;}\n        array<int16_t,MV> local;",
+    "new": "if((first&15)==0&&clk.elapsed()>=deadline){++stats.global_deadlines;break;}\n        if(first<first_begin||first>=first_end){geo.apply(boundary,answer[first]);continue;}\n        array<int16_t,MV> local;"
+  },
+  {
+    "old": "vector<FinitePatch>* audit=nullptr) {\n    auto windows=collect_finite_windows(answer,deadline,stats);",
+    "new": "vector<FinitePatch>* audit=nullptr,int first_begin=0,int first_end=INT_MAX) {\n    auto windows=collect_finite_windows(answer,deadline,stats,first_begin,first_end);"
+  },
+  {
+    "old": "// Persistent IDs are initial floor-cell indices.",
+    "new": "// v057: shorten completed candidates before the unchanged acceptance rule.\n// Focus is a selection heuristic, not a claim of equal suffix board states.\nstruct SearchFocus {\n    int first=0,last=0;\n    static bool same(Move a,Move b) {\n        return a.p==b.p&&a.k==b.k&&a.d==b.d&&a.l==b.l;\n    }\n    static SearchFocus between(const vector<Move>& current,const vector<Move>& candidate) {\n        int prefix=0,old_end=int(current.size()),new_end=int(candidate.size());\n        while(prefix<min(old_end,new_end)&&same(current[prefix],candidate[prefix]))++prefix;\n        if(prefix==old_end&&prefix==new_end)return {};\n        while(old_end>prefix&&new_end>prefix&&same(current[old_end-1],candidate[new_end-1])){--old_end;--new_end;}\n        return {max(0,prefix-64),min(int(candidate.size()),new_end+64)};\n    }\n};\n#ifdef AHC072_SEARCH_AUDIT\nvoid auditSearchPass(int,const vector<Move>&,const vector<Move>&);\n#endif\nstruct SearchReductions {\n    array<int64_t,FINAL_KINDS> calls{},saved{},accepted_saved{};\n    array<double,FINAL_KINDS> seconds{};\n    int64_t candidates=0,shortened=0,initial_saved=0,initial_reorder_saved=0;\n    int64_t nonworse_created=0,best_created=0,probability_changed=0,accepted_shortened=0;\n    int64_t eligible=0,budget_skips=0,heavy_calls=0,focus_operations=0,cheap_rounds=0;\n    int64_t interrupted=0,budget_overruns=0;\n    double heavy_seconds=0;\n    int next_heavy=0;\n    JointWindowStats joint;\n    FiniteStats finite;\n    static constexpr array<int,4> heavy_kinds={FINAL_JOINT,FINAL_STRICT,FINAL_SLACK,FINAL_FINITE};\n\n    template<class Reduce>\n    void apply(vector<Move>& answer,int kind,Reduce reduce) {\n        const double begin=clk.elapsed();++calls[kind];\n        try {\n            auto result=reduce();\n            if(result.size()>answer.size())throw logic_error(\"candidate reduction increased moves\");\n#ifdef AHC072_SEARCH_AUDIT\n            auditSearchPass(kind,answer,result);\n#endif\n            saved[kind]+=answer.size()-result.size();answer=move(result);\n        } catch(const Deadline&) {\n            seconds[kind]+=clk.elapsed()-begin;++interrupted;throw;\n        }\n        seconds[kind]+=clk.elapsed()-begin;\n    }\n    void cheap(vector<Move>& answer,double deadline) {\n        while(clk.elapsed()<deadline) {\n            const size_t before=answer.size();++cheap_rounds;\n            apply(answer,FINAL_PAIR,[&]{return compress_pair_transfers(answer);});\n            if(clk.elapsed()<deadline)\n                apply(answer,FINAL_MONO,[&]{return compress_mono_dispatch(answer,deadline);});\n            if(answer.size()==before)break;\n            if(clk.elapsed()<deadline)\n                apply(answer,FINAL_ROUTE,[&]{return smoothRoutes(answer);});\n        }\n    }\n    static bool near_best(int iteration,size_t candidate,size_t current,size_t best) {\n        return iteration%4==0&&candidate<=current+2&&candidate<=best+4;\n    }\n    static double remaining_budget(double elapsed,double spent) {\n        // Share a bounded fraction of elapsed LNS time; retain an initial allowance.\n        return 0.03*max(PROGRAM_TIME_LIMIT_SEC*0.02,elapsed)-spent;\n    }\n    void heavy(vector<Move>& answer,int kind,double deadline,SearchFocus focus) {\n        switch(kind) {\n            case FINAL_JOINT:\n                apply(answer,kind,[&]{return compressJointWindows(answer,deadline,joint,nullptr,focus.first,focus.last);});break;\n            case FINAL_STRICT:case FINAL_SLACK:\n                apply(answer,kind,[&]{int removed;return polishCoupledRoutes(answer,deadline,removed,kind==FINAL_SLACK,focus.first,focus.last);});break;\n            case FINAL_FINITE:\n                apply(answer,kind,[&]{return compress_finite_windows(answer,deadline,finite,nullptr,focus.first,focus.last);});break;\n            default:throw logic_error(\"unknown candidate reduction\");\n        }\n    }\n    void candidate(vector<Move>& answer,const vector<Move>& current,size_t best,\n                   int iteration,double started,double end) {\n        cheap(answer,end);\n        if(!near_best(iteration,answer.size(),current.size(),best))return;\n        const SearchFocus focus=SearchFocus::between(current,answer);\n        if(focus.first==focus.last)return;\n        ++eligible;\n        const double begin=clk.elapsed(),allowance=remaining_budget(begin-started,heavy_seconds);\n        if(allowance<PROGRAM_TIME_LIMIT_SEC*0.0005||begin>=end){++budget_skips;return;}\n        const double deadline=min(end,begin+min(allowance,PROGRAM_TIME_LIMIT_SEC*0.0015));\n        const int kind=heavy_kinds[next_heavy];next_heavy=(next_heavy+1)%int(heavy_kinds.size());\n        ++heavy_calls;focus_operations+=focus.last-focus.first;\n        const size_t before=answer.size();\n        heavy(answer,kind,deadline,focus);\n        const double finish=clk.elapsed();heavy_seconds+=finish-begin;\n        budget_overruns+=finish>deadline;\n        if(answer.size()<before)cheap(answer,end);\n    }\n    void summary() const {\n        LOCAL_NOTE(\n            auto count=[&](const string& key,int64_t n){trace.count_by(\"search_reductions_\"+key,n);};\n            count(\"candidates\",candidates);count(\"shortened\",shortened);count(\"initial_saved\",initial_saved);\n            count(\"initial_reorder_saved\",initial_reorder_saved);count(\"nonworse_created\",nonworse_created);\n            count(\"best_created\",best_created);count(\"probability_changed\",probability_changed);\n            count(\"accepted_shortened\",accepted_shortened);count(\"eligible\",eligible);count(\"budget_skips\",budget_skips);\n            count(\"heavy_calls\",heavy_calls);count(\"focus_operations\",focus_operations);count(\"cheap_rounds\",cheap_rounds);\n            count(\"interrupted\",interrupted);count(\"budget_overruns\",budget_overruns);\n            for(int kind=0;kind<FINAL_KINDS;kind++) {\n                const string name=final_reduction_names[kind];\n                count(name+\"_calls\",calls[kind]);count(name+\"_saved\",saved[kind]);count(name+\"_accepted_saved\",accepted_saved[kind]);\n                trace.add_time_ms(\"search_reductions_\"+name,seconds[kind]*1000.0);\n            }\n            trace.add_time_ms(\"search_reductions_heavy\",heavy_seconds*1000.0);\n            count(\"joint_searches\",joint.searches);count(\"joint_caps\",joint.state_caps);count(\"joint_deadlines\",joint.deadlines);\n            count(\"finite_attempts\",finite.attempts);count(\"finite_deadlines\",finite.deadlines);\n            count(\"finite_global_deadlines\",finite.global_deadlines);count(\"finite_caps\",finite.capped);\n        )\n    }\n} search_reductions;\n// End v057 candidate reductions.\n\n// Persistent IDs are initial floor-cell indices."
+  },
+  {
+    "old": "auto current=smoothRoutes(best);\n        LOCAL_NOTE(trace.count_by(\"lns_initial_shortcut_saved\",",
+    "new": "auto current=smoothRoutes(best);\n        const size_t before_initial_reductions=current.size();\n        search_reductions.cheap(current,PROGRAM_TIME_LIMIT_SEC);\n        search_reductions.initial_saved+=before_initial_reductions-current.size();\n        LOCAL_NOTE(trace.count_by(\"lns_initial_shortcut_saved\","
+  },
+  {
+    "old": "auto polished=smoothRoutes(reordered);\n            if(polished.size()<current.size()) {",
+    "new": "auto polished=smoothRoutes(reordered);\n            const size_t before_initial_reductions=polished.size();\n            search_reductions.cheap(polished,PROGRAM_TIME_LIMIT_SEC);\n            search_reductions.initial_reorder_saved+=before_initial_reductions-polished.size();\n            if(polished.size()<current.size()) {"
+  },
+  {
+    "old": "shortcuts+=int(trial.size())-int(polished.size());\n            if(sameMoves(polished,current))",
+    "new": "shortcuts+=int(trial.size())-int(polished.size());\n            LOCAL_NOTE(const size_t before_reductions=polished.size();const auto savings_before=search_reductions.saved;)\n            search_reductions.candidate(polished,current,best.size(),iteration,lnsStart,end);\n            LOCAL_NOTE(\n                ++search_reductions.candidates;search_reductions.shortened+=polished.size()<before_reductions;\n                search_reductions.nonworse_created+=before_reductions>current.size()&&polished.size()<=current.size();\n                search_reductions.best_created+=before_reductions>=best.size()&&polished.size()<best.size();\n                auto probability=[&](size_t n){int d=int(n)-int(current.size());return d<=0?1.0:(d<=2&&n<=best.size()+4?exp(-d/temperature):0.0);};\n                search_reductions.probability_changed+=probability(before_reductions)!=probability(polished.size());\n            )\n            if(sameMoves(polished,current))"
+  },
+  {
+    "old": "if(accept) {\n                ++accepted;",
+    "new": "if(accept) {\n                LOCAL_NOTE(\n                    search_reductions.accepted_shortened+=polished.size()<before_reductions;\n                    for(int kind=0;kind<FINAL_KINDS;kind++)search_reductions.accepted_saved[kind]+=search_reductions.saved[kind]-savings_before[kind];\n                )\n                ++accepted;"
+  },
+  {
+    "old": "local_dependency.summary();local_late_start.summary();local_two_order.summary();",
+    "new": "local_dependency.summary();local_late_start.summary();local_two_order.summary();search_reductions.summary();"
+  }
+]

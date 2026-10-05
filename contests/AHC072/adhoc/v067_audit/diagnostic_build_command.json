@@ -1,0 +1,17 @@
+[
+  "g++-15",
+  "-std=gnu++23",
+  "-O2",
+  "-Wall",
+  "-Wextra",
+  "-march=native",
+  "-pthread",
+  "-ftrivial-auto-var-init=zero",
+  "-fopenmp",
+  "-DLOCAL",
+  "-fsanitize=undefined",
+  "-fsanitize-undefined-trap-on-error",
+  "adhoc/bin/check_v067_schedule.cpp",
+  "-o",
+  "adhoc/v067_audit/check_v067_schedule"
+]

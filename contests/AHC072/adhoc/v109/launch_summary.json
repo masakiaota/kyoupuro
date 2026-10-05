@@ -1,0 +1,191 @@
+{
+  "config": {
+    "seed": 109003,
+    "environments": 128,
+    "iterations": 240,
+    "seconds": 7200,
+    "final_deadline": "2026-10-04T18:00:00+09:00",
+    "max_episode_steps": 512,
+    "gamma": 1.0,
+    "clip": 0.2,
+    "epochs": 4,
+    "minibatch": 256,
+    "value_coef": 0.0,
+    "entropy_coef": 0.001,
+    "bc_coef": 0.0,
+    "bc_batch": 64,
+    "target_kl": 0.03,
+    "initial_lr": 6e-06,
+    "final_lr": 2e-06,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "step_reward": -0.01,
+    "failure_penalty": 30.0,
+    "workers": 8,
+    "model_spec": {
+      "width": 48,
+      "depth": 4,
+      "hidden": 64
+    },
+    "method": "group",
+    "seed_base": 1090000000000,
+    "seed_stride": 64,
+    "boards": 32,
+    "repetitions": 4,
+    "generator_workers": 2,
+    "queue_capacity": 64,
+    "bc_cache_capacity": 128,
+    "bc_pool_cases": 64,
+    "reverse_pool_states": 64,
+    "loss_reference_steps": 400,
+    "reverse_batch": 0,
+    "reverse_coef": 0.0,
+    "completion_workers": 12,
+    "dp_build_budget": 4096
+  },
+  "mechanism": {
+    "passed": true,
+    "all_legally_replayed": true,
+    "value_independent": true,
+    "critic_unchanged": true,
+    "prefix_only_update": true,
+    "optimizer_roundtrip": true,
+    "generator_roundtrip": true,
+    "resume_weight_max_error": 5.960464477539062e-07,
+    "varied_groups": 8,
+    "seconds": 6.846052834007423,
+    "timing": {
+      "nn_collect_seconds": 1.6380619169940474,
+      "dp_wait_seconds": 0.026360667005064897,
+      "dp_cpu_seconds": 0.035407,
+      "dp_tasks": 8
+    },
+    "metrics": {
+      "policy_loss": 0.001455401252314914,
+      "value_loss": 0.0,
+      "entropy": 2.9948017075657845,
+      "approx_kl": 2.644268715812359e-05,
+      "clip_fraction": 0.0,
+      "bc_ce": 0.0,
+      "reverse_ce": 0.0,
+      "gradient_norm": 0.36526468116790056,
+      "updates": 32,
+      "kl_stopped": false,
+      "learning_rate": 6e-06,
+      "policy_loss_scale": 0.636328125,
+      "reverse_samples": 0,
+      "bc_samples": 0
+    },
+    "summary": {
+      "episodes": 32,
+      "successes": 32,
+      "mean_T_completed": 355.34375,
+      "mean_E_finished": 0.0,
+      "mean_cost_all": 3.5534375000000002,
+      "mean_prefix_T": 254.53125,
+      "mean_dp_T": 100.8125,
+      "mean_dp_builds": 78.34375,
+      "statuses": {
+        "completed": 32
+      }
+    },
+    "completed_at": "2026-10-04T04:56:34.229812+00:00"
+  },
+  "audit_before": {
+    "summary": {
+      "episodes": 128,
+      "successes": 128,
+      "mean_T_completed": 354.703125,
+      "mean_E_finished": 0.0,
+      "mean_cost_all": 3.54703125,
+      "mean_prefix_T": 269.078125,
+      "mean_dp_T": 85.625,
+      "mean_dp_builds": 60.2421875,
+      "statuses": {
+        "completed": 128
+      }
+    },
+    "by_boundary": {
+      "0": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 390.4375,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.904375,
+        "mean_prefix_T": 219.4375,
+        "mean_dp_T": 171.0,
+        "mean_dp_builds": 120.9375,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "1": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 313.1875,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.131875,
+        "mean_prefix_T": 218.46875,
+        "mean_dp_T": 94.71875,
+        "mean_dp_builds": 63.8125,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "2": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 363.53125,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.6353125,
+        "mean_prefix_T": 311.3125,
+        "mean_dp_T": 52.21875,
+        "mean_dp_builds": 37.0625,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "3": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 351.65625,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.5165625,
+        "mean_prefix_T": 327.09375,
+        "mean_dp_T": 24.5625,
+        "mean_dp_builds": 19.15625,
+        "statuses": {
+          "completed": 32
+        }
+      }
+    },
+    "checkpoint_sha256": "e9d615587a1a655b7b2818e2f19564619050e2ffd669050b015b7c46766b90d3",
+    "timing": {
+      "nn_collect_seconds": 4.012442874998669,
+      "dp_wait_seconds": 0.024012374997255392,
+      "dp_cpu_seconds": 0.100553,
+      "dp_tasks": 32
+    },
+    "completed_at": "2026-10-04T04:58:59.773907+00:00"
+  },
+  "launch": {
+    "guard_pid": 52508,
+    "guard_directory": "/Users/masaki/Desktop/AHC072/results/nn_rank/v109/20261004_dp_reward_studio/guard_pipeline",
+    "command": [
+      "/Users/masaki/Desktop/AHC072/.venv-nn-v077/bin/python",
+      "adhoc/scripts/memory_guard.py",
+      "--log-dir",
+      "/Users/masaki/Desktop/AHC072/results/nn_rank/v109/20261004_dp_reward_studio/guard_pipeline",
+      "--seconds",
+      "11000",
+      "--gpu-state",
+      "/Users/masaki/Desktop/AHC072/results/nn_rank/v109/20261004_dp_reward_studio/gpu_state.json",
+      "--",
+      "/Users/masaki/Desktop/AHC072/.venv-nn-v077/bin/python",
+      "adhoc/scripts/run_v109_pipeline.py",
+      "--run",
+      "/Users/masaki/Desktop/AHC072/results/nn_rank/v109/20261004_dp_reward_studio"
+    ],
+    "started_at": "2026-10-04T04:58:54.466663+00:00"
+  }
+}

@@ -1,0 +1,918 @@
+{
+  "verified_cases": 100,
+  "total": {
+    "groups": 18690,
+    "eligible_groups": 3538,
+    "alternative_selected": 35118,
+    "intermediate_selected": 35130,
+    "builds": 1600,
+    "cuts": 419872
+  },
+  "groups_with_changed_representative": 3538,
+  "case0005_witness_times": [
+    105,
+    106
+  ],
+  "cases": [
+    {
+      "case": "0000.txt",
+      "groups": 30,
+      "eligible_groups": 10,
+      "alternative_selected": 105,
+      "intermediate_selected": 105,
+      "builds": 16,
+      "cuts": 784
+    },
+    {
+      "case": "0001.txt",
+      "groups": 72,
+      "eligible_groups": 21,
+      "alternative_selected": 217,
+      "intermediate_selected": 217,
+      "builds": 16,
+      "cuts": 1728
+    },
+    {
+      "case": "0002.txt",
+      "groups": 89,
+      "eligible_groups": 24,
+      "alternative_selected": 202,
+      "intermediate_selected": 202,
+      "builds": 16,
+      "cuts": 2144
+    },
+    {
+      "case": "0003.txt",
+      "groups": 81,
+      "eligible_groups": 28,
+      "alternative_selected": 277,
+      "intermediate_selected": 277,
+      "builds": 16,
+      "cuts": 1968
+    },
+    {
+      "case": "0004.txt",
+      "groups": 258,
+      "eligible_groups": 38,
+      "alternative_selected": 360,
+      "intermediate_selected": 360,
+      "builds": 16,
+      "cuts": 5536
+    },
+    {
+      "case": "0005.txt",
+      "groups": 515,
+      "eligible_groups": 124,
+      "alternative_selected": 1340,
+      "intermediate_selected": 1340,
+      "builds": 16,
+      "cuts": 11664
+    },
+    {
+      "case": "0006.txt",
+      "groups": 108,
+      "eligible_groups": 18,
+      "alternative_selected": 175,
+      "intermediate_selected": 175,
+      "builds": 16,
+      "cuts": 2432
+    },
+    {
+      "case": "0007.txt",
+      "groups": 117,
+      "eligible_groups": 18,
+      "alternative_selected": 175,
+      "intermediate_selected": 175,
+      "builds": 16,
+      "cuts": 2576
+    },
+    {
+      "case": "0008.txt",
+      "groups": 112,
+      "eligible_groups": 18,
+      "alternative_selected": 172,
+      "intermediate_selected": 172,
+      "builds": 16,
+      "cuts": 2592
+    },
+    {
+      "case": "0009.txt",
+      "groups": 55,
+      "eligible_groups": 16,
+      "alternative_selected": 166,
+      "intermediate_selected": 166,
+      "builds": 16,
+      "cuts": 1424
+    },
+    {
+      "case": "0010.txt",
+      "groups": 44,
+      "eligible_groups": 12,
+      "alternative_selected": 113,
+      "intermediate_selected": 113,
+      "builds": 16,
+      "cuts": 1104
+    },
+    {
+      "case": "0011.txt",
+      "groups": 159,
+      "eligible_groups": 20,
+      "alternative_selected": 180,
+      "intermediate_selected": 180,
+      "builds": 16,
+      "cuts": 3472
+    },
+    {
+      "case": "0012.txt",
+      "groups": 111,
+      "eligible_groups": 28,
+      "alternative_selected": 253,
+      "intermediate_selected": 253,
+      "builds": 16,
+      "cuts": 2608
+    },
+    {
+      "case": "0013.txt",
+      "groups": 130,
+      "eligible_groups": 34,
+      "alternative_selected": 362,
+      "intermediate_selected": 362,
+      "builds": 16,
+      "cuts": 3152
+    },
+    {
+      "case": "0014.txt",
+      "groups": 392,
+      "eligible_groups": 63,
+      "alternative_selected": 610,
+      "intermediate_selected": 610,
+      "builds": 16,
+      "cuts": 8336
+    },
+    {
+      "case": "0015.txt",
+      "groups": 510,
+      "eligible_groups": 109,
+      "alternative_selected": 1065,
+      "intermediate_selected": 1065,
+      "builds": 16,
+      "cuts": 11696
+    },
+    {
+      "case": "0016.txt",
+      "groups": 116,
+      "eligible_groups": 15,
+      "alternative_selected": 137,
+      "intermediate_selected": 137,
+      "builds": 16,
+      "cuts": 2640
+    },
+    {
+      "case": "0017.txt",
+      "groups": 217,
+      "eligible_groups": 19,
+      "alternative_selected": 180,
+      "intermediate_selected": 180,
+      "builds": 16,
+      "cuts": 4704
+    },
+    {
+      "case": "0018.txt",
+      "groups": 48,
+      "eligible_groups": 7,
+      "alternative_selected": 65,
+      "intermediate_selected": 65,
+      "builds": 16,
+      "cuts": 1136
+    },
+    {
+      "case": "0019.txt",
+      "groups": 706,
+      "eligible_groups": 100,
+      "alternative_selected": 949,
+      "intermediate_selected": 949,
+      "builds": 16,
+      "cuts": 14992
+    },
+    {
+      "case": "0020.txt",
+      "groups": 153,
+      "eligible_groups": 22,
+      "alternative_selected": 178,
+      "intermediate_selected": 178,
+      "builds": 16,
+      "cuts": 3344
+    },
+    {
+      "case": "0021.txt",
+      "groups": 41,
+      "eligible_groups": 8,
+      "alternative_selected": 81,
+      "intermediate_selected": 81,
+      "builds": 16,
+      "cuts": 1008
+    },
+    {
+      "case": "0022.txt",
+      "groups": 33,
+      "eligible_groups": 15,
+      "alternative_selected": 150,
+      "intermediate_selected": 150,
+      "builds": 16,
+      "cuts": 880
+    },
+    {
+      "case": "0023.txt",
+      "groups": 73,
+      "eligible_groups": 11,
+      "alternative_selected": 92,
+      "intermediate_selected": 92,
+      "builds": 16,
+      "cuts": 1584
+    },
+    {
+      "case": "0024.txt",
+      "groups": 80,
+      "eligible_groups": 25,
+      "alternative_selected": 279,
+      "intermediate_selected": 279,
+      "builds": 16,
+      "cuts": 1888
+    },
+    {
+      "case": "0025.txt",
+      "groups": 35,
+      "eligible_groups": 5,
+      "alternative_selected": 54,
+      "intermediate_selected": 54,
+      "builds": 16,
+      "cuts": 768
+    },
+    {
+      "case": "0026.txt",
+      "groups": 85,
+      "eligible_groups": 21,
+      "alternative_selected": 209,
+      "intermediate_selected": 209,
+      "builds": 16,
+      "cuts": 2160
+    },
+    {
+      "case": "0027.txt",
+      "groups": 121,
+      "eligible_groups": 27,
+      "alternative_selected": 285,
+      "intermediate_selected": 285,
+      "builds": 16,
+      "cuts": 2816
+    },
+    {
+      "case": "0028.txt",
+      "groups": 214,
+      "eligible_groups": 50,
+      "alternative_selected": 499,
+      "intermediate_selected": 499,
+      "builds": 16,
+      "cuts": 4960
+    },
+    {
+      "case": "0029.txt",
+      "groups": 268,
+      "eligible_groups": 37,
+      "alternative_selected": 338,
+      "intermediate_selected": 338,
+      "builds": 16,
+      "cuts": 5680
+    },
+    {
+      "case": "0030.txt",
+      "groups": 341,
+      "eligible_groups": 75,
+      "alternative_selected": 832,
+      "intermediate_selected": 832,
+      "builds": 16,
+      "cuts": 7824
+    },
+    {
+      "case": "0031.txt",
+      "groups": 91,
+      "eligible_groups": 18,
+      "alternative_selected": 174,
+      "intermediate_selected": 174,
+      "builds": 16,
+      "cuts": 2032
+    },
+    {
+      "case": "0032.txt",
+      "groups": 115,
+      "eligible_groups": 25,
+      "alternative_selected": 237,
+      "intermediate_selected": 237,
+      "builds": 16,
+      "cuts": 2656
+    },
+    {
+      "case": "0033.txt",
+      "groups": 151,
+      "eligible_groups": 12,
+      "alternative_selected": 119,
+      "intermediate_selected": 119,
+      "builds": 16,
+      "cuts": 3056
+    },
+    {
+      "case": "0034.txt",
+      "groups": 407,
+      "eligible_groups": 95,
+      "alternative_selected": 991,
+      "intermediate_selected": 991,
+      "builds": 16,
+      "cuts": 9264
+    },
+    {
+      "case": "0035.txt",
+      "groups": 27,
+      "eligible_groups": 10,
+      "alternative_selected": 101,
+      "intermediate_selected": 101,
+      "builds": 16,
+      "cuts": 672
+    },
+    {
+      "case": "0036.txt",
+      "groups": 226,
+      "eligible_groups": 19,
+      "alternative_selected": 160,
+      "intermediate_selected": 160,
+      "builds": 16,
+      "cuts": 4656
+    },
+    {
+      "case": "0037.txt",
+      "groups": 206,
+      "eligible_groups": 44,
+      "alternative_selected": 436,
+      "intermediate_selected": 436,
+      "builds": 16,
+      "cuts": 4880
+    },
+    {
+      "case": "0038.txt",
+      "groups": 106,
+      "eligible_groups": 20,
+      "alternative_selected": 194,
+      "intermediate_selected": 194,
+      "builds": 16,
+      "cuts": 2432
+    },
+    {
+      "case": "0039.txt",
+      "groups": 70,
+      "eligible_groups": 17,
+      "alternative_selected": 181,
+      "intermediate_selected": 181,
+      "builds": 16,
+      "cuts": 1616
+    },
+    {
+      "case": "0040.txt",
+      "groups": 74,
+      "eligible_groups": 30,
+      "alternative_selected": 322,
+      "intermediate_selected": 322,
+      "builds": 16,
+      "cuts": 1920
+    },
+    {
+      "case": "0041.txt",
+      "groups": 94,
+      "eligible_groups": 8,
+      "alternative_selected": 88,
+      "intermediate_selected": 88,
+      "builds": 16,
+      "cuts": 1968
+    },
+    {
+      "case": "0042.txt",
+      "groups": 296,
+      "eligible_groups": 52,
+      "alternative_selected": 550,
+      "intermediate_selected": 550,
+      "builds": 16,
+      "cuts": 6608
+    },
+    {
+      "case": "0043.txt",
+      "groups": 110,
+      "eligible_groups": 31,
+      "alternative_selected": 339,
+      "intermediate_selected": 339,
+      "builds": 16,
+      "cuts": 2608
+    },
+    {
+      "case": "0044.txt",
+      "groups": 159,
+      "eligible_groups": 34,
+      "alternative_selected": 348,
+      "intermediate_selected": 348,
+      "builds": 16,
+      "cuts": 3616
+    },
+    {
+      "case": "0045.txt",
+      "groups": 202,
+      "eligible_groups": 40,
+      "alternative_selected": 384,
+      "intermediate_selected": 384,
+      "builds": 16,
+      "cuts": 4528
+    },
+    {
+      "case": "0046.txt",
+      "groups": 166,
+      "eligible_groups": 18,
+      "alternative_selected": 172,
+      "intermediate_selected": 172,
+      "builds": 16,
+      "cuts": 3552
+    },
+    {
+      "case": "0047.txt",
+      "groups": 343,
+      "eligible_groups": 58,
+      "alternative_selected": 553,
+      "intermediate_selected": 553,
+      "builds": 16,
+      "cuts": 7664
+    },
+    {
+      "case": "0048.txt",
+      "groups": 251,
+      "eligible_groups": 27,
+      "alternative_selected": 236,
+      "intermediate_selected": 236,
+      "builds": 16,
+      "cuts": 5392
+    },
+    {
+      "case": "0049.txt",
+      "groups": 203,
+      "eligible_groups": 25,
+      "alternative_selected": 226,
+      "intermediate_selected": 226,
+      "builds": 16,
+      "cuts": 4288
+    },
+    {
+      "case": "0050.txt",
+      "groups": 106,
+      "eligible_groups": 27,
+      "alternative_selected": 289,
+      "intermediate_selected": 289,
+      "builds": 16,
+      "cuts": 2528
+    },
+    {
+      "case": "0051.txt",
+      "groups": 104,
+      "eligible_groups": 21,
+      "alternative_selected": 206,
+      "intermediate_selected": 206,
+      "builds": 16,
+      "cuts": 2448
+    },
+    {
+      "case": "0052.txt",
+      "groups": 192,
+      "eligible_groups": 24,
+      "alternative_selected": 242,
+      "intermediate_selected": 242,
+      "builds": 16,
+      "cuts": 4096
+    },
+    {
+      "case": "0053.txt",
+      "groups": 101,
+      "eligible_groups": 28,
+      "alternative_selected": 281,
+      "intermediate_selected": 281,
+      "builds": 16,
+      "cuts": 2304
+    },
+    {
+      "case": "0054.txt",
+      "groups": 290,
+      "eligible_groups": 57,
+      "alternative_selected": 554,
+      "intermediate_selected": 554,
+      "builds": 16,
+      "cuts": 6480
+    },
+    {
+      "case": "0055.txt",
+      "groups": 290,
+      "eligible_groups": 43,
+      "alternative_selected": 388,
+      "intermediate_selected": 388,
+      "builds": 16,
+      "cuts": 6384
+    },
+    {
+      "case": "0056.txt",
+      "groups": 176,
+      "eligible_groups": 34,
+      "alternative_selected": 333,
+      "intermediate_selected": 333,
+      "builds": 16,
+      "cuts": 3952
+    },
+    {
+      "case": "0057.txt",
+      "groups": 231,
+      "eligible_groups": 40,
+      "alternative_selected": 405,
+      "intermediate_selected": 409,
+      "builds": 16,
+      "cuts": 5152
+    },
+    {
+      "case": "0058.txt",
+      "groups": 287,
+      "eligible_groups": 64,
+      "alternative_selected": 634,
+      "intermediate_selected": 634,
+      "builds": 16,
+      "cuts": 6624
+    },
+    {
+      "case": "0059.txt",
+      "groups": 45,
+      "eligible_groups": 12,
+      "alternative_selected": 112,
+      "intermediate_selected": 112,
+      "builds": 16,
+      "cuts": 1056
+    },
+    {
+      "case": "0060.txt",
+      "groups": 110,
+      "eligible_groups": 32,
+      "alternative_selected": 330,
+      "intermediate_selected": 330,
+      "builds": 16,
+      "cuts": 2656
+    },
+    {
+      "case": "0061.txt",
+      "groups": 263,
+      "eligible_groups": 65,
+      "alternative_selected": 645,
+      "intermediate_selected": 645,
+      "builds": 16,
+      "cuts": 6112
+    },
+    {
+      "case": "0062.txt",
+      "groups": 170,
+      "eligible_groups": 16,
+      "alternative_selected": 158,
+      "intermediate_selected": 158,
+      "builds": 16,
+      "cuts": 3616
+    },
+    {
+      "case": "0063.txt",
+      "groups": 233,
+      "eligible_groups": 46,
+      "alternative_selected": 440,
+      "intermediate_selected": 440,
+      "builds": 16,
+      "cuts": 5280
+    },
+    {
+      "case": "0064.txt",
+      "groups": 128,
+      "eligible_groups": 40,
+      "alternative_selected": 401,
+      "intermediate_selected": 401,
+      "builds": 16,
+      "cuts": 3136
+    },
+    {
+      "case": "0065.txt",
+      "groups": 81,
+      "eligible_groups": 16,
+      "alternative_selected": 171,
+      "intermediate_selected": 171,
+      "builds": 16,
+      "cuts": 2016
+    },
+    {
+      "case": "0066.txt",
+      "groups": 387,
+      "eligible_groups": 86,
+      "alternative_selected": 940,
+      "intermediate_selected": 938,
+      "builds": 16,
+      "cuts": 8688
+    },
+    {
+      "case": "0067.txt",
+      "groups": 146,
+      "eligible_groups": 40,
+      "alternative_selected": 408,
+      "intermediate_selected": 408,
+      "builds": 16,
+      "cuts": 3392
+    },
+    {
+      "case": "0068.txt",
+      "groups": 410,
+      "eligible_groups": 66,
+      "alternative_selected": 675,
+      "intermediate_selected": 675,
+      "builds": 16,
+      "cuts": 9184
+    },
+    {
+      "case": "0069.txt",
+      "groups": 124,
+      "eligible_groups": 21,
+      "alternative_selected": 208,
+      "intermediate_selected": 208,
+      "builds": 16,
+      "cuts": 2768
+    },
+    {
+      "case": "0070.txt",
+      "groups": 402,
+      "eligible_groups": 72,
+      "alternative_selected": 685,
+      "intermediate_selected": 683,
+      "builds": 16,
+      "cuts": 9184
+    },
+    {
+      "case": "0071.txt",
+      "groups": 381,
+      "eligible_groups": 64,
+      "alternative_selected": 631,
+      "intermediate_selected": 631,
+      "builds": 16,
+      "cuts": 8400
+    },
+    {
+      "case": "0072.txt",
+      "groups": 63,
+      "eligible_groups": 14,
+      "alternative_selected": 135,
+      "intermediate_selected": 135,
+      "builds": 16,
+      "cuts": 1568
+    },
+    {
+      "case": "0073.txt",
+      "groups": 264,
+      "eligible_groups": 33,
+      "alternative_selected": 290,
+      "intermediate_selected": 290,
+      "builds": 16,
+      "cuts": 5424
+    },
+    {
+      "case": "0074.txt",
+      "groups": 91,
+      "eligible_groups": 14,
+      "alternative_selected": 114,
+      "intermediate_selected": 114,
+      "builds": 16,
+      "cuts": 2096
+    },
+    {
+      "case": "0075.txt",
+      "groups": 314,
+      "eligible_groups": 69,
+      "alternative_selected": 725,
+      "intermediate_selected": 725,
+      "builds": 16,
+      "cuts": 7088
+    },
+    {
+      "case": "0076.txt",
+      "groups": 248,
+      "eligible_groups": 49,
+      "alternative_selected": 471,
+      "intermediate_selected": 471,
+      "builds": 16,
+      "cuts": 5648
+    },
+    {
+      "case": "0077.txt",
+      "groups": 72,
+      "eligible_groups": 12,
+      "alternative_selected": 107,
+      "intermediate_selected": 107,
+      "builds": 16,
+      "cuts": 1632
+    },
+    {
+      "case": "0078.txt",
+      "groups": 231,
+      "eligible_groups": 47,
+      "alternative_selected": 456,
+      "intermediate_selected": 456,
+      "builds": 16,
+      "cuts": 5200
+    },
+    {
+      "case": "0079.txt",
+      "groups": 38,
+      "eligible_groups": 11,
+      "alternative_selected": 101,
+      "intermediate_selected": 101,
+      "builds": 16,
+      "cuts": 864
+    },
+    {
+      "case": "0080.txt",
+      "groups": 195,
+      "eligible_groups": 22,
+      "alternative_selected": 216,
+      "intermediate_selected": 216,
+      "builds": 16,
+      "cuts": 4144
+    },
+    {
+      "case": "0081.txt",
+      "groups": 378,
+      "eligible_groups": 68,
+      "alternative_selected": 637,
+      "intermediate_selected": 636,
+      "builds": 16,
+      "cuts": 8240
+    },
+    {
+      "case": "0082.txt",
+      "groups": 320,
+      "eligible_groups": 56,
+      "alternative_selected": 531,
+      "intermediate_selected": 531,
+      "builds": 16,
+      "cuts": 7088
+    },
+    {
+      "case": "0083.txt",
+      "groups": 181,
+      "eligible_groups": 23,
+      "alternative_selected": 225,
+      "intermediate_selected": 225,
+      "builds": 16,
+      "cuts": 3856
+    },
+    {
+      "case": "0084.txt",
+      "groups": 327,
+      "eligible_groups": 46,
+      "alternative_selected": 450,
+      "intermediate_selected": 450,
+      "builds": 16,
+      "cuts": 7184
+    },
+    {
+      "case": "0085.txt",
+      "groups": 144,
+      "eligible_groups": 33,
+      "alternative_selected": 300,
+      "intermediate_selected": 300,
+      "builds": 16,
+      "cuts": 3360
+    },
+    {
+      "case": "0086.txt",
+      "groups": 64,
+      "eligible_groups": 17,
+      "alternative_selected": 167,
+      "intermediate_selected": 167,
+      "builds": 16,
+      "cuts": 1568
+    },
+    {
+      "case": "0087.txt",
+      "groups": 94,
+      "eligible_groups": 20,
+      "alternative_selected": 202,
+      "intermediate_selected": 202,
+      "builds": 16,
+      "cuts": 2128
+    },
+    {
+      "case": "0088.txt",
+      "groups": 129,
+      "eligible_groups": 29,
+      "alternative_selected": 258,
+      "intermediate_selected": 258,
+      "builds": 16,
+      "cuts": 3104
+    },
+    {
+      "case": "0089.txt",
+      "groups": 372,
+      "eligible_groups": 57,
+      "alternative_selected": 554,
+      "intermediate_selected": 554,
+      "builds": 16,
+      "cuts": 8128
+    },
+    {
+      "case": "0090.txt",
+      "groups": 83,
+      "eligible_groups": 35,
+      "alternative_selected": 363,
+      "intermediate_selected": 363,
+      "builds": 16,
+      "cuts": 2208
+    },
+    {
+      "case": "0091.txt",
+      "groups": 80,
+      "eligible_groups": 18,
+      "alternative_selected": 172,
+      "intermediate_selected": 172,
+      "builds": 16,
+      "cuts": 1808
+    },
+    {
+      "case": "0092.txt",
+      "groups": 523,
+      "eligible_groups": 111,
+      "alternative_selected": 1126,
+      "intermediate_selected": 1126,
+      "builds": 16,
+      "cuts": 11904
+    },
+    {
+      "case": "0093.txt",
+      "groups": 56,
+      "eligible_groups": 12,
+      "alternative_selected": 125,
+      "intermediate_selected": 125,
+      "builds": 16,
+      "cuts": 1312
+    },
+    {
+      "case": "0094.txt",
+      "groups": 91,
+      "eligible_groups": 13,
+      "alternative_selected": 129,
+      "intermediate_selected": 129,
+      "builds": 16,
+      "cuts": 2016
+    },
+    {
+      "case": "0095.txt",
+      "groups": 259,
+      "eligible_groups": 43,
+      "alternative_selected": 415,
+      "intermediate_selected": 415,
+      "builds": 16,
+      "cuts": 5584
+    },
+    {
+      "case": "0096.txt",
+      "groups": 80,
+      "eligible_groups": 10,
+      "alternative_selected": 101,
+      "intermediate_selected": 101,
+      "builds": 16,
+      "cuts": 1680
+    },
+    {
+      "case": "0097.txt",
+      "groups": 443,
+      "eligible_groups": 114,
+      "alternative_selected": 1232,
+      "intermediate_selected": 1245,
+      "builds": 16,
+      "cuts": 10256
+    },
+    {
+      "case": "0098.txt",
+      "groups": 99,
+      "eligible_groups": 21,
+      "alternative_selected": 201,
+      "intermediate_selected": 201,
+      "builds": 16,
+      "cuts": 2224
+    },
+    {
+      "case": "0099.txt",
+      "groups": 183,
+      "eligible_groups": 26,
+      "alternative_selected": 268,
+      "intermediate_selected": 268,
+      "builds": 16,
+      "cuts": 4096
+    }
+  ]
+}

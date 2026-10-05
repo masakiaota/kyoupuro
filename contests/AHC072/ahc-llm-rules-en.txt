@@ -1,0 +1,20 @@
+Rules Regarding the Use of Generative AI
+Prohibited Uses
+The following uses of generative AI are prohibited:
+
+Automatically generating a large number of outputs using APIs or scripts
+Techniques that involve automatically sending a large number of the same or different prompts to generate multiple candidates, then evaluating or selecting among them based on scores or other criteria, are explicitly prohibited.
+Example: Using a script to call the same code generation prompt 100 times, collecting the different outputs, and comparing or evaluating them for selection
+Permitted Uses
+The following uses of generative AI are allowed:
+
+Delegating the translation of problem statements to AI
+Obtaining information from AI about unfamiliar knowledge or algorithms
+Asking AI to suggest strategies or algorithmic ideas
+Using AI to assist with implementation tasks such as code completion and bug fixing
+Describing the desired implementation in natural language and delegating code generation to AI (as long as it does not fall under the prohibited uses above)
+Additionally, the following cases are also permitted:
+
+The use of Chain-of-Thought (CoT) type LLMs (e.g., OpenAI o3) or Agent-type AIs (e.g., Claude Code) that autonomously carry out multi-step reasoning or planning in response to a single prompt is not prohibited. However, if they internally execute test cases and generate or select multiple candidates, such behavior falls under the prohibited uses
+Manually resending the same prompt to regenerate code when the AI output contains bugs or behaves unexpectedly is permitted
+The use of tools like Optuna for automated parameter tuning or score evaluation without using generative AI is also allowed. These are explorations based on strategies designed by humans and are distinct from the prohibited act of outsourcing the generation and selection of numerous solutions to generative AI

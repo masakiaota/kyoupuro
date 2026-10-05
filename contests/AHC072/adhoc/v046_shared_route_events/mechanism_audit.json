@@ -1,0 +1,2795 @@
+{
+  "cases": [
+    {
+      "case": "0000.txt",
+      "trace": {
+        "E": 0,
+        "T": 43,
+        "baseline_ops": 53,
+        "baseline_recovery": 0,
+        "board_handle_bytes": 8,
+        "board_payload_bytes": 416,
+        "board_pool_bytes": 1664,
+        "board_pool_free_at_end": 4,
+        "board_pool_slots": 4,
+        "construction_attempts": 864,
+        "construction_completed": 0,
+        "construction_deadlines": 864,
+        "construction_errors": 0,
+        "delivered_slimes": 16,
+        "dp_words": 96,
+        "event_layers": 4950803,
+        "event_reopens": 9544482,
+        "final_ops": 43,
+        "final_recovery": 0,
+        "finish_singles_calls": 0,
+        "floor_cells": 104,
+        "lns_accepted": 7052,
+        "lns_attempts": 28577,
+        "lns_backward_accepted": 154,
+        "lns_backward_attempts": 154,
+        "lns_backward_improvements": 0,
+        "lns_backward_saved": 0,
+        "lns_best_saved": 10,
+        "lns_block_accepted": 361,
+        "lns_block_attempts": 4421,
+        "lns_block_improvements": 0,
+        "lns_candidate_shortcuts": 13270,
+        "lns_deadlines": 0,
+        "lns_dependency_accepted": 447,
+        "lns_dependency_added": 9227,
+        "lns_dependency_attempts": 2037,
+        "lns_dependency_completed": 1911,
+        "lns_dependency_cooldown": 1590,
+        "lns_dependency_current_improvements": 10,
+        "lns_dependency_current_saved": 10,
+        "lns_dependency_extract_failed": 0,
+        "lns_dependency_extracted": 2037,
+        "lns_dependency_generated": 3627,
+        "lns_dependency_gross_removed": 26647,
+        "lns_dependency_improvements": 1,
+        "lns_dependency_insert_failed": 126,
+        "lns_dependency_multistep": 647,
+        "lns_dependency_net_removed": 25022,
+        "lns_dependency_repair_extra_commands": 1625,
+        "lns_dependency_repaired_jumps": 1466,
+        "lns_dependency_saved": 1,
+        "lns_dependency_selected": 6630,
+        "lns_duplicates": 6858,
+        "lns_errors": 0,
+        "lns_flexible_accepted": 332,
+        "lns_flexible_attempts": 2914,
+        "lns_flexible_improvements": 0,
+        "lns_flexible_saved": 0,
+        "lns_improvements": 4,
+        "lns_initial_reorder_saved": 0,
+        "lns_initial_shortcut_saved": 0,
+        "lns_insertions": 118685,
+        "lns_invalid_candidates": 0,
+        "lns_late_start_builds": 7176,
+        "lns_late_start_delay_sum": 876780,
+        "lns_late_start_flexible_accepted": 19,
+        "lns_late_start_flexible_attempts": 394,
+        "lns_late_start_flexible_completed": 380,
+        "lns_late_start_flexible_current_improvements": 2,
+        "lns_late_start_flexible_current_saved": 2,
+        "lns_late_start_flexible_improvements": 0,
+        "lns_late_start_flexible_saved": 0,
+        "lns_late_start_generated": 142519,
+        "lns_late_start_packet_accepted": 1,
+        "lns_late_start_packet_attempts": 169,
+        "lns_late_start_packet_completed": 132,
+        "lns_late_start_packet_current_improvements": 0,
+        "lns_late_start_packet_current_saved": 0,
+        "lns_late_start_packet_improvements": 0,
+        "lns_late_start_packet_saved": 0,
+        "lns_late_start_paired_accepted": 36,
+        "lns_late_start_paired_attempts": 456,
+        "lns_late_start_paired_completed": 356,
+        "lns_late_start_paired_current_improvements": 1,
+        "lns_late_start_paired_current_saved": 1,
+        "lns_late_start_paired_improvements": 0,
+        "lns_late_start_paired_saved": 0,
+        "lns_late_start_primary": 214768,
+        "lns_late_start_split_generated": 14691,
+        "lns_packet_saved": 0,
+        "lns_paired_accepted": 182,
+        "lns_paired_attempts": 1934,
+        "lns_paired_improvements": 0,
+        "lns_paired_saved": 0,
+        "lns_regular_saved": 10,
+        "lns_reorder_attempts": 294,
+        "lns_reorder_improvements": 0,
+        "lns_reorder_saved": 0,
+        "lns_restarts": 123,
+        "lns_saved": 10,
+        "lns_two_order_accepted": 4316,
+        "lns_two_order_alternate_accepted": 543,
+        "lns_two_order_alternate_failed": 9293,
+        "lns_two_order_alternate_finished": 775,
+        "lns_two_order_alternate_improvements": 1,
+        "lns_two_order_alternate_insert_calls": 20414,
+        "lns_two_order_alternate_saved": 5,
+        "lns_two_order_alternate_selected": 775,
+        "lns_two_order_alternate_started": 10068,
+        "lns_two_order_attempts": 10068,
+        "lns_two_order_completed": 10025,
+        "lns_two_order_improvements": 2,
+        "lns_two_order_primary_failed": 287,
+        "lns_two_order_primary_finished": 9781,
+        "lns_two_order_primary_insert_calls": 29151,
+        "lns_two_order_primary_started": 10068,
+        "lns_two_order_raw_saved": 589,
+        "lns_two_order_rescued": 244,
+        "lns_two_order_saved": 8,
+        "lns_two_order_shorter": 531,
+        "lns_two_order_size_2": 4006,
+        "lns_two_order_size_3": 2933,
+        "lns_two_order_size_4": 3129,
+        "lns_uphill": 302,
+        "network_completed": 0,
+        "network_seed_delivery_events": 0,
+        "network_seed_early_stops": 0,
+        "network_seed_forward_events": 0,
+        "network_seed_merges": 0,
+        "network_seed_selected": 0,
+        "network_wins": 0,
+        "output_long_jumps": 4,
+        "output_max_height": 8,
+        "output_max_packet": 8,
+        "output_mixed_moves": 13,
+        "packet_insert_calls": 1507,
+        "pair_transfer_cancellations": 0,
+        "pair_transfer_changed_amount_merges": 0,
+        "pair_transfer_long_merges": 0,
+        "pair_transfer_merges": 0,
+        "pair_transfer_saved": 0,
+        "pair_transfer_separated_merges": 0,
+        "pre_lns_ops": 53,
+        "pre_pair_ops": 43,
+        "shortcut_support_states": 373379,
+        "single_insert_calls": 133742,
+        "validated_moves": 43
+      },
+      "final": {
+        "metrics": {
+          "T": 43,
+          "E": 0,
+          "W": 181,
+          "mixed_moves": 13,
+          "long_jumps": 4,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 12,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 3,
+          "pending_support_long_jumps": 3,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 10,
+          "new_joint_carry_after_home": 31
+        }
+      }
+    },
+    {
+      "case": "0019.txt",
+      "trace": {
+        "E": 0,
+        "T": 660,
+        "baseline_ops": 1057,
+        "baseline_recovery": 0,
+        "board_handle_bytes": 8,
+        "board_payload_bytes": 1472,
+        "board_pool_bytes": 5888,
+        "board_pool_free_at_end": 4,
+        "board_pool_slots": 4,
+        "construction_attempts": 3,
+        "construction_completed": 2,
+        "construction_deadlines": 1,
+        "construction_errors": 0,
+        "delivered_slimes": 217,
+        "dp_words": 5753,
+        "event_layers": 2085779,
+        "event_reopens": 4018096,
+        "final_ops": 660,
+        "final_recovery": 0,
+        "finish_singles_calls": 0,
+        "floor_cells": 368,
+        "lns_accepted": 105,
+        "lns_attempts": 772,
+        "lns_backward_accepted": 4,
+        "lns_backward_attempts": 4,
+        "lns_backward_improvements": 3,
+        "lns_backward_saved": 4,
+        "lns_best_saved": 240,
+        "lns_block_accepted": 10,
+        "lns_block_attempts": 114,
+        "lns_block_improvements": 7,
+        "lns_candidate_shortcuts": 319,
+        "lns_deadlines": 0,
+        "lns_dependency_accepted": 9,
+        "lns_dependency_added": 174,
+        "lns_dependency_attempts": 86,
+        "lns_dependency_completed": 16,
+        "lns_dependency_cooldown": 2,
+        "lns_dependency_current_improvements": 5,
+        "lns_dependency_current_saved": 25,
+        "lns_dependency_extract_failed": 6,
+        "lns_dependency_extracted": 80,
+        "lns_dependency_generated": 88,
+        "lns_dependency_gross_removed": 1677,
+        "lns_dependency_improvements": 5,
+        "lns_dependency_insert_failed": 64,
+        "lns_dependency_multistep": 41,
+        "lns_dependency_net_removed": 862,
+        "lns_dependency_repair_extra_commands": 1004,
+        "lns_dependency_repaired_jumps": 569,
+        "lns_dependency_saved": 25,
+        "lns_dependency_selected": 171,
+        "lns_duplicates": 7,
+        "lns_errors": 0,
+        "lns_flexible_accepted": 8,
+        "lns_flexible_attempts": 82,
+        "lns_flexible_improvements": 6,
+        "lns_flexible_saved": 20,
+        "lns_improvements": 67,
+        "lns_initial_reorder_saved": 0,
+        "lns_initial_shortcut_saved": 15,
+        "lns_insertions": 2660,
+        "lns_invalid_candidates": 0,
+        "lns_late_start_builds": 106,
+        "lns_late_start_delay_sum": 1769586,
+        "lns_late_start_flexible_accepted": 0,
+        "lns_late_start_flexible_attempts": 16,
+        "lns_late_start_flexible_completed": 1,
+        "lns_late_start_flexible_current_improvements": 0,
+        "lns_late_start_flexible_current_saved": 0,
+        "lns_late_start_flexible_improvements": 0,
+        "lns_late_start_flexible_saved": 0,
+        "lns_late_start_generated": 24959,
+        "lns_late_start_packet_accepted": 0,
+        "lns_late_start_packet_attempts": 4,
+        "lns_late_start_packet_completed": 1,
+        "lns_late_start_packet_current_improvements": 0,
+        "lns_late_start_packet_current_saved": 0,
+        "lns_late_start_packet_improvements": 0,
+        "lns_late_start_packet_saved": 0,
+        "lns_late_start_paired_accepted": 3,
+        "lns_late_start_paired_attempts": 7,
+        "lns_late_start_paired_completed": 3,
+        "lns_late_start_paired_current_improvements": 1,
+        "lns_late_start_paired_current_saved": 1,
+        "lns_late_start_paired_improvements": 1,
+        "lns_late_start_paired_saved": 1,
+        "lns_late_start_primary": 81242,
+        "lns_late_start_split_generated": 9000,
+        "lns_packet_saved": 4,
+        "lns_paired_accepted": 8,
+        "lns_paired_attempts": 50,
+        "lns_paired_improvements": 4,
+        "lns_paired_saved": 7,
+        "lns_regular_saved": 201,
+        "lns_reorder_attempts": 8,
+        "lns_reorder_improvements": 5,
+        "lns_reorder_saved": 8,
+        "lns_restarts": 0,
+        "lns_saved": 255,
+        "lns_two_order_accepted": 28,
+        "lns_two_order_alternate_accepted": 5,
+        "lns_two_order_alternate_failed": 51,
+        "lns_two_order_alternate_finished": 7,
+        "lns_two_order_alternate_improvements": 2,
+        "lns_two_order_alternate_insert_calls": 159,
+        "lns_two_order_alternate_saved": 6,
+        "lns_two_order_alternate_selected": 7,
+        "lns_two_order_alternate_started": 58,
+        "lns_two_order_attempts": 58,
+        "lns_two_order_completed": 37,
+        "lns_two_order_improvements": 15,
+        "lns_two_order_primary_failed": 24,
+        "lns_two_order_primary_finished": 34,
+        "lns_two_order_primary_insert_calls": 167,
+        "lns_two_order_primary_started": 58,
+        "lns_two_order_raw_saved": 4,
+        "lns_two_order_rescued": 3,
+        "lns_two_order_saved": 58,
+        "lns_two_order_shorter": 4,
+        "lns_two_order_size_2": 19,
+        "lns_two_order_size_3": 14,
+        "lns_two_order_size_4": 25,
+        "lns_uphill": 0,
+        "network_completed": 2,
+        "network_seed_delivery_events": 18,
+        "network_seed_early_stops": 29,
+        "network_seed_forward_events": 11,
+        "network_seed_merges": 144,
+        "network_seed_selected": 1,
+        "network_wins": 2,
+        "output_long_jumps": 212,
+        "output_max_height": 8,
+        "output_max_packet": 8,
+        "output_mixed_moves": 310,
+        "packet_insert_calls": 32,
+        "pair_transfer_cancellations": 0,
+        "pair_transfer_changed_amount_merges": 2,
+        "pair_transfer_long_merges": 1,
+        "pair_transfer_merges": 2,
+        "pair_transfer_saved": 2,
+        "pair_transfer_separated_merges": 2,
+        "pre_lns_ops": 917,
+        "pre_pair_ops": 662,
+        "shortcut_support_states": 24455,
+        "single_insert_calls": 3202,
+        "validated_moves": 660
+      },
+      "final": {
+        "metrics": {
+          "T": 660,
+          "E": 0,
+          "W": 3182,
+          "mixed_moves": 310,
+          "long_jumps": 212,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 58,
+          "destination_returned": 159,
+          "shared_route_mixed_moves": 144,
+          "shared_route_mixed_distance": 174,
+          "shared_route_long_jumps": 78,
+          "new_joint_carry_after_home": 182,
+          "pending_support_long_jumps": 206,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 7,
+          "shared_route_mixed_moves": 9,
+          "new_joint_carry_after_home": 103
+        }
+      },
+      "seed": {
+        "metrics": {
+          "T": 917,
+          "E": 0,
+          "W": 2978,
+          "mixed_moves": 294,
+          "long_jumps": 206,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 195,
+          "shared_route_mixed_moves": 163,
+          "shared_route_mixed_distance": 204,
+          "shared_route_long_jumps": 120,
+          "new_joint_carry_after_home": 1,
+          "pending_support_long_jumps": 201,
+          "guided_merge_moves": 425,
+          "guided_forward_moves": 12
+        },
+        "witnesses": {
+          "shared_route_mixed_moves": 14,
+          "pending_support_long_jump": 48,
+          "new_joint_carry_after_home": 589
+        }
+      },
+      "events": [
+        [
+          0,
+          1,
+          0,
+          366,
+          348,
+          348
+        ],
+        [
+          1,
+          2,
+          0,
+          63,
+          62,
+          63
+        ],
+        [
+          2,
+          3,
+          0,
+          106,
+          87,
+          106
+        ],
+        [
+          3,
+          4,
+          0,
+          325,
+          307,
+          307
+        ],
+        [
+          4,
+          5,
+          0,
+          279,
+          259,
+          259
+        ],
+        [
+          5,
+          6,
+          0,
+          35,
+          34,
+          35
+        ],
+        [
+          6,
+          7,
+          0,
+          363,
+          345,
+          345
+        ],
+        [
+          7,
+          8,
+          0,
+          46,
+          27,
+          46
+        ],
+        [
+          8,
+          9,
+          0,
+          201,
+          200,
+          200
+        ],
+        [
+          9,
+          11,
+          0,
+          317,
+          297,
+          298
+        ],
+        [
+          11,
+          15,
+          0,
+          298,
+          318,
+          300
+        ],
+        [
+          15,
+          17,
+          0,
+          63,
+          42,
+          63
+        ],
+        [
+          17,
+          20,
+          0,
+          354,
+          321,
+          321
+        ],
+        [
+          20,
+          22,
+          0,
+          106,
+          108,
+          106
+        ],
+        [
+          22,
+          23,
+          0,
+          222,
+          221,
+          222
+        ],
+        [
+          23,
+          27,
+          0,
+          20,
+          4,
+          38
+        ],
+        [
+          27,
+          28,
+          0,
+          362,
+          344,
+          344
+        ],
+        [
+          28,
+          31,
+          0,
+          35,
+          0,
+          35
+        ],
+        [
+          31,
+          32,
+          0,
+          191,
+          173,
+          191
+        ],
+        [
+          32,
+          34,
+          0,
+          46,
+          28,
+          46
+        ],
+        [
+          34,
+          35,
+          0,
+          335,
+          334,
+          335
+        ],
+        [
+          35,
+          37,
+          0,
+          52,
+          15,
+          52
+        ],
+        [
+          37,
+          40,
+          0,
+          295,
+          277,
+          276
+        ],
+        [
+          40,
+          42,
+          0,
+          106,
+          69,
+          106
+        ],
+        [
+          42,
+          45,
+          0,
+          222,
+          242,
+          224
+        ],
+        [
+          45,
+          50,
+          0,
+          348,
+          313,
+          276
+        ],
+        [
+          50,
+          52,
+          0,
+          276,
+          257,
+          256
+        ],
+        [
+          52,
+          55,
+          0,
+          345,
+          291,
+          291
+        ],
+        [
+          55,
+          56,
+          0,
+          307,
+          308,
+          307
+        ],
+        [
+          56,
+          57,
+          0,
+          324,
+          323,
+          324
+        ],
+        [
+          57,
+          58,
+          0,
+          58,
+          57,
+          57
+        ],
+        [
+          58,
+          59,
+          0,
+          78,
+          60,
+          78
+        ],
+        [
+          59,
+          62,
+          0,
+          78,
+          76,
+          98
+        ],
+        [
+          62,
+          64,
+          0,
+          35,
+          18,
+          35
+        ],
+        [
+          64,
+          65,
+          0,
+          300,
+          319,
+          300
+        ],
+        [
+          65,
+          68,
+          0,
+          235,
+          233,
+          232
+        ],
+        [
+          68,
+          71,
+          0,
+          324,
+          359,
+          305
+        ],
+        [
+          71,
+          74,
+          0,
+          306,
+          288,
+          269
+        ],
+        [
+          74,
+          75,
+          0,
+          274,
+          273,
+          273
+        ],
+        [
+          75,
+          76,
+          0,
+          282,
+          263,
+          263
+        ],
+        [
+          76,
+          78,
+          0,
+          57,
+          36,
+          57
+        ],
+        [
+          78,
+          80,
+          0,
+          132,
+          130,
+          132
+        ],
+        [
+          80,
+          82,
+          0,
+          63,
+          65,
+          63
+        ],
+        [
+          82,
+          83,
+          0,
+          365,
+          347,
+          347
+        ],
+        [
+          83,
+          85,
+          0,
+          344,
+          361,
+          343
+        ],
+        [
+          85,
+          91,
+          0,
+          106,
+          90,
+          125
+        ],
+        [
+          91,
+          95,
+          0,
+          63,
+          21,
+          63
+        ],
+        [
+          95,
+          98,
+          0,
+          94,
+          92,
+          95
+        ],
+        [
+          98,
+          101,
+          0,
+          321,
+          244,
+          244
+        ],
+        [
+          101,
+          104,
+          0,
+          244,
+          189,
+          189
+        ],
+        [
+          104,
+          106,
+          0,
+          329,
+          292,
+          311
+        ],
+        [
+          106,
+          109,
+          0,
+          311,
+          347,
+          311
+        ],
+        [
+          109,
+          111,
+          0,
+          311,
+          328,
+          310
+        ],
+        [
+          111,
+          112,
+          0,
+          270,
+          250,
+          250
+        ],
+        [
+          112,
+          115,
+          0,
+          119,
+          103,
+          119
+        ],
+        [
+          115,
+          116,
+          0,
+          46,
+          47,
+          46
+        ],
+        [
+          116,
+          119,
+          0,
+          38,
+          39,
+          40
+        ],
+        [
+          119,
+          120,
+          0,
+          335,
+          352,
+          335
+        ],
+        [
+          120,
+          121,
+          0,
+          358,
+          340,
+          340
+        ],
+        [
+          121,
+          124,
+          0,
+          263,
+          265,
+          266
+        ],
+        [
+          124,
+          126,
+          0,
+          57,
+          55,
+          57
+        ],
+        [
+          126,
+          127,
+          0,
+          350,
+          349,
+          350
+        ],
+        [
+          127,
+          131,
+          0,
+          119,
+          98,
+          116
+        ],
+        [
+          131,
+          134,
+          0,
+          68,
+          30,
+          69
+        ],
+        [
+          134,
+          137,
+          0,
+          69,
+          52,
+          69
+        ],
+        [
+          137,
+          139,
+          0,
+          259,
+          280,
+          260
+        ],
+        [
+          139,
+          143,
+          0,
+          284,
+          245,
+          266
+        ],
+        [
+          143,
+          144,
+          0,
+          185,
+          166,
+          166
+        ],
+        [
+          144,
+          149,
+          0,
+          166,
+          187,
+          188
+        ],
+        [
+          149,
+          150,
+          0,
+          269,
+          249,
+          249
+        ],
+        [
+          150,
+          154,
+          0,
+          189,
+          204,
+          189
+        ],
+        [
+          154,
+          156,
+          0,
+          93,
+          91,
+          93
+        ],
+        [
+          156,
+          157,
+          0,
+          186,
+          168,
+          168
+        ],
+        [
+          157,
+          161,
+          0,
+          69,
+          13,
+          69
+        ],
+        [
+          161,
+          163,
+          0,
+          236,
+          234,
+          234
+        ],
+        [
+          163,
+          166,
+          0,
+          234,
+          291,
+          234
+        ],
+        [
+          166,
+          169,
+          0,
+          286,
+          285,
+          267
+        ],
+        [
+          169,
+          172,
+          0,
+          132,
+          154,
+          134
+        ],
+        [
+          172,
+          178,
+          0,
+          179,
+          141,
+          175
+        ],
+        [
+          178,
+          180,
+          0,
+          360,
+          341,
+          341
+        ],
+        [
+          180,
+          183,
+          0,
+          232,
+          194,
+          231
+        ],
+        [
+          183,
+          184,
+          0,
+          44,
+          25,
+          44
+        ],
+        [
+          184,
+          188,
+          0,
+          159,
+          101,
+          159
+        ],
+        [
+          188,
+          191,
+          0,
+          273,
+          253,
+          252
+        ],
+        [
+          191,
+          193,
+          0,
+          199,
+          182,
+          181
+        ],
+        [
+          193,
+          194,
+          0,
+          208,
+          207,
+          207
+        ],
+        [
+          194,
+          195,
+          0,
+          70,
+          51,
+          51
+        ],
+        [
+          195,
+          199,
+          0,
+          69,
+          26,
+          69
+        ],
+        [
+          199,
+          202,
+          0,
+          249,
+          287,
+          249
+        ],
+        [
+          202,
+          204,
+          0,
+          341,
+          305,
+          305
+        ],
+        [
+          204,
+          208,
+          0,
+          250,
+          211,
+          212
+        ],
+        [
+          208,
+          210,
+          0,
+          246,
+          227,
+          227
+        ],
+        [
+          210,
+          213,
+          0,
+          227,
+          189,
+          190
+        ],
+        [
+          213,
+          220,
+          0,
+          260,
+          296,
+          262
+        ],
+        [
+          220,
+          222,
+          0,
+          51,
+          71,
+          51
+        ],
+        [
+          222,
+          225,
+          0,
+          143,
+          124,
+          144
+        ],
+        [
+          225,
+          228,
+          0,
+          128,
+          111,
+          130
+        ],
+        [
+          228,
+          232,
+          0,
+          93,
+          112,
+          113
+        ],
+        [
+          232,
+          235,
+          0,
+          340,
+          304,
+          304
+        ],
+        [
+          235,
+          238,
+          0,
+          113,
+          130,
+          132
+        ],
+        [
+          238,
+          239,
+          0,
+          116,
+          115,
+          116
+        ],
+        [
+          239,
+          243,
+          0,
+          247,
+          210,
+          228
+        ],
+        [
+          243,
+          244,
+          0,
+          304,
+          322,
+          304
+        ],
+        [
+          244,
+          248,
+          0,
+          190,
+          225,
+          190
+        ],
+        [
+          248,
+          249,
+          1,
+          190,
+          -1,
+          -1
+        ],
+        [
+          249,
+          251,
+          2,
+          172,
+          -1,
+          -1
+        ],
+        [
+          251,
+          252,
+          1,
+          136,
+          -1,
+          -1
+        ],
+        [
+          252,
+          253,
+          1,
+          137,
+          -1,
+          -1
+        ],
+        [
+          253,
+          254,
+          0,
+          195,
+          177,
+          177
+        ],
+        [
+          254,
+          261,
+          0,
+          168,
+          129,
+          132
+        ],
+        [
+          261,
+          262,
+          2,
+          132,
+          -1,
+          -1
+        ],
+        [
+          262,
+          265,
+          0,
+          181,
+          200,
+          181
+        ],
+        [
+          265,
+          270,
+          0,
+          144,
+          159,
+          163
+        ],
+        [
+          270,
+          275,
+          0,
+          69,
+          89,
+          106
+        ],
+        [
+          275,
+          278,
+          0,
+          228,
+          207,
+          226
+        ],
+        [
+          278,
+          280,
+          0,
+          226,
+          264,
+          226
+        ],
+        [
+          280,
+          282,
+          0,
+          162,
+          142,
+          142
+        ],
+        [
+          282,
+          284,
+          0,
+          102,
+          84,
+          102
+        ],
+        [
+          284,
+          289,
+          0,
+          77,
+          19,
+          39
+        ],
+        [
+          289,
+          294,
+          0,
+          191,
+          248,
+          268
+        ],
+        [
+          294,
+          300,
+          0,
+          39,
+          74,
+          39
+        ],
+        [
+          300,
+          304,
+          0,
+          51,
+          14,
+          50
+        ],
+        [
+          304,
+          311,
+          0,
+          268,
+          356,
+          268
+        ],
+        [
+          311,
+          318,
+          0,
+          335,
+          336,
+          281
+        ],
+        [
+          318,
+          327,
+          0,
+          35,
+          73,
+          95
+        ],
+        [
+          327,
+          328,
+          2,
+          95,
+          -1,
+          -1
+        ],
+        [
+          328,
+          329,
+          2,
+          132,
+          -1,
+          -1
+        ],
+        [
+          329,
+          332,
+          0,
+          39,
+          22,
+          41
+        ],
+        [
+          332,
+          334,
+          0,
+          41,
+          23,
+          42
+        ],
+        [
+          334,
+          336,
+          0,
+          219,
+          217,
+          217
+        ],
+        [
+          336,
+          340,
+          0,
+          50,
+          88,
+          49
+        ],
+        [
+          340,
+          342,
+          0,
+          102,
+          107,
+          102
+        ],
+        [
+          342,
+          349,
+          0,
+          213,
+          157,
+          140
+        ],
+        [
+          349,
+          353,
+          0,
+          79,
+          64,
+          81
+        ],
+        [
+          353,
+          356,
+          0,
+          217,
+          163,
+          217
+        ],
+        [
+          356,
+          359,
+          0,
+          44,
+          61,
+          61
+        ],
+        [
+          359,
+          367,
+          0,
+          49,
+          147,
+          49
+        ],
+        [
+          367,
+          370,
+          0,
+          81,
+          102,
+          100
+        ],
+        [
+          370,
+          376,
+          0,
+          42,
+          96,
+          42
+        ],
+        [
+          376,
+          380,
+          0,
+          226,
+          302,
+          226
+        ],
+        [
+          380,
+          385,
+          0,
+          49,
+          104,
+          47
+        ],
+        [
+          385,
+          390,
+          0,
+          367,
+          312,
+          313
+        ],
+        [
+          390,
+          392,
+          0,
+          313,
+          293,
+          294
+        ],
+        [
+          392,
+          395,
+          0,
+          252,
+          209,
+          228
+        ],
+        [
+          395,
+          398,
+          0,
+          100,
+          121,
+          119
+        ],
+        [
+          398,
+          401,
+          0,
+          24,
+          10,
+          26
+        ],
+        [
+          401,
+          407,
+          0,
+          173,
+          155,
+          137
+        ],
+        [
+          407,
+          413,
+          0,
+          142,
+          177,
+          139
+        ],
+        [
+          413,
+          414,
+          1,
+          262,
+          -1,
+          -1
+        ],
+        [
+          414,
+          415,
+          1,
+          263,
+          -1,
+          -1
+        ],
+        [
+          415,
+          417,
+          2,
+          264,
+          -1,
+          -1
+        ],
+        [
+          417,
+          418,
+          2,
+          256,
+          -1,
+          -1
+        ],
+        [
+          418,
+          419,
+          2,
+          300,
+          -1,
+          -1
+        ],
+        [
+          419,
+          420,
+          1,
+          281,
+          -1,
+          -1
+        ],
+        [
+          420,
+          422,
+          2,
+          262,
+          -1,
+          -1
+        ],
+        [
+          422,
+          423,
+          1,
+          268,
+          -1,
+          -1
+        ],
+        [
+          423,
+          424,
+          2,
+          269,
+          -1,
+          -1
+        ],
+        [
+          424,
+          430,
+          0,
+          300,
+          350,
+          300
+        ],
+        [
+          430,
+          431,
+          2,
+          244,
+          -1,
+          -1
+        ],
+        [
+          431,
+          439,
+          0,
+          244,
+          137,
+          137
+        ],
+        [
+          439,
+          440,
+          1,
+          116,
+          -1,
+          -1
+        ],
+        [
+          440,
+          449,
+          2,
+          63,
+          -1,
+          -1
+        ],
+        [
+          449,
+          450,
+          2,
+          135,
+          -1,
+          -1
+        ],
+        [
+          450,
+          451,
+          2,
+          132,
+          -1,
+          -1
+        ],
+        [
+          451,
+          455,
+          2,
+          125,
+          -1,
+          -1
+        ],
+        [
+          455,
+          456,
+          1,
+          106,
+          -1,
+          -1
+        ],
+        [
+          456,
+          458,
+          1,
+          254,
+          -1,
+          -1
+        ],
+        [
+          458,
+          459,
+          2,
+          266,
+          -1,
+          -1
+        ],
+        [
+          459,
+          462,
+          2,
+          267,
+          -1,
+          -1
+        ],
+        [
+          462,
+          463,
+          2,
+          246,
+          -1,
+          -1
+        ],
+        [
+          463,
+          464,
+          2,
+          249,
+          -1,
+          -1
+        ],
+        [
+          464,
+          470,
+          0,
+          246,
+          274,
+          274
+        ],
+        [
+          470,
+          471,
+          1,
+          125,
+          -1,
+          -1
+        ],
+        [
+          471,
+          917,
+          3,
+          -1,
+          -1,
+          -1
+        ]
+      ]
+    },
+    {
+      "case": "0060.txt",
+      "trace": {
+        "E": 0,
+        "T": 152,
+        "baseline_ops": 326,
+        "baseline_recovery": 0,
+        "board_handle_bytes": 8,
+        "board_payload_bytes": 788,
+        "board_pool_bytes": 3152,
+        "board_pool_free_at_end": 4,
+        "board_pool_slots": 4,
+        "construction_attempts": 26,
+        "construction_completed": 5,
+        "construction_deadlines": 21,
+        "construction_errors": 0,
+        "delivered_slimes": 34,
+        "dp_words": 2362,
+        "event_layers": 3323823,
+        "event_reopens": 6463332,
+        "final_ops": 152,
+        "final_recovery": 0,
+        "finish_singles_calls": 0,
+        "floor_cells": 197,
+        "lns_accepted": 968,
+        "lns_attempts": 6324,
+        "lns_backward_accepted": 29,
+        "lns_backward_attempts": 29,
+        "lns_backward_improvements": 0,
+        "lns_backward_saved": 0,
+        "lns_best_saved": 57,
+        "lns_block_accepted": 65,
+        "lns_block_attempts": 898,
+        "lns_block_improvements": 4,
+        "lns_candidate_shortcuts": 2471,
+        "lns_deadlines": 0,
+        "lns_dependency_accepted": 40,
+        "lns_dependency_added": 3263,
+        "lns_dependency_attempts": 933,
+        "lns_dependency_completed": 120,
+        "lns_dependency_cooldown": 42,
+        "lns_dependency_current_improvements": 1,
+        "lns_dependency_current_saved": 1,
+        "lns_dependency_extract_failed": 49,
+        "lns_dependency_extracted": 884,
+        "lns_dependency_generated": 975,
+        "lns_dependency_gross_removed": 19230,
+        "lns_dependency_improvements": 0,
+        "lns_dependency_insert_failed": 764,
+        "lns_dependency_multistep": 747,
+        "lns_dependency_net_removed": 14793,
+        "lns_dependency_repair_extra_commands": 4622,
+        "lns_dependency_repaired_jumps": 2404,
+        "lns_dependency_saved": 0,
+        "lns_dependency_selected": 1346,
+        "lns_duplicates": 372,
+        "lns_errors": 0,
+        "lns_flexible_accepted": 62,
+        "lns_flexible_attempts": 600,
+        "lns_flexible_improvements": 4,
+        "lns_flexible_saved": 5,
+        "lns_improvements": 29,
+        "lns_initial_reorder_saved": 0,
+        "lns_initial_shortcut_saved": 0,
+        "lns_insertions": 18050,
+        "lns_invalid_candidates": 0,
+        "lns_late_start_builds": 975,
+        "lns_late_start_delay_sum": 804734,
+        "lns_late_start_flexible_accepted": 9,
+        "lns_late_start_flexible_attempts": 136,
+        "lns_late_start_flexible_completed": 47,
+        "lns_late_start_flexible_current_improvements": 2,
+        "lns_late_start_flexible_current_saved": 3,
+        "lns_late_start_flexible_improvements": 2,
+        "lns_late_start_flexible_saved": 3,
+        "lns_late_start_generated": 51257,
+        "lns_late_start_packet_accepted": 0,
+        "lns_late_start_packet_attempts": 42,
+        "lns_late_start_packet_completed": 8,
+        "lns_late_start_packet_current_improvements": 0,
+        "lns_late_start_packet_current_saved": 0,
+        "lns_late_start_packet_improvements": 0,
+        "lns_late_start_packet_saved": 0,
+        "lns_late_start_paired_accepted": 3,
+        "lns_late_start_paired_attempts": 80,
+        "lns_late_start_paired_completed": 31,
+        "lns_late_start_paired_current_improvements": 0,
+        "lns_late_start_paired_current_saved": 0,
+        "lns_late_start_paired_improvements": 0,
+        "lns_late_start_paired_saved": 0,
+        "lns_late_start_primary": 111118,
+        "lns_late_start_split_generated": 15479,
+        "lns_packet_saved": 0,
+        "lns_paired_accepted": 36,
+        "lns_paired_attempts": 393,
+        "lns_paired_improvements": 1,
+        "lns_paired_saved": 2,
+        "lns_regular_saved": 49,
+        "lns_reorder_attempts": 60,
+        "lns_reorder_improvements": 1,
+        "lns_reorder_saved": 1,
+        "lns_restarts": 6,
+        "lns_saved": 57,
+        "lns_two_order_accepted": 585,
+        "lns_two_order_alternate_accepted": 58,
+        "lns_two_order_alternate_failed": 1816,
+        "lns_two_order_alternate_finished": 110,
+        "lns_two_order_alternate_improvements": 2,
+        "lns_two_order_alternate_insert_calls": 4986,
+        "lns_two_order_alternate_saved": 5,
+        "lns_two_order_alternate_selected": 110,
+        "lns_two_order_alternate_started": 1926,
+        "lns_two_order_attempts": 1926,
+        "lns_two_order_completed": 1184,
+        "lns_two_order_improvements": 17,
+        "lns_two_order_primary_failed": 793,
+        "lns_two_order_primary_finished": 1133,
+        "lns_two_order_primary_insert_calls": 5091,
+        "lns_two_order_primary_started": 1926,
+        "lns_two_order_raw_saved": 90,
+        "lns_two_order_rescued": 51,
+        "lns_two_order_saved": 22,
+        "lns_two_order_shorter": 59,
+        "lns_two_order_size_2": 631,
+        "lns_two_order_size_3": 754,
+        "lns_two_order_size_4": 541,
+        "lns_uphill": 15,
+        "network_completed": 5,
+        "network_seed_delivery_events": 23,
+        "network_seed_early_stops": 36,
+        "network_seed_forward_events": 21,
+        "network_seed_merges": 31,
+        "network_seed_selected": 1,
+        "network_wins": 4,
+        "output_long_jumps": 26,
+        "output_max_height": 8,
+        "output_max_packet": 8,
+        "output_mixed_moves": 78,
+        "packet_insert_calls": 291,
+        "pair_transfer_cancellations": 0,
+        "pair_transfer_changed_amount_merges": 0,
+        "pair_transfer_long_merges": 0,
+        "pair_transfer_merges": 0,
+        "pair_transfer_saved": 0,
+        "pair_transfer_separated_merges": 0,
+        "pre_lns_ops": 209,
+        "pre_pair_ops": 152,
+        "shortcut_support_states": 175937,
+        "single_insert_calls": 23897,
+        "validated_moves": 152
+      },
+      "final": {
+        "metrics": {
+          "T": 152,
+          "E": 0,
+          "W": 635,
+          "mixed_moves": 78,
+          "long_jumps": 26,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 30,
+          "shared_route_mixed_moves": 56,
+          "shared_route_mixed_distance": 70,
+          "shared_route_long_jumps": 19,
+          "new_joint_carry_after_home": 20,
+          "pending_support_long_jumps": 26,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "shared_route_mixed_moves": 7,
+          "pending_support_long_jump": 48,
+          "new_joint_carry_after_home": 127
+        }
+      },
+      "seed": {
+        "metrics": {
+          "T": 209,
+          "E": 0,
+          "W": 609,
+          "mixed_moves": 82,
+          "long_jumps": 27,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 2,
+          "destination_returned": 32,
+          "shared_route_mixed_moves": 74,
+          "shared_route_mixed_distance": 94,
+          "shared_route_long_jumps": 24,
+          "new_joint_carry_after_home": 2,
+          "pending_support_long_jumps": 25,
+          "guided_merge_moves": 132,
+          "guided_forward_moves": 32
+        },
+        "witnesses": {
+          "shared_route_mixed_moves": 17,
+          "pending_support_long_jump": 86,
+          "new_joint_carry_after_home": 169
+        }
+      },
+      "events": [
+        [
+          0,
+          3,
+          0,
+          30,
+          5,
+          18
+        ],
+        [
+          3,
+          8,
+          0,
+          58,
+          23,
+          57
+        ],
+        [
+          8,
+          13,
+          0,
+          12,
+          3,
+          12
+        ],
+        [
+          13,
+          14,
+          0,
+          12,
+          11,
+          12
+        ],
+        [
+          14,
+          15,
+          0,
+          18,
+          17,
+          18
+        ],
+        [
+          15,
+          16,
+          0,
+          195,
+          194,
+          195
+        ],
+        [
+          16,
+          21,
+          0,
+          57,
+          88,
+          89
+        ],
+        [
+          21,
+          26,
+          0,
+          188,
+          179,
+          188
+        ],
+        [
+          26,
+          31,
+          0,
+          12,
+          61,
+          62
+        ],
+        [
+          31,
+          34,
+          0,
+          160,
+          128,
+          128
+        ],
+        [
+          34,
+          35,
+          0,
+          128,
+          137,
+          128
+        ],
+        [
+          35,
+          36,
+          0,
+          128,
+          129,
+          128
+        ],
+        [
+          36,
+          38,
+          0,
+          93,
+          72,
+          93
+        ],
+        [
+          38,
+          41,
+          0,
+          110,
+          107,
+          110
+        ],
+        [
+          41,
+          48,
+          0,
+          89,
+          157,
+          113
+        ],
+        [
+          48,
+          55,
+          0,
+          188,
+          152,
+          152
+        ],
+        [
+          55,
+          63,
+          0,
+          152,
+          121,
+          106
+        ],
+        [
+          63,
+          69,
+          0,
+          18,
+          55,
+          55
+        ],
+        [
+          69,
+          74,
+          0,
+          55,
+          70,
+          68
+        ],
+        [
+          74,
+          81,
+          0,
+          68,
+          9,
+          68
+        ],
+        [
+          81,
+          86,
+          0,
+          93,
+          96,
+          103
+        ],
+        [
+          86,
+          100,
+          0,
+          110,
+          195,
+          114
+        ],
+        [
+          100,
+          106,
+          2,
+          62,
+          -1,
+          -1
+        ],
+        [
+          106,
+          109,
+          2,
+          106,
+          -1,
+          -1
+        ],
+        [
+          109,
+          110,
+          1,
+          113,
+          -1,
+          -1
+        ],
+        [
+          110,
+          111,
+          1,
+          114,
+          -1,
+          -1
+        ],
+        [
+          111,
+          112,
+          1,
+          112,
+          -1,
+          -1
+        ],
+        [
+          112,
+          113,
+          1,
+          98,
+          -1,
+          -1
+        ],
+        [
+          113,
+          116,
+          2,
+          89,
+          -1,
+          -1
+        ],
+        [
+          116,
+          117,
+          2,
+          68,
+          -1,
+          -1
+        ],
+        [
+          117,
+          120,
+          2,
+          78,
+          -1,
+          -1
+        ],
+        [
+          120,
+          123,
+          0,
+          89,
+          68,
+          89
+        ],
+        [
+          123,
+          124,
+          2,
+          111,
+          -1,
+          -1
+        ],
+        [
+          124,
+          125,
+          2,
+          108,
+          -1,
+          -1
+        ],
+        [
+          125,
+          129,
+          0,
+          111,
+          103,
+          103
+        ],
+        [
+          129,
+          132,
+          2,
+          57,
+          -1,
+          -1
+        ],
+        [
+          132,
+          136,
+          2,
+          128,
+          -1,
+          -1
+        ],
+        [
+          136,
+          137,
+          2,
+          108,
+          -1,
+          -1
+        ],
+        [
+          137,
+          138,
+          2,
+          103,
+          -1,
+          -1
+        ],
+        [
+          138,
+          139,
+          2,
+          114,
+          -1,
+          -1
+        ],
+        [
+          139,
+          141,
+          1,
+          89,
+          -1,
+          -1
+        ],
+        [
+          141,
+          142,
+          2,
+          103,
+          -1,
+          -1
+        ],
+        [
+          142,
+          143,
+          2,
+          55,
+          -1,
+          -1
+        ],
+        [
+          143,
+          145,
+          0,
+          55,
+          42,
+          43
+        ],
+        [
+          145,
+          146,
+          2,
+          114,
+          -1,
+          -1
+        ],
+        [
+          146,
+          153,
+          0,
+          114,
+          143,
+          143
+        ],
+        [
+          153,
+          154,
+          1,
+          103,
+          -1,
+          -1
+        ],
+        [
+          154,
+          155,
+          1,
+          119,
+          -1,
+          -1
+        ],
+        [
+          155,
+          156,
+          1,
+          131,
+          -1,
+          -1
+        ],
+        [
+          156,
+          157,
+          2,
+          139,
+          -1,
+          -1
+        ],
+        [
+          157,
+          158,
+          2,
+          108,
+          -1,
+          -1
+        ],
+        [
+          158,
+          161,
+          0,
+          108,
+          143,
+          143
+        ],
+        [
+          161,
+          164,
+          1,
+          143,
+          -1,
+          -1
+        ],
+        [
+          164,
+          165,
+          2,
+          139,
+          -1,
+          -1
+        ],
+        [
+          165,
+          167,
+          0,
+          139,
+          141,
+          141
+        ],
+        [
+          167,
+          168,
+          2,
+          163,
+          -1,
+          -1
+        ],
+        [
+          168,
+          169,
+          1,
+          43,
+          -1,
+          -1
+        ],
+        [
+          169,
+          170,
+          1,
+          31,
+          -1,
+          -1
+        ],
+        [
+          170,
+          171,
+          2,
+          21,
+          -1,
+          -1
+        ],
+        [
+          171,
+          172,
+          2,
+          163,
+          -1,
+          -1
+        ],
+        [
+          172,
+          174,
+          0,
+          163,
+          165,
+          165
+        ],
+        [
+          174,
+          176,
+          0,
+          139,
+          141,
+          141
+        ],
+        [
+          176,
+          183,
+          2,
+          54,
+          -1,
+          -1
+        ],
+        [
+          183,
+          184,
+          1,
+          117,
+          -1,
+          -1
+        ],
+        [
+          184,
+          185,
+          1,
+          19,
+          -1,
+          -1
+        ],
+        [
+          185,
+          186,
+          2,
+          111,
+          -1,
+          -1
+        ],
+        [
+          186,
+          193,
+          0,
+          113,
+          57,
+          89
+        ],
+        [
+          193,
+          199,
+          1,
+          128,
+          -1,
+          -1
+        ],
+        [
+          199,
+          200,
+          1,
+          18,
+          -1,
+          -1
+        ],
+        [
+          200,
+          201,
+          1,
+          141,
+          -1,
+          -1
+        ],
+        [
+          201,
+          202,
+          1,
+          17,
+          -1,
+          -1
+        ],
+        [
+          202,
+          203,
+          1,
+          30,
+          -1,
+          -1
+        ],
+        [
+          203,
+          204,
+          1,
+          165,
+          -1,
+          -1
+        ],
+        [
+          204,
+          206,
+          1,
+          89,
+          -1,
+          -1
+        ],
+        [
+          206,
+          209,
+          1,
+          40,
+          -1,
+          -1
+        ]
+      ]
+    }
+  ],
+  "normal_totals": {
+    "final": {
+      "T": 812,
+      "E": 0,
+      "W": 3817,
+      "mixed_moves": 388,
+      "long_jumps": 238,
+      "immediate_reversals": 0,
+      "reversals_after_pickup": 0,
+      "max_height": 16,
+      "source_returned": 62,
+      "destination_returned": 189,
+      "shared_route_mixed_moves": 200,
+      "shared_route_mixed_distance": 244,
+      "shared_route_long_jumps": 97,
+      "new_joint_carry_after_home": 202,
+      "pending_support_long_jumps": 232,
+      "guided_merge_moves": 0,
+      "guided_forward_moves": 0
+    },
+    "seed": {
+      "T": 1126,
+      "E": 0,
+      "W": 3587,
+      "mixed_moves": 376,
+      "long_jumps": 233,
+      "immediate_reversals": 0,
+      "reversals_after_pickup": 0,
+      "max_height": 16,
+      "source_returned": 24,
+      "destination_returned": 227,
+      "shared_route_mixed_moves": 237,
+      "shared_route_mixed_distance": 298,
+      "shared_route_long_jumps": 144,
+      "new_joint_carry_after_home": 3,
+      "pending_support_long_jumps": 226,
+      "guided_merge_moves": 557,
+      "guided_forward_moves": 44
+    },
+    "trace": {
+      "E": 0,
+      "T": 812,
+      "baseline_ops": 1383,
+      "baseline_recovery": 0,
+      "board_handle_bytes": 16,
+      "board_payload_bytes": 2260,
+      "board_pool_bytes": 9040,
+      "board_pool_free_at_end": 8,
+      "board_pool_slots": 8,
+      "construction_attempts": 29,
+      "construction_completed": 7,
+      "construction_deadlines": 22,
+      "construction_errors": 0,
+      "delivered_slimes": 251,
+      "dp_words": 8115,
+      "event_layers": 5409602,
+      "event_reopens": 10481428,
+      "final_ops": 812,
+      "final_recovery": 0,
+      "finish_singles_calls": 0,
+      "floor_cells": 565,
+      "lns_accepted": 1073,
+      "lns_attempts": 7096,
+      "lns_backward_accepted": 33,
+      "lns_backward_attempts": 33,
+      "lns_backward_improvements": 3,
+      "lns_backward_saved": 4,
+      "lns_best_saved": 297,
+      "lns_block_accepted": 75,
+      "lns_block_attempts": 1012,
+      "lns_block_improvements": 11,
+      "lns_candidate_shortcuts": 2790,
+      "lns_deadlines": 0,
+      "lns_dependency_accepted": 49,
+      "lns_dependency_added": 3437,
+      "lns_dependency_attempts": 1019,
+      "lns_dependency_completed": 136,
+      "lns_dependency_cooldown": 44,
+      "lns_dependency_current_improvements": 6,
+      "lns_dependency_current_saved": 26,
+      "lns_dependency_extract_failed": 55,
+      "lns_dependency_extracted": 964,
+      "lns_dependency_generated": 1063,
+      "lns_dependency_gross_removed": 20907,
+      "lns_dependency_improvements": 5,
+      "lns_dependency_insert_failed": 828,
+      "lns_dependency_multistep": 788,
+      "lns_dependency_net_removed": 15655,
+      "lns_dependency_repair_extra_commands": 5626,
+      "lns_dependency_repaired_jumps": 2973,
+      "lns_dependency_saved": 25,
+      "lns_dependency_selected": 1517,
+      "lns_duplicates": 379,
+      "lns_errors": 0,
+      "lns_flexible_accepted": 70,
+      "lns_flexible_attempts": 682,
+      "lns_flexible_improvements": 10,
+      "lns_flexible_saved": 25,
+      "lns_improvements": 96,
+      "lns_initial_reorder_saved": 0,
+      "lns_initial_shortcut_saved": 15,
+      "lns_insertions": 20710,
+      "lns_invalid_candidates": 0,
+      "lns_late_start_builds": 1081,
+      "lns_late_start_delay_sum": 2574320,
+      "lns_late_start_flexible_accepted": 9,
+      "lns_late_start_flexible_attempts": 152,
+      "lns_late_start_flexible_completed": 48,
+      "lns_late_start_flexible_current_improvements": 2,
+      "lns_late_start_flexible_current_saved": 3,
+      "lns_late_start_flexible_improvements": 2,
+      "lns_late_start_flexible_saved": 3,
+      "lns_late_start_generated": 76216,
+      "lns_late_start_packet_accepted": 0,
+      "lns_late_start_packet_attempts": 46,
+      "lns_late_start_packet_completed": 9,
+      "lns_late_start_packet_current_improvements": 0,
+      "lns_late_start_packet_current_saved": 0,
+      "lns_late_start_packet_improvements": 0,
+      "lns_late_start_packet_saved": 0,
+      "lns_late_start_paired_accepted": 6,
+      "lns_late_start_paired_attempts": 87,
+      "lns_late_start_paired_completed": 34,
+      "lns_late_start_paired_current_improvements": 1,
+      "lns_late_start_paired_current_saved": 1,
+      "lns_late_start_paired_improvements": 1,
+      "lns_late_start_paired_saved": 1,
+      "lns_late_start_primary": 192360,
+      "lns_late_start_split_generated": 24479,
+      "lns_packet_saved": 4,
+      "lns_paired_accepted": 44,
+      "lns_paired_attempts": 443,
+      "lns_paired_improvements": 5,
+      "lns_paired_saved": 9,
+      "lns_regular_saved": 250,
+      "lns_reorder_attempts": 68,
+      "lns_reorder_improvements": 6,
+      "lns_reorder_saved": 9,
+      "lns_restarts": 6,
+      "lns_saved": 312,
+      "lns_two_order_accepted": 613,
+      "lns_two_order_alternate_accepted": 63,
+      "lns_two_order_alternate_failed": 1867,
+      "lns_two_order_alternate_finished": 117,
+      "lns_two_order_alternate_improvements": 4,
+      "lns_two_order_alternate_insert_calls": 5145,
+      "lns_two_order_alternate_saved": 11,
+      "lns_two_order_alternate_selected": 117,
+      "lns_two_order_alternate_started": 1984,
+      "lns_two_order_attempts": 1984,
+      "lns_two_order_completed": 1221,
+      "lns_two_order_improvements": 32,
+      "lns_two_order_primary_failed": 817,
+      "lns_two_order_primary_finished": 1167,
+      "lns_two_order_primary_insert_calls": 5258,
+      "lns_two_order_primary_started": 1984,
+      "lns_two_order_raw_saved": 94,
+      "lns_two_order_rescued": 54,
+      "lns_two_order_saved": 80,
+      "lns_two_order_shorter": 63,
+      "lns_two_order_size_2": 650,
+      "lns_two_order_size_3": 768,
+      "lns_two_order_size_4": 566,
+      "lns_uphill": 15,
+      "network_completed": 7,
+      "network_seed_delivery_events": 41,
+      "network_seed_early_stops": 65,
+      "network_seed_forward_events": 32,
+      "network_seed_merges": 175,
+      "network_seed_selected": 2,
+      "network_wins": 6,
+      "output_long_jumps": 238,
+      "output_max_height": 16,
+      "output_max_packet": 16,
+      "output_mixed_moves": 388,
+      "packet_insert_calls": 323,
+      "pair_transfer_cancellations": 0,
+      "pair_transfer_changed_amount_merges": 2,
+      "pair_transfer_long_merges": 1,
+      "pair_transfer_merges": 2,
+      "pair_transfer_saved": 2,
+      "pair_transfer_separated_merges": 2,
+      "pre_lns_ops": 1126,
+      "pre_pair_ops": 814,
+      "shortcut_support_states": 200392,
+      "single_insert_calls": 27099,
+      "validated_moves": 812
+    }
+  },
+  "normal_coverage": {
+    "seed": {
+      "mixed_moves": 2,
+      "long_jumps": 2,
+      "new_joint_carry_after_home": 2,
+      "shared_route_mixed_moves": 2,
+      "shared_route_long_jumps": 2,
+      "pending_support_long_jumps": 2,
+      "immediate_reversals": 0
+    },
+    "final": {
+      "mixed_moves": 2,
+      "long_jumps": 2,
+      "new_joint_carry_after_home": 2,
+      "shared_route_mixed_moves": 2,
+      "shared_route_long_jumps": 2,
+      "pending_support_long_jumps": 2,
+      "immediate_reversals": 0
+    }
+  },
+  "violations": 0
+}

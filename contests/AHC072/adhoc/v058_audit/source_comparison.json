@@ -1,0 +1,40 @@
+{
+  "parent": "src/bin/v057_search_reductions.cpp",
+  "solver": "src/bin/v058_joint_priority.cpp",
+  "parent_sha256": "4bb22c34eca9d76fec12861ebd14d807d6ead618b29e79d42c8f91ce7854e29f",
+  "solver_sha256": "7a3092439f55df4f03b435a28759e266b98375f4d4ad5a1c3f21266422031d4b",
+  "source_restored_to_parent": true,
+  "source_change_groups": 4,
+  "schedule": [
+    "FINAL_JOINT",
+    "FINAL_JOINT",
+    "FINAL_JOINT",
+    "FINAL_STRICT",
+    "FINAL_JOINT",
+    "FINAL_JOINT",
+    "FINAL_JOINT",
+    "FINAL_SLACK",
+    "FINAL_JOINT",
+    "FINAL_JOINT",
+    "FINAL_JOINT",
+    "FINAL_FINITE"
+  ],
+  "calls_per_cycle": {
+    "FINAL_JOINT": 9,
+    "FINAL_STRICT": 1,
+    "FINAL_SLACK": 1,
+    "FINAL_FINITE": 1
+  },
+  "compiled": false,
+  "preprocessed": false,
+  "mechanism_executed": false,
+  "evaluated": false,
+  "pending_reason": "User requested implementation only while another heavy experiment is running.",
+  "reference_run_id": "20260929T145653+0900_v057_search_reductions_af817c",
+  "protected_sha256": {
+    "README.md": "8804adc3cff675aaf68a9edc3035c7fee97a129abb68486b48a8dc055995e9d0",
+    "src/bin/v000_template.cpp": "f323e0fb4b83a21202282695267bab6a0c1c37c9c3d5133bfb27c142a7982449",
+    "notes/notations.md": "3f48408efb60544d467ee48f9721dd9aff7469df90c4c23887c9483b0c2d3aef",
+    "notes/important_properties.md": "c038f600df69871a56d08555a3ddaf2ba07ed47448f5857ad6f097d11ab7a399"
+  }
+}

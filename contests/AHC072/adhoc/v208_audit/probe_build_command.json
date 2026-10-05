@@ -1,0 +1,17 @@
+[
+  "g++-15",
+  "-std=gnu++23",
+  "-O2",
+  "-Wall",
+  "-Wextra",
+  "-march=native",
+  "-pthread",
+  "-ftrivial-auto-var-init=zero",
+  "-fopenmp",
+  "-DLOCAL",
+  "-fsanitize=undefined",
+  "-fsanitize-undefined-trap-on-error",
+  "adhoc/bin/check_v208_mono_collection.cpp",
+  "-o",
+  "/Users/masaki/Desktop/AHC072/adhoc/v208_audit/check_v208_mono_collection"
+]

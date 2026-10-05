@@ -1,0 +1,19 @@
+18 8
+.ba#..b##.##.#..#.
+.b#..#..Bf#b.#b#.h
+bHchc..#hg#bcbb#cf
+bb.cba#c.#ccc#.af#
+b.#.#b.#b..#...c..
+.ha....###.aa..#..
+bc.#.g#...bc.e....
+h.#hfbA..eEbcc###F
+ac#.a...#b#.f.#.cg
+.#c.bb#.#..a#.#b.f
+#.bc#c.##.C.#f.bg#
+.#..###..c#bG#.#.c
+b.bc..#h..###b#.hb
+#b#.b.c.#h.bc..h#.
+..dfb##a#b#b#eh#.e
+..##hbb.##b#b...#.
+a#..g..b.f.a#.a#c.
+D##.bbc#c.#hab.ggf

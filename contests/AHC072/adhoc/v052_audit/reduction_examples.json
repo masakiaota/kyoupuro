@@ -1,0 +1,7501 @@
+{
+  "patches": 20,
+  "cases": 17,
+  "saved": 24,
+  "independent_operations": 130,
+  "all_full_board_boundaries_equal": true,
+  "all_backgrounds_restored": true,
+  "reductions": [
+    {
+      "case": "0003.txt",
+      "first": 66,
+      "last": 78,
+      "before_count": 7,
+      "after_count": 6,
+      "cell_count": 8,
+      "pieces": 8,
+      "moves": [
+        "5 2 0 R 1",
+        "4 3 0 D 1",
+        "5 3 0 R 1",
+        "5 4 7 R 5",
+        "5 4 0 D 1",
+        "6 4 0 D 1"
+      ],
+      "saved": 1,
+      "has_nest": false,
+      "independent_operations": 6,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "initial": {
+        "(4, 2)": "",
+        "(4, 3)": "bgfc",
+        "(4, 4)": "",
+        "(5, 2)": "ccgi",
+        "(5, 3)": "",
+        "(5, 4)": "",
+        "(5, 9)": "",
+        "(6, 4)": "",
+        "(7, 4)": ""
+      },
+      "final": {
+        "(4, 2)": "",
+        "(4, 3)": "",
+        "(4, 4)": "",
+        "(5, 2)": "",
+        "(5, 3)": "",
+        "(5, 4)": "",
+        "(5, 9)": "i",
+        "(6, 4)": "",
+        "(7, 4)": "bgfcccg"
+      },
+      "before": [
+        {
+          "turn": 66,
+          "action": "5 2 0 U 1",
+          "source": [
+            5,
+            2
+          ],
+          "destination": [
+            4,
+            2
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ccgi",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ccgi",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "igcc"
+        },
+        {
+          "turn": 67,
+          "action": "4 2 0 R 1",
+          "source": [
+            4,
+            2
+          ],
+          "destination": [
+            4,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "igcc",
+          "support": "",
+          "landing": "bgfc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "igcc",
+          "before_destination": "bgfc",
+          "after_source": "",
+          "after_destination": "bgfcccgi"
+        },
+        {
+          "turn": 68,
+          "action": "4 3 0 R 1",
+          "source": [
+            4,
+            3
+          ],
+          "destination": [
+            4,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bgfcccgi",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bgfcccgi",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "igcccfgb"
+        },
+        {
+          "turn": 69,
+          "action": "4 4 0 D 1",
+          "source": [
+            4,
+            4
+          ],
+          "destination": [
+            5,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "igcccfgb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "igcccfgb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bgfcccgi"
+        },
+        {
+          "turn": 70,
+          "action": "5 4 7 R 5",
+          "source": [
+            5,
+            4
+          ],
+          "destination": [
+            5,
+            9
+          ],
+          "k": 7,
+          "length": 5,
+          "moving": "i",
+          "support": "bgfcccg",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bgfcccgi",
+          "before_destination": "",
+          "after_source": "bgfcccg",
+          "after_destination": "i"
+        },
+        {
+          "turn": 77,
+          "action": "5 4 0 D 1",
+          "source": [
+            5,
+            4
+          ],
+          "destination": [
+            6,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bgfcccg",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bgfcccg",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "gcccfgb"
+        },
+        {
+          "turn": 78,
+          "action": "6 4 0 D 1",
+          "source": [
+            6,
+            4
+          ],
+          "destination": [
+            7,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "gcccfgb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "gcccfgb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bgfcccg"
+        }
+      ],
+      "after": [
+        {
+          "turn": 66,
+          "action": "5 2 0 R 1",
+          "source": [
+            5,
+            2
+          ],
+          "destination": [
+            5,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ccgi",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ccgi",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "igcc"
+        },
+        {
+          "turn": 67,
+          "action": "4 3 0 D 1",
+          "source": [
+            4,
+            3
+          ],
+          "destination": [
+            5,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bgfc",
+          "support": "",
+          "landing": "igcc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bgfc",
+          "before_destination": "igcc",
+          "after_source": "",
+          "after_destination": "igcccfgb"
+        },
+        {
+          "turn": 68,
+          "action": "5 3 0 R 1",
+          "source": [
+            5,
+            3
+          ],
+          "destination": [
+            5,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "igcccfgb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "igcccfgb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bgfcccgi"
+        },
+        {
+          "turn": 69,
+          "action": "5 4 7 R 5",
+          "source": [
+            5,
+            4
+          ],
+          "destination": [
+            5,
+            9
+          ],
+          "k": 7,
+          "length": 5,
+          "moving": "i",
+          "support": "bgfcccg",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bgfcccgi",
+          "before_destination": "",
+          "after_source": "bgfcccg",
+          "after_destination": "i"
+        },
+        {
+          "turn": 70,
+          "action": "5 4 0 D 1",
+          "source": [
+            5,
+            4
+          ],
+          "destination": [
+            6,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bgfcccg",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bgfcccg",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "gcccfgb"
+        },
+        {
+          "turn": 71,
+          "action": "6 4 0 D 1",
+          "source": [
+            6,
+            4
+          ],
+          "destination": [
+            7,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "gcccfgb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "gcccfgb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bgfcccg"
+        }
+      ]
+    },
+    {
+      "case": "0005.txt",
+      "first": 323,
+      "last": 332,
+      "before_count": 10,
+      "after_count": 9,
+      "cell_count": 8,
+      "pieces": 10,
+      "moves": [
+        "7 1 0 R 1",
+        "7 2 0 D 1",
+        "8 2 2 R 3",
+        "8 5 4 R 1",
+        "8 5 2 R 3",
+        "8 2 0 R 1",
+        "8 3 0 R 1",
+        "8 4 0 R 1",
+        "8 5 0 R 1"
+      ],
+      "saved": 1,
+      "has_nest": false,
+      "independent_operations": 0,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          8,
+          8
+        ]
+      ],
+      "initial": {
+        "(7, 1)": "ahf",
+        "(7, 2)": "bbe",
+        "(8, 2)": "e",
+        "(8, 3)": "",
+        "(8, 4)": "",
+        "(8, 5)": "",
+        "(8, 6)": "h",
+        "(8, 8)": "bf"
+      },
+      "final": {
+        "(7, 1)": "",
+        "(7, 2)": "",
+        "(8, 2)": "",
+        "(8, 3)": "",
+        "(8, 4)": "",
+        "(8, 5)": "",
+        "(8, 6)": "hheabb",
+        "(8, 8)": "bffe"
+      },
+      "before": [
+        {
+          "turn": 323,
+          "action": "7 1 0 R 1",
+          "source": [
+            7,
+            1
+          ],
+          "destination": [
+            7,
+            2
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ahf",
+          "support": "",
+          "landing": "bbe",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ahf",
+          "before_destination": "bbe",
+          "after_source": "",
+          "after_destination": "bbefha"
+        },
+        {
+          "turn": 324,
+          "action": "7 2 0 D 1",
+          "source": [
+            7,
+            2
+          ],
+          "destination": [
+            8,
+            2
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbefha",
+          "support": "",
+          "landing": "e",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbefha",
+          "before_destination": "e",
+          "after_source": "",
+          "after_destination": "eahfebb"
+        },
+        {
+          "turn": 325,
+          "action": "8 2 0 R 1",
+          "source": [
+            8,
+            2
+          ],
+          "destination": [
+            8,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eahfebb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eahfebb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbefhae"
+        },
+        {
+          "turn": 326,
+          "action": "8 3 2 R 1",
+          "source": [
+            8,
+            3
+          ],
+          "destination": [
+            8,
+            4
+          ],
+          "k": 2,
+          "length": 1,
+          "moving": "efhae",
+          "support": "bb",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbefhae",
+          "before_destination": "",
+          "after_source": "bb",
+          "after_destination": "eahfe"
+        },
+        {
+          "turn": 327,
+          "action": "8 4 3 R 2",
+          "source": [
+            8,
+            4
+          ],
+          "destination": [
+            8,
+            6
+          ],
+          "k": 3,
+          "length": 2,
+          "moving": "fe",
+          "support": "eah",
+          "landing": "h",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eahfe",
+          "before_destination": "h",
+          "after_source": "eah",
+          "after_destination": "hef"
+        },
+        {
+          "turn": 328,
+          "action": "8 6 1 R 2",
+          "source": [
+            8,
+            6
+          ],
+          "destination": [
+            8,
+            8
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "ef",
+          "support": "h",
+          "landing": "bf",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "hef",
+          "before_destination": "bf",
+          "after_source": "h",
+          "after_destination": "bffe"
+        },
+        {
+          "turn": 329,
+          "action": "8 4 2 R 2",
+          "source": [
+            8,
+            4
+          ],
+          "destination": [
+            8,
+            6
+          ],
+          "k": 2,
+          "length": 2,
+          "moving": "h",
+          "support": "ea",
+          "landing": "h",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eah",
+          "before_destination": "h",
+          "after_source": "ea",
+          "after_destination": "hh"
+        },
+        {
+          "turn": 330,
+          "action": "8 3 0 R 1",
+          "source": [
+            8,
+            3
+          ],
+          "destination": [
+            8,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bb",
+          "support": "",
+          "landing": "ea",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bb",
+          "before_destination": "ea",
+          "after_source": "",
+          "after_destination": "eabb"
+        },
+        {
+          "turn": 331,
+          "action": "8 4 0 R 1",
+          "source": [
+            8,
+            4
+          ],
+          "destination": [
+            8,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eabb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eabb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbae"
+        },
+        {
+          "turn": 332,
+          "action": "8 5 0 R 1",
+          "source": [
+            8,
+            5
+          ],
+          "destination": [
+            8,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbae",
+          "support": "",
+          "landing": "hh",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbae",
+          "before_destination": "hh",
+          "after_source": "",
+          "after_destination": "hheabb"
+        }
+      ],
+      "after": [
+        {
+          "turn": 323,
+          "action": "7 1 0 R 1",
+          "source": [
+            7,
+            1
+          ],
+          "destination": [
+            7,
+            2
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ahf",
+          "support": "",
+          "landing": "bbe",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ahf",
+          "before_destination": "bbe",
+          "after_source": "",
+          "after_destination": "bbefha"
+        },
+        {
+          "turn": 324,
+          "action": "7 2 0 D 1",
+          "source": [
+            7,
+            2
+          ],
+          "destination": [
+            8,
+            2
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbefha",
+          "support": "",
+          "landing": "e",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbefha",
+          "before_destination": "e",
+          "after_source": "",
+          "after_destination": "eahfebb"
+        },
+        {
+          "turn": 325,
+          "action": "8 2 2 R 3",
+          "source": [
+            8,
+            2
+          ],
+          "destination": [
+            8,
+            5
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "hfebb",
+          "support": "ea",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eahfebb",
+          "before_destination": "",
+          "after_source": "ea",
+          "after_destination": "bbefh"
+        },
+        {
+          "turn": 326,
+          "action": "8 5 4 R 1",
+          "source": [
+            8,
+            5
+          ],
+          "destination": [
+            8,
+            6
+          ],
+          "k": 4,
+          "length": 1,
+          "moving": "h",
+          "support": "bbef",
+          "landing": "h",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbefh",
+          "before_destination": "h",
+          "after_source": "bbef",
+          "after_destination": "hh"
+        },
+        {
+          "turn": 327,
+          "action": "8 5 2 R 3",
+          "source": [
+            8,
+            5
+          ],
+          "destination": [
+            8,
+            8
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "ef",
+          "support": "bb",
+          "landing": "bf",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbef",
+          "before_destination": "bf",
+          "after_source": "bb",
+          "after_destination": "bffe"
+        },
+        {
+          "turn": 328,
+          "action": "8 2 0 R 1",
+          "source": [
+            8,
+            2
+          ],
+          "destination": [
+            8,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ea",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ea",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "ae"
+        },
+        {
+          "turn": 329,
+          "action": "8 3 0 R 1",
+          "source": [
+            8,
+            3
+          ],
+          "destination": [
+            8,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ae",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ae",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "ea"
+        },
+        {
+          "turn": 330,
+          "action": "8 4 0 R 1",
+          "source": [
+            8,
+            4
+          ],
+          "destination": [
+            8,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ea",
+          "support": "",
+          "landing": "bb",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ea",
+          "before_destination": "bb",
+          "after_source": "",
+          "after_destination": "bbae"
+        },
+        {
+          "turn": 331,
+          "action": "8 5 0 R 1",
+          "source": [
+            8,
+            5
+          ],
+          "destination": [
+            8,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbae",
+          "support": "",
+          "landing": "hh",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbae",
+          "before_destination": "hh",
+          "after_source": "",
+          "after_destination": "hheabb"
+        }
+      ]
+    },
+    {
+      "case": "0011.txt",
+      "first": 137,
+      "last": 143,
+      "before_count": 5,
+      "after_count": 4,
+      "cell_count": 6,
+      "pieces": 13,
+      "moves": [
+        "2 12 2 D 3",
+        "5 12 0 D 1",
+        "6 12 0 R 1",
+        "6 13 2 D 3"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 2,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          2,
+          12
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          6,
+          13
+        ],
+        [
+          9,
+          13
+        ]
+      ],
+      "initial": {
+        "(2, 12)": "jjhbiiib",
+        "(4, 12)": "",
+        "(5, 12)": "hh",
+        "(6, 12)": "",
+        "(6, 13)": "",
+        "(9, 13)": "bbb"
+      },
+      "final": {
+        "(2, 12)": "",
+        "(4, 12)": "",
+        "(5, 12)": "",
+        "(6, 12)": "",
+        "(6, 13)": "",
+        "(9, 13)": "bbbbiiib"
+      },
+      "before": [
+        {
+          "turn": 137,
+          "action": "2 12 2 D 2",
+          "source": [
+            2,
+            12
+          ],
+          "destination": [
+            4,
+            12
+          ],
+          "k": 2,
+          "length": 2,
+          "moving": "hbiiib",
+          "support": "jj",
+          "landing": "",
+          "returned_source": "jj",
+          "returned_destination": "",
+          "before_source": "jjhbiiib",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "biiibh"
+        },
+        {
+          "turn": 138,
+          "action": "4 12 0 D 1",
+          "source": [
+            4,
+            12
+          ],
+          "destination": [
+            5,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "biiibh",
+          "support": "",
+          "landing": "hh",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "biiibh",
+          "before_destination": "hh",
+          "after_source": "",
+          "after_destination": "hhhbiiib"
+        },
+        {
+          "turn": 141,
+          "action": "5 12 0 D 1",
+          "source": [
+            5,
+            12
+          ],
+          "destination": [
+            6,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "hhhbiiib",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "hhhbiiib",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "biiibhhh"
+        },
+        {
+          "turn": 142,
+          "action": "6 12 0 R 1",
+          "source": [
+            6,
+            12
+          ],
+          "destination": [
+            6,
+            13
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "biiibhhh",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "biiibhhh",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "hhhbiiib"
+        },
+        {
+          "turn": 143,
+          "action": "6 13 3 D 3",
+          "source": [
+            6,
+            13
+          ],
+          "destination": [
+            9,
+            13
+          ],
+          "k": 3,
+          "length": 3,
+          "moving": "biiib",
+          "support": "hhh",
+          "landing": "bbb",
+          "returned_source": "hhh",
+          "returned_destination": "",
+          "before_source": "hhhbiiib",
+          "before_destination": "bbb",
+          "after_source": "",
+          "after_destination": "bbbbiiib"
+        }
+      ],
+      "after": [
+        {
+          "turn": 137,
+          "action": "2 12 2 D 3",
+          "source": [
+            2,
+            12
+          ],
+          "destination": [
+            5,
+            12
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "hbiiib",
+          "support": "jj",
+          "landing": "hh",
+          "returned_source": "jj",
+          "returned_destination": "",
+          "before_source": "jjhbiiib",
+          "before_destination": "hh",
+          "after_source": "",
+          "after_destination": "hhbiiibh"
+        },
+        {
+          "turn": 138,
+          "action": "5 12 0 D 1",
+          "source": [
+            5,
+            12
+          ],
+          "destination": [
+            6,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "hhbiiibh",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "hhbiiibh",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "hbiiibhh"
+        },
+        {
+          "turn": 139,
+          "action": "6 12 0 R 1",
+          "source": [
+            6,
+            12
+          ],
+          "destination": [
+            6,
+            13
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "hbiiibhh",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "h",
+          "before_source": "hbiiibhh",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "hhbiiib"
+        },
+        {
+          "turn": 140,
+          "action": "6 13 2 D 3",
+          "source": [
+            6,
+            13
+          ],
+          "destination": [
+            9,
+            13
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "biiib",
+          "support": "hh",
+          "landing": "bbb",
+          "returned_source": "hh",
+          "returned_destination": "",
+          "before_source": "hhbiiib",
+          "before_destination": "bbb",
+          "after_source": "",
+          "after_destination": "bbbbiiib"
+        }
+      ]
+    },
+    {
+      "case": "0014.txt",
+      "first": 331,
+      "last": 339,
+      "before_count": 7,
+      "after_count": 5,
+      "cell_count": 4,
+      "pieces": 14,
+      "moves": [
+        "13 10 3 R 3",
+        "13 9 0 R 1",
+        "13 10 6 R 4",
+        "13 10 4 R 4",
+        "13 13 2 R 1"
+      ],
+      "saved": 2,
+      "has_nest": true,
+      "independent_operations": 2,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          13,
+          9
+        ],
+        [
+          13,
+          10
+        ],
+        [
+          13,
+          13
+        ],
+        [
+          13,
+          14
+        ]
+      ],
+      "initial": {
+        "(13, 9)": "ddded",
+        "(13, 10)": "ddeeee",
+        "(13, 13)": "eee",
+        "(13, 14)": ""
+      },
+      "final": {
+        "(13, 9)": "",
+        "(13, 10)": "dded",
+        "(13, 13)": "ee",
+        "(13, 14)": "deeeee"
+      },
+      "before": [
+        {
+          "turn": 331,
+          "action": "13 9 3 R 1",
+          "source": [
+            13,
+            9
+          ],
+          "destination": [
+            13,
+            10
+          ],
+          "k": 3,
+          "length": 1,
+          "moving": "ed",
+          "support": "ddd",
+          "landing": "ddeeee",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddded",
+          "before_destination": "ddeeee",
+          "after_source": "ddd",
+          "after_destination": "ddeeeede"
+        },
+        {
+          "turn": 332,
+          "action": "13 10 6 R 3",
+          "source": [
+            13,
+            10
+          ],
+          "destination": [
+            13,
+            13
+          ],
+          "k": 6,
+          "length": 3,
+          "moving": "de",
+          "support": "ddeeee",
+          "landing": "eee",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddeeeede",
+          "before_destination": "eee",
+          "after_source": "ddeeee",
+          "after_destination": "eeeed"
+        },
+        {
+          "turn": 334,
+          "action": "13 13 2 R 1",
+          "source": [
+            13,
+            13
+          ],
+          "destination": [
+            13,
+            14
+          ],
+          "k": 2,
+          "length": 1,
+          "moving": "eed",
+          "support": "ee",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eeeed",
+          "before_destination": "",
+          "after_source": "ee",
+          "after_destination": "dee"
+        },
+        {
+          "turn": 336,
+          "action": "13 9 1 R 1",
+          "source": [
+            13,
+            9
+          ],
+          "destination": [
+            13,
+            10
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "dd",
+          "support": "d",
+          "landing": "ddeeee",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddd",
+          "before_destination": "ddeeee",
+          "after_source": "d",
+          "after_destination": "ddeeeedd"
+        },
+        {
+          "turn": 337,
+          "action": "13 10 3 R 3",
+          "source": [
+            13,
+            10
+          ],
+          "destination": [
+            13,
+            13
+          ],
+          "k": 3,
+          "length": 3,
+          "moving": "eeedd",
+          "support": "dde",
+          "landing": "ee",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddeeeedd",
+          "before_destination": "ee",
+          "after_source": "dde",
+          "after_destination": "eeddeee"
+        },
+        {
+          "turn": 338,
+          "action": "13 13 2 R 1",
+          "source": [
+            13,
+            13
+          ],
+          "destination": [
+            13,
+            14
+          ],
+          "k": 2,
+          "length": 1,
+          "moving": "ddeee",
+          "support": "ee",
+          "landing": "dee",
+          "returned_source": "",
+          "returned_destination": "dd",
+          "before_source": "eeddeee",
+          "before_destination": "dee",
+          "after_source": "ee",
+          "after_destination": "deeeee"
+        },
+        {
+          "turn": 339,
+          "action": "13 9 0 R 1",
+          "source": [
+            13,
+            9
+          ],
+          "destination": [
+            13,
+            10
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "d",
+          "support": "",
+          "landing": "dde",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "d",
+          "before_destination": "dde",
+          "after_source": "",
+          "after_destination": "dded"
+        }
+      ],
+      "after": [
+        {
+          "turn": 331,
+          "action": "13 10 3 R 3",
+          "source": [
+            13,
+            10
+          ],
+          "destination": [
+            13,
+            13
+          ],
+          "k": 3,
+          "length": 3,
+          "moving": "eee",
+          "support": "dde",
+          "landing": "eee",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddeeee",
+          "before_destination": "eee",
+          "after_source": "dde",
+          "after_destination": "eeeeee"
+        },
+        {
+          "turn": 332,
+          "action": "13 9 0 R 1",
+          "source": [
+            13,
+            9
+          ],
+          "destination": [
+            13,
+            10
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ddded",
+          "support": "",
+          "landing": "dde",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddded",
+          "before_destination": "dde",
+          "after_source": "",
+          "after_destination": "ddededdd"
+        },
+        {
+          "turn": 333,
+          "action": "13 10 6 R 4",
+          "source": [
+            13,
+            10
+          ],
+          "destination": [
+            13,
+            14
+          ],
+          "k": 6,
+          "length": 4,
+          "moving": "dd",
+          "support": "ddeded",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "dd",
+          "before_source": "ddededdd",
+          "before_destination": "",
+          "after_source": "ddeded",
+          "after_destination": ""
+        },
+        {
+          "turn": 334,
+          "action": "13 10 4 R 4",
+          "source": [
+            13,
+            10
+          ],
+          "destination": [
+            13,
+            14
+          ],
+          "k": 4,
+          "length": 4,
+          "moving": "ed",
+          "support": "dded",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddeded",
+          "before_destination": "",
+          "after_source": "dded",
+          "after_destination": "de"
+        },
+        {
+          "turn": 335,
+          "action": "13 13 2 R 1",
+          "source": [
+            13,
+            13
+          ],
+          "destination": [
+            13,
+            14
+          ],
+          "k": 2,
+          "length": 1,
+          "moving": "eeee",
+          "support": "ee",
+          "landing": "de",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eeeeee",
+          "before_destination": "de",
+          "after_source": "ee",
+          "after_destination": "deeeee"
+        }
+      ]
+    },
+    {
+      "case": "0019.txt",
+      "first": 444,
+      "last": 454,
+      "before_count": 7,
+      "after_count": 6,
+      "cell_count": 8,
+      "pieces": 12,
+      "moves": [
+        "6 12 0 D 1",
+        "3 12 3 D 4",
+        "3 12 0 U 1",
+        "7 12 1 D 1",
+        "8 12 1 D 2",
+        "10 12 0 L 1"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 4,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          2,
+          12
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          7,
+          12
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "initial": {
+        "(2, 12)": "",
+        "(3, 12)": "kkkiddh",
+        "(6, 12)": "eee",
+        "(7, 12)": "f",
+        "(8, 11)": "",
+        "(8, 12)": "l",
+        "(9, 11)": "",
+        "(10, 11)": "",
+        "(10, 12)": ""
+      },
+      "final": {
+        "(2, 12)": "",
+        "(3, 12)": "",
+        "(6, 12)": "",
+        "(7, 12)": "f",
+        "(8, 11)": "",
+        "(8, 12)": "l",
+        "(9, 11)": "",
+        "(10, 11)": "iddheee",
+        "(10, 12)": ""
+      },
+      "before": [
+        {
+          "turn": 444,
+          "action": "3 12 3 D 3",
+          "source": [
+            3,
+            12
+          ],
+          "destination": [
+            6,
+            12
+          ],
+          "k": 3,
+          "length": 3,
+          "moving": "iddh",
+          "support": "kkk",
+          "landing": "eee",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "kkkiddh",
+          "before_destination": "eee",
+          "after_source": "kkk",
+          "after_destination": "eeehddi"
+        },
+        {
+          "turn": 445,
+          "action": "6 12 0 D 1",
+          "source": [
+            6,
+            12
+          ],
+          "destination": [
+            7,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eeehddi",
+          "support": "",
+          "landing": "f",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eeehddi",
+          "before_destination": "f",
+          "after_source": "",
+          "after_destination": "fiddheee"
+        },
+        {
+          "turn": 446,
+          "action": "7 12 1 D 1",
+          "source": [
+            7,
+            12
+          ],
+          "destination": [
+            8,
+            12
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "iddheee",
+          "support": "f",
+          "landing": "l",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "fiddheee",
+          "before_destination": "l",
+          "after_source": "f",
+          "after_destination": "leeehddi"
+        },
+        {
+          "turn": 447,
+          "action": "8 12 1 L 1",
+          "source": [
+            8,
+            12
+          ],
+          "destination": [
+            8,
+            11
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "eeehddi",
+          "support": "l",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "leeehddi",
+          "before_destination": "",
+          "after_source": "l",
+          "after_destination": "iddheee"
+        },
+        {
+          "turn": 448,
+          "action": "8 11 0 D 1",
+          "source": [
+            8,
+            11
+          ],
+          "destination": [
+            9,
+            11
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "iddheee",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "iddheee",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "eeehddi"
+        },
+        {
+          "turn": 449,
+          "action": "9 11 0 D 1",
+          "source": [
+            9,
+            11
+          ],
+          "destination": [
+            10,
+            11
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eeehddi",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eeehddi",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "iddheee"
+        },
+        {
+          "turn": 454,
+          "action": "3 12 0 U 1",
+          "source": [
+            3,
+            12
+          ],
+          "destination": [
+            2,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "kkk",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "kkk",
+          "before_source": "kkk",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        }
+      ],
+      "after": [
+        {
+          "turn": 444,
+          "action": "6 12 0 D 1",
+          "source": [
+            6,
+            12
+          ],
+          "destination": [
+            7,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eee",
+          "support": "",
+          "landing": "f",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eee",
+          "before_destination": "f",
+          "after_source": "",
+          "after_destination": "feee"
+        },
+        {
+          "turn": 445,
+          "action": "3 12 3 D 4",
+          "source": [
+            3,
+            12
+          ],
+          "destination": [
+            7,
+            12
+          ],
+          "k": 3,
+          "length": 4,
+          "moving": "iddh",
+          "support": "kkk",
+          "landing": "feee",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "kkkiddh",
+          "before_destination": "feee",
+          "after_source": "kkk",
+          "after_destination": "feeehddi"
+        },
+        {
+          "turn": 446,
+          "action": "3 12 0 U 1",
+          "source": [
+            3,
+            12
+          ],
+          "destination": [
+            2,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "kkk",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "kkk",
+          "before_source": "kkk",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        },
+        {
+          "turn": 447,
+          "action": "7 12 1 D 1",
+          "source": [
+            7,
+            12
+          ],
+          "destination": [
+            8,
+            12
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "eeehddi",
+          "support": "f",
+          "landing": "l",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "feeehddi",
+          "before_destination": "l",
+          "after_source": "f",
+          "after_destination": "liddheee"
+        },
+        {
+          "turn": 448,
+          "action": "8 12 1 D 2",
+          "source": [
+            8,
+            12
+          ],
+          "destination": [
+            10,
+            12
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "iddheee",
+          "support": "l",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "liddheee",
+          "before_destination": "",
+          "after_source": "l",
+          "after_destination": "eeehddi"
+        },
+        {
+          "turn": 449,
+          "action": "10 12 0 L 1",
+          "source": [
+            10,
+            12
+          ],
+          "destination": [
+            10,
+            11
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eeehddi",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eeehddi",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "iddheee"
+        }
+      ]
+    },
+    {
+      "case": "0019.txt",
+      "first": 595,
+      "last": 612,
+      "before_count": 8,
+      "after_count": 5,
+      "cell_count": 6,
+      "pieces": 15,
+      "moves": [
+        "7 9 7 U 1",
+        "6 9 3 L 4",
+        "7 9 1 R 1",
+        "6 7 0 L 1",
+        "6 6 0 L 1"
+      ],
+      "saved": 3,
+      "has_nest": true,
+      "independent_operations": 10,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          7,
+          10
+        ]
+      ],
+      "initial": {
+        "(6, 5)": "",
+        "(6, 6)": "",
+        "(6, 7)": "a",
+        "(6, 9)": "fffaba",
+        "(7, 9)": "lffffffa",
+        "(7, 10)": ""
+      },
+      "final": {
+        "(6, 5)": "aab",
+        "(6, 6)": "",
+        "(6, 7)": "",
+        "(6, 9)": "fff",
+        "(7, 9)": "l",
+        "(7, 10)": ""
+      },
+      "before": [
+        {
+          "turn": 595,
+          "action": "7 9 7 U 1",
+          "source": [
+            7,
+            9
+          ],
+          "destination": [
+            6,
+            9
+          ],
+          "k": 7,
+          "length": 1,
+          "moving": "a",
+          "support": "lffffff",
+          "landing": "fffaba",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "lffffffa",
+          "before_destination": "fffaba",
+          "after_source": "lffffff",
+          "after_destination": "fffabaa"
+        },
+        {
+          "turn": 596,
+          "action": "6 9 6 L 4",
+          "source": [
+            6,
+            9
+          ],
+          "destination": [
+            6,
+            5
+          ],
+          "k": 6,
+          "length": 4,
+          "moving": "a",
+          "support": "fffaba",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "a",
+          "before_source": "fffabaa",
+          "before_destination": "",
+          "after_source": "fffaba",
+          "after_destination": ""
+        },
+        {
+          "turn": 606,
+          "action": "7 9 6 R 1",
+          "source": [
+            7,
+            9
+          ],
+          "destination": [
+            7,
+            10
+          ],
+          "k": 6,
+          "length": 1,
+          "moving": "f",
+          "support": "lfffff",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "f",
+          "before_source": "lffffff",
+          "before_destination": "",
+          "after_source": "lfffff",
+          "after_destination": ""
+        },
+        {
+          "turn": 608,
+          "action": "7 9 5 R 1",
+          "source": [
+            7,
+            9
+          ],
+          "destination": [
+            7,
+            10
+          ],
+          "k": 5,
+          "length": 1,
+          "moving": "f",
+          "support": "lffff",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "f",
+          "before_source": "lfffff",
+          "before_destination": "",
+          "after_source": "lffff",
+          "after_destination": ""
+        },
+        {
+          "turn": 609,
+          "action": "6 9 3 L 2",
+          "source": [
+            6,
+            9
+          ],
+          "destination": [
+            6,
+            7
+          ],
+          "k": 3,
+          "length": 2,
+          "moving": "aba",
+          "support": "fff",
+          "landing": "a",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "fffaba",
+          "before_destination": "a",
+          "after_source": "fff",
+          "after_destination": "aaba"
+        },
+        {
+          "turn": 610,
+          "action": "6 7 0 L 1",
+          "source": [
+            6,
+            7
+          ],
+          "destination": [
+            6,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaba",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaba",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "abaa"
+        },
+        {
+          "turn": 611,
+          "action": "6 6 0 L 1",
+          "source": [
+            6,
+            6
+          ],
+          "destination": [
+            6,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "abaa",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "a",
+          "before_source": "abaa",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "aab"
+        },
+        {
+          "turn": 612,
+          "action": "7 9 1 R 1",
+          "source": [
+            7,
+            9
+          ],
+          "destination": [
+            7,
+            10
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "ffff",
+          "support": "l",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "ffff",
+          "before_source": "lffff",
+          "before_destination": "",
+          "after_source": "l",
+          "after_destination": ""
+        }
+      ],
+      "after": [
+        {
+          "turn": 594,
+          "action": "7 9 7 U 1",
+          "source": [
+            7,
+            9
+          ],
+          "destination": [
+            6,
+            9
+          ],
+          "k": 7,
+          "length": 1,
+          "moving": "a",
+          "support": "lffffff",
+          "landing": "fffaba",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "lffffffa",
+          "before_destination": "fffaba",
+          "after_source": "lffffff",
+          "after_destination": "fffabaa"
+        },
+        {
+          "turn": 595,
+          "action": "6 9 3 L 4",
+          "source": [
+            6,
+            9
+          ],
+          "destination": [
+            6,
+            5
+          ],
+          "k": 3,
+          "length": 4,
+          "moving": "abaa",
+          "support": "fff",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "a",
+          "before_source": "fffabaa",
+          "before_destination": "",
+          "after_source": "fff",
+          "after_destination": "aab"
+        },
+        {
+          "turn": 596,
+          "action": "7 9 1 R 1",
+          "source": [
+            7,
+            9
+          ],
+          "destination": [
+            7,
+            10
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "ffffff",
+          "support": "l",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "ffffff",
+          "before_source": "lffffff",
+          "before_destination": "",
+          "after_source": "l",
+          "after_destination": ""
+        },
+        {
+          "turn": 597,
+          "action": "6 7 0 L 1",
+          "source": [
+            6,
+            7
+          ],
+          "destination": [
+            6,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "a",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "a",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "a"
+        },
+        {
+          "turn": 598,
+          "action": "6 6 0 L 1",
+          "source": [
+            6,
+            6
+          ],
+          "destination": [
+            6,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "a",
+          "support": "",
+          "landing": "aab",
+          "returned_source": "",
+          "returned_destination": "a",
+          "before_source": "a",
+          "before_destination": "aab",
+          "after_source": "",
+          "after_destination": "aab"
+        }
+      ]
+    },
+    {
+      "case": "0030.txt",
+      "first": 317,
+      "last": 326,
+      "before_count": 10,
+      "after_count": 9,
+      "cell_count": 6,
+      "pieces": 16,
+      "moves": [
+        "9 14 0 U 1",
+        "8 14 0 R 1",
+        "8 15 0 R 1",
+        "8 16 0 R 1",
+        "10 14 0 U 1",
+        "9 14 0 U 1",
+        "8 14 0 R 1",
+        "8 15 0 R 1",
+        "8 16 0 R 1"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 0,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          8,
+          14
+        ],
+        [
+          8,
+          15
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          8,
+          17
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          10,
+          14
+        ]
+      ],
+      "initial": {
+        "(8, 14)": "",
+        "(8, 15)": "",
+        "(8, 16)": "",
+        "(8, 17)": "",
+        "(9, 14)": "bbbbbbbb",
+        "(10, 14)": "bbbbbbbb"
+      },
+      "final": {
+        "(8, 14)": "",
+        "(8, 15)": "",
+        "(8, 16)": "",
+        "(8, 17)": "",
+        "(9, 14)": "",
+        "(10, 14)": ""
+      },
+      "before": [
+        {
+          "turn": 317,
+          "action": "9 14 0 U 1",
+          "source": [
+            9,
+            14
+          ],
+          "destination": [
+            8,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 318,
+          "action": "8 14 0 R 1",
+          "source": [
+            8,
+            14
+          ],
+          "destination": [
+            8,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 319,
+          "action": "10 14 0 U 1",
+          "source": [
+            10,
+            14
+          ],
+          "destination": [
+            9,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 320,
+          "action": "9 14 0 U 1",
+          "source": [
+            9,
+            14
+          ],
+          "destination": [
+            8,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 321,
+          "action": "8 15 1 R 2",
+          "source": [
+            8,
+            15
+          ],
+          "destination": [
+            8,
+            17
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "bbbbbbb",
+          "support": "b",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bbbbbbb",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "b",
+          "after_destination": ""
+        },
+        {
+          "turn": 322,
+          "action": "8 15 0 R 1",
+          "source": [
+            8,
+            15
+          ],
+          "destination": [
+            8,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "b",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "b",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "b"
+        },
+        {
+          "turn": 323,
+          "action": "8 14 0 R 1",
+          "source": [
+            8,
+            14
+          ],
+          "destination": [
+            8,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 324,
+          "action": "8 15 6 R 2",
+          "source": [
+            8,
+            15
+          ],
+          "destination": [
+            8,
+            17
+          ],
+          "k": 6,
+          "length": 2,
+          "moving": "bb",
+          "support": "bbbbbb",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bb",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "bbbbbb",
+          "after_destination": ""
+        },
+        {
+          "turn": 325,
+          "action": "8 15 0 R 1",
+          "source": [
+            8,
+            15
+          ],
+          "destination": [
+            8,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbb",
+          "support": "",
+          "landing": "b",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbb",
+          "before_destination": "b",
+          "after_source": "",
+          "after_destination": "bbbbbbb"
+        },
+        {
+          "turn": 326,
+          "action": "8 16 0 R 1",
+          "source": [
+            8,
+            16
+          ],
+          "destination": [
+            8,
+            17
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bbbbbbb",
+          "before_source": "bbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        }
+      ],
+      "after": [
+        {
+          "turn": 317,
+          "action": "9 14 0 U 1",
+          "source": [
+            9,
+            14
+          ],
+          "destination": [
+            8,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 318,
+          "action": "8 14 0 R 1",
+          "source": [
+            8,
+            14
+          ],
+          "destination": [
+            8,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 319,
+          "action": "8 15 0 R 1",
+          "source": [
+            8,
+            15
+          ],
+          "destination": [
+            8,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 320,
+          "action": "8 16 0 R 1",
+          "source": [
+            8,
+            16
+          ],
+          "destination": [
+            8,
+            17
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bbbbbbbb",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        },
+        {
+          "turn": 321,
+          "action": "10 14 0 U 1",
+          "source": [
+            10,
+            14
+          ],
+          "destination": [
+            9,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 322,
+          "action": "9 14 0 U 1",
+          "source": [
+            9,
+            14
+          ],
+          "destination": [
+            8,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 323,
+          "action": "8 14 0 R 1",
+          "source": [
+            8,
+            14
+          ],
+          "destination": [
+            8,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 324,
+          "action": "8 15 0 R 1",
+          "source": [
+            8,
+            15
+          ],
+          "destination": [
+            8,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbbbbb"
+        },
+        {
+          "turn": 325,
+          "action": "8 16 0 R 1",
+          "source": [
+            8,
+            16
+          ],
+          "destination": [
+            8,
+            17
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbbbbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bbbbbbbb",
+          "before_source": "bbbbbbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        }
+      ]
+    },
+    {
+      "case": "0036.txt",
+      "first": 95,
+      "last": 103,
+      "before_count": 4,
+      "after_count": 3,
+      "cell_count": 4,
+      "pieces": 13,
+      "moves": [
+        "5 7 3 U 2",
+        "4 7 0 U 1",
+        "3 7 3 L 1"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 5,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "initial": {
+        "(3, 6)": "el",
+        "(3, 7)": "",
+        "(4, 7)": "aaa",
+        "(5, 7)": "gggccggg"
+      },
+      "final": {
+        "(3, 6)": "elaaacc",
+        "(3, 7)": "",
+        "(4, 7)": "",
+        "(5, 7)": "ggg"
+      },
+      "before": [
+        {
+          "turn": 95,
+          "action": "5 7 3 U 1",
+          "source": [
+            5,
+            7
+          ],
+          "destination": [
+            4,
+            7
+          ],
+          "k": 3,
+          "length": 1,
+          "moving": "ccggg",
+          "support": "ggg",
+          "landing": "aaa",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "gggccggg",
+          "before_destination": "aaa",
+          "after_source": "ggg",
+          "after_destination": "aaagggcc"
+        },
+        {
+          "turn": 96,
+          "action": "4 7 3 U 1",
+          "source": [
+            4,
+            7
+          ],
+          "destination": [
+            3,
+            7
+          ],
+          "k": 3,
+          "length": 1,
+          "moving": "gggcc",
+          "support": "aaa",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "ggg",
+          "before_source": "aaagggcc",
+          "before_destination": "",
+          "after_source": "aaa",
+          "after_destination": "cc"
+        },
+        {
+          "turn": 97,
+          "action": "4 7 0 U 1",
+          "source": [
+            4,
+            7
+          ],
+          "destination": [
+            3,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaa",
+          "support": "",
+          "landing": "cc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaa",
+          "before_destination": "cc",
+          "after_source": "",
+          "after_destination": "ccaaa"
+        },
+        {
+          "turn": 103,
+          "action": "3 7 0 L 1",
+          "source": [
+            3,
+            7
+          ],
+          "destination": [
+            3,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ccaaa",
+          "support": "",
+          "landing": "el",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ccaaa",
+          "before_destination": "el",
+          "after_source": "",
+          "after_destination": "elaaacc"
+        }
+      ],
+      "after": [
+        {
+          "turn": 95,
+          "action": "5 7 3 U 2",
+          "source": [
+            5,
+            7
+          ],
+          "destination": [
+            3,
+            7
+          ],
+          "k": 3,
+          "length": 2,
+          "moving": "ccggg",
+          "support": "ggg",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "gggccggg",
+          "before_destination": "",
+          "after_source": "ggg",
+          "after_destination": "gggcc"
+        },
+        {
+          "turn": 96,
+          "action": "4 7 0 U 1",
+          "source": [
+            4,
+            7
+          ],
+          "destination": [
+            3,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaa",
+          "support": "",
+          "landing": "gggcc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaa",
+          "before_destination": "gggcc",
+          "after_source": "",
+          "after_destination": "gggccaaa"
+        },
+        {
+          "turn": 97,
+          "action": "3 7 3 L 1",
+          "source": [
+            3,
+            7
+          ],
+          "destination": [
+            3,
+            6
+          ],
+          "k": 3,
+          "length": 1,
+          "moving": "ccaaa",
+          "support": "ggg",
+          "landing": "el",
+          "returned_source": "ggg",
+          "returned_destination": "",
+          "before_source": "gggccaaa",
+          "before_destination": "el",
+          "after_source": "",
+          "after_destination": "elaaacc"
+        }
+      ]
+    },
+    {
+      "case": "0045.txt",
+      "first": 76,
+      "last": 83,
+      "before_count": 8,
+      "after_count": 7,
+      "cell_count": 7,
+      "pieces": 13,
+      "moves": [
+        "9 13 3 L 4",
+        "10 13 0 U 1",
+        "9 13 0 L 1",
+        "9 12 3 L 3",
+        "9 12 0 L 1",
+        "8 11 0 D 1",
+        "9 11 0 L 1"
+      ],
+      "saved": 1,
+      "has_nest": false,
+      "independent_operations": 0,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          8,
+          11
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          9,
+          12
+        ],
+        [
+          9,
+          13
+        ],
+        [
+          10,
+          13
+        ]
+      ],
+      "initial": {
+        "(8, 11)": "d",
+        "(9, 9)": "a",
+        "(9, 10)": "c",
+        "(9, 11)": "",
+        "(9, 12)": "",
+        "(9, 13)": "ddddddd",
+        "(10, 13)": "dcc"
+      },
+      "final": {
+        "(8, 11)": "",
+        "(9, 9)": "addddddd",
+        "(9, 10)": "cddcc",
+        "(9, 11)": "",
+        "(9, 12)": "",
+        "(9, 13)": "",
+        "(10, 13)": ""
+      },
+      "before": [
+        {
+          "turn": 76,
+          "action": "9 13 2 L 2",
+          "source": [
+            9,
+            13
+          ],
+          "destination": [
+            9,
+            11
+          ],
+          "k": 2,
+          "length": 2,
+          "moving": "ddddd",
+          "support": "dd",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddddddd",
+          "before_destination": "",
+          "after_source": "dd",
+          "after_destination": "ddddd"
+        },
+        {
+          "turn": 77,
+          "action": "10 13 0 U 1",
+          "source": [
+            10,
+            13
+          ],
+          "destination": [
+            9,
+            13
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dcc",
+          "support": "",
+          "landing": "dd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dcc",
+          "before_destination": "dd",
+          "after_source": "",
+          "after_destination": "ddccd"
+        },
+        {
+          "turn": 78,
+          "action": "9 13 0 L 1",
+          "source": [
+            9,
+            13
+          ],
+          "destination": [
+            9,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ddccd",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddccd",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "dccdd"
+        },
+        {
+          "turn": 79,
+          "action": "9 11 1 L 2",
+          "source": [
+            9,
+            11
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "dddd",
+          "support": "d",
+          "landing": "a",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddddd",
+          "before_destination": "a",
+          "after_source": "d",
+          "after_destination": "adddd"
+        },
+        {
+          "turn": 80,
+          "action": "9 12 0 L 1",
+          "source": [
+            9,
+            12
+          ],
+          "destination": [
+            9,
+            11
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dccdd",
+          "support": "",
+          "landing": "d",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dccdd",
+          "before_destination": "d",
+          "after_source": "",
+          "after_destination": "dddccd"
+        },
+        {
+          "turn": 81,
+          "action": "8 11 0 D 1",
+          "source": [
+            8,
+            11
+          ],
+          "destination": [
+            9,
+            11
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "d",
+          "support": "",
+          "landing": "dddccd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "d",
+          "before_destination": "dddccd",
+          "after_source": "",
+          "after_destination": "dddccdd"
+        },
+        {
+          "turn": 82,
+          "action": "9 11 0 L 1",
+          "source": [
+            9,
+            11
+          ],
+          "destination": [
+            9,
+            10
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dddccdd",
+          "support": "",
+          "landing": "c",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dddccdd",
+          "before_destination": "c",
+          "after_source": "",
+          "after_destination": "cddccddd"
+        },
+        {
+          "turn": 83,
+          "action": "9 10 5 L 1",
+          "source": [
+            9,
+            10
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "k": 5,
+          "length": 1,
+          "moving": "ddd",
+          "support": "cddcc",
+          "landing": "adddd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cddccddd",
+          "before_destination": "adddd",
+          "after_source": "cddcc",
+          "after_destination": "addddddd"
+        }
+      ],
+      "after": [
+        {
+          "turn": 76,
+          "action": "9 13 3 L 4",
+          "source": [
+            9,
+            13
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "k": 3,
+          "length": 4,
+          "moving": "dddd",
+          "support": "ddd",
+          "landing": "a",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ddddddd",
+          "before_destination": "a",
+          "after_source": "ddd",
+          "after_destination": "adddd"
+        },
+        {
+          "turn": 77,
+          "action": "10 13 0 U 1",
+          "source": [
+            10,
+            13
+          ],
+          "destination": [
+            9,
+            13
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dcc",
+          "support": "",
+          "landing": "ddd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dcc",
+          "before_destination": "ddd",
+          "after_source": "",
+          "after_destination": "dddccd"
+        },
+        {
+          "turn": 78,
+          "action": "9 13 0 L 1",
+          "source": [
+            9,
+            13
+          ],
+          "destination": [
+            9,
+            12
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dddccd",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dddccd",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "dccddd"
+        },
+        {
+          "turn": 79,
+          "action": "9 12 3 L 3",
+          "source": [
+            9,
+            12
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "k": 3,
+          "length": 3,
+          "moving": "ddd",
+          "support": "dcc",
+          "landing": "adddd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dccddd",
+          "before_destination": "adddd",
+          "after_source": "dcc",
+          "after_destination": "addddddd"
+        },
+        {
+          "turn": 80,
+          "action": "9 12 0 L 1",
+          "source": [
+            9,
+            12
+          ],
+          "destination": [
+            9,
+            11
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dcc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dcc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "ccd"
+        },
+        {
+          "turn": 81,
+          "action": "8 11 0 D 1",
+          "source": [
+            8,
+            11
+          ],
+          "destination": [
+            9,
+            11
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "d",
+          "support": "",
+          "landing": "ccd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "d",
+          "before_destination": "ccd",
+          "after_source": "",
+          "after_destination": "ccdd"
+        },
+        {
+          "turn": 82,
+          "action": "9 11 0 L 1",
+          "source": [
+            9,
+            11
+          ],
+          "destination": [
+            9,
+            10
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ccdd",
+          "support": "",
+          "landing": "c",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ccdd",
+          "before_destination": "c",
+          "after_source": "",
+          "after_destination": "cddcc"
+        }
+      ]
+    },
+    {
+      "case": "0049.txt",
+      "first": 137,
+      "last": 143,
+      "before_count": 7,
+      "after_count": 6,
+      "cell_count": 8,
+      "pieces": 12,
+      "moves": [
+        "6 6 0 L 1",
+        "6 7 2 L 2",
+        "6 5 1 L 2",
+        "6 3 2 D 3",
+        "8 3 0 D 1",
+        "9 3 6 U 4"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 0,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "initial": {
+        "(5, 3)": "",
+        "(6, 3)": "",
+        "(6, 4)": "",
+        "(6, 5)": "d",
+        "(6, 6)": "a",
+        "(6, 7)": "cceeaaaa",
+        "(8, 3)": "e",
+        "(9, 3)": "a"
+      },
+      "final": {
+        "(5, 3)": "e",
+        "(6, 3)": "",
+        "(6, 4)": "",
+        "(6, 5)": "d",
+        "(6, 6)": "",
+        "(6, 7)": "cc",
+        "(8, 3)": "",
+        "(9, 3)": "aaaaaa"
+      },
+      "before": [
+        {
+          "turn": 137,
+          "action": "6 7 2 L 1",
+          "source": [
+            6,
+            7
+          ],
+          "destination": [
+            6,
+            6
+          ],
+          "k": 2,
+          "length": 1,
+          "moving": "eeaaaa",
+          "support": "cc",
+          "landing": "a",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cceeaaaa",
+          "before_destination": "a",
+          "after_source": "cc",
+          "after_destination": "aaaaaee"
+        },
+        {
+          "turn": 138,
+          "action": "6 6 0 L 1",
+          "source": [
+            6,
+            6
+          ],
+          "destination": [
+            6,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaaaaee",
+          "support": "",
+          "landing": "d",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaaaaee",
+          "before_destination": "d",
+          "after_source": "",
+          "after_destination": "deeaaaaa"
+        },
+        {
+          "turn": 139,
+          "action": "6 5 1 L 1",
+          "source": [
+            6,
+            5
+          ],
+          "destination": [
+            6,
+            4
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "eeaaaaa",
+          "support": "d",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "deeaaaaa",
+          "before_destination": "",
+          "after_source": "d",
+          "after_destination": "aaaaaee"
+        },
+        {
+          "turn": 140,
+          "action": "6 4 0 L 1",
+          "source": [
+            6,
+            4
+          ],
+          "destination": [
+            6,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaaaaee",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaaaaee",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "eeaaaaa"
+        },
+        {
+          "turn": 141,
+          "action": "6 3 2 D 3",
+          "source": [
+            6,
+            3
+          ],
+          "destination": [
+            9,
+            3
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "aaaaa",
+          "support": "ee",
+          "landing": "a",
+          "returned_source": "ee",
+          "returned_destination": "",
+          "before_source": "eeaaaaa",
+          "before_destination": "a",
+          "after_source": "",
+          "after_destination": "aaaaaa"
+        },
+        {
+          "turn": 142,
+          "action": "8 3 0 D 1",
+          "source": [
+            8,
+            3
+          ],
+          "destination": [
+            9,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "e",
+          "support": "",
+          "landing": "aaaaaa",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "e",
+          "before_destination": "aaaaaa",
+          "after_source": "",
+          "after_destination": "aaaaaae"
+        },
+        {
+          "turn": 143,
+          "action": "9 3 6 U 4",
+          "source": [
+            9,
+            3
+          ],
+          "destination": [
+            5,
+            3
+          ],
+          "k": 6,
+          "length": 4,
+          "moving": "e",
+          "support": "aaaaaa",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaaaaae",
+          "before_destination": "",
+          "after_source": "aaaaaa",
+          "after_destination": "e"
+        }
+      ],
+      "after": [
+        {
+          "turn": 137,
+          "action": "6 6 0 L 1",
+          "source": [
+            6,
+            6
+          ],
+          "destination": [
+            6,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "a",
+          "support": "",
+          "landing": "d",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "a",
+          "before_destination": "d",
+          "after_source": "",
+          "after_destination": "da"
+        },
+        {
+          "turn": 138,
+          "action": "6 7 2 L 2",
+          "source": [
+            6,
+            7
+          ],
+          "destination": [
+            6,
+            5
+          ],
+          "k": 2,
+          "length": 2,
+          "moving": "eeaaaa",
+          "support": "cc",
+          "landing": "da",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cceeaaaa",
+          "before_destination": "da",
+          "after_source": "cc",
+          "after_destination": "daaaaaee"
+        },
+        {
+          "turn": 139,
+          "action": "6 5 1 L 2",
+          "source": [
+            6,
+            5
+          ],
+          "destination": [
+            6,
+            3
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "aaaaaee",
+          "support": "d",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "daaaaaee",
+          "before_destination": "",
+          "after_source": "d",
+          "after_destination": "eeaaaaa"
+        },
+        {
+          "turn": 140,
+          "action": "6 3 2 D 3",
+          "source": [
+            6,
+            3
+          ],
+          "destination": [
+            9,
+            3
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "aaaaa",
+          "support": "ee",
+          "landing": "a",
+          "returned_source": "ee",
+          "returned_destination": "",
+          "before_source": "eeaaaaa",
+          "before_destination": "a",
+          "after_source": "",
+          "after_destination": "aaaaaa"
+        },
+        {
+          "turn": 141,
+          "action": "8 3 0 D 1",
+          "source": [
+            8,
+            3
+          ],
+          "destination": [
+            9,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "e",
+          "support": "",
+          "landing": "aaaaaa",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "e",
+          "before_destination": "aaaaaa",
+          "after_source": "",
+          "after_destination": "aaaaaae"
+        },
+        {
+          "turn": 142,
+          "action": "9 3 6 U 4",
+          "source": [
+            9,
+            3
+          ],
+          "destination": [
+            5,
+            3
+          ],
+          "k": 6,
+          "length": 4,
+          "moving": "e",
+          "support": "aaaaaa",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaaaaae",
+          "before_destination": "",
+          "after_source": "aaaaaa",
+          "after_destination": "e"
+        }
+      ]
+    },
+    {
+      "case": "0054.txt",
+      "first": 112,
+      "last": 120,
+      "before_count": 9,
+      "after_count": 8,
+      "cell_count": 7,
+      "pieces": 13,
+      "moves": [
+        "11 2 4 D 1",
+        "12 2 3 R 3",
+        "11 2 0 D 1",
+        "11 3 0 D 1",
+        "12 2 0 R 1",
+        "12 3 5 R 2",
+        "12 5 5 D 5",
+        "12 3 0 R 1"
+      ],
+      "saved": 1,
+      "has_nest": false,
+      "independent_operations": 0,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          11,
+          2
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          12,
+          2
+        ],
+        [
+          12,
+          3
+        ],
+        [
+          12,
+          4
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          17,
+          5
+        ]
+      ],
+      "initial": {
+        "(11, 2)": "blehbd",
+        "(11, 3)": "b",
+        "(12, 2)": "bbbhhh",
+        "(12, 3)": "",
+        "(12, 4)": "",
+        "(12, 5)": "",
+        "(17, 5)": ""
+      },
+      "final": {
+        "(11, 2)": "",
+        "(11, 3)": "",
+        "(12, 2)": "",
+        "(12, 3)": "",
+        "(12, 4)": "helbb",
+        "(12, 5)": "bdhhh",
+        "(17, 5)": "bbb"
+      },
+      "before": [
+        {
+          "turn": 112,
+          "action": "11 2 4 D 1",
+          "source": [
+            11,
+            2
+          ],
+          "destination": [
+            12,
+            2
+          ],
+          "k": 4,
+          "length": 1,
+          "moving": "bd",
+          "support": "bleh",
+          "landing": "bbbhhh",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "blehbd",
+          "before_destination": "bbbhhh",
+          "after_source": "bleh",
+          "after_destination": "bbbhhhdb"
+        },
+        {
+          "turn": 113,
+          "action": "12 2 0 R 1",
+          "source": [
+            12,
+            2
+          ],
+          "destination": [
+            12,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbhhhdb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbhhhdb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bdhhhbbb"
+        },
+        {
+          "turn": 114,
+          "action": "12 3 0 R 1",
+          "source": [
+            12,
+            3
+          ],
+          "destination": [
+            12,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bdhhhbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bdhhhbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbhhhdb"
+        },
+        {
+          "turn": 115,
+          "action": "12 4 0 R 1",
+          "source": [
+            12,
+            4
+          ],
+          "destination": [
+            12,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbhhhdb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbhhhdb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bdhhhbbb"
+        },
+        {
+          "turn": 116,
+          "action": "11 2 0 D 1",
+          "source": [
+            11,
+            2
+          ],
+          "destination": [
+            12,
+            2
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bleh",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bleh",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "helb"
+        },
+        {
+          "turn": 117,
+          "action": "11 3 0 D 1",
+          "source": [
+            11,
+            3
+          ],
+          "destination": [
+            12,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "b",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "b",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "b"
+        },
+        {
+          "turn": 118,
+          "action": "12 2 0 R 1",
+          "source": [
+            12,
+            2
+          ],
+          "destination": [
+            12,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "helb",
+          "support": "",
+          "landing": "b",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "helb",
+          "before_destination": "b",
+          "after_source": "",
+          "after_destination": "bbleh"
+        },
+        {
+          "turn": 119,
+          "action": "12 3 0 R 1",
+          "source": [
+            12,
+            3
+          ],
+          "destination": [
+            12,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbleh",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbleh",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "helbb"
+        },
+        {
+          "turn": 120,
+          "action": "12 5 5 D 5",
+          "source": [
+            12,
+            5
+          ],
+          "destination": [
+            17,
+            5
+          ],
+          "k": 5,
+          "length": 5,
+          "moving": "bbb",
+          "support": "bdhhh",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bdhhhbbb",
+          "before_destination": "",
+          "after_source": "bdhhh",
+          "after_destination": "bbb"
+        }
+      ],
+      "after": [
+        {
+          "turn": 112,
+          "action": "11 2 4 D 1",
+          "source": [
+            11,
+            2
+          ],
+          "destination": [
+            12,
+            2
+          ],
+          "k": 4,
+          "length": 1,
+          "moving": "bd",
+          "support": "bleh",
+          "landing": "bbbhhh",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "blehbd",
+          "before_destination": "bbbhhh",
+          "after_source": "bleh",
+          "after_destination": "bbbhhhdb"
+        },
+        {
+          "turn": 113,
+          "action": "12 2 3 R 3",
+          "source": [
+            12,
+            2
+          ],
+          "destination": [
+            12,
+            5
+          ],
+          "k": 3,
+          "length": 3,
+          "moving": "hhhdb",
+          "support": "bbb",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbhhhdb",
+          "before_destination": "",
+          "after_source": "bbb",
+          "after_destination": "bdhhh"
+        },
+        {
+          "turn": 114,
+          "action": "11 2 0 D 1",
+          "source": [
+            11,
+            2
+          ],
+          "destination": [
+            12,
+            2
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bleh",
+          "support": "",
+          "landing": "bbb",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bleh",
+          "before_destination": "bbb",
+          "after_source": "",
+          "after_destination": "bbbhelb"
+        },
+        {
+          "turn": 115,
+          "action": "11 3 0 D 1",
+          "source": [
+            11,
+            3
+          ],
+          "destination": [
+            12,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "b",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "b",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "b"
+        },
+        {
+          "turn": 116,
+          "action": "12 2 0 R 1",
+          "source": [
+            12,
+            2
+          ],
+          "destination": [
+            12,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbhelb",
+          "support": "",
+          "landing": "b",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbhelb",
+          "before_destination": "b",
+          "after_source": "",
+          "after_destination": "bblehbbb"
+        },
+        {
+          "turn": 117,
+          "action": "12 3 5 R 2",
+          "source": [
+            12,
+            3
+          ],
+          "destination": [
+            12,
+            5
+          ],
+          "k": 5,
+          "length": 2,
+          "moving": "bbb",
+          "support": "bbleh",
+          "landing": "bdhhh",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bblehbbb",
+          "before_destination": "bdhhh",
+          "after_source": "bbleh",
+          "after_destination": "bdhhhbbb"
+        },
+        {
+          "turn": 118,
+          "action": "12 5 5 D 5",
+          "source": [
+            12,
+            5
+          ],
+          "destination": [
+            17,
+            5
+          ],
+          "k": 5,
+          "length": 5,
+          "moving": "bbb",
+          "support": "bdhhh",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bdhhhbbb",
+          "before_destination": "",
+          "after_source": "bdhhh",
+          "after_destination": "bbb"
+        },
+        {
+          "turn": 119,
+          "action": "12 3 0 R 1",
+          "source": [
+            12,
+            3
+          ],
+          "destination": [
+            12,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbleh",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbleh",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "helbb"
+        }
+      ]
+    },
+    {
+      "case": "0078.txt",
+      "first": 182,
+      "last": 215,
+      "before_count": 6,
+      "after_count": 5,
+      "cell_count": 5,
+      "pieces": 15,
+      "moves": [
+        "14 0 1 R 1",
+        "14 5 0 L 1",
+        "14 4 7 L 4",
+        "14 4 0 L 1",
+        "14 3 2 L 3"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 28,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          14,
+          0
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          14,
+          3
+        ],
+        [
+          14,
+          4
+        ],
+        [
+          14,
+          5
+        ]
+      ],
+      "initial": {
+        "(14, 0)": "ec",
+        "(14, 1)": "eeeea",
+        "(14, 3)": "",
+        "(14, 4)": "",
+        "(14, 5)": "edeeeeee"
+      },
+      "final": {
+        "(14, 0)": "",
+        "(14, 1)": "eeeeac",
+        "(14, 3)": "de",
+        "(14, 4)": "",
+        "(14, 5)": ""
+      },
+      "before": [
+        {
+          "turn": 182,
+          "action": "14 5 0 L 1",
+          "source": [
+            14,
+            5
+          ],
+          "destination": [
+            14,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "edeeeeee",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "edeeeeee",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "eeeeeede"
+        },
+        {
+          "turn": 186,
+          "action": "14 4 4 L 4",
+          "source": [
+            14,
+            4
+          ],
+          "destination": [
+            14,
+            0
+          ],
+          "k": 4,
+          "length": 4,
+          "moving": "eede",
+          "support": "eeee",
+          "landing": "ec",
+          "returned_source": "",
+          "returned_destination": "ee",
+          "before_source": "eeeeeede",
+          "before_destination": "ec",
+          "after_source": "eeee",
+          "after_destination": "eced"
+        },
+        {
+          "turn": 187,
+          "action": "14 0 3 R 4",
+          "source": [
+            14,
+            0
+          ],
+          "destination": [
+            14,
+            4
+          ],
+          "k": 3,
+          "length": 4,
+          "moving": "d",
+          "support": "ece",
+          "landing": "eeee",
+          "returned_source": "e",
+          "returned_destination": "",
+          "before_source": "eced",
+          "before_destination": "eeee",
+          "after_source": "ec",
+          "after_destination": "eeeed"
+        },
+        {
+          "turn": 199,
+          "action": "14 4 0 L 1",
+          "source": [
+            14,
+            4
+          ],
+          "destination": [
+            14,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eeeed",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eeeed",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "deeee"
+        },
+        {
+          "turn": 209,
+          "action": "14 0 1 R 1",
+          "source": [
+            14,
+            0
+          ],
+          "destination": [
+            14,
+            1
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "c",
+          "support": "e",
+          "landing": "eeeea",
+          "returned_source": "e",
+          "returned_destination": "",
+          "before_source": "ec",
+          "before_destination": "eeeea",
+          "after_source": "",
+          "after_destination": "eeeeac"
+        },
+        {
+          "turn": 215,
+          "action": "14 3 2 L 3",
+          "source": [
+            14,
+            3
+          ],
+          "destination": [
+            14,
+            0
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "eee",
+          "support": "de",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "eee",
+          "before_source": "deeee",
+          "before_destination": "",
+          "after_source": "de",
+          "after_destination": ""
+        }
+      ],
+      "after": [
+        {
+          "turn": 182,
+          "action": "14 0 1 R 1",
+          "source": [
+            14,
+            0
+          ],
+          "destination": [
+            14,
+            1
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "c",
+          "support": "e",
+          "landing": "eeeea",
+          "returned_source": "e",
+          "returned_destination": "",
+          "before_source": "ec",
+          "before_destination": "eeeea",
+          "after_source": "",
+          "after_destination": "eeeeac"
+        },
+        {
+          "turn": 183,
+          "action": "14 5 0 L 1",
+          "source": [
+            14,
+            5
+          ],
+          "destination": [
+            14,
+            4
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "edeeeeee",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "edeeeeee",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "eeeeeede"
+        },
+        {
+          "turn": 184,
+          "action": "14 4 7 L 4",
+          "source": [
+            14,
+            4
+          ],
+          "destination": [
+            14,
+            0
+          ],
+          "k": 7,
+          "length": 4,
+          "moving": "e",
+          "support": "eeeeeed",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "e",
+          "before_source": "eeeeeede",
+          "before_destination": "",
+          "after_source": "eeeeeed",
+          "after_destination": ""
+        },
+        {
+          "turn": 185,
+          "action": "14 4 0 L 1",
+          "source": [
+            14,
+            4
+          ],
+          "destination": [
+            14,
+            3
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eeeeeed",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eeeeeed",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "deeeeee"
+        },
+        {
+          "turn": 186,
+          "action": "14 3 2 L 3",
+          "source": [
+            14,
+            3
+          ],
+          "destination": [
+            14,
+            0
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "eeeee",
+          "support": "de",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "eeeee",
+          "before_source": "deeeeee",
+          "before_destination": "",
+          "after_source": "de",
+          "after_destination": ""
+        }
+      ]
+    },
+    {
+      "case": "0082.txt",
+      "first": 266,
+      "last": 276,
+      "before_count": 6,
+      "after_count": 5,
+      "cell_count": 5,
+      "pieces": 12,
+      "moves": [
+        "10 11 0 L 1",
+        "10 10 3 L 1",
+        "10 8 0 R 1",
+        "10 9 5 D 3",
+        "10 10 0 L 1"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 5,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          10,
+          8
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          13,
+          9
+        ]
+      ],
+      "initial": {
+        "(10, 8)": "ccc",
+        "(10, 9)": "",
+        "(10, 10)": "",
+        "(10, 11)": "iiidiicc",
+        "(13, 9)": "c"
+      },
+      "final": {
+        "(10, 8)": "",
+        "(10, 9)": "iiidiicc",
+        "(10, 10)": "",
+        "(10, 11)": "",
+        "(13, 9)": "cccc"
+      },
+      "before": [
+        {
+          "turn": 266,
+          "action": "10 11 0 L 1",
+          "source": [
+            10,
+            11
+          ],
+          "destination": [
+            10,
+            10
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "iiidiicc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "iiidiicc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cciidiii"
+        },
+        {
+          "turn": 267,
+          "action": "10 10 0 L 1",
+          "source": [
+            10,
+            10
+          ],
+          "destination": [
+            10,
+            9
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cciidiii",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cciidiii",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "iiidiicc"
+        },
+        {
+          "turn": 268,
+          "action": "10 9 7 D 3",
+          "source": [
+            10,
+            9
+          ],
+          "destination": [
+            13,
+            9
+          ],
+          "k": 7,
+          "length": 3,
+          "moving": "c",
+          "support": "iiidiic",
+          "landing": "c",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "iiidiicc",
+          "before_destination": "c",
+          "after_source": "iiidiic",
+          "after_destination": "cc"
+        },
+        {
+          "turn": 269,
+          "action": "10 8 2 R 1",
+          "source": [
+            10,
+            8
+          ],
+          "destination": [
+            10,
+            9
+          ],
+          "k": 2,
+          "length": 1,
+          "moving": "c",
+          "support": "cc",
+          "landing": "iiidiic",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ccc",
+          "before_destination": "iiidiic",
+          "after_source": "cc",
+          "after_destination": "iiidiicc"
+        },
+        {
+          "turn": 274,
+          "action": "10 9 6 D 3",
+          "source": [
+            10,
+            9
+          ],
+          "destination": [
+            13,
+            9
+          ],
+          "k": 6,
+          "length": 3,
+          "moving": "cc",
+          "support": "iiidii",
+          "landing": "cc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "iiidiicc",
+          "before_destination": "cc",
+          "after_source": "iiidii",
+          "after_destination": "cccc"
+        },
+        {
+          "turn": 276,
+          "action": "10 8 0 R 1",
+          "source": [
+            10,
+            8
+          ],
+          "destination": [
+            10,
+            9
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cc",
+          "support": "",
+          "landing": "iiidii",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cc",
+          "before_destination": "iiidii",
+          "after_source": "",
+          "after_destination": "iiidiicc"
+        }
+      ],
+      "after": [
+        {
+          "turn": 266,
+          "action": "10 11 0 L 1",
+          "source": [
+            10,
+            11
+          ],
+          "destination": [
+            10,
+            10
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "iiidiicc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "iiidiicc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cciidiii"
+        },
+        {
+          "turn": 267,
+          "action": "10 10 3 L 1",
+          "source": [
+            10,
+            10
+          ],
+          "destination": [
+            10,
+            9
+          ],
+          "k": 3,
+          "length": 1,
+          "moving": "idiii",
+          "support": "cci",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cciidiii",
+          "before_destination": "",
+          "after_source": "cci",
+          "after_destination": "iiidi"
+        },
+        {
+          "turn": 268,
+          "action": "10 8 0 R 1",
+          "source": [
+            10,
+            8
+          ],
+          "destination": [
+            10,
+            9
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ccc",
+          "support": "",
+          "landing": "iiidi",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ccc",
+          "before_destination": "iiidi",
+          "after_source": "",
+          "after_destination": "iiidiccc"
+        },
+        {
+          "turn": 269,
+          "action": "10 9 5 D 3",
+          "source": [
+            10,
+            9
+          ],
+          "destination": [
+            13,
+            9
+          ],
+          "k": 5,
+          "length": 3,
+          "moving": "ccc",
+          "support": "iiidi",
+          "landing": "c",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "iiidiccc",
+          "before_destination": "c",
+          "after_source": "iiidi",
+          "after_destination": "cccc"
+        },
+        {
+          "turn": 270,
+          "action": "10 10 0 L 1",
+          "source": [
+            10,
+            10
+          ],
+          "destination": [
+            10,
+            9
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cci",
+          "support": "",
+          "landing": "iiidi",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cci",
+          "before_destination": "iiidi",
+          "after_source": "",
+          "after_destination": "iiidiicc"
+        }
+      ]
+    },
+    {
+      "case": "0084.txt",
+      "first": 8,
+      "last": 12,
+      "before_count": 5,
+      "after_count": 4,
+      "cell_count": 6,
+      "pieces": 8,
+      "moves": [
+        "1 15 0 D 1",
+        "2 15 0 L 1",
+        "2 14 0 D 1",
+        "3 14 0 D 1"
+      ],
+      "saved": 1,
+      "has_nest": false,
+      "independent_operations": 0,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          1,
+          15
+        ],
+        [
+          2,
+          14
+        ],
+        [
+          2,
+          15
+        ],
+        [
+          3,
+          15
+        ],
+        [
+          4,
+          14
+        ],
+        [
+          4,
+          15
+        ]
+      ],
+      "initial": {
+        "(1, 15)": "aaic",
+        "(2, 14)": "a",
+        "(2, 15)": "",
+        "(3, 14)": "",
+        "(3, 15)": "",
+        "(4, 14)": "eea",
+        "(4, 15)": ""
+      },
+      "final": {
+        "(1, 15)": "",
+        "(2, 14)": "",
+        "(2, 15)": "",
+        "(3, 14)": "",
+        "(3, 15)": "",
+        "(4, 14)": "eeaaaaic",
+        "(4, 15)": ""
+      },
+      "before": [
+        {
+          "turn": 8,
+          "action": "1 15 0 D 1",
+          "source": [
+            1,
+            15
+          ],
+          "destination": [
+            2,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaic",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaic",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "ciaa"
+        },
+        {
+          "turn": 9,
+          "action": "2 14 0 R 1",
+          "source": [
+            2,
+            14
+          ],
+          "destination": [
+            2,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "a",
+          "support": "",
+          "landing": "ciaa",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "a",
+          "before_destination": "ciaa",
+          "after_source": "",
+          "after_destination": "ciaaa"
+        },
+        {
+          "turn": 10,
+          "action": "2 15 0 D 1",
+          "source": [
+            2,
+            15
+          ],
+          "destination": [
+            3,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ciaaa",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ciaaa",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "aaaic"
+        },
+        {
+          "turn": 11,
+          "action": "3 15 0 D 1",
+          "source": [
+            3,
+            15
+          ],
+          "destination": [
+            4,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaaic",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaaic",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "ciaaa"
+        },
+        {
+          "turn": 12,
+          "action": "4 15 0 L 1",
+          "source": [
+            4,
+            15
+          ],
+          "destination": [
+            4,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ciaaa",
+          "support": "",
+          "landing": "eea",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ciaaa",
+          "before_destination": "eea",
+          "after_source": "",
+          "after_destination": "eeaaaaic"
+        }
+      ],
+      "after": [
+        {
+          "turn": 8,
+          "action": "1 15 0 D 1",
+          "source": [
+            1,
+            15
+          ],
+          "destination": [
+            2,
+            15
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaic",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaic",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "ciaa"
+        },
+        {
+          "turn": 9,
+          "action": "2 15 0 L 1",
+          "source": [
+            2,
+            15
+          ],
+          "destination": [
+            2,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ciaa",
+          "support": "",
+          "landing": "a",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ciaa",
+          "before_destination": "a",
+          "after_source": "",
+          "after_destination": "aaaic"
+        },
+        {
+          "turn": 10,
+          "action": "2 14 0 D 1",
+          "source": [
+            2,
+            14
+          ],
+          "destination": [
+            3,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaaic",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaaic",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "ciaaa"
+        },
+        {
+          "turn": 11,
+          "action": "3 14 0 D 1",
+          "source": [
+            3,
+            14
+          ],
+          "destination": [
+            4,
+            14
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ciaaa",
+          "support": "",
+          "landing": "eea",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ciaaa",
+          "before_destination": "eea",
+          "after_source": "",
+          "after_destination": "eeaaaaic"
+        }
+      ]
+    },
+    {
+      "case": "0084.txt",
+      "first": 191,
+      "last": 197,
+      "before_count": 7,
+      "after_count": 5,
+      "cell_count": 8,
+      "pieces": 11,
+      "moves": [
+        "8 8 4 R 1",
+        "8 8 0 D 1",
+        "8 9 1 D 2",
+        "10 9 1 L 2",
+        "10 9 0 D 1"
+      ],
+      "saved": 2,
+      "has_nest": true,
+      "independent_operations": 0,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          8,
+          8
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          10,
+          8
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          11,
+          9
+        ]
+      ],
+      "initial": {
+        "(8, 8)": "geffh",
+        "(8, 9)": "cbbb",
+        "(9, 8)": "gg",
+        "(9, 9)": "",
+        "(10, 7)": "",
+        "(10, 8)": "",
+        "(10, 9)": "",
+        "(11, 9)": ""
+      },
+      "final": {
+        "(8, 8)": "",
+        "(8, 9)": "c",
+        "(9, 8)": "ggffeg",
+        "(9, 9)": "",
+        "(10, 7)": "",
+        "(10, 8)": "",
+        "(10, 9)": "",
+        "(11, 9)": ""
+      },
+      "before": [
+        {
+          "turn": 191,
+          "action": "8 9 1 D 2",
+          "source": [
+            8,
+            9
+          ],
+          "destination": [
+            10,
+            9
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "bbb",
+          "support": "c",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cbbb",
+          "before_destination": "",
+          "after_source": "c",
+          "after_destination": "bbb"
+        },
+        {
+          "turn": 192,
+          "action": "10 9 0 L 1",
+          "source": [
+            10,
+            9
+          ],
+          "destination": [
+            10,
+            8
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbb"
+        },
+        {
+          "turn": 193,
+          "action": "10 8 0 L 1",
+          "source": [
+            10,
+            8
+          ],
+          "destination": [
+            10,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bbb",
+          "before_source": "bbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        },
+        {
+          "turn": 194,
+          "action": "8 8 0 R 1",
+          "source": [
+            8,
+            8
+          ],
+          "destination": [
+            8,
+            9
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "geffh",
+          "support": "",
+          "landing": "c",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "geffh",
+          "before_destination": "c",
+          "after_source": "",
+          "after_destination": "chffeg"
+        },
+        {
+          "turn": 195,
+          "action": "8 9 1 D 1",
+          "source": [
+            8,
+            9
+          ],
+          "destination": [
+            9,
+            9
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "hffeg",
+          "support": "c",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "chffeg",
+          "before_destination": "",
+          "after_source": "c",
+          "after_destination": "geffh"
+        },
+        {
+          "turn": 196,
+          "action": "9 9 4 D 2",
+          "source": [
+            9,
+            9
+          ],
+          "destination": [
+            11,
+            9
+          ],
+          "k": 4,
+          "length": 2,
+          "moving": "h",
+          "support": "geff",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "h",
+          "before_source": "geffh",
+          "before_destination": "",
+          "after_source": "geff",
+          "after_destination": ""
+        },
+        {
+          "turn": 197,
+          "action": "9 9 0 L 1",
+          "source": [
+            9,
+            9
+          ],
+          "destination": [
+            9,
+            8
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "geff",
+          "support": "",
+          "landing": "gg",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "geff",
+          "before_destination": "gg",
+          "after_source": "",
+          "after_destination": "ggffeg"
+        }
+      ],
+      "after": [
+        {
+          "turn": 190,
+          "action": "8 8 4 R 1",
+          "source": [
+            8,
+            8
+          ],
+          "destination": [
+            8,
+            9
+          ],
+          "k": 4,
+          "length": 1,
+          "moving": "h",
+          "support": "geff",
+          "landing": "cbbb",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "geffh",
+          "before_destination": "cbbb",
+          "after_source": "geff",
+          "after_destination": "cbbbh"
+        },
+        {
+          "turn": 191,
+          "action": "8 8 0 D 1",
+          "source": [
+            8,
+            8
+          ],
+          "destination": [
+            9,
+            8
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "geff",
+          "support": "",
+          "landing": "gg",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "geff",
+          "before_destination": "gg",
+          "after_source": "",
+          "after_destination": "ggffeg"
+        },
+        {
+          "turn": 192,
+          "action": "8 9 1 D 2",
+          "source": [
+            8,
+            9
+          ],
+          "destination": [
+            10,
+            9
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "bbbh",
+          "support": "c",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cbbbh",
+          "before_destination": "",
+          "after_source": "c",
+          "after_destination": "hbbb"
+        },
+        {
+          "turn": 193,
+          "action": "10 9 1 L 2",
+          "source": [
+            10,
+            9
+          ],
+          "destination": [
+            10,
+            7
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "bbb",
+          "support": "h",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bbb",
+          "before_source": "hbbb",
+          "before_destination": "",
+          "after_source": "h",
+          "after_destination": ""
+        },
+        {
+          "turn": 194,
+          "action": "10 9 0 D 1",
+          "source": [
+            10,
+            9
+          ],
+          "destination": [
+            11,
+            9
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "h",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "h",
+          "before_source": "h",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        }
+      ]
+    },
+    {
+      "case": "0085.txt",
+      "first": 71,
+      "last": 120,
+      "before_count": 8,
+      "after_count": 7,
+      "cell_count": 8,
+      "pieces": 9,
+      "moves": [
+        "16 6 0 R 1",
+        "16 7 0 U 1",
+        "15 7 0 U 1",
+        "14 7 5 L 2",
+        "14 7 0 L 1",
+        "14 6 1 L 2",
+        "14 4 2 U 1"
+      ],
+      "saved": 1,
+      "has_nest": false,
+      "independent_operations": 42,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          7
+        ],
+        [
+          15,
+          7
+        ],
+        [
+          16,
+          6
+        ],
+        [
+          16,
+          7
+        ]
+      ],
+      "initial": {
+        "(13, 4)": "cb",
+        "(13, 5)": "",
+        "(14, 4)": "dd",
+        "(14, 5)": "",
+        "(14, 6)": "",
+        "(14, 7)": "",
+        "(15, 7)": "d",
+        "(16, 6)": "c",
+        "(16, 7)": "dbbbd"
+      },
+      "final": {
+        "(13, 4)": "cbbbbd",
+        "(13, 5)": "",
+        "(14, 4)": "dd",
+        "(14, 5)": "dc",
+        "(14, 6)": "d",
+        "(14, 7)": "",
+        "(15, 7)": "",
+        "(16, 6)": "",
+        "(16, 7)": ""
+      },
+      "before": [
+        {
+          "turn": 71,
+          "action": "16 6 0 R 1",
+          "source": [
+            16,
+            6
+          ],
+          "destination": [
+            16,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "c",
+          "support": "",
+          "landing": "dbbbd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "c",
+          "before_destination": "dbbbd",
+          "after_source": "",
+          "after_destination": "dbbbdc"
+        },
+        {
+          "turn": 73,
+          "action": "16 7 0 U 1",
+          "source": [
+            16,
+            7
+          ],
+          "destination": [
+            15,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dbbbdc",
+          "support": "",
+          "landing": "d",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dbbbdc",
+          "before_destination": "d",
+          "after_source": "",
+          "after_destination": "dcdbbbd"
+        },
+        {
+          "turn": 74,
+          "action": "15 7 0 U 1",
+          "source": [
+            15,
+            7
+          ],
+          "destination": [
+            14,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dcdbbbd",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dcdbbbd",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "dbbbdcd"
+        },
+        {
+          "turn": 75,
+          "action": "14 7 0 L 1",
+          "source": [
+            14,
+            7
+          ],
+          "destination": [
+            14,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dbbbdcd",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dbbbdcd",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "dcdbbbd"
+        },
+        {
+          "turn": 76,
+          "action": "14 6 1 L 1",
+          "source": [
+            14,
+            6
+          ],
+          "destination": [
+            14,
+            5
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "cdbbbd",
+          "support": "d",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dcdbbbd",
+          "before_destination": "",
+          "after_source": "d",
+          "after_destination": "dbbbdc"
+        },
+        {
+          "turn": 116,
+          "action": "14 5 1 U 1",
+          "source": [
+            14,
+            5
+          ],
+          "destination": [
+            13,
+            5
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "bbbdc",
+          "support": "d",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dbbbdc",
+          "before_destination": "",
+          "after_source": "d",
+          "after_destination": "cdbbb"
+        },
+        {
+          "turn": 119,
+          "action": "13 5 1 L 1",
+          "source": [
+            13,
+            5
+          ],
+          "destination": [
+            13,
+            4
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "dbbb",
+          "support": "c",
+          "landing": "cb",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cdbbb",
+          "before_destination": "cb",
+          "after_source": "c",
+          "after_destination": "cbbbbd"
+        },
+        {
+          "turn": 120,
+          "action": "13 5 0 D 1",
+          "source": [
+            13,
+            5
+          ],
+          "destination": [
+            14,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "c",
+          "support": "",
+          "landing": "d",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "c",
+          "before_destination": "d",
+          "after_source": "",
+          "after_destination": "dc"
+        }
+      ],
+      "after": [
+        {
+          "turn": 71,
+          "action": "16 6 0 R 1",
+          "source": [
+            16,
+            6
+          ],
+          "destination": [
+            16,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "c",
+          "support": "",
+          "landing": "dbbbd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "c",
+          "before_destination": "dbbbd",
+          "after_source": "",
+          "after_destination": "dbbbdc"
+        },
+        {
+          "turn": 72,
+          "action": "16 7 0 U 1",
+          "source": [
+            16,
+            7
+          ],
+          "destination": [
+            15,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dbbbdc",
+          "support": "",
+          "landing": "d",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dbbbdc",
+          "before_destination": "d",
+          "after_source": "",
+          "after_destination": "dcdbbbd"
+        },
+        {
+          "turn": 73,
+          "action": "15 7 0 U 1",
+          "source": [
+            15,
+            7
+          ],
+          "destination": [
+            14,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dcdbbbd",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dcdbbbd",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "dbbbdcd"
+        },
+        {
+          "turn": 74,
+          "action": "14 7 5 L 2",
+          "source": [
+            14,
+            7
+          ],
+          "destination": [
+            14,
+            5
+          ],
+          "k": 5,
+          "length": 2,
+          "moving": "cd",
+          "support": "dbbbd",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dbbbdcd",
+          "before_destination": "",
+          "after_source": "dbbbd",
+          "after_destination": "dc"
+        },
+        {
+          "turn": 75,
+          "action": "14 7 0 L 1",
+          "source": [
+            14,
+            7
+          ],
+          "destination": [
+            14,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dbbbd",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dbbbd",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "dbbbd"
+        },
+        {
+          "turn": 76,
+          "action": "14 6 1 L 2",
+          "source": [
+            14,
+            6
+          ],
+          "destination": [
+            14,
+            4
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "bbbd",
+          "support": "d",
+          "landing": "dd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dbbbd",
+          "before_destination": "dd",
+          "after_source": "d",
+          "after_destination": "dddbbb"
+        },
+        {
+          "turn": 77,
+          "action": "14 4 2 U 1",
+          "source": [
+            14,
+            4
+          ],
+          "destination": [
+            13,
+            4
+          ],
+          "k": 2,
+          "length": 1,
+          "moving": "dbbb",
+          "support": "dd",
+          "landing": "cb",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dddbbb",
+          "before_destination": "cb",
+          "after_source": "dd",
+          "after_destination": "cbbbbd"
+        }
+      ]
+    },
+    {
+      "case": "0086.txt",
+      "first": 41,
+      "last": 59,
+      "before_count": 7,
+      "after_count": 6,
+      "cell_count": 8,
+      "pieces": 10,
+      "moves": [
+        "4 6 0 D 1",
+        "5 8 1 L 2",
+        "5 6 1 D 1",
+        "6 6 5 L 3",
+        "5 8 0 U 1",
+        "4 8 0 L 1"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 12,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "initial": {
+        "(4, 6)": "d",
+        "(4, 7)": "",
+        "(4, 8)": "",
+        "(5, 6)": "b",
+        "(5, 7)": "",
+        "(5, 8)": "fbbbbei",
+        "(6, 3)": "d",
+        "(6, 6)": "",
+        "(7, 6)": ""
+      },
+      "final": {
+        "(4, 6)": "",
+        "(4, 7)": "",
+        "(4, 8)": "",
+        "(5, 6)": "b",
+        "(5, 7)": "",
+        "(5, 8)": "",
+        "(6, 3)": "ddi",
+        "(6, 6)": "bbbb",
+        "(7, 6)": ""
+      },
+      "before": [
+        {
+          "turn": 41,
+          "action": "5 8 0 L 1",
+          "source": [
+            5,
+            8
+          ],
+          "destination": [
+            5,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "fbbbbei",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "fbbbbei",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "iebbbbf"
+        },
+        {
+          "turn": 54,
+          "action": "5 7 6 U 1",
+          "source": [
+            5,
+            7
+          ],
+          "destination": [
+            4,
+            7
+          ],
+          "k": 6,
+          "length": 1,
+          "moving": "f",
+          "support": "iebbbb",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "f",
+          "before_source": "iebbbbf",
+          "before_destination": "",
+          "after_source": "iebbbb",
+          "after_destination": ""
+        },
+        {
+          "turn": 55,
+          "action": "5 7 0 L 1",
+          "source": [
+            5,
+            7
+          ],
+          "destination": [
+            5,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "iebbbb",
+          "support": "",
+          "landing": "b",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "iebbbb",
+          "before_destination": "b",
+          "after_source": "",
+          "after_destination": "bbbbbei"
+        },
+        {
+          "turn": 56,
+          "action": "4 6 0 D 1",
+          "source": [
+            4,
+            6
+          ],
+          "destination": [
+            5,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "d",
+          "support": "",
+          "landing": "bbbbbei",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "d",
+          "before_destination": "bbbbbei",
+          "after_source": "",
+          "after_destination": "bbbbbeid"
+        },
+        {
+          "turn": 57,
+          "action": "5 6 1 D 2",
+          "source": [
+            5,
+            6
+          ],
+          "destination": [
+            7,
+            6
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "bbbbeid",
+          "support": "b",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbbbbeid",
+          "before_destination": "",
+          "after_source": "b",
+          "after_destination": "diebbbb"
+        },
+        {
+          "turn": 58,
+          "action": "7 6 0 U 1",
+          "source": [
+            7,
+            6
+          ],
+          "destination": [
+            6,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "diebbbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "diebbbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbbeid"
+        },
+        {
+          "turn": 59,
+          "action": "6 6 5 L 3",
+          "source": [
+            6,
+            6
+          ],
+          "destination": [
+            6,
+            3
+          ],
+          "k": 5,
+          "length": 3,
+          "moving": "id",
+          "support": "bbbbe",
+          "landing": "d",
+          "returned_source": "e",
+          "returned_destination": "",
+          "before_source": "bbbbeid",
+          "before_destination": "d",
+          "after_source": "bbbb",
+          "after_destination": "ddi"
+        }
+      ],
+      "after": [
+        {
+          "turn": 41,
+          "action": "4 6 0 D 1",
+          "source": [
+            4,
+            6
+          ],
+          "destination": [
+            5,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "d",
+          "support": "",
+          "landing": "b",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "d",
+          "before_destination": "b",
+          "after_source": "",
+          "after_destination": "bd"
+        },
+        {
+          "turn": 42,
+          "action": "5 8 1 L 2",
+          "source": [
+            5,
+            8
+          ],
+          "destination": [
+            5,
+            6
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "bbbbei",
+          "support": "f",
+          "landing": "bd",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "fbbbbei",
+          "before_destination": "bd",
+          "after_source": "f",
+          "after_destination": "bdiebbbb"
+        },
+        {
+          "turn": 43,
+          "action": "5 6 1 D 1",
+          "source": [
+            5,
+            6
+          ],
+          "destination": [
+            6,
+            6
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "diebbbb",
+          "support": "b",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bdiebbbb",
+          "before_destination": "",
+          "after_source": "b",
+          "after_destination": "bbbbeid"
+        },
+        {
+          "turn": 44,
+          "action": "6 6 5 L 3",
+          "source": [
+            6,
+            6
+          ],
+          "destination": [
+            6,
+            3
+          ],
+          "k": 5,
+          "length": 3,
+          "moving": "id",
+          "support": "bbbbe",
+          "landing": "d",
+          "returned_source": "e",
+          "returned_destination": "",
+          "before_source": "bbbbeid",
+          "before_destination": "d",
+          "after_source": "bbbb",
+          "after_destination": "ddi"
+        },
+        {
+          "turn": 45,
+          "action": "5 8 0 U 1",
+          "source": [
+            5,
+            8
+          ],
+          "destination": [
+            4,
+            8
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "f",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "f",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "f"
+        },
+        {
+          "turn": 46,
+          "action": "4 8 0 L 1",
+          "source": [
+            4,
+            8
+          ],
+          "destination": [
+            4,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "f",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "f",
+          "before_source": "f",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        }
+      ]
+    },
+    {
+      "case": "0092.txt",
+      "first": 252,
+      "last": 270,
+      "before_count": 7,
+      "after_count": 6,
+      "cell_count": 8,
+      "pieces": 10,
+      "moves": [
+        "13 16 0 D 1",
+        "14 16 1 D 2",
+        "16 16 0 D 1",
+        "17 16 2 R 2",
+        "17 18 2 D 1",
+        "17 18 1 D 2"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 12,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          13,
+          16
+        ],
+        [
+          14,
+          16
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          16,
+          16
+        ],
+        [
+          17,
+          16
+        ],
+        [
+          17,
+          18
+        ],
+        [
+          18,
+          18
+        ],
+        [
+          19,
+          18
+        ]
+      ],
+      "initial": {
+        "(13, 16)": "bddddde",
+        "(14, 16)": "",
+        "(15, 16)": "",
+        "(16, 16)": "",
+        "(17, 16)": "dc",
+        "(17, 18)": "d",
+        "(18, 18)": "",
+        "(19, 18)": ""
+      },
+      "final": {
+        "(13, 16)": "",
+        "(14, 16)": "e",
+        "(15, 16)": "",
+        "(16, 16)": "",
+        "(17, 16)": "dc",
+        "(17, 18)": "d",
+        "(18, 18)": "",
+        "(19, 18)": ""
+      },
+      "before": [
+        {
+          "turn": 252,
+          "action": "13 16 0 D 1",
+          "source": [
+            13,
+            16
+          ],
+          "destination": [
+            14,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bddddde",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bddddde",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "edddddb"
+        },
+        {
+          "turn": 265,
+          "action": "14 16 1 D 1",
+          "source": [
+            14,
+            16
+          ],
+          "destination": [
+            15,
+            16
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "dddddb",
+          "support": "e",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "edddddb",
+          "before_destination": "",
+          "after_source": "e",
+          "after_destination": "bddddd"
+        },
+        {
+          "turn": 266,
+          "action": "15 16 0 D 1",
+          "source": [
+            15,
+            16
+          ],
+          "destination": [
+            16,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bddddd",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bddddd",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "dddddb"
+        },
+        {
+          "turn": 267,
+          "action": "16 16 0 D 1",
+          "source": [
+            16,
+            16
+          ],
+          "destination": [
+            17,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "dddddb",
+          "support": "",
+          "landing": "dc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dddddb",
+          "before_destination": "dc",
+          "after_source": "",
+          "after_destination": "dcbddddd"
+        },
+        {
+          "turn": 268,
+          "action": "17 16 2 R 2",
+          "source": [
+            17,
+            16
+          ],
+          "destination": [
+            17,
+            18
+          ],
+          "k": 2,
+          "length": 2,
+          "moving": "bddddd",
+          "support": "dc",
+          "landing": "d",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dcbddddd",
+          "before_destination": "d",
+          "after_source": "dc",
+          "after_destination": "ddddddb"
+        },
+        {
+          "turn": 269,
+          "action": "17 18 1 D 1",
+          "source": [
+            17,
+            18
+          ],
+          "destination": [
+            18,
+            18
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "dddddb",
+          "support": "d",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "ddddd",
+          "before_source": "ddddddb",
+          "before_destination": "",
+          "after_source": "d",
+          "after_destination": "b"
+        },
+        {
+          "turn": 270,
+          "action": "18 18 0 D 1",
+          "source": [
+            18,
+            18
+          ],
+          "destination": [
+            19,
+            18
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "b",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "b",
+          "before_source": "b",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": ""
+        }
+      ],
+      "after": [
+        {
+          "turn": 252,
+          "action": "13 16 0 D 1",
+          "source": [
+            13,
+            16
+          ],
+          "destination": [
+            14,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bddddde",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bddddde",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "edddddb"
+        },
+        {
+          "turn": 253,
+          "action": "14 16 1 D 2",
+          "source": [
+            14,
+            16
+          ],
+          "destination": [
+            16,
+            16
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "dddddb",
+          "support": "e",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "edddddb",
+          "before_destination": "",
+          "after_source": "e",
+          "after_destination": "bddddd"
+        },
+        {
+          "turn": 254,
+          "action": "16 16 0 D 1",
+          "source": [
+            16,
+            16
+          ],
+          "destination": [
+            17,
+            16
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bddddd",
+          "support": "",
+          "landing": "dc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bddddd",
+          "before_destination": "dc",
+          "after_source": "",
+          "after_destination": "dcdddddb"
+        },
+        {
+          "turn": 255,
+          "action": "17 16 2 R 2",
+          "source": [
+            17,
+            16
+          ],
+          "destination": [
+            17,
+            18
+          ],
+          "k": 2,
+          "length": 2,
+          "moving": "dddddb",
+          "support": "dc",
+          "landing": "d",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "dcdddddb",
+          "before_destination": "d",
+          "after_source": "dc",
+          "after_destination": "dbddddd"
+        },
+        {
+          "turn": 256,
+          "action": "17 18 2 D 1",
+          "source": [
+            17,
+            18
+          ],
+          "destination": [
+            18,
+            18
+          ],
+          "k": 2,
+          "length": 1,
+          "moving": "ddddd",
+          "support": "db",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "ddddd",
+          "before_source": "dbddddd",
+          "before_destination": "",
+          "after_source": "db",
+          "after_destination": ""
+        },
+        {
+          "turn": 257,
+          "action": "17 18 1 D 2",
+          "source": [
+            17,
+            18
+          ],
+          "destination": [
+            19,
+            18
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "b",
+          "support": "d",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "b",
+          "before_source": "db",
+          "before_destination": "",
+          "after_source": "d",
+          "after_destination": ""
+        }
+      ]
+    },
+    {
+      "case": "0092.txt",
+      "first": 472,
+      "last": 478,
+      "before_count": 7,
+      "after_count": 6,
+      "cell_count": 8,
+      "pieces": 8,
+      "moves": [
+        "15 8 3 L 3",
+        "15 5 3 D 4",
+        "15 8 0 L 1",
+        "15 7 0 L 1",
+        "15 6 1 L 1",
+        "15 5 3 D 4"
+      ],
+      "saved": 1,
+      "has_nest": false,
+      "independent_operations": 0,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          15,
+          8
+        ],
+        [
+          16,
+          8
+        ],
+        [
+          17,
+          8
+        ],
+        [
+          18,
+          8
+        ],
+        [
+          19,
+          5
+        ],
+        [
+          19,
+          6
+        ],
+        [
+          19,
+          7
+        ],
+        [
+          19,
+          8
+        ]
+      ],
+      "initial": {
+        "(15, 5)": "ccc",
+        "(15, 6)": "c",
+        "(15, 7)": "",
+        "(15, 8)": "cccccccc",
+        "(16, 8)": "",
+        "(17, 8)": "",
+        "(18, 8)": "",
+        "(19, 5)": "",
+        "(19, 6)": "",
+        "(19, 7)": "",
+        "(19, 8)": ""
+      },
+      "final": {
+        "(15, 5)": "ccc",
+        "(15, 6)": "c",
+        "(15, 7)": "",
+        "(15, 8)": "",
+        "(16, 8)": "",
+        "(17, 8)": "",
+        "(18, 8)": "",
+        "(19, 5)": "cccccccc",
+        "(19, 6)": "",
+        "(19, 7)": "",
+        "(19, 8)": ""
+      },
+      "before": [
+        {
+          "turn": 472,
+          "action": "15 8 0 D 1",
+          "source": [
+            15,
+            8
+          ],
+          "destination": [
+            16,
+            8
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cccccccc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cccccccc"
+        },
+        {
+          "turn": 473,
+          "action": "16 8 0 D 1",
+          "source": [
+            16,
+            8
+          ],
+          "destination": [
+            17,
+            8
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cccccccc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cccccccc"
+        },
+        {
+          "turn": 474,
+          "action": "17 8 0 D 1",
+          "source": [
+            17,
+            8
+          ],
+          "destination": [
+            18,
+            8
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cccccccc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cccccccc"
+        },
+        {
+          "turn": 475,
+          "action": "18 8 0 D 1",
+          "source": [
+            18,
+            8
+          ],
+          "destination": [
+            19,
+            8
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cccccccc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cccccccc"
+        },
+        {
+          "turn": 476,
+          "action": "19 8 0 L 1",
+          "source": [
+            19,
+            8
+          ],
+          "destination": [
+            19,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cccccccc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cccccccc"
+        },
+        {
+          "turn": 477,
+          "action": "19 7 0 L 1",
+          "source": [
+            19,
+            7
+          ],
+          "destination": [
+            19,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cccccccc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cccccccc"
+        },
+        {
+          "turn": 478,
+          "action": "19 6 0 L 1",
+          "source": [
+            19,
+            6
+          ],
+          "destination": [
+            19,
+            5
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "cccccccc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "cccccccc"
+        }
+      ],
+      "after": [
+        {
+          "turn": 471,
+          "action": "15 8 3 L 3",
+          "source": [
+            15,
+            8
+          ],
+          "destination": [
+            15,
+            5
+          ],
+          "k": 3,
+          "length": 3,
+          "moving": "ccccc",
+          "support": "ccc",
+          "landing": "ccc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "ccc",
+          "after_source": "ccc",
+          "after_destination": "cccccccc"
+        },
+        {
+          "turn": 472,
+          "action": "15 5 3 D 4",
+          "source": [
+            15,
+            5
+          ],
+          "destination": [
+            19,
+            5
+          ],
+          "k": 3,
+          "length": 4,
+          "moving": "ccccc",
+          "support": "ccc",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccccc",
+          "before_destination": "",
+          "after_source": "ccc",
+          "after_destination": "ccccc"
+        },
+        {
+          "turn": 473,
+          "action": "15 8 0 L 1",
+          "source": [
+            15,
+            8
+          ],
+          "destination": [
+            15,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ccc",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ccc",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "ccc"
+        },
+        {
+          "turn": 474,
+          "action": "15 7 0 L 1",
+          "source": [
+            15,
+            7
+          ],
+          "destination": [
+            15,
+            6
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "ccc",
+          "support": "",
+          "landing": "c",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "ccc",
+          "before_destination": "c",
+          "after_source": "",
+          "after_destination": "cccc"
+        },
+        {
+          "turn": 475,
+          "action": "15 6 1 L 1",
+          "source": [
+            15,
+            6
+          ],
+          "destination": [
+            15,
+            5
+          ],
+          "k": 1,
+          "length": 1,
+          "moving": "ccc",
+          "support": "c",
+          "landing": "ccc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccc",
+          "before_destination": "ccc",
+          "after_source": "c",
+          "after_destination": "cccccc"
+        },
+        {
+          "turn": 476,
+          "action": "15 5 3 D 4",
+          "source": [
+            15,
+            5
+          ],
+          "destination": [
+            19,
+            5
+          ],
+          "k": 3,
+          "length": 4,
+          "moving": "ccc",
+          "support": "ccc",
+          "landing": "ccccc",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "cccccc",
+          "before_destination": "ccccc",
+          "after_source": "ccc",
+          "after_destination": "cccccccc"
+        }
+      ]
+    },
+    {
+      "case": "0099.txt",
+      "first": 134,
+      "last": 143,
+      "before_count": 8,
+      "after_count": 7,
+      "cell_count": 7,
+      "pieces": 16,
+      "moves": [
+        "3 7 0 D 1",
+        "3 8 0 L 1",
+        "3 7 0 D 1",
+        "4 7 2 D 3",
+        "7 7 0 U 1",
+        "6 7 1 D 2",
+        "8 7 6 R 7"
+      ],
+      "saved": 1,
+      "has_nest": true,
+      "independent_operations": 2,
+      "full_board_boundaries_equal": true,
+      "background_restored_before_retained": true,
+      "cells": [
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          14
+        ]
+      ],
+      "initial": {
+        "(3, 7)": "bbebb",
+        "(3, 8)": "eabbb",
+        "(4, 7)": "",
+        "(6, 7)": "b",
+        "(7, 7)": "a",
+        "(8, 7)": "acaa",
+        "(8, 14)": ""
+      },
+      "final": {
+        "(3, 7)": "",
+        "(3, 8)": "",
+        "(4, 7)": "",
+        "(6, 7)": "b",
+        "(7, 7)": "",
+        "(8, 7)": "acaaaa",
+        "(8, 14)": "ee"
+      },
+      "before": [
+        {
+          "turn": 134,
+          "action": "3 7 0 D 1",
+          "source": [
+            3,
+            7
+          ],
+          "destination": [
+            4,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbebb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bb",
+          "before_source": "bbebb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbe"
+        },
+        {
+          "turn": 136,
+          "action": "3 8 0 L 1",
+          "source": [
+            3,
+            8
+          ],
+          "destination": [
+            3,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eabbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eabbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbae"
+        },
+        {
+          "turn": 137,
+          "action": "3 7 0 D 1",
+          "source": [
+            3,
+            7
+          ],
+          "destination": [
+            4,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbae",
+          "support": "",
+          "landing": "bbe",
+          "returned_source": "",
+          "returned_destination": "bbb",
+          "before_source": "bbbae",
+          "before_destination": "bbe",
+          "after_source": "",
+          "after_destination": "bbeea"
+        },
+        {
+          "turn": 138,
+          "action": "4 7 4 D 3",
+          "source": [
+            4,
+            7
+          ],
+          "destination": [
+            7,
+            7
+          ],
+          "k": 4,
+          "length": 3,
+          "moving": "a",
+          "support": "bbee",
+          "landing": "a",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bbeea",
+          "before_destination": "a",
+          "after_source": "bbee",
+          "after_destination": "aa"
+        },
+        {
+          "turn": 140,
+          "action": "7 7 0 D 1",
+          "source": [
+            7,
+            7
+          ],
+          "destination": [
+            8,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aa",
+          "support": "",
+          "landing": "acaa",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aa",
+          "before_destination": "acaa",
+          "after_source": "",
+          "after_destination": "acaaaa"
+        },
+        {
+          "turn": 141,
+          "action": "4 7 2 D 2",
+          "source": [
+            4,
+            7
+          ],
+          "destination": [
+            6,
+            7
+          ],
+          "k": 2,
+          "length": 2,
+          "moving": "ee",
+          "support": "bb",
+          "landing": "b",
+          "returned_source": "bb",
+          "returned_destination": "",
+          "before_source": "bbee",
+          "before_destination": "b",
+          "after_source": "",
+          "after_destination": "bee"
+        },
+        {
+          "turn": 142,
+          "action": "6 7 1 D 2",
+          "source": [
+            6,
+            7
+          ],
+          "destination": [
+            8,
+            7
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "ee",
+          "support": "b",
+          "landing": "acaaaa",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "bee",
+          "before_destination": "acaaaa",
+          "after_source": "b",
+          "after_destination": "acaaaaee"
+        },
+        {
+          "turn": 143,
+          "action": "8 7 6 R 7",
+          "source": [
+            8,
+            7
+          ],
+          "destination": [
+            8,
+            14
+          ],
+          "k": 6,
+          "length": 7,
+          "moving": "ee",
+          "support": "acaaaa",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "acaaaaee",
+          "before_destination": "",
+          "after_source": "acaaaa",
+          "after_destination": "ee"
+        }
+      ],
+      "after": [
+        {
+          "turn": 134,
+          "action": "3 7 0 D 1",
+          "source": [
+            3,
+            7
+          ],
+          "destination": [
+            4,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbebb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "bb",
+          "before_source": "bbebb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbe"
+        },
+        {
+          "turn": 135,
+          "action": "3 8 0 L 1",
+          "source": [
+            3,
+            8
+          ],
+          "destination": [
+            3,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "eabbb",
+          "support": "",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "eabbb",
+          "before_destination": "",
+          "after_source": "",
+          "after_destination": "bbbae"
+        },
+        {
+          "turn": 136,
+          "action": "3 7 0 D 1",
+          "source": [
+            3,
+            7
+          ],
+          "destination": [
+            4,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "bbbae",
+          "support": "",
+          "landing": "bbe",
+          "returned_source": "",
+          "returned_destination": "bbb",
+          "before_source": "bbbae",
+          "before_destination": "bbe",
+          "after_source": "",
+          "after_destination": "bbeea"
+        },
+        {
+          "turn": 137,
+          "action": "4 7 2 D 3",
+          "source": [
+            4,
+            7
+          ],
+          "destination": [
+            7,
+            7
+          ],
+          "k": 2,
+          "length": 3,
+          "moving": "eea",
+          "support": "bb",
+          "landing": "a",
+          "returned_source": "bb",
+          "returned_destination": "",
+          "before_source": "bbeea",
+          "before_destination": "a",
+          "after_source": "",
+          "after_destination": "aaee"
+        },
+        {
+          "turn": 138,
+          "action": "7 7 0 U 1",
+          "source": [
+            7,
+            7
+          ],
+          "destination": [
+            6,
+            7
+          ],
+          "k": 0,
+          "length": 1,
+          "moving": "aaee",
+          "support": "",
+          "landing": "b",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "aaee",
+          "before_destination": "b",
+          "after_source": "",
+          "after_destination": "beeaa"
+        },
+        {
+          "turn": 139,
+          "action": "6 7 1 D 2",
+          "source": [
+            6,
+            7
+          ],
+          "destination": [
+            8,
+            7
+          ],
+          "k": 1,
+          "length": 2,
+          "moving": "eeaa",
+          "support": "b",
+          "landing": "acaa",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "beeaa",
+          "before_destination": "acaa",
+          "after_source": "b",
+          "after_destination": "acaaaaee"
+        },
+        {
+          "turn": 140,
+          "action": "8 7 6 R 7",
+          "source": [
+            8,
+            7
+          ],
+          "destination": [
+            8,
+            14
+          ],
+          "k": 6,
+          "length": 7,
+          "moving": "ee",
+          "support": "acaaaa",
+          "landing": "",
+          "returned_source": "",
+          "returned_destination": "",
+          "before_source": "acaaaaee",
+          "before_destination": "",
+          "after_source": "acaaaa",
+          "after_destination": "ee"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "local_and_production_builds": true,
+  "registered_difference_reversal": true,
+  "preprocessed_reconstructed_parent_equal": [
+    "LOCAL",
+    "nonLOCAL"
+  ],
+  "solver_executions": 0
+}

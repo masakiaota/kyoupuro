@@ -1,0 +1,214 @@
+{
+  "selected": "learned",
+  "candidate": {
+    "condition": "learned",
+    "source": "src/bin/v123_learned_order.cpp",
+    "source_sha256": "cf507d46b939598cd4f337329824a132fb24635edce31f2c4d734a9203fc8360",
+    "model_parent": "v111",
+    "order_model_sha256": "611abd59d3abd6353e87fce1b4ccaf22e30d3134e4940285c75346fbda723bbc",
+    "fixed_at": "2026-10-04T11:42:55.066633+00:00"
+  },
+  "collection": {
+    "cases": 2112,
+    "groups": 66083,
+    "oracle_saved": 49287,
+    "better_cases": 2109,
+    "complete_paths": 563503,
+    "independent_python_replays": 5935,
+    "seconds": 158.2297129590006,
+    "completed_at": "2026-10-04T11:35:35.646511+00:00",
+    "oracle_mean_improvement": 0.7458347835298035,
+    "passed": true
+  },
+  "training": {
+    "train": {
+      "groups": 64070,
+      "cases": 2048,
+      "baseline_complete": 51838,
+      "model_complete": 52943,
+      "mean_difference": -0.22987358272075653,
+      "sum_difference": -14728.0,
+      "oracle_mean_difference": -0.7484157681465149,
+      "wins": 6773,
+      "ties": 53974,
+      "losses": 3323,
+      "changed_alternate": 49675,
+      "selected_best": 52640,
+      "complete_regressions": 586,
+      "complete_rescues": 1691,
+      "passed": true
+    },
+    "development": {
+      "groups": 2013,
+      "cases": 64,
+      "baseline_complete": 1618,
+      "model_complete": 1635,
+      "mean_difference": -0.12866368889808655,
+      "sum_difference": -259.0,
+      "oracle_mean_difference": -0.6636860370635986,
+      "wins": 180,
+      "ties": 1720,
+      "losses": 113,
+      "changed_alternate": 1547,
+      "selected_best": 1622,
+      "complete_regressions": 17,
+      "complete_rescues": 34,
+      "passed": true
+    },
+    "checkpoint_sha256": "ad3893c163f4b9e47a97bb27054011944b1a48947fb231a9569b789b123bdeaa",
+    "parameters": 1313,
+    "seconds": 39.3182681670005,
+    "completed_at": "2026-10-04T11:36:24.405026+00:00"
+  },
+  "scaling_seconds": 207.21834525000304,
+  "training_loss_first": 2.2083083204643335,
+  "training_loss_last": 2.200856733349883,
+  "common_completed_development": {
+    "groups": 1601,
+    "sum_difference": -85,
+    "mean_difference": -0.05309181761399125
+  },
+  "development_case_wins": 39,
+  "development_case_ties": 5,
+  "development_case_losses": 20,
+  "completion_cost_is_proxy": true,
+  "mechanism": {
+    "source_sha256": "cf507d46b939598cd4f337329824a132fb24635edce31f2c4d734a9203fc8360",
+    "groups": 2013,
+    "feature_error": 0.0,
+    "score_error": 5.7220458984375e-06,
+    "near_tie_choices": 0,
+    "baseline_complete": 1618,
+    "learned_complete": 1635,
+    "mean_cost_difference": -0.12866368604073522,
+    "baseline_cpu_seconds": 0.603266999999995,
+    "learned_cpu_seconds": 0.6070190000000026,
+    "cpu_ratio": 1.0062194683282986,
+    "independent_python_replays": 128,
+    "gates": {
+      "learned": {
+        "passed": true,
+        "partial_pass": true,
+        "time_pass": true
+      }
+    },
+    "completed_at": "2026-10-04T11:41:49.931095+00:00"
+  },
+  "validation": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.44921875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.44921875,
+      "mean_elapsed_ms": 1564.53515625,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "learned": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.44140625,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.44140625,
+      "mean_elapsed_ms": 1565.32421875,
+      "max_elapsed_ms": 1626,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    }
+  },
+  "differences": {
+    "learned": {
+      "common_completed": 256,
+      "mean_T_difference": -0.0078125,
+      "mean_S_difference": -0.0078125,
+      "wins": 106,
+      "ties": 35,
+      "losses": 115
+    }
+  },
+  "activation": {
+    "learned": {
+      "order_nn_calls": 477525,
+      "order_nn_changed": 362494,
+      "order_nn_scored": 4821639
+    }
+  },
+  "final": {
+    "test": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 218.62890625,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 218.62890625,
+      "mean_elapsed_ms": 1565.68359375,
+      "max_elapsed_ms": 1613,
+      "mean_inferences": 291.90625,
+      "mean_depth": 291.90625,
+      "deadline_cases": 0
+    },
+    "tools_in": {
+      "cases": 100,
+      "complete": 100,
+      "completion_rate": 1.0,
+      "mean_S_all": 195.83,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 195.83,
+      "mean_elapsed_ms": 1568.22,
+      "max_elapsed_ms": 1606,
+      "mean_inferences": 264.69,
+      "mean_depth": 264.69,
+      "deadline_cases": 0
+    }
+  },
+  "final_differences": {
+    "test": {
+      "common_completed": 256,
+      "mean_T_difference": 0.58203125,
+      "mean_S_difference": 0.58203125,
+      "wins": 109,
+      "ties": 27,
+      "losses": 120
+    },
+    "tools_in": {
+      "common_completed": 100,
+      "mean_T_difference": -0.22,
+      "mean_S_difference": -0.21999999999999886,
+      "wins": 44,
+      "ties": 14,
+      "losses": 42
+    }
+  },
+  "final_reused": false,
+  "final_accepted": true,
+  "goal_190": false,
+  "model_sha256": "611abd59d3abd6353e87fce1b4ccaf22e30d3134e4940285c75346fbda723bbc",
+  "official_source": "results/nn_rank/v123/20261004_order_studio/result.json",
+  "completed_at": "2026-10-04T11:46:05.366752+00:00",
+  "observations": {
+    "mean_lns_attempts": 10195.0859375,
+    "baseline_mean_lns_attempts": 10186.73828125,
+    "initial_nn_same_hash": 256,
+    "active_cases": 256,
+    "mean_order_nn_ms": 3.61707421875,
+    "mean_order_nn_calls": 1865.33203125,
+    "pool_returned_cases": 256,
+    "errors": {
+      "construction_errors": 0,
+      "lns_errors": 0,
+      "lns_invalid_candidates": 0,
+      "baseline_recovery": 0,
+      "final_recovery": 0
+    }
+  }
+}

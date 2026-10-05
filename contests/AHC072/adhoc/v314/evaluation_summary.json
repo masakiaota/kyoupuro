@@ -1,0 +1,93 @@
+{
+  "main_at_start": "d8e36d0484e0ba5799f426844168c2bc53c52627",
+  "parent": "v311_neural_multistart standard (not V311_SINGLE_SEED)",
+  "source_sha256": {
+    "v311_neural_multistart": "c3f819c2715f397bee0ca95bca12be3196c6f5531dbfeb19358d0afd5f6868ea",
+    "v314_conditional_support": "0c321cd70539ddcfeab378a26502c48733224b0921a5433cc4b87ef8689d363b",
+    "v315_reactive_racing": "364cab41a22ccb8c5d84bb0b74086dbb4d1ffd635ad735fcdf8231efa21e3538"
+  },
+  "conditions": {
+    "compiler": "GCC 14.2.0",
+    "cpp_standard": "gnu++23",
+    "LOCAL": false,
+    "workers": 2,
+    "repetitions_per_case": 1,
+    "excluded_warmups_per_version": 1,
+    "order": "six permutations cycled; all three versions on same CPU per case",
+    "budget_seconds": 1.9,
+    "parent_clock_formulas_preserved": true,
+    "main_search_end_seconds": 1.8507772020725388,
+    "final_internal_deadline_seconds": 1.88,
+    "relative_reference": "Frozen historical case minima including v800; NOT official current leaderboard",
+    "auxiliary_set": "First 100 validation1 inputs in content SHA256 order, excluding in duplicates; previously used set, NOT newly unseen",
+    "validation": "Independent Python and C++ literal stacks. Official Rust binary NOT executed.",
+    "eval_viewer_registered": false,
+    "shared_score_csv_or_jsonl_changed": false,
+    "new_training": false,
+    "solver_changes_after_first_run": 0
+  },
+  "in100": {
+    "v311_neural_multistart": {"T_sum":19985,"T_mean":199.85,"relative_mean_100":94.08921017086965,"legal":100,"E_total":0,"max_wall_seconds":1.8892937949999578},
+    "v314_conditional_support": {"T_sum":19904,"T_mean":199.04,"relative_mean_100":94.31627467491963,"legal":100,"E_total":0,"max_wall_seconds":1.8861389000001054,"delta_T_sum":-81,"delta_relative_pp":0.2270645040499906,"wins":47,"ties":13,"losses":40,"case_bootstrap_95_mean_delta":[-2.74,0.62]},
+    "v315_reactive_racing": {"T_sum":19877,"T_mean":198.77,"relative_mean_100":94.20447023094667,"legal":100,"E_total":0,"max_wall_seconds":1.8857392080001318,"delta_T_sum":-108,"delta_relative_pp":0.11526006007703614,"wins":35,"ties":32,"losses":33,"case_bootstrap_95_mean_delta":[-3.13,0.34]}
+  },
+  "validation100": {
+    "v311_neural_multistart": {"T_sum":22150,"T_mean":221.50,"legal":100,"E_total":0,"max_wall_seconds":1.8850731530001212},
+    "v314_conditional_support": {"T_sum":22109,"T_mean":221.09,"legal":100,"E_total":0,"max_wall_seconds":1.8856381510001938,"delta_T_sum":-41,"wins":43,"ties":18,"losses":39,"case_bootstrap_95_mean_delta":[-1.41,0.58]},
+    "v315_reactive_racing": {"T_sum":22026,"T_mean":220.26,"legal":100,"E_total":0,"max_wall_seconds":1.8872651619999488,"delta_T_sum":-124,"wins":46,"ties":24,"losses":30,"case_bootstrap_95_mean_delta":[-2.24,-0.29]}
+  },
+  "verification": {
+    "all_600_legal_and_E0": true,
+    "all_600_external_below_1_9": true,
+    "nonLOCAL_emitted_diagnostics": 0,
+    "LOCAL_diagnostic_cases_per_version": 1,
+    "LOCAL_diagnostic_errors": 0,
+    "LOCAL_diagnostic_pool_free": 4,
+    "first_NN_hash_matches_parent": {"v314":200,"v315":200},
+    "same_initial_lengths_and_origins": {"v314_in":96,"v315_in":99,"v314_validation":97,"v315_validation":97},
+    "note": "Lengths and origins matching is NOT verification of every initial operation sequence. LOCAL-only counters are not observed for all 600 nonLOCAL runs.",
+    "packed_weights_bytes": 30800,
+    "packed_weights_sha256": "42a10da08d5bb142727a0611a733414dd43d12ae4c0afc8a920dc2f52eb5acc5"
+  },
+  "mechanism": {
+    "support_conditions": 789,
+    "ordinary_old_new_results_identical": true,
+    "ordinary_success": 615,
+    "conditioned_success": 785,
+    "rescued": 170,
+    "ordinary_success_conditioned_failure": 0,
+    "raw_strict_improvements_in_common_successes": 611,
+    "strict_improvements_after_old_smoothing": 40,
+    "conditioned_only_worse_after_smoothing": 1,
+    "raw_strict_winners_worse_after_smoothing": 0,
+    "mandatory_support_events": 1168,
+    "conditions_with_multiple_events": 254,
+    "two_supports_fixture": {"ordinary":7,"conditioned":6},
+    "early_return_fixture": {"ordinary_raw":8,"conditioned_raw":8,"ordinary_smoothed":6,"conditioned_smoothed":7,"actual_strict_tie_rule":"keeps ordinary"},
+    "racing_predicate_checks": 4800,
+    "racing_synthetic_leader_changes": 1,
+    "v314_in": {"calls":37353,"conditioned_completed":33313,"accepted":13182,"best_saved_across_all_initial_plans":232,"mean_extra_seconds_including_ordinary_comparison":0.036134},
+    "v315_in": {"slices":1287,"challenger_slices":94,"pilot_to_final_winner_changed_cases":7},
+    "v315_validation": {"slices":1248,"challenger_slices":67,"pilot_to_final_winner_changed_cases":7},
+    "note": "Per-initial-plan savings include discarded plans and are NOT total final-output gains. Fixed partial diagnostics do not guarantee whole-solver non-regression."
+  },
+  "important_posthoc_confound": {
+    "case":"in/0005.txt",
+    "retained_initial_count":{"parent":1,"v314":3,"v315":3},
+    "shortest_initial_T":{"parent":1155,"v314":809,"v315":809},
+    "final_T":{"parent":666,"v314":591,"v315":585},
+    "in_delta_sum_excluding_this_case":{"v314":-6,"v315":-27},
+    "in_delta_relative_pp_excluding_this_case":{"v314":0.13639479397,"v315":0.014994},
+    "interpretation":"Most of total in gain comes from a case whose retained seed count differs because generation is time-gated. Construction source is unchanged but full gains cannot be assigned solely to new mechanisms. Posthoc exclusion does not change preregistered criteria."
+  },
+  "decision": {
+    "v314_point_estimate_criteria_passed":true,
+    "v315_point_estimate_criteria_passed":true,
+    "target_in_mean_195_achieved":false,
+    "stable_causal_improvement_proven":false,
+    "case_bootstrap_is_not_runtime_noise":true,
+    "current_solver_adoption_automatically_changed":false,
+    "v314_v315_combined_after_results":false
+  },
+  "full_evidence":"AHC072_v314_v315_evaluation_bundle.zip: all 600 outputs, inputs, stderr, 789 partial comparisons, source and binary hashes, preprocessing review, validators and evaluation scripts."
+}

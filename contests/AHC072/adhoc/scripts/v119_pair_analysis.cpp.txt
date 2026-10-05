@@ -1,0 +1,146 @@
+// この部分はbuild_v119_pairs.pyでv116の独立再生器と連結する。
+struct BoardHash {
+    size_t operator()(const Words& a)const {uint64_t h=0xcbf29ce484222325ULL;for(auto x:a){h^=x;h*=0x100000001b3ULL;}return h;}
+};
+struct RecordedPair {int kind;vector<Move> before,after;};
+vector<RecordedPair> load_pairs(const string& path,int& seen_neighbor,int& seen_reduction) {
+    ifstream in(path);int n;require(bool(in>>n>>seen_neighbor>>seen_reduction),"pair header");
+    require(n>=0&&n<=64,"record count bound");vector<RecordedPair> result(n);
+    for(auto& r:result){int a,b;in>>r.kind>>a>>b;require(0<=b&&b<a&&a<=100000,"strict pair");
+        for(auto [length,out]:{pair{a,&r.before},pair{b,&r.after}})for(int i=0;i<length;i++){
+            int p,k,d,l;in>>p>>k>>d>>l;require(p>=0&&p<board_info.cell_count&&k>=0&&k<8&&d>=0&&d<4&&l>0&&l<=8,"pair syntax");
+            out->push_back({int16_t(p),uint8_t(k),uint8_t(d),uint8_t(l)});
+        }require(bool(in),"pair body");
+    }return result;
+}
+vector<Words> replay_trace(const vector<Move>& path) {
+    Reference state=unpack(board_info.initial);vector<Words> trace={pack(state)};
+    for(Move m:path){reference_apply(state,m);trace.push_back(pack(state));}
+    require(trace.back()==Words{},"record is not complete");return trace;
+}
+vector<pair<int,int>> common_boundaries(const vector<Words>& a,const vector<Words>& b) {
+    unordered_map<Words,vector<int>,BoardHash> index;
+    for(int j=0;j<int(b.size());j++)index[b[j]].push_back(j);
+    vector<pair<int,int>> pairs={{0,0}};int last=0;
+    for(int i=1;i<int(a.size());i++) {
+        auto pos=index.find(a[i]);if(pos==index.end())continue;
+        auto it=upper_bound(pos->second.begin(),pos->second.end(),last);
+        if(it!=pos->second.end()){last=*it;pairs.emplace_back(i,last);}
+    }
+    require(pairs.back()==pair{int(a.size())-1,int(b.size())-1},"common terminal missing");return pairs;
+}
+array<bool,max_cells> fixed_targets(const ProblemWindow& p) {
+    array<bool,max_cells> out{};unsigned colors=0;vector<int> starts;
+    for(int i=0;i<p.w.count;i++){int c=p.w.cells[i];out[c]=true;colors|=color_mask(p.initial[c]);if(p.initial[c])starts.push_back(c);}
+    for(unsigned mask=colors;mask;mask&=mask-1){int nest=board_info.nest_pos_by_code[1+__builtin_ctz(mask)];out[nest]=true;
+        for(int d=0;d<4;d++)if(board_info.adj[nest][d]>=0)out[board_info.adj[nest][d]]=true;
+    }
+    vector<pair<int,int>> meeting;
+    if(starts.size()>=2)for(int c=0;c<board_info.cell_count;c++){
+        int a=infinite_cost,b=infinite_cost;for(int q:starts){int d=board_info.floor_dist[c][q];if(d<a){b=a;a=d;}else b=min(b,d);}meeting.emplace_back(a+b,c);
+    }
+    sort(meeting.begin(),meeting.end());for(int i=0;i<min(4,int(meeting.size()));i++)out[meeting[i].second]=true;
+    return out;
+}
+string certify_primitives(const ProblemWindow& p,const vector<Move>& path) {
+    State current=p.initial;const auto allowed=fixed_targets(p);
+    for(Move m:path){int q=board_info.ray[m.p][m.d][m.l];
+        if(int(m.k)<height(p.background[m.p]))return "background_modified";
+        if(!allowed[q]&&height(current[q])==height(p.background[q]))return "destination_requires_macro_check";
+        FiniteRouter router;router.run(current,m.p,m.k,1);
+        require(router.cost(q,1)==1,"legal primitive missing in router");
+        State other=current;for(Move z:router.path(q,1))board_info.apply(other,z);
+        board_info.apply(current,m);require(current==other,"primitive reconstruction mismatch");
+        for(int c=0;c<board_info.cell_count;c++)if(prefix(current[c],height(p.background[c]))!=p.background[c])return "background_modified";
+    }
+    require(words(current)==p.goal,"certified endpoint mismatch");return "ok";
+}
+string teacher_key(const ProblemWindow& p,const vector<Move>& path) {
+    string key;auto append=[&](auto x){key.append(reinterpret_cast<const char*>(&x),sizeof(x));};
+    for(auto x:p.initial)append(x);for(auto x:p.goal)append(x);for(auto x:p.background)append(x);
+    for(const auto* moves:{&p.original,&path}){append(int(moves->size()));for(Move m:*moves){append(m.p);append(m.k);append(m.d);append(m.l);}}
+    return key;
+}
+void json_path(ostream& out,const vector<Move>& path) {
+    out<<'[';bool first=true;for(Move m:path){if(!first)out<<',';first=false;out<<'['<<m.p<<','<<int(m.k)<<','<<int(m.d)<<','<<int(m.l)<<']';}out<<']';
+}
+void json_words(ostream& out,const Words& b) {out<<'[';for(int p=0;p<board_info.cell_count;p++){if(p)out<<',';out<<b[p];}out<<']';}
+void analyze_pairs(const string& pair_file,const fs::path& directory) {
+    fs::create_directories(directory);int seen_neighbor=0,seen_reduction=0;
+    const auto records=load_pairs(pair_file,seen_neighbor,seen_reduction);
+    ofstream summary(directory/"teachers.jsonl"),raw(directory/"samples.raw",ios::binary),rejected(directory/"rejections.jsonl");
+    map<string,int> counts;unordered_set<string> distinct;int labels=0,teacher_id=0;
+    counts["recorded_pairs"]=records.size();counts["seen_neighbor"]=seen_neighbor;counts["seen_reduction"]=seen_reduction;
+    for(int r=0;r<int(records.size());r++){
+        const auto& record=records[r];const auto a=replay_trace(record.before),b=replay_trace(record.after);
+        counts["complete_replays"]+=2;counts[record.kind<0?"neighbor_records":"reduction_records"]++;
+        const auto boundaries=common_boundaries(a,b);FiniteStats extraction;
+        auto candidates=collect_finite_windows(record.before,numeric_limits<double>::infinity(),extraction);
+        map<vector<int>,FiniteWindow> lookup;for(const auto& w:candidates)if((w.has_nest||w.count>4)&&w.priority>0)lookup.emplace(w.operations,w);
+        for(int segment=1;segment<int(boundaries.size());segment++){
+            auto [ai,bi]=boundaries[segment-1];auto [az,bz]=boundaries[segment];
+            array<int,max_cells> parent; iota(parent.begin(),parent.end(),0);
+            auto root=[&](int x){while(parent[x]!=x){parent[x]=parent[parent[x]];x=parent[x];}return x;};
+            auto join=[&](Move m){int p=root(m.p),q=root(board_info.ray[m.p][m.d][m.l]);parent[p]=q;};
+            for(int t=ai;t<az;t++)join(record.before[t]);for(int t=bi;t<bz;t++)join(record.after[t]);
+            map<int,vector<int>> left,right;
+            for(int t=ai;t<az;t++)left[root(record.before[t].p)].push_back(t);
+            for(int t=bi;t<bz;t++)right[root(record.after[t].p)].push_back(t);
+            for(const auto& [group,indices]:left){
+                const auto& after_indices=right[group];if(indices.size()<=after_indices.size())continue;
+                ++counts["shorter_components"];
+                auto found=lookup.find(indices);
+                if(found==lookup.end()){
+                    ++counts["not_current_window"];
+                    if(counts["not_current_window"]<=8)rejected<<"{\"pair\":"<<r<<",\"reason\":\"not_current_window\",\"before\":"<<indices.size()<<",\"after\":"<<after_indices.size()<<"}\n";
+                    continue;
+                }
+                ProblemWindow p;p.w=found->second;p.initial=p.background=a[p.w.first];
+                for(int i=0;i<p.w.count;i++)p.background[p.w.cells[i]]=0;
+                p.goal=p.background;for(int i=0;i<p.w.count;i++)p.goal[p.w.cells[i]]=p.w.end[i];
+                for(int t:indices)p.original.push_back(record.before[t]);vector<Move> improved;
+                for(int t:after_indices)improved.push_back(record.after[t]);
+                verify(p.initial,p.original,p.goal);verify(p.initial,improved,p.goal);counts["local_replays"]+=2;
+                require(certify_primitives(p,p.original)=="ok","original candidate is not representable");
+                string cert=certify_primitives(p,improved);if(cert!="ok"){++counts[cert];continue;}
+                if(!distinct.insert(teacher_key(p,improved)).second){++counts["duplicates"];continue;}
+                ++counts["certified_pairs"];counts["certified_saved"]+=int(p.original.size()-improved.size());
+                counts[record.kind<0?"certified_neighbor":"certified_reduction"]++;
+                finite_value::enabled=false;finite_probe::width=12;finite_probe::node_limit=192;
+                FinitePlanner planner;FiniteStats stats;vector<Move> baseline;int cost=p.original.size();
+                {State initial=p.initial;if(planner.plan(initial,p.w,cost-1,numeric_limits<double>::infinity(),baseline,stats))cost=baseline.size();}
+                if(!baseline.empty()){verify(p.initial,baseline,p.goal);++counts["baseline_replays"];}
+                counts["teacher_beats_baseline"]+=int(improved.size())<cost;
+                counts["baseline_saved"]+=int(p.original.size())-cost;
+                if(teacher_id<64){
+                    for(int good=0;good<2;good++){
+                        const auto& path=good?improved:p.original;State current=p.initial;
+                        for(int t=0;t<=int(path.size());t++){
+                            auto s=FiniteProbe::encode(words(current),p.background);auto features=FiniteProbe::features(planner,s);
+                            require(features[0]<=int(path.size())-t,"labeled suffix below bound");
+                            array<float,52> row{};copy(features.begin(),features.end(),row.begin());row[48]=path.size()-t;row[49]=t;row[50]=teacher_id;row[51]=good;
+                            for(float x:row)require(isfinite(x),"nonfinite label");raw.write(reinterpret_cast<const char*>(row.data()),sizeof(row));++labels;
+                            // 全ての残り列も独立再生し、保存する費用を照合する。
+                            vector<Move> suffix(path.begin()+t,path.end());verify(words(current),suffix,p.goal);++counts["suffix_replays"];
+                            if(t<int(path.size()))board_info.apply(current,path[t]);
+                        }
+                    }
+                }
+                summary<<"{\"teacher\":"<<teacher_id++<<",\"pair\":"<<r<<",\"kind\":"<<record.kind
+                       <<",\"before\":"<<p.original.size()<<",\"after\":"<<improved.size()<<",\"baseline\":"<<cost
+                       <<",\"cells\":"<<p.w.count<<",\"pieces\":"<<p.w.pieces<<",\"expanded\":"<<stats.expanded<<",\"initial\":";
+                json_words(summary,p.initial);summary<<",\"goal\":";json_words(summary,p.goal);summary<<",\"background\":";json_words(summary,p.background);
+                summary<<",\"before_path\":";json_path(summary,p.original);summary<<",\"after_path\":";json_path(summary,improved);summary<<"}\n";
+                require(state_pool.free_count==4,"analysis state pool leak");
+            }
+        }
+    }
+    counts["labels"]=labels;cout<<'{';bool first=true;for(auto [key,value]:counts){if(!first)cout<<',';first=false;cout<<'"'<<key<<"\":"<<value;}cout<<"}\n";
+}
+int main(int argc,char** argv) {
+    try {
+        require(argc==4,"usage: check_v119_pairs input pairs directory");ifstream input(argv[1]);cin.rdbuf(input.rdbuf());
+        board_info.read();state_pool.prepare(board_info.cell_count);time_keeper.start_=chrono::steady_clock::now();time_keeper.time_limit_sec=numeric_limits<double>::infinity();
+        analyze_pairs(argv[2],argv[3]);require(state_pool.free_count==4,"final pool leak");return 0;
+    }catch(const exception& e){cerr<<e.what()<<'\n';return 1;}
+}

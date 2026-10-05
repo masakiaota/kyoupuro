@@ -1,0 +1,26 @@
+{
+  "training/averaged_labels.json": "292affb1ef05d286f3ef92a6f6f7b349152a3884ce552d87c04d90c708a34e22",
+  "training/folds.json": "220aa45ce892eca2e7de4c541307d2f46f21e9de072890848c86b86da5f07db0",
+  "training/data_identity.json": "c0f406c2dfac614bf20012e0652d4f2b537c29346ba585036e07a74700697f13",
+  "input_manifest.json": "036171024d7c147338f8e4647bce960144abd31ea1fb07e4b6538dca61da4435",
+  "source": "ce5e7dff057c33aec14462583606d536f6b53d65360f247b8d540e17801f6d07",
+  "loss_source": "20e36fe94f5ed6f30d4abf457b780e0d31fa27dc4baf2ed942174bbdb041bdf5",
+  "base": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+  "architecture": [
+    18,
+    64,
+    64,
+    1
+  ],
+  "epochs": 500,
+  "seed": 124004,
+  "threads": 4,
+  "batch_groups": 32,
+  "lr": [
+    0.001,
+    0.0001
+  ],
+  "weight_decay": 0.0001,
+  "point_loss_weight": 0.1,
+  "scale": 20
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "old": "// v204_initial_race_tuned.cpp",
+    "new": "// v205_wide_initial_race.cpp",
+    "offset": 0
+  },
+  {
+    "old": "entries.size()==5",
+    "new": "entries.size()==8",
+    "offset": 196012
+  },
+  {
+    "old": "entries.size()>5",
+    "new": "entries.size()>8",
+    "offset": 196097
+  },
+  {
+    "old": "        // 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。\n        for(int round=0;round<2&&active.size()>1;round++) {\n            const double round_end=start+budget*(0.15*(round+1));",
+    "new": "        // 最大8本を半数ずつ育て、2本を比べる段階を挟んでから勝者へ残り65%を渡す。\n        // 段階の期限は残余時間の割合とし、候補が先に1本になれば選抜を切り上げる。\n        constexpr double round_ends[]={0.15,0.25,0.35};\n        for(int round=0;round<3&&active.size()>1;round++) {\n            const double round_end=start+budget*round_ends[round];",
+    "offset": 198519
+  },
+  {
+    "old": "active.resize(round==0?(active.size()+1)/2:1);",
+    "new": "active.resize((active.size()+1)/2);",
+    "offset": 199314
+  },
+  {
+    "old": "grow(winner,end,2);",
+    "new": "grow(winner,end,3);",
+    "offset": 199788
+  }
+]

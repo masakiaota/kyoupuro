@@ -1,0 +1,32 @@
+{
+  "parent_production": {
+    "TemporalLNS::insertAt(std::array<unsigned int, 400ul> const&, std::vector<Move, std::allocator<Move>> const&, int, int, int, int, std::vector<Move, std::allocator<Move>>&)": {
+      "bytes_to_next_symbol": 9120,
+      "clock_check_transfers": 2,
+      "mono_color_transfers": 0,
+      "calls": 47
+    }
+  },
+  "child_production": {
+    "TemporalLNS::insertAt(Board const&, std::vector<Move, std::allocator<Move>> const&, int, int, int, int, std::vector<Move, std::allocator<Move>>&)": {
+      "bytes_to_next_symbol": 9064,
+      "clock_check_transfers": 2,
+      "mono_color_transfers": 0,
+      "calls": 48
+    }
+  },
+  "bench": {
+    "parent::TemporalLNS::insertAt(std::array<unsigned int, 400ul> const&, std::vector<parent::Move, std::allocator<parent::Move>> const&, int, int, int, int, std::vector<parent::Move, std::allocator<parent::Move>>&)": {
+      "bytes_to_next_symbol": 8292,
+      "clock_check_transfers": 2,
+      "mono_color_transfers": 0,
+      "calls": 44
+    },
+    "child::TemporalLNS::insertAt(child::Board const&, std::vector<child::Move, std::allocator<child::Move>> const&, int, int, int, int, std::vector<child::Move, std::allocator<child::Move>>&)": {
+      "bytes_to_next_symbol": 8108,
+      "clock_check_transfers": 2,
+      "mono_color_transfers": 0,
+      "calls": 39
+    }
+  }
+}

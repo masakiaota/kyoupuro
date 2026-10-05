@@ -1,0 +1,17 @@
+16 5
+..b.c.c..b.bc.bb
+...bc.a.....aaa.
+ab.......bda.d.D
+.bB.ce.E.....ab.
+.a.b.b.a...abdAe
+.....c..c...aacc
+.bd.a.........#.
+..b..b.b...c...b
+..b..b..........
+b.ce...c.b#....a
+...ab......a..b.
+.a..b......cdda.
+...abbcb.b.abb..
+ab.....ac.C.....
+a#ba........ca..
+........a......a

@@ -1,0 +1,17 @@
+16 4
+...c.b.adCcdc...
+a.bca.dda.c.cdcd
+cc.c.a.dd....aca
+...b.c.d.d..aD.a
+c.c.a.c..d.dddcb
+...cac.acc.dcac.
+bcac.Aadad..cd.a
+#b.ac.a.a.bad...
+cdd.c..dd.a.adaa
+adaccdcaac.cd.ad
+accc....a.a.a..c
+da.dcdaa.a....ad
+a..ccc..ccd..c..
+..Bd..aa..d.ddd.
+..cdcc.....a.d.a
+a.a..dac.c.aada.

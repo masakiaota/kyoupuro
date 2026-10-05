@@ -1,0 +1,140 @@
+{
+  "compiler": "GCC14.2/C++23",
+  "mode": "non-LOCAL",
+  "budget_seconds": 1.9,
+  "workers": 2,
+  "runs_per_input_version": 1,
+  "validation1_used": false,
+  "source_sha256": "1dce487ed293ba3e8cd44cf93ecddc8ed0e8b5cb3ac6f42d48ff15fd50769141",
+  "all_valid": true,
+  "outputs": 456,
+  "sets": {
+    "fresh128": {
+      "v113": {
+        "sum": 27720,
+        "mean": 216.5625,
+        "external_mean": 1.881192851578125,
+        "external_max": 1.885464475,
+        "over_1_9": 0,
+        "over_2": 0,
+        "lns_attempts_mean": 5571.15625,
+        "lns_start_mean": 0.14146696640625,
+        "first_nn_seconds_mean": 0.03748672765625,
+        "extra_nn_seconds_mean": 0.10273440484375
+      },
+      "v325": {
+        "sum": 27661,
+        "mean": 216.1015625,
+        "external_mean": 1.881137815140625,
+        "external_max": 1.883859547,
+        "over_1_9": 0,
+        "over_2": 0,
+        "lns_attempts_mean": 5948.3203125,
+        "lns_start_mean": 0.098344915703125,
+        "first_nn_seconds_mean": 0.024688409609375,
+        "extra_nn_seconds_mean": 0.0724457740625
+      },
+      "comparison": {
+        "delta_sum": -59,
+        "delta_mean": -0.4609375,
+        "wins": 62,
+        "ties": 26,
+        "losses": 40,
+        "input_bootstrap_mean_delta_95": [-1.2109375, 0.2890625],
+        "first_nn_hashes_equal": 128,
+        "candidate_counts_equal": 123,
+        "candidate_origin_raw_equal": 123,
+        "lns_attempt_ratio": 1.0676994228083263,
+        "lns_start_saved_ms": 43.12205070312501,
+        "largest_improvement_case": "0083.txt",
+        "largest_improvement_delta": -16,
+        "largest_regression_case": "0035.txt",
+        "largest_regression_delta": 12
+      }
+    },
+    "in": {
+      "v113": {
+        "sum": 19767,
+        "mean": 197.67,
+        "external_mean": 1.88119292603,
+        "external_max": 1.885003285,
+        "over_1_9": 0,
+        "over_2": 0,
+        "lns_attempts_mean": 6362.85,
+        "lns_start_mean": 0.116858172,
+        "first_nn_seconds_mean": 0.030253848,
+        "extra_nn_seconds_mean": 0.085545067,
+        "relative_v800": 94.79721871244892
+      },
+      "v325": {
+        "sum": 19753,
+        "mean": 197.53,
+        "external_mean": 1.88098225416,
+        "external_max": 1.883544806,
+        "over_1_9": 0,
+        "over_2": 0,
+        "lns_attempts_mean": 6751.46,
+        "lns_start_mean": 0.0821275387,
+        "first_nn_seconds_mean": 0.0204458354,
+        "extra_nn_seconds_mean": 0.0606516498,
+        "relative_v800": 94.85479874957315
+      },
+      "comparison": {
+        "delta_sum": -14,
+        "delta_mean": -0.14,
+        "wins": 44,
+        "ties": 20,
+        "losses": 36,
+        "input_bootstrap_mean_delta_95": [-0.9902499999999997, 0.68],
+        "first_nn_hashes_equal": 100,
+        "candidate_counts_equal": 99,
+        "candidate_origin_raw_equal": 99,
+        "lns_attempt_ratio": 1.0610748328186268,
+        "lns_start_saved_ms": 34.730633299999994,
+        "largest_improvement_case": "0005.txt",
+        "largest_improvement_delta": -19,
+        "largest_regression_case": "0068.txt",
+        "largest_regression_delta": 12,
+        "relative_delta": 0.057580037124225214,
+        "delta_without_0005": 5
+      }
+    }
+  },
+  "mechanism": {
+    "pass": true,
+    "fixed_comparisons": 64,
+    "audit_cases": 4,
+    "fixed": {
+      "judge": {
+        "cpu_ns": {"v113": 3585156680, "v136": 2799948520, "v325": 2627470793},
+        "v325_reduction_vs_v113": 0.26712525350495975,
+        "v325_reduction_vs_v136": 0.061600320780183515
+      },
+      "local": {
+        "cpu_ns": {"v113": 3210622839, "v136": 2453418420, "v325": 2381514094},
+        "v325_reduction_vs_v113": 0.2582392222869252,
+        "v325_reduction_vs_v136": 0.029307812077158824
+      }
+    },
+    "partial": {
+      "repair_conditions": 512,
+      "repair_complete": 277,
+      "packet_conditions": 256,
+      "packet_complete": 33,
+      "rank_values": 512,
+      "nn_states": 1106,
+      "logits": 422960,
+      "outputs": 342,
+      "repair_ref_ns": 214818134,
+      "repair_fast_ns": 214527550,
+      "packet_ref_ns": 49213053,
+      "packet_fast_ns": 47065526,
+      "pair_ref_ns": 131736,
+      "pair_fast_ns": 107398,
+      "smooth_ref_ns": 320679,
+      "smooth_fast_ns": 217981
+    },
+    "python_partial_outputs": 342,
+    "sources_unchanged": true
+  }
+}

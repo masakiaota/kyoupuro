@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-09-29T02:18:07.262742+00:00",
+  "builds": {
+    "LOCAL": "passed",
+    "production": "passed"
+  },
+  "tests": {
+    "passed": 14,
+    "fixture": "predefined legal plans; no C++ solver execution",
+    "viewer": "actual buildEvalViewData function, 100 reference cases, relative score recalculation"
+  },
+  "prepare": {
+    "directory": "adhoc/v800_check/prepare_final",
+    "cases": 100,
+    "search_cases": 90,
+    "reused_cases": 10,
+    "seed_plans": 800,
+    "rejected_seed_plans": 0
+  },
+  "solver_executions": 0,
+  "live_eval_records_modified": false,
+  "source_hashes": {
+    "adhoc/bin/v800.cpp": "974610eec5377d946857c10b7b1898dfc332f66dc9860e5ab4abe7109c57e99d",
+    "adhoc/scripts/run_v800.py": "03cc05d45f74745e1a9aeaca4dff895c6512db40004418528f7316bb9c8f84e7",
+    "adhoc/scripts/test_v800.py": "84e383c82c53a8fd1596d30fa08e6824d1d20f4d8eee40a9c9f0c5517fdc2b41",
+    "adhoc/v800_check/v800_local": "8ae00248c211691f150e3e038b7fadfa6a14c72ec179dde36d186b4198f669a2",
+    "adhoc/v800_check/v800_production": "032dfa5ed6d8ee227a851e2935f92e5fa23127f06543edb260704b726d0394a8"
+  }
+}

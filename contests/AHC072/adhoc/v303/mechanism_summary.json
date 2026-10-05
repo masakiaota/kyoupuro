@@ -1,0 +1,39 @@
+{
+  "experiment": "v303",
+  "parent": "v210_collection_color_quotient.cpp",
+  "new_source_sha256": "c8fee70e2245c03b3cd25a838bb0f51d9d83e3e48717d900d9963322f3fa08f4",
+  "comparison_pairs": 201,
+  "symbolic_conditions": 1027,
+  "saved_conditions": 1600,
+  "conditions": 2627,
+  "palindrome_conditions": 1275,
+  "mixed_palindrome_conditions": 820,
+  "dp_cost_entries_compared": 1883600,
+  "route_costs_compared_with_independent_bfs": 12443,
+  "cost_mismatches": 0,
+  "delivery_legal_per_version": 2596,
+  "delivery_infeasible_per_version": 31,
+  "delivery_invalid_per_version": 0,
+  "route_legal_per_version": 10029,
+  "different_delivery_paths": 0,
+  "different_route_paths": 0,
+  "old": {
+    "empty_entries": 2438738,
+    "delivery_entries": 10532264,
+    "router_reached": 2000517,
+    "empty_seconds": 0.208136857,
+    "delivery_seconds": 0.969204626,
+    "router_seconds": 0.042222643
+  },
+  "new": {
+    "empty_entries": 2297636,
+    "delivery_entries": 8178023,
+    "router_reached": 1737745,
+    "empty_seconds": 0.203454501,
+    "delivery_seconds": 0.881382171,
+    "router_seconds": 0.036501612
+  },
+  "scope": "Read-only construction subproblems. Synthetic palindrome-heavy cases and 200 saved parent trajectories. Not full-solver score or production speedup.",
+  "runner_interruption": "case0000 had zero EmptyDP mixed-palindrome activations. The original runner stopped before main evaluation. All three mechanisms activate in the symbolic audit. Only unexecuted main runs were resumed; frozen solver and comparison conditions were unchanged.",
+  "eval_viewer_registered": false
+}

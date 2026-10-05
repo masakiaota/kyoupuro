@@ -1,0 +1,22 @@
+{
+  "trials": 21,
+  "main_trials": 20,
+  "source_hashes_checked": 27,
+  "admissions_independently_checked": 26,
+  "fixtures": 3,
+  "plans": [],
+  "improved_main_trials": 0,
+  "capped_main_trials": 17,
+  "best_saved_by_case": {
+    "0005": 0,
+    "0019": 0,
+    "0060": 0,
+    "0068": 0,
+    "0097": 0
+  },
+  "transition_checks": 1216,
+  "physical_checks": 24801,
+  "bound_checks": 33809957,
+  "total_search_ms": 33612.307,
+  "max_search_ms": 3997.253
+}

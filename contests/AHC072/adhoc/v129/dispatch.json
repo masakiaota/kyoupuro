@@ -1,0 +1,21 @@
+{
+  "pid": 60707,
+  "guard_directory": "guard_pipeline",
+  "command": [
+    "/Users/masaki/Desktop/AHC072/.venv-nn-v077/bin/python",
+    "/Users/masaki/Desktop/AHC072/adhoc/scripts/memory_guard.py",
+    "--log-dir",
+    "/Users/masaki/Desktop/AHC072/results/nn_rank/v129/20261004_structure_allocation_studio/guard_pipeline",
+    "--stop-gb",
+    "56",
+    "--limit-gb",
+    "64",
+    "--seconds",
+    "6429",
+    "--",
+    "/Users/masaki/Desktop/AHC072/.venv-nn-v077/bin/python",
+    "/Users/masaki/Desktop/AHC072/adhoc/scripts/run_v129_pipeline.py"
+  ],
+  "started_at": "2026-10-04T22:42:50.531703+09:00",
+  "deadline_jst": "2026-10-05T00:30:00+09:00"
+}

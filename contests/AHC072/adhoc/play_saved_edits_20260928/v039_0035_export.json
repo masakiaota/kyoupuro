@@ -1,0 +1,3002 @@
+{
+  "schema_version": 1,
+  "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+  "current_node_id": "n103",
+  "exported_node_id": "n103",
+  "events": [
+    {
+      "type": "create",
+      "schema_version": 1,
+      "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+      "revision": 0,
+      "input": "12 6\nda..##F..#..\n..fc#.#.....\n.#........#B\n.###.....###\n.b..aD#.#.a.\n###.A##.#...\nC...#...#...\n.#.#.e.##d..\n....##a##...\n......#..#.#\n#..a.a...e.E\n..#......#.#\n",
+      "input_sha256": "e0eef4770bfdf0da66545d5688266603b2d807695e930dfbde0dca28400e284a",
+      "output": "8 6 0 U 1\n7 5 0 R 1\n7 6 0 U 1\n6 6 0 R 1\n6 7 0 U 1\n5 7 0 U 1\n4 7 0 U 1\n7 9 0 R 1\n4 10 0 D 1\n5 10 0 D 1\n6 10 0 D 1\n7 10 0 D 1\n8 10 0 D 1\n9 10 0 D 1\n10 10 0 L 1\n10 9 1 L 2\n10 7 0 L 1\n10 6 0 L 1\n4 1 0 R 1\n4 2 0 R 1\n10 5 0 L 1\n10 4 0 L 1\n0 0 0 R 1\n0 1 0 R 1\n0 2 0 D 1\n1 2 0 R 1\n1 3 0 D 1\n2 3 0 R 1\n2 4 0 D 1\n3 4 0 D 1\n4 3 0 R 1\n4 4 2 U 2\n2 4 0 R 1\n2 5 1 R 2\n3 7 0 U 1\n2 7 2 L 2\n2 7 0 U 1\n1 7 1 R 2\n1 9 0 R 1\n1 10 0 R 1\n1 11 0 D 1\n1 7 0 U 1\n0 7 0 L 1\n2 5 0 D 1\n3 5 0 L 1\n3 4 0 D 1\n4 4 0 L 1\n4 3 1 D 2\n6 3 1 L 1\n6 2 0 D 1\n7 2 2 D 3\n10 2 0 R 1\n10 3 5 R 6\n10 9 0 R 1\n10 10 0 R 1\n10 3 0 U 1\n9 3 0 U 1\n8 3 0 L 1\n8 2 0 U 1\n7 2 0 U 1\n6 2 6 L 2\n6 2 0 R 1\n6 3 0 U 1\n5 3 0 R 1\n5 4 5 U 1\n4 3 0 R 1\n4 4 0 R 1",
+      "label": "V039 0035 既存解の部分手直し",
+      "case_name": "0035.txt",
+      "engine_hash": "22b000a8d27ba7088afacb4149492cdce1880d101c91d25180d3ee321c4313a5",
+      "actor": "ai",
+      "at": "2026-09-28T02:20:46.296Z"
+    },
+    {
+      "type": "checkout",
+      "request_id": "525a469d-5018-4445-a8f1-e4d972cf59ef",
+      "request_digest": "743799928975293cc13715f2541387aae75e642b5df3c3766cb57875628cfed1",
+      "revision": 1,
+      "actor": "ai",
+      "at": "2026-09-28T02:22:10.451Z",
+      "node_id": "n28",
+      "result": {
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 1,
+        "node_id": "n28",
+        "T": 28,
+        "E": 13,
+        "S": 1300028,
+        "completed": false
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "f4dea82f-bd71-4aeb-b815-054cca7ca013",
+      "request_digest": "2e96f9ed81624b2847070ff16bf4d2b61063fb3b4e59c6461f6644d91a145218",
+      "revision": 2,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.077Z",
+      "node_id": "n68",
+      "parent_id": "n28",
+      "action": {
+        "d": "R",
+        "i": 4,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "北側の4匹をBの集荷のために南へ往復させず、Bだけを北の塔へ送る。B/Fを中継点に残してE/Aを受け渡し、南へ運ぶ。",
+      "result": {
+        "E": 13,
+        "S": 1300029,
+        "T": 29,
+        "action": {
+          "d": "R",
+          "i": 4,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              1
+            ],
+            "i": 4,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              1
+            ],
+            "before": [
+              0
+            ],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 4
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 2,
+        "node_id": "n68"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "156c1c08-c765-45cf-b223-036dad4032bd",
+      "request_digest": "6b1ec61bae2c3b5567359e8be6de811f3fd84f9e74e080b3fc6dd6e797e7fdcd",
+      "revision": 3,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.087Z",
+      "node_id": "n69",
+      "parent_id": "n68",
+      "action": {
+        "d": "U",
+        "i": 4,
+        "j": 4,
+        "k": 1,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300030,
+        "T": 30,
+        "action": {
+          "d": "U",
+          "i": 4,
+          "j": 4,
+          "k": 1,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0
+            ],
+            "before": [
+              0,
+              1
+            ],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              2,
+              3,
+              0,
+              5,
+              1
+            ],
+            "before": [
+              2,
+              3,
+              0,
+              5
+            ],
+            "i": 2,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 2,
+          "j": 4
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 3,
+        "node_id": "n69"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "f3e5b943-f9f2-44ae-a9d6-d270ff4795e9",
+      "request_digest": "fb8f0f9ae234aa017dc6afe9ca93a7f374105f3c1b0237f8f93c14c61fc3b6f8",
+      "revision": 4,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.094Z",
+      "node_id": "n70",
+      "parent_id": "n69",
+      "action": {
+        "d": "R",
+        "i": 2,
+        "j": 4,
+        "k": 3,
+        "l": 3
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300031,
+        "T": 31,
+        "action": {
+          "d": "R",
+          "i": 2,
+          "j": 4,
+          "k": 3,
+          "l": 3
+        },
+        "changed_cells": [
+          {
+            "after": [
+              2,
+              3,
+              0
+            ],
+            "before": [
+              2,
+              3,
+              0,
+              5,
+              1
+            ],
+            "i": 2,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              1,
+              5
+            ],
+            "before": [],
+            "i": 2,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 2,
+          "j": 7
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 4,
+        "node_id": "n70"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "d10c5d65-5d49-4b99-b22c-e7988464b3a3",
+      "request_digest": "44e4595d000c7af387c45816a094b9225eb14054f80799226a40be322699ca0a",
+      "revision": 5,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.099Z",
+      "node_id": "n71",
+      "parent_id": "n70",
+      "action": {
+        "d": "U",
+        "i": 3,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300032,
+        "T": 32,
+        "action": {
+          "d": "U",
+          "i": 3,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4,
+              0
+            ],
+            "i": 3,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              1,
+              5,
+              0,
+              4
+            ],
+            "before": [
+              1,
+              5
+            ],
+            "i": 2,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 2,
+          "j": 7
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 5,
+        "node_id": "n71"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "298b7b47-946f-49cd-9003-a6789d590fc5",
+      "request_digest": "7e8bc3939a10a2508fd212fecd2c29a2e17cd3fbb029fa510ade8040358c3d5f",
+      "revision": 6,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.106Z",
+      "node_id": "n72",
+      "parent_id": "n71",
+      "action": {
+        "d": "L",
+        "i": 2,
+        "j": 7,
+        "k": 2,
+        "l": 3
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300033,
+        "T": 33,
+        "action": {
+          "d": "L",
+          "i": 2,
+          "j": 7,
+          "k": 2,
+          "l": 3
+        },
+        "changed_cells": [
+          {
+            "after": [
+              1,
+              5
+            ],
+            "before": [
+              1,
+              5,
+              0,
+              4
+            ],
+            "i": 2,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              2,
+              3,
+              0,
+              4,
+              0
+            ],
+            "before": [
+              2,
+              3,
+              0
+            ],
+            "i": 2,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 2,
+          "j": 4
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 6,
+        "node_id": "n72"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "9258c097-5622-4f6e-ad05-04397bf1137c",
+      "request_digest": "7414bf2517d6049391ac0cd77b6102bee10d083b479191d4ecc9ab6b38c768b8",
+      "revision": 7,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.112Z",
+      "node_id": "n73",
+      "parent_id": "n72",
+      "action": {
+        "d": "D",
+        "i": 2,
+        "j": 4,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300034,
+        "T": 34,
+        "action": {
+          "d": "D",
+          "i": 2,
+          "j": 4,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              2,
+              3,
+              0,
+              4,
+              0
+            ],
+            "i": 2,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              4,
+              0,
+              3,
+              2
+            ],
+            "before": [],
+            "i": 3,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 3,
+          "j": 4
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 7,
+        "node_id": "n73"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "a0f9e72e-d466-43bf-bee9-d470b6d4e0a4",
+      "request_digest": "7a108f29f1abc6c1adff49e90d21ac1452e774686ca14246c1168176cc9f6aa2",
+      "revision": 8,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.119Z",
+      "node_id": "n74",
+      "parent_id": "n73",
+      "action": {
+        "d": "D",
+        "i": 3,
+        "j": 4,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300035,
+        "T": 35,
+        "action": {
+          "d": "D",
+          "i": 3,
+          "j": 4,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              4,
+              0,
+              3,
+              2
+            ],
+            "i": 3,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              2,
+              3,
+              0,
+              4,
+              0
+            ],
+            "before": [
+              0
+            ],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 4
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 8,
+        "node_id": "n74"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "3ba19a70-b424-4008-9004-cf795f6eef72",
+      "request_digest": "1e4580326b942794098bf8bc3f8ec083a60ffb4d0d5c12f8ebf8d1aa6253836e",
+      "revision": 9,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.126Z",
+      "node_id": "n75",
+      "parent_id": "n74",
+      "action": {
+        "d": "L",
+        "i": 4,
+        "j": 4,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300036,
+        "T": 36,
+        "action": {
+          "d": "L",
+          "i": 4,
+          "j": 4,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              2,
+              3,
+              0,
+              4,
+              0
+            ],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              4,
+              0,
+              3,
+              2,
+              0
+            ],
+            "before": [],
+            "i": 4,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 3
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 9,
+        "node_id": "n75"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "a4d0d02e-6d31-45e0-b736-d681c3c83840",
+      "request_digest": "09c98aee28ec55c671499c957fea48e6f1d811437eedd715bcff70c595021469",
+      "revision": 10,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.132Z",
+      "node_id": "n76",
+      "parent_id": "n75",
+      "action": {
+        "d": "D",
+        "i": 4,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300037,
+        "T": 37,
+        "action": {
+          "d": "D",
+          "i": 4,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              4,
+              0,
+              3,
+              2,
+              0
+            ],
+            "i": 4,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              2,
+              3,
+              0,
+              4,
+              0
+            ],
+            "before": [],
+            "i": 5,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 5,
+          "j": 3
+        },
+        "moved": 6,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 10,
+        "node_id": "n76"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "89294924-bc21-43c9-a85c-927afa038305",
+      "request_digest": "395abaf3a768769bc54cfdf679492d68873e93ea64044a7ec11dc091bf581669",
+      "revision": 11,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.139Z",
+      "node_id": "n77",
+      "parent_id": "n76",
+      "action": {
+        "d": "D",
+        "i": 5,
+        "j": 3,
+        "k": 1,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300038,
+        "T": 38,
+        "action": {
+          "d": "D",
+          "i": 5,
+          "j": 3,
+          "k": 1,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0
+            ],
+            "before": [
+              0,
+              2,
+              3,
+              0,
+              4,
+              0
+            ],
+            "i": 5,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              4,
+              0,
+              3,
+              2
+            ],
+            "before": [],
+            "i": 6,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 6,
+          "j": 3
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 11,
+        "node_id": "n77"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "10c756a1-1422-4411-a6ac-83f1f1dd03ed",
+      "request_digest": "ed050ef444a8e1cfd8ee49c1be041b51c9fbb667a553d7e411118f0b349962c6",
+      "revision": 12,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:25.146Z",
+      "node_id": "n78",
+      "parent_id": "n77",
+      "action": {
+        "d": "L",
+        "i": 6,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300039,
+        "T": 39,
+        "action": {
+          "d": "L",
+          "i": 6,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              4,
+              0,
+              3,
+              2
+            ],
+            "i": 6,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              2,
+              3,
+              0,
+              4,
+              0
+            ],
+            "before": [],
+            "i": 6,
+            "j": 2,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 6,
+          "j": 2
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 12,
+        "node_id": "n78"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "8834bbca-46d3-420f-bcd3-643c8a3d8ed9",
+      "request_digest": "0f31830f7f155a99969f50e021419fabcc99c7da9db9b3a2e7552ad15e9681df",
+      "revision": 13,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.328Z",
+      "node_id": "n79",
+      "parent_id": "n78",
+      "action": {
+        "d": "D",
+        "i": 6,
+        "j": 2,
+        "k": 3,
+        "l": 3
+      },
+      "note": "E/Aを南の塔へ送り、Eを東へ発射する。残った混色塔を回収し、Cを帰してからAの巣へ運ぶ。",
+      "result": {
+        "E": 13,
+        "S": 1300040,
+        "T": 40,
+        "action": {
+          "d": "D",
+          "i": 6,
+          "j": 2,
+          "k": 3,
+          "l": 3
+        },
+        "changed_cells": [
+          {
+            "after": [
+              2,
+              3,
+              0
+            ],
+            "before": [
+              2,
+              3,
+              0,
+              4,
+              0
+            ],
+            "i": 6,
+            "j": 2,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              4
+            ],
+            "before": [],
+            "i": 9,
+            "j": 2,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 9,
+          "j": 2
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 13,
+        "node_id": "n79"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "42e7e8b0-5d71-41cc-b066-925c96bda739",
+      "request_digest": "5519b9ad39c679625b83a48b886252e1eeca31472a415e90301d57c881047192",
+      "revision": 14,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.335Z",
+      "node_id": "n80",
+      "parent_id": "n79",
+      "action": {
+        "d": "R",
+        "i": 9,
+        "j": 2,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300041,
+        "T": 41,
+        "action": {
+          "d": "R",
+          "i": 9,
+          "j": 2,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              4
+            ],
+            "i": 9,
+            "j": 2,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              0
+            ],
+            "before": [],
+            "i": 9,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 9,
+          "j": 3
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 14,
+        "node_id": "n80"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "546b3a12-b43b-4199-8f05-06622c8b9c90",
+      "request_digest": "034012be35df04fdb51a7039d0db856f44114815b107fb227944f3a632d992ab",
+      "revision": 15,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.341Z",
+      "node_id": "n81",
+      "parent_id": "n80",
+      "action": {
+        "d": "D",
+        "i": 9,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300042,
+        "T": 42,
+        "action": {
+          "d": "D",
+          "i": 9,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4,
+              0
+            ],
+            "i": 9,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              0,
+              0,
+              3,
+              0,
+              4
+            ],
+            "before": [
+              0,
+              0,
+              0,
+              3
+            ],
+            "i": 10,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 3
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 15,
+        "node_id": "n81"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "46724fcf-ac01-4464-8adc-7a0a4424306f",
+      "request_digest": "751360564bf92ebf84cccfcc7d0fbb633ef19edd50b9cb284a6a02e69b1a596c",
+      "revision": 16,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.349Z",
+      "node_id": "n82",
+      "parent_id": "n81",
+      "action": {
+        "d": "R",
+        "i": 10,
+        "j": 3,
+        "k": 5,
+        "l": 6
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300043,
+        "T": 43,
+        "action": {
+          "d": "R",
+          "i": 10,
+          "j": 3,
+          "k": 5,
+          "l": 6
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0,
+              0,
+              0,
+              3,
+              0
+            ],
+            "before": [
+              0,
+              0,
+              0,
+              3,
+              0,
+              4
+            ],
+            "i": 10,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4
+            ],
+            "before": [
+              4
+            ],
+            "i": 10,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 9
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 16,
+        "node_id": "n82"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "3fa1ade4-b6f6-49a0-b92f-6261ec03b55a",
+      "request_digest": "618dedce2b0b0e590c2952e3ebaca5a369468227398c6c4ea96263f783cdc60e",
+      "revision": 17,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.355Z",
+      "node_id": "n83",
+      "parent_id": "n82",
+      "action": {
+        "d": "R",
+        "i": 10,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 13,
+        "S": 1300044,
+        "T": 44,
+        "action": {
+          "d": "R",
+          "i": 10,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4,
+              4
+            ],
+            "i": 10,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              4,
+              4
+            ],
+            "before": [],
+            "i": 10,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 10
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 17,
+        "node_id": "n83"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "3b2ce30b-b13f-471e-aee0-5eef8a5b1173",
+      "request_digest": "32ace759b3401c3f122e771df00bed28ab2667aefdf61e42d819ff655c10c9a5",
+      "revision": 18,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.363Z",
+      "node_id": "n84",
+      "parent_id": "n83",
+      "action": {
+        "d": "R",
+        "i": 10,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 11,
+        "S": 1100045,
+        "T": 45,
+        "action": {
+          "d": "R",
+          "i": 10,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              4,
+              4
+            ],
+            "i": 10,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 10,
+            "j": 11,
+            "nest": 4
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -2,
+          "S": -199999,
+          "T": 1
+        },
+        "destination": {
+          "i": 10,
+          "j": 11
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [
+              4,
+              4
+            ],
+            "count": 2
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 18,
+        "node_id": "n84"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "34909f1b-b8cc-4c6d-bcc1-9f86b005d988",
+      "request_digest": "ddbbd8aa7d83ebb3fd64b588144e6f4fc480c91981744712e565b2df8c8a4904",
+      "revision": 19,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.369Z",
+      "node_id": "n85",
+      "parent_id": "n84",
+      "action": {
+        "d": "U",
+        "i": 10,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 11,
+        "S": 1100046,
+        "T": 46,
+        "action": {
+          "d": "U",
+          "i": 10,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              0,
+              0,
+              3,
+              0
+            ],
+            "i": 10,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              3,
+              0,
+              0,
+              0
+            ],
+            "before": [],
+            "i": 9,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 9,
+          "j": 3
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 19,
+        "node_id": "n85"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "732bf546-19ab-4b0f-becd-0b403562b076",
+      "request_digest": "cc5c5a943aa332d4db65047e3a579c3d1925b978abd9963719c197d0c1c1e75e",
+      "revision": 20,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.375Z",
+      "node_id": "n86",
+      "parent_id": "n85",
+      "action": {
+        "d": "U",
+        "i": 9,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 11,
+        "S": 1100047,
+        "T": 47,
+        "action": {
+          "d": "U",
+          "i": 9,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              3,
+              0,
+              0,
+              0
+            ],
+            "i": 9,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              0,
+              0,
+              3,
+              0
+            ],
+            "before": [],
+            "i": 8,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 3
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 20,
+        "node_id": "n86"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "9df40830-2b49-492a-adc8-78a42b10bc99",
+      "request_digest": "9cf03bdddc4d8bfbdeb3b404229b43b8bc03a1fb0c55bfd24be4c24fccd317a7",
+      "revision": 21,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.382Z",
+      "node_id": "n87",
+      "parent_id": "n86",
+      "action": {
+        "d": "L",
+        "i": 8,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 11,
+        "S": 1100048,
+        "T": 48,
+        "action": {
+          "d": "L",
+          "i": 8,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              0,
+              0,
+              3,
+              0
+            ],
+            "i": 8,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              3,
+              0,
+              0,
+              0
+            ],
+            "before": [],
+            "i": 8,
+            "j": 2,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 8,
+          "j": 2
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 21,
+        "node_id": "n87"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "71ee3d7d-0767-4153-99df-82a0c6993f7a",
+      "request_digest": "fef7af46eec44517820e9fbbafbcfcf045cf8a9cbfb154de3f8ebee720fceff5",
+      "revision": 22,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.388Z",
+      "node_id": "n88",
+      "parent_id": "n87",
+      "action": {
+        "d": "U",
+        "i": 8,
+        "j": 2,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 11,
+        "S": 1100049,
+        "T": 49,
+        "action": {
+          "d": "U",
+          "i": 8,
+          "j": 2,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              3,
+              0,
+              0,
+              0
+            ],
+            "i": 8,
+            "j": 2,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              0,
+              0,
+              3,
+              0
+            ],
+            "before": [],
+            "i": 7,
+            "j": 2,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 7,
+          "j": 2
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 22,
+        "node_id": "n88"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "8df8ca79-ec4f-4803-a5d5-e1538592bab4",
+      "request_digest": "7281e02cc0246b9a1a4c52dc8ac8018b034bf546f8cc21ccd19e3c143b97dd56",
+      "revision": 23,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.395Z",
+      "node_id": "n89",
+      "parent_id": "n88",
+      "action": {
+        "d": "U",
+        "i": 7,
+        "j": 2,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 11,
+        "S": 1100050,
+        "T": 50,
+        "action": {
+          "d": "U",
+          "i": 7,
+          "j": 2,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              0,
+              0,
+              3,
+              0
+            ],
+            "i": 7,
+            "j": 2,
+            "nest": null
+          },
+          {
+            "after": [
+              2,
+              3,
+              0,
+              0,
+              3,
+              0,
+              0,
+              0
+            ],
+            "before": [
+              2,
+              3,
+              0
+            ],
+            "i": 6,
+            "j": 2,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 6,
+          "j": 2
+        },
+        "moved": 5,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 23,
+        "node_id": "n89"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "cfa53d1d-8173-48f0-a718-97d5330351a3",
+      "request_digest": "a7e2bb7f6ba001a71c1be57cf57980c8fe77d4ebf79729b5a7898a9e83b79953",
+      "revision": 24,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.402Z",
+      "node_id": "n90",
+      "parent_id": "n89",
+      "action": {
+        "d": "R",
+        "i": 6,
+        "j": 2,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 11,
+        "S": 1100051,
+        "T": 51,
+        "action": {
+          "d": "R",
+          "i": 6,
+          "j": 2,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              2,
+              3,
+              0,
+              0,
+              3,
+              0,
+              0,
+              0
+            ],
+            "i": 6,
+            "j": 2,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              3,
+              2
+            ],
+            "before": [],
+            "i": 6,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 6,
+          "j": 3
+        },
+        "moved": 8,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 24,
+        "node_id": "n90"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "2c1be591-8c91-4aa6-8878-81c64d93161a",
+      "request_digest": "09b23d9f74cdf04eab313e96a2312f9ec5bbca6da8dbbbec1440bd37d1af7072",
+      "revision": 25,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.408Z",
+      "node_id": "n91",
+      "parent_id": "n90",
+      "action": {
+        "d": "L",
+        "i": 6,
+        "j": 3,
+        "k": 7,
+        "l": 3
+      },
+      "note": "",
+      "result": {
+        "E": 10,
+        "S": 1000052,
+        "T": 52,
+        "action": {
+          "d": "L",
+          "i": 6,
+          "j": 3,
+          "k": 7,
+          "l": 3
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              3
+            ],
+            "before": [
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              3,
+              2
+            ],
+            "i": 6,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 6,
+            "j": 0,
+            "nest": 2
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -1,
+          "S": -99999,
+          "T": 1
+        },
+        "destination": {
+          "i": 6,
+          "j": 0
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [
+              2
+            ],
+            "count": 1
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 25,
+        "node_id": "n91"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "7367abcc-1904-4c1c-8ebf-ef465d0cfb23",
+      "request_digest": "7ba8f3b7dc2e54fa43b2b5a3d403f740ff14ec03faf5ec7043a8ee1a05269dfe",
+      "revision": 26,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.415Z",
+      "node_id": "n92",
+      "parent_id": "n91",
+      "action": {
+        "d": "U",
+        "i": 6,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 10,
+        "S": 1000053,
+        "T": 53,
+        "action": {
+          "d": "U",
+          "i": 6,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              3
+            ],
+            "i": 6,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              3,
+              0,
+              0,
+              3,
+              0,
+              0,
+              0
+            ],
+            "before": [
+              0
+            ],
+            "i": 5,
+            "j": 3,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 5,
+          "j": 3
+        },
+        "moved": 7,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 26,
+        "node_id": "n92"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "7092ceed-ed2c-43a4-976f-29054d244804",
+      "request_digest": "ecdbadcc67f07422a3cd1e9ba8b69b26050c6b70a4fea64469cb291c888c3bfe",
+      "revision": 27,
+      "actor": "ai",
+      "at": "2026-09-28T02:23:39.422Z",
+      "node_id": "n93",
+      "parent_id": "n92",
+      "action": {
+        "d": "R",
+        "i": 5,
+        "j": 3,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 9,
+        "S": 900054,
+        "T": 54,
+        "action": {
+          "d": "R",
+          "i": 5,
+          "j": 3,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              3,
+              0,
+              0,
+              3,
+              0,
+              0,
+              0
+            ],
+            "i": 5,
+            "j": 3,
+            "nest": null
+          },
+          {
+            "after": [
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              3
+            ],
+            "before": [],
+            "i": 5,
+            "j": 4,
+            "nest": 0
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -1,
+          "S": -99999,
+          "T": 1
+        },
+        "destination": {
+          "i": 5,
+          "j": 4
+        },
+        "moved": 8,
+        "returned": {
+          "destination": {
+            "colors": [
+              0
+            ],
+            "count": 1
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 27,
+        "node_id": "n93"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "33442274-9239-437b-af56-e8dd0af45f2f",
+      "request_digest": "ab18922b177e93f1ac7fce493614ef321935491d5dd518a9bfffb0a6ccba2412",
+      "revision": 28,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.502Z",
+      "node_id": "n94",
+      "parent_id": "n93",
+      "action": {
+        "d": "U",
+        "i": 5,
+        "j": 4,
+        "k": 6,
+        "l": 1
+      },
+      "note": "Dを2回に分けて上へ逃がすとAが順次帰巣する。最後にB/Fを元の経路で帰す。",
+      "result": {
+        "E": 7,
+        "S": 700055,
+        "T": 55,
+        "action": {
+          "d": "U",
+          "i": 5,
+          "j": 4,
+          "k": 6,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [
+              0,
+              0,
+              0,
+              3
+            ],
+            "before": [
+              0,
+              0,
+              0,
+              3,
+              0,
+              0,
+              3
+            ],
+            "i": 5,
+            "j": 4,
+            "nest": 0
+          },
+          {
+            "after": [
+              3
+            ],
+            "before": [],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -2,
+          "S": -199999,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 4
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [
+              0,
+              0
+            ],
+            "count": 2
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 28,
+        "node_id": "n94"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "1e969338-9e58-4616-adc4-24e001c3e0c2",
+      "request_digest": "097ff51bd94aa525d2d78c65def463327359629f726f240342a0cafafed61ccd",
+      "revision": 29,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.511Z",
+      "node_id": "n95",
+      "parent_id": "n94",
+      "action": {
+        "d": "U",
+        "i": 5,
+        "j": 4,
+        "k": 3,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 4,
+        "S": 400056,
+        "T": 56,
+        "action": {
+          "d": "U",
+          "i": 5,
+          "j": 4,
+          "k": 3,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              0,
+              0,
+              0,
+              3
+            ],
+            "i": 5,
+            "j": 4,
+            "nest": 0
+          },
+          {
+            "after": [
+              3,
+              3
+            ],
+            "before": [
+              3
+            ],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -3,
+          "S": -299999,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 4
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [
+              0,
+              0,
+              0
+            ],
+            "count": 3
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 29,
+        "node_id": "n95"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "111c5655-7bed-43df-bf98-1cb0be52299a",
+      "request_digest": "7196f27e9032dd53cb3d97a64fad2e4df967a9f6eccd0319cca211f9344bda42",
+      "revision": 30,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.518Z",
+      "node_id": "n96",
+      "parent_id": "n95",
+      "action": {
+        "d": "R",
+        "i": 4,
+        "j": 4,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 2,
+        "S": 200057,
+        "T": 57,
+        "action": {
+          "d": "R",
+          "i": 4,
+          "j": 4,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              3,
+              3
+            ],
+            "i": 4,
+            "j": 4,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 4,
+            "j": 5,
+            "nest": 3
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -2,
+          "S": -199999,
+          "T": 1
+        },
+        "destination": {
+          "i": 4,
+          "j": 5
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [
+              3,
+              3
+            ],
+            "count": 2
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 30,
+        "node_id": "n96"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "12fba8c0-7755-439f-b024-c9e5a241b3b5",
+      "request_digest": "9f5cc45c28fca94ca89a806cbf6a27f0fd13d4df014fa7d49b1162c16189a09a",
+      "revision": 31,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.524Z",
+      "node_id": "n97",
+      "parent_id": "n96",
+      "action": {
+        "d": "U",
+        "i": 2,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 2,
+        "S": 200058,
+        "T": 58,
+        "action": {
+          "d": "U",
+          "i": 2,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              1,
+              5
+            ],
+            "i": 2,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              5,
+              1
+            ],
+            "before": [],
+            "i": 1,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 1,
+          "j": 7
+        },
+        "moved": 2,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 31,
+        "node_id": "n97"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "f55fd4c0-a46e-44fd-b9de-5bb78c944f02",
+      "request_digest": "e5612f873d92ddf6ee2eb5e6adfe6bdc61a8bf6ef92db9d9ba2bd834298327ba",
+      "revision": 32,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.531Z",
+      "node_id": "n98",
+      "parent_id": "n97",
+      "action": {
+        "d": "R",
+        "i": 1,
+        "j": 7,
+        "k": 1,
+        "l": 2
+      },
+      "note": "",
+      "result": {
+        "E": 2,
+        "S": 200059,
+        "T": 59,
+        "action": {
+          "d": "R",
+          "i": 1,
+          "j": 7,
+          "k": 1,
+          "l": 2
+        },
+        "changed_cells": [
+          {
+            "after": [
+              5
+            ],
+            "before": [
+              5,
+              1
+            ],
+            "i": 1,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              1
+            ],
+            "before": [],
+            "i": 1,
+            "j": 9,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 1,
+          "j": 9
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 32,
+        "node_id": "n98"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "528029c2-403a-4936-ab2f-bda8cd093b6d",
+      "request_digest": "7a718867cd093532bafc65a3111bf984792bcee5165fec209d1daa316d3dbb05",
+      "revision": 33,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.537Z",
+      "node_id": "n99",
+      "parent_id": "n98",
+      "action": {
+        "d": "R",
+        "i": 1,
+        "j": 9,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 2,
+        "S": 200060,
+        "T": 60,
+        "action": {
+          "d": "R",
+          "i": 1,
+          "j": 9,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              1
+            ],
+            "i": 1,
+            "j": 9,
+            "nest": null
+          },
+          {
+            "after": [
+              1
+            ],
+            "before": [],
+            "i": 1,
+            "j": 10,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 1,
+          "j": 10
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 33,
+        "node_id": "n99"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "3f47914a-e622-403a-877e-4f06b1ae1c92",
+      "request_digest": "4955ecffc41e3fd569a2247ae7b126499d703370af5ca6ed9d8b72a3d37a36ac",
+      "revision": 34,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.543Z",
+      "node_id": "n100",
+      "parent_id": "n99",
+      "action": {
+        "d": "R",
+        "i": 1,
+        "j": 10,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 2,
+        "S": 200061,
+        "T": 61,
+        "action": {
+          "d": "R",
+          "i": 1,
+          "j": 10,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              1
+            ],
+            "i": 1,
+            "j": 10,
+            "nest": null
+          },
+          {
+            "after": [
+              1
+            ],
+            "before": [],
+            "i": 1,
+            "j": 11,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 1,
+          "j": 11
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 34,
+        "node_id": "n100"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "fc549287-d371-438e-8624-980ee162dc77",
+      "request_digest": "fe1ee49528acd9596c7e536a2d4587adf3aaa32313b2b03b9d6d57295adae081",
+      "revision": 35,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.551Z",
+      "node_id": "n101",
+      "parent_id": "n100",
+      "action": {
+        "d": "D",
+        "i": 1,
+        "j": 11,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 1,
+        "S": 100062,
+        "T": 62,
+        "action": {
+          "d": "D",
+          "i": 1,
+          "j": 11,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              1
+            ],
+            "i": 1,
+            "j": 11,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 2,
+            "j": 11,
+            "nest": 1
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": -1,
+          "S": -99999,
+          "T": 1
+        },
+        "destination": {
+          "i": 2,
+          "j": 11
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [
+              1
+            ],
+            "count": 1
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 35,
+        "node_id": "n101"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "75ab1e74-7a4f-477e-988a-34345f491bf6",
+      "request_digest": "da0c2ffc59049103b5292d9f3980f86877fd549d1e52d5896fe14453e55d0434",
+      "revision": 36,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.557Z",
+      "node_id": "n102",
+      "parent_id": "n101",
+      "action": {
+        "d": "U",
+        "i": 1,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 1,
+        "S": 100063,
+        "T": 63,
+        "action": {
+          "d": "U",
+          "i": 1,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 1,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [
+              5
+            ],
+            "before": [],
+            "i": 0,
+            "j": 7,
+            "nest": null
+          }
+        ],
+        "completed": false,
+        "delta": {
+          "E": 0,
+          "S": 1,
+          "T": 1
+        },
+        "destination": {
+          "i": 0,
+          "j": 7
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [],
+            "count": 0
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 36,
+        "node_id": "n102"
+      }
+    },
+    {
+      "type": "step",
+      "request_id": "6985c94e-b17c-4595-8f70-e448eda368c4",
+      "request_digest": "61ad015db8ac732bd954b6ddb7406db386b3b2aef71c9ca92457ac8abd4dd1c6",
+      "revision": 37,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.563Z",
+      "node_id": "n103",
+      "parent_id": "n102",
+      "action": {
+        "d": "L",
+        "i": 0,
+        "j": 7,
+        "k": 0,
+        "l": 1
+      },
+      "note": "",
+      "result": {
+        "E": 0,
+        "S": 64,
+        "T": 64,
+        "action": {
+          "d": "L",
+          "i": 0,
+          "j": 7,
+          "k": 0,
+          "l": 1
+        },
+        "changed_cells": [
+          {
+            "after": [],
+            "before": [
+              5
+            ],
+            "i": 0,
+            "j": 7,
+            "nest": null
+          },
+          {
+            "after": [],
+            "before": [],
+            "i": 0,
+            "j": 6,
+            "nest": 5
+          }
+        ],
+        "completed": true,
+        "delta": {
+          "E": -1,
+          "S": -99999,
+          "T": 1
+        },
+        "destination": {
+          "i": 0,
+          "j": 6
+        },
+        "moved": 1,
+        "returned": {
+          "destination": {
+            "colors": [
+              5
+            ],
+            "count": 1
+          },
+          "source": {
+            "colors": [],
+            "count": 0
+          }
+        },
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 37,
+        "node_id": "n103"
+      }
+    },
+    {
+      "type": "note",
+      "request_id": "64eacbfa-9958-474d-a61c-b1502c31b453",
+      "request_digest": "76653009831967a7750afb9d230d91a3dd4f5e33c589c9007dd4bdd08ce574c5",
+      "revision": 38,
+      "actor": "ai",
+      "at": "2026-09-28T02:24:10.572Z",
+      "node_id": "n103",
+      "text": "既存V039の67手を64手へ短縮。28手目までは元の手順を保持し、Bを集める向きを変えて後続の積み順と配送を組み直した。V037の保存済み63手よりは1手長い。",
+      "result": {
+        "session_id": "p_bcfa7518-5171-4d3d-963b-7d7596566fe1",
+        "revision": 38,
+        "node_id": "n103",
+        "text": "既存V039の67手を64手へ短縮。28手目までは元の手順を保持し、Bを集める向きを変えて後続の積み順と配送を組み直した。V037の保存済み63手よりは1手長い。"
+      }
+    }
+  ],
+  "input": "12 6\nda..##F..#..\n..fc#.#.....\n.#........#B\n.###.....###\n.b..aD#.#.a.\n###.A##.#...\nC...#...#...\n.#.#.e.##d..\n....##a##...\n......#..#.#\n#..a.a...e.E\n..#......#.#\n",
+  "output": "8 6 0 U 1\n7 5 0 R 1\n7 6 0 U 1\n6 6 0 R 1\n6 7 0 U 1\n5 7 0 U 1\n4 7 0 U 1\n7 9 0 R 1\n4 10 0 D 1\n5 10 0 D 1\n6 10 0 D 1\n7 10 0 D 1\n8 10 0 D 1\n9 10 0 D 1\n10 10 0 L 1\n10 9 1 L 2\n10 7 0 L 1\n10 6 0 L 1\n4 1 0 R 1\n4 2 0 R 1\n10 5 0 L 1\n10 4 0 L 1\n0 0 0 R 1\n0 1 0 R 1\n0 2 0 D 1\n1 2 0 R 1\n1 3 0 D 1\n2 3 0 R 1\n4 3 0 R 1\n4 4 1 U 2\n2 4 3 R 3\n3 7 0 U 1\n2 7 2 L 3\n2 4 0 D 1\n3 4 0 D 1\n4 4 0 L 1\n4 3 0 D 1\n5 3 1 D 1\n6 3 0 L 1\n6 2 3 D 3\n9 2 0 R 1\n9 3 0 D 1\n10 3 5 R 6\n10 9 0 R 1\n10 10 0 R 1\n10 3 0 U 1\n9 3 0 U 1\n8 3 0 L 1\n8 2 0 U 1\n7 2 0 U 1\n6 2 0 R 1\n6 3 7 L 3\n6 3 0 U 1\n5 3 0 R 1\n5 4 6 U 1\n5 4 3 U 1\n4 4 0 R 1\n2 7 0 U 1\n1 7 1 R 2\n1 9 0 R 1\n1 10 0 R 1\n1 11 0 D 1\n1 7 0 U 1\n0 7 0 L 1\n"
+}

@@ -1,0 +1,106 @@
+{
+  "experiment": "v136",
+  "parent": "v113",
+  "source": "src/bin/v136_exact_speed.cpp",
+  "source_sha256": "56fca55348f129aee8055ee8272f507d6131662aef8eebd5838f2b18efab02fe",
+  "parent_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+  "assessment": {
+    "accepted": false,
+    "difference": {
+      "common_completed": 256,
+      "mean_T_difference": 0.4765625,
+      "mean_S_difference": 0.4765625,
+      "wins": 95,
+      "ties": 49,
+      "losses": 112
+    },
+    "speed": {
+      "local": {
+        "base_seconds": 0.853309,
+        "speed_seconds": 0.670505,
+        "ratio": 0.7857704536105913,
+        "reduction_percent": 21.422954638940872
+      },
+      "judge": {
+        "base_seconds": 0.949811,
+        "speed_seconds": 0.7457010000000001,
+        "ratio": 0.7851046155498306,
+        "reduction_percent": 21.489538445016944
+      }
+    },
+    "base_valid": true,
+    "current_valid": true,
+    "base_reused": "results/nn_rank/v130/20261004_rrt_studio/base/evaluation/validation/result.json",
+    "fixed_at": "2026-10-04T20:44:26.519500+00:00"
+  },
+  "fixed_work_first_measurement": {
+    "local": {
+      "base_cpu_seconds": 0.8678250000000001,
+      "current_cpu_seconds": 0.687593,
+      "reduction_percent": 20.76824244519345,
+      "speedup": 1.262120178652197
+    },
+    "judge": {
+      "base_cpu_seconds": 0.947187,
+      "current_cpu_seconds": 0.762951,
+      "reduction_percent": 19.450858172673392,
+      "speedup": 1.2414781552157346
+    }
+  },
+  "repeated_during_diagnostic_failure": {
+    "local": {
+      "base_seconds": 0.853309,
+      "speed_seconds": 0.670505,
+      "ratio": 0.7857704536105913,
+      "reduction_percent": 21.422954638940872
+    },
+    "judge": {
+      "base_seconds": 0.949811,
+      "speed_seconds": 0.7457010000000001,
+      "ratio": 0.7851046155498306,
+      "reduction_percent": 21.489538445016944
+    }
+  },
+  "fixed_clock_matches": 16,
+  "background_replays_checked": 46312,
+  "phase_observations": {
+    "base_nn_seconds": 0.10835984375,
+    "current_nn_seconds": 0.0800914375,
+    "nn_reduction_percent": 26.08752954204957,
+    "base_lns_attempts": 1902600,
+    "current_lns_attempts": 1942128,
+    "lns_attempts_change_percent": 2.0775780510879915,
+    "first_nn_hash_equal": 256
+  },
+  "base": {
+    "cases": 256,
+    "complete": 256,
+    "completion_rate": 1.0,
+    "mean_S_all": 219.3359375,
+    "mean_E_all": 0.0,
+    "max_E": 0,
+    "mean_T_completed": 219.3359375,
+    "mean_elapsed_ms": 1565.26953125,
+    "max_elapsed_ms": 1625,
+    "mean_inferences": 293.67578125,
+    "mean_depth": 293.67578125,
+    "deadline_cases": 0
+  },
+  "current": {
+    "cases": 256,
+    "complete": 256,
+    "completion_rate": 1.0,
+    "mean_S_all": 219.8125,
+    "mean_E_all": 0.0,
+    "max_E": 0,
+    "mean_T_completed": 219.8125,
+    "mean_elapsed_ms": 1562.8125,
+    "max_elapsed_ms": 1631,
+    "mean_inferences": 293.67578125,
+    "mean_depth": 293.67578125,
+    "deadline_cases": 0
+  },
+  "retained": "v113",
+  "x86_execution": "not_measured",
+  "tools_in": "not_rerun"
+}

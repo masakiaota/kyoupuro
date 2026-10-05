@@ -1,0 +1,28 @@
+{
+  "fixed_checks": 14530,
+  "policy_checks": 20,
+  "witness_checks": 8,
+  "cases": 100,
+  "candidates": 4382,
+  "shortened": 571,
+  "summed_candidate_saved": 1080,
+  "preference_changed": 55,
+  "probability_changed": 111,
+  "heavy_calls": 400,
+  "filter_checks": 400,
+  "checked_passes": 11140,
+  "rng_consumption": 0,
+  "mean_diagnostic_us": 3436.93,
+  "saved_by_kind": {
+    "route": 0,
+    "pair": 935,
+    "joint": 59,
+    "mono": 1,
+    "strict": 0,
+    "slack": 0,
+    "finite": 85
+  },
+  "independent_outputs": 4482,
+  "independent_shortened_passes": 603,
+  "independent_witnesses": 4
+}

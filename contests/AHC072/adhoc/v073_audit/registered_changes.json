@@ -1,0 +1,14 @@
+[
+  {
+    "old": "// v071_refactored.cpp",
+    "new": "// v073_repair_weight.cpp"
+  },
+  {
+    "old": "using namespace std;\n",
+    "new": "using namespace std;\n\n// 修復負担を候補順位へ反映する強さ。探索条件はv073の実験ノートを参照する。\n#ifndef AHC072_REPAIR_WEIGHT\n#define AHC072_REPAIR_WEIGHT 1.0\n#endif\nconstexpr double repair_weight = AHC072_REPAIR_WEIGHT;\nstatic_assert(0.0 <= repair_weight && repair_weight <= 2.5);\n"
+  },
+  {
+    "old": "cand.priority=(saved-cand.broken_support_jumps+0.25)/divisor[cand.ids.size()]*noise;",
+    "new": "cand.priority=(saved-repair_weight*cand.broken_support_jumps+0.25)/divisor[cand.ids.size()]*noise;"
+  }
+]

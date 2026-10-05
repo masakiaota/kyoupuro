@@ -1,0 +1,58 @@
+{
+  "scope": "v039完成解での通常除去集合と依存拡張。優先度、時間予算、2塔近傍は含めない。",
+  "ordinary_count": 191,
+  "expanded_distinct_count": 155,
+  "a2_and_e1": {
+    "required": [
+      "a2",
+      "e1"
+    ],
+    "ordinary_supersets": 0,
+    "expanded_supersets": 1
+  },
+  "southeast_six": {
+    "required": [
+      "a1",
+      "a2",
+      "c7",
+      "e1",
+      "h10",
+      "j1"
+    ],
+    "ordinary_supersets": 0,
+    "expanded_supersets": 0
+  },
+  "sets_containing_a2": [
+    [
+      "a1",
+      "a2"
+    ],
+    [
+      "i1",
+      "f1",
+      "h2",
+      "i2",
+      "a1",
+      "a2",
+      "e1"
+    ],
+    [
+      "a2"
+    ],
+    [
+      "a2",
+      "d4",
+      "h7",
+      "h8"
+    ],
+    [
+      "a2",
+      "h7"
+    ],
+    [
+      "a2",
+      "h7",
+      "h8"
+    ]
+  ]
+}

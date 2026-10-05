@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "witnesses": 6,
+  "witness_saved": 6,
+  "plans": 206,
+  "groups": {
+    "witness": {
+      "plans": 6,
+      "additional_saved": 6,
+      "shortened": 5
+    },
+    "v057": {
+      "plans": 100,
+      "additional_saved": 1,
+      "shortened": 1
+    },
+    "v059": {
+      "plans": 100,
+      "additional_saved": 5,
+      "shortened": 3
+    }
+  },
+  "independently_replayed_outputs": 418,
+  "rng_consumption": 0,
+  "solver_revisions_after_execution": 0
+}

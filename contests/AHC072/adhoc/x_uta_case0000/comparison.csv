@@ -1,0 +1,5 @@
+name,M,shortest_distance_sum,max_height,T,W,moved_count,mixed_moves,long_jumps,single_moves,max_packet,source_returned,destination_returned,E,S
+v013,16,153,7,49,157,141,2,2,9,5,0,16,0,49
+uta,16,153,8,43,187,165,13,3,7,8,4,12,0,43
+tsukammo,16,153,8,43,173,155,10,3,6,8,4,12,0,43
+terry,16,153,8,44,179,167,12,3,5,8,4,12,0,44

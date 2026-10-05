@@ -1,0 +1,32 @@
+{
+  "source_sha256": "f9798131f127d8b66dd97029134db61d67c8e0bbd25d60cbb282481d03a2e561",
+  "loss_sha256": "20e36fe94f5ed6f30d4abf457b780e0d31fa27dc4baf2ed942174bbdb041bdf5",
+  "collection_sha256": "cc9b968e2b33a41b476fc4b9090b8f5479df8b03f2da66235a6d2dc85bff4612",
+  "architecture": [
+    42,
+    64,
+    64,
+    1
+  ],
+  "parameters": 6977,
+  "epochs": 500,
+  "seed": 124004,
+  "fold_seed": 129003,
+  "arms": [
+    "control_zero",
+    "structure"
+  ],
+  "threads": 4,
+  "teacher_rollouts": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "diagnosis_rollouts": [
+    4,
+    5,
+    6,
+    7
+  ]
+}

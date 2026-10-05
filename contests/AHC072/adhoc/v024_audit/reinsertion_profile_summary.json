@@ -1,0 +1,184 @@
+{
+  "0": {
+    "extract": {
+      "all": {
+        "calls": 39801,
+        "total_ns": 332579000.0,
+        "setup_ns": 0.0,
+        "spatial_ns": 0.0,
+        "event_ns": 0.0,
+        "seed_ns": 0.0,
+        "reconstruct_ns": 0.0,
+        "layers": 0.0,
+        "scanned": 0.0,
+        "eligible": 0.0
+      },
+      "success": {
+        "calls": 34222,
+        "total_ns": 249861000.0,
+        "setup_ns": 0.0,
+        "spatial_ns": 0.0,
+        "event_ns": 0.0,
+        "seed_ns": 0.0,
+        "reconstruct_ns": 0.0,
+        "layers": 0.0,
+        "scanned": 0.0,
+        "eligible": 0.0
+      },
+      "failure": {
+        "calls": 5579,
+        "total_ns": 82718000.0,
+        "setup_ns": 0.0,
+        "spatial_ns": 0.0,
+        "event_ns": 0.0,
+        "seed_ns": 0.0,
+        "reconstruct_ns": 0.0,
+        "layers": 0.0,
+        "scanned": 0.0,
+        "eligible": 0.0
+      }
+    },
+    "insert": {
+      "all": {
+        "calls": 85707,
+        "total_ns": 7471628000.0,
+        "setup_ns": 26948000.0,
+        "spatial_ns": 3142574000.0,
+        "event_ns": 1498308000.0,
+        "seed_ns": 1467676000.0,
+        "reconstruct_ns": 56764000.0,
+        "layers": 24484734.0,
+        "scanned": 621268334.0,
+        "eligible": 207488974.0
+      },
+      "success": {
+        "calls": 74589,
+        "total_ns": 6873803000.0,
+        "setup_ns": 23542000.0,
+        "spatial_ns": 3065168000.0,
+        "event_ns": 1321731000.0,
+        "seed_ns": 1301338000.0,
+        "reconstruct_ns": 56764000.0,
+        "layers": 21091814.0,
+        "scanned": 536242444.0,
+        "eligible": 178855141.0
+      },
+      "failure": {
+        "calls": 11118,
+        "total_ns": 597825000.0,
+        "setup_ns": 3406000.0,
+        "spatial_ns": 77406000.0,
+        "event_ns": 176577000.0,
+        "seed_ns": 166338000.0,
+        "reconstruct_ns": 0.0,
+        "layers": 3392920.0,
+        "scanned": 85025890.0,
+        "eligible": 28633833.0
+      }
+    },
+    "failure_stage": {
+      "6": 773,
+      "5": 1278,
+      "4": 1746,
+      "3": 2540,
+      "7": 310,
+      "2": 2546,
+      "0": 5579,
+      "1": 1841,
+      "8": 78,
+      "11": 1,
+      "12": 1,
+      "9": 2,
+      "10": 2
+    }
+  },
+  "1": {
+    "extract": {
+      "all": {
+        "calls": 25127,
+        "total_ns": 269051000.0,
+        "setup_ns": 0.0,
+        "spatial_ns": 0.0,
+        "event_ns": 0.0,
+        "seed_ns": 0.0,
+        "reconstruct_ns": 0.0,
+        "layers": 0.0,
+        "scanned": 0.0,
+        "eligible": 0.0
+      },
+      "success": {
+        "calls": 22723,
+        "total_ns": 226966000.0,
+        "setup_ns": 0.0,
+        "spatial_ns": 0.0,
+        "event_ns": 0.0,
+        "seed_ns": 0.0,
+        "reconstruct_ns": 0.0,
+        "layers": 0.0,
+        "scanned": 0.0,
+        "eligible": 0.0
+      },
+      "failure": {
+        "calls": 2404,
+        "total_ns": 42085000.0,
+        "setup_ns": 0.0,
+        "spatial_ns": 0.0,
+        "event_ns": 0.0,
+        "seed_ns": 0.0,
+        "reconstruct_ns": 0.0,
+        "layers": 0.0,
+        "scanned": 0.0,
+        "eligible": 0.0
+      }
+    },
+    "insert": {
+      "all": {
+        "calls": 111253,
+        "total_ns": 13171792000.0,
+        "setup_ns": 42454000.0,
+        "spatial_ns": 6744324000.0,
+        "event_ns": 2215360000.0,
+        "seed_ns": 2397403000.0,
+        "reconstruct_ns": 78016000.0,
+        "layers": 31962661.0,
+        "scanned": 847691211.0,
+        "eligible": 275103988.0
+      },
+      "success": {
+        "calls": 93811,
+        "total_ns": 12140591000.0,
+        "setup_ns": 36384000.0,
+        "spatial_ns": 6606766000.0,
+        "event_ns": 1898087000.0,
+        "seed_ns": 2103855000.0,
+        "reconstruct_ns": 78016000.0,
+        "layers": 26707140.0,
+        "scanned": 713199512.0,
+        "eligible": 230408505.0
+      },
+      "failure": {
+        "calls": 17442,
+        "total_ns": 1031201000.0,
+        "setup_ns": 6070000.0,
+        "spatial_ns": 137558000.0,
+        "event_ns": 317273000.0,
+        "seed_ns": 293548000.0,
+        "reconstruct_ns": 0.0,
+        "layers": 5255521.0,
+        "scanned": 134491699.0,
+        "eligible": 44695483.0
+      }
+    },
+    "failure_stage": {
+      "6": 3670,
+      "5": 3932,
+      "4": 3135,
+      "7": 2164,
+      "2": 1084,
+      "8": 811,
+      "3": 1964,
+      "0": 2404,
+      "1": 682
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "src/bin/v000_template.cpp": "f323e0fb4b83a21202282695267bab6a0c1c37c9c3d5133bfb27c142a7982449",
+  "adhoc/bin/check_v000_tower.cpp": "000873c4c7918aad49f87bfd8b3e5e902a80d5451dd87f7e15a3e9f862d3099b",
+  "adhoc/bin/check_v000_apply.cpp": "2450a75a1fe329581be23ac257601b03a620e331969d457132cf427aa122da3e",
+  "adhoc/bin/check_v000_move.cpp": "66d7fce6cf4df908ba94e642e18e3a2cc156a556e2e616349a834c8a76031c1a",
+  "adhoc/bin/v030_state_capacity_bench.cpp": "7b9abeefaeee6aa81ae42d110447bb4fba135bf3d0c4cdc46974d33ddf7f87cb"
+}

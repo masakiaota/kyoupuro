@@ -1,0 +1,17 @@
+{
+  "cases": 99,
+  "old_attempts": 749261,
+  "new_attempts": 639025,
+  "no_expansion": 59271,
+  "recent_duplicate": 8407,
+  "skipped": 67678,
+  "reconstructed_outer_iterations": 706703,
+  "recorded_attempt_change_pct": -14.712630178268993,
+  "outer_iteration_change_pct": -5.679996690071953,
+  "single_insert_call_change_pct": -8.557200383809372,
+  "dependency_share_of_lns_time": 0.187007230043361,
+  "dependency_share_of_lns_savings": 0.08019936565473493,
+  "dependency_insert_failure_ratio": 0.7549080710501714,
+  "dependency_complete_ratio": 0.23522294725394235,
+  "new_gross_attempts_needed_pct": 17.250655295176244
+}

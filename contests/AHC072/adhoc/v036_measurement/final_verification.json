@@ -1,0 +1,18 @@
+{
+  "frozen_files_unchanged": true,
+  "normal_evaluation_runs": 1,
+  "normal_evaluation_cases": 100,
+  "fixed_work_rows": 1800,
+  "cases_valid": 100,
+  "error_keys": {
+    "baseline_recovery": 0,
+    "final_recovery": 0,
+    "construction_errors": 0,
+    "lns_errors": 0,
+    "lns_invalid_candidates": 0
+  },
+  "v036_solver_sha256": "3242654cd4a42738b82d3e30dcb423cfc4b8869b1df4e435caab7393af7d2551",
+  "note_sha256": "d0b5bfb6c44af9461ada144f68992a52c3bc525336a8a0dd03250a6c7a329cba",
+  "backlog_sha256": "4699ee71104c0855a0949ffc140b199d1928f035b94edcee8ff0877d58ca9c06",
+  "no_solver_source_edits_in_measurement": true
+}

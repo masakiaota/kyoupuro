@@ -1,0 +1,20 @@
+19 4
+aaaa.b.aaaa.daa..aa
+a....a.aa.bba...ba.
+.a.a.aabaa.a.aa...a
+aaaa.aa.d.a..a..aa.
+.aaa....daddba.ada.
+.aa..a.adaaa..aaad.
+.a.adbaaaaa....C.b.
+aa.a..baaaa.aaaaa.a
+da..a...adaa..abd..
+a....adaa.adaa.a.a.
+a.aa.aba.aaa.a.aaab
+aa..aaaB.a..da.adaa
+db.aa.Da.abd..aaa.a
+...aa..d...a.cb.daa
+.b.aA..a..a..aa..ba
+d..d..d..adb.daaa.a
+..a.a.....aa...aa.a
+aa.a..da..a..a.a.aa
+.abaaa.#aa..aa.daac

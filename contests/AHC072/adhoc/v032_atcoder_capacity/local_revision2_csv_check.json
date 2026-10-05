@@ -1,0 +1,9 @@
+{
+  "rows": 144,
+  "observed_wall_step_ns": 1000,
+  "clock_ok": 77,
+  "too_short_excluded": 67,
+  "all_wall_samples_positive": true,
+  "raw_values_match_summary_columns": true,
+  "zero_division_avoided": true
+}

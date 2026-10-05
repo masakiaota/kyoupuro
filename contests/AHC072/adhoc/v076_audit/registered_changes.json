@@ -1,0 +1,10 @@
+[
+  {
+    "old": "// v075_size_exponent.cpp",
+    "new": "// v076_relative_tuned.cpp"
+  },
+  {
+    "old": "// 修復係数と他の設定を固定し、通常候補の匹数による割引だけを調整する。\nconstexpr double repair_weight = 0.83;\n#ifndef AHC072_SIZE_EXPONENT\n#define AHC072_SIZE_EXPONENT 0.95\n#endif\nconstexpr double removal_size_exponent = AHC072_SIZE_EXPONENT;\nstatic_assert(0.8 <= removal_size_exponent && removal_size_exponent <= 1.6);\n#ifndef AHC072_NOISE_AMPLITUDE\n#define AHC072_NOISE_AMPLITUDE 0.1\n#endif\nconstexpr double priority_noise_amplitude = AHC072_NOISE_AMPLITUDE;\nstatic_assert(0.0 <= priority_noise_amplitude && priority_noise_amplitude <= 0.30);\n#ifndef AHC072_START_TEMPERATURE\n#define AHC072_START_TEMPERATURE 0.7\n#endif\nconstexpr double lns_start_temperature = AHC072_START_TEMPERATURE;\nstatic_assert(0.30 <= lns_start_temperature && lns_start_temperature <= 1.25);\n#ifndef AHC072_END_TEMPERATURE\n#define AHC072_END_TEMPERATURE 0.08\n#endif\nconstexpr double lns_end_temperature = AHC072_END_TEMPERATURE;\nstatic_assert(0.02 <= lns_end_temperature && lns_end_temperature <= 0.20);\n#ifndef AHC072_DEPENDENCY_INTERVAL\n#define AHC072_DEPENDENCY_INTERVAL 4\n#endif\nconstexpr int dependency_interval = AHC072_DEPENDENCY_INTERVAL;\nstatic_assert(2 <= dependency_interval && dependency_interval <= 8);\n#ifndef AHC072_COOLDOWN_FRACTION\n#define AHC072_COOLDOWN_FRACTION 0.5\n#endif\nconstexpr double regular_cooldown_fraction = AHC072_COOLDOWN_FRACTION;\nstatic_assert(0.125 <= regular_cooldown_fraction && regular_cooldown_fraction <= 1.0);\nstatic_assert(lns_end_temperature < lns_start_temperature);\n\n",
+    "new": "// v073〜v075の保存結果から、ケースごとの短縮率を重視して選んだ設定。\nconstexpr double repair_weight = 0.83;\nconstexpr double removal_size_exponent = 0.95;\nconstexpr double priority_noise_amplitude = 0.20;\nconstexpr double lns_start_temperature = 0.70;\nconstexpr double lns_end_temperature = 0.12;\nconstexpr int dependency_interval = 3;\nconstexpr double regular_cooldown_fraction = 0.75;\nstatic_assert(lns_end_temperature < lns_start_temperature);\n\n"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "conditions": 144,
+  "samples": 1152,
+  "zero_samples": 656,
+  "near_1ms_within_1pct": 474,
+  "near_2ms_within_1pct": 17,
+  "nonzero_samples_min_ns": 845631,
+  "nonzero_samples_median_ns": 999973.0,
+  "nonzero_samples_max_ns": 2000516,
+  "rows_either_median_zero": 92,
+  "rows_nonfinite_ratio": 65
+}

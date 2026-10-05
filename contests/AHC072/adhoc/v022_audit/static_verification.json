@@ -1,0 +1,52 @@
+{
+  "solver_sha256": "d9a5b96d91f1a8b28460d9d54367e1a4c56e7e12877f33eca5b80612999f7605",
+  "parent_sha256": "b0064f908e7dde07765feedf800f9a80b490a9f17ef2ba78f8297f92fcacedee",
+  "original_sha256": "0c4d00f6cdd6bc161a2331852415b29c62220363bda01a7abd62072cbe077b2f",
+  "archive_sha256": "21f483684e8af4aecd274264b49e6c3241596cd091607c834bb58f43711c11e0",
+  "architecture": "arm64",
+  "cpu": "Apple M3",
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "local_and_nonlocal_builds": "passed without warnings",
+  "preprocessing": "-E -P; full macro expansion",
+  "production_diff_reviewed": true,
+  "local_diff_reviewed": true,
+  "production_changes": [
+    "support-use history",
+    "bounded dependency growth",
+    "one in four ordinary selections",
+    "existing-set cooldown for grown candidates"
+  ],
+  "local_diagnostic_additions": [
+    "dependency counters",
+    "neighborhood wall time",
+    "gross and actual removal savings",
+    "repair and reinsertion failures"
+  ],
+  "solver_executions_before_evaluation": 0,
+  "saved_output_generation_probe": {
+    "cases": 100,
+    "synthetic_cases": 7,
+    "sets": 39771,
+    "grown": 25424,
+    "multistep": 15916,
+    "multistep_cases": 100,
+    "support_uses": 4307,
+    "max_size": 8,
+    "added": 94069,
+    "solver_executions": 0,
+    "new_answers": 0
+  },
+  "nonlocal_binary_sha256": "332541a52e64856ec31523d75b34db93bbfe3b26f1d0ef0603c8e420640e82fd",
+  "evaluation": {
+    "cases": 100,
+    "local": true,
+    "jobs": 2,
+    "local_time_ratio": 0.8,
+    "repetitions": 1,
+    "label": "dependency_lns"
+  },
+  "evaluation_completed": true,
+  "evaluation_run_id": "20260927T155946+0900_v022_dependency_lns_51c972",
+  "local_binary_sha256": "b88d8bd392f4508a0161fecc25b5fabec7a042f3f339c5368f7dbfa0d913f641",
+  "solver_unchanged_after_evaluation": true
+}

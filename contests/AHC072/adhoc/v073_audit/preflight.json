@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "solver_executions": 0,
+  "source_sha256": "0a42062c675bc446b9ad9488a5c57950edafa538469b3445344567f34a2ac610",
+  "parent_sha256": "7558933c91c43d286c0fb07225095c37872990b0811538e0b6d58c701bf280cd",
+  "builds": [
+    {
+      "mode": "local",
+      "tick": 8,
+      "repair_weight": 1.0,
+      "command": [
+        "g++-15",
+        "-std=gnu++23",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-march=native",
+        "-pthread",
+        "-ftrivial-auto-var-init=zero",
+        "-fopenmp",
+        "-DLOCAL",
+        "-DAHC072_REPAIR_WEIGHT=1.000",
+        "/Users/masaki/Desktop/AHC072/src/bin/v073_repair_weight.cpp",
+        "-o",
+        "/Users/masaki/Desktop/AHC072/adhoc/v073_audit/check_local"
+      ],
+      "binary": "adhoc/v073_audit/check_local",
+      "sha256": "26d2907dec6908ae753615bdc51faba52d42c30c314710a777c317c59ab2a96c",
+      "preprocessed_sha256": "95f8dd76388b20e820607dcdfab4f816e0adc264d0db1af76fa86df1e3a0c1ea",
+      "registered_preprocessed_difference_only": true
+    },
+    {
+      "mode": "production",
+      "tick": 8,
+      "repair_weight": 1.0,
+      "command": [
+        "g++-15",
+        "-std=gnu++23",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-march=native",
+        "-pthread",
+        "-ftrivial-auto-var-init=zero",
+        "-fopenmp",
+        "-DATCODER",
+        "-DONLINE_JUDGE",
+        "-DNOMINMAX",
+        "-DAHC072_REPAIR_WEIGHT=1.000",
+        "/Users/masaki/Desktop/AHC072/src/bin/v073_repair_weight.cpp",
+        "-o",
+        "/Users/masaki/Desktop/AHC072/adhoc/v073_audit/check_production"
+      ],
+      "binary": "adhoc/v073_audit/check_production",
+      "sha256": "7ff582ff1ab03ef81f037393d92e84f66ccdc768159b989d85b0ea2e7fd41a22",
+      "preprocessed_sha256": "0b9f4f029b07d4d8213690fca4a03c17751fd1d9e24c3a0ea995b11bbabc88aa",
+      "registered_preprocessed_difference_only": true
+    }
+  ]
+}

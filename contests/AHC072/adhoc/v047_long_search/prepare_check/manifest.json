@@ -1,0 +1,1259 @@
+{
+  "schema_version": 1,
+  "experiment": "v047",
+  "created_at": "2026-09-28T15:41:54.990339+00:00",
+  "status": "prepared",
+  "host": {
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]"
+  },
+  "config": {
+    "minutes_per_case": 30,
+    "workers": 2,
+    "restart_seconds": 60,
+    "progress_seconds": 10,
+    "seed": 20260929,
+    "thread_env": {
+      "OMP_NUM_THREADS": "1",
+      "OMP_THREAD_LIMIT": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  },
+  "cases": [
+    {
+      "case": "0035",
+      "reason": "通常99件で最少の13匹",
+      "features": {
+        "N": 12,
+        "K": 6,
+        "M": 13,
+        "wall_fraction": 0.2638888888888889,
+        "density": 0.13,
+        "dominant_fraction": 0.46153846153846156
+      },
+      "input": "cases/0035/input.txt",
+      "input_sha256": "e0eef4770bfdf0da66545d5688266603b2d807695e930dfbde0dca28400e284a",
+      "reference_T": 62,
+      "seeds": [
+        {
+          "source": "results/out/v027_resampled_start_lns/0035.txt",
+          "source_sha256": "c7540212d775539c6bd5fece24660a0ff97d2d0574cfde1f5f1a2771fa163fea",
+          "plan_sha256": "c7540212d775539c6bd5fece24660a0ff97d2d0574cfde1f5f1a2771fa163fea",
+          "metrics": {
+            "T": 62,
+            "E": 0,
+            "W": 195,
+            "mixed_moves": 39,
+            "long_jumps": 8
+          },
+          "path": "cases/0035/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v028_two_order_lns/0035.txt",
+          "source_sha256": "1d1803136b57ad72a71495e0c65f15b4e8b0bcd7da226444b8fd0e47080a812a",
+          "plan_sha256": "1d1803136b57ad72a71495e0c65f15b4e8b0bcd7da226444b8fd0e47080a812a",
+          "metrics": {
+            "T": 62,
+            "E": 0,
+            "W": 193,
+            "mixed_moves": 39,
+            "long_jumps": 8
+          },
+          "path": "cases/0035/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v020_o3_event_lns/0035.txt",
+          "source_sha256": "7ab2ea281da5800f8c20ee26f65e12fc9fb7178a99c48220187adc5451fc1e6b",
+          "plan_sha256": "7ab2ea281da5800f8c20ee26f65e12fc9fb7178a99c48220187adc5451fc1e6b",
+          "metrics": {
+            "T": 63,
+            "E": 0,
+            "W": 203,
+            "mixed_moves": 40,
+            "long_jumps": 9
+          },
+          "path": "cases/0035/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v021_paired_event_lns/0035.txt",
+          "source_sha256": "a2aaa2ca0965a809a146588212635f8093c9860c5603cab3220793ae393d8308",
+          "plan_sha256": "a2aaa2ca0965a809a146588212635f8093c9860c5603cab3220793ae393d8308",
+          "metrics": {
+            "T": 63,
+            "E": 0,
+            "W": 189,
+            "mixed_moves": 39,
+            "long_jumps": 8
+          },
+          "path": "cases/0035/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v022_dependency_lns/0035.txt",
+          "source_sha256": "023b86cd8e12cf450f0a77e7ff7d2ff3b28acb91ff68c44dcf360a3e801f74e8",
+          "plan_sha256": "023b86cd8e12cf450f0a77e7ff7d2ff3b28acb91ff68c44dcf360a3e801f74e8",
+          "metrics": {
+            "T": 63,
+            "E": 0,
+            "W": 187,
+            "mixed_moves": 39,
+            "long_jumps": 8
+          },
+          "path": "cases/0035/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v023_lazy_trial_undo/0035.txt",
+          "source_sha256": "c8c87ce38898e20b27517e7f195d8a89519250820ce0f67311e9ffa7fc4c038c",
+          "plan_sha256": "c8c87ce38898e20b27517e7f195d8a89519250820ce0f67311e9ffa7fc4c038c",
+          "metrics": {
+            "T": 63,
+            "E": 0,
+            "W": 189,
+            "mixed_moves": 39,
+            "long_jumps": 8
+          },
+          "path": "cases/0035/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v024_incoming_reinsertion/0035.txt",
+          "source_sha256": "99330fc259c0ecd8570382615995c6c8a95ffbebc1f9704d48d4aad4b2940107",
+          "plan_sha256": "99330fc259c0ecd8570382615995c6c8a95ffbebc1f9704d48d4aad4b2940107",
+          "metrics": {
+            "T": 63,
+            "E": 0,
+            "W": 217,
+            "mixed_moves": 40,
+            "long_jumps": 9
+          },
+          "path": "cases/0035/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v025_fast_math/0035.txt",
+          "source_sha256": "d456e0f1e18bba4a165509e0b1fd04fcbeff0987c1c130123d7b40ea2a9cdb93",
+          "plan_sha256": "d456e0f1e18bba4a165509e0b1fd04fcbeff0987c1c130123d7b40ea2a9cdb93",
+          "metrics": {
+            "T": 63,
+            "E": 0,
+            "W": 189,
+            "mixed_moves": 39,
+            "long_jumps": 8
+          },
+          "path": "cases/0035/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0033",
+      "reason": "壁なし・9色",
+      "features": {
+        "N": 12,
+        "K": 9,
+        "M": 63,
+        "wall_fraction": 0.0,
+        "density": 0.4666666666666667,
+        "dominant_fraction": 0.25396825396825395
+      },
+      "input": "cases/0033/input.txt",
+      "input_sha256": "45595bbe340e4ca48174c6cf687d22516de062e866447b5055f6885f4ab98ec0",
+      "reference_T": 136,
+      "seeds": [
+        {
+          "source": "results/out/v025_fast_math/0033.txt",
+          "source_sha256": "35547be2afdecb66ffd634b712b1afa7fad1a439f6cec75a05c300a86f3c1207",
+          "plan_sha256": "35547be2afdecb66ffd634b712b1afa7fad1a439f6cec75a05c300a86f3c1207",
+          "metrics": {
+            "T": 136,
+            "E": 0,
+            "W": 695,
+            "mixed_moves": 68,
+            "long_jumps": 33
+          },
+          "path": "cases/0033/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v046_shared_route_events/0033.txt",
+          "source_sha256": "f344ddccd2806ed4c716acacebc5bfcac378546529ddaff7c64e12bb0a09fceb",
+          "plan_sha256": "f344ddccd2806ed4c716acacebc5bfcac378546529ddaff7c64e12bb0a09fceb",
+          "metrics": {
+            "T": 136,
+            "E": 0,
+            "W": 673,
+            "mixed_moves": 69,
+            "long_jumps": 34
+          },
+          "path": "cases/0033/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v040_search_pair_compression/0033.txt",
+          "source_sha256": "94cbb39bdf352952d4087804a8b090f77e9a09fc253c85bbf19e2ff980102fb7",
+          "plan_sha256": "94cbb39bdf352952d4087804a8b090f77e9a09fc253c85bbf19e2ff980102fb7",
+          "metrics": {
+            "T": 137,
+            "E": 0,
+            "W": 685,
+            "mixed_moves": 80,
+            "long_jumps": 29
+          },
+          "path": "cases/0033/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v022_dependency_lns/0033.txt",
+          "source_sha256": "a37fb5c8e5f4e55c4bd6bde0ed81a6a6ed939a7570d71a5a339db99113feb41f",
+          "plan_sha256": "a37fb5c8e5f4e55c4bd6bde0ed81a6a6ed939a7570d71a5a339db99113feb41f",
+          "metrics": {
+            "T": 138,
+            "E": 0,
+            "W": 681,
+            "mixed_moves": 70,
+            "long_jumps": 31
+          },
+          "path": "cases/0033/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v021_paired_event_lns/0033.txt",
+          "source_sha256": "b8a72135e4488d4c590d996b926750be5119d6159dc74ca7b6705744a27e1d18",
+          "plan_sha256": "b8a72135e4488d4c590d996b926750be5119d6159dc74ca7b6705744a27e1d18",
+          "metrics": {
+            "T": 139,
+            "E": 0,
+            "W": 735,
+            "mixed_moves": 68,
+            "long_jumps": 34
+          },
+          "path": "cases/0033/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v023_lazy_trial_undo/0033.txt",
+          "source_sha256": "830b63b823044aa496fcd2c877d2fd2e46ba40c4c56c9778b0a9f1e2e073300d",
+          "plan_sha256": "830b63b823044aa496fcd2c877d2fd2e46ba40c4c56c9778b0a9f1e2e073300d",
+          "metrics": {
+            "T": 140,
+            "E": 0,
+            "W": 745,
+            "mixed_moves": 67,
+            "long_jumps": 32
+          },
+          "path": "cases/0033/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v031_support_pair_fast_math/0033.txt",
+          "source_sha256": "bc6ac760a1bc088906b79339cb1360266567341843f70c968c559b06942a2adc",
+          "plan_sha256": "bc6ac760a1bc088906b79339cb1360266567341843f70c968c559b06942a2adc",
+          "metrics": {
+            "T": 140,
+            "E": 0,
+            "W": 671,
+            "mixed_moves": 71,
+            "long_jumps": 24
+          },
+          "path": "cases/0033/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v026_late_start_lns/0033.txt",
+          "source_sha256": "e8ee86f606ed998c1f07465ea6d634c4008f804a4b6c994d1469ee29ef5a6356",
+          "plan_sha256": "e8ee86f606ed998c1f07465ea6d634c4008f804a4b6c994d1469ee29ef5a6356",
+          "metrics": {
+            "T": 141,
+            "E": 0,
+            "W": 689,
+            "mixed_moves": 71,
+            "long_jumps": 36
+          },
+          "path": "cases/0033/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0023",
+      "reason": "12色・26匹・色の偏りが小さい",
+      "features": {
+        "N": 13,
+        "K": 12,
+        "M": 26,
+        "wall_fraction": 0.17751479289940827,
+        "density": 0.2047244094488189,
+        "dominant_fraction": 0.15384615384615385
+      },
+      "input": "cases/0023/input.txt",
+      "input_sha256": "1a264013e1aaded7f5513650c4cdcbbfb6a36089e1336adc4fe96cfac2d6d296",
+      "reference_T": 79,
+      "seeds": [
+        {
+          "source": "results/out/v020_o3_event_lns/0023.txt",
+          "source_sha256": "5b97e84aff4d09cee9587feaf8067e39bd7ae2310e246d65390c6e93320a00cc",
+          "plan_sha256": "5b97e84aff4d09cee9587feaf8067e39bd7ae2310e246d65390c6e93320a00cc",
+          "metrics": {
+            "T": 79,
+            "E": 0,
+            "W": 359,
+            "mixed_moves": 48,
+            "long_jumps": 19
+          },
+          "path": "cases/0023/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v028_two_order_lns/0023.txt",
+          "source_sha256": "fc93b080bb7a4ede14f56972c01f41b9a4dad28ef6c0f23a30922b441af17a0b",
+          "plan_sha256": "fc93b080bb7a4ede14f56972c01f41b9a4dad28ef6c0f23a30922b441af17a0b",
+          "metrics": {
+            "T": 81,
+            "E": 0,
+            "W": 347,
+            "mixed_moves": 50,
+            "long_jumps": 18
+          },
+          "path": "cases/0023/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v031_support_pair_fast_math/0023.txt",
+          "source_sha256": "e4ed1362064da94f5a8941ab303b6c4f67399b3390890125c1aff06d3146bf29",
+          "plan_sha256": "e4ed1362064da94f5a8941ab303b6c4f67399b3390890125c1aff06d3146bf29",
+          "metrics": {
+            "T": 81,
+            "E": 0,
+            "W": 357,
+            "mixed_moves": 53,
+            "long_jumps": 18
+          },
+          "path": "cases/0023/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v022_dependency_lns/0023.txt",
+          "source_sha256": "59948fbec1fc4e87ac6f5c7eb7dd665b4ca272dc73a5f272741bdd3097065224",
+          "plan_sha256": "59948fbec1fc4e87ac6f5c7eb7dd665b4ca272dc73a5f272741bdd3097065224",
+          "metrics": {
+            "T": 82,
+            "E": 0,
+            "W": 349,
+            "mixed_moves": 46,
+            "long_jumps": 16
+          },
+          "path": "cases/0023/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v033_capacity_lns/0023.txt",
+          "source_sha256": "7fcacf0342c6efc701726f255378409f8df301ee54cbd434b9b93883aa0748bd",
+          "plan_sha256": "7fcacf0342c6efc701726f255378409f8df301ee54cbd434b9b93883aa0748bd",
+          "metrics": {
+            "T": 82,
+            "E": 0,
+            "W": 353,
+            "mixed_moves": 50,
+            "long_jumps": 21
+          },
+          "path": "cases/0023/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v027_resampled_start_lns/0023.txt",
+          "source_sha256": "87773f2378900823337e6850092ffcefd48d4862fd4143515d0b3aeca7ce75bc",
+          "plan_sha256": "87773f2378900823337e6850092ffcefd48d4862fd4143515d0b3aeca7ce75bc",
+          "metrics": {
+            "T": 83,
+            "E": 0,
+            "W": 337,
+            "mixed_moves": 51,
+            "long_jumps": 19
+          },
+          "path": "cases/0023/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v029_selective_two_order_lns/0023.txt",
+          "source_sha256": "66da6870dc2418d118fcfcf8dba90103182965e28cc28483e1a0d3a0c1cf4975",
+          "plan_sha256": "66da6870dc2418d118fcfcf8dba90103182965e28cc28483e1a0d3a0c1cf4975",
+          "metrics": {
+            "T": 83,
+            "E": 0,
+            "W": 303,
+            "mixed_moves": 45,
+            "long_jumps": 17
+          },
+          "path": "cases/0023/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v037_pair_transfer_compression/0023.txt",
+          "source_sha256": "6c14c347e5359909b065b86ff720dc6204710519a6f90818ba4a54ff7015ee6e",
+          "plan_sha256": "6c14c347e5359909b065b86ff720dc6204710519a6f90818ba4a54ff7015ee6e",
+          "metrics": {
+            "T": 83,
+            "E": 0,
+            "W": 357,
+            "mixed_moves": 58,
+            "long_jumps": 16
+          },
+          "path": "cases/0023/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0064",
+      "reason": "4色・最多色が約70%",
+      "features": {
+        "N": 17,
+        "K": 4,
+        "M": 63,
+        "wall_fraction": 0.2975778546712803,
+        "density": 0.3165829145728643,
+        "dominant_fraction": 0.6984126984126984
+      },
+      "input": "cases/0064/input.txt",
+      "input_sha256": "8f1d30a60ee3aea1920f064f9d56f19eaae7918ecb3bad2e6e6b8775c117b36f",
+      "reference_T": 191,
+      "seeds": [
+        {
+          "source": "results/out/v021_paired_event_lns/0064.txt",
+          "source_sha256": "a506282de838273186651826bc359c73210f7344d4d9cf987a6755727c67b5c8",
+          "plan_sha256": "a506282de838273186651826bc359c73210f7344d4d9cf987a6755727c67b5c8",
+          "metrics": {
+            "T": 191,
+            "E": 0,
+            "W": 1000,
+            "mixed_moves": 104,
+            "long_jumps": 18
+          },
+          "path": "cases/0064/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v043_cooperative_events/0064.txt",
+          "source_sha256": "efbc3e7754ed0102c18a9f847f3db3ffba24dbd784aad873cd1cf09c9d12bb77",
+          "plan_sha256": "efbc3e7754ed0102c18a9f847f3db3ffba24dbd784aad873cd1cf09c9d12bb77",
+          "metrics": {
+            "T": 191,
+            "E": 0,
+            "W": 1010,
+            "mixed_moves": 105,
+            "long_jumps": 21
+          },
+          "path": "cases/0064/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v028_two_order_lns/0064.txt",
+          "source_sha256": "0a0817e30e3697016857d7785de06314dc2be950444dbd30bb312389e060d834",
+          "plan_sha256": "0a0817e30e3697016857d7785de06314dc2be950444dbd30bb312389e060d834",
+          "metrics": {
+            "T": 192,
+            "E": 0,
+            "W": 1012,
+            "mixed_moves": 105,
+            "long_jumps": 25
+          },
+          "path": "cases/0064/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v035_tower_capacity_lns/0064.txt",
+          "source_sha256": "e32fa6cec8f1ecc649168ce4104248d88032c51737ad776b27da9fb4688a364b",
+          "plan_sha256": "e32fa6cec8f1ecc649168ce4104248d88032c51737ad776b27da9fb4688a364b",
+          "metrics": {
+            "T": 192,
+            "E": 0,
+            "W": 1028,
+            "mixed_moves": 109,
+            "long_jumps": 24
+          },
+          "path": "cases/0064/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v040_search_pair_compression/0064.txt",
+          "source_sha256": "07a896f1f35f19b0117cb045a263a1d3d1286e68bea471b6627c8bb462396511",
+          "plan_sha256": "07a896f1f35f19b0117cb045a263a1d3d1286e68bea471b6627c8bb462396511",
+          "metrics": {
+            "T": 192,
+            "E": 0,
+            "W": 1012,
+            "mixed_moves": 103,
+            "long_jumps": 17
+          },
+          "path": "cases/0064/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v025_fast_math/0064.txt",
+          "source_sha256": "3fd760227c4bf7806cad2732d631c3a438479430c36005ed6f5c0d4fc6e2b6fc",
+          "plan_sha256": "3fd760227c4bf7806cad2732d631c3a438479430c36005ed6f5c0d4fc6e2b6fc",
+          "metrics": {
+            "T": 195,
+            "E": 0,
+            "W": 1008,
+            "mixed_moves": 99,
+            "long_jumps": 23
+          },
+          "path": "cases/0064/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v026_late_start_lns/0064.txt",
+          "source_sha256": "c53908340c53b6fd2484bd25817ba7a0268e0faad95d8603f8879eabfe492565",
+          "plan_sha256": "c53908340c53b6fd2484bd25817ba7a0268e0faad95d8603f8879eabfe492565",
+          "metrics": {
+            "T": 195,
+            "E": 0,
+            "W": 998,
+            "mixed_moves": 104,
+            "long_jumps": 20
+          },
+          "path": "cases/0064/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v029_selective_two_order_lns/0064.txt",
+          "source_sha256": "046e75ac36f1b5da191929306b206908074521b941ea5bd1b2518291b434ace0",
+          "plan_sha256": "046e75ac36f1b5da191929306b206908074521b941ea5bd1b2518291b434ace0",
+          "metrics": {
+            "T": 195,
+            "E": 0,
+            "W": 1002,
+            "mixed_moves": 105,
+            "long_jumps": 23
+          },
+          "path": "cases/0064/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0060",
+      "reason": "疎な配置・多い壁・既存の連携比較対象",
+      "features": {
+        "N": 17,
+        "K": 10,
+        "M": 34,
+        "wall_fraction": 0.31833910034602075,
+        "density": 0.18181818181818182,
+        "dominant_fraction": 0.29411764705882354
+      },
+      "input": "cases/0060/input.txt",
+      "input_sha256": "416cf7b14c44924568dc201482a7e78177fcb7925796d4b4aa663d4b04536d71",
+      "reference_T": 145,
+      "seeds": [
+        {
+          "source": "results/out/v022_dependency_lns/0060.txt",
+          "source_sha256": "4f545dc1aa610fd8ec568a8b4316de833594867ed93f671bc299ca0751421700",
+          "plan_sha256": "4f545dc1aa610fd8ec568a8b4316de833594867ed93f671bc299ca0751421700",
+          "metrics": {
+            "T": 145,
+            "E": 0,
+            "W": 681,
+            "mixed_moves": 74,
+            "long_jumps": 28
+          },
+          "path": "cases/0060/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v025_fast_math/0060.txt",
+          "source_sha256": "1475f1a4ef36a91fcc17d2041bf62a9a0a5431963e0a48448cf0c572085b7c61",
+          "plan_sha256": "1475f1a4ef36a91fcc17d2041bf62a9a0a5431963e0a48448cf0c572085b7c61",
+          "metrics": {
+            "T": 150,
+            "E": 0,
+            "W": 659,
+            "mixed_moves": 77,
+            "long_jumps": 26
+          },
+          "path": "cases/0060/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v036_inline_color_lns/0060.txt",
+          "source_sha256": "1088b1a1c6983b1d8c23702a36bbd1fcaf4d264fd673e31fb1550cb67ef7e375",
+          "plan_sha256": "1088b1a1c6983b1d8c23702a36bbd1fcaf4d264fd673e31fb1550cb67ef7e375",
+          "metrics": {
+            "T": 152,
+            "E": 0,
+            "W": 691,
+            "mixed_moves": 80,
+            "long_jumps": 26
+          },
+          "path": "cases/0060/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v040_search_pair_compression/0060.txt",
+          "source_sha256": "1a275c37fd01ad4b053b9dce333869e48b4c5f86751f0262208a975acbcbb211",
+          "plan_sha256": "1a275c37fd01ad4b053b9dce333869e48b4c5f86751f0262208a975acbcbb211",
+          "metrics": {
+            "T": 152,
+            "E": 0,
+            "W": 691,
+            "mixed_moves": 86,
+            "long_jumps": 24
+          },
+          "path": "cases/0060/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v046_shared_route_events/0060.txt",
+          "source_sha256": "4cd765a665334374cc72c838c3014069c4aef93fd86b5dc8af30e81afa346f17",
+          "plan_sha256": "4cd765a665334374cc72c838c3014069c4aef93fd86b5dc8af30e81afa346f17",
+          "metrics": {
+            "T": 152,
+            "E": 0,
+            "W": 635,
+            "mixed_moves": 78,
+            "long_jumps": 26
+          },
+          "path": "cases/0060/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v033_capacity_lns/0060.txt",
+          "source_sha256": "f935781f9dbadb1dfc2a230a5ee0a590c850a011dd405deaec4937af99beaf67",
+          "plan_sha256": "f935781f9dbadb1dfc2a230a5ee0a590c850a011dd405deaec4937af99beaf67",
+          "metrics": {
+            "T": 154,
+            "E": 0,
+            "W": 637,
+            "mixed_moves": 80,
+            "long_jumps": 24
+          },
+          "path": "cases/0060/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v037_pair_transfer_compression/0060.txt",
+          "source_sha256": "fbffb6ff4c8efffeda45f867201dc9615e615707b08e47dacec4bd7004382100",
+          "plan_sha256": "fbffb6ff4c8efffeda45f867201dc9615e615707b08e47dacec4bd7004382100",
+          "metrics": {
+            "T": 154,
+            "E": 0,
+            "W": 701,
+            "mixed_moves": 88,
+            "long_jumps": 26
+          },
+          "path": "cases/0060/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v021_paired_event_lns/0060.txt",
+          "source_sha256": "6c343280758c1e53ce09f49e78d95201392aaff47c1c72e06bc7e8ebd59dda59",
+          "plan_sha256": "6c343280758c1e53ce09f49e78d95201392aaff47c1c72e06bc7e8ebd59dda59",
+          "metrics": {
+            "T": 155,
+            "E": 0,
+            "W": 665,
+            "mixed_moves": 76,
+            "long_jumps": 29
+          },
+          "path": "cases/0060/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0066",
+      "reason": "通常99件で最大の壁率",
+      "features": {
+        "N": 18,
+        "K": 6,
+        "M": 93,
+        "wall_fraction": 0.36728395061728397,
+        "density": 0.46733668341708545,
+        "dominant_fraction": 0.3655913978494624
+      },
+      "input": "cases/0066/input.txt",
+      "input_sha256": "95d63a2a3587eed8cf49541991468e3eec18f738313d83f2677a8e06865294da",
+      "reference_T": 402,
+      "seeds": [
+        {
+          "source": "results/out/v046_shared_route_events/0066.txt",
+          "source_sha256": "03d85950ca6d1015d281331990b3eacd5801559cde19b473ae07f62301b0b6d1",
+          "plan_sha256": "03d85950ca6d1015d281331990b3eacd5801559cde19b473ae07f62301b0b6d1",
+          "metrics": {
+            "T": 402,
+            "E": 0,
+            "W": 2453,
+            "mixed_moves": 148,
+            "long_jumps": 89
+          },
+          "path": "cases/0066/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v031_support_pair_fast_math/0066.txt",
+          "source_sha256": "ae8faae0bb6744b86cc7d2e2d247ee3f972130b4bdf9252c767eb4552d3134c6",
+          "plan_sha256": "ae8faae0bb6744b86cc7d2e2d247ee3f972130b4bdf9252c767eb4552d3134c6",
+          "metrics": {
+            "T": 413,
+            "E": 0,
+            "W": 2455,
+            "mixed_moves": 175,
+            "long_jumps": 106
+          },
+          "path": "cases/0066/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v040_search_pair_compression/0066.txt",
+          "source_sha256": "d74e56369002a0e92dc25de1c49edcc1bf15982a7f8ff7a19d811654c9033157",
+          "plan_sha256": "d74e56369002a0e92dc25de1c49edcc1bf15982a7f8ff7a19d811654c9033157",
+          "metrics": {
+            "T": 414,
+            "E": 0,
+            "W": 2477,
+            "mixed_moves": 145,
+            "long_jumps": 100
+          },
+          "path": "cases/0066/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v043_cooperative_events/0066.txt",
+          "source_sha256": "8317123bdfa81b3bb37b3d57ca03d2f22635b9fc3ab544ce86383182b48732e2",
+          "plan_sha256": "8317123bdfa81b3bb37b3d57ca03d2f22635b9fc3ab544ce86383182b48732e2",
+          "metrics": {
+            "T": 414,
+            "E": 0,
+            "W": 2477,
+            "mixed_moves": 179,
+            "long_jumps": 102
+          },
+          "path": "cases/0066/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v026_late_start_lns/0066.txt",
+          "source_sha256": "aebff09b93dcc93dd79f70f070f8655631f66f59f3d129d977ad806ae71f1ff8",
+          "plan_sha256": "aebff09b93dcc93dd79f70f070f8655631f66f59f3d129d977ad806ae71f1ff8",
+          "metrics": {
+            "T": 415,
+            "E": 0,
+            "W": 2501,
+            "mixed_moves": 171,
+            "long_jumps": 113
+          },
+          "path": "cases/0066/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v025_fast_math/0066.txt",
+          "source_sha256": "d563cc47f4c390546bba8c6efd22d26c524bfada21fa59f422b6066543cb1104",
+          "plan_sha256": "d563cc47f4c390546bba8c6efd22d26c524bfada21fa59f422b6066543cb1104",
+          "metrics": {
+            "T": 417,
+            "E": 0,
+            "W": 2503,
+            "mixed_moves": 159,
+            "long_jumps": 105
+          },
+          "path": "cases/0066/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v021_paired_event_lns/0066.txt",
+          "source_sha256": "0cd4afd48ce914f85682cdd3743ccf71e01177ffc987b70c2189a2d615220b48",
+          "plan_sha256": "0cd4afd48ce914f85682cdd3743ccf71e01177ffc987b70c2189a2d615220b48",
+          "metrics": {
+            "T": 419,
+            "E": 0,
+            "W": 2511,
+            "mixed_moves": 172,
+            "long_jumps": 107
+          },
+          "path": "cases/0066/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v024_incoming_reinsertion/0066.txt",
+          "source_sha256": "dd1045122f53c8c50d5d7578772b2c4d714261b194a75cca9e59fea4bac1238e",
+          "plan_sha256": "dd1045122f53c8c50d5d7578772b2c4d714261b194a75cca9e59fea4bac1238e",
+          "metrics": {
+            "T": 420,
+            "E": 0,
+            "W": 2503,
+            "mixed_moves": 156,
+            "long_jumps": 104
+          },
+          "path": "cases/0066/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0068",
+      "reason": "大盤面・4色・157匹",
+      "features": {
+        "N": 20,
+        "K": 4,
+        "M": 157,
+        "wall_fraction": 0.19,
+        "density": 0.490625,
+        "dominant_fraction": 0.3885350318471338
+      },
+      "input": "cases/0068/input.txt",
+      "input_sha256": "7d30ef42e3a8cb7bd7798632cae10ad6fc93072810528e421d9674502d08c9dc",
+      "reference_T": 405,
+      "seeds": [
+        {
+          "source": "results/out/v041_joint_window/0068.txt",
+          "source_sha256": "bdfa79b90340ddb4cd4aee35d1447b135afa7e9becb814cf5758d8b593ce4e9b",
+          "plan_sha256": "bdfa79b90340ddb4cd4aee35d1447b135afa7e9becb814cf5758d8b593ce4e9b",
+          "metrics": {
+            "T": 405,
+            "E": 0,
+            "W": 2068,
+            "mixed_moves": 197,
+            "long_jumps": 95
+          },
+          "path": "cases/0068/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v021_paired_event_lns/0068.txt",
+          "source_sha256": "f466ed717a20878544c5ae9336bdbc7451a1d526087dd9050c4b7b5ee82523cd",
+          "plan_sha256": "f466ed717a20878544c5ae9336bdbc7451a1d526087dd9050c4b7b5ee82523cd",
+          "metrics": {
+            "T": 408,
+            "E": 0,
+            "W": 2162,
+            "mixed_moves": 211,
+            "long_jumps": 89
+          },
+          "path": "cases/0068/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v028_two_order_lns/0068.txt",
+          "source_sha256": "6e469b27b7c08c2250b23d36e8dd46563fa8d6cb9bfb1dc1ccecca817248c36c",
+          "plan_sha256": "6e469b27b7c08c2250b23d36e8dd46563fa8d6cb9bfb1dc1ccecca817248c36c",
+          "metrics": {
+            "T": 413,
+            "E": 0,
+            "W": 2194,
+            "mixed_moves": 209,
+            "long_jumps": 90
+          },
+          "path": "cases/0068/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v031_support_pair_fast_math/0068.txt",
+          "source_sha256": "d4127b70eb57f00c1f476bb164440ebcd0ace84d52f146663fafd4e3f1a43c08",
+          "plan_sha256": "d4127b70eb57f00c1f476bb164440ebcd0ace84d52f146663fafd4e3f1a43c08",
+          "metrics": {
+            "T": 415,
+            "E": 0,
+            "W": 2134,
+            "mixed_moves": 207,
+            "long_jumps": 94
+          },
+          "path": "cases/0068/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v040_search_pair_compression/0068.txt",
+          "source_sha256": "cba0291ff5c607d1034de99c3d7dbf44c952215407e62b74e0baff0bbaa264b9",
+          "plan_sha256": "cba0291ff5c607d1034de99c3d7dbf44c952215407e62b74e0baff0bbaa264b9",
+          "metrics": {
+            "T": 416,
+            "E": 0,
+            "W": 2178,
+            "mixed_moves": 202,
+            "long_jumps": 88
+          },
+          "path": "cases/0068/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v020_o3_event_lns/0068.txt",
+          "source_sha256": "a1975b9cde6ce9e3c06d08b5241ed00f23a7f9c0af15bded4470a0b3a52d7884",
+          "plan_sha256": "a1975b9cde6ce9e3c06d08b5241ed00f23a7f9c0af15bded4470a0b3a52d7884",
+          "metrics": {
+            "T": 417,
+            "E": 0,
+            "W": 2164,
+            "mixed_moves": 207,
+            "long_jumps": 92
+          },
+          "path": "cases/0068/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v023_lazy_trial_undo/0068.txt",
+          "source_sha256": "680c3a5a64b9311fdeb9fd687a460f52d45faf1e5ed12756400d63de980bb18a",
+          "plan_sha256": "680c3a5a64b9311fdeb9fd687a460f52d45faf1e5ed12756400d63de980bb18a",
+          "metrics": {
+            "T": 418,
+            "E": 0,
+            "W": 2200,
+            "mixed_moves": 209,
+            "long_jumps": 89
+          },
+          "path": "cases/0068/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v026_late_start_lns/0068.txt",
+          "source_sha256": "24e6c52d0ba199a9d6d5d49acffc91c36b6463427079b38518bafbca354a1a24",
+          "plan_sha256": "24e6c52d0ba199a9d6d5d49acffc91c36b6463427079b38518bafbca354a1a24",
+          "metrics": {
+            "T": 420,
+            "E": 0,
+            "W": 2154,
+            "mixed_moves": 199,
+            "long_jumps": 86
+          },
+          "path": "cases/0068/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0005",
+      "reason": "高密度・多い壁",
+      "features": {
+        "N": 17,
+        "K": 9,
+        "M": 122,
+        "wall_fraction": 0.31833910034602075,
+        "density": 0.648936170212766,
+        "dominant_fraction": 0.2459016393442623
+      },
+      "input": "cases/0005/input.txt",
+      "input_sha256": "c6375e2fccfc348c92312e399d5f1d6564da217db88a3cc0774e4baf271f1b74",
+      "reference_T": 572,
+      "seeds": [
+        {
+          "source": "results/out/v026_late_start_lns/0005.txt",
+          "source_sha256": "92cdf72e923e74c5cb0d0389294d073142fb4d5ee42a0917cf3d13775e292909",
+          "plan_sha256": "92cdf72e923e74c5cb0d0389294d073142fb4d5ee42a0917cf3d13775e292909",
+          "metrics": {
+            "T": 572,
+            "E": 0,
+            "W": 3410,
+            "mixed_moves": 244,
+            "long_jumps": 125
+          },
+          "path": "cases/0005/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v027_resampled_start_lns/0005.txt",
+          "source_sha256": "7295439f4041ed78c555ed49d28586dab3bebe55cf6ea7aa72b0ffdbcb188ff8",
+          "plan_sha256": "7295439f4041ed78c555ed49d28586dab3bebe55cf6ea7aa72b0ffdbcb188ff8",
+          "metrics": {
+            "T": 580,
+            "E": 0,
+            "W": 3444,
+            "mixed_moves": 310,
+            "long_jumps": 130
+          },
+          "path": "cases/0005/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v040_search_pair_compression/0005.txt",
+          "source_sha256": "a71054936b70eb1e53c289f73c583097b40c9416a40b2f4ca1688c656fcaf715",
+          "plan_sha256": "a71054936b70eb1e53c289f73c583097b40c9416a40b2f4ca1688c656fcaf715",
+          "metrics": {
+            "T": 584,
+            "E": 0,
+            "W": 3470,
+            "mixed_moves": 262,
+            "long_jumps": 131
+          },
+          "path": "cases/0005/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v043_cooperative_events/0005.txt",
+          "source_sha256": "26c65b48f096a9e95bc2227363d9a2d7122ba45799b15da781f36c404b6b4677",
+          "plan_sha256": "26c65b48f096a9e95bc2227363d9a2d7122ba45799b15da781f36c404b6b4677",
+          "metrics": {
+            "T": 590,
+            "E": 0,
+            "W": 3450,
+            "mixed_moves": 284,
+            "long_jumps": 137
+          },
+          "path": "cases/0005/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v028_two_order_lns/0005.txt",
+          "source_sha256": "84622d57b4f74f34b735dd306b4555efa2136a2021fd92c66f6151442ce5fddf",
+          "plan_sha256": "84622d57b4f74f34b735dd306b4555efa2136a2021fd92c66f6151442ce5fddf",
+          "metrics": {
+            "T": 594,
+            "E": 0,
+            "W": 3546,
+            "mixed_moves": 331,
+            "long_jumps": 131
+          },
+          "path": "cases/0005/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v046_shared_route_events/0005.txt",
+          "source_sha256": "d6adecb538776e7b6a1467c484ab83f35e40f1d9156ad1f6778953f883c2cc9b",
+          "plan_sha256": "d6adecb538776e7b6a1467c484ab83f35e40f1d9156ad1f6778953f883c2cc9b",
+          "metrics": {
+            "T": 595,
+            "E": 0,
+            "W": 3532,
+            "mixed_moves": 240,
+            "long_jumps": 135
+          },
+          "path": "cases/0005/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v035_tower_capacity_lns/0005.txt",
+          "source_sha256": "7dbfceb3a9654e3ae221c16561a1c577b136412e11b43a25c55ef40c93028c0f",
+          "plan_sha256": "7dbfceb3a9654e3ae221c16561a1c577b136412e11b43a25c55ef40c93028c0f",
+          "metrics": {
+            "T": 596,
+            "E": 0,
+            "W": 3514,
+            "mixed_moves": 252,
+            "long_jumps": 135
+          },
+          "path": "cases/0005/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v037_pair_transfer_compression/0005.txt",
+          "source_sha256": "5e0142f5b9f75695d9dc68b12e91179d4c7507b253916ed21049442a849a2d3c",
+          "plan_sha256": "5e0142f5b9f75695d9dc68b12e91179d4c7507b253916ed21049442a849a2d3c",
+          "metrics": {
+            "T": 597,
+            "E": 0,
+            "W": 3452,
+            "mixed_moves": 242,
+            "long_jumps": 150
+          },
+          "path": "cases/0005/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0097",
+      "reason": "保存版間に大きな手数差",
+      "features": {
+        "N": 20,
+        "K": 7,
+        "M": 116,
+        "wall_fraction": 0.2975,
+        "density": 0.4233576642335766,
+        "dominant_fraction": 0.23275862068965517
+      },
+      "input": "cases/0097/input.txt",
+      "input_sha256": "8652e7d065dab4b8abe29c536a6ade9abc048f53a833d697bd3a68117519ad31",
+      "reference_T": 540,
+      "seeds": [
+        {
+          "source": "results/out/v041_joint_window/0097.txt",
+          "source_sha256": "9888bf95cf06602d18f3132c47716d801229713e5377f3af0e76f921958c3047",
+          "plan_sha256": "9888bf95cf06602d18f3132c47716d801229713e5377f3af0e76f921958c3047",
+          "metrics": {
+            "T": 540,
+            "E": 0,
+            "W": 3226,
+            "mixed_moves": 225,
+            "long_jumps": 100
+          },
+          "path": "cases/0097/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v029_selective_two_order_lns/0097.txt",
+          "source_sha256": "b427da14f348d35c78f9f378a5b7f1249536501615945b209355eebeea0ff50f",
+          "plan_sha256": "b427da14f348d35c78f9f378a5b7f1249536501615945b209355eebeea0ff50f",
+          "metrics": {
+            "T": 548,
+            "E": 0,
+            "W": 3274,
+            "mixed_moves": 211,
+            "long_jumps": 113
+          },
+          "path": "cases/0097/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v023_lazy_trial_undo/0097.txt",
+          "source_sha256": "ad5636b35f6f45492584c0e74ff0d37b6406df5549a2b4b5f903b482a4fa5f4c",
+          "plan_sha256": "ad5636b35f6f45492584c0e74ff0d37b6406df5549a2b4b5f903b482a4fa5f4c",
+          "metrics": {
+            "T": 551,
+            "E": 0,
+            "W": 3304,
+            "mixed_moves": 219,
+            "long_jumps": 115
+          },
+          "path": "cases/0097/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v046_shared_route_events/0097.txt",
+          "source_sha256": "61e2bd10151519d1397d3339c544503b9a64f3766d3b2874d287d3d5a135bd27",
+          "plan_sha256": "61e2bd10151519d1397d3339c544503b9a64f3766d3b2874d287d3d5a135bd27",
+          "metrics": {
+            "T": 551,
+            "E": 0,
+            "W": 3302,
+            "mixed_moves": 168,
+            "long_jumps": 105
+          },
+          "path": "cases/0097/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v026_late_start_lns/0097.txt",
+          "source_sha256": "f1d5cc51148e7e5a1b288bafdce178102a3d561a632a586013a1c18ca7103b09",
+          "plan_sha256": "f1d5cc51148e7e5a1b288bafdce178102a3d561a632a586013a1c18ca7103b09",
+          "metrics": {
+            "T": 552,
+            "E": 0,
+            "W": 3314,
+            "mixed_moves": 251,
+            "long_jumps": 108
+          },
+          "path": "cases/0097/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v021_paired_event_lns/0097.txt",
+          "source_sha256": "99738d412a9c8c635d16e6751a6f67ecc2cdb0f72c310183c5cdcb7be6a66a9d",
+          "plan_sha256": "99738d412a9c8c635d16e6751a6f67ecc2cdb0f72c310183c5cdcb7be6a66a9d",
+          "metrics": {
+            "T": 553,
+            "E": 0,
+            "W": 3306,
+            "mixed_moves": 241,
+            "long_jumps": 103
+          },
+          "path": "cases/0097/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v040_search_pair_compression/0097.txt",
+          "source_sha256": "925c1e3fb9210a5a0f08635dfd19d0e341f0f5c2268c631c7c5e09c8cf039f8c",
+          "plan_sha256": "925c1e3fb9210a5a0f08635dfd19d0e341f0f5c2268c631c7c5e09c8cf039f8c",
+          "metrics": {
+            "T": 553,
+            "E": 0,
+            "W": 3324,
+            "mixed_moves": 263,
+            "long_jumps": 111
+          },
+          "path": "cases/0097/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v037_pair_transfer_compression/0097.txt",
+          "source_sha256": "fee3f0599ba4e6024e560420827f03f3717ce85bc3f927296ee53a315ebf014f",
+          "plan_sha256": "fee3f0599ba4e6024e560420827f03f3717ce85bc3f927296ee53a315ebf014f",
+          "metrics": {
+            "T": 556,
+            "E": 0,
+            "W": 3284,
+            "mixed_moves": 219,
+            "long_jumps": 117
+          },
+          "path": "cases/0097/seeds/07.txt"
+        }
+      ]
+    },
+    {
+      "case": "0019",
+      "reason": "大盤面・12色・217匹",
+      "features": {
+        "N": 20,
+        "K": 12,
+        "M": 217,
+        "wall_fraction": 0.08,
+        "density": 0.6095505617977528,
+        "dominant_fraction": 0.2350230414746544
+      },
+      "input": "cases/0019/input.txt",
+      "input_sha256": "5e8c80f198714926d74663903336521172e9c2270289447ac559162da574c58a",
+      "reference_T": 641,
+      "seeds": [
+        {
+          "source": "results/out/v025_fast_math/0019.txt",
+          "source_sha256": "7fce040255f2ec959e963763f208d9f28e957549f059376c3d9a609c7beb4825",
+          "plan_sha256": "7fce040255f2ec959e963763f208d9f28e957549f059376c3d9a609c7beb4825",
+          "metrics": {
+            "T": 641,
+            "E": 0,
+            "W": 3212,
+            "mixed_moves": 312,
+            "long_jumps": 173
+          },
+          "path": "cases/0019/seeds/00.txt"
+        },
+        {
+          "source": "results/out/v039_exact_board_lns/0019.txt",
+          "source_sha256": "d7b840ddf854c76ac20d56f363910a2d2cd3bdb8146e049ef1f394cbb9716d72",
+          "plan_sha256": "d7b840ddf854c76ac20d56f363910a2d2cd3bdb8146e049ef1f394cbb9716d72",
+          "metrics": {
+            "T": 643,
+            "E": 0,
+            "W": 3234,
+            "mixed_moves": 322,
+            "long_jumps": 178
+          },
+          "path": "cases/0019/seeds/01.txt"
+        },
+        {
+          "source": "results/out/v043_cooperative_events/0019.txt",
+          "source_sha256": "01d70cf363eb03e9964ab76e10e50e55899fb09eb89995837b15efcb287e4bf3",
+          "plan_sha256": "01d70cf363eb03e9964ab76e10e50e55899fb09eb89995837b15efcb287e4bf3",
+          "metrics": {
+            "T": 643,
+            "E": 0,
+            "W": 3348,
+            "mixed_moves": 330,
+            "long_jumps": 171
+          },
+          "path": "cases/0019/seeds/02.txt"
+        },
+        {
+          "source": "results/out/v022_dependency_lns/0019.txt",
+          "source_sha256": "4a546987550b6917b9eb0aed71f349d4afa79cc26d210bfe442f65d1bb3ab6cd",
+          "plan_sha256": "4a546987550b6917b9eb0aed71f349d4afa79cc26d210bfe442f65d1bb3ab6cd",
+          "metrics": {
+            "T": 651,
+            "E": 0,
+            "W": 3246,
+            "mixed_moves": 332,
+            "long_jumps": 178
+          },
+          "path": "cases/0019/seeds/03.txt"
+        },
+        {
+          "source": "results/out/v041_joint_window/0019.txt",
+          "source_sha256": "24030ae638c8d1faef1408bc09e8b27db07e09dd89757ea846b64a310e3dd33f",
+          "plan_sha256": "24030ae638c8d1faef1408bc09e8b27db07e09dd89757ea846b64a310e3dd33f",
+          "metrics": {
+            "T": 652,
+            "E": 0,
+            "W": 3346,
+            "mixed_moves": 345,
+            "long_jumps": 178
+          },
+          "path": "cases/0019/seeds/04.txt"
+        },
+        {
+          "source": "results/out/v024_incoming_reinsertion/0019.txt",
+          "source_sha256": "5d816bf7e40f6ff999be1a1e99b49f158cfd4c51715a26ffa591bfa4c431026b",
+          "plan_sha256": "5d816bf7e40f6ff999be1a1e99b49f158cfd4c51715a26ffa591bfa4c431026b",
+          "metrics": {
+            "T": 658,
+            "E": 0,
+            "W": 3218,
+            "mixed_moves": 311,
+            "long_jumps": 170
+          },
+          "path": "cases/0019/seeds/05.txt"
+        },
+        {
+          "source": "results/out/v031_support_pair_fast_math/0019.txt",
+          "source_sha256": "7b877f0a9e798bd0781ba4ad9aa02536f9fa6812182c163a64393afff6791104",
+          "plan_sha256": "7b877f0a9e798bd0781ba4ad9aa02536f9fa6812182c163a64393afff6791104",
+          "metrics": {
+            "T": 659,
+            "E": 0,
+            "W": 3362,
+            "mixed_moves": 343,
+            "long_jumps": 185
+          },
+          "path": "cases/0019/seeds/06.txt"
+        },
+        {
+          "source": "results/out/v035_tower_capacity_lns/0019.txt",
+          "source_sha256": "82013bba25446c038a0ce0f897ec7eb99882f36224fb98aa466e8f0012b14315",
+          "plan_sha256": "82013bba25446c038a0ce0f897ec7eb99882f36224fb98aa466e8f0012b14315",
+          "metrics": {
+            "T": 660,
+            "E": 0,
+            "W": 3284,
+            "mixed_moves": 336,
+            "long_jumps": 184
+          },
+          "path": "cases/0019/seeds/07.txt"
+        }
+      ]
+    }
+  ],
+  "files": {
+    "snapshot/v047_long_search.cpp": {
+      "source": "adhoc/bin/v047_long_search.cpp",
+      "sha256": "bee4777156c59bb2963d734827a7fd1b00e1d6408662745d27419af8afcffb41"
+    },
+    "snapshot/run_v047_long_search.py": {
+      "source": "adhoc/scripts/run_v047_long_search.py",
+      "sha256": "35ed7fb97d71a7128b36ba262287806fe82b0abe7125021bcc1779437551f26d"
+    },
+    "snapshot/v047.md": {
+      "source": "notes/experiments/v047.md",
+      "sha256": "2f200bdbafee72991a1f5e8aabf204fe4cc41dda94f1278318a4c0482c573139"
+    },
+    "snapshot/build_solver.sh": {
+      "source": "scripts/build_solver.sh",
+      "sha256": "77374d076c1228212d20456bc0b5650041a4f0773e5f6e2453fb7de3b2b643c5"
+    },
+    "snapshot/v039_exact_board_lns.cpp": {
+      "source": "src/bin/v039_exact_board_lns.cpp",
+      "sha256": "ce92df43dcfcba97d48ab98e8523b86fd92bd9545e5e2bed2c73e669acb52970"
+    }
+  }
+}

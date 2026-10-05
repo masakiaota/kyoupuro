@@ -1,0 +1,7 @@
+{
+  "reason": "Board has const direction arrays and no assignment operator; reconstruct only the feature probe object with placement new",
+  "before_sha256": "482f96f9d5eee5044d2b8c128599362da2c38ea5b653e48e44af5177dc116570",
+  "after_sha256": "a4cb187a21880de0e0c126ea7b1488ecdd220e081995284d175e8c0416d9e1dc",
+  "solver_sha256_unchanged": "16805de5101040ed2ee77f973396089240d0b54a17ac1696ca1061e50b0c4ae9",
+  "solver_executions_before_repair": 0
+}

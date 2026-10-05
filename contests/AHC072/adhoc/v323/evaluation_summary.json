@@ -1,0 +1,51 @@
+{
+  "compiler": "GCC14.2/C++23",
+  "mode": "non-LOCAL",
+  "budget_sec": 1.9,
+  "workers": 2,
+  "runs_per_input_version": 1,
+  "source_sha256": "a6555e8b8b119aff9e0d020ba17fc9040f87b92107b79a4fd76d0d593ca8abd3",
+  "validation1_used_for_evaluation_or_training": false,
+  "adopted_control": "v113",
+  "verdict": "not adopted",
+  "valid_outputs": 684,
+  "all_external_within_1_9": true,
+  "external_max_seconds": {
+    "v113": 1.88626902,
+    "v322": 1.88667068,
+    "v323": 1.884357029
+  },
+  "sets": {
+    "fresh128": {
+      "v113": {
+        "sum": 27929,
+        "mean": 218.1953125
+      },
+      "v322": {
+        "sum": 28034,
+        "mean": 219.015625
+      },
+      "v323": {
+        "sum": 28002,
+        "mean": 218.765625
+      }
+    },
+    "in": {
+      "v113": {
+        "sum": 19758,
+        "mean": 197.58,
+        "relative_v800": 94.84032695656494
+      },
+      "v322": {
+        "sum": 19792,
+        "mean": 197.92,
+        "relative_v800": 94.47841704318269
+      },
+      "v323": {
+        "sum": 19802,
+        "mean": 198.02,
+        "relative_v800": 94.63618182190822
+      }
+    }
+  }
+}

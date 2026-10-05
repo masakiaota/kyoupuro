@@ -1,0 +1,42 @@
+{
+  "v058_joint_priority": {
+    "lines": 3757,
+    "bytes": 185168,
+    "sha256": "7a3092439f55df4f03b435a28759e266b98375f4d4ad5a1c3f21266422031d4b",
+    "by_line_kind": {
+      "comment": 211,
+      "code": 3478,
+      "blank": 68
+    }
+  },
+  "v072_joint_refactored": {
+    "lines": 3600,
+    "bytes": 187146,
+    "sha256": "ca53a07f74ca8a3148e64697e39697ccb01aa6d23040a7f85dd46741d799934e",
+    "by_line_kind": {
+      "comment": 106,
+      "code": 3431,
+      "blank": 63
+    }
+  },
+  "edits_by_reason": {
+    "comment": 97,
+    "inactive audit hook": 9,
+    "unused function": 2,
+    "unused audit output parameter": 2,
+    "unused audit output branch": 1,
+    "unused null audit argument": 2,
+    "template macros": 1,
+    "shared timed call": 3,
+    "timer member names": 1,
+    "timer member use": 4,
+    "timer start use": 1,
+    "state log key": 5,
+    "board member names": 1,
+    "board member use": 14,
+    "construction state names": 1,
+    "construction state use": 47
+  },
+  "rename_count": 152,
+  "parent_original_hash_matched": true
+}

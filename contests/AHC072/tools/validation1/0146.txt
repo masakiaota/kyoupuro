@@ -1,0 +1,19 @@
+18 7
+.fffcfad.ffcfc##.a
+..##......f.....g#
+..cc.cc.fc.gc.....
+a..fc.eggc..fffcf.
+.f...e.g.###e#cb..
+c.f#.c.#cDebFfcfe#
+cc..#c##f##cc#..ge
+c#fde...e.bcc.##b.
+.de#..fc.f...ef.cc
+e.#.b#fdf#.gf.f.c#
+.g.f.ggfg.fgfccf.c
+.f..#.f.g...f.c..f
+b..fcb#.c##b.f..ff
+CAfefc..c.ecfecdeB
+.f.gffe#f..e##f.cf
+bc.##.f.#f..b.fG.f
+..Efc#.#c..c..d.#e
+f.#...#.cff....#.c

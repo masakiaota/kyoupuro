@@ -1,0 +1,252 @@
+{
+  "scope": "Saved macOS ARM64 LOCAL executables; solver execution count is zero",
+  "binary_sha256": {
+    "v015_mixed_tree": "0142ff389d091d2bb07062f38e66957ba392a06efeb2a531c101e16ae1884dc0",
+    "v017_timer_origin": "dab00b31adfeb14b70edff784c778743ea3bc01ab841cad3b935842fbc4f15f3"
+  },
+  "binary_size": {
+    "v015_mixed_tree": 479616,
+    "v017_timer_origin": 479616
+  },
+  "run_ids": [
+    "20260926T215637+0900_v015_mixed_tree_483f92",
+    "20260926T225428+0900_v017_timer_origin_dba982"
+  ],
+  "section_layouts_identical": true,
+  "sections": [
+    {
+      "segment": "__TEXT",
+      "section": "__text",
+      "size": 379396,
+      "bytes_identical": false
+    },
+    {
+      "segment": "__TEXT",
+      "section": "__text_cold",
+      "size": 148,
+      "bytes_identical": false
+    },
+    {
+      "segment": "__TEXT",
+      "section": "__text_startup",
+      "size": 2580,
+      "bytes_identical": true
+    },
+    {
+      "segment": "__TEXT",
+      "section": "__stubs",
+      "size": 696,
+      "bytes_identical": true
+    },
+    {
+      "segment": "__TEXT",
+      "section": "__init_offsets",
+      "size": 4,
+      "bytes_identical": true
+    },
+    {
+      "segment": "__TEXT",
+      "section": "__cstring",
+      "size": 2251,
+      "bytes_identical": false
+    },
+    {
+      "segment": "__TEXT",
+      "section": "__gcc_except_tab",
+      "size": 3136,
+      "bytes_identical": true
+    },
+    {
+      "segment": "__TEXT",
+      "section": "__const",
+      "size": 1120,
+      "bytes_identical": true
+    },
+    {
+      "segment": "__TEXT",
+      "section": "__eh_frame",
+      "size": 26168,
+      "bytes_identical": true
+    },
+    {
+      "segment": "__DATA_CONST",
+      "section": "__const",
+      "size": 120,
+      "bytes_identical": true
+    },
+    {
+      "segment": "__DATA_CONST",
+      "section": "__got",
+      "size": 520,
+      "bytes_identical": true
+    },
+    {
+      "segment": "__DATA",
+      "section": "__bss",
+      "size": 1,
+      "bytes_identical": true
+    }
+  ],
+  "instruction_count": 94886,
+  "instruction_differences": [
+    {
+      "address": "0x100035530",
+      "v015_line": 3615,
+      "v017_line": 3620
+    },
+    {
+      "address": "0x100035550",
+      "v015_line": 3613,
+      "v017_line": 3618
+    },
+    {
+      "address": "0x100035570",
+      "v015_line": 3647,
+      "v017_line": 3652
+    },
+    {
+      "address": "0x100035590",
+      "v015_line": 3648,
+      "v017_line": 3653
+    },
+    {
+      "address": "0x1000355b8",
+      "v015_line": 3640,
+      "v017_line": 3645
+    },
+    {
+      "address": "0x1000355e4",
+      "v015_line": 3625,
+      "v017_line": 3630
+    },
+    {
+      "address": "0x100035604",
+      "v015_line": 3623,
+      "v017_line": 3628
+    },
+    {
+      "address": "0x100035624",
+      "v015_line": 3621,
+      "v017_line": 3626
+    },
+    {
+      "address": "0x100035644",
+      "v015_line": 3619,
+      "v017_line": 3624
+    },
+    {
+      "address": "0x100035750",
+      "v015_line": 3649,
+      "v017_line": 3654
+    },
+    {
+      "address": "0x100035770",
+      "v015_line": 3611,
+      "v017_line": 3616
+    },
+    {
+      "address": "0x10005ccfc",
+      "v015_line": 748,
+      "v017_line": 753
+    },
+    {
+      "address": "0x10005d2c4",
+      "v015_line": 761,
+      "v017_line": 766
+    }
+  ],
+  "only_instruction_differences_are_assertion_line_numbers": true,
+  "only_string_difference_is_assertion_source_filename": true,
+  "counts": {
+    "baseline_ops": {
+      "v015": 71013,
+      "v017": 71013,
+      "delta": 0,
+      "equal_cases": 100
+    },
+    "initial_best_ops": {
+      "v015": 29483,
+      "v017": 29483,
+      "delta": 0,
+      "equal_cases": 100
+    },
+    "pre_branch_ops": {
+      "v015": 24945,
+      "v017": 24781,
+      "delta": -164,
+      "equal_cases": 12
+    },
+    "pre_local_ops": {
+      "v015": 24931,
+      "v017": 24766,
+      "delta": -165,
+      "equal_cases": 13
+    },
+    "final_ops": {
+      "v015": 23943,
+      "v017": 23834,
+      "delta": -109,
+      "equal_cases": 7
+    },
+    "mixed_completed": {
+      "v015": 193065,
+      "v017": 202549,
+      "delta": 9484,
+      "equal_cases": 0
+    },
+    "mixed_decoded": {
+      "v015": 225706,
+      "v017": 236309,
+      "delta": 10603,
+      "equal_cases": 0
+    },
+    "mixed_routes": {
+      "v015": 1300452,
+      "v017": 1358456,
+      "delta": 58004,
+      "equal_cases": 0
+    },
+    "mixed_trials": {
+      "v015": 73999,
+      "v017": 73862,
+      "delta": -137,
+      "equal_cases": 1
+    },
+    "local_nodes": {
+      "v015": 149413366,
+      "v017": 147672007,
+      "delta": -1741359,
+      "equal_cases": 0
+    }
+  },
+  "rough_score_variation": {
+    "atcoder": {
+      "source": "User-provided screenshot: 21:34:09, 22:06:14, 22:57:52 on 2026-09-26",
+      "scores": [
+        12498,
+        12564,
+        12574
+      ],
+      "observed_range": 76,
+      "sample_standard_deviation": 41.295681775862874,
+      "sample_standard_deviation_percent": 0.32917165832604056,
+      "limitation": "Three different sources; code effects and execution variation are not separated."
+    },
+    "local": {
+      "observed_sum_difference": -109,
+      "sum_squared_case_differences": 6181,
+      "case_difference_standard_deviation": 7.825231141905165,
+      "single_run_sum_standard_deviation_under_assumptions": 55.59226564909907,
+      "single_run_average_standard_deviation_under_assumptions": 0.5559226564909907,
+      "single_run_standard_deviation_percent_under_assumptions": 0.23271559808736034,
+      "two_run_difference_standard_deviation_under_assumptions": 78.61933604400384,
+      "limitation": "Only one pair of runs; case independence is assumed and common environment drift is unmeasured."
+    }
+  },
+  "limitations": [
+    "Executable metadata (UUID, code signature, symbol names) is not execution equivalence evidence.",
+    "Identical successful-path instructions do not fix clock readings, scheduling or allocator addresses.",
+    "The saved logs do not identify the first differing clock reading or its external cause.",
+    "These LOCAL binaries cannot establish the performance of the non-LOCAL timer change."
+  ]
+}

@@ -1,0 +1,220 @@
+// 採取器専用。fork時点の探索履歴・作業領域をそのまま候補ごとに複製する。
+void validate_output(const vector<Move>& answer);
+int nn083_env_int(const char* key,int fallback,int lo,int hi){
+    const char* raw=getenv(key);if(!raw)return fallback;
+    char* end=nullptr;long value=strtol(raw,&end,10);
+    if(!*raw||*end||value<lo||value>hi)throw logic_error(string("invalid environment: ")+key);
+    return int(value);
+}
+const char* nn083_env=getenv("NN083_DIR");
+const bool nn083_enabled=nn083_env&&*nn083_env;
+const string nn083_directory=nn083_enabled?nn083_env:"";
+const int nn083_index=nn083_env_int("NN083_INDEX",0,0,INT_MAX);
+const int nn083_replicas=nn083_env_int("NN083_REPLICAS",8,1,64);
+const int nn083_steps=nn083_env_int("NN083_STEPS",512,1,4096);
+const int nn083_phases=nn083_env_int("NN083_PHASES",4,1,4);
+const int nn083_candidates=nn083_env_int("NN083_CANDIDATES",32,1,32);
+const bool nn083_repeat_first=nn083_env_int("NN083_REPEAT_FIRST",0,0,1);
+int nn083_next_phase=0,nn083_phase=0,nn083_rank=0,nn083_replica=0,nn083_step=0;
+int nn083_completed_steps=0,nn083_first_T=0,nn083_first_best_T=0;
+bool nn083_repeat=false,nn083_first_done=false,nn083_absorbed=false;
+uint64_t nn083_snapshot_hash=0,nn083_candidate_hash=0,nn083_seed_first=0;
+uint64_t nn083_first_current_hash=0,nn083_first_best_hash=0,nn083_seed_digest=0;
+uint64_t nn083_first_ticks=0;
+double nn083_snapshot_progress=0,nn083_first_wall=0,nn083_temperature=0;
+string nn083_first_outcome="unfinished",nn083_stop_reason="completed";
+array<double,32> nn083_x{};
+struct Nn083Checkpoint{int step,current_T,best_T;uint64_t current_hash,best_hash,ticks;double progress,temperature;};
+vector<Nn083Checkpoint> nn083_checkpoints;
+uint64_t nn083_mix(uint64_t h,uint64_t value){return (h^value)*1099511628211ULL;}
+uint64_t nn083_seed(int phase,int replica,int step){
+    uint64_t value=0x083f3a9c75612be1ULL;
+    for(uint64_t item:{uint64_t(nn083_index),uint64_t(phase),uint64_t(replica),uint64_t(step),uint64_t(step==0?0x1234:0x5678)})value=nn083_mix(value,item);
+    value+=0x9e3779b97f4a7c15ULL;value=(value^(value>>30))*0xbf58476d1ce4e5b9ULL;
+    value=(value^(value>>27))*0x94d049bb133111ebULL;value^=value>>31;
+    return value?value:0x083ULL;
+}
+uint64_t nn083_moves_hash(const vector<Move>& moves){
+    uint64_t h=1469598103934665603ULL;
+    for(auto m:moves)h=nn083_mix(h,uint64_t(m.p)|(uint64_t(m.k)<<16)|(uint64_t(m.d)<<24)|(uint64_t(m.l)<<32));
+    return h;
+}
+int64_t nn083_errors(){
+    int64_t result=0;for(const auto& [key,value]:trace.counts)
+        if(key.find("error")!=string::npos||key.find("invalid")!=string::npos||key.find("recovery")!=string::npos)result+=value;
+    return result;
+}
+void nn083_outcome(const char* value){if(nn083_clock_active&&!nn083_first_done)nn083_first_outcome=value;}
+double nn083_progress(){return clamp(nn083_snapshot_progress+(1-nn083_snapshot_progress)*double(nn083_step)/nn083_steps,0.0,1.0);}
+void nn083_write_moves(ostream& out,const vector<Move>& moves){
+    out<<'[';bool first=true;for(auto m:moves){if(!first)out<<',';first=false;out<<'['<<m.p<<','<<int(m.k)<<','<<int(m.d)<<','<<int(m.l)<<']';}out<<']';
+}
+void nn083_write_features(ostream& out,const array<double,32>& features){
+    out<<'[';for(int i=0;i<32;i++){if(i)out<<',';out<<features[i];}out<<']';
+}
+void nn083_failure(int phase,int rank,int replica,bool repeat,const char* reason,int status){
+    ofstream out(nn083_directory+"/failures.jsonl",ios::app);
+    out<<"{\"input_index\":"<<nn083_index<<",\"phase\":"<<phase<<",\"rank\":"<<rank
+       <<",\"replica\":"<<replica<<",\"repeat\":"<<(repeat?"true":"false")
+       <<",\"reason\":\""<<reason<<"\",\"status\":"<<status<<"}\n";
+    out.close();if(!out)_exit(91);
+}
+void nn083_completed(const vector<Move>& current,const vector<Move>& best){
+    if(!nn083_clock_active)return;
+    if(!nn083_first_done){
+        nn083_first_T=int(current.size());nn083_first_best_T=int(best.size());
+        nn083_first_current_hash=nn083_moves_hash(current);nn083_first_best_hash=nn083_moves_hash(best);
+        nn083_first_wall=chrono::duration<double>(chrono::steady_clock::now()-nn083_wall_start).count();
+        nn083_first_ticks=nn083_clock_ticks;
+        nn083_first_done=true;
+    }else ++nn083_completed_steps;
+    if(nn083_step==128||nn083_step==256||nn083_step==nn083_steps)
+        nn083_checkpoints.push_back({nn083_step,int(current.size()),int(best.size()),nn083_moves_hash(current),nn083_moves_hash(best),nn083_clock_ticks,nn083_progress(),nn083_temperature});
+    ++nn083_step;
+}
+// continueとbreakでも初回・後続の終了を記録する。例外中は未完了として別経路で保存する。
+struct Nn083TrialGuard{
+    const vector<Move>& current;const vector<Move>& best;
+    Nn083TrialGuard(const vector<Move>& c,const vector<Move>& b):current(c),best(b){}
+    ~Nn083TrialGuard(){if(!uncaught_exceptions())nn083_completed(current,best);}
+};
+// NN083_MEMBER_CODE
+    uint64_t nn083_fingerprint(const vector<Move>& current,const vector<Move>& best)const{
+        uint64_t h=nn083_mix(nn083_moves_hash(current),nn083_moves_hash(best));
+        for(uint64_t v:{rng.x,uint64_t(iteration),uint64_t(regular_selections),uint64_t(support_weight),uint64_t(ride_weight),uint64_t(state_pool.free_count),
+                        bit_cast<uint64_t>(paired_seconds),bit_cast<uint64_t>(block_seconds),bit_cast<uint64_t>(search_reductions.heavy_seconds),uint64_t(search_reductions.next_heavy)})h=nn083_mix(h,v);
+        for(const auto& [key,value]:last_tried){h=nn083_mix(h,key);h=nn083_mix(h,value);}
+        for(const auto& c:candidates){h=nn083_mix(h,c.hash);h=nn083_mix(h,bit_cast<uint64_t>(c.priority));for(int id:c.ids)h=nn083_mix(h,id);}
+        return h;
+    }
+    array<int64_t,12> nn083_initial_stats{};
+    array<int64_t,12> nn083_stats()const{
+        return {attempts,accepted,insertions,restarts,paired_attempts,block_attempts,reorder_attempts,
+                search_reductions.heavy_calls,search_reductions.eligible,search_reductions.budget_skips,
+                search_reductions.joint.deadlines,
+                search_reductions.finite.deadlines+search_reductions.finite.global_deadlines};
+    }
+    [[noreturn]] void nn083_finish(const vector<Move>& current,const vector<Move>& best,bool complete,const char* reason){
+        const double wall=chrono::duration<double>(chrono::steady_clock::now()-nn083_wall_start).count();
+        // 仮想時計・機構計数の採取を終えてから独立再生する。
+        if(complete&&(state_pool.free_count!=4||nn083_errors()!=0)){
+            complete=false;reason="state_integrity";
+        }
+        if(complete){validate_output(current);validate_output(best);}
+        if(nn083_absorbed&&complete){
+            for(int step:{128,256,nn083_steps})if(step<=nn083_steps&&step>=nn083_step)
+                nn083_checkpoints.push_back({step,int(current.size()),int(best.size()),nn083_moves_hash(current),nn083_moves_hash(best),nn083_clock_ticks,clamp(nn083_snapshot_progress+(1-nn083_snapshot_progress)*double(step)/nn083_steps,0.0,1.0),nn083_temperature});
+            sort(nn083_checkpoints.begin(),nn083_checkpoints.end(),[](const auto& a,const auto& b){return a.step<b.step;});
+            nn083_checkpoints.erase(unique(nn083_checkpoints.begin(),nn083_checkpoints.end(),[](const auto& a,const auto& b){return a.step==b.step;}),nn083_checkpoints.end());
+        }
+        ofstream out(nn083_directory+"/candidates.jsonl",ios::app);out<<setprecision(17);
+        out<<"{\"input_index\":"<<nn083_index<<",\"phase\":"<<nn083_phase<<",\"rank\":"<<nn083_rank
+           <<",\"replica\":"<<nn083_replica<<",\"repeat\":"<<(nn083_repeat?"true":"false")
+           <<",\"snapshot_hash\":\""<<nn083_snapshot_hash<<"\",\"candidate_hash\":\""<<nn083_candidate_hash
+           <<"\",\"seed_first\":\""<<nn083_seed_first<<"\",\"seed_digest\":\""<<nn083_seed_digest<<"\",\"features\":";
+        nn083_write_features(out,nn083_x);
+        out<<",\"first_T\":"<<nn083_first_T<<",\"first_best_T\":"<<nn083_first_best_T
+           <<",\"first_current_hash\":\""<<nn083_first_current_hash<<"\",\"first_best_hash\":\""<<nn083_first_best_hash
+           <<"\",\"first_outcome\":\""<<nn083_first_outcome<<"\",\"first_completed\":"<<(nn083_first_done?"true":"false")
+           <<",\"first_wall_seconds\":"<<nn083_first_wall<<",\"first_virtual_ticks\":"<<nn083_first_ticks
+           <<",\"current_T\":"<<current.size()<<",\"best_T\":"<<best.size()
+           <<",\"current_hash\":\""<<nn083_moves_hash(current)<<"\",\"best_hash\":\""<<nn083_moves_hash(best)
+           <<"\",\"virtual_ticks\":"<<nn083_clock_ticks<<",\"wall_seconds\":"<<wall
+           <<",\"completed_steps\":"<<nn083_completed_steps<<",\"requested_steps\":"<<nn083_steps
+           <<",\"absorbed\":"<<(nn083_absorbed?"true":"false")<<",\"stop_reason\":\""<<reason
+           <<"\",\"complete\":"<<(complete?"true":"false")<<",\"pool_free\":"<<state_pool.free_count
+           <<",\"errors\":"<<nn083_errors()<<",\"E\":"<<(complete?0:-1)<<",\"checkpoints\":[";
+        for(size_t i=0;i<nn083_checkpoints.size();i++){
+            if(i)out<<',';
+            const auto& point=nn083_checkpoints[i];
+            out<<"{\"step\":"<<point.step<<",\"current_T\":"<<point.current_T<<",\"best_T\":"<<point.best_T
+               <<",\"current_hash\":\""<<point.current_hash<<"\",\"best_hash\":\""<<point.best_hash<<"\",\"ticks\":"<<point.ticks
+               <<",\"progress\":"<<point.progress<<",\"temperature\":"<<point.temperature<<'}';
+        }
+        const auto stats=nn083_stats();
+        static constexpr array<const char*,12> names={"attempts","accepted","insertions","restarts","paired_attempts","block_attempts","reorder_attempts","heavy_calls","near_best","heavy_budget_skips","joint_deadlines","finite_deadlines"};
+        out<<"],\"stats\":{";
+        for(size_t i=0;i<stats.size();i++){if(i)out<<',';out<<'"'<<names[i]<<"\":"<<stats[i]-nn083_initial_stats[i];}
+        out<<"}}\n";out.close();if(!out)_exit(92);
+        if(!complete)nn083_failure(nn083_phase,nn083_rank,nn083_replica,nn083_repeat,reason,1);
+        _exit(complete?0:93);
+    }
+    void nn083_snapshot(const vector<Move>& current,const vector<Move>& best,int stagnant,double end,int cooldown,int& choice,double temperature){
+        static constexpr array<double,4> phases={0.10,0.35,0.60,0.85};
+        if(nn083_next_phase>=nn083_phases)return;
+        const auto paused_at=chrono::steady_clock::now();
+        const double elapsed=chrono::duration<double>(paused_at-time_keeper.start_).count();
+        const double progress=clamp((elapsed-lns_start)/max(LOCAL_SECONDS(0.02),end-lns_start),0.0,1.0);
+        if(progress<phases[nn083_next_phase])return;
+        const int count=nn_sample(cooldown);
+        vector<int> ranks(nn_ranks.begin(),nn_ranks.begin()+count);
+        if(find(ranks.begin(),ranks.end(),choice)==ranks.end())throw logic_error("baseline absent from teacher candidates");
+        // 機構確認で候補数を減らす場合も、通常のNN選択を含める。
+        if(int(ranks.size())>nn083_candidates){
+            ranks.resize(nn083_candidates);
+            if(find(ranks.begin(),ranks.end(),choice)==ranks.end())ranks.back()=choice;
+            sort(ranks.begin(),ranks.end());
+        }
+        if(state_pool.free_count!=4||nn083_errors()!=0)throw logic_error("invalid teacher snapshot");
+        const uint64_t fingerprint=nn083_fingerprint(current,best),saved_rng=rng.x;
+        vector<array<double,32>> features;for(int rank:ranks)features.push_back(nn_features(candidates[rank],current,best,stagnant,progress));
+        {
+            ofstream out(nn083_directory+"/states.jsonl",ios::app);out<<setprecision(17);
+            out<<"{\"input_index\":"<<nn083_index<<",\"phase\":"<<nn083_next_phase<<",\"progress\":"<<progress
+               <<",\"elapsed\":"<<elapsed<<",\"lns_start\":"<<lns_start<<",\"iteration\":"<<iteration
+               <<",\"stagnant\":"<<stagnant<<",\"baseline_rank\":"<<choice<<",\"snapshot_hash\":\""<<fingerprint
+               <<"\",\"parent_fingerprint\":\""<<fingerprint<<"\",\"rng\":\""<<saved_rng<<"\",\"pool_free\":"<<state_pool.free_count
+               <<",\"replicas\":"<<nn083_replicas<<",\"steps\":"<<nn083_steps<<",\"current\":";
+            nn083_write_moves(out,current);out<<",\"best\":";nn083_write_moves(out,best);out<<",\"candidates\":[";
+            for(size_t i=0;i<ranks.size();i++){
+                if(i)out<<',';
+                const auto& candidate=candidates[ranks[i]];
+                out<<"{\"rank\":"<<ranks[i]<<",\"hash\":\""<<candidate.hash<<"\",\"ids\":[";
+                for(size_t j=0;j<candidate.ids.size();j++){if(j)out<<',';out<<candidate.ids[j];}
+                out<<"],\"features\":";nn083_write_features(out,features[i]);out<<'}';
+            }
+            out<<"]}\n";out.close();if(!out)throw logic_error("teacher state write failed");
+        }
+        cout.flush();cerr.flush();
+        for(int replica=0;replica<nn083_replicas;replica++)for(size_t index=0;index<ranks.size();index++){
+            const int repeats=(nn083_repeat_first&&nn083_next_phase==0&&replica==0&&index==0)?2:1;
+            for(int repeat=0;repeat<repeats;repeat++){
+                const auto launched=chrono::steady_clock::now();pid_t pid=fork();
+                if(pid<0)throw runtime_error("teacher fork failed");
+                if(pid==0){
+                    if(nn083_fingerprint(current,best)!=fingerprint)_exit(94);
+                    nn083_phase=nn083_next_phase;nn083_rank=ranks[index];nn083_replica=replica;nn083_repeat=repeat;
+                    nn083_x=features[index];nn083_snapshot_hash=fingerprint;nn083_candidate_hash=candidates[nn083_rank].hash;
+                    nn083_snapshot_progress=progress;nn083_clock_origin=elapsed;nn083_clock_ticks=0;
+                    nn083_temperature=temperature;
+                    nn083_wall_start=chrono::steady_clock::now();nn083_clock_active=true;
+                    time_keeper.time_limit_sec=numeric_limits<double>::infinity();
+                    nn083_initial_stats=nn083_stats();nn083_first_T=int(current.size());nn083_first_best_T=int(best.size());
+                    nn083_seed_first=nn083_seed(nn083_phase,replica,0);rng.x=nn083_seed_first;
+                    nn083_seed_digest=nn083_mix(1469598103934665603ULL,rng.x);choice=nn083_rank;
+                    return;
+                }
+                int status=0;bool censored=false;pid_t waited=0;
+                // 子が時計を読まない処理内にいる場合にも保護上限を適用する。
+                while(true){
+                    waited=waitpid(pid,&status,WNOHANG);
+                    if(waited==pid)break;
+                    if(waited<0&&errno!=EINTR)break;
+                    if(chrono::duration<double>(chrono::steady_clock::now()-launched).count()>10.0){
+                        kill(pid,SIGKILL);censored=true;
+                        do{waited=waitpid(pid,&status,0);}while(waited<0&&errno==EINTR);
+                        break;
+                    }
+                    usleep(2000);
+                }
+                if(waited!=pid||!WIFEXITED(status)||WEXITSTATUS(status)!=0){
+                    nn083_failure(nn083_next_phase,ranks[index],replica,repeat,censored?"wall_censored":"child_failed",status);
+                    _exit(95);
+                }
+                if(nn083_fingerprint(current,best)!=fingerprint)throw logic_error("parent state changed by branch");
+            }
+        }
+        ++nn083_next_phase;
+        // 保存・fork・子の探索時間は親の探索予算へ加えない。
+        time_keeper.start_+=chrono::steady_clock::now()-paused_at;
+    }

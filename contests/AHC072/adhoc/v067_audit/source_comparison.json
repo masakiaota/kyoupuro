@@ -1,0 +1,18 @@
+{
+  "parent_sha256": "a940c3b2c90e33d4425f531cacfd85286ff170a285fa09a97667c4bad121e002",
+  "solver_sha256": "fe226e8e430eb53dc7423bb0632cdadbf6cda84d98b679e0a6f4f7738b608f14",
+  "donor_sha256": "7a3092439f55df4f03b435a28759e266b98375f4d4ad5a1c3f21266422031d4b",
+  "registered_change_count": 4,
+  "restored_parent_equal": true,
+  "donor_search_reductions_equal": true,
+  "protected_sha256": {
+    "README.md": "8804adc3cff675aaf68a9edc3035c7fee97a129abb68486b48a8dc055995e9d0",
+    "src/bin/v000_template.cpp": "f323e0fb4b83a21202282695267bab6a0c1c37c9c3d5133bfb27c142a7982449",
+    "notes/notations.md": "3f48408efb60544d467ee48f9721dd9aff7469df90c4c23887c9483b0c2d3aef",
+    "notes/important_properties.md": "c038f600df69871a56d08555a3ddaf2ba07ed47448f5857ad6f097d11ab7a399",
+    "src/bin/v057_search_reductions.cpp": "4bb22c34eca9d76fec12861ebd14d807d6ead618b29e79d42c8f91ce7854e29f",
+    "src/bin/v058_joint_priority.cpp": "7a3092439f55df4f03b435a28759e266b98375f4d4ad5a1c3f21266422031d4b",
+    "notes/experiments/v058.md": "4a35e480ffe163c955812ffb53e14337a2a32ed747e7041a1c06ebe92668fa4c",
+    "notes/experiments/v059.md": "daa0f6b969c8f9fba95c024366b96d4f7fe452f3fa5eff62cb67238c260dc889"
+  }
+}

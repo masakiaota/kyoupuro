@@ -1,0 +1,52 @@
+{
+  "imported_at": "2026-10-04T14:17:25.930393+09:00",
+  "source": "src/bin/v401_incremental_cnn.cpp",
+  "source_sha256": "ceb38ea758212dbbd91f8faa63eb6684fd96aab4b3b60a82ea718150538d4618",
+  "original_name": "/Users/masaki/Downloads/v401_incremental_cnn.cpp",
+  "original_sha256": "0c241cc3a862d12faf100050df4ea3bafa3c520261d81e5237a41e3c54f25658",
+  "local_port": "LOCAL_TIME_RATIO 1.90 / 1.930 -> 0.80; nonLOCAL unchanged",
+  "external_backlog_id": "B-159",
+  "local_backlog_id": "B-165",
+  "files": [
+    {
+      "path": "adhoc/imports/v401/REPRODUCE.txt",
+      "sha256": "8b8461d0ca1a252e4296b55ad935700abede6612f8332c8b3b89b4769c208e24",
+      "bytes": 2965
+    },
+    {
+      "path": "adhoc/imports/v401/comparison_summary.json",
+      "sha256": "8753c0e1e3c1ad16e3d7042ab10d6fe91de2c21df05986edc9d63f8088013edd",
+      "bytes": 3298
+    },
+    {
+      "path": "adhoc/imports/v401/diagnostic_summary.json",
+      "sha256": "3afa84ad756058ec8511290754eef9ad1e7285835c8682a9dd507afe222c5d11",
+      "bytes": 588
+    },
+    {
+      "path": "adhoc/imports/v401/external_manifest.json",
+      "sha256": "c227547301aab57f83ccb74f5ca820b0a2a3ab0c04524d1648fae6b8a3777c47",
+      "bytes": 900
+    },
+    {
+      "path": "adhoc/imports/v401/original.cpp.txt",
+      "sha256": "0c241cc3a862d12faf100050df4ea3bafa3c520261d81e5237a41e3c54f25658",
+      "bytes": 278391
+    },
+    {
+      "path": "adhoc/imports/v401/original_bundle.zip",
+      "sha256": "5aa016cc65de48012fe97baf911a1f86fa57935f86933516f9f224f1c6709a50",
+      "bytes": 106898
+    },
+    {
+      "path": "adhoc/imports/v401/paired_cases.csv",
+      "sha256": "28776b05452ea35f907a094cd5158becb0b20bf5bcd083bdf468be25cca83d74",
+      "bytes": 4080
+    },
+    {
+      "path": "adhoc/imports/v401/report.md",
+      "sha256": "5de1cc5a9f08506d25e96d63c1d726436b1eecd7fabe0a339ce2de5926439332",
+      "bytes": 7400
+    }
+  ]
+}

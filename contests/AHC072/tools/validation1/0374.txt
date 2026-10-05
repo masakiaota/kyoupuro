@@ -1,0 +1,16 @@
+15 6
+.e#ee#..#.###..
+.eef#.f.f.##.bb
+.eee#ec.f....CD
+.#.#eF#..##efbA
+e##.ef###..#.ce
+.f....#cfee.#b#
+e##e...c.#eee#.
+#.#e.....e##...
+d....cee##e.f.f
+..c#.##eae#....
+##.cfc#.#.f#e.b
+c....c.#.##B.#f
+#e.#.cf.e#.eefe
+.dd...###.#eE#.
+.f##..ff.ed#.b.

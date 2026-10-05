@@ -1,0 +1,169 @@
+namespace neural_proposal {
+// V086_WEIGHTS
+struct Context {
+    vector<array<float,32>> h,choose_base;
+    vector<float> edges;
+    array<float,32> global{};
+    void encode(const vector<array<float,24>>& raw,vector<float> relations) {
+        const int M=int(raw.size());edges=move(relations);
+        vector<array<float,32>> first(M);h.resize(M);choose_base.resize(M);global.fill(0);
+        for(int i=0;i<M;i++) {
+            array<float,24> x;
+            for(int j=0;j<24;j++)x[j]=(raw[i][j]-mean[j])/scale[j];
+            for(int o=0;o<32;o++) {
+                float value=node_bias[o];
+                for(int j=0;j<24;j++)value+=node_weight[o][j]*x[j];
+                first[i][o]=max(0.0f,value);
+            }
+        }
+        for(int i=0;i<M;i++) {
+            array<float,192> input{};copy(first[i].begin(),first[i].end(),input.begin());
+            for(int r=0;r<5;r++)for(int j=0;j<M;j++) {
+                const float weight=edges[(r*M+i)*M+j];
+                if(weight==0)continue;
+                for(int k=0;k<32;k++)input[(r+1)*32+k]+=weight*first[j][k];
+            }
+            for(int o=0;o<32;o++) {
+                float value=message_bias[o];
+                for(int k=0;k<192;k++)value+=message_weight[o][k]*input[k];
+                h[i][o]=max(0.0f,value);global[o]+=h[i][o];
+            }
+        }
+        for(float& value:global)value/=M;
+        // 選択済み集合に依存しない線形項を再利用し、同じ行列積の反復を避ける。
+        for(int i=0;i<M;i++)for(int o=0;o<32;o++) {
+            float value=choose_0_bias[o];
+            for(int k=0;k<32;k++)value+=choose_0_weight[o][k]*h[i][k];
+            for(int k=0;k<32;k++)value+=choose_0_weight[o][32+k]*global[k];
+            choose_base[i][o]=value;
+        }
+    }
+    vector<float> logits(const vector<int>& selected) const {
+        const int M=int(h.size()),n=int(selected.size());
+        array<float,32> selected_mean{},common{};vector<bool> used(M);
+        for(int i:selected) {
+            if(i<0||i>=M||used[i])throw logic_error("invalid proposal prefix");
+            used[i]=true;
+            for(int k=0;k<32;k++)selected_mean[k]+=h[i][k];
+        }
+        if(n)for(float& value:selected_mean)value/=n;
+        for(int o=0;o<32;o++) {
+            for(int k=0;k<32;k++)common[o]+=choose_0_weight[o][64+k]*selected_mean[k];
+            common[o]+=choose_0_weight[o][101]*(n/12.0f);
+        }
+        vector<float> values(M+1,-1e9f);
+        if(n<12)for(int i=0;i<M;i++)if(!used[i]) {
+            array<float,5> related{};
+            for(int r=0;r<5;r++)for(int j:selected)related[r]+=edges[(r*M+i)*M+j];
+            float value=choose_2_bias[0];
+            for(int o=0;o<32;o++) {
+                float hidden=choose_base[i][o]+common[o];
+                for(int r=0;r<5;r++)hidden+=choose_0_weight[o][96+r]*related[r];
+                value+=choose_2_weight[0][o]*max(0.0f,hidden);
+            }
+            values[i]=value;
+        }
+        if(n) {
+            float value=stop_2_bias[0];
+            for(int o=0;o<32;o++) {
+                float hidden=stop_0_bias[o];
+                for(int k=0;k<32;k++)hidden+=stop_0_weight[o][k]*global[k];
+                for(int k=0;k<32;k++)hidden+=stop_0_weight[o][32+k]*selected_mean[k];
+                hidden+=stop_0_weight[o][64]*(n/12.0f);
+                value+=stop_2_weight[0][o]*max(0.0f,hidden);
+            }
+            values[M]=value;
+        }
+        for(float value:values)if(!isfinite(value))throw logic_error("nonfinite proposal score");
+        return values;
+    }
+    vector<int> sample() const {
+        vector<int> selected;
+        // 最大12匹で終了するため、空集合や重複を別候補へ差し替える経路は不要。
+        while(selected.size()<12) {
+            const auto values=logits(selected);const float maximum=*max_element(values.begin(),values.end());
+            vector<double> weights(values.size());double total=0;
+            for(size_t i=0;i<values.size();i++){weights[i]=exp(double(values[i]-maximum));total+=weights[i];}
+            double draw=rng.unit()*total;int choice=-1;
+            for(int i=0;i<int(weights.size());i++)if(weights[i]>0) {
+                choice=i;draw-=weights[i];if(draw<0)break;
+            }
+            if(choice<0)throw logic_error("empty proposal distribution");
+            if(choice==int(h.size()))break;
+            selected.push_back(choice);
+        }
+        if(selected.empty())throw logic_error("empty generated set");
+        return selected;
+    }
+};
+}
+// V086_MEMBERS
+    bool nn086_ready=false;
+    int nn086_regular=0;
+    vector<int> nn086_ids;
+    array<int,max_cells> nn086_index{};
+    vector<double> nn086_static;
+    neural_proposal::Context nn086;
+    // V086_ITEM_FEATURES
+    void prepare_nn086(const vector<Move>& current) {
+        if(nn086_ready)return;
+        LOCAL_NOTE(const auto started=chrono::steady_clock::now();)
+        prepare_nn086_items(current);
+        if(nn086_ids.empty()) {
+            nn086_index.fill(-1);
+            for(int p=0;p<board_info.cell_count;p++)if(board_info.initial[p]) {
+                nn086_index[p]=int(nn086_ids.size());nn086_ids.push_back(p);
+            }
+            const int M=int(nn086_ids.size());nn086_static.resize(2*M*M);
+            for(int i=0;i<M;i++)for(int j=0;j<M;j++)if(i!=j) {
+                nn086_static[i*M+j]=board_info.initial[nn086_ids[i]]==board_info.initial[nn086_ids[j]];
+                nn086_static[M*M+i*M+j]=1.0/(1+board_info.floor_dist[nn086_ids[i]][nn086_ids[j]]);
+            }
+        }
+        const int M=int(nn086_ids.size());vector<double> edges(5*M*M);
+        copy(nn086_static.begin(),nn086_static.end(),edges.begin());
+        for(const auto& flight:flights)for(int a=0;a<flight.n;a++)for(int b=0;b<flight.n;b++)if(a!=b)
+            ++edges[2*M*M+nn086_index[flight.id[a]]*M+nn086_index[flight.id[b]]];
+        for(const auto& use:support_uses)for(int a=0;a<use.lower.n;a++) {
+            const int u=nn086_index[use.lower.id[a]];const auto& flight=flights[use.time];
+            for(int b=0;b<flight.n;b++) {
+                const int v=nn086_index[flight.id[b]];++edges[3*M*M+u*M+v];++edges[4*M*M+v*M+u];
+            }
+        }
+        vector<float> normalized(edges.size());
+        for(int r=0;r<5;r++)for(int i=0;i<M;i++) {
+            const int base=(r*M+i)*M;double total=0;
+            for(int j=0;j<M;j++)total+=edges[base+j];
+            for(int j=0;j<M;j++)normalized[base+j]=total?float(edges[base+j]/total):0;
+        }
+        vector<array<float,24>> nodes(M);
+        for(int i=0;i<M;i++) {
+            for(int f=0;f<20;f++)nodes[i][f]=float(nn086_items[nn086_ids[i]][f]);
+            nodes[i][20]=float(board_info.N/20.0);nodes[i][21]=float(M/100.0);
+            nodes[i][22]=float(board_info.K/10.0);nodes[i][23]=float(current.size()/400.0);
+        }
+        LOCAL_NOTE(const auto encoded_at=chrono::steady_clock::now();)
+        nn086.encode(nodes,move(normalized));nn086_ready=true;
+        LOCAL_NOTE(
+            trace.count_by("nn086_encoded_states",1);
+            trace.add_time_ms("nn086_features",chrono::duration<double,milli>(encoded_at-started).count());
+            trace.add_time_ms("nn086_encode",chrono::duration<double,milli>(chrono::steady_clock::now()-encoded_at).count());
+        )
+    }
+    Removal nn086_propose(const vector<Move>& current) {
+        prepare_nn086(current);
+        LOCAL_NOTE(const auto started=chrono::steady_clock::now();)
+        Removal candidate;
+        for(int i:nn086.sample())candidate.ids.push_back(nn086_ids[i]);
+        sort(candidate.ids.begin(),candidate.ids.end());candidate.hash=0x51ed270b3a4dc107ULL;
+        for(int id:candidate.ids)candidate.hash=(candidate.hash^(id+1))*0x9e3779b97f4a7c15ULL;
+        candidate.broken_support_jumps=broken_support_jumps_value(candidate.ids);
+        LOCAL_NOTE(
+            trace.count_by("nn086_proposals",1);trace.count_by("nn086_proposed_items",candidate.ids.size());
+            trace.count_by("nn086_size_"+to_string(candidate.ids.size()),1);
+            const bool found=any_of(candidates.begin(),candidates.end(),[&](const auto& old){return old.ids==candidate.ids;});
+            trace.count_by("nn086_outside_old_pool",!found);
+            trace.add_time_ms("nn086_decode",chrono::duration<double,milli>(chrono::steady_clock::now()-started).count());
+        )
+        return candidate;
+    }

@@ -1,0 +1,204 @@
+{
+  "old_kernels": 28,
+  "new_kernels": 28,
+  "same_symbols": true,
+  "changed_kernels_after_local_label_normalization": [],
+  "kernels": [
+    {
+      "symbol": "__Z12fixed_kernelILi32ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "27aa0a973cc6a0e3603ec956d055191c3e2e301fb13d3c172abd6a18b697c093",
+      "memcpy_calls": 0,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12exact_kernelILb0EEyP5TowerPKS0_PK3Jobiii",
+      "sha256": "de977898667d199186284849d730fdfcb06f10981da181fc9dd155f68d58ce81",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi32ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "51294960127361378af9bf9d95c73198b2a618d1c88fac2604ace6405c0722de",
+      "memcpy_calls": 0,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12exact_kernelILb1EEyP5TowerPKS0_PK3Jobiii",
+      "sha256": "c0bae3f330b63b8d1cd9655d66007d9930f9e7b0af25002a0e21357875b4bee4",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi64ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "0e5d18fe1f71da394efb341cf9ccc022e790858c8685510ff75a67e59146bd87",
+      "memcpy_calls": 0,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi64ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "e63f4919aa8867d79d3bb3c91ec3c1d930fe45a89ca3c8b419d56ce7e199ea3c",
+      "memcpy_calls": 0,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi96ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "a48c0ee57fb7daa5f4f6ab9aa3c5906ecdd00273ed42b8caebebd152b5efb7a9",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi96ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "8931965509503c189e2ac06c124c650ddf56b004511be1212883a3be517abd63",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi128ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "c4d46f161c14dded59b798d47d6a19d2a0cceb21564d951ce16feddbe1393560",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi128ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "7ebb128d9d568a5bff6f2aead8860bc51a4b00c1bf77061a97077dd530cc5c50",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi160ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "5479558625838d977577b0c89e00abe8762ad6ce271b78eda4d2863befb1473d",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi160ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "7a5cddf65a3133844833affac9d972bca0d143d9b5eda066144e4f2f583967f6",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi192ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "ad8654ea7487b86fd1f7234dec62280af17a5859c84d6cda2f05c05f18e97581",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi192ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "19a49e6d8eb766076aecf22058778e84fb2bf700f3da173bc6bbbca362ad3475",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi224ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "8594a996fb07ed596ecba0a16611b724d89459cf0cfb3f697e20acde9886b47c",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi224ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "eaf9d6ba7016018ecede94f3bc681e255c6e5739aa6c4237aa326fb33dc661f7",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi256ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "e78d86af980caf48e930431cd5c06ec3e829bd6102f18087cfc2ca679da73934",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi256ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "15cc73c4618fc9db5b48adfc6a46c42904880f6d656b545f81b82f72fb320cfe",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi288ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "b195cd421c71229305d11b76a1b353769797214c141411bfe2be92f134a4f619",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi288ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "f81fac34a41c35180a2c7847c5011632523dde8fb758fe832f852d67f42e4803",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi320ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "0c515bfde3c0c12641b792f2dcbf1cf54bb02d283d82b3fabcc49caa3a353041",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi320ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "bdccf6bf6afb6c27c041fa3004c3b6cfbce92d04e7bf84d97b6c6c40c841eb88",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi352ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "64eb68547f7fc1f3d3df9f42340008bbc7bdd88bd05fad0577cd0ce23e788c5c",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi352ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "e5914ef56ee19a07521a1734ea7c782517ef54f31a1f551534b616f695d9f997",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi384ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "500c2d273016fede84f88ff4b69d5fd901d0cf23f068f00aec81002a6bccba7a",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi384ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "6a9f7d392cba64b59e662a2d157b221cd4640b05ff1deb521a051ab65f43ea0d",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi400ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "9b2a44ba4733e3f0a70bcc7676ca5039e3b7031963eccc110bf77fa845698026",
+      "memcpy_calls": 3,
+      "allocation_calls": 0,
+      "copy_present": true
+    },
+    {
+      "symbol": "__Z12fixed_kernelILi400ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+      "sha256": "c88efc2cffbc198a66d66cec43cb6b5ebf15c1c351d6a8383274fe79906bb981",
+      "memcpy_calls": 1,
+      "allocation_calls": 0,
+      "copy_present": true
+    }
+  ]
+}

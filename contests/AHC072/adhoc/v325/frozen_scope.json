@@ -1,0 +1,19 @@
+{
+  "source": "src/bin/v325_exact_hotpath.cpp",
+  "source_sha256": "1dce487ed293ba3e8cd44cf93ecddc8ed0e8b5cb3ac6f42d48ff15fd50769141",
+  "control_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+  "v136_sha256": "56fca55348f129aee8055ee8272f507d6131662aef8eebd5838f2b18efab02fe",
+  "edits_beyond_v136": 45,
+  "frozen_before_first_solver_execution": true,
+  "pre_execution_scope_detail": "Route smoothing also uses its two endpoint boundary words, while replacement candidates retain full-board verification. GCC uninitialized attributes suppress automatic zeroing only for BFS routers/queues and height scratch arrays whose accessed entries are written by run before reading; required distance initialization is retained. No global disabling of automatic initialization. Added audit-only builds check background heights, invalid gaps, and incremental hash against full recomputation.",
+  "compiler": "GCC14.2/C++23",
+  "builds": ["non-LOCAL", "LOCAL"],
+  "fixed_clock_cases": 16,
+  "fixed_clock_nanoseconds_per_query": 100003,
+  "fresh_evaluation_cases": 128,
+  "in_cases": 100,
+  "workers": 2,
+  "validation1_used": false,
+  "search_time_and_weights_unchanged": true,
+  "eval_viewer_registration": false
+}

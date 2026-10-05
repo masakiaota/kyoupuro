@@ -1,0 +1,9 @@
+{
+  "frozen_files_unchanged": 649,
+  "solver_sha256": "ce92df43dcfcba97d48ab98e8523b86fd92bd9545e5e2bed2c73e669acb52970",
+  "parent_sha256": "6943cb83bc218f7fa1a998297ca03c442380826e6240ed12963200a789e2949b",
+  "template_sha256": "5504504a6c44524ce78b8cbb96f1b77730b5a57bdd6f9409013c43dc1f513e45",
+  "local_binary_instructions_equal": true,
+  "local_binary_sections_equal": true,
+  "normal_evaluations": 1
+}

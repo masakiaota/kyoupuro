@@ -1,0 +1,125 @@
+{
+  "experiment": "v319",
+  "source_sha256": "931b5b40e4595c9a500f1d5a2f978e067fc867a26137d8b9a55f4d13e5ee8cbb",
+  "main_snapshot": "0cceb2ed9cb377582f378455e7a9fe17022e9d8e",
+  "conditions": {
+    "compiler": "GCC14.2",
+    "standard": "C++23",
+    "LOCAL": false,
+    "workers": 2,
+    "budget_seconds": 1.9,
+    "internal_deadline_seconds": 1.88,
+    "repetitions": 1,
+    "reference": "100*mean(original v800 S / candidate S), no clipping",
+    "validators": "Independent Python and C++ literal color stacks; official Rust binary NOT executed"
+  },
+  "accept_candidate": false,
+  "target195_met": false,
+  "all1800_valid_complete": true,
+  "diagnostic_errors": 0,
+  "sets": {
+    "in": {
+      "v315": {
+        "cases": 100,
+        "sum_S": 19867,
+        "mean_S": 198.67,
+        "complete": 100,
+        "E_total": 0,
+        "max_external_seconds": 1.8854785820000188,
+        "over_1_9": 0,
+        "over_2": 0,
+        "relative_v800": 94.32756143112407
+      },
+      "v111": {
+        "cases": 100,
+        "sum_S": 19833,
+        "mean_S": 198.33,
+        "complete": 100,
+        "E_total": 0,
+        "max_external_seconds": 1.8858788499999264,
+        "over_1_9": 0,
+        "over_2": 0,
+        "relative_v800": 94.56480044615691
+      },
+      "v319": {
+        "cases": 100,
+        "sum_S": 19763,
+        "mean_S": 197.63,
+        "complete": 100,
+        "E_total": 0,
+        "max_external_seconds": 1.8851138490000494,
+        "over_1_9": 0,
+        "over_2": 0,
+        "relative_v800": 94.85618513932671
+      }
+    },
+    "validation1": {
+      "v315": {
+        "cases": 500,
+        "sum_S": 108650,
+        "mean_S": 217.3,
+        "complete": 500,
+        "E_total": 0,
+        "max_external_seconds": 1.889576820000002,
+        "over_1_9": 0,
+        "over_2": 0
+      },
+      "v111": {
+        "cases": 500,
+        "sum_S": 108271,
+        "mean_S": 216.542,
+        "complete": 500,
+        "E_total": 0,
+        "max_external_seconds": 1.8860495609999361,
+        "over_1_9": 0,
+        "over_2": 0
+      },
+      "v319": {
+        "cases": 500,
+        "sum_S": 108275,
+        "mean_S": 216.55,
+        "complete": 500,
+        "E_total": 0,
+        "max_external_seconds": 1.9020251389999885,
+        "over_1_9": 1,
+        "over_2": 0
+      }
+    }
+  },
+  "comparisons": {
+    "in": {
+      "v319_vs_v315": {
+        "delta_sum": -104,
+        "delta_mean": -1.04,
+        "wins": 53,
+        "ties": 18,
+        "losses": 29,
+        "relative_v800_delta": 0.5286237082026446
+      },
+      "v319_vs_v111": {
+        "delta_sum": -70,
+        "delta_mean": -0.7,
+        "wins": 46,
+        "ties": 20,
+        "losses": 34,
+        "relative_v800_delta": 0.2913846931698032
+      }
+    },
+    "validation1": {
+      "v319_vs_v315": {
+        "delta_sum": -375,
+        "delta_mean": -0.75,
+        "wins": 244,
+        "ties": 48,
+        "losses": 208
+      },
+      "v319_vs_v111": {
+        "delta_sum": 4,
+        "delta_mean": 0.008,
+        "wins": 204,
+        "ties": 89,
+        "losses": 207
+      }
+    }
+  }
+}

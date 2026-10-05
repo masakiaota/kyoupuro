@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 120,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v028_two_order_lns/0026.txt",
+  "best_sha256": "50e0e14f2fa25afac5320f3e5ab6c8c9c8943f2938e50222e93736d0b8447926",
+  "attempts": []
+}

@@ -1,0 +1,36 @@
+{
+  "files": {
+    "parent": {
+      "path": "src/bin/v022_dependency_lns.cpp",
+      "sha256": "d9a5b96d91f1a8b28460d9d54367e1a4c56e7e12877f33eca5b80612999f7605"
+    },
+    "solver": {
+      "path": "src/bin/v024_incoming_reinsertion.cpp",
+      "sha256": "274d653367ebd087e858ea2eeacc66b379f88b70ebdbc3fc0f47d8c65418742b"
+    },
+    "control": {
+      "path": "adhoc/bin/ablate_v024_dependency.cpp",
+      "sha256": "cb844429784d23d6091bb80b2f9605da17d0e4a19656bab3ac1c93c61fef7141"
+    }
+  },
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "machine": "arm64",
+  "full_preprocessor": "-E -P",
+  "initial_construction_rng_and_time_code_unchanged": true,
+  "evaluation_started": true,
+  "both_builds_passed": true,
+  "normalized_macro_diffs_checked": true,
+  "macro_differences": "IncomingLaunches and insertAt updates; LOCAL counters; assert locations normalized. Control removes support recording and dependency selection only.",
+  "fixed_work_passed": true,
+  "speed_criterion_passed": false,
+  "sources_unchanged_after_fixed_work": true,
+  "evaluation_completed": true,
+  "sources_unchanged_after_evaluation": true,
+  "run_ids": {
+    "v021_paired_event_lns": "20260927T093556+0900_v021_paired_event_lns_987039",
+    "v022_dependency_lns": "20260927T155946+0900_v022_dependency_lns_51c972",
+    "v024_incoming_reinsertion": "20260927T163352+0900_v024_incoming_reinsertion_2b7f00",
+    "ablate_v024_dependency": "20260927T163545+0900_ablate_v024_dependency_ed61a7"
+  },
+  "result": "rejected: speed threshold and total T improvement not achieved"
+}

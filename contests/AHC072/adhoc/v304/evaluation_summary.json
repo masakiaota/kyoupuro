@@ -1,0 +1,46 @@
+{
+  "main_commit": "d679c2dff215c76f8282f850ce3db9180755609c",
+  "parent": "v210_collection_color_quotient",
+  "viewer_registered": false,
+  "compiler": "GCC 14.2.0",
+  "LOCAL": false,
+  "program_budget_seconds": 1.9,
+  "parent_internal_deadline_seconds": 1.88,
+  "workers": 2,
+  "repetitions_per_version_case": 1,
+  "relative_reference": "Frozen per-case minimum over uploaded saved versions, including v800; 100/n * sum(reference/S)",
+  "in100": {
+    "v210": {"sum":20919,"mean":209.19,"relative":90.35232453701911,"pre_lns_mean":288.09,"pre_pair_mean":209.31,"construction_attempts_mean":22.04,"dp_words_mean":1824.29,"lns_start_mean":0.5710669,"lns_attempts_mean":1937.33},
+    "v304": {"sum":20948,"mean":209.48,"relative":90.3399399373365,"pre_lns_mean":291.50,"pre_pair_mean":209.71,"construction_attempts_mean":19.25,"dp_words_mean":2573.45,"lns_start_mean":0.58914979,"lns_attempts_mean":1867.86,"wins":42,"ties":5,"losses":53,"delta_mean_ci95":[-1.16,1.8]},
+    "v305": {"sum":20991,"mean":209.91,"relative":90.36942683248303,"pre_lns_mean":287.86,"pre_pair_mean":210.02,"construction_attempts_mean":19.93,"dp_words_mean":2352.27,"lns_start_mean":0.58995629,"lns_attempts_mean":1875.42,"wins":47,"ties":16,"losses":37,"delta_mean_ci95":[-1.04,2.64]}
+  },
+  "validation100": {
+    "v210":{"sum":23557,"mean":235.57},
+    "v304":{"sum":23508,"mean":235.08,"wins":48,"ties":12,"losses":40},
+    "v305":{"sum":23467,"mean":234.67,"wins":48,"ties":10,"losses":42}
+  },
+  "validation": {
+    "production_runs":600,"legal_and_complete":600,"diagnostics":0,
+    "official_rust_executable_used":false,
+    "validators":"Independent Python and C++ color-stack replay",
+    "max_external_seconds":{"v210":1.9029695029998948,"v304":1.9274038930000188,"v305":1.9339032790001056},
+    "external_over_1_9_count":{"v210":1,"v304":5,"v305":4}
+  },
+  "artificial_audit": {
+    "conditions":1008,"profile_matches":504,"new_positive_proposal_conditions":86,"independent_plan_replays":1844,"all_passed":true
+  },
+  "separate_trace20": {
+    "scope":"Instrumented diagnostic executions, NOT production scores; first 20 in-cases by input SHA256",
+    "seed_replays":298,
+    "v210":{"trials":498,"completed":277,"blocked_adopted":0,"max_colors":5,"max_runs":6,"edge_jaccard_distance":0.4813494139464028,"mean_memo_words":1859.15},
+    "v304":{"trials":412,"completed":232,"blocked_proposed":13655,"blocked_adopted":1174,"max_colors":7,"max_runs":8,"open_seed_count":90,"seed_count":98,"open_winners":19,"edge_jaccard_distance":0.45561494890781834,"mean_memo_words":2601.35},
+    "v305":{"trials":435,"completed":261,"open_trials":212,"open_completed":136,"blocked_proposed":7207,"blocked_adopted":608,"max_colors":7,"max_runs":8,"open_seed_count":57,"seed_count":100,"open_winners":8,"edge_jaccard_distance":0.48941348157370196,"mean_memo_words":2398.35}
+  },
+  "verdict":{"v304":"not adopted","v305":"not adopted","next_parent":"v210","in_mean_200_achieved":false},
+  "uncertainty":"One evaluation per input; confidence intervals resample cases only, not repeated-run timing noise. Two candidates were preregistered; intervals are not selection-adjusted.",
+  "source_sha256": {
+    "v210":"4be4bd07bee152643fe4620f50573764a5a74167a81d5f9c280f0655789feaed",
+    "v304":"18e996e11c5e7fa3584f2c04fd493701cadfb5110ce6fc2320b9942939c3c04e",
+    "v305":"10ae352ac937d371206b347274dbacb4580760d8d08539d5496e1a786157d8cf"
+  }
+}

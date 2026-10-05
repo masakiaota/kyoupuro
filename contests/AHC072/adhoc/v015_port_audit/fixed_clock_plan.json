@@ -1,0 +1,18 @@
+{
+  "purpose": "Compare outputs, RNG state and retained cache sizes with deterministic clock reads; not a score evaluation or runtime comparison.",
+  "cases": [
+    "0000",
+    "0001",
+    "0002",
+    "0003",
+    "0004"
+  ],
+  "clock_step_nanoseconds": 100003,
+  "runs_per_variant_per_case": 1,
+  "variants": [
+    "original",
+    "ported"
+  ],
+  "source_changes": false,
+  "solver_executed": false
+}

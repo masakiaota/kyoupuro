@@ -1,0 +1,96 @@
+{
+  "successful_steps": 316,
+  "steps_by_case": {
+    "case0025": 121,
+    "case0035": 115,
+    "case0033": 80
+  },
+  "sessions": [
+    {
+      "case": "case0025",
+      "session_id": "p_2e818f54-671c-486f-9a4a-f1dea4e7feba",
+      "node_id": "n121",
+      "T": 80,
+      "E": 0,
+      "output_sha256": "28d4a7cc88c32f9e58c2b9288a06513a2775ace247bd3715ef2b053198f84ac9"
+    },
+    {
+      "case": "case0035",
+      "session_id": "p_43fef3de-3c71-4e94-bed2-eb043c488fa6",
+      "node_id": "n115",
+      "T": 77,
+      "E": 0,
+      "output_sha256": "665a53da19650b245a8ef7171f9d519e7227fca140203eb45cf9ad62c839a8e0"
+    },
+    {
+      "case": "case0033",
+      "session_id": "p_ae62dcd8-be9b-401c-a792-e03474a4fbcc",
+      "node_id": "n80",
+      "T": 55,
+      "E": 47,
+      "output_sha256": "f238f5885ee439fe8400d7208162ac6b5c228a18335c46044f3794b351b0131e"
+    }
+  ],
+  "verified_comparisons": [
+    {
+      "name": "case0025",
+      "a": "n50",
+      "b": "n62",
+      "same_board": true,
+      "T_a": 39,
+      "T_b": 35,
+      "E_a": 14,
+      "E_b": 14
+    },
+    {
+      "name": "case0025",
+      "a": "n109",
+      "b": "n121",
+      "same_board": true,
+      "T_a": 82,
+      "T_b": 80,
+      "E_a": 0,
+      "E_b": 0
+    },
+    {
+      "name": "case0035",
+      "a": "n80",
+      "b": "n115",
+      "same_board": true,
+      "T_a": 80,
+      "T_b": 77,
+      "E_a": 0,
+      "E_b": 0
+    },
+    {
+      "name": "case0033",
+      "a": "n34",
+      "b": "n49",
+      "same_board": true,
+      "T_a": 34,
+      "T_b": 32,
+      "E_a": 57,
+      "E_b": 57
+    },
+    {
+      "name": "case0033",
+      "a": "n42",
+      "b": "n57",
+      "same_board": true,
+      "T_a": 42,
+      "T_b": 40,
+      "E_a": 50,
+      "E_b": 50
+    },
+    {
+      "name": "case0033",
+      "a": "n76",
+      "b": "n80",
+      "same_board": true,
+      "T_a": 59,
+      "T_b": 55,
+      "E_a": 47,
+      "E_b": 47
+    }
+  ]
+}

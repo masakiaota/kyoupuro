@@ -1,0 +1,228 @@
+struct TaskEdge {
+    vector<Move> path;
+    bool background=false;
+    string key;
+};
+
+// 経路の内部は一つの束を運ぶ。節目で初めて束の構成や予定便を選び直す。
+class TaskGraph {
+    Planner& planner;
+public:
+    int64_t routes=0,edges_count=0,multi_edges=0,legs=0,background_edges=0;
+    int maximum_length=0;
+    explicit TaskGraph(Planner& p):planner(p){}
+
+    vector<TaskEdge> edges(const string& key,const IdentityBoard& state,int limit) {
+        vector<TaskEdge> result;
+        const auto& board=planner.problem.board;
+        const int cells=board.cell_count,at=cursor(key);
+        if(at<int(planner.schedule.size())) {
+            const Move original=planner.schedule[at].move;
+            for(int k=0;k<int(state[original.p()].size());++k) {
+                Move m(original.p(),k,original.d(),original.l());
+                if(legal(board,state,m)&&planner.matches(key,state,m)) {
+                    result.push_back({{m},true,planner.apply(key,state,m,true)});
+                    ++background_edges;
+                }
+            }
+        }
+        array<bool,400> targets{};
+        vector<int> sources;
+        for(int p=0;p<cells;++p) {
+            if(!state[p].empty())targets[p]=true;
+            bool has_selected=false;
+            for(int id:state[p])if(planner.selected[id]) {
+                has_selected=true;
+                const int nest=board.nest_pos[planner.colors[id]];targets[nest]=true;
+                for(int d=0;d<4;++d)if(board.ray[nest][d][0]>=0)targets[board.ray[nest][d][0]]=true;
+            }
+            if(has_selected)sources.push_back(p);
+        }
+        for(int j=at;j<min(at+4,int(planner.schedule.size()));++j) {
+            const auto m=planner.schedule[j].move;
+            targets[m.p()]=true;targets[board.ray[m.p()][m.d()][m.l()-1]]=true;
+        }
+        if(sources.size()>=2) {
+            vector<pair<int,int>> meeting;
+            // 床距離だけを使い、保存された正解経路の位置は参照しない。
+            vector<vector<int>> distance;
+            for(int source:sources) {
+                vector<int> ds(cells,infinity),queue{source};ds[source]=0;
+                for(size_t i=0;i<queue.size();++i)for(int d=0;d<4;++d) {
+                    int q=board.ray[queue[i]][d][0];
+                    if(q>=0&&ds[q]==infinity){ds[q]=ds[queue[i]]+1;queue.push_back(q);}
+                }
+                distance.push_back(move(ds));
+            }
+            for(int p=0;p<cells;++p) {
+                int a=infinity,b=infinity;
+                for(const auto& ds:distance)if(ds[p]<a){b=a;a=ds[p];}else b=min(b,ds[p]);
+                meeting.emplace_back(a+b,p);
+            }
+            sort(meeting.begin(),meeting.end());
+            for(int i=0;i<min(4,int(meeting.size()));++i)targets[meeting[i].second]=true;
+        }
+        for(int source=0;source<cells;++source) {
+            if(state[source].empty()||!planner.selected[state[source].back()])continue;
+            int lowest=int(state[source].size())-1;
+            while(lowest>0&&planner.selected[state[source][lowest-1]])--lowest;
+            for(int keep=lowest;keep<int(state[source].size());++keep) {
+                ++routes;
+                vector<int> base(state[source].begin(),state[source].begin()+keep);
+                while(!base.empty()&&planner.colors[base.back()]==board.nest[source])base.pop_back();
+                vector<int> packet(state[source].begin()+keep,state[source].end());
+                array<int,400> background{};
+                for(int p=0;p<cells;++p)background[p]=int(state[p].size());
+                background[source]=int(base.size());
+                array<int,800> ds,parent,direction,length;ds.fill(-1);parent.fill(-1);
+                vector<int> queue{2*source};ds[2*source]=0;
+                for(size_t head=0;head<queue.size();++head) {
+                    const int z=queue[head],p=z/2,o=z&1;
+                    if(ds[z]>=limit)continue;
+                    const int top=planner.colors[o?packet.front():packet.back()];
+                    // 帰巣で束が変わる場所は到着候補にはするが、内部経路には使わない。
+                    if(z!=2*source&&board.nest[p]==top)continue;
+                    const int reach=z==2*source?keep+1:background[p]+1;
+                    for(int d=0;d<4;++d)for(int l=1;l<=min(8,reach);++l) {
+                        int q=board.ray[p][d][l-1];if(q<0)break;
+                        if(background[q]+int(packet.size())>8)continue;
+                        int nz=2*q+(o^1);if(ds[nz]>=0)continue;
+                        ds[nz]=ds[z]+1;parent[nz]=z;direction[nz]=d;length[nz]=l;queue.push_back(nz);
+                    }
+                }
+                for(int q=0;q<cells;++q)if(targets[q])for(int o=0;o<2;++o) {
+                    int z=2*q+o;if(ds[z]<=0)continue;
+                    vector<Move> path;
+                    for(int cur=z;parent[cur]>=0;cur=parent[cur]) {
+                        int previous=parent[cur],p=previous/2;
+                        path.emplace_back(p,previous==2*source?keep:background[p],direction[cur],length[cur]);
+                    }
+                    reverse(path.begin(),path.end());
+                    // 内部で保持した背景から終点を組み立てる。独立確認では全操作を再生する。
+                    vector<int> landing=q==source?base:state[q];
+                    if(o)landing.insert(landing.end(),packet.rbegin(),packet.rend());
+                    else landing.insert(landing.end(),packet.begin(),packet.end());
+                    while(!landing.empty()&&planner.colors[landing.back()]==board.nest[q])landing.pop_back();
+                    string next=key;
+                    for(int id:state[source])set_position(next,id,0);
+                    for(int id:state[q])set_position(next,id,0);
+                    if(q!=source)for(int i=0;i<int(base.size());++i)set_position(next,base[i],1+8*source+i);
+                    for(int i=0;i<int(landing.size());++i)set_position(next,landing[i],1+8*q+i);
+                    planner.canonicalize(next);planner.normalize(next);
+                    ++edges_count;multi_edges+=path.size()>1;legs+=path.size();maximum_length=max(maximum_length,int(path.size()));
+                    result.push_back({move(path),false,move(next)});
+                }
+            }
+        }
+        return result;
+    }
+    void check(const string& initial,const vector<TaskEdge>& edges) {
+        for(const auto& edge:edges) {
+            string key=initial;
+            for(Move m:edge.path) {
+                const auto state=planner.decode(key);
+                require(legal(planner.problem.board,state,m),"illegal task leg");
+                bool background=!planner.only_selected(state,m);
+                require(background==edge.background,"task moved fixed individuals");
+                if(background)require(planner.matches(key,state,m),"task violated fixed schedule");
+                auto next=planner.apply(key,state,m,background);
+                State reference;
+                for(int p=0;p<planner.problem.board.cell_count;++p)for(int id:state[p])reference.tower[p].push_top(planner.colors[id]);
+                reference.apply(planner.problem.board,m);
+                Problem::compare(reference,planner.decode(next),planner.colors);++planner.physical_checks;
+                key=move(next);
+            }
+            require(key==edge.key,"task endpoint mismatch");
+        }
+    }
+};
+
+struct SearchResult {
+    string status;
+    int best=0,minimum_open_bound=0;
+    int64_t labels=0,expanded=0,generated=0,pruned=0,dominated=0,goals=0;
+    int64_t routes=0,multi_edges=0,legs=0,background_edges=0;
+    int maximum_length=0;
+    double ms=0;
+    vector<Move> path;
+};
+
+SearchResult search(Planner& planner,const string& tag,ostream& checkpoints) {
+    const auto started=chrono::steady_clock::now();
+    auto elapsed=[&](){return chrono::duration<double,milli>(chrono::steady_clock::now()-started).count();};
+    struct Node {const string* key;int cost,parent;vector<Move> path;};
+    struct QueueEntry {
+        int estimate,negative_cursor,transport,negative_cost,index;
+        auto ordering()const{return tie(estimate,negative_cursor,transport,negative_cost,index);}
+        bool operator>(const QueueEntry& other)const{return ordering()>other.ordering();}
+    };
+    vector<Node> nodes;nodes.reserve(label_limit);
+    unordered_map<string,int> best_label;best_label.reserve(label_limit);
+    priority_queue<QueueEntry,vector<QueueEntry>,greater<QueueEntry>> queue;
+    SearchResult result;result.best=planner.original_length;TaskGraph graph(planner);
+    bool capped=false,expansion_cap=false;
+    auto reconstruct=[&](int parent,const vector<Move>& tail) {
+        vector<vector<Move>> parts{tail};
+        while(parent>=0&&nodes[parent].parent>=0){parts.push_back(nodes[parent].path);parent=nodes[parent].parent;}
+        vector<Move> path;for(auto it=parts.rbegin();it!=parts.rend();++it)path.insert(path.end(),it->begin(),it->end());
+        return path;
+    };
+    auto enqueue=[&](string key,int cost,int parent,const vector<Move>& path,Bound bound) {
+        if(!bound.alive) {
+            require(cursor(key)==int(planner.schedule.size()),"task goal before schedule end");
+            if(cost<result.best){result.best=cost;result.path=reconstruct(parent,path);++result.goals;}
+            return;
+        }
+        if(cost+bound.value>=result.best){++result.pruned;return;}
+        auto it=best_label.find(key);
+        if(it!=best_label.end()&&nodes[it->second].cost<=cost){++result.dominated;return;}
+        if(nodes.size()>=label_limit){capped=true;return;}
+        const int index=int(nodes.size());
+        if(it==best_label.end())it=best_label.emplace(move(key),index).first;else it->second=index;
+        nodes.push_back({&it->first,cost,parent,path});
+        queue.push({cost+bound.value,-cursor(*nodes.back().key),bound.transport,-cost,index});
+        if(nodes.size()==10000||nodes.size()==label_limit)
+            checkpoints<<tag<<','<<nodes.size()<<','<<result.expanded<<','<<result.best<<','<<queue.top().estimate<<','<<elapsed()<<'\n'<<flush;
+    };
+    const Bound initial=planner.lower_bound(planner.initial_key);
+    require(initial.alive>0,"empty task boundary");
+    enqueue(planner.initial_key,0,-1,{},initial);
+    int active_lower=initial.value;
+    while(!queue.empty()&&!capped&&result.path.empty()) {
+        const auto item=queue.top();queue.pop();active_lower=item.estimate;
+        if(item.estimate>=result.best)break;
+        if(result.expanded==4096){expansion_cap=true;break;}
+        const auto node=nodes[item.index];
+        if(best_label.find(*node.key)->second!=item.index)continue;
+        const auto state=planner.decode(*node.key);const Bound before=planner.lower_bound(*node.key);
+        auto next=graph.edges(*node.key,state,result.best-node.cost-1);
+        if(result.expanded<8){planner.check_edges(*node.key,state,planner.edges(*node.key,state));graph.check(*node.key,next);}
+        ++result.expanded;
+        for(auto& edge:next) {
+            ++result.generated;Bound bound=planner.lower_bound(edge.key);
+            require(before.value<=bound.value+int(edge.path.size()),"inconsistent task lower bound");++planner.bound_checks;
+            enqueue(move(edge.key),node.cost+int(edge.path.size()),item.index,edge.path,bound);
+            if(capped||!result.path.empty())break;
+        }
+    }
+    result.labels=nodes.size();result.ms=elapsed();
+    result.routes=graph.routes;result.multi_edges=graph.multi_edges;result.legs=graph.legs;
+    result.background_edges=graph.background_edges;result.maximum_length=graph.maximum_length;
+    result.status=!result.path.empty()?"first_improvement":capped?"label_cap":expansion_cap?"expansion_cap":"restricted_exhausted";
+    result.minimum_open_bound=min(active_lower,queue.empty()?result.best:queue.top().estimate);
+    if(!result.path.empty())require(planner.admit(result.path,true).accepted,"task output rejected");
+    return result;
+}
+
+// 保存手順の節目間と同じ盤面へ、生成した遷移が到達するかを照合する。
+int task_admission(Planner& planner,const vector<Move>& path) {
+    vector<string> keys{planner.initial_key};string key=keys[0];
+    for(Move m:path){auto state=planner.decode(key);key=planner.apply(key,state,m,!planner.only_selected(state,m));keys.push_back(key);}
+    vector<int> best(keys.size(),infinity);best[0]=0;TaskGraph graph(planner);
+    for(int i=0;i<int(path.size());++i)if(best[i]<infinity) {
+        auto edges=graph.edges(keys[i],planner.decode(keys[i]),int(path.size())-i);graph.check(keys[i],edges);
+        for(const auto& edge:edges)for(int j=i+1;j<int(keys.size());++j)
+            if(int(edge.path.size())<=j-i&&edge.key==keys[j])best[j]=min(best[j],best[i]+1);
+    }
+    return best.back()==infinity?-1:best.back();
+}

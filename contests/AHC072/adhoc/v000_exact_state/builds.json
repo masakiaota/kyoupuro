@@ -1,0 +1,67 @@
+[
+  {
+    "name": "template_local",
+    "command": [
+      "./scripts/build_solver.sh",
+      "v000_template"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "template_nonlocal",
+    "command": [
+      "./scripts/build_solver.sh",
+      "--no-local",
+      "v000_template"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "tower",
+    "command": [
+      "./scripts/build_solver.sh",
+      "check_v000_tower"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "apply",
+    "command": [
+      "./scripts/build_solver.sh",
+      "check_v000_apply"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "move",
+    "command": [
+      "./scripts/build_solver.sh",
+      "check_v000_move"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "board",
+    "command": [
+      "./scripts/build_solver.sh",
+      "check_v000_board"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "v030_compatibility",
+    "command": [
+      "./scripts/build_solver.sh",
+      "v030_state_capacity_bench"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "tower_bench_compatibility",
+    "command": [
+      "./scripts/build_solver.sh",
+      "bench_tower_ab"
+    ],
+    "returncode": 0
+  }
+]

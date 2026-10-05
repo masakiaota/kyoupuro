@@ -1,0 +1,380 @@
+// v000_template.cpp
+#if defined(__GNUC__) && !defined(__clang__)
+// 探索用の実数計算は丸め差を許容する。CPUの選択はビルド時の-march=nativeに任せる。
+#pragma GCC optimize("O3,unroll-loops,fast-math")
+#endif
+// 小さな頻出関数でO3後も呼び出しが残る場合は、速度改善を確認して[[gnu::always_inline]]を付ける。
+// クラス外で定義する場合はinlineも付ける。
+// __restrict__は、読み書きする領域が他の参照と重ならないと保証できるポインタ引数・局所ポインタに付ける。
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/// AtCoder 側の基準の探索打ち切り秒数。コンテストごとに調整する。
+constexpr double JUDGE_TIME_LIMIT_SEC = 1.90;
+/// LOCAL 時はローカル実行の速度差を見込んで探索時間を短くする。
+constexpr double LOCAL_TIME_RATIO = 0.80;
+
+#ifdef LOCAL
+constexpr double PROGRAM_TIME_LIMIT_SEC = JUDGE_TIME_LIMIT_SEC * LOCAL_TIME_RATIO;
+#else
+constexpr double PROGRAM_TIME_LIMIT_SEC = JUDGE_TIME_LIMIT_SEC;
+#endif
+
+#ifdef LOCAL
+struct TraceStats {
+    size_t fallback_count = 0;
+    map<string, int64_t> counts;
+    map<string, double> times_ms;
+
+    void mark_fallback() {
+        ++fallback_count;
+    }
+
+    void count(const string& key) {
+        count_by(key, 1);
+    }
+
+    void count_by(const string& key, int64_t delta) {
+        counts[key] += delta;
+    }
+
+    void add_time_ms(const string& key, double ms) {
+        times_ms[key] += ms;
+    }
+
+    void summary() const {
+        cerr << "[summary] fallback_count=" << fallback_count << '\n';
+        for (const auto& [key, value] : counts) {
+            cerr << "[summary.count] " << key << '=' << value << '\n';
+        }
+        const auto old_flags = cerr.flags();
+        const auto old_precision = cerr.precision();
+        cerr << fixed << setprecision(3);
+        for (const auto& [key, value] : times_ms) {
+            cerr << "[summary.time_ms] " << key << '=' << value << '\n';
+        }
+        cerr.flags(old_flags);
+        cerr.precision(old_precision);
+    }
+};
+
+template <class F>
+decltype(auto) local_time_impl(TraceStats& trace, const string& key, F&& body) {
+    const auto start = chrono::steady_clock::now();
+    if constexpr (is_void_v<invoke_result_t<F>>) {
+        invoke(forward<F>(body));
+        const double ms = chrono::duration<double, milli>(chrono::steady_clock::now() - start).count();
+        trace.add_time_ms(key, ms);
+    } else {
+        auto result = invoke(forward<F>(body));
+        const double ms = chrono::duration<double, milli>(chrono::steady_clock::now() - start).count();
+        trace.add_time_ms(key, ms);
+        return result;
+    }
+}
+
+#define LOCAL_ONLY(...) do { __VA_ARGS__; } while (false)
+#define LOCAL_TIME(trace, key, ...) local_time_impl((trace), (key), (__VA_ARGS__))
+#else
+#define LOCAL_ONLY(...) do { } while (false)
+#define LOCAL_TIME(trace, key, ...) (__VA_ARGS__)()
+#endif
+
+class TimeKeeper {
+public:
+    /// check_interval_log2 = 8 なら 2^8 = 256 反復ごとに時計更新する。
+    explicit TimeKeeper(double time_limit_sec, uint32_t check_interval_log2)
+        : start_(chrono::steady_clock::now()), time_limit_sec_(time_limit_sec) {
+        assert(time_limit_sec > 0.0);
+        assert(check_interval_log2 < 63);
+        check_mask_ = check_interval_log2 == 0 ? 0 : (uint64_t{1} << check_interval_log2) - 1;
+        force_update();
+    }
+
+    /// ホットループではこれだけ呼ぶ。true なら継続、false なら打ち切る。
+    [[gnu::always_inline]] bool step() {
+        ++iter_;
+        if ((iter_ & check_mask_) == 0) {
+            force_update();
+        }
+        return !is_over_;
+    }
+
+    /// 明示的に時計を更新したいときに使う。
+    [[gnu::always_inline]] void force_update() {
+        const double elapsed = exact_elapsed_sec();
+        elapsed_sec_ = elapsed;
+        progress_ = clamp(elapsed / time_limit_sec_, 0.0, 1.0);
+        is_over_ = elapsed >= time_limit_sec_;
+    }
+
+    /// batched な経過時間。
+    [[gnu::always_inline]] double elapsed_sec() const {
+        return elapsed_sec_;
+    }
+
+    /// batched な進捗率 [0, 1]。
+    [[gnu::always_inline]] double progress() const {
+        return progress_;
+    }
+
+    /// batched な時間切れ判定。
+    [[gnu::always_inline]] bool is_time_over() const {
+        return is_over_;
+    }
+
+    /// ログ用の正確な経過時間。
+    double exact_elapsed_sec() const {
+        return chrono::duration<double>(chrono::steady_clock::now() - start_).count();
+    }
+
+    /// ログ用の正確な残り時間。
+    double exact_remaining_sec() const {
+        return max(0.0, time_limit_sec_ - exact_elapsed_sec());
+    }
+
+private:
+    chrono::steady_clock::time_point start_;
+    double time_limit_sec_;
+    uint64_t iter_ = 0;
+    uint64_t check_mask_ = 0;
+    double elapsed_sec_ = 0.0;
+    double progress_ = 0.0;
+    bool is_over_ = false;
+};
+
+// 問題の入力条件を満たすことを前提に読み込む。
+struct Input {
+    int N = 0, K = 0;
+    vector<string> C;
+
+    void read(istream& in = cin) {
+        in >> N >> K;
+        C.resize(N);
+        for (auto& row : C) in >> row;
+    }
+};
+
+struct Point {
+    int i, j;
+};
+
+// 入力から一度だけ作る地形・巣の情報。塔の変化する状態は持たない。
+struct Board {
+    // d = 0, 1, 2, 3 は U, D, L, R に対応する。
+    static constexpr array<int, 4> di{-1, 1, 0, 0};
+    static constexpr array<int, 4> dj{0, 0, -1, 1};
+    static constexpr uint16_t unreachable_distance = numeric_limits<uint16_t>::max();
+
+    int cell_count = 0;
+    // 床だけに行優先で連番を振る。壁と盤外の未使用領域は -1。
+    array<array<int16_t, 20>, 20> cell_id;
+    vector<Point> coordinates;
+    vector<int> nest;             // nest[p]: 巣の色。巣がなければ -1。
+    vector<int16_t> nest_pos;      // nest_pos[c]: 色 c の巣の床マスID。
+
+    // ray[p][d][l - 1]: 途中もすべて床なら移動先ID、それ以外は -1。
+    // 途中の塔は飛び越えられるため、初期スライムの位置には依存しない。
+    // 4近傍の移動先は ray[p][d][0] で取得できる。
+    vector<array<array<int16_t, 8>, 4>> ray;
+
+    // floor_dist[p * cell_count + q]: 壁だけを考慮した4近傍最短距離。
+    // 塔の高さ・着地容量・帰巣を含まず、実際の最短操作数は表さない。
+    vector<uint16_t> floor_dist;
+
+    explicit Board(const Input& input) {
+        for (auto& row : cell_id) row.fill(-1);
+        coordinates.reserve(input.N * input.N);
+        for (int i = 0; i < input.N; ++i) {
+            for (int j = 0; j < input.N; ++j) {
+                if (input.C[i][j] == '#') continue;
+                cell_id[i][j] = static_cast<int16_t>(cell_count++);
+                coordinates.push_back({i, j});
+            }
+        }
+
+        nest.assign(cell_count, -1);
+        nest_pos.assign(input.K, -1);
+        ray.resize(cell_count);
+        for (int p = 0; p < cell_count; ++p) {
+            const auto [i, j] = coordinates[p];
+            const char ch = input.C[i][j];
+            if ('A' <= ch && ch <= 'L') {
+                const int c = ch - 'A';
+                nest[p] = c;
+                nest_pos[c] = static_cast<int16_t>(p);
+            }
+            for (int d = 0; d < 4; ++d) {
+                ray[p][d].fill(-1);
+                for (int l = 1; l <= 8; ++l) {
+                    const int ni = i + di[d] * l, nj = j + dj[d] * l;
+                    if (ni < 0 || ni >= input.N || nj < 0 || nj >= input.N) break;
+                    const int q = cell_id[ni][nj];
+                    if (q < 0) break;
+                    ray[p][d][l - 1] = static_cast<int16_t>(q);
+                }
+            }
+        }
+        // 各床を始点にBFSする。全点対でも O(cell_count^2)、最大400^2要素。
+        floor_dist.assign(size_t(cell_count) * cell_count, unreachable_distance);
+        array<int16_t, 400> queue;
+        for (int source = 0; source < cell_count; ++source) {
+            // この距離行への読み書きはdistだけを使い、rayとqueueの領域とは重ならない。
+            uint16_t* __restrict__ dist = floor_dist.data() + source * cell_count;
+            int head = 0, tail = 0;
+            dist[source] = 0;
+            queue[tail++] = static_cast<int16_t>(source);
+            while (head < tail) {
+                const int p = queue[head++];
+                for (int d = 0; d < 4; ++d) {
+                    const int q = ray[p][d][0];
+                    if (q < 0 || dist[q] != unreachable_distance) continue;
+                    dist[q] = static_cast<uint16_t>(dist[p] + 1);
+                    queue[tail++] = static_cast<int16_t>(q);
+                }
+            }
+        }
+    }
+
+    int floor_distance(int p, int q) const {
+        return floor_dist[p * cell_count + q];
+    }
+};
+
+// 1塔を32 bitで保持する。下から順に4 bitずつ c + 1 を詰め、
+// 未使用の上位部分を0にする。色0も非零になるため、高さを別に保存せず求められる。
+// 色・添字・高さは呼び出し側が条件を満たす。top/popは非空、追加後は高さ8以下。
+struct Tower {
+    uint32_t bits = 0;
+    static constexpr array<uint32_t, 9> mask{
+        0u, 0xfu, 0xffu, 0xfffu, 0xffffu, 0xfffffu, 0xffffffu, 0xfffffffu, 0xffffffffu};
+
+    bool empty() const { return bits == 0; }
+    int height() const { return (bit_width(bits) + 3) / 4; }
+    int at(int i) const { return int((bits >> (4 * i)) & 15u) - 1; }
+    int top() const { return int(bits >> (4 * (height() - 1))) - 1; }
+    int bottom() const { return int(bits & 15u) - 1; }
+
+    // 高さが既知の処理では、h/gを渡すオーバーロードで再計算を省ける。
+    void reverse() { reverse(height()); }
+    void reverse(int h) {
+        const uint32_t swapped = ((bits >> 4) & 0x0f0f0f0fu)
+                               | ((bits & 0x0f0f0f0fu) << 4);
+        // 4 bit単位の反転。64 bitに拡張し、空塔の32 bitシフトも定義済みにする。
+        bits = uint32_t(uint64_t(byteswap(swapped)) >> (4 * (8 - h)));
+    }
+
+    // 上側n匹を順序を保って切り出す。0 <= n <= h。
+    Tower take_top(int n) { return take_top(n, height()); }
+    Tower take_top(int n, int h) {
+        const int k = h - n;
+        const Tower result{uint32_t(uint64_t(bits) >> (4 * k))};
+        bits &= mask[k];
+        return result;
+    }
+
+    // upperを順序を保って上へ追加する。空塔の追加も扱える。
+    void append_top(Tower upper) { append_top(upper, height()); }
+    void append_top(Tower upper, int g) {
+        bits |= uint32_t(uint64_t(upper.bits) << (4 * g));
+    }
+
+    void push_top(int c) { bits |= uint32_t(c + 1) << (4 * height()); }
+    void push_bottom(int c) { bits = (bits << 4) | uint32_t(c + 1); }
+    void pop_top() { bits &= mask[height() - 1]; }
+    void pop_bottom() { bits >>= 4; }
+
+    // 巣の色cと一致する最上段の連続部分を除き、帰巣数を返す。巣なしはc=-1。
+    int home(int c) { return home(c, height()); }
+    int home(int c, int h) {
+        if (c < 0) return 0;
+        const uint32_t different = (bits ^ (0x11111111u * uint32_t(c + 1))) & mask[h];
+        // 最上位の「巣と異なる段」より下はすべて残るため、一括で切り詰められる。
+        const int remaining = (bit_width(different) + 3) / 4;
+        bits &= mask[remaining];
+        return h - remaining;
+    }
+};
+
+// 1手を4 byteで保持する。pは床マスID、dは0=U, 1=D, 2=L, 3=R。
+// 値域（p:0..399, k:0..7, d:0..3, l:1..8）は呼び出し側が保証する。
+// 操作の合法性と盤面の更新は利用側で扱う。
+struct Move {
+    constexpr Move(int p, int k, int d, int l)
+        : p_(uint16_t(p)), k_(uint8_t(k)), dl_(uint8_t((d << 3) | (l - 1))) {}
+
+    constexpr int p() const { return p_; }
+    constexpr int k() const { return k_; }
+    constexpr int d() const { return dl_ >> 3; }
+    constexpr int l() const { return (dl_ & 7) + 1; }
+
+private:
+    uint16_t p_;
+    uint8_t k_;
+    // 下位3 bitがl-1、続く2 bitがd。距離8も3 bitに収める。
+    uint8_t dl_;
+};
+
+// 地形・巣はBoardで共有し、各状態は塔だけを持つ。最大400マスで1,600 byte。
+// State trial = state; で独立した盤面を作り、試行後は採用する盤面を代入する。
+struct State {
+    array<Tower, 400> tower{};
+
+    State() = default;
+    State(const Input& input, const Board& board) {
+        for (int p = 0; p < board.cell_count; ++p) {
+            const auto [i, j] = board.coordinates[p];
+            const char ch = input.C[i][j];
+            if ('a' <= ch && ch <= 'l') tower[p].bits = uint32_t(ch - 'a' + 1);
+        }
+    }
+
+    // 合法手のみを受け取る前提。両地点の帰巣を適用し、帰巣数を返す。
+    int apply(const Board& board, Move move) {
+        const int p = move.p(), k = move.k();
+        const int q = board.ray[p][move.d()][move.l() - 1];
+
+        // 塔を値として処理し、盤面への書き戻しを最後の2か所にまとめる。
+        Tower source = tower[p], dest = tower[q];
+        const int h = source.height(), g = dest.height();
+        const int n = h - k;
+        Tower flying = source.take_top(n, h);
+        flying.reverse(n);
+        dest.append_top(flying, g);
+
+        const int homed = source.home(board.nest[p], k)
+                        + dest.home(board.nest[q], g + n);
+        tower[p] = source;
+        tower[q] = dest;
+        return homed;
+    }
+};
+
+int main() {
+    // TimeKeeper は main 開始直後に作り、探索打ち切りには PROGRAM_TIME_LIMIT_SEC を使う。
+    // フェーズ切替などの時間系パラメータは PROGRAM_TIME_LIMIT_SEC に対する割合で指定する。
+    [[maybe_unused]] TimeKeeper time_keeper(PROGRAM_TIME_LIMIT_SEC, 8);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+#ifdef LOCAL
+    TraceStats trace;
+#endif
+    Input input;
+    LOCAL_TIME(trace, "read_input", [&] { input.read(); });
+    const Board board = LOCAL_TIME(trace, "prepare_board", [&] { return Board(input); });
+    [[maybe_unused]] const State initial = LOCAL_TIME(trace, "prepare_state", [&] {
+        return State(input, board);
+    });
+    LOCAL_ONLY(
+        int initial_slimes = 0;
+        for (int p = 0; p < board.cell_count; ++p) initial_slimes += initial.tower[p].height();
+        trace.count_by("initial_slimes", initial_slimes);
+        trace.count_by("state_bytes", sizeof(State));
+        trace.count_by("floor_cells", board.cell_count);
+        trace.count_by("ray_bytes", board.ray.size() * sizeof(board.ray[0]));
+        trace.count_by("floor_dist_bytes", board.floor_dist.size() * sizeof(uint16_t));
+        trace.summary();
+    );
+    return 0;
+}

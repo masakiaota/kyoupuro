@@ -1,0 +1,97 @@
+[
+  {
+    "old": "// v201_floor_nn_selector.cpp",
+    "new": "// v203_floor_nn_initial_race.cpp",
+    "offset": 0
+  },
+  {
+    "old": "    double lns_start=0;",
+    "new": "    double lns_start=0;\n    vector<Move> current;\n    int stagnant=0;\n    bool initialized=false;\n    double active_seconds=0;",
+    "offset": 122438
+  },
+  {
+    "old": "    void optimize(vector<Move>& best) {",
+    "new": "    uint64_t random_state=1;\n    void accumulate(const TemporalLNS& other) {\n        attempts+=other.attempts;\n        insertions+=other.insertions;\n        accepted+=other.accepted;\n        improvements+=other.improvements;\n        shortcuts+=other.shortcuts;\n        block_attempts+=other.block_attempts;\n        block_accepted+=other.block_accepted;\n        block_improvements+=other.block_improvements;\n        uphill+=other.uphill;\n        restarts+=other.restarts;\n        flexible_attempts+=other.flexible_attempts;\n        flexible_accepted+=other.flexible_accepted;\n        flexible_improvements+=other.flexible_improvements;\n        flexible_saved+=other.flexible_saved;\n        reorder_attempts+=other.reorder_attempts;\n        reorder_improvements+=other.reorder_improvements;\n        reorder_saved+=other.reorder_saved;\n        duplicates+=other.duplicates;\n        paired_attempts+=other.paired_attempts;\n        paired_accepted+=other.paired_accepted;\n        paired_improvements+=other.paired_improvements;\n        paired_saved+=other.paired_saved;\n        backward_attempts+=other.backward_attempts;\n        backward_improvements+=other.backward_improvements;\n        backward_saved+=other.backward_saved;\n        paired_seconds+=other.paired_seconds;\n        block_seconds+=other.block_seconds;\n        build_seconds+=other.build_seconds;\n    }\n    void optimize(vector<Move>& best,double slice_end,double search_start,double search_end) {\n        const double slice_begin=time_keeper.exact_elapsed_sec();\n        // 中断期間を候補自身の費用へ含めず、乱数も候補ごとに続きから使う。\n        struct SliceScope {\n            double& seconds;uint64_t& state;uint64_t previous;double begin;\n            ~SliceScope(){seconds+=time_keeper.exact_elapsed_sec()-begin;state=rng.x;rng.x=previous;}\n        } scope{active_seconds,random_state,rng.x,slice_begin};\n        rng.x=random_state;\n        lns_start=search_start;\n        auto rebuild=[&](){double t=time_keeper.exact_elapsed_sec();make_candidates(current);build_seconds+=time_keeper.exact_elapsed_sec()-t;};\n        LOCAL_ONLY(trace.count_by(\"race_resumes\",initialized));",
+    "offset": 175221
+  },
+  {
+    "old": "        LOCAL_NOTE(trace.count_by(\"selector_nn_enabled\",use_nn); trace.count_by(\"selector_M\",board_info.M);)\n",
+    "new": "",
+    "offset": 177450
+  },
+  {
+    "old": "        started_at=time_keeper.exact_elapsed_sec();\n        auto current=smooth_routes(best);",
+    "new": "        if(!initialized) {\n        started_at=time_keeper.exact_elapsed_sec();\n        current=smooth_routes(best);",
+    "offset": 177450
+  },
+  {
+    "old": "search_reductions.cheap(current,PROGRAM_TIME_LIMIT_SEC);",
+    "new": "search_reductions.cheap(current,min(slice_end,search_end));",
+    "offset": 177637
+  },
+  {
+    "old": "search_reductions.cheap(polished,PROGRAM_TIME_LIMIT_SEC);",
+    "new": "search_reductions.cheap(polished,min(slice_end,search_end));",
+    "offset": 178289
+  },
+  {
+    "old": "        initialize_spatial_cuts();\n        auto rebuild=[&](){double t=time_keeper.exact_elapsed_sec();make_candidates(current);build_seconds+=time_keeper.exact_elapsed_sec()-t;};\n        rebuild();lns_start=time_keeper.exact_elapsed_sec();int stagnant=0;\n        const double end=LOCAL_SECONDS(1.900);\n        double temperature=lns_start_temperature;\n        while(time_keeper.exact_elapsed_sec()<end) {",
+    "new": "        initialize_spatial_cuts();\n        rebuild();initialized=true;\n        }\n        const double end=search_end;\n        // 切り替え時の再加熱を避け、全候補を同じ全体進捗で冷却する。\n        const double initial_progress=clamp((time_keeper.exact_elapsed_sec()-lns_start)/max(PROGRAM_TIME_LIMIT_SEC*(0.02/1.90),end-lns_start),0.0,1.0);\n        double temperature=lns_start_temperature*pow(lns_end_temperature/lns_start_temperature,initial_progress);\n        while(time_keeper.exact_elapsed_sec()<min(slice_end,end)) {",
+    "offset": 178810
+  },
+  {
+    "old": "paired_seconds<0.11*max(LOCAL_SECONDS(0.03),time_keeper.exact_elapsed_sec()-lns_start)",
+    "new": "paired_seconds<0.11*max(PROGRAM_TIME_LIMIT_SEC*(0.03/1.90),active_seconds+time_keeper.exact_elapsed_sec()-slice_begin)",
+    "offset": 180136
+  },
+  {
+    "old": "block_seconds<0.22*max(LOCAL_SECONDS(0.03),time_keeper.exact_elapsed_sec()-lns_start)",
+    "new": "block_seconds<0.22*max(PROGRAM_TIME_LIMIT_SEC*(0.03/1.90),active_seconds+time_keeper.exact_elapsed_sec()-slice_begin)",
+    "offset": 180395
+  },
+  {
+    "old": "int main() {",
+    "new": "\n// 構築直後には同手数でも、その後の短縮余地が異なり得るため別の操作列を残す。\nstruct InitialSolutions {\n    struct Entry { vector<Move> moves; int origin; };\n    vector<Entry> entries;\n    void offer(const vector<Move>& moves,int origin) {\n        LOCAL_ONLY(trace.count_by(\"race_offered\",1));\n        for(const auto& entry:entries) {\n            if(entry.moves.size()!=moves.size())continue;\n            bool same=true;\n            for(size_t i=0;i<moves.size();i++) {\n                const auto a=entry.moves[i],b=moves[i];\n                if(a.p!=b.p||a.k!=b.k||a.d!=b.d||a.l!=b.l){same=false;break;}\n            }\n            if(same){LOCAL_ONLY(trace.count_by(\"race_duplicates\",1));return;}\n        }\n        const auto at=upper_bound(entries.begin(),entries.end(),moves.size(),\n            [](size_t size,const Entry& entry){return size<entry.moves.size();});\n        if(at==entries.end()&&entries.size()==4)return;\n        entries.insert(at,Entry{moves,origin});\n        if(entries.size()>4)entries.pop_back();\n        LOCAL_ONLY(trace.count_by(\"race_retained\",1));\n    }\n    size_t construction_cap() const {\n        // 最長候補と同じ手数まで完成させ、別の初期解を選抜へ渡せるようにする。\n        return entries.back().moves.size()+1;\n    }\n};\n\nvoid grow_initial_solutions(vector<Move>& best,InitialSolutions& pool,TemporalLNS& total) {\n    const double start=time_keeper.exact_elapsed_sec(),end=PROGRAM_TIME_LIMIT_SEC;\n    const double budget=max(0.0,end-start);\n    const int count=int(pool.entries.size());\n    if(count==0)throw logic_error(\"empty initial solution pool\");\n    vector<unique_ptr<TemporalLNS>> searches;\n    vector<int> active(count);iota(active.begin(),active.end(),0);\n    for(int id=0;id<count;id++) {\n        searches.push_back(make_unique<TemporalLNS>());\n        searches.back()->random_state=rng.next();\n        LOCAL_ONLY(\n            trace.count_by(\"race_seed_\"+to_string(id)+\"_initial_ops\",pool.entries[id].moves.size());\n            trace.count_by(\"race_seed_\"+to_string(id)+\"_origin\",pool.entries[id].origin);\n        );\n    }\n    total.started_at=start;\n    LOCAL_ONLY(trace.count_by(\"race_seed_count\",count));\n    auto grow=[&](int id,double until,[[maybe_unused]] int round) {\n        LOCAL_NOTE(const double began=time_keeper.exact_elapsed_sec();const int previous_attempts=searches[id]->attempts;)\n        auto record=[&]() {\n            LOCAL_ONLY(\n                const string prefix=\"race_round_\"+to_string(round);\n                trace.count_by(prefix+\"_grown\",1);\n                trace.count_by(prefix+\"_seed_\"+to_string(id)+\"_ops\",pool.entries[id].moves.size());\n                trace.count_by(prefix+\"_seed_\"+to_string(id)+\"_attempts\",searches[id]->attempts-previous_attempts);\n                trace.add_time_ms(prefix,(time_keeper.exact_elapsed_sec()-began)*1000.0);\n            );\n        };\n        try { searches[id]->optimize(pool.entries[id].moves,until,start,end); }\n        catch(...) {\n            if(pool.entries[id].moves.size()<best.size())best=pool.entries[id].moves;\n            record();\n            throw;\n        }\n        if(pool.entries[id].moves.size()<best.size())best=pool.entries[id].moves;\n        record();\n    };\n    auto summarize=[&]() {\n        for(int id=0;id<count;id++) {\n            total.accumulate(*searches[id]);\n            LOCAL_ONLY(trace.count_by(\"race_seed_\"+to_string(id)+\"_final_ops\",pool.entries[id].moves.size()));\n        }\n    };\n    try {\n        // 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。\n        for(int round=0;round<2&&active.size()>1;round++) {\n            const double round_end=start+budget*(0.15*(round+1));\n            for(size_t pos=0;pos<active.size();pos++) {\n                const double now=time_keeper.exact_elapsed_sec();\n                const double until=now+max(0.0,round_end-now)/double(active.size()-pos);\n                grow(active[pos],until,round);\n            }\n            sort(active.begin(),active.end(),[&](int a,int b) {\n                const size_t left=pool.entries[a].moves.size(),right=pool.entries[b].moves.size();\n                return left!=right?left<right:a<b;\n            });\n            active.resize(round==0?(active.size()+1)/2:1);\n            LOCAL_ONLY(trace.count_by(\"race_round_\"+to_string(round)+\"_survivors\",active.size()));\n        }\n        const int winner=active.front();\n        LOCAL_ONLY(\n            trace.count_by(\"race_winner_initial_rank\",winner);\n            trace.count_by(\"race_winner_changed\",winner!=0);\n            trace.count_by(\"race_selection_saved\",int(pool.entries[0].moves.size())-int(pool.entries[winner].moves.size()));\n        );\n        grow(winner,end,2);\n        // 終了後の処理にも、選ばれた探索の乱数列を引き継ぐ。\n        rng.x=searches[winner]->random_state;\n    } catch(...) {summarize();throw;}\n    summarize();\n}\n\nint main() {",
+    "offset": 195064
+  },
+  {
+    "old": "    vector<Move> best;size_t baseline=0;",
+    "new": "    vector<Move> best;size_t baseline=0;\n    InitialSolutions initial_solutions;",
+    "offset": 200530
+  },
+  {
+    "old": "            ConstructionState w=tree_baseline(v);",
+    "new": "            ConstructionState w=tree_baseline(v);\n            initial_solutions.offer(w.moves,-1-v);",
+    "offset": 200684
+  },
+  {
+    "old": "    EmptyDP potential;",
+    "new": "    initial_solutions.offer(best,-4);\n    EmptyDP potential;",
+    "offset": 201153
+  },
+  {
+    "old": "            Constructor solver(potential,attempts++,end,best.size());",
+    "new": "            Constructor solver(potential,attempts++,end,initial_solutions.construction_cap());",
+    "offset": 201807
+  },
+  {
+    "old": "            if(!result.E){completed++;if(result.moves.size()<best.size())best=move(result.moves);}",
+    "new": "            if(!result.E){completed++;initial_solutions.offer(result.moves,attempts-1);if(result.moves.size()<best.size())best=move(result.moves);}",
+    "offset": 201953
+  },
+  {
+    "old": "    try {lns.optimize(best);}",
+    "new": "    try {grow_initial_solutions(best,initial_solutions,lns);}",
+    "offset": 202818
+  },
+  {
+    "old": "    TemporalLNS lns;",
+    "new": "    LOCAL_ONLY(trace.count_by(\"selector_nn_enabled\",nn_selector_choice(nn_selector_features()));trace.count_by(\"selector_M\",board_info.M));\n    TemporalLNS lns;",
+    "offset": 202797
+  },
+  {
+    "old": "        started_at=time_keeper.exact_elapsed_sec();\n        current=smooth_routes(best);\n        const size_t before_initial_reductions=current.size();\n        search_reductions.cheap(current,min(slice_end,search_end));\n        search_reductions.initial_saved+=before_initial_reductions-current.size();\n        LOCAL_NOTE(trace.count_by(\"lns_initial_shortcut_saved\", int(best.size()) - int(current.size()));)\n        shortcuts+=int(best.size())-int(current.size());\n        if(current.size()<best.size())best=current;\n        // 最初の並べ替えは短くなった場合に採用し、同手数の別順序は後の探索で扱う。\n        auto reordered=causal_reorder(current,0);++reorder_attempts;\n        if(!same_moves(reordered,current)) {\n            auto polished=smooth_routes(reordered);\n            const size_t before_initial_reductions=polished.size();\n            search_reductions.cheap(polished,min(slice_end,search_end));\n            search_reductions.initial_reorder_saved+=before_initial_reductions-polished.size();\n            if(polished.size()<current.size()) {\n                LOCAL_NOTE(trace.count_by(\"lns_initial_reorder_saved\", int(current.size()) - int(polished.size()));)\n                ++reorder_improvements;reorder_saved+=int(current.size()-polished.size());\n                current=move(polished);if(current.size()<best.size())best=current;\n            }\n        }\n        initialize_spatial_cuts();\n        rebuild();initialized=true;\n",
+    "new": "            started_at=time_keeper.exact_elapsed_sec();\n            current=smooth_routes(best);\n            const size_t before_initial_reductions=current.size();\n            search_reductions.cheap(current,min(slice_end,search_end));\n            search_reductions.initial_saved+=before_initial_reductions-current.size();\n            LOCAL_NOTE(trace.count_by(\"lns_initial_shortcut_saved\", int(best.size()) - int(current.size()));)\n            shortcuts+=int(best.size())-int(current.size());\n            if(current.size()<best.size())best=current;\n            // 最初の並べ替えは短くなった場合に採用し、同手数の別順序は後の探索で扱う。\n            auto reordered=causal_reorder(current,0);++reorder_attempts;\n            if(!same_moves(reordered,current)) {\n                auto polished=smooth_routes(reordered);\n                const size_t before_initial_reductions=polished.size();\n                search_reductions.cheap(polished,min(slice_end,search_end));\n                search_reductions.initial_reorder_saved+=before_initial_reductions-polished.size();\n                if(polished.size()<current.size()) {\n                    LOCAL_NOTE(trace.count_by(\"lns_initial_reorder_saved\", int(current.size()) - int(polished.size()));)\n                    ++reorder_improvements;reorder_saved+=int(current.size()-polished.size());\n                    current=move(polished);if(current.size()<best.size())best=current;\n                }\n            }\n            initialize_spatial_cuts();\n            rebuild();initialized=true;\n",
+    "offset": 177477
+  }
+]

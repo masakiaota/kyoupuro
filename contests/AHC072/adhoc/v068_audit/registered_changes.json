@@ -1,0 +1,38 @@
+[
+  {
+    "before": "// v059_repair_priority.cpp",
+    "after": "// v068_size_selector.cpp"
+  },
+  {
+    "before": "} geo;",
+    "after": "} geo;\n\n// validation1で得た境界を固定し、入力時に選んだ方式へ全探索予算を渡す。\nconstexpr bool use_repair_priority_for(int M) { return M>=80; }\nbool use_repair_priority=false;"
+  },
+  {
+    "before": "    static constexpr array<int,4> heavy_kinds={FINAL_JOINT,FINAL_STRICT,FINAL_SLACK,FINAL_FINITE};",
+    "after": "    static constexpr array<int,4> repair_heavy_kinds={FINAL_JOINT,FINAL_STRICT,FINAL_SLACK,FINAL_FINITE};\n#ifdef LOCAL\n    array<int64_t,FINAL_KINDS> best_created_with{};\n#endif\n    // v058: reserve 3/4 of calls for joint shortening within the same time budget.\n    // Keep each other method once per cycle; advancing still requires budget.\n    static constexpr array<int,12> joint_heavy_kinds={\n        FINAL_JOINT,FINAL_JOINT,FINAL_JOINT,FINAL_STRICT,\n        FINAL_JOINT,FINAL_JOINT,FINAL_JOINT,FINAL_SLACK,\n        FINAL_JOINT,FINAL_JOINT,FINAL_JOINT,FINAL_FINITE,\n    };"
+  },
+  {
+    "before": "        const int kind=heavy_kinds[next_heavy];next_heavy=(next_heavy+1)%int(heavy_kinds.size());",
+    "after": "        int kind;\n        if(use_repair_priority) {\n            kind=repair_heavy_kinds[next_heavy];next_heavy=(next_heavy+1)%int(repair_heavy_kinds.size());\n        } else {\n            kind=joint_heavy_kinds[next_heavy];next_heavy=(next_heavy+1)%int(joint_heavy_kinds.size());\n        }"
+  },
+  {
+    "before": "                count(name+\"_calls\",calls[kind]);count(name+\"_saved\",saved[kind]);count(name+\"_accepted_saved\",accepted_saved[kind]);",
+    "after": "                count(name+\"_calls\",calls[kind]);count(name+\"_saved\",saved[kind]);count(name+\"_accepted_saved\",accepted_saved[kind]);\n                if(!use_repair_priority)count(name+\"_best_created_with\",best_created_with[kind]);"
+  },
+  {
+    "before": "        LOCAL_NOTE(const double repair_priority_start=clk.elapsed();int repair_priority_penalized=0;)\n        for(auto& cand:candidates) {\n            int saved=savedBy(cand.ids,int(cand.ids.size()),0);\n            cand.broken_support_jumps=brokenSupportJumps(cand.ids);\n            // Retain one draw at the parent's original position, even when\n            // the resulting priority is negative. No candidate is removed.\n            const double noise=0.90+0.20*rng.unit();\n            cand.priority=(saved-cand.broken_support_jumps+0.25)/divisor[cand.ids.size()]*noise;\n#ifdef AHC072_REPAIR_AUDIT\n            cand.original_priority=(saved+0.25)/divisor[cand.ids.size()]*noise;\n#endif\n            LOCAL_NOTE(repair_priority_penalized+=cand.broken_support_jumps>0;)\n        }\n        LOCAL_NOTE(trace.count_by(\"lns_repair_priority_evaluated\",int(candidates.size()));\n                   trace.count_by(\"lns_repair_priority_penalized\",repair_priority_penalized);\n                   trace.add_time_ms(\"lns_repair_priority\",(clk.elapsed()-repair_priority_start)*1000.0);)\n",
+    "after": "        // 候補集合と乱数の呼び出し順は共通に保ち、順位式だけを親に合わせる。\n        if(use_repair_priority) {\n            LOCAL_NOTE(const double repair_priority_start=clk.elapsed();int repair_priority_penalized=0;)\n            for(auto& cand:candidates) {\n                int saved=savedBy(cand.ids,int(cand.ids.size()),0);\n                cand.broken_support_jumps=brokenSupportJumps(cand.ids);\n                // Retain one draw at the parent's original position, even when\n                // the resulting priority is negative. No candidate is removed.\n                const double noise=0.90+0.20*rng.unit();\n                cand.priority=(saved-cand.broken_support_jumps+0.25)/divisor[cand.ids.size()]*noise;\n    #ifdef AHC072_REPAIR_AUDIT\n                cand.original_priority=(saved+0.25)/divisor[cand.ids.size()]*noise;\n    #endif\n                LOCAL_NOTE(repair_priority_penalized+=cand.broken_support_jumps>0;)\n            }\n            LOCAL_NOTE(trace.count_by(\"lns_repair_priority_evaluated\",int(candidates.size()));\n                       trace.count_by(\"lns_repair_priority_penalized\",repair_priority_penalized);\n                       trace.add_time_ms(\"lns_repair_priority\",(clk.elapsed()-repair_priority_start)*1000.0);)\n        } else {\n            for(auto& cand:candidates) {\n                int saved=savedBy(cand.ids,int(cand.ids.size()),0);\n                cand.priority=(saved+0.25)/divisor[cand.ids.size()]*(0.90+0.20*rng.unit());\n            }\n        }\n"
+  },
+  {
+    "before": "                LOCAL_NOTE(repair_priority_broken=cand.broken_support_jumps;trace.count_by(\"lns_repair_priority_selected\",1);\n                           trace.count_by(\"lns_repair_priority_selected_broken_jumps\",cand.broken_support_jumps);)",
+    "after": "                LOCAL_NOTE(if(use_repair_priority){\n                    repair_priority_broken=cand.broken_support_jumps;trace.count_by(\"lns_repair_priority_selected\",1);\n                    trace.count_by(\"lns_repair_priority_selected_broken_jumps\",cand.broken_support_jumps);\n                })"
+  },
+  {
+    "before": "                search_reductions.best_created+=before_reductions>=best.size()&&polished.size()<best.size();",
+    "after": "                if(before_reductions>=best.size()&&polished.size()<best.size()) {\n                    ++search_reductions.best_created;\n                    // v058側だけ、最良更新に関わった処理の計数も引き継ぐ。\n                    if(!use_repair_priority)for(int kind=0;kind<FINAL_KINDS;kind++)\n                        search_reductions.best_created_with[kind]+=search_reductions.saved[kind]>savings_before[kind];\n                }"
+  },
+  {
+    "before": "    geo.read();\n    board_pool.prepare(geo.V);",
+    "after": "    geo.read();\n    use_repair_priority=use_repair_priority_for(geo.M);\n    LOCAL_NOTE(trace.count_by(\"selector_M\",geo.M);\n               trace.count_by(\"selector_v058\",!use_repair_priority);\n               trace.count_by(\"selector_v059\",use_repair_priority);)\n    board_pool.prepare(geo.V);"
+  }
+]

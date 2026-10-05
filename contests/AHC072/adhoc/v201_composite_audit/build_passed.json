@@ -1,0 +1,13 @@
+{
+  "source_sha256": "9203618e474fd9adf74aaac579abf7f2604958220a6c9908d67ce03f9f99d935",
+  "binaries": {
+    "adhoc/v201_composite_audit/v201_composite_nn_selector_production": "cec9867d042106cdc60ab939a9e14b5e1cc3e3b0519e829dec8dd721998a05f3",
+    "adhoc/v201_composite_audit/fixed_v201_composite_nn_selector_production": "de1a49781712e09cde46e02562250abf949271b2f3c5268a7171296045ebeb54",
+    "adhoc/v201_composite_audit/fixed_v076_relative_tuned_local": "8961fd30d9fad3c14325f1d06aed85fa3dc18db162b050c80ac30f3b27503771",
+    "adhoc/v201_composite_audit/fixed_v076_relative_tuned_production": "3bc0816f1130ec1f326f6b1db7759f723bbb8f18db9f6a0a9a279804e713752f",
+    "adhoc/v201_composite_audit/fixed_v079_nn_immediate_local": "52a1300b2bfcc78c45b33de8a85dca336082dba9fcfd62a1918b71c28b357df6",
+    "adhoc/v201_composite_audit/fixed_v201_composite_nn_selector_local": "689aff58e3f8c43593744fe811c16cf738848b465ab2b647ed36759a623b0b03",
+    "adhoc/v201_composite_audit/fixed_v079_nn_immediate_production": "8b2abb7d61b46b0b2f956a092493d0547068ce90b6e4dc8d3286b41b14be70c0",
+    "adhoc/v201_composite_audit/v201_composite_nn_selector_local": "a30a3db574fdf16617ff3b6ee2028f352784c607d0333d0466286be9e4f8a8b1"
+  }
+}

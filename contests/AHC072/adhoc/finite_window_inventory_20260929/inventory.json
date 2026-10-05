@@ -1,0 +1,1187 @@
+{
+  "limits": {
+    "cells": 8,
+    "pieces": 16,
+    "initial_towers": 6,
+    "related_operations": 12,
+    "scan_operations": 64
+  },
+  "cases": [
+    {
+      "case": "0000.txt",
+      "T": 43,
+      "candidates": 160,
+      "starts": 35,
+      "nonempty_goals": 153,
+      "more_than_four_cells": 125,
+      "nest_windows": 40,
+      "middle_starts": 20
+    },
+    {
+      "case": "0001.txt",
+      "T": 104,
+      "candidates": 213,
+      "starts": 66,
+      "nonempty_goals": 210,
+      "more_than_four_cells": 141,
+      "nest_windows": 130,
+      "middle_starts": 37
+    },
+    {
+      "case": "0002.txt",
+      "T": 111,
+      "candidates": 222,
+      "starts": 71,
+      "nonempty_goals": 215,
+      "more_than_four_cells": 145,
+      "nest_windows": 58,
+      "middle_starts": 36
+    },
+    {
+      "case": "0003.txt",
+      "T": 126,
+      "candidates": 288,
+      "starts": 80,
+      "nonempty_goals": 283,
+      "more_than_four_cells": 206,
+      "nest_windows": 79,
+      "middle_starts": 49
+    },
+    {
+      "case": "0004.txt",
+      "T": 267,
+      "candidates": 563,
+      "starts": 178,
+      "nonempty_goals": 555,
+      "more_than_four_cells": 354,
+      "nest_windows": 192,
+      "middle_starts": 97
+    },
+    {
+      "case": "0005.txt",
+      "T": 593,
+      "candidates": 1137,
+      "starts": 350,
+      "nonempty_goals": 1114,
+      "more_than_four_cells": 741,
+      "nest_windows": 168,
+      "middle_starts": 171
+    },
+    {
+      "case": "0006.txt",
+      "T": 118,
+      "candidates": 169,
+      "starts": 66,
+      "nonempty_goals": 165,
+      "more_than_four_cells": 98,
+      "nest_windows": 75,
+      "middle_starts": 30
+    },
+    {
+      "case": "0007.txt",
+      "T": 121,
+      "candidates": 257,
+      "starts": 82,
+      "nonempty_goals": 252,
+      "more_than_four_cells": 162,
+      "nest_windows": 51,
+      "middle_starts": 42
+    },
+    {
+      "case": "0008.txt",
+      "T": 125,
+      "candidates": 286,
+      "starts": 85,
+      "nonempty_goals": 276,
+      "more_than_four_cells": 200,
+      "nest_windows": 158,
+      "middle_starts": 42
+    },
+    {
+      "case": "0009.txt",
+      "T": 83,
+      "candidates": 288,
+      "starts": 65,
+      "nonempty_goals": 275,
+      "more_than_four_cells": 222,
+      "nest_windows": 77,
+      "middle_starts": 35
+    },
+    {
+      "case": "0010.txt",
+      "T": 71,
+      "candidates": 218,
+      "starts": 55,
+      "nonempty_goals": 214,
+      "more_than_four_cells": 151,
+      "nest_windows": 102,
+      "middle_starts": 31
+    },
+    {
+      "case": "0011.txt",
+      "T": 157,
+      "candidates": 322,
+      "starts": 99,
+      "nonempty_goals": 316,
+      "more_than_four_cells": 212,
+      "nest_windows": 103,
+      "middle_starts": 57
+    },
+    {
+      "case": "0012.txt",
+      "T": 129,
+      "candidates": 334,
+      "starts": 85,
+      "nonempty_goals": 324,
+      "more_than_four_cells": 236,
+      "nest_windows": 189,
+      "middle_starts": 41
+    },
+    {
+      "case": "0013.txt",
+      "T": 187,
+      "candidates": 473,
+      "starts": 125,
+      "nonempty_goals": 460,
+      "more_than_four_cells": 342,
+      "nest_windows": 193,
+      "middle_starts": 68
+    },
+    {
+      "case": "0014.txt",
+      "T": 383,
+      "candidates": 593,
+      "starts": 219,
+      "nonempty_goals": 577,
+      "more_than_four_cells": 349,
+      "nest_windows": 134,
+      "middle_starts": 125
+    },
+    {
+      "case": "0015.txt",
+      "T": 573,
+      "candidates": 1125,
+      "starts": 359,
+      "nonempty_goals": 1107,
+      "more_than_four_cells": 721,
+      "nest_windows": 387,
+      "middle_starts": 176
+    },
+    {
+      "case": "0016.txt",
+      "T": 129,
+      "candidates": 230,
+      "starts": 77,
+      "nonempty_goals": 222,
+      "more_than_four_cells": 151,
+      "nest_windows": 35,
+      "middle_starts": 43
+    },
+    {
+      "case": "0017.txt",
+      "T": 216,
+      "candidates": 318,
+      "starts": 121,
+      "nonempty_goals": 314,
+      "more_than_four_cells": 188,
+      "nest_windows": 115,
+      "middle_starts": 57
+    },
+    {
+      "case": "0018.txt",
+      "T": 75,
+      "candidates": 174,
+      "starts": 46,
+      "nonempty_goals": 168,
+      "more_than_four_cells": 133,
+      "nest_windows": 132,
+      "middle_starts": 21
+    },
+    {
+      "case": "0019.txt",
+      "T": 658,
+      "candidates": 1217,
+      "starts": 409,
+      "nonempty_goals": 1196,
+      "more_than_four_cells": 761,
+      "nest_windows": 383,
+      "middle_starts": 221
+    },
+    {
+      "case": "0020.txt",
+      "T": 142,
+      "candidates": 223,
+      "starts": 86,
+      "nonempty_goals": 218,
+      "more_than_four_cells": 135,
+      "nest_windows": 89,
+      "middle_starts": 47
+    },
+    {
+      "case": "0021.txt",
+      "T": 65,
+      "candidates": 136,
+      "starts": 40,
+      "nonempty_goals": 127,
+      "more_than_four_cells": 93,
+      "nest_windows": 48,
+      "middle_starts": 23
+    },
+    {
+      "case": "0022.txt",
+      "T": 70,
+      "candidates": 171,
+      "starts": 44,
+      "nonempty_goals": 165,
+      "more_than_four_cells": 127,
+      "nest_windows": 123,
+      "middle_starts": 25
+    },
+    {
+      "case": "0023.txt",
+      "T": 82,
+      "candidates": 263,
+      "starts": 59,
+      "nonempty_goals": 258,
+      "more_than_four_cells": 198,
+      "nest_windows": 186,
+      "middle_starts": 34
+    },
+    {
+      "case": "0024.txt",
+      "T": 122,
+      "candidates": 442,
+      "starts": 93,
+      "nonempty_goals": 433,
+      "more_than_four_cells": 341,
+      "nest_windows": 161,
+      "middle_starts": 57
+    },
+    {
+      "case": "0025.txt",
+      "T": 57,
+      "candidates": 92,
+      "starts": 31,
+      "nonempty_goals": 90,
+      "more_than_four_cells": 59,
+      "nest_windows": 55,
+      "middle_starts": 15
+    },
+    {
+      "case": "0026.txt",
+      "T": 120,
+      "candidates": 345,
+      "starts": 90,
+      "nonempty_goals": 340,
+      "more_than_four_cells": 255,
+      "nest_windows": 34,
+      "middle_starts": 48
+    },
+    {
+      "case": "0027.txt",
+      "T": 146,
+      "candidates": 480,
+      "starts": 100,
+      "nonempty_goals": 471,
+      "more_than_four_cells": 363,
+      "nest_windows": 187,
+      "middle_starts": 49
+    },
+    {
+      "case": "0028.txt",
+      "T": 260,
+      "candidates": 484,
+      "starts": 155,
+      "nonempty_goals": 476,
+      "more_than_four_cells": 310,
+      "nest_windows": 118,
+      "middle_starts": 80
+    },
+    {
+      "case": "0029.txt",
+      "T": 254,
+      "candidates": 519,
+      "starts": 162,
+      "nonempty_goals": 511,
+      "more_than_four_cells": 345,
+      "nest_windows": 187,
+      "middle_starts": 92
+    },
+    {
+      "case": "0030.txt",
+      "T": 446,
+      "candidates": 1265,
+      "starts": 319,
+      "nonempty_goals": 1235,
+      "more_than_four_cells": 926,
+      "nest_windows": 334,
+      "middle_starts": 165
+    },
+    {
+      "case": "0031.txt",
+      "T": 123,
+      "candidates": 220,
+      "starts": 72,
+      "nonempty_goals": 214,
+      "more_than_four_cells": 145,
+      "nest_windows": 59,
+      "middle_starts": 35
+    },
+    {
+      "case": "0032.txt",
+      "T": 148,
+      "candidates": 287,
+      "starts": 90,
+      "nonempty_goals": 274,
+      "more_than_four_cells": 191,
+      "nest_windows": 157,
+      "middle_starts": 52
+    },
+    {
+      "case": "0033.txt",
+      "T": 144,
+      "candidates": 304,
+      "starts": 87,
+      "nonempty_goals": 297,
+      "more_than_four_cells": 210,
+      "nest_windows": 188,
+      "middle_starts": 52
+    },
+    {
+      "case": "0034.txt",
+      "T": 401,
+      "candidates": 862,
+      "starts": 252,
+      "nonempty_goals": 837,
+      "more_than_four_cells": 580,
+      "nest_windows": 119,
+      "middle_starts": 125
+    },
+    {
+      "case": "0035.txt",
+      "T": 63,
+      "candidates": 212,
+      "starts": 47,
+      "nonempty_goals": 205,
+      "more_than_four_cells": 163,
+      "nest_windows": 31,
+      "middle_starts": 28
+    },
+    {
+      "case": "0036.txt",
+      "T": 206,
+      "candidates": 289,
+      "starts": 116,
+      "nonempty_goals": 281,
+      "more_than_four_cells": 159,
+      "nest_windows": 138,
+      "middle_starts": 65
+    },
+    {
+      "case": "0037.txt",
+      "T": 245,
+      "candidates": 470,
+      "starts": 155,
+      "nonempty_goals": 453,
+      "more_than_four_cells": 308,
+      "nest_windows": 113,
+      "middle_starts": 78
+    },
+    {
+      "case": "0038.txt",
+      "T": 135,
+      "candidates": 271,
+      "starts": 82,
+      "nonempty_goals": 269,
+      "more_than_four_cells": 183,
+      "nest_windows": 60,
+      "middle_starts": 46
+    },
+    {
+      "case": "0039.txt",
+      "T": 114,
+      "candidates": 388,
+      "starts": 81,
+      "nonempty_goals": 377,
+      "more_than_four_cells": 294,
+      "nest_windows": 252,
+      "middle_starts": 45
+    },
+    {
+      "case": "0040.txt",
+      "T": 138,
+      "candidates": 427,
+      "starts": 100,
+      "nonempty_goals": 416,
+      "more_than_four_cells": 329,
+      "nest_windows": 182,
+      "middle_starts": 54
+    },
+    {
+      "case": "0041.txt",
+      "T": 89,
+      "candidates": 180,
+      "starts": 57,
+      "nonempty_goals": 176,
+      "more_than_four_cells": 119,
+      "nest_windows": 60,
+      "middle_starts": 33
+    },
+    {
+      "case": "0042.txt",
+      "T": 324,
+      "candidates": 625,
+      "starts": 195,
+      "nonempty_goals": 616,
+      "more_than_four_cells": 419,
+      "nest_windows": 163,
+      "middle_starts": 105
+    },
+    {
+      "case": "0043.txt",
+      "T": 168,
+      "candidates": 423,
+      "starts": 112,
+      "nonempty_goals": 415,
+      "more_than_four_cells": 304,
+      "nest_windows": 107,
+      "middle_starts": 56
+    },
+    {
+      "case": "0044.txt",
+      "T": 175,
+      "candidates": 347,
+      "starts": 113,
+      "nonempty_goals": 337,
+      "more_than_four_cells": 226,
+      "nest_windows": 105,
+      "middle_starts": 55
+    },
+    {
+      "case": "0045.txt",
+      "T": 194,
+      "candidates": 372,
+      "starts": 115,
+      "nonempty_goals": 361,
+      "more_than_four_cells": 248,
+      "nest_windows": 87,
+      "middle_starts": 63
+    },
+    {
+      "case": "0046.txt",
+      "T": 153,
+      "candidates": 285,
+      "starts": 92,
+      "nonempty_goals": 280,
+      "more_than_four_cells": 189,
+      "nest_windows": 65,
+      "middle_starts": 53
+    },
+    {
+      "case": "0047.txt",
+      "T": 327,
+      "candidates": 666,
+      "starts": 204,
+      "nonempty_goals": 655,
+      "more_than_four_cells": 446,
+      "nest_windows": 140,
+      "middle_starts": 110
+    },
+    {
+      "case": "0048.txt",
+      "T": 230,
+      "candidates": 348,
+      "starts": 127,
+      "nonempty_goals": 345,
+      "more_than_four_cells": 211,
+      "nest_windows": 100,
+      "middle_starts": 66
+    },
+    {
+      "case": "0049.txt",
+      "T": 193,
+      "candidates": 314,
+      "starts": 113,
+      "nonempty_goals": 304,
+      "more_than_four_cells": 194,
+      "nest_windows": 101,
+      "middle_starts": 56
+    },
+    {
+      "case": "0050.txt",
+      "T": 143,
+      "candidates": 387,
+      "starts": 102,
+      "nonempty_goals": 379,
+      "more_than_four_cells": 279,
+      "nest_windows": 170,
+      "middle_starts": 58
+    },
+    {
+      "case": "0051.txt",
+      "T": 118,
+      "candidates": 297,
+      "starts": 81,
+      "nonempty_goals": 287,
+      "more_than_four_cells": 210,
+      "nest_windows": 150,
+      "middle_starts": 42
+    },
+    {
+      "case": "0052.txt",
+      "T": 190,
+      "candidates": 416,
+      "starts": 118,
+      "nonempty_goals": 408,
+      "more_than_four_cells": 290,
+      "nest_windows": 175,
+      "middle_starts": 67
+    },
+    {
+      "case": "0053.txt",
+      "T": 130,
+      "candidates": 339,
+      "starts": 90,
+      "nonempty_goals": 329,
+      "more_than_four_cells": 248,
+      "nest_windows": 179,
+      "middle_starts": 44
+    },
+    {
+      "case": "0054.txt",
+      "T": 298,
+      "candidates": 546,
+      "starts": 175,
+      "nonempty_goals": 527,
+      "more_than_four_cells": 349,
+      "nest_windows": 255,
+      "middle_starts": 84
+    },
+    {
+      "case": "0055.txt",
+      "T": 295,
+      "candidates": 542,
+      "starts": 171,
+      "nonempty_goals": 533,
+      "more_than_four_cells": 359,
+      "nest_windows": 154,
+      "middle_starts": 87
+    },
+    {
+      "case": "0056.txt",
+      "T": 199,
+      "candidates": 389,
+      "starts": 119,
+      "nonempty_goals": 385,
+      "more_than_four_cells": 256,
+      "nest_windows": 214,
+      "middle_starts": 65
+    },
+    {
+      "case": "0057.txt",
+      "T": 253,
+      "candidates": 558,
+      "starts": 169,
+      "nonempty_goals": 550,
+      "more_than_four_cells": 376,
+      "nest_windows": 129,
+      "middle_starts": 82
+    },
+    {
+      "case": "0058.txt",
+      "T": 292,
+      "candidates": 723,
+      "starts": 195,
+      "nonempty_goals": 712,
+      "more_than_four_cells": 504,
+      "nest_windows": 237,
+      "middle_starts": 95
+    },
+    {
+      "case": "0059.txt",
+      "T": 69,
+      "candidates": 166,
+      "starts": 42,
+      "nonempty_goals": 157,
+      "more_than_four_cells": 121,
+      "nest_windows": 77,
+      "middle_starts": 21
+    },
+    {
+      "case": "0060.txt",
+      "T": 154,
+      "candidates": 450,
+      "starts": 114,
+      "nonempty_goals": 441,
+      "more_than_four_cells": 331,
+      "nest_windows": 181,
+      "middle_starts": 63
+    },
+    {
+      "case": "0061.txt",
+      "T": 295,
+      "candidates": 448,
+      "starts": 168,
+      "nonempty_goals": 443,
+      "more_than_four_cells": 264,
+      "nest_windows": 81,
+      "middle_starts": 79
+    },
+    {
+      "case": "0062.txt",
+      "T": 177,
+      "candidates": 333,
+      "starts": 105,
+      "nonempty_goals": 330,
+      "more_than_four_cells": 224,
+      "nest_windows": 154,
+      "middle_starts": 58
+    },
+    {
+      "case": "0063.txt",
+      "T": 261,
+      "candidates": 549,
+      "starts": 168,
+      "nonempty_goals": 527,
+      "more_than_four_cells": 368,
+      "nest_windows": 136,
+      "middle_starts": 89
+    },
+    {
+      "case": "0064.txt",
+      "T": 192,
+      "candidates": 501,
+      "starts": 134,
+      "nonempty_goals": 499,
+      "more_than_four_cells": 364,
+      "nest_windows": 192,
+      "middle_starts": 79
+    },
+    {
+      "case": "0065.txt",
+      "T": 125,
+      "candidates": 350,
+      "starts": 88,
+      "nonempty_goals": 336,
+      "more_than_four_cells": 258,
+      "nest_windows": 159,
+      "middle_starts": 49
+    },
+    {
+      "case": "0066.txt",
+      "T": 420,
+      "candidates": 999,
+      "starts": 258,
+      "nonempty_goals": 979,
+      "more_than_four_cells": 699,
+      "nest_windows": 262,
+      "middle_starts": 143
+    },
+    {
+      "case": "0067.txt",
+      "T": 198,
+      "candidates": 465,
+      "starts": 129,
+      "nonempty_goals": 449,
+      "more_than_four_cells": 334,
+      "nest_windows": 103,
+      "middle_starts": 72
+    },
+    {
+      "case": "0068.txt",
+      "T": 418,
+      "candidates": 783,
+      "starts": 259,
+      "nonempty_goals": 765,
+      "more_than_four_cells": 500,
+      "nest_windows": 149,
+      "middle_starts": 130
+    },
+    {
+      "case": "0069.txt",
+      "T": 128,
+      "candidates": 310,
+      "starts": 86,
+      "nonempty_goals": 303,
+      "more_than_four_cells": 216,
+      "nest_windows": 174,
+      "middle_starts": 48
+    },
+    {
+      "case": "0070.txt",
+      "T": 420,
+      "candidates": 862,
+      "starts": 263,
+      "nonempty_goals": 849,
+      "more_than_four_cells": 580,
+      "nest_windows": 144,
+      "middle_starts": 130
+    },
+    {
+      "case": "0071.txt",
+      "T": 411,
+      "candidates": 880,
+      "starts": 254,
+      "nonempty_goals": 865,
+      "more_than_four_cells": 593,
+      "nest_windows": 310,
+      "middle_starts": 131
+    },
+    {
+      "case": "0072.txt",
+      "T": 90,
+      "candidates": 232,
+      "starts": 57,
+      "nonempty_goals": 228,
+      "more_than_four_cells": 162,
+      "nest_windows": 142,
+      "middle_starts": 32
+    },
+    {
+      "case": "0073.txt",
+      "T": 222,
+      "candidates": 301,
+      "starts": 124,
+      "nonempty_goals": 291,
+      "more_than_four_cells": 164,
+      "nest_windows": 85,
+      "middle_starts": 61
+    },
+    {
+      "case": "0074.txt",
+      "T": 98,
+      "candidates": 223,
+      "starts": 65,
+      "nonempty_goals": 214,
+      "more_than_four_cells": 149,
+      "nest_windows": 136,
+      "middle_starts": 31
+    },
+    {
+      "case": "0075.txt",
+      "T": 358,
+      "candidates": 860,
+      "starts": 234,
+      "nonempty_goals": 845,
+      "more_than_four_cells": 606,
+      "nest_windows": 89,
+      "middle_starts": 122
+    },
+    {
+      "case": "0076.txt",
+      "T": 256,
+      "candidates": 509,
+      "starts": 151,
+      "nonempty_goals": 493,
+      "more_than_four_cells": 334,
+      "nest_windows": 198,
+      "middle_starts": 87
+    },
+    {
+      "case": "0077.txt",
+      "T": 84,
+      "candidates": 250,
+      "starts": 54,
+      "nonempty_goals": 245,
+      "more_than_four_cells": 191,
+      "nest_windows": 165,
+      "middle_starts": 37
+    },
+    {
+      "case": "0078.txt",
+      "T": 268,
+      "candidates": 528,
+      "starts": 161,
+      "nonempty_goals": 521,
+      "more_than_four_cells": 326,
+      "nest_windows": 213,
+      "middle_starts": 93
+    },
+    {
+      "case": "0079.txt",
+      "T": 71,
+      "candidates": 205,
+      "starts": 47,
+      "nonempty_goals": 199,
+      "more_than_four_cells": 154,
+      "nest_windows": 117,
+      "middle_starts": 29
+    },
+    {
+      "case": "0080.txt",
+      "T": 189,
+      "candidates": 394,
+      "starts": 113,
+      "nonempty_goals": 387,
+      "more_than_four_cells": 271,
+      "nest_windows": 187,
+      "middle_starts": 58
+    },
+    {
+      "case": "0081.txt",
+      "T": 379,
+      "candidates": 609,
+      "starts": 212,
+      "nonempty_goals": 597,
+      "more_than_four_cells": 378,
+      "nest_windows": 137,
+      "middle_starts": 125
+    },
+    {
+      "case": "0082.txt",
+      "T": 328,
+      "candidates": 503,
+      "starts": 189,
+      "nonempty_goals": 485,
+      "more_than_four_cells": 300,
+      "nest_windows": 213,
+      "middle_starts": 97
+    },
+    {
+      "case": "0083.txt",
+      "T": 168,
+      "candidates": 195,
+      "starts": 82,
+      "nonempty_goals": 182,
+      "more_than_four_cells": 107,
+      "nest_windows": 97,
+      "middle_starts": 39
+    },
+    {
+      "case": "0084.txt",
+      "T": 325,
+      "candidates": 575,
+      "starts": 182,
+      "nonempty_goals": 567,
+      "more_than_four_cells": 386,
+      "nest_windows": 218,
+      "middle_starts": 103
+    },
+    {
+      "case": "0085.txt",
+      "T": 209,
+      "candidates": 488,
+      "starts": 130,
+      "nonempty_goals": 481,
+      "more_than_four_cells": 357,
+      "nest_windows": 95,
+      "middle_starts": 81
+    },
+    {
+      "case": "0086.txt",
+      "T": 97,
+      "candidates": 274,
+      "starts": 61,
+      "nonempty_goals": 258,
+      "more_than_four_cells": 211,
+      "nest_windows": 203,
+      "middle_starts": 38
+    },
+    {
+      "case": "0087.txt",
+      "T": 114,
+      "candidates": 256,
+      "starts": 77,
+      "nonempty_goals": 248,
+      "more_than_four_cells": 171,
+      "nest_windows": 42,
+      "middle_starts": 41
+    },
+    {
+      "case": "0088.txt",
+      "T": 149,
+      "candidates": 347,
+      "starts": 94,
+      "nonempty_goals": 340,
+      "more_than_four_cells": 245,
+      "nest_windows": 119,
+      "middle_starts": 52
+    },
+    {
+      "case": "0089.txt",
+      "T": 350,
+      "candidates": 607,
+      "starts": 204,
+      "nonempty_goals": 597,
+      "more_than_four_cells": 389,
+      "nest_windows": 105,
+      "middle_starts": 112
+    },
+    {
+      "case": "0090.txt",
+      "T": 154,
+      "candidates": 398,
+      "starts": 110,
+      "nonempty_goals": 382,
+      "more_than_four_cells": 280,
+      "nest_windows": 73,
+      "middle_starts": 57
+    },
+    {
+      "case": "0091.txt",
+      "T": 103,
+      "candidates": 161,
+      "starts": 58,
+      "nonempty_goals": 152,
+      "more_than_four_cells": 98,
+      "nest_windows": 39,
+      "middle_starts": 34
+    },
+    {
+      "case": "0092.txt",
+      "T": 568,
+      "candidates": 1303,
+      "starts": 365,
+      "nonempty_goals": 1276,
+      "more_than_four_cells": 909,
+      "nest_windows": 174,
+      "middle_starts": 192
+    },
+    {
+      "case": "0093.txt",
+      "T": 86,
+      "candidates": 231,
+      "starts": 59,
+      "nonempty_goals": 226,
+      "more_than_four_cells": 167,
+      "nest_windows": 173,
+      "middle_starts": 30
+    },
+    {
+      "case": "0094.txt",
+      "T": 117,
+      "candidates": 294,
+      "starts": 76,
+      "nonempty_goals": 287,
+      "more_than_four_cells": 218,
+      "nest_windows": 69,
+      "middle_starts": 45
+    },
+    {
+      "case": "0095.txt",
+      "T": 253,
+      "candidates": 443,
+      "starts": 151,
+      "nonempty_goals": 435,
+      "more_than_four_cells": 282,
+      "nest_windows": 111,
+      "middle_starts": 76
+    },
+    {
+      "case": "0096.txt",
+      "T": 80,
+      "candidates": 159,
+      "starts": 51,
+      "nonempty_goals": 154,
+      "more_than_four_cells": 107,
+      "nest_windows": 69,
+      "middle_starts": 27
+    },
+    {
+      "case": "0097.txt",
+      "T": 539,
+      "candidates": 1386,
+      "starts": 370,
+      "nonempty_goals": 1376,
+      "more_than_four_cells": 977,
+      "nest_windows": 228,
+      "middle_starts": 185
+    },
+    {
+      "case": "0098.txt",
+      "T": 129,
+      "candidates": 310,
+      "starts": 89,
+      "nonempty_goals": 304,
+      "more_than_four_cells": 217,
+      "nest_windows": 122,
+      "middle_starts": 52
+    },
+    {
+      "case": "0099.txt",
+      "T": 185,
+      "candidates": 332,
+      "starts": 109,
+      "nonempty_goals": 319,
+      "more_than_four_cells": 218,
+      "nest_windows": 153,
+      "middle_starts": 55
+    }
+  ],
+  "total": {
+    "candidates": 43963,
+    "starts": 13025,
+    "nonempty_goals": 42974,
+    "more_than_four_cells": 29805,
+    "nest_windows": 14107,
+    "middle_starts": 6918
+  },
+  "eligible_cases": 100,
+  "middle_eligible_cases": 100,
+  "witnesses": [
+    {
+      "name": "consolidated_dispatch",
+      "case": "0097",
+      "found": true,
+      "before": 3,
+      "after": 2,
+      "window": {
+        "first": 429,
+        "last": 431,
+        "operations": [
+          429,
+          430,
+          431
+        ],
+        "pieces": 9,
+        "cells": [
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "towers": 3,
+        "changed": 2,
+        "remaining": 9,
+        "has_nest": false
+      }
+    },
+    {
+      "name": "nest_pickup",
+      "case": "0019",
+      "found": true,
+      "before": 3,
+      "after": 2,
+      "window": {
+        "first": 528,
+        "last": 530,
+        "operations": [
+          528,
+          529,
+          530
+        ],
+        "pieces": 8,
+        "cells": [
+          [
+            14,
+            17
+          ],
+          [
+            14,
+            18
+          ],
+          [
+            15,
+            17
+          ]
+        ],
+        "towers": 2,
+        "changed": 2,
+        "remaining": 0,
+        "has_nest": true
+      }
+    },
+    {
+      "name": "pass_before_merge",
+      "case": "0019",
+      "found": true,
+      "before": 4,
+      "after": 3,
+      "window": {
+        "first": 303,
+        "last": 306,
+        "operations": [
+          303,
+          304,
+          305,
+          306
+        ],
+        "pieces": 15,
+        "cells": [
+          [
+            5,
+            14
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            12,
+            14
+          ]
+        ],
+        "towers": 3,
+        "changed": 3,
+        "remaining": 15,
+        "has_nest": false
+      }
+    },
+    {
+      "name": "paired_orientation",
+      "case": "0005",
+      "found": true,
+      "before": 6,
+      "after": 4,
+      "window": {
+        "first": 445,
+        "last": 450,
+        "operations": [
+          445,
+          446,
+          447,
+          448,
+          449,
+          450
+        ],
+        "pieces": 10,
+        "cells": [
+          [
+            10,
+            13
+          ],
+          [
+            11,
+            13
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            13,
+            12
+          ],
+          [
+            14,
+            12
+          ],
+          [
+            15,
+            12
+          ]
+        ],
+        "towers": 3,
+        "changed": 4,
+        "remaining": 10,
+        "has_nest": false
+      }
+    }
+  ]
+}

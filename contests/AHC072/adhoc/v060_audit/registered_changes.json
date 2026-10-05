@@ -1,0 +1,18 @@
+[
+  {
+    "old": "            if mode == \"multistart\" and round_id % 2:\n                initial = run / case[\"seeds\"][(round_id // 2 + 1) % len(case[\"seeds\"])][\"path\"]\n            else:\n                initial = worker / \"best.txt\"",
+    "new": "            # v060: every round inherits this worker's best, without sharing.\n            initial = worker / \"best.txt\"\n            start_best_T = state[\"T\"]\n            start_best_sha256 = sha256(initial)"
+  },
+  {
+    "old": "                        requested_seconds=seconds, started_offset_sec=time.monotonic() - case_start, started_at=utc_now())",
+    "new": "                        requested_seconds=seconds, started_offset_sec=time.monotonic() - case_start, started_at=utc_now(),\n                        start_best_T=start_best_T, start_best_sha256=start_best_sha256,\n                        initial_T=problem.replay(seed_text)[\"T\"])\n            if meta[\"initial_sha256\"] != start_best_sha256 or meta[\"initial_T\"] != start_best_T:\n                raise RuntimeError(\"自己最良解とラウンド初期解が一致しない\")"
+  },
+  {
+    "old": "                write_json(folder / \"round.json\", meta)\n            except BaseException",
+    "new": "                meta.update(end_best_T=state[\"T\"], new_saved=start_best_T-state[\"T\"])\n                write_json(folder / \"round.json\", meta)\n            except BaseException"
+  },
+  {
+    "old": "[2, 10, 30, 60, 120, 300, 600, 900, 1800, 2700, 3600]",
+    "new": "[2, 10, 30, 60, 120, 180, 240, 300, 600, 900, 1800, 2700, 3600]"
+  }
+]

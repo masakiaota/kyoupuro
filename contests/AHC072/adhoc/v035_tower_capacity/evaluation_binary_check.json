@@ -1,0 +1,7 @@
+{
+  "evaluation_binary_matches_frozen_local": true,
+  "evaluation_binary_sha256": "8973bea193543e4661ecba91d01f40e7486421faa339d6a93ce220321ddb5897",
+  "solver_source_sha256": "c1c94eb7648ada13ab7eeacc6f64b6953f5ad627e3e40bf08ab9388c218b7e0e",
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "cpu": "Apple M3"
+}

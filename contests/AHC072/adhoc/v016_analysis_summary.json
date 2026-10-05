@@ -1,0 +1,243 @@
+{
+  "output": "adhoc/v016_evaluation_analysis.json",
+  "run_ids": {
+    "v013_unified": "20260926T201006+0900_v013_unified_4c6aba",
+    "v014_joint_delivery": "20260926T214930+0900_v014_joint_delivery_ec0ec4",
+    "v015_mixed_tree": "20260926T215637+0900_v015_mixed_tree_483f92",
+    "v016_continuous_tree": "20260926T223302+0900_v016_continuous_tree_a1c6d5"
+  },
+  "adopt": false,
+  "mechanism_passed": true,
+  "large_improvement": {
+    "case0000_target": false,
+    "normal99_target": false
+  },
+  "verified_cases": 100,
+  "total_T": 24031,
+  "comparisons": {
+    "v013_unified": {
+      "baseline_T": 24168,
+      "baseline_mean_T": 241.68,
+      "delta_T": -137,
+      "delta_percent": -0.5668652763985436,
+      "wins": 60,
+      "ties": 3,
+      "losses": 37
+    },
+    "v014_joint_delivery": {
+      "baseline_T": 24232,
+      "baseline_mean_T": 242.32,
+      "delta_T": -201,
+      "delta_percent": -0.829481677121162,
+      "wins": 63,
+      "ties": 5,
+      "losses": 32
+    },
+    "v015_mixed_tree": {
+      "baseline_T": 23943,
+      "baseline_mean_T": 239.43,
+      "delta_T": 88,
+      "delta_percent": 0.3675395731529048,
+      "wins": 43,
+      "ties": 6,
+      "losses": 51
+    }
+  },
+  "max_elapsed_ms": 1552,
+  "case0000_T": 45,
+  "case0000_cooperative": {
+    "cooperative_builds": 58,
+    "cooperative_carry_continuations": 3122,
+    "cooperative_completed": 53,
+    "cooperative_incoming_merges": 31401,
+    "cooperative_jobs": 17298,
+    "cooperative_jobs_decoded": 3090,
+    "cooperative_joined_groups": 3,
+    "cooperative_joined_slimes": 12,
+    "cooperative_layer_timeouts": 12,
+    "cooperative_layers": 165,
+    "cooperative_macro_routes": 6948,
+    "cooperative_max_packet": 8,
+    "cooperative_meeting_nodes": 51881,
+    "cooperative_mixed_moves": 8,
+    "cooperative_no_complete": 5,
+    "cooperative_pickup_after_home": 3,
+    "cooperative_plan_invalid": 0,
+    "cooperative_plan_no_gain": 0,
+    "cooperative_plan_trials": 1,
+    "cooperative_plan_valid": 1,
+    "cooperative_removed_placement_trials": 1,
+    "cooperative_removed_placements": 1,
+    "cooperative_saved": 5,
+    "cooperative_source_home": 4,
+    "cooperative_source_home_routes": 2116,
+    "cooperative_split_noninitial": 4920,
+    "cooperative_timeouts": 2,
+    "cooperative_tree_dp": 3090,
+    "cooperative_tree_dp_completed": 3084,
+    "cooperative_tree_reconstructed": 13811,
+    "cooperative_tree_reconstructions": 13811,
+    "cooperative_wins": 1
+  },
+  "case0000_candidates": [
+    {
+      "n": 12,
+      "removed": 1,
+      "valid": 1,
+      "before": 52,
+      "after": 47,
+      "ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        11,
+        13,
+        15
+      ]
+    }
+  ],
+  "mechanism_normal99": {
+    "cooperative_builds": {
+      "total": 2429,
+      "cases": 95
+    },
+    "cooperative_carry_continuations": {
+      "total": 76662,
+      "cases": 94
+    },
+    "cooperative_completed": {
+      "total": 2252,
+      "cases": 94
+    },
+    "cooperative_incoming_merges": {
+      "total": 1135238,
+      "cases": 95
+    },
+    "cooperative_jobs": {
+      "total": 645545,
+      "cases": 95
+    },
+    "cooperative_jobs_decoded": {
+      "total": 107227,
+      "cases": 95
+    },
+    "cooperative_joined_groups": {
+      "total": 224,
+      "cases": 64
+    },
+    "cooperative_joined_slimes": {
+      "total": 1007,
+      "cases": 64
+    },
+    "cooperative_layer_timeouts": {
+      "total": 498,
+      "cases": 68
+    },
+    "cooperative_layers": {
+      "total": 6125,
+      "cases": 95
+    },
+    "cooperative_macro_routes": {
+      "total": 241057,
+      "cases": 95
+    },
+    "cooperative_max_packet": {
+      "total": 443,
+      "cases": 64
+    },
+    "cooperative_meeting_nodes": {
+      "total": 1582577,
+      "cases": 95
+    },
+    "cooperative_mixed_moves": {
+      "total": 1082,
+      "cases": 63
+    },
+    "cooperative_no_complete": {
+      "total": 177,
+      "cases": 59
+    },
+    "cooperative_pickup_after_home": {
+      "total": 187,
+      "cases": 58
+    },
+    "cooperative_plan_invalid": {
+      "total": 90,
+      "cases": 27
+    },
+    "cooperative_plan_no_gain": {
+      "total": 647,
+      "cases": 87
+    },
+    "cooperative_plan_trials": {
+      "total": 842,
+      "cases": 95
+    },
+    "cooperative_plan_valid": {
+      "total": 752,
+      "cases": 94
+    },
+    "cooperative_removed_placement_trials": {
+      "total": 339,
+      "cases": 84
+    },
+    "cooperative_removed_placements": {
+      "total": 53,
+      "cases": 25
+    },
+    "cooperative_saved": {
+      "total": 275,
+      "cases": 64
+    },
+    "cooperative_source_home": {
+      "total": 92,
+      "cases": 26
+    },
+    "cooperative_source_home_routes": {
+      "total": 20592,
+      "cases": 94
+    },
+    "cooperative_split_noninitial": {
+      "total": 185688,
+      "cases": 95
+    },
+    "cooperative_timeouts": {
+      "total": 41,
+      "cases": 30
+    },
+    "cooperative_tree_dp": {
+      "total": 107227,
+      "cases": 95
+    },
+    "cooperative_tree_dp_completed": {
+      "total": 107037,
+      "cases": 95
+    },
+    "cooperative_tree_reconstructed": {
+      "total": 446263,
+      "cases": 95
+    },
+    "cooperative_tree_reconstructions": {
+      "total": 446263,
+      "cases": 95
+    },
+    "cooperative_wins": {
+      "total": 105,
+      "cases": 64
+    }
+  },
+  "phases_vs_v015": {
+    "initial_best_ops": 0,
+    "pre_branch_ops": -59,
+    "branch_saved": 10,
+    "local_saved": -7,
+    "joint_saved": -154,
+    "final_ops": 92
+  }
+}

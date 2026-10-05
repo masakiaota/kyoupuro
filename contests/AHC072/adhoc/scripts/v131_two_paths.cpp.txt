@@ -1,0 +1,102 @@
+    bool insert_two_orders(const State& initial,const vector<Move>& base,
+                         const vector<pair<double,int>>& order,int allowance,
+                         vector<Move>& result,bool& smoothed) {
+        const int n=int(order.size());assert(2<=n&&n<=4);smoothed=false;
+        LOCAL_NOTE(
+            ++local_two_order.attempts;++local_two_order.sizes[n];
+            local_two_order_alternate=false;
+            trace.count_by("path_pair_attempts",1);
+        )
+        int best_length_value=allowance+1;
+        vector<vector<Move>> extra_paths;vector<int> extra_orders;
+        for(int branch=0;branch<2;branch++) {
+            LOCAL_NOTE(++local_two_order.started[branch];TwoOrderTimer timer(branch);)
+            vector<Move> alternate;bool ok=true;
+            // 主枝の上限と第2順序の枝刈りは親を保持する。
+            {
+                State restored=initial;vector<Move> tail=base;
+                for(int j=0;j<n;j++) {
+                    time_keeper.check();
+                    const int at=branch&&j<2?1-j:j,id=order[at].second;
+                    vector<Move> next;
+                    const int cap=min(allowance,best_length_value-1)-int(tail.size());
+                    LOCAL_NOTE(++local_two_order.insert_calls[branch];)
+                    const bool inserted=j==0?
+                        insert_at<true>(restored,tail,id,int(board_info.initial[id]),0,cap,next,&alternate):
+                        insert(restored,tail,id,cap,next);
+                    if(!inserted){ok=false;break;}
+                    ++insertions;tail=move(next);restored[id]=board_info.initial[id];
+                }
+                if(ok) {
+                    LOCAL_NOTE(
+                        ++local_two_order.finished[branch];
+                        if(branch) {
+                            ++local_two_order.alternate_selected;local_two_order_alternate=true;
+                            if(best_length_value<=allowance) {
+                                ++local_two_order.shorter;
+                                local_two_order.raw_saved+=best_length_value-int(tail.size());
+                            }else ++local_two_order.rescued;
+                        }
+                    )
+                    best_length_value=int(tail.size());result=move(tail);
+                }else {LOCAL_NOTE(++local_two_order.failed[branch];)}
+            }
+            if(alternate.empty())continue;
+            LOCAL_NOTE(trace.count_by("path_pair_first_alternates",1);)
+            // 先頭経路を選ぶ前に、同じ順序で残り全員を戻した費用を得る。
+            {
+                State restored=initial;
+                const int first=order[branch?1:0].second;
+                restored[first]=board_info.initial[first];
+                bool completed=true;
+                for(int j=1;j<n;j++) {
+                    time_keeper.check();
+                    const int at=branch&&j<2?1-j:j,id=order[at].second;
+                    vector<Move> next;
+                    LOCAL_NOTE(trace.count_by("path_pair_extra_insert_calls",1);)
+                    if(!insert(restored,alternate,id,allowance-int(alternate.size()),next)){completed=false;break;}
+                    ++insertions;alternate=move(next);restored[id]=board_info.initial[id];
+                }
+                if(completed) {
+                    LOCAL_NOTE(trace.count_by("path_pair_completed",1);)
+                    extra_paths.push_back(move(alternate));extra_orders.push_back(branch);
+                }
+            }
+        }
+        const bool primary_ok=best_length_value<=allowance;
+        if(extra_paths.empty()) {
+            LOCAL_NOTE(local_two_order.completed+=primary_ok;)
+            return primary_ok;
+        }
+        // Stateを借りる枝をすべて抜けてから短縮し、四枚の領域を守る。
+        vector<Move> chosen;
+        if(primary_ok) {
+            chosen=smooth_routes(result);shortcuts+=int(result.size())-int(chosen.size());
+        }
+        const int primary_length=primary_ok?int(chosen.size()):infinite_cost;
+        int selected=-1;
+        for(int i=0;i<int(extra_paths.size());i++) {
+            if(primary_ok&&same_moves(result,extra_paths[i]))continue;
+            if(i&&same_moves(extra_paths[0],extra_paths[i]))continue;
+            auto polished=smooth_routes(extra_paths[i]);
+            shortcuts+=int(extra_paths[i].size())-int(polished.size());
+            LOCAL_NOTE(trace.count_by("path_pair_polished",1);)
+            if((!primary_ok&&selected<0)||polished.size()<chosen.size()) {
+                chosen=move(polished);selected=i;
+            }
+        }
+        const bool completed=primary_ok||selected>=0;
+        if(completed) {
+            result=move(chosen);smoothed=true;
+            LOCAL_NOTE(
+                if(selected>=0) {
+                    trace.count_by("path_pair_selected",1);
+                    trace.count_by("path_pair_saved",primary_ok?primary_length-int(result.size()):0);
+                    trace.count_by("path_pair_rescued",!primary_ok);
+                    local_two_order_alternate=extra_orders[selected]!=0;
+                }
+            )
+        }
+        LOCAL_NOTE(local_two_order.completed+=completed;)
+        return completed;
+    }

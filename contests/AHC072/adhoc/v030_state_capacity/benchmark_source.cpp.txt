@@ -1,0 +1,423 @@
+// v030_state_capacity_bench.cpp
+// 保存済み操作を用いる補助計測。探索・解の生成・スコア評価は実行しない。
+#define main v000_template_main
+#include "../../src/bin/v000_template.cpp"
+#undef main
+#include <time.h>
+
+namespace bench {
+constexpr int snapshots = 8;
+constexpr int repetitions = 6;
+constexpr int iterations = 131072;
+constexpr int warmup_iterations = 16384;
+constexpr array<int, 3> pool_sizes{1, 64, 8192};
+constexpr array<array<int, 3>, 6> orders{{{0,1,2},{2,1,0},{1,2,0},{0,2,1},{2,0,1},{1,0,2}}};
+constexpr array<const char*, 3> names{"fixed32", "exact", "fixed400"};
+using Reference = array<vector<int>, 400>;
+
+void require(bool value, const string& message) {
+    if (!value) throw runtime_error(message);
+}
+
+struct Job {
+    array<Move, 4> moves{Move(0,0,0,1), Move(0,0,0,1), Move(0,0,0,1), Move(0,0,0,1)};
+    int probe_p = 0, probe_q = 1;
+};
+struct Batch {
+    string id;
+    bool synthetic = false;
+    unique_ptr<Board> board;
+    array<State, snapshots> initial, after_one, after_four;
+    array<int, snapshots> homed_one{}, homed_four{};
+    array<Job, snapshots> jobs;
+    int saved_moves = 0;
+};
+int64_t replay_checks = 0, pool_checks = 0, kernel_checks = 0;
+
+// v000のState::applyと同じ更新。3方式が共通の本体を使う。
+inline int apply(Tower* tower, const Board& board, Move move) {
+    const int p = move.p(), k = move.k();
+    const int q = board.ray[p][move.d()][move.l() - 1];
+    Tower source = tower[p], dest = tower[q];
+    const int h = source.height(), g = dest.height();
+    const int n = h - k;
+    Tower flying = source.take_top(n, h);
+    flying.reverse(n);
+    dest.append_top(flying, g);
+    const int homed = source.home(board.nest[p], k) + dest.home(board.nest[q], g + n);
+    tower[p] = source;
+    tower[q] = dest;
+    return homed;
+}
+
+uint32_t pack(const vector<int>& colors) {
+    uint32_t result = 0;
+    for (auto it = colors.rbegin(); it != colors.rend(); ++it) result = result * 16 + *it + 1;
+    return result;
+}
+Reference unpack(const State& state, int count) {
+    Reference result;
+    for (int p = 0; p < count; ++p) {
+        uint32_t bits = state.tower[p].bits;
+        while (bits) { result[p].push_back(int(bits & 15) - 1); bits >>= 4; }
+    }
+    return result;
+}
+int reference_apply(const Input& input, const Board& board, Reference& state, Move m) {
+    const int p = m.p(), k = m.k(), d = m.d(), l = m.l();
+    require(p >= 0 && p < board.cell_count, "source id");
+    require(k >= 0 && k < int(state[p].size()) && l >= 1 && l <= k + 1, "departure rule");
+    auto [i, j] = board.coordinates[p];
+    for (int step = 0; step < l; ++step) {
+        if (d == 0) --i;
+        if (d == 1) ++i;
+        if (d == 2) --j;
+        if (d == 3) ++j;
+        require(i >= 0 && i < input.N && j >= 0 && j < input.N && input.C[i][j] != '#', "ray rule");
+    }
+    const int q = board.cell_id[i][j];
+    require(state[q].size() + state[p].size() - k <= 8, "landing capacity");
+    for (int pos = int(state[p].size()) - 1; pos >= k; --pos) state[q].push_back(state[p][pos]);
+    state[p].resize(k);
+    int homed = 0;
+    for (int pos : {p, q}) {
+        const auto [r, c] = board.coordinates[pos];
+        if (input.C[r][c] < 'A' || input.C[r][c] > 'L') continue;
+        while (!state[pos].empty() && state[pos].back() == input.C[r][c] - 'A') {
+            state[pos].pop_back(); ++homed;
+        }
+    }
+    return homed;
+}
+void compare(const Tower* actual, const Reference& ref, int count) {
+    for (int p = 0; p < count; ++p) require(actual[p].bits == pack(ref[p]), "reference state mismatch");
+}
+
+Batch load_real(const filesystem::path& input_path, const filesystem::path& output_path) {
+    ifstream in(input_path), out(output_path);
+    require(bool(in) && bool(out), "missing input/output: " + input_path.string());
+    Input input; input.read(in);
+    Batch batch;
+    batch.id = input_path.stem().string();
+    batch.board = make_unique<Board>(input);
+    const Board& board = *batch.board;
+    vector<Move> moves;
+    int i, j, k, l; char d;
+    while (out >> i) {
+        require(bool(out >> j >> k >> d >> l), "incomplete saved move");
+        require(i >= 0 && i < input.N && j >= 0 && j < input.N, "saved coordinate");
+        const auto direction = string_view("UDLR").find(d);
+        require(direction != string_view::npos, "saved direction");
+        moves.emplace_back(board.cell_id[i][j], k, int(direction), l);
+    }
+    require(out.eof() && moves.size() >= 4, "saved trace too short");
+    batch.saved_moves = int(moves.size());
+    State state(input, board);
+    Reference ref = unpack(state, board.cell_count);
+    int snapshot = 0;
+    for (int t = 0; t < int(moves.size()); ++t) {
+        while (snapshot < snapshots && t == min(int(moves.size()) - 4, snapshot * int(moves.size()) / snapshots)) {
+            batch.initial[snapshot] = state;
+            copy_n(moves.data() + t, 4, batch.jobs[snapshot].moves.begin());
+            batch.jobs[snapshot].probe_p = moves[t].p();
+            batch.jobs[snapshot].probe_q = board.ray[moves[t].p()][moves[t].d()][moves[t].l() - 1];
+            State trial = state;
+            Reference trial_ref = ref;
+            int homed = 0;
+            for (int step = 0; step < 4; ++step) {
+                const auto move = moves[t + step];
+                const int expected = reference_apply(input, board, trial_ref, move);
+                const int actual = apply(trial.tower.data(), board, move);
+                require(expected == actual, "adapter homed mismatch");
+                compare(trial.tower.data(), trial_ref, board.cell_count);
+                homed += actual;
+                if (step == 0) { batch.after_one[snapshot] = trial; batch.homed_one[snapshot] = homed; }
+            }
+            batch.after_four[snapshot] = trial;
+            batch.homed_four[snapshot] = homed;
+            ++snapshot;
+        }
+        const int expected = reference_apply(input, board, ref, moves[t]);
+        require(state.apply(board, moves[t]) == expected, "v000 homed mismatch");
+        compare(state.tower.data(), ref, board.cell_count);
+        ++replay_checks;
+    }
+    require(snapshot == snapshots, "snapshot count");
+    for (const auto& tower : ref) require(tower.empty(), "saved solution incomplete");
+    return batch;
+}
+
+Batch make_synthetic(int count) {
+    Input input{20, 4, vector<string>(20, string(20, '#'))};
+    for (int p = 0; p < count; ++p) input.C[p / 20][p % 20] = '.';
+    for (int p = 0; p < 4; ++p) {
+        input.C[p / 20][p % 20] = char('A' + p);
+        input.C[(p + 4) / 20][(p + 4) % 20] = char('a' + p);
+    }
+    Batch batch;
+    batch.synthetic = true;
+    batch.id = "boundary_" + to_string(count);
+    batch.board = make_unique<Board>(input);
+    for (int s = 0; s < snapshots; ++s) {
+        uint32_t rng = uint32_t(1907 + count * 17 + s);
+        for (int p = 0; p < count; ++p) {
+            rng ^= rng << 13; rng ^= rng >> 17; rng ^= rng << 5;
+            const int h = int(rng % 9);
+            uint32_t bits = 0;
+            for (int j = 0; j < h; ++j) bits = bits * 16 + (rng >> (j * 3) & 3) + 1;
+            batch.initial[s].tower[p].bits = bits;
+        }
+        batch.jobs[s].probe_p = (s * 11) % count;
+        batch.jobs[s].probe_q = (s * 17 + 1) % count;
+    }
+    return batch;
+}
+
+// 全領域のコピーと書き戻しを観測可能にする。機械命令は追加しない。
+inline void escape(const void* pointer) { asm volatile("" : : "r"(pointer) : "memory"); }
+inline uint64_t digest(const Tower* tower, const Job& job, int homed) {
+    return uint64_t(tower[job.probe_p].bits) + (uint64_t(tower[job.probe_q].bits) << 1)
+        + uint64_t(homed) * 1000000007ULL;
+}
+
+template<int capacity> struct FixedState { array<Tower, capacity> tower{}; };
+
+// noipaは計測呼び出し側からの特殊化だけを防ぐ。内部のapplyは通常のO3で最適化する。
+// 固定長版はcapacityを型から知り、ぴったり版の要素数は実行時引数のままとする。
+template<int capacity, int move_count>
+[[gnu::noipa]] uint64_t fixed_kernel(FixedState<capacity>* __restrict__ pool,
+        const FixedState<capacity>* __restrict__ initial, const Job* __restrict__ jobs,
+        const Board& board, int pool_mask, int count) {
+    uint64_t sum = 0;
+    for (int i = 0; i < count; ++i) {
+        auto& dest = pool[i & pool_mask];
+        dest = initial[i & (snapshots - 1)];
+        escape(dest.tower.data());
+        const Job& job = jobs[i & (snapshots - 1)];
+        int homed = 0;
+        if constexpr (move_count > 0) {
+            for (int t = 0; t < move_count; ++t) homed += apply(dest.tower.data(), board, job.moves[t]);
+            escape(dest.tower.data());
+        }
+        sum += digest(dest.tower.data(), job, homed);
+    }
+    return sum;
+}
+
+template<int move_count>
+[[gnu::noipa]] uint64_t exact_kernel(Tower* __restrict__ pool,
+        const Tower* __restrict__ initial, const Job* __restrict__ jobs,
+        const Board& board, int cell_count, int pool_mask, int count) {
+    uint64_t sum = 0;
+    const size_t bytes = size_t(cell_count) * sizeof(Tower);
+    for (int i = 0; i < count; ++i) {
+        Tower* dest = pool + size_t(i & pool_mask) * cell_count;
+        const Tower* source = initial + size_t(i & (snapshots - 1)) * cell_count;
+        memcpy(dest, source, bytes);
+        escape(dest);
+        const Job& job = jobs[i & (snapshots - 1)];
+        int homed = 0;
+        if constexpr (move_count > 0) {
+            for (int t = 0; t < move_count; ++t) homed += apply(dest, board, job.moves[t]);
+            escape(dest);
+        }
+        sum += digest(dest, job, homed);
+    }
+    return sum;
+}
+
+template<int capacity> struct Buffers {
+    vector<FixedState<capacity>> fixed_pool, fixed_initial;
+    vector<Tower> exact_pool, exact_initial;
+    vector<FixedState<400>> baseline_pool, baseline_initial;
+    Buffers(const Batch& batch, int size) : fixed_pool(size), fixed_initial(snapshots),
+        exact_pool(size_t(size) * batch.board->cell_count), exact_initial(size_t(snapshots) * batch.board->cell_count),
+        baseline_pool(size), baseline_initial(snapshots) {
+        const int count = batch.board->cell_count;
+        for (int i = 0; i < snapshots; ++i) {
+            copy_n(batch.initial[i].tower.data(), count, fixed_initial[i].tower.data());
+            copy_n(batch.initial[i].tower.data(), count, exact_initial.data() + size_t(i) * count);
+            baseline_initial[i].tower = batch.initial[i].tower;
+        }
+    }
+    template<int move_count> uint64_t run(int method, const Batch& batch, int size, int count) {
+        if (method == 0) return fixed_kernel<capacity,move_count>(fixed_pool.data(), fixed_initial.data(), batch.jobs.data(), *batch.board, size - 1, count);
+        if (method == 1) return exact_kernel<move_count>(exact_pool.data(), exact_initial.data(), batch.jobs.data(), *batch.board, batch.board->cell_count, size - 1, count);
+        return fixed_kernel<400,move_count>(baseline_pool.data(), baseline_initial.data(), batch.jobs.data(), *batch.board, size - 1, count);
+    }
+    const Tower* output(int method, int slot, int count) const {
+        if (method == 0) return fixed_pool[slot].tower.data();
+        if (method == 1) return exact_pool.data() + size_t(slot) * count;
+        return baseline_pool[slot].tower.data();
+    }
+    const Tower* source(int method, int slot, int count) const {
+        if (method == 0) return fixed_initial[slot].tower.data();
+        if (method == 1) return exact_initial.data() + size_t(slot) * count;
+        return baseline_initial[slot].tower.data();
+    }
+};
+
+template<int move_count> const State& expected_state(const Batch& batch, int s) {
+    if constexpr (move_count == 0) return batch.initial[s];
+    if constexpr (move_count == 1) return batch.after_one[s];
+    return batch.after_four[s];
+}
+template<int move_count> uint64_t expected_sum(const Batch& batch, int count) {
+    uint64_t cycle = 0, tail = 0;
+    for (int s = 0; s < snapshots; ++s) {
+        int homed = 0;
+        if constexpr (move_count == 1) homed = batch.homed_one[s];
+        if constexpr (move_count == 4) homed = batch.homed_four[s];
+        const uint64_t v = digest(expected_state<move_count>(batch, s).tower.data(), batch.jobs[s], homed);
+        cycle += v;
+        if (s < count % snapshots) tail += v;
+    }
+    return cycle * (count / snapshots) + tail;
+}
+
+template<int capacity, int move_count>
+void verify_pool(const Batch& batch, const Buffers<capacity>& buffers, int method, int pool_size, int count) {
+    const int cell_count = batch.board->cell_count;
+    const int copied_count = method == 0 ? capacity : method == 1 ? cell_count : 400;
+    for (int slot = 0; slot < min(pool_size, count); ++slot) {
+        const int last = slot + ((count - 1 - slot) / pool_size) * pool_size;
+        const State& expected = expected_state<move_count>(batch, last & (snapshots - 1));
+        const Tower* actual = buffers.output(method, slot, cell_count);
+        for (int p = 0; p < copied_count; ++p) require(actual[p].bits == expected.tower[p].bits, "pool mismatch");
+        ++pool_checks;
+    }
+    for (int s = 0; s < snapshots; ++s) {
+        const Tower* actual = buffers.source(method, s, cell_count);
+        for (int p = 0; p < copied_count; ++p) require(actual[p].bits == batch.initial[s].tower[p].bits, "source was modified");
+    }
+}
+
+uint64_t cpu_ns() {
+    timespec ts;
+    if (clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &ts) != 0) throw runtime_error("CPU clock failed");
+    return uint64_t(ts.tv_sec) * 1000000000ULL + ts.tv_nsec;
+}
+uint64_t wall_ns() {
+    return uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now().time_since_epoch()).count());
+}
+
+template<int capacity, int move_count>
+void run_condition(const Batch& batch, Buffers<capacity>& buffers, int pool_size, ofstream* csv) {
+    if (!csv) {
+        const int count = pool_size + 13;
+        const uint64_t expected = expected_sum<move_count>(batch, count);
+        for (int method = 0; method < 3; ++method) {
+            require(buffers.template run<move_count>(method, batch, pool_size, count) == expected, "kernel checksum");
+            verify_pool<capacity,move_count>(batch, buffers, method, pool_size, count);
+            ++kernel_checks;
+        }
+        return;
+    }
+    const uint64_t expected = expected_sum<move_count>(batch, iterations);
+    const uint64_t expected_warmup = expected_sum<move_count>(batch, warmup_iterations);
+    for (int rep = 0; rep < repetitions; ++rep) {
+        for (int rank = 0; rank < 3; ++rank) {
+            const int method = orders[rep][rank];
+            require(buffers.template run<move_count>(method, batch, pool_size, warmup_iterations) == expected_warmup, "warmup checksum");
+            const uint64_t w0 = wall_ns(), c0 = cpu_ns();
+            const uint64_t value = buffers.template run<move_count>(method, batch, pool_size, iterations);
+            const uint64_t c1 = cpu_ns(), w1 = wall_ns();
+            require(value == expected, "measured checksum");
+            const int count = batch.board->cell_count;
+            const int copied = method == 0 ? capacity : method == 1 ? count : 400;
+            *csv << (batch.synthetic ? "boundary" : batch.id == "0000" ? "handmade" : "real") << ','
+                 << batch.id << ',' << count << ',' << capacity << ',' << pool_size << ',' << move_count << ','
+                 << rep << ',' << rank << ',' << names[method] << ',' << copied * int(sizeof(Tower)) << ','
+                 << size_t(copied) * sizeof(Tower) * pool_size << ',' << iterations << ',' << c1 - c0 << ',' << w1 - w0 << ','
+                 << value << ',' << uintptr_t(buffers.output(method, 0, count)) % 128 << '\n';
+        }
+    }
+    for (int method = 0; method < 3; ++method) verify_pool<capacity,move_count>(batch, buffers, method, pool_size, iterations);
+}
+
+template<int capacity> void run_case(const Batch& batch, ofstream* csv) {
+    static_assert(sizeof(FixedState<capacity>) == capacity * sizeof(Tower));
+    static_assert(is_trivially_copyable_v<FixedState<capacity>>);
+    for (const int size : pool_sizes) {
+        Buffers<capacity> buffers(batch, size);
+        run_condition<capacity,0>(batch, buffers, size, csv);
+        if (!batch.synthetic) {
+            run_condition<capacity,1>(batch, buffers, size, csv);
+            run_condition<capacity,4>(batch, buffers, size, csv);
+        }
+    }
+}
+void dispatch(const Batch& batch, ofstream* csv) {
+    const int capacity = min(400, (batch.board->cell_count + 31) / 32 * 32);
+#define CAPACITY_CASE(C) case C: run_case<C>(batch, csv); break
+    switch (capacity) {
+        CAPACITY_CASE(32); CAPACITY_CASE(64); CAPACITY_CASE(96); CAPACITY_CASE(128);
+        CAPACITY_CASE(160); CAPACITY_CASE(192); CAPACITY_CASE(224); CAPACITY_CASE(256);
+        CAPACITY_CASE(288); CAPACITY_CASE(320); CAPACITY_CASE(352); CAPACITY_CASE(384); CAPACITY_CASE(400);
+        default: throw runtime_error("unexpected capacity");
+    }
+#undef CAPACITY_CASE
+}
+
+int main(int argc, char** argv) {
+    require(argc == 4, "usage: v030_state_capacity_bench --check|--measure <project_root> <output_dir>");
+    const string mode = argv[1];
+    require(mode == "--check" || mode == "--measure", "invalid mode");
+    const filesystem::path root = argv[2], dest = argv[3];
+    vector<Batch> batches;
+    vector<filesystem::path> inputs;
+    for (const auto& entry : filesystem::directory_iterator(root / "tools/in")) {
+        if (entry.path().extension() == ".txt") inputs.push_back(entry.path());
+    }
+    sort(inputs.begin(), inputs.end());
+    for (const auto& path : inputs) batches.push_back(load_real(path, root / "results/out/v025_fast_math" / path.filename()));
+    set<int> counts{8,180,185,399,400};
+    for (int n = 32; n <= 384; n += 32) for (int offset : {-1,0,1}) counts.insert(n + offset);
+    for (int n : counts) batches.push_back(make_synthetic(n));
+    // 床数と測定時刻が単調に対応しない固定順序にする。
+    mt19937 rng(20260927);
+    shuffle(batches.begin(), batches.end(), rng);
+    filesystem::create_directories(dest);
+    ofstream csv;
+    if (mode == "--measure") {
+        require(!filesystem::exists(dest / "samples.csv"), "samples.csv already exists; refusing a second measurement");
+        csv.open(dest / "samples.csv");
+        require(bool(csv), "cannot write samples");
+        csv << "kind,case,floors,capacity,pool,moves,rep,rank,method,bytes,pool_bytes,iterations,cpu_ns,wall_ns,checksum,base_mod128\n";
+        ofstream cases(dest / "cases.csv");
+        cases << "kind,case,floors,capacity,saved_moves,snapshots,avg_occupied,avg_height,max_height,homed_one,homed_four\n";
+        for (const auto& batch : batches) {
+            int occupied = 0, total_height = 0, max_height = 0, h1 = 0, h4 = 0;
+            for (int s = 0; s < snapshots; ++s) {
+                for (int p = 0; p < batch.board->cell_count; ++p) {
+                    const int h = batch.initial[s].tower[p].height();
+                    occupied += h > 0; total_height += h; max_height = max(max_height, h);
+                }
+                h1 += batch.homed_one[s]; h4 += batch.homed_four[s];
+            }
+            const int count = batch.board->cell_count;
+            cases << (batch.synthetic ? "boundary" : batch.id == "0000" ? "handmade" : "real") << ',' << batch.id << ','
+                  << count << ',' << min(400,(count + 31) / 32 * 32) << ',' << batch.saved_moves << ',' << snapshots << ','
+                  << double(occupied) / snapshots << ',' << (occupied ? double(total_height) / occupied : 0) << ','
+                  << max_height << ',' << h1 << ',' << h4 << '\n';
+        }
+    }
+    int completed = 0;
+    for (const auto& batch : batches) {
+        dispatch(batch, mode == "--measure" ? &csv : nullptr);
+        ++completed;
+        if (completed % 10 == 0 || completed == int(batches.size())) {
+            if (csv) csv.flush();
+            cerr << mode << ": " << completed << '/' << batches.size() << " cases complete\n";
+        }
+    }
+    cout << "OK mode=" << mode << " real_cases=" << inputs.size() << " boundary_cases=" << counts.size()
+         << " replay_checks=" << replay_checks << " pool_checks=" << pool_checks << " kernel_checks=" << kernel_checks << '\n';
+    return 0;
+}
+} // namespace bench
+
+int main(int argc, char** argv) {
+    try { return bench::main(argc, argv); }
+    catch (const exception& e) { cerr << "ERROR: " << e.what() << '\n'; return 1; }
+}

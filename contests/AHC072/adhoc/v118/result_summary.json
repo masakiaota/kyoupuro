@@ -1,0 +1,150 @@
+{
+  "selected": "base",
+  "retained": "v115",
+  "candidate": {
+    "condition": "r0",
+    "source": "src/bin/v115_corridor_reinsertion.cpp",
+    "source_sha256": "00c649abb06fa8f46927ba50e5f3b7f000c806c0029bbbec683e79712d04387e",
+    "model_parent": "v111",
+    "fixed_at": "2026-10-04T10:16:25.489950+00:00"
+  },
+  "validation": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.44921875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.44921875,
+      "mean_elapsed_ms": 1564.53515625,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "mixed": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 216.71484375,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 216.71484375,
+      "mean_elapsed_ms": 1566.296875,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    }
+  },
+  "differences": {
+    "mixed": {
+      "common_completed": 256,
+      "mean_T_difference": 1.265625,
+      "mean_S_difference": 1.265625,
+      "wins": 85,
+      "ties": 34,
+      "losses": 137
+    }
+  },
+  "activation": {
+    "mixed": {
+      "heterogeneous_best_kind": 693,
+      "heterogeneous_best_ops": 85523,
+      "heterogeneous_deadlines": 34,
+      "heterogeneous_merge_attempts": 256,
+      "heterogeneous_merge_completed": 222,
+      "heterogeneous_retained": 256,
+      "heterogeneous_skipped": 0,
+      "heterogeneous_tree_attempts": 768,
+      "heterogeneous_tree_completed": 768
+    }
+  },
+  "observations": {
+    "classical_initial_rank": {
+      "2": 24,
+      "3": 202,
+      "0": 17,
+      "1": 13
+    },
+    "classical_pilot_wins": 25,
+    "classical_final_wins": 29,
+    "classical_retained_cases": 256,
+    "candidate_count": {
+      "4": 254,
+      "3": 2
+    },
+    "best_classical_kind": {
+      "3": 220,
+      "0": 14,
+      "2": 11,
+      "1": 11
+    },
+    "mean_classical_minus_first_nn_ops": 44.796875,
+    "mean_lns_attempts": 8469.0546875,
+    "baseline_mean_lns_attempts": 10186.73828125,
+    "errors": {
+      "construction_errors": 0,
+      "lns_errors": 0,
+      "lns_invalid_candidates": 0,
+      "baseline_recovery": 0,
+      "final_recovery": 0
+    },
+    "initial_nn_same_hash": 256,
+    "classical_ms_mean": 27.6910078125,
+    "classical_ms_max": 124.396
+  },
+  "mechanism": {
+    "sources": {
+      "adhoc/bin/v118_heterogeneous_initial.cpp": "4495e1781efe3e1d274f576bc007e82d68b30ffe590de704e28b850863f1b6ae",
+      "src/bin/v115_corridor_reinsertion.cpp": "00c649abb06fa8f46927ba50e5f3b7f000c806c0029bbbec683e79712d04387e",
+      "src/bin/v214_local_color_runs.cpp": "f441add3a6295c6344897ed4969d64f98d5e039b141e1d6e7765ab25fccabd9e"
+    },
+    "fixed_reference_pairs": 4,
+    "independent_outputs": 104,
+    "preprocessing_parent_algorithms_identical": true,
+    "random_and_deadline_scope_restored": true,
+    "gates": {
+      "mixed": {
+        "passed": true
+      }
+    },
+    "completed_at": "2026-10-04T10:44:56.665113+00:00"
+  },
+  "retained_final": {
+    "test": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 218.046875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 218.046875,
+      "mean_elapsed_ms": 1564.6875,
+      "max_elapsed_ms": 1624,
+      "mean_inferences": 291.90625,
+      "mean_depth": 291.90625,
+      "deadline_cases": 0
+    },
+    "tools_in": {
+      "cases": 100,
+      "complete": 100,
+      "completion_rate": 1.0,
+      "mean_S_all": 196.05,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 196.05,
+      "mean_elapsed_ms": 1569.38,
+      "max_elapsed_ms": 1616,
+      "mean_inferences": 264.69,
+      "mean_depth": 264.69,
+      "deadline_cases": 0
+    }
+  },
+  "reused_final": true,
+  "goal_190": false,
+  "source_hash_verified": true,
+  "official_source": "results/nn_rank/v118/20261004_heterogeneous_studio/result.json",
+  "completed_at": "2026-10-04T10:46:13.570042+00:00"
+}

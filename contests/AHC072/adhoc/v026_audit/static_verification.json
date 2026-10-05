@@ -1,0 +1,15 @@
+{
+  "local": {
+    "diff_lines": 169,
+    "hunks": 10
+  },
+  "production": {
+    "diff_lines": 131,
+    "hunks": 8
+  },
+  "parent_sha256": "d9a5b96d91f1a8b28460d9d54367e1a4c56e7e12877f33eca5b80612999f7605",
+  "solver_sha256": "83fbf8fd338c22f4f5809a5b4a5be5df751cc2e137323ce76027187c4dca04ed",
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+  "deployment_target": "15.0"
+}

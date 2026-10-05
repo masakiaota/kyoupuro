@@ -1,0 +1,44 @@
+{
+  "all_100_equal": true,
+  "all": {
+    "extract_calls": 64928.0,
+    "insert_calls": 196960.0,
+    "insert_success": 168400.0,
+    "parent_extract_ns": 568547000.0,
+    "new_extract_ns": 555224000.0,
+    "parent_insert_ns": 16654527000.0,
+    "new_insert_ns": 16595096000.0,
+    "insertion_reduction_percent": 0.3568459194307927,
+    "extraction_and_insertion_reduction_percent": 0.422421688486041
+  },
+  "0": {
+    "extract_calls": 39801.0,
+    "insert_calls": 85707.0,
+    "insert_success": 74589.0,
+    "parent_extract_ns": 317550000.0,
+    "new_extract_ns": 311271000.0,
+    "parent_insert_ns": 5985731000.0,
+    "new_insert_ns": 5957979000.0,
+    "insertion_reduction_percent": 0.46363593686384874,
+    "extraction_and_insertion_reduction_percent": 0.5398934301040992
+  },
+  "1": {
+    "extract_calls": 25127.0,
+    "insert_calls": 111253.0,
+    "insert_success": 93811.0,
+    "parent_extract_ns": 250997000.0,
+    "new_extract_ns": 243953000.0,
+    "parent_insert_ns": 10668796000.0,
+    "new_insert_ns": 10637117000.0,
+    "insertion_reduction_percent": 0.29693135007924365,
+    "extraction_and_insertion_reduction_percent": 0.3546129491648786
+  },
+  "all_100_totals": {
+    "flexible_calls": 18965,
+    "flexible_success": 10994,
+    "paired_calls": 6400,
+    "paired_success": 2640,
+    "mask_checks": 6607293
+  },
+  "speed_criterion_passed": false
+}

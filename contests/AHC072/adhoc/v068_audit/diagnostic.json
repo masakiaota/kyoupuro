@@ -1,0 +1,239 @@
+{
+  "schedule": [
+    {
+      "mode": 58,
+      "calls": 24,
+      "complete_cycles": 2,
+      "skipped": 4,
+      "condition_checks": 4,
+      "budget_checks": 3,
+      "validated_outputs": 24,
+      "rng_consumption": 0,
+      "pool_free": 4,
+      "by_kind": {
+        "joint": 18,
+        "strict": 2,
+        "slack": 2,
+        "finite": 2
+      }
+    },
+    {
+      "mode": 59,
+      "calls": 24,
+      "complete_cycles": 6,
+      "skipped": 4,
+      "condition_checks": 4,
+      "budget_checks": 3,
+      "validated_outputs": 24,
+      "rng_consumption": 0,
+      "pool_free": 4,
+      "by_kind": {
+        "joint": 6,
+        "strict": 6,
+        "slack": 6,
+        "finite": 6
+      }
+    }
+  ],
+  "fixed_clock": [
+    {
+      "mode": "local",
+      "input": "tools/in/0000.txt",
+      "M": 16,
+      "selected": 58,
+      "T": 43,
+      "clock_calls": 15436,
+      "rng": 8981252136166831888,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "local",
+      "input": "tools/in/0001.txt",
+      "M": 29,
+      "selected": 58,
+      "T": 113,
+      "clock_calls": 15449,
+      "rng": 16869540247035171714,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "local",
+      "input": "tools/in/0002.txt",
+      "M": 43,
+      "selected": 58,
+      "T": 124,
+      "clock_calls": 15448,
+      "rng": 3397289825596715861,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "local",
+      "input": "tools/in/0004.txt",
+      "M": 88,
+      "selected": 59,
+      "T": 307,
+      "clock_calls": 15449,
+      "rng": 986117275650030610,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "local",
+      "input": "tools/in/0005.txt",
+      "M": 122,
+      "selected": 59,
+      "T": 729,
+      "clock_calls": 15449,
+      "rng": 11297914401122177624,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "local",
+      "input": "tools/in/0014.txt",
+      "M": 137,
+      "selected": 59,
+      "T": 472,
+      "clock_calls": 15449,
+      "rng": 3506329700526027950,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "local",
+      "input": "adhoc/v068_audit/inputs/M079.txt",
+      "M": 79,
+      "selected": 58,
+      "T": 275,
+      "clock_calls": 15448,
+      "rng": 4629486792655341999,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "local",
+      "input": "adhoc/v068_audit/inputs/M080.txt",
+      "M": 80,
+      "selected": 59,
+      "T": 269,
+      "clock_calls": 15448,
+      "rng": 690301305866630475,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "local",
+      "input": "adhoc/v068_audit/inputs/M081.txt",
+      "M": 81,
+      "selected": 59,
+      "T": 273,
+      "clock_calls": 15449,
+      "rng": 4785145815954209808,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "tools/in/0000.txt",
+      "M": 16,
+      "selected": 58,
+      "T": 43,
+      "clock_calls": 19285,
+      "rng": 12923323390466155845,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "tools/in/0001.txt",
+      "M": 29,
+      "selected": 58,
+      "T": 112,
+      "clock_calls": 19305,
+      "rng": 2603348311924176731,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "tools/in/0002.txt",
+      "M": 43,
+      "selected": 58,
+      "T": 121,
+      "clock_calls": 19305,
+      "rng": 2764183095364234378,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "tools/in/0004.txt",
+      "M": 88,
+      "selected": 59,
+      "T": 310,
+      "clock_calls": 19305,
+      "rng": 10728791625194788560,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "tools/in/0005.txt",
+      "M": 122,
+      "selected": 59,
+      "T": 708,
+      "clock_calls": 19303,
+      "rng": 1848011147726550884,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "tools/in/0014.txt",
+      "M": 137,
+      "selected": 59,
+      "T": 457,
+      "clock_calls": 19302,
+      "rng": 17344541617330902694,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "adhoc/v068_audit/inputs/M079.txt",
+      "M": 79,
+      "selected": 58,
+      "T": 271,
+      "clock_calls": 19304,
+      "rng": 2119329381798754204,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "adhoc/v068_audit/inputs/M080.txt",
+      "M": 80,
+      "selected": 59,
+      "T": 274,
+      "clock_calls": 19304,
+      "rng": 11432449401461536940,
+      "pool_free": 4,
+      "exact_match": true
+    },
+    {
+      "mode": "production",
+      "input": "adhoc/v068_audit/inputs/M081.txt",
+      "M": 81,
+      "selected": 59,
+      "T": 280,
+      "clock_calls": 19304,
+      "rng": 1492153912118650883,
+      "pool_free": 4,
+      "exact_match": true
+    }
+  ],
+  "passed": true
+}

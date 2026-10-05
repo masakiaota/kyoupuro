@@ -1,0 +1,1311 @@
+{
+  "edits": [
+    {
+      "old": "// v059_repair_priority.cpp\n// AtCoder's default -O2 is overridden for the solver, without fast-math.\n// Reference: eijirou's public AHC007 post-contest first-place-equivalent code.\n// https://eijirou-kyopro.hatenablog.com/entry/2022/02/01/221716\n",
+      "new": "// v071_refactored.cpp\n// 探索の実数演算の順序を保つためfast-mathは使わない。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// AHC072: accepted event-LNS baseline, fast exact reinsertion transitions,\n// two-tower suffix reconstruction, and final fixed-pair transfer compression.\n",
+      "new": "",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Keep production preprocessing identical to the supplied source. Only LOCAL\n// adapts timing and adds measurement; identity macros preserve original calls.\n",
+      "new": "// LOCALでは時間を補正し、集計を有効にする。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Count hot-loop events directly; format them only after the search ends.\n",
+      "new": "// 頻出処理では整数を加算し、文字列への変換と出力は探索後に行う。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// The three uses of a later start are measured separately: keeping a parcel,\n// splitting it into individuals, and using the time as a two-tower anchor.\n",
+      "new": "// 開始時刻の追加を、束のまま・個体へ分解・2塔の再構築に分けて集計する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Include failed insertions and deadline unwinding in the extra order's cost.\n",
+      "new": "// 失敗と期限到達による中断も、追加順序の費用へ含める。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Include rejected attempts and deadline unwinding in the neighborhood's cost.\n",
+      "new": "// 不採用と期限到達による中断も、依存拡張の費用へ含める。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// AHC072 -- event-driven reinsertion, flexible suffix repair, and causal reordering.\n// No test-case identification, coordinates, or supplied answer sequences are embedded.\n// Compile: g++ -std=gnu++23 -O2 -march=native -DNDEBUG ahc072_paired_event_lns.cpp -o solver\n",
+      "new": "",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// 各盤面は床数ぴったりの領域を借りる。探索中に確保・解放しない。\n// 最大同時使用はpairedNeighborのboundary/initial/restoredとinsertAtのbの4枚。\n",
+      "new": "// 盤面は床数分の領域を借りる。2塔の再構築3枚と再挿入1枚で最大4枚を同時に使う。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // 引数なしで作る盤面はIdentityBoard::wordsで全床を書き込んでから使う。\n",
+      "new": "    // 引数なしでは領域だけ取得する。利用前にIdentityState::wordsで全床を書き込む。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Multiplication-high maps a uniform 64-bit draw to [0,n) without\n    // integer division. The tiny finite-RNG range bias is immaterial here.\n",
+      "new": "    // 64 bit積の上位を使い、整数除算なしで[0,n)へ写す。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Integer distance labels: graph edges have cost one. Dynamic cost buckets\n// avoid binary-heap comparisons and retain stale-entry checks at the caller.\n",
+      "new": "// 単位費用の探索用。費用別の連結リストを使い、古い候補の検査は呼び出し側で行う。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Validate every emitted operation, including capacity BEFORE returning home.\n",
+      "new": "    // 帰巣する前の着地容量を含め、操作の合法性を検査する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Empty-board completion potential.  Splits at color-run boundaries are used\n// for fast collection evaluation. Both tower orientations are represented.\n",
+      "new": "// 空盤面で帰巣する費用。色の連続部分の境界で分割し、塔の両方向を評価する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Shortest full-packet transfer with all other towers fixed. A packet can land\n// on a resident tower and depart again leaving that resident completely intact.\n// Its departure range is resident_height+1, not necessarily one cell.\n",
+      "new": "// 周囲の塔を固定した束の最短輸送。着地先の塔を残して再出発でき、その高さを飛距離に使う。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Exact recursive split/transport DP for ONE selected packet, with all other\n// towers as fixed relay stations. Unlike EmptyDP, EVERY split position is used.\n// After a split the upper packet is completed first. Pending lower pieces are\n// ancestors of that packet, so crossing them cannot violate tower capacity.\n",
+      "new": "// 1束の全分割位置を評価する。上側を帰巣させてから下側を扱うため、未処理部分の容量を保てる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Return control at the first split or return-home event. This permits\n    // new colors to join the remaining packet after another color was delivered.\n",
+      "new": "    // 分割か帰巣で構築へ制御を戻し、残った束に別の色を合流させる機会を作る。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// A guaranteed inexpensive completion used near the deadline. Full towers are\n// opened first; thereafter every floor can accept a single travelling slime.\n",
+      "new": "// 期限付近の1匹ずつの帰巣。高さ8の塔を先に空け、通過先の容量を確保する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Independent feasible baseline: connect each color to its nest by a randomized\n// incremental Steiner tree, then collect bottom-up with capacity-aware flushing.\n",
+      "new": "// 色ごとの巣へ増分的に木をつなぎ、容量を守って葉から集める初期解。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                // A resident of a different color can propel this packet past\n                // empty straight sections of its collection tree.\n",
+      "new": "                // 異色の下段を踏み台にし、集荷木の空いた直線部分を飛び越す。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // A split DP treats resident towers as background. Do not permanently\n        // absorb those residents at an event when that would destroy the gain.\n        // Complete the original packet instead; background towers stay intact.\n",
+      "new": "        // 周囲の塔を合流させると分割DPの利得を失う場合は、元の束の帰巣まで完了させる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Farther packets go first, retaining nearer packets as relay towers.\n",
+      "new": "            // 近い束を踏み台に残せるよう、遠い束から帰巣させる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// A shortest fixed-background transfer of a specified TOP portion. The first\n// launch may use a nest stack which disappears immediately after departure.\n",
+      "new": "// 塔の上側だけを運ぶ最短経路。初回の出発で消える巣上の下段も扱う。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Replace uninterrupted transfers by a shorter route with the EXACT same\n// resulting board. This also exploits launch heights created by reinsertion.\n",
+      "new": "// 連続した輸送を、終了時の全盤面が等しい短い経路へ置き換える。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Between two cells without home returns, concatenating one tower bottom-up\n// and the other top-down preserves the word. Only their height boundary moves.\n// Keep the net transfer at its first position; intervening operations commute\n// exactly when neither endpoint has been touched. Passing over a cell is safe.\n",
+      "new": "// 帰巣のない2マス間の転送では、一方を下から、他方を上から連結した列が不変。\n// 両端へ触れない操作をまたいで正味の転送をまとめ、最初の転送位置へ置く。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // apply validates the original move before its endpoint is used below.\n",
+      "new": "        // 着地点を使う前に、元の操作の合法性を検査する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                // The last original departure from the net donor left at least\n                // l-1 supports. Its final height therefore makes this legal,\n                // including non-adjacent transfers and a reversed net direction.\n",
+      "new": "                // 元の最後の出発で下段がl-1匹以上残るため、正味の向きが反転しても直接転送できる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                // Uncover the last surviving touches so later transfers can\n                // also cancel across this now-empty excursion.\n",
+      "new": "                // 相殺された往復より前の最終接触を戻し、さらに前の転送とも相殺できるようにする。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // A violation is a bug, never a reason to silently keep the input.\n",
+      "new": "            // 不変条件の破れは、入力をそのまま返して隠さず例外にする。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Only the endpoint words are fixed: intermediate parcels may split and merge.\n// Each tower holds at most eight slimes. Total participation may exceed eight;\n// the node cap and deadline bound the larger joint search instead.\n",
+      "new": "// 区間の入口と出口だけを固定し、途中の分割・合流を探索する。\n// 各塔は8匹まで。参加総数の増加は状態数上限と期限で抑える。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                // Predecessors are defined by a legal FORWARD departure. The\n                // physical reverse jump may lack sufficient support at b.\n",
+      "new": "                // 逆探索では順方向に合法な出発の直前を列挙する。物理的な逆ジャンプの支持は要求しない。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // A skipped operation cannot touch any final window cell: blocked[]\n        // forbids adding cells already touched by an earlier skipped operation.\n        // It therefore commutes with the whole replacement, including jumps.\n",
+      "new": "        // 省略した操作の接触先はblockedで窓への追加を禁止したため、置換全体と交換できる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Endpoint-preserving reductions shared by candidate and final polishing.\n",
+      "new": "",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// A same-color top run is sometimes dispatched as p->q, p->r, r->q.\n// Carry both pieces together instead, including the former launch support.\n// Operations disjoint from p/q/r commute; all other contacts close the window.\n",
+      "new": "// 同色のp→q、p→r、r→qを、踏み台部分もまとめて輸送する。\n// p/q/rへ触れない操作は交換し、それ以外の接触で区間を閉じる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Moving the replacement to the first departure must not cross a change\n    // to its relay tower. Its exact word, not just its height, is preserved.\n",
+      "new": "    // 置換を最初の出発へ移すため、中継塔に変更がないことを積み順まで確認する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Capacity is checked before home returns. Exact equality also checks\n        // support returns or an intermediate nest that changes the background.\n",
+      "new": "        // 容量は帰巣前に検査する。全盤面の一致で、踏み台や中継巣の帰巣も確認する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Consume one fixed parcel's original route, stopping at any merge, split, or\n// return. The next route may carry a different parcel containing that one.\n",
+      "new": "// 合流・分割・帰巣までを1輸送として読む。次の輸送では束の構成が変わり得る。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Keep heights fixed at event boundaries, but allow two tower words to differ.\n// This retains an otherwise rejected reversal until a later reversal closes it.\n",
+      "new": "// 区間境界で高さを保ち、最大2塔の積み順の差を後の輸送まで引き継ぐ。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // A palindrome has no unresolved orientation to carry through later events.\n",
+      "new": "    // 上下対称な束には、後の輸送まで引き継ぐ向きの差がない。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // The strict policy retains v049's seeds before the relaxed beam can\n    // compete for its four slots. The relaxed policy allows one extra move.\n",
+      "new": "    // 厳密側は最初から短縮する経路を残す。緩和側は1手の超過を許し、候補4本で追跡する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Unrelated operations need no new path search and keep their order.\n",
+      "new": "            // 無関係な操作は順序を保って再生し、経路を探索し直さない。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Previously saved moves remain available to later transfers;\n            // the limit applies to the whole prefix, not each route alone.\n",
+      "new": "            // 先の短縮を後の輸送に使えるよう、手数上限は区間全体へ適用する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Only proven equal-boundary replacements enter output. At the budget\n        // limit the untouched suffix can be appended without another replay.\n",
+      "new": "        // 置換後の全盤面が一致しているため、期限到達時は残りの操作をそのままつなげられる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// One BFS supplies all event destinations. A landing that returns slimes is\n// terminal for this route; the event search continues from that changed board.\n",
+      "new": "// 1回のBFSで全着地点を調べる。帰巣が起きた着地で輸送を切り、変化後の盤面から再探索する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Each key is the complete movable color board on an immutable background.\n// Packing by cell and color forgets identities, not color order or capacity.\n",
+      "new": "// 固定背景上の全可動塔をマスと色順で表す。個体IDは区別せず、積み順と容量を保つ。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Returning home is irreversible: no future event can refill this count.\n",
+      "new": "        // 帰巣した個体は戻せないため、出口で必要な匹数を下回った状態を捨てる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Only lower is used for pruning. Distance and unsettled order rank the\n        // beam toward the finite endpoint, including towers that must remain.\n",
+      "new": "        // 枝刈りは下界だけで行う。距離と積み順は、出口に塔を残す場合も含めた探索順位に使う。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Infinity is used only by fixed-work diagnostics; real runs share the\n        // parent's final deadline and retain the per-trial budget from v043.\n",
+      "new": "        // 1回の探索予算を全体の期限内に収める。無限の期限は固定仕事量の診断だけで使う。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Every committed replacement has the same endpoint. A later reducer sees\n// the changed splits and contact order, so repeat while that round shortens.\n// Finite cooperation keeps a small part of the parent's final budget for a\n// final cheap sweep; the time-dependent LNS itself keeps its original budget.\n",
+      "new": "// 短縮で分割・接触順が変わるため、各巡で短くなる間は再適用する。\n// 有限区間の探索後にも安い短縮を行えるよう、終了予算を少し残す。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Only timer expiry is handled here. Completed passes remain committed;\n        // all other failures propagate so invalid transformations stay visible.\n",
+      "new": "        // 期限到達までに完了した短縮は残す。その他の例外は呼び出し側へ伝える。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// End v055 additions.\n",
+      "new": "",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// v057: shorten completed candidates before the unchanged acceptance rule.\n// Focus is a selection heuristic, not a claim of equal suffix board states.\n",
+      "new": "// 受理判定前に候補を短縮する。変更付近への重点化は選択基準であり、境界一致の保証ではない。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Share a bounded fraction of elapsed LNS time; retain an initial allowance.\n",
+      "new": "        // LNS経過時間の一定割合を予算とし、開始直後にも少量の余裕を与える。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// End v057 candidate reductions.\n",
+      "new": "",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Persistent IDs are initial floor-cell indices. IDs of the same color may be\n// exchanged inside an otherwise identical monochrome parcel during extraction.\n",
+      "new": "// 個体IDは初期位置の床ID。同色の束の除去では、色順が同じなら個体IDの割り当てを交換できる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Reused open-addressed indices. Clearing a candidate bank changes an epoch\n    // instead of allocating/freeing one unordered_map node per pattern.\n",
+      "new": "    // 候補の索引を再利用する。世代番号で初期化し、候補ごとの要素確保・解放を避ける。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // One spatial closure at a fixed schedule time. A cost bucket is fully\n    // processed before the next; equal-cost updates only change its bonus.\n    // Consequently each cell/word is settled once, without a heap for ties.\n",
+      "new": "    // 同じ予定時刻の空間探索。費用の小さい順に確定し、同費用では補助評価だけを更新する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // The upper word is an epoch, the lower word a queued cost. Resetting\n        // a schedule layer is O(number of cost buckets), not O(V * words).\n",
+      "new": "        // 上位を世代、下位を待機費用に使う。各時刻の初期化を費用桶の数に抑える。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // A lower resident may support flights at several times and places.\n    // slack is how many lower residents can disappear without breaking this jump.\n",
+      "new": "    // 下段の個体は複数の便を支え得る。slack匹までなら失ってもそのジャンプは成立する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Grow only when removing the seed actually breaks a surviving flight.\n    // Completing the flight's removal releases its route for the existing DP.\n    // Count surviving flights whose launch loses too many lower residents.\n    // This is a repair-cost proxy, not a lower bound on required extra moves.\n",
+      "new": "    // 支持不足になる残存便を数える。修復負担の代理値であり、追加手数の下界ではない。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Avoid a shift by 32 when the inserted token is the top eighth slime.\n",
+      "new": "",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Delete a neighborhood from the current schedule. Broken long jumps are\n    // repaired, not silently shortened; newly exposed nest slimes may go home\n    // earlier. Every surviving flight keeps its original color order.\n",
+      "new": "    // 個体の除去で壊れたジャンプを修復し、残存便の色順を保つ。露出した巣上の個体は先に帰巣できる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                        // Monochrome identities are interchangeable; retain the\n                        // original identity convention for subsequent splits.\n",
+      "new": "                        // 同色の個体を交換し、後の分割で使うIDの割り当てを保つ。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // A genuinely useful tie-break: enough extra residents at this launch\n    // combine the next two straight monochrome flights into one command.\n    // This changes only equal-added-command choices; smoothing still certifies\n    // both the move legality and the entire boundary color board.\n",
+      "new": "    // 同費用なら、次の同色2便を1操作へまとめられる支持を優先する。\n    // 短縮後に操作の合法性と境界の全盤面一致を検査する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // One-token insertion into a FIXED schedule. A state is (cell, vertical gap)\n    // in the board with that token removed. Added token-only moves cost one;\n    // existing commands cost zero, with k adjusted at the split boundary.\n    // Equal-command ties favor useful rides/launch support, never a worse score.\n",
+      "new": "    // 固定した予定への1匹の再挿入。状態はマスと塔内の隙間で、追加移動は費用1、予定操作は費用0。\n    // 同費用では同乗と踏み台の利用を優先する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Arbitrary initial gaps permit rebuilding a preassembled tower in a\n        // different insertion order while restoring its exact original word.\n",
+      "new": "        // 初期の隙間を指定し、任意の挿入順から元の塔の積み順を復元する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Inserting one item into a stack only changes its normalisation\n            // when it is at/above the top surviving background item. Deriving\n            // its position algebraically avoids rebuilding/reversing two words\n            // for every gap, while retaining the exact before-home height test.\n",
+      "new": "            // 追加個体が帰巣へ影響するのは、残る背景の最上段以上にいる場合だけ。\n            // 位置を式で求め、各隙間での塔の再構築を省く。容量は帰巣前の高さで判定する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                    // Non-home item above a consumed background suffix. Its\n                    // immediate departure exposes that suffix and restores the\n                    // fixed schedule exactly; it can use the suffix to launch.\n",
+      "new": "                    // 背景の帰巣を止める異色の追加個体は、即座に出発すれば予定を復元でき、下段も支持に使える。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // All other labels can simply wait. Only these cells' outgoing\n            // edges and the incoming edges to these cells have changed.\n            // Equal heights alone are insufficient: a nest event can consume\n            // a previous top-gap label. Re-open incoming edges whenever that\n            // label deteriorated, even if the physical height stayed equal.\n",
+      "new": "            // 変更された2マスとそこへ入る辺を開き直す。巣の帰巣で最上段の状態が悪化した場合は、\n            // 高さが同じでも再探索が必要。他の状態はそのまま待機できる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Keep the parent order and exchange only its first two members for the\n    // second completion. Later members see the different routes built by them.\n",
+      "new": "    // 第2順序では先頭2匹だけを交換する。後続の個体は、それぞれで作られた経路へ挿入する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                // Reinsertion only adds commands. Once a completion exists,\n                // prune the second order unless it can be strictly shorter.\n",
+      "new": "                // 挿入では操作数が増えるため、完成済みの解より短くならない第2順序を枝刈りする。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Reinsert a contiguous parcel as a unit. Its word can reverse and lose\n    // its top color run on a nest. The state set is the closure of those two\n    // operations, rather than every possible permutation/subset of its IDs.\n",
+      "new": "    // 連続した束を一単位で再挿入する。状態は上下反転と最上段の帰巣で到達する列だけに絞る。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                // A background non-home item above the parcel protects all of\n                // it. Otherwise only its own top home-colour run is removed.\n",
+      "new": "                // 束の上に背景の異色があれば帰巣を止める。なければ束の最上段の同色部分だけを帰す。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Delete an already assembled top parcel from a suffix, then restore its\n    // individual colors in arbitrary order. Initial vertical gaps are derived\n    // from the original ranks, so every reconstruction starts from EXACTLY the\n    // same tower. Once inserted, the members may split, ride, and meet again.\n",
+      "new": "    // 途中の塔の上側を除去し、個体ごとに再挿入する。元の段から隙間を決め、開始盤面を復元する。\n    // 挿入後の個体は分離・同乗・再合流できる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // The genuine top never matches this nest. Install it first to\n            // avoid an unnormalised intermediate start when rebuilding a nest.\n",
+      "new": "            // 巣では帰巣しない元の最上段を先に置き、構築途中の帰巣を防ぐ。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Replan top portions of TWO towers at one exact intermediate boundary.\n    // Each removed member retains (source, original rank); reinsertion can use\n    // unrelated trajectories and reassemble either mixed or monochrome parcels.\n    // The prefix is never altered and the complete initial color board is restored.\n",
+      "new": "    // 同じ途中時点の2塔の上側を再構築する。各個体の出発点と元の段を保持し、\n    // 開始盤面と既存の前半操作を保ったまま、その後の経路を作り直す。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Bias towards an early/intermediate boundary without always\n            // destroying the initial gathering work that has already been paid.\n",
+      "new": "            // 既に行った集荷を残しつつ、早い時点を優先する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                    // On a nest, install the original non-home top first. All\n                    // other members can then be inserted below that cover.\n",
+      "new": "                    // 巣では元の最上段を先に置き、他の個体をその下に挿入して帰巣を防ぐ。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Operations sharing either endpoint retain their original order. All\n    // other operations commute: intervening tower heights do not constrain a\n    // jump. Topological ordering can join previously separated packet flights\n    // and exposes different ride/launch opportunities to the subsequent LNS.\n",
+      "new": "    // 同じ端点へ触れる操作の順序を保つ。他の操作は交換できるため、\n    // トポロジカル順序の変更で便をつなぎ、後の再挿入の同乗・支持機会を変える。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Keep the first cut's old key. A different time must not share its\n        // cooldown, or the added start could be suppressed after trying it.\n",
+      "new": "        // 開始時刻ごとに異なるキーを使い、別時刻の試行による再試行待ちを共有させない。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // At most eight runs, a flight, a lower parcel and a resident union\n        // per command, plus the fixed spatial/single/colour candidates.\n",
+      "new": "        // 各操作から最大8色列、便、下段、着地先との和集合を取り、空間・単独・同色候補を加える。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Include whole towers, flying parcels, and their upper pair. The\n            // flexible decoder can split them instead of treating them as atomic.\n",
+      "new": "            // 塔全体、跳ぶ束、上側2匹を候補にする。再挿入時には個体へ分解できる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "                    // One extra slot per set. Prefer a boundary at which this\n                    // set separates; among equal kinds retain the latest time.\n",
+      "new": "                    // 同じ個体集合に開始時刻を1枠追加する。分離する境界を優先し、同条件なら遅い時刻を選ぶ。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Interacting parcels are a stronger initial-state removal set\n            // than spatial distance alone: they have shared a real endpoint.\n",
+      "new": "            // 同じ端点で相互作用した束の和集合を、位置の近さだけによらない除去候補にする。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // Append only after collecting the original cuts. Their order, and\n        // their priority noise before the added cuts, stay as in the parent.\n",
+      "new": "        // 最初の候補群を集めてから追加し、候補順と優先度の乱数消費順を固定する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // A pattern has one anchor: its lowest ID. Thus only patterns anchored\n        // in a removed set can be subsets. Occurrence lists give suffix costs\n        // without rescanning every remaining flight for every packet cut.\n",
+      "new": "        // 各集合を最小IDへ登録する。除去対象に含まれる最小IDの集合だけを調べ、\n        // 操作時刻の一覧から区間内の削除費用を求める。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Retain one draw at the parent's original position, even when\n            // the resulting priority is negative. No candidate is removed.\n",
+      "new": "            // 候補ごとに乱数を1回引く。負の優先度も候補として保持する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "        // First try the conservative endpoint-preserving order. An equal-length\n        // alternative is kept for later, rather than replacing this initial seed.\n",
+      "new": "        // 最初の並べ替えは短くなった場合に採用し、同手数の別順序は後の探索で扱う。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Draw independently from the neighborhood type. In the preceding\n            // version every ninth (packet) attempt always had zero support weight.\n",
+      "new": "            // 支持の重みは近傍の種類と独立に抽選する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Spend one quarter of ordinary selections on bounded dependency\n            // growth. Other neighborhood schedules and the insertion order stay fixed.\n",
+      "new": "            // 通常の除去対象の選択4回に1回を、最大8匹の依存拡張へ割り当てる。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "            // Smoothing replays and validates every command, verifies each\n            // changed boundary, and checks that the final board is empty.\n",
+      "new": "            // 経路短縮は操作を再生し、変更区間の全盤面一致と最後の全帰巣を確認する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "// Replay using individual identities and dynamic towers, independently of the\n// packed-word simulator and the extraction/reinsertion state representation.\n",
+      "new": "// 個体IDと可変長の塔で独立再生し、ビット表現と再挿入器から独立に検証する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // This single linear pass follows the unchanged search. Log its direct\n    // savings separately from changes caused by the time-dependent LNS.\n",
+      "new": "    // 線形走査の転送圧縮を行い、探索の短縮と分けて集計する。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // Spend only the parent's remaining finalization time. LNS retains its\n    // original deadline; a bounded unfinished search never changes the answer.\n",
+      "new": "    // 残った終了処理の時間で共同短縮する。探索途中で期限に達した区間は置換しない。\n",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // v055 final-only orchestration; retain the parent's complete search.\n",
+      "new": "",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "    // End v055 final call.\n",
+      "new": "",
+      "count": 1,
+      "reason": "comment"
+    },
+    {
+      "old": "#ifdef AHC072_COUPLED_AUDIT\n    vector<pair<int,int>> boundaries;\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_COUPLED_AUDIT\nvoid auditCoupledRoute(const Board&,const vector<Move>&,int,int,const RouteVariant&);\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_COUPLED_AUDIT\n            variant.boundaries.push_back({end,length});\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_COUPLED_AUDIT\n                child.boundaries=variant.boundaries;child.boundaries.push_back({end,int(child.moves.size())});\n#endif\n",
+      "new": "",
+      "count": 2,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_COUPLED_AUDIT\n                    auditCoupledRoute(board,answer,begin,end,child);\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_FINAL_AUDIT\nvoid auditFinalPass(int,const vector<Move>&,const vector<Move>&);\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_FINAL_AUDIT\n    auditFinalPass(kind,answer,reduced);\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_SEARCH_AUDIT\nvoid auditSearchPass(int,const vector<Move>&,const vector<Move>&);\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_SEARCH_AUDIT\n            auditSearchPass(kind,answer,result);\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_REPAIR_AUDIT\n    double original_priority=0;\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "#ifdef AHC072_REPAIR_AUDIT\n            cand.original_priority=(saved+0.25)/divisor[cand.ids.size()]*noise;\n#endif\n",
+      "new": "",
+      "count": 1,
+      "reason": "inactive audit hook"
+    },
+    {
+      "old": "    int evaluate(Word s,int p) { return value(get(s),p); }\n",
+      "new": "",
+      "count": 1,
+      "reason": "unused function"
+    },
+    {
+      "old": "    static Word eraseToken(Word w,int gap) {\n        Word upper=gap==7?0:w>>(4*(gap+1));\n        return prefix(w,gap)|(upper<<(4*gap));\n    }\n",
+      "new": "",
+      "count": 1,
+      "reason": "unused function"
+    },
+    {
+      "old": "JointWindowStats& stats,vector<JointPatch>* audit=nullptr,",
+      "new": "JointWindowStats& stats,",
+      "count": 1,
+      "reason": "unused audit output parameter"
+    },
+    {
+      "old": "vector<FinitePatch>* audit=nullptr,int first_begin=0",
+      "new": "int first_begin=0",
+      "count": 1,
+      "reason": "unused audit output parameter"
+    },
+    {
+      "old": "    if(audit)*audit=move(patches);\n",
+      "new": "",
+      "count": 2,
+      "reason": "unused audit output branch"
+    },
+    {
+      "old": "answer,deadline,joint,nullptr,focus.first,focus.last",
+      "new": "answer,deadline,joint,focus.first,focus.last",
+      "count": 1,
+      "reason": "unused null audit argument"
+    },
+    {
+      "old": "answer,deadline,finite,nullptr,focus.first,focus.last",
+      "new": "answer,deadline,finite,focus.first,focus.last",
+      "count": 1,
+      "reason": "unused null audit argument"
+    },
+    {
+      "old": "#define LOCAL_NOTE(...)\n#define LOCAL_SECONDS(value) value",
+      "new": "#define LOCAL_NOTE(...)\n#define LOCAL_ONLY(...) do { } while (false)\n#define LOCAL_TIME(trace, key, ...) (__VA_ARGS__)()\n#define LOCAL_SECONDS(value) value",
+      "count": 1,
+      "reason": "template macros"
+    },
+    {
+      "old": "#ifdef LOCAL\n    best=LOCAL_TIME(trace,\"pair_transfer_compression\",[&]{return compress_pair_transfers(best);});\n#else\n    best=compress_pair_transfers(best);\n#endif\n",
+      "new": "    best=LOCAL_TIME(trace,\"pair_transfer_compression\",[&]{return compress_pair_transfers(best);});\n",
+      "count": 1,
+      "reason": "shared timed call"
+    },
+    {
+      "old": "#ifdef LOCAL\n    best=LOCAL_TIME(trace,\"joint_window\",[&]{return compressJointWindows(best,clk.limit,joint_stats);});\n#else\n    best=compressJointWindows(best,clk.limit,joint_stats);\n#endif\n",
+      "new": "    best=LOCAL_TIME(trace,\"joint_window\",[&]{return compressJointWindows(best,clk.limit,joint_stats);});\n",
+      "count": 1,
+      "reason": "shared timed call"
+    },
+    {
+      "old": "#ifdef LOCAL\n    LOCAL_TIME(trace,\"final_reductions\",[&]{polish_final_reductions(best,final_reduction_stats);});\n#else\n    polish_final_reductions(best,final_reduction_stats);\n#endif\n",
+      "new": "    LOCAL_TIME(trace,\"final_reductions\",[&]{polish_final_reductions(best,final_reduction_stats);});\n",
+      "count": 1,
+      "reason": "shared timed call"
+    },
+    {
+      "old": "struct Clock {\n    double limit = LOCAL_SECONDS(1.89);\n#ifdef LOCAL\n    chrono::steady_clock::time_point start;\n#else\n    chrono::steady_clock::time_point start = chrono::steady_clock::now();\n#endif\n    double elapsed() const {\n        return chrono::duration<double>(chrono::steady_clock::now()-start).count();\n    }\n    void check() const { if (elapsed() > limit) throw Deadline(); }\n} clk;",
+      "new": "struct Clock {\n    double time_limit_sec = LOCAL_SECONDS(1.89);\n#ifdef LOCAL\n    chrono::steady_clock::time_point start_;\n#else\n    chrono::steady_clock::time_point start_ = chrono::steady_clock::now();\n#endif\n    double elapsed() const {\n        return chrono::duration<double>(chrono::steady_clock::now()-start_).count();\n    }\n    void check() const { if (elapsed() > time_limit_sec) throw Deadline(); }\n} clk;",
+      "count": 1,
+      "reason": "timer member names"
+    },
+    {
+      "old": "    const double deadline=clk.limit;\n",
+      "new": "    const double deadline=clk.time_limit_sec;\n",
+      "count": 1,
+      "reason": "timer member use"
+    },
+    {
+      "old": "    clk.limit=LOCAL_SECONDS(0.69);\n",
+      "new": "    clk.time_limit_sec=LOCAL_SECONDS(0.69);\n",
+      "count": 1,
+      "reason": "timer member use"
+    },
+    {
+      "old": "    clk.limit=LOCAL_SECONDS(1.930);\n",
+      "new": "    clk.time_limit_sec=LOCAL_SECONDS(1.930);\n",
+      "count": 1,
+      "reason": "timer member use"
+    },
+    {
+      "old": "    best=LOCAL_TIME(trace,\"joint_window\",[&]{return compressJointWindows(best,clk.limit,joint_stats);});\n",
+      "new": "    best=LOCAL_TIME(trace,\"joint_window\",[&]{return compressJointWindows(best,clk.time_limit_sec,joint_stats);});\n",
+      "count": 1,
+      "reason": "timer member use"
+    },
+    {
+      "old": "    clk.start = chrono::steady_clock::now();",
+      "new": "    clk.start_ = chrono::steady_clock::now();",
+      "count": 1,
+      "reason": "timer start use"
+    },
+    {
+      "old": "\"board_payload_bytes\"",
+      "new": "\"state_payload_bytes\"",
+      "count": 1,
+      "reason": "state log key"
+    },
+    {
+      "old": "\"board_handle_bytes\"",
+      "new": "\"state_handle_bytes\"",
+      "count": 1,
+      "reason": "state log key"
+    },
+    {
+      "old": "\"board_pool_slots\"",
+      "new": "\"state_slots\"",
+      "count": 1,
+      "reason": "state log key"
+    },
+    {
+      "old": "\"board_pool_bytes\"",
+      "new": "\"state_pool_bytes\"",
+      "count": 1,
+      "reason": "state log key"
+    },
+    {
+      "old": "\"board_pool_free_at_end\"",
+      "new": "\"state_pool_free_at_end\"",
+      "count": 1,
+      "reason": "state log key"
+    },
+    {
+      "old": "struct Geometry {\n    int N,K,V=0,M=0;\n    string grid[20];\n    int id[20][20], row[MV], col[MV], parity[MV], nest[MV], home[13];\n    int16_t adj[MV][4], ray[MV][4][9];\n    uint8_t rayCount[MV][4]{};\n    uint16_t dist[MV][MV];\n    array<Word,MV> initial{};\n    const int di[4]={-1,1,0,0}, dj[4]={0,0,-1,1};\n    const char dirs[5]=\"UDLR\";\n    void read() {\n        cin>>N>>K;\n        memset(id,-1,sizeof(id)); memset(home,-1,sizeof(home));\n        for(int i=0;i<N;i++) cin>>grid[i];\n        for(int i=0;i<N;i++) for(int j=0;j<N;j++) if(grid[i][j]!='#') {\n            int v=id[i][j]=V++; row[v]=i; col[v]=j; parity[v]=(i+j)&1;\n            char c=grid[i][j]; nest[v]=0;\n            if(c>='A'&&c<='L') { nest[v]=c-'A'+1; home[nest[v]]=v; }\n            if(c>='a'&&c<='l') { initial[v]=c-'a'+1; M++; }\n        }\n        for(int v=0;v<V;v++) for(int d=0;d<4;d++) {\n            fill(ray[v][d],ray[v][d]+9,-1);\n            for(int l=1;l<=8;l++) {\n                int i=row[v]+di[d]*l,j=col[v]+dj[d]*l;\n                if(i<0||j<0||i>=N||j>=N||id[i][j]<0) break;\n                ray[v][d][l]=id[i][j];rayCount[v][d]=uint8_t(l);\n            }\n            adj[v][d]=ray[v][d][1];\n        }\n        for(int s=0;s<V;s++) {\n            fill(dist[s],dist[s]+V,uint16_t(INF));\n            int q[MV],a=0,b=0; q[b++]=s; dist[s][s]=0;\n            while(a<b) {\n                int v=q[a++];\n                for(int d=0;d<4;d++) {\n                    int w=adj[v][d];\n                    if(w>=0&&dist[s][w]==INF) { dist[s][w]=dist[s][v]+1; q[b++]=w; }\n                }\n            }\n        }\n    }\n    Word normalize(Word a,int p) const {\n        int c=nest[p];\n        if(!c||!a)return a;\n        Word different=(a^(0x11111111u*c))&MASK[height(a)];\n        return prefix(a,height(different));\n    }\n    // 帰巣する前の着地容量を含め、操作の合法性を検査する。\n    int apply(Board &b,Move m) const {\n        int p=m.p;\n        if(p<0||p>=V)throw logic_error(\"invalid departure cell\");\n        int h=height(b[p]);\n        if(m.k>=h||m.l<1||m.l>8||m.l>m.k+1||m.d>=4)\n            throw logic_error(\"invalid departure\");\n        int q=ray[p][m.d][m.l];\n        if(q<0) throw logic_error(\"wall or boundary\");\n        int g=height(b[q]);\n        if(g+h-m.k>8) throw logic_error(\"landing capacity\");\n        Word flight=reverseWord(b[p]>>(4*m.k));\n        Word left=prefix(b[p],m.k), land=joinWord(b[q],flight);\n        b[p]=normalize(left,p); b[q]=normalize(land,q);\n        return h+g-height(b[p])-height(b[q]);\n    }\n    int count(const Board &b) const {\n        int ans=0; for(int p=0;p<V;p++) ans+=height(b[p]); return ans;\n    }\n} geo;",
+      "new": "struct Geometry {\n    int N,K,V=0,M=0;\n    string grid[20];\n    int cell_id[20][20], row[MV], col[MV], parity[MV], nest[MV], home[13];\n    int16_t adj[MV][4], ray[MV][4][9];\n    uint8_t rayCount[MV][4]{};\n    uint16_t floor_dist[MV][MV];\n    array<Word,MV> initial{};\n    const int di[4]={-1,1,0,0}, dj[4]={0,0,-1,1};\n    const char dirs[5]=\"UDLR\";\n    void read() {\n        cin>>N>>K;\n        memset(cell_id,-1,sizeof(cell_id)); memset(home,-1,sizeof(home));\n        for(int i=0;i<N;i++) cin>>grid[i];\n        for(int i=0;i<N;i++) for(int j=0;j<N;j++) if(grid[i][j]!='#') {\n            int v=cell_id[i][j]=V++; row[v]=i; col[v]=j; parity[v]=(i+j)&1;\n            char input_char=grid[i][j]; nest[v]=0;\n            if(input_char>='A'&&input_char<='L') { nest[v]=input_char-'A'+1; home[nest[v]]=v; }\n            if(input_char>='a'&&input_char<='l') { initial[v]=input_char-'a'+1; M++; }\n        }\n        for(int v=0;v<V;v++) for(int d=0;d<4;d++) {\n            fill(ray[v][d],ray[v][d]+9,-1);\n            for(int l=1;l<=8;l++) {\n                int i=row[v]+di[d]*l,j=col[v]+dj[d]*l;\n                if(i<0||j<0||i>=N||j>=N||cell_id[i][j]<0) break;\n                ray[v][d][l]=cell_id[i][j];rayCount[v][d]=uint8_t(l);\n            }\n            adj[v][d]=ray[v][d][1];\n        }\n        for(int s=0;s<V;s++) {\n            fill(floor_dist[s],floor_dist[s]+V,uint16_t(INF));\n            int q[MV],a=0,b=0; q[b++]=s; floor_dist[s][s]=0;\n            while(a<b) {\n                int v=q[a++];\n                for(int d=0;d<4;d++) {\n                    int w=adj[v][d];\n                    if(w>=0&&floor_dist[s][w]==INF) { floor_dist[s][w]=floor_dist[s][v]+1; q[b++]=w; }\n                }\n            }\n        }\n    }\n    Word normalize(Word a,int p) const {\n        int code=nest[p];\n        if(!code||!a)return a;\n        Word different=(a^(0x11111111u*code))&MASK[height(a)];\n        return prefix(a,height(different));\n    }\n    // 帰巣する前の着地容量を含め、操作の合法性を検査する。\n    int apply(Board &b,Move m) const {\n        int p=m.p;\n        if(p<0||p>=V)throw logic_error(\"invalid departure cell\");\n        int h=height(b[p]);\n        if(m.k>=h||m.l<1||m.l>8||m.l>m.k+1||m.d>=4)\n            throw logic_error(\"invalid departure\");\n        int q=ray[p][m.d][m.l];\n        if(q<0) throw logic_error(\"wall or boundary\");\n        int g=height(b[q]);\n        if(g+h-m.k>8) throw logic_error(\"landing capacity\");\n        Word flight=reverseWord(b[p]>>(4*m.k));\n        Word left=prefix(b[p],m.k), land=joinWord(b[q],flight);\n        b[p]=normalize(left,p); b[q]=normalize(land,q);\n        return h+g-height(b[p])-height(b[q]);\n    }\n    int count(const Board &b) const {\n        int ans=0; for(int p=0;p<V;p++) ans+=height(b[p]); return ans;\n    }\n} geo;",
+      "count": 1,
+      "reason": "board member names"
+    },
+    {
+      "old": "            q = geo.id[row][col];\n",
+      "new": "            q = geo.cell_id[row][col];\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "            if(!p) return mono ? geo.dist[v][geo.home[mono]] : 0;\n",
+      "new": "            if(!p) return mono ? geo.floor_dist[v][geo.home[mono]] : 0;\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "            int score=(h==8?100000:0)+geo.dist[p][geo.home[c]]*10+h;\n",
+      "new": "            int score=(h==8?100000:0)+geo.floor_dist[p][geo.home[c]]*10+h;\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "        for(int p=0;p<geo.V;p++) if(geo.initial[p]==Word(c)) rank[c]+=geo.dist[p][geo.home[c]];\n",
+      "new": "        for(int p=0;p<geo.V;p++) if(geo.initial[p]==Word(c)) rank[c]+=geo.floor_dist[p][geo.home[c]];\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "                int score=h*100+geo.dist[v][geo.home[topColor(w.b[v])]];\n",
+      "new": "                int score=h*100+geo.floor_dist[v][geo.home[topColor(w.b[v])]];\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "            int distance=initial_counts[c]>required[c]?geo.dist[p][geo.home[c]]:INF;\n",
+      "new": "            int distance=initial_counts[c]>required[c]?geo.floor_dist[p][geo.home[c]]:INF;\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "                distance=min(distance,int(geo.dist[p][cell(x)]));\n",
+      "new": "                distance=min(distance,int(geo.floor_dist[p][cell(x)]));\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "            for(int q:start_cells){int d=geo.dist[p][q];if(d<a){b=a;a=d;}else b=min(b,d);}\n",
+      "new": "            for(int q:start_cells){int d=geo.floor_dist[p][q];if(d<a){b=a;a=d;}else b=min(b,d);}\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "                    return geo.dist[source][geo.home[ca]]>geo.dist[source][geo.home[cb]];\n",
+      "new": "                    return geo.floor_dist[source][geo.home[ca]]>geo.floor_dist[source][geo.home[cb]];\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "            int distance=geo.dist[p][q];\n",
+      "new": "            int distance=geo.floor_dist[p][q];\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "                homeDistance=min(homeDistance,int(geo.dist[geo.home[ca]][geo.home[cb]]));\n",
+      "new": "                homeDistance=min(homeDistance,int(geo.floor_dist[geo.home[ca]][geo.home[cb]]));\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "                double d=geo.dist[m.source][geo.home[m.shade]];\n",
+      "new": "                double d=geo.floor_dist[m.source][geo.home[m.shade]];\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "                double d=geo.dist[p][q]+0.20*geo.dist[geo.home[geo.initial[p]]][geo.home[geo.initial[q]]];\n",
+      "new": "                double d=geo.floor_dist[p][q]+0.20*geo.floor_dist[geo.home[geo.initial[p]]][geo.home[geo.initial[q]]];\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "                    double weight=geo.dist[id][geo.home[geo.initial[id]]];\n",
+      "new": "                    double weight=geo.floor_dist[id][geo.home[geo.initial[id]]];\n",
+      "count": 1,
+      "reason": "board member use"
+    },
+    {
+      "old": "struct World {\n    Board b;\n    vector<Move> out;\n    int remaining;\n    explicit World(const Board &a):b(a),remaining(geo.count(a)) { out.reserve(3000); }\n    explicit World(const array<Word,MV>& a):b(a),remaining(geo.count(b)) { out.reserve(3000); }\n    void move(Move m) { remaining-=geo.apply(b,m); out.push_back(m); }\n};",
+      "new": "struct World {\n    Board state;\n    vector<Move> moves;\n    int E;\n    explicit World(const Board &a):state(a),E(geo.count(a)) { moves.reserve(3000); }\n    explicit World(const array<Word,MV>& a):state(a),E(geo.count(state)) { moves.reserve(3000); }\n    void move(Move m) { E-=geo.apply(state,m); moves.push_back(m); }\n};",
+      "count": 1,
+      "reason": "construction state names"
+    },
+    {
+      "old": "            int base=height(w.b[p])-h;\n",
+      "new": "            int base=height(w.state[p])-h;\n",
+      "count": 2,
+      "reason": "construction state use"
+    },
+    {
+      "old": "    void finish(World &w,int p) { Word a=w.b[p]; get(a); emit(w,a,p); }\n",
+      "new": "    void finish(World &w,int p) { Word a=w.state[p]; get(a); emit(w,a,p); }\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        Word word=w.b[p]; const int h=height(word); get(word);\n",
+      "new": "        Word word=w.state[p]; const int h=height(word); get(word);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        for(int p=0;p<geo.V;p++) if(w.b[p]) {\n",
+      "new": "        for(int p=0;p<geo.V;p++) if(w.state[p]) {\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            int h=height(w.b[p]),c=topColor(w.b[p]);\n",
+      "new": "            int h=height(w.state[p]),c=topColor(w.state[p]);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        int c=topColor(w.b[s]),goal=geo.home[c],hs=height(w.b[s]);\n",
+      "new": "        int c=topColor(w.state[s]),goal=geo.home[c],hs=height(w.state[s]);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        int bh[MV]; for(int p=0;p<geo.V;p++) bh[p]=height(w.b[p]);\n",
+      "new": "        int bh[MV]; for(int p=0;p<geo.V;p++) bh[p]=height(w.state[p]);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        bh[s]=height(geo.normalize(prefix(w.b[s],hs-1),s));\n",
+      "new": "        bh[s]=height(geo.normalize(prefix(w.state[s],hs-1),s));\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        for(int p=0;p<geo.V;p++) if(w.b[p]==Word(c)) terminals.push_back(p);\n",
+      "new": "        for(int p=0;p<geo.V;p++) if(w.state[p]==Word(c)) terminals.push_back(p);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            Word a=w.b[p]; int n=0;\n",
+      "new": "            Word a=w.state[p]; int n=0;\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                int amt=topCount(p),space=8-height(w.b[v]);\n",
+      "new": "                int amt=topCount(p),space=8-height(w.state[v]);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                if(space<amt&&topCount(v)) { flush(v);space=8-height(w.b[v]); }\n",
+      "new": "                if(space<amt&&topCount(v)) { flush(v);space=8-height(w.state[v]); }\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                int leave=height(w.b[p])-take,d=-1;\n",
+      "new": "                int leave=height(w.state[p])-take,d=-1;\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                    if(q<0||geo.adj[dest][d]!=q||height(w.b[q])+take>8) break;\n",
+      "new": "                    if(q<0||geo.adj[dest][d]!=q||height(w.state[q])+take>8) break;\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        Group g;g.p=p;g.word=w.b[p];g.h=height(g.word);g.mask=colorMask(g.word);g.family=family;\n",
+      "new": "        Group g;g.p=p;g.word=w.state[p];g.h=height(g.word);g.mask=colorMask(g.word);g.family=family;\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            if(p!=a.p&&p!=b.p&&height(w.b[p])+a.h+b.h>8) continue;\n",
+      "new": "            if(p!=a.p&&p!=b.p&&height(w.state[p])+a.h+b.h>8) continue;\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        for(int p=0;p<geo.V;p++) if(before[p]!=w.b[p]) {\n",
+      "new": "        for(int p=0;p<geo.V;p++) if(before[p]!=w.state[p]) {\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        for(int p=0;p<geo.V;p++) if(before[p]!=w.b[p]&&w.b[p]) fresh.push_back(addGroup(p,family));\n",
+      "new": "        for(int p=0;p<geo.V;p++) if(before[p]!=w.state[p]&&w.state[p]) fresh.push_back(addGroup(p,family));\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            int resident=(m==a.p||m==b.p)?0:height(w.b[m]);\n",
+      "new": "            int resident=(m==a.p||m==b.p)?0:height(w.state[m]);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            if(resident&&__builtin_popcount(unsigned(a.mask|b.mask|colorMask(w.b[m])))>maxColors+1) continue;\n",
+      "new": "            if(resident&&__builtin_popcount(unsigned(a.mask|b.mask|colorMask(w.state[m])))>maxColors+1) continue;\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            int old=a.value+b.value+(resident?pot.value(w.b[m],m):0);\n",
+      "new": "            int old=a.value+b.value+(resident?pot.value(w.state[m],m):0);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                Router rt;rt.run(w.b,source,m);\n",
+      "new": "                Router rt;rt.run(w.state,source,m);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                for(int o=0;o<2;o++) consider(best,w.b,empty,rt,o,old,m);\n",
+      "new": "                for(int o=0;o<2;o++) consider(best,w.state,empty,rt,o,old,m);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                Router firstRouter;firstRouter.run(w.b,s,m);\n",
+      "new": "                Router firstRouter;firstRouter.run(w.state,s,m);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                    Board bb=w.b;\n",
+      "new": "                    Board bb=w.state;\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        Board before=w.b;\n",
+      "new": "        Board before=w.state;\n",
+      "count": 2,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        DeliveryDP dp(w.b,p);\n",
+      "new": "        DeliveryDP dp(w.state,p);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        World trial(w.b);\n",
+      "new": "        World trial(w.state);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        for(int v=0;v<geo.V;v++) if(before[v]!=trial.b[v]) {\n",
+      "new": "        for(int v=0;v<geo.V;v++) if(before[v]!=trial.state[v]) {\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            newPotential+=pot.value(trial.b[v],v);\n",
+      "new": "            newPotential+=pot.value(trial.state[v],v);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            for(int v=0;v<geo.V;v++) if(w.b[v]) {\n",
+      "new": "            for(int v=0;v<geo.V;v++) if(w.state[v]) {\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                int h=height(w.b[v]);\n",
+      "new": "                int h=height(w.state[v]);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "                int score=h*100+geo.floor_dist[v][geo.home[topColor(w.b[v])]];\n",
+      "new": "                int score=h*100+geo.floor_dist[v][geo.home[topColor(w.state[v])]];\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            DeliveryDP dp(w.b,p);dp.finish(w,p);\n",
+      "new": "            DeliveryDP dp(w.state,p);dp.finish(w,p);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        for(int p=0;p<geo.V;p++) if(w.b[p]) addGroup(p,0);\n",
+      "new": "        for(int p=0;p<geo.V;p++) if(w.state[p]) addGroup(p,0);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            for(int p=0;p<geo.V;p++) if(height(w.b[p])==8) {full=p;break;}\n",
+      "new": "            for(int p=0;p<geo.V;p++) if(height(w.state[p])==8) {full=p;break;}\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        if(newPotential+int(trial.out.size())<=oldPotential+1) {\n",
+      "new": "        if(newPotential+int(trial.moves.size())<=oldPotential+1) {\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            for(auto m:trial.out) w.move(m);\n",
+      "new": "            for(auto m:trial.moves) w.move(m);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            if(w.out.size()>=incumbent) throw Deadline();\n",
+      "new": "            if(w.moves.size()>=incumbent) throw Deadline();\n",
+      "count": 2,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            if(best.empty()||w.out.size()<best.size())best=move(w.out);\n",
+      "new": "            if(best.empty()||w.moves.size()<best.size())best=move(w.moves);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        World w(geo.initial);finishSingles(w);best=move(w.out);baseline=best.size();\n",
+      "new": "        World w(geo.initial);finishSingles(w);best=move(w.moves);baseline=best.size();\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            if(!result.remaining){completed++;if(result.out.size()<best.size())best=move(result.out);}\n",
+      "new": "            if(!result.remaining){completed++;if(result.moves.size()<best.size())best=move(result.moves);}\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        World w(geo.initial);finishSingles(w);best=move(w.out);\n",
+      "new": "        World w(geo.initial);finishSingles(w);best=move(w.moves);\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "    while(w.remaining) {\n",
+      "new": "    while(w.E) {\n",
+      "count": 2,
+      "reason": "construction state use"
+    },
+    {
+      "old": "    if(w.remaining) throw logic_error(\"baseline incomplete\");\n",
+      "new": "    if(w.E) throw logic_error(\"baseline incomplete\");\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "        while(w.remaining&&collecting&&decisions<geo.M*7+40) {\n",
+      "new": "        while(w.E&&collecting&&decisions<geo.M*7+40) {\n",
+      "count": 1,
+      "reason": "construction state use"
+    },
+    {
+      "old": "            if(!result.remaining){completed++;if(result.moves.size()<best.size())best=move(result.moves);}\n",
+      "new": "            if(!result.E){completed++;if(result.moves.size()<best.size())best=move(result.moves);}\n",
+      "count": 1,
+      "reason": "construction state use"
+    }
+  ],
+  "renames": {
+    "Board": "State",
+    "Geometry": "Board",
+    "BoardPool": "StatePool",
+    "World": "ConstructionState",
+    "IdentityBoard": "IdentityState",
+    "Word": "TowerBits",
+    "MV": "max_cells",
+    "INF": "infinite_cost",
+    "MASK": "tower_mask",
+    "geo": "board_info",
+    "board_pool": "state_pool",
+    "grid": "C",
+    "V": "cell_count",
+    "nest": "nest_code",
+    "home": "nest_pos_by_code",
+    "Clock": "TimeKeeper",
+    "clk": "time_keeper",
+    "RNG": "Rng",
+    "elapsed": "exact_elapsed_sec",
+    "c": "current_code",
+    "color": "color_code",
+    "reverseWord": "reverse_tower",
+    "joinWord": "append_tower",
+    "topColor": "top_color_code",
+    "monoColor": "mono_color_code",
+    "addGroup": "add_group",
+    "addPair": "add_pair",
+    "addWord": "add_word",
+    "addedKeep": "added_keep",
+    "allAlive": "all_alive",
+    "backwardAttempts": "backward_attempts",
+    "backwardImprovements": "backward_improvements",
+    "backwardSaved": "backward_saved",
+    "beforeLNS": "before_lns",
+    "bestLength": "best_length_value",
+    "bestPriority": "best_priority",
+    "bestTail": "best_tail",
+    "blockAccepted": "block_accepted",
+    "blockAttempts": "block_attempts",
+    "blockImprovements": "block_improvements",
+    "blockSeconds": "block_seconds",
+    "brokenSupportJumps": "broken_support_jumps_value",
+    "buildPackets": "build_packets",
+    "buildPatterns": "build_patterns",
+    "buildSeconds": "build_seconds",
+    "buildSeen": "build_seen",
+    "causalReorder": "causal_reorder",
+    "checkpointAt": "checkpoint_at",
+    "collectJointWindows": "collect_joint_windows",
+    "colorMask": "color_mask",
+    "compressJointWindows": "compress_joint_windows",
+    "consolidateMonoDispatch": "consolidate_mono_dispatch",
+    "constructionStale": "construction_stale",
+    "consumeTransfer": "consume_transfer",
+    "coupleTransferWindow": "couple_transfer_window",
+    "cutIds": "cut_ids",
+    "deliveryEvent": "delivery_event",
+    "extractFrom": "extract_from",
+    "familyCounter": "family_counter",
+    "finishAll": "finish_all",
+    "finishSingles": "finish_singles",
+    "firstDestination": "first_destination",
+    "firstEvent": "first_event",
+    "firstRouter": "first_router",
+    "flexibleAccepted": "flexible_accepted",
+    "flexibleAttempts": "flexible_attempts",
+    "flexibleImprovements": "flexible_improvements",
+    "flexibleNeighbor": "flexible_neighbor",
+    "flexibleSaved": "flexible_saved",
+    "fromP": "from_p",
+    "fromQ": "from_q",
+    "growDependency": "grow_dependency",
+    "hashOf": "hash_of",
+    "homeDistance": "home_distance",
+    "initialGap": "initial_gap",
+    "initializeSpatialCuts": "initialize_spatial_cuts",
+    "insertAt": "insert_at",
+    "insertPacket": "insert_packet",
+    "insertToken": "insert_token",
+    "insertTwoOrders": "insert_two_orders",
+    "keepFor": "keep_for",
+    "keepP": "keep_p",
+    "keepQ": "keep_q",
+    "lastCell": "last_cell",
+    "lastConstructionGain": "last_construction_gain",
+    "lastTried": "last_tried",
+    "laterStartHash": "later_start_hash",
+    "lnsStart": "lns_start",
+    "makeCandidates": "make_candidates",
+    "maxColors": "max_colors",
+    "maxLength": "max_length",
+    "maxRuns": "max_runs",
+    "newCost": "new_cost",
+    "newPotential": "new_potential",
+    "nextCell": "next_cell",
+    "nextCost": "next_cost",
+    "nextInitial": "next_initial",
+    "oldBest": "old_best",
+    "oldPotential": "old_potential",
+    "outDegree": "out_degree",
+    "packetCuts": "packet_cuts",
+    "packetDivisor": "packet_divisor",
+    "packetFromP": "packet_from_p",
+    "packetFromQ": "packet_from_q",
+    "packetLabels": "packet_labels",
+    "packetNeighbor": "packet_neighbor",
+    "packetQueue": "packet_queue",
+    "pairedAccepted": "paired_accepted",
+    "pairedAttempts": "paired_attempts",
+    "pairedImprovements": "paired_improvements",
+    "pairedNeighbor": "paired_neighbor",
+    "pairedSaved": "paired_saved",
+    "pairedSeconds": "paired_seconds",
+    "patternAnchors": "pattern_anchors",
+    "patternBuffer": "pattern_buffer",
+    "patternCount": "pattern_count",
+    "planPair": "plan_pair",
+    "polishCoupledRoutes": "polish_coupled_routes",
+    "queuedCost": "queued_cost",
+    "queuedPosition": "queued_position",
+    "rayCount": "ray_count",
+    "regularSelections": "regular_selections",
+    "removedCommands": "removed_commands",
+    "reopenP": "reopen_p",
+    "reopenQ": "reopen_q",
+    "reorderAttempts": "reorder_attempts",
+    "reorderImprovements": "reorder_improvements",
+    "reorderSaved": "reorder_saved",
+    "rideWeight": "ride_weight",
+    "routeDifference": "route_difference",
+    "routeVariant": "route_variant",
+    "sameMoves": "same_moves",
+    "savedBy": "saved_by",
+    "searchEnd": "search_end",
+    "secondRouter": "second_router",
+    "seedNeighborhood": "seed_neighborhood",
+    "selectDelivery": "select_delivery",
+    "shortcutSupportNeed": "shortcut_support_need",
+    "smallLabels": "small_labels",
+    "smallQueue": "small_queue",
+    "smoothRoutes": "smooth_routes",
+    "spatialCuts": "spatial_cuts",
+    "startedAt": "started_at",
+    "supportNeed": "support_need",
+    "supportUses": "support_uses",
+    "supportWeight": "support_weight",
+    "tagCell": "tag_cell",
+    "tagIndex": "tag_index",
+    "tieMode": "tie_mode",
+    "topCount": "top_count",
+    "totalLimit": "total_limit",
+    "treeBaseline": "tree_baseline",
+    "validateOutput": "validate_output"
+  }
+}

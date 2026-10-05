@@ -1,0 +1,47 @@
+{
+  "modes": {
+    "local": {
+      "registered_changes_only": true,
+      "diff_lines": 265,
+      "parent_insertAt": {
+        "available": true,
+        "calls": 42,
+        "board_copy_calls": 1,
+        "mono_color_calls": 0,
+        "clock_check_calls": 2
+      },
+      "child_insertAt": {
+        "available": true,
+        "calls": 43,
+        "board_copy_calls": 0,
+        "mono_color_calls": 0,
+        "clock_check_calls": 2
+      }
+    },
+    "production": {
+      "registered_changes_only": true,
+      "diff_lines": 247,
+      "parent_insertAt": {
+        "available": true,
+        "calls": 42,
+        "board_copy_calls": 1,
+        "mono_color_calls": 0,
+        "clock_check_calls": 2
+      },
+      "child_insertAt": {
+        "available": true,
+        "calls": 43,
+        "board_copy_calls": 0,
+        "mono_color_calls": 0,
+        "clock_check_calls": 2
+      }
+    }
+  },
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "sources": {
+    "v055_final_reductions": "5511ce19728dbf0bfd2c05d1fd4a461b3b3bae56108e0af58ca1be588925efea",
+    "v056_combined_speedups": "f400d133d5a4c23eb15c59bf3921a4fb911d8861e84f874c138271ab9bec3e00"
+  },
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+  "deployment_target": "15.0"
+}

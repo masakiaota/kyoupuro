@@ -1,0 +1,11 @@
+{
+  "cases": 99,
+  "calls": 3980100,
+  "grow_us_per_seed_mean": 0.2492800909090909,
+  "grow_us_per_seed_max": 2.13279,
+  "estimated_growth_ms_per_case": 0.2430838274848485,
+  "dependency_total_ms_per_case": 209.33805050505052,
+  "method": "Saved final v022 answers, all current candidates equally weighted, 100 repetitions per seed; timing includes candidate copy. The per-case estimate scales this mean by the logged selection count. It does not reproduce actual seed frequencies or intermediate schedules.",
+  "solver_executions": 0,
+  "new_answers": 0
+}

@@ -1,0 +1,12 @@
+{
+  "reason": "Remove check for nonexistent v204 lns_end_limit log key; preserve completed diagnostic outputs and execute only pending cases.",
+  "old_sha256": "ddfd5c28b55a1f6b67a06352fd6f2021f4e25f00f731db71855a63b8f6b5118f",
+  "new_sha256": "bfaaaa4836aa4a11d6ea1f739ab5f384bc03380f5bbddf62797b22caa4dd5158",
+  "solver_changed": false,
+  "preserved": {
+    "adhoc/v208_audit/probe.json": "0b4e8b1c85d14fc0108160dc3e6f8f7dd30e7ebd9b05d22fbf4d1a9070802880",
+    "adhoc/v208_audit/probe.err": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "adhoc/v208_audit/local_0000.txt": "e4965f35858144fe45482c93d6884ce3a93886cbbb2228227ce778293577b1dc",
+    "adhoc/v208_audit/local_0000.txt.err": "67848333083fbece2f501bf168dd5687c2f6c5232c66e4973d7deac234b56cf3"
+  }
+}

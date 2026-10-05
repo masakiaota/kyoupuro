@@ -1,0 +1,260 @@
+{
+  "decision": "diagnostic_failed",
+  "diagnostic": {
+    "passed": false,
+    "cases": 511,
+    "rows": 2035,
+    "parameters": 6977,
+    "quality": {
+      "passed": true,
+      "eligible_inputs": 511,
+      "transfer_mean_difference": -0.7279843444227005,
+      "pairs": 2112,
+      "sign_agreement": 0.8764204545454546,
+      "measured_completions": 16280,
+      "completed_at": "2026-10-04T14:11:43.679059+00:00"
+    },
+    "arms": {
+      "control_zero": {
+        "cases": 511,
+        "mean_difference": 0.04207436399217221,
+        "fold_differences": [
+          -0.140625,
+          0.17519685039370078,
+          0.126953125,
+          0.0078125
+        ],
+        "changed": 95,
+        "training": [
+          {
+            "fold": 0,
+            "seconds": 1.5848319160140818,
+            "train_inputs": 383,
+            "teacher_difference": -0.0731070496083551,
+            "other_seed_difference": -0.06984334203655353,
+            "first_loss": 0.14553967892501124,
+            "final_loss": 0.026064131233850908
+          },
+          {
+            "fold": 1,
+            "seconds": 1.9425067080010194,
+            "train_inputs": 384,
+            "teacher_difference": -0.0859375,
+            "other_seed_difference": -0.03125,
+            "first_loss": 0.1381950049350659,
+            "final_loss": 0.029209774142752092
+          },
+          {
+            "fold": 2,
+            "seconds": 1.7013120829942636,
+            "train_inputs": 383,
+            "teacher_difference": -0.1906005221932115,
+            "other_seed_difference": -0.09725848563968668,
+            "first_loss": 0.13928937355625412,
+            "final_loss": 0.02845037797606956
+          },
+          {
+            "fold": 3,
+            "seconds": 1.6863071250118082,
+            "train_inputs": 383,
+            "teacher_difference": -0.21475195822454307,
+            "other_seed_difference": -0.0835509138381201,
+            "first_loss": 0.1525256727912096,
+            "final_loss": 0.030997135299537574
+          }
+        ]
+      },
+      "structure": {
+        "cases": 511,
+        "mean_difference": 0.11154598825831702,
+        "fold_differences": [
+          0.080078125,
+          0.12992125984251968,
+          -0.037109375,
+          0.2734375
+        ],
+        "changed": 148,
+        "training": [
+          {
+            "fold": 0,
+            "seconds": 1.8451066249981523,
+            "train_inputs": 383,
+            "teacher_difference": -0.2774151436031332,
+            "other_seed_difference": -0.1409921671018277,
+            "first_loss": 0.14539232780043201,
+            "final_loss": 0.024449125053871704
+          },
+          {
+            "fold": 1,
+            "seconds": 1.7707703749911161,
+            "train_inputs": 384,
+            "teacher_difference": -0.134765625,
+            "other_seed_difference": -0.015625,
+            "first_loss": 0.13764553455015024,
+            "final_loss": 0.02473282115533948
+          },
+          {
+            "fold": 2,
+            "seconds": 1.6474205420090584,
+            "train_inputs": 383,
+            "teacher_difference": -0.3263707571801567,
+            "other_seed_difference": -0.25783289817232374,
+            "first_loss": 0.13925474831547502,
+            "final_loss": 0.02523552999873074
+          },
+          {
+            "fold": 3,
+            "seconds": 1.8404376249964116,
+            "train_inputs": 383,
+            "teacher_difference": -0.31723237597911225,
+            "other_seed_difference": -0.1716710182767624,
+            "first_loss": 0.15224039044921767,
+            "final_loss": 0.02732076588288611
+          }
+        ]
+      }
+    },
+    "mean_difference": 0.11154598825831702,
+    "fold_differences": [
+      0.080078125,
+      0.12992125984251968,
+      -0.037109375,
+      0.2734375
+    ],
+    "structure_vs_control": 0.06947162426614481,
+    "completed_at": "2026-10-04T14:11:58.199259+00:00"
+  },
+  "training_aggregates": {
+    "control_zero": {
+      "training_teacher_difference": -0.1410992575065274,
+      "training_other_seed_difference": -0.07047568537859009,
+      "training_seconds": 6.914957832021173,
+      "improved_folds": 1
+    },
+    "structure": {
+      "training_teacher_difference": -0.2639459754406005,
+      "training_other_seed_difference": -0.14653027088772846,
+      "training_seconds": 7.103735166994738,
+      "improved_folds": 1
+    }
+  },
+  "collection": {
+    "inputs": 512,
+    "complete": 512,
+    "cpp_replays": 16280,
+    "python_replays": 4070,
+    "python_prefix_replays": 2035,
+    "max_feature_error": 5.9224997350781905e-08
+  },
+  "guard": {
+    "reason": "child_exit",
+    "exit_code": 0,
+    "child_exit_code": 0,
+    "peak_observed_bytes": 752173056,
+    "samples": 13591,
+    "finished_at": "2026-10-04T14:11:58.586309+00:00",
+    "elapsed_sec": 1748.0008637499996
+  },
+  "mechanism": {
+    "passed": true,
+    "cases": [
+      {
+        "identity": {
+          "input_sha256": "31e46481cf3abca6f5f18f12e421d559602c325fc2df667a4066848aaa5a10fe",
+          "binary_sha256": "7cce3f590b003c09b8355503fbe5af3d7d0fab6e40cbb359a5b64c2ce0db7292",
+          "repeat": 129101
+        },
+        "case": 2,
+        "repeat": 129101,
+        "rows": 32,
+        "phases": [
+          0
+        ],
+        "count": 4,
+        "cpp_replays": 32,
+        "python_replays": 8,
+        "python_prefix_replays": 4,
+        "max_feature_error": 2.930342879459147e-08,
+        "parent_result": {
+          "T": 197,
+          "E": 0,
+          "S": 197,
+          "complete": true
+        },
+        "parent_initial_hash": 2280542335700147423,
+        "seconds": 41.061986415996216,
+        "completed_at": "2026-10-04T13:39:13.266406+00:00"
+      },
+      {
+        "identity": {
+          "input_sha256": "a1cebb3de8f095edcbd9e2837dd8cf99b9d76d1832522e6cccdfec2539812cf3",
+          "binary_sha256": "7cce3f590b003c09b8355503fbe5af3d7d0fab6e40cbb359a5b64c2ce0db7292",
+          "repeat": 129101
+        },
+        "case": 3,
+        "repeat": 129101,
+        "rows": 32,
+        "phases": [
+          0
+        ],
+        "count": 4,
+        "cpp_replays": 32,
+        "python_replays": 8,
+        "python_prefix_replays": 4,
+        "max_feature_error": 2.9678661306320464e-08,
+        "parent_result": {
+          "T": 226,
+          "E": 0,
+          "S": 226,
+          "complete": true
+        },
+        "parent_initial_hash": 4806955816849538038,
+        "seconds": 40.41086058400106,
+        "completed_at": "2026-10-04T13:39:53.678385+00:00"
+      }
+    ],
+    "source_sha256": "14b423f866e9d3bd42b39badf3bc91be00d6e20a0fd74cd339d9699c202c296e",
+    "parent_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+    "completed_at": "2026-10-04T13:39:53.678947+00:00"
+  },
+  "loss_check": {
+    "passed": true,
+    "parameters": 6977,
+    "gradient_direction": true,
+    "initial_batch_loss": 0.12326280772686005,
+    "final_batch_loss": 0.05984323471784592,
+    "diagnostic_weights_discarded": true,
+    "completed_at": "2026-10-04T14:11:44.128077+00:00"
+  },
+  "retained": {
+    "version": "v113",
+    "source": "src/bin/v113_integrated_nn_lns.cpp",
+    "source_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258"
+  },
+  "retained_tools_in": {
+    "reused": true,
+    "metrics": {
+      "cases": 100,
+      "complete": 100,
+      "completion_rate": 1.0,
+      "mean_S_all": 196.75,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 196.75,
+      "mean_elapsed_ms": 1569.08,
+      "max_elapsed_ms": 1616,
+      "mean_inferences": 264.69,
+      "mean_depth": 264.69,
+      "deadline_cases": 0
+    },
+    "all_legal": true,
+    "source_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258"
+  },
+  "validation1_opened": false,
+  "learned_cpp_evaluated": false,
+  "solver_cross_validation_executed": false,
+  "new_256_evaluated": false,
+  "final_in_repeated": false,
+  "completed_at": "2026-10-04T14:11:58.400033+00:00",
+  "summarized_at": "2026-10-04T14:14:00.307378+00:00"
+}

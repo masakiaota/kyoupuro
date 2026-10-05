@@ -1,0 +1,7 @@
+{
+  "checks_passed": 7,
+  "frozen_and_protected_files_unchanged": 9,
+  "template_sha256": "f323e0fb4b83a21202282695267bab6a0c1c37c9c3d5133bfb27c142a7982449",
+  "capacity_dispatch_removed": true,
+  "new_solver_evaluations": 0
+}

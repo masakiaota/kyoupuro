@@ -1,0 +1,223 @@
+// 重みはこの直前に生成する。Pythonと同じ演算順で小型CNNを直接計算する。
+struct Encoded {
+    array<array<float, 24>, 400> cells{};
+    array<float, 24> global{};
+    float remaining = 0.f;
+};
+
+unique_ptr<Encoded> encode(const Input& input, const Board& board, const BoardState& state) {
+    auto result = make_unique<Encoded>();
+    const auto features = board_features(input, board, state);
+    auto& h = result->cells;
+    for (int p = 0; p < board.cell_count; ++p) {
+        const auto& x = features[flat_cell(board, p)];
+        for (int o = 0; o < 24; ++o) {
+            float v = nn_input_b[o];
+            for (int c = 0; c < 40; ++c) v += nn_input_w[o * 40 + c] * x[c];
+            h[p][o] = max(0.f, v);
+        }
+    }
+    for (int block = 0; block < 3; ++block) {
+        array<array<float, 24>, 400> depth{};
+        for (int p = 0; p < board.cell_count; ++p) {
+            const auto [i, j] = board.coordinates[p];
+            depth[p] = nn_depth_b[block];
+            for (int di = -1; di <= 1; ++di) for (int dj = -1; dj <= 1; ++dj) {
+                const int ni = i + di, nj = j + dj;
+                if (ni < 0 || ni >= input.N || nj < 0 || nj >= input.N) continue;
+                const int q = board.cell_id[ni][nj];
+                if (q < 0) continue;
+                const int kernel = (di + 1) * 3 + dj + 1;
+                for (int c = 0; c < 24; ++c) depth[p][c] += nn_depth_w[block][c * 9 + kernel] * h[q][c];
+            }
+            for (float& v : depth[p]) v = max(0.f, v);
+        }
+        for (int p = 0; p < board.cell_count; ++p) {
+            for (int o = 0; o < 24; ++o) {
+                float v = nn_point_b[block][o];
+                for (int c = 0; c < 24; ++c) v += nn_point_w[block][o * 24 + c] * depth[p][c];
+                h[p][o] = max(0.f, h[p][o] + v);
+            }
+        }
+    }
+    for (int p = 0; p < board.cell_count; ++p)
+        for (int c = 0; c < 24; ++c) result->global[c] += h[p][c];
+    for (float& v : result->global) v /= board.cell_count;
+    float raw = nn_critic_out_b[0];
+    for (int o = 0; o < 32; ++o) {
+        float v = nn_critic_b[o];
+        for (int c = 0; c < 24; ++c) v += nn_critic_w[o * 24 + c] * result->global[c];
+        raw += nn_critic_out_w[o] * max(0.f, v);
+    }
+    result->remaining = (raw > 20.f ? raw : log1p(exp(raw))) * 100.f;
+    return result;
+}
+
+vector<float> policy(const Board& board, const BoardState& state, const Encoded& encoded, const vector<Move>& moves) {
+    array<array<float, 32>, 400> source{}, dest{};
+    array<float, 32> global{};
+    for (int o = 0; o < 32; ++o) {
+        global[o] = nn_actor_b[o];
+        for (int c = 0; c < 24; ++c) global[o] += nn_actor_w[o * 88 + 48 + c] * encoded.global[c];
+    }
+    for (int p = 0; p < board.cell_count; ++p) for (int o = 0; o < 32; ++o) {
+        for (int c = 0; c < 24; ++c) {
+            source[p][o] += nn_actor_w[o * 88 + c] * encoded.cells[p][c];
+            dest[p][o] += nn_actor_w[o * 88 + 24 + c] * encoded.cells[p][c];
+        }
+    }
+    vector<float> logits; logits.reserve(moves.size());
+    for (Move move : moves) {
+        const int p = move.p(), q = board.ray[p][move.d()][move.l() - 1];
+        const auto x = action_features(board, state, move);
+        float logit = nn_actor_out_b[0];
+        for (int o = 0; o < 32; ++o) {
+            float action = 0.f;
+            for (int c = 0; c < 16; ++c) action += nn_actor_w[o * 88 + 72 + c] * x[c];
+            const float v = source[p][o] + dest[q][o] + global[o] + action;
+            logit += nn_actor_out_w[o] * max(0.f, v);
+        }
+        logits.push_back(logit);
+    }
+    return logits;
+}
+
+struct StateHash {
+    size_t operator()(const array<uint32_t, 400>& state) const {
+        uint64_t h = 0x9e3779b97f4a7c15ULL;
+        for (uint32_t v : state) { h ^= uint64_t(v) + 0x9e3779b97f4a7c15ULL + (h << 6) + (h >> 2); }
+        return size_t(h);
+    }
+};
+
+struct SearchNode {
+    BoardState state;
+    vector<Move> path;
+    unique_ptr<Encoded> encoded;
+    double negative_log_probability = 0, priority = 0;
+};
+
+struct SearchResult {
+    vector<Move> path;
+    int E = 0, nodes = 0, duplicates = 0, max_width = 0, depth = 0, inferences = 0;
+    bool deadline = false;
+};
+
+SearchResult search(const Input& input, const Board& board, const BoardState& initial,
+                    TimeKeeper& timer, int width, int branches) {
+    SearchResult result; result.E = initial.E;
+    int64_t best_score = int64_t(initial.E) * 100000;
+    int complete_depth = 2049;
+    // ハッシュが一致しても400マスの完全比較を行うので、衝突による枝の誤除外はない。
+    unordered_map<array<uint32_t, 400>, int, StateHash> visited;
+    visited.reserve(8192); visited.emplace(initial.bits, 0);
+    vector<SearchNode> beam;
+    SearchNode root; root.state = initial; root.encoded = encode(input, board, initial);
+    ++result.inferences; beam.push_back(move(root));
+    for (int depth = 0; depth < 2048 && !beam.empty() && depth < complete_depth; ++depth) {
+        if (!timer.step()) { result.deadline = true; break; }
+        result.depth = depth; result.max_width = max(result.max_width, int(beam.size()));
+        vector<SearchNode> next;
+        for (const auto& node : beam) {
+            if (!timer.step()) { result.deadline = true; break; }
+            auto moves = legal_moves(board, node.state);
+            auto logits = policy(board, node.state, *node.encoded, moves);
+            if (moves.empty()) continue;
+            const float max_logit = *max_element(logits.begin(), logits.end());
+            double sum_exp = 0;
+            for (float v : logits) sum_exp += exp(double(v - max_logit));
+            const double log_z = max_logit + log(sum_exp);
+            vector<int> order(moves.size()); iota(order.begin(), order.end(), 0);
+            stable_sort(order.begin(), order.end(), [&](int a, int b) { return logits[a] > logits[b]; });
+            int accepted = 0;
+            for (int index : order) {
+                if (!timer.step()) { result.deadline = true; break; }
+                SearchNode child; child.state = node.state; child.state.apply(board, moves[index]);
+                auto [it, inserted] = visited.try_emplace(child.state.bits, depth + 1);
+                if (!inserted && it->second <= depth + 1) { ++result.duplicates; continue; }
+                it->second = depth + 1;
+                ++result.nodes; ++accepted;
+                child.path = node.path; child.path.push_back(moves[index]);
+                const int64_t score = int64_t(child.state.E) * 100000 + child.path.size();
+                if (score < best_score) { best_score = score; result.E = child.state.E; result.path = child.path; }
+                if (child.state.E == 0) { complete_depth = depth + 1; }
+                else if (depth + 1 < complete_depth) {
+                    child.negative_log_probability = node.negative_log_probability + log_z - logits[index];
+                    child.encoded = encode(input, board, child.state); ++result.inferences;
+                    child.priority = depth + 1 + child.encoded->remaining + .25 * child.negative_log_probability;
+                    next.push_back(move(child));
+                }
+                if (accepted >= branches) break;
+            }
+            if (result.deadline) break;
+        }
+        stable_sort(next.begin(), next.end(), [](const auto& a, const auto& b) { return a.priority < b.priority; });
+        if (next.size() > size_t(width)) next.resize(width);
+        beam = move(next);
+        if (result.deadline) break;
+    }
+    return result;
+}
+
+#ifdef V089_DIAGNOSTIC
+void dump_inference(const Input& input, const Board& board, const BoardState& state) {
+    const auto features = board_features(input, board, state);
+    const auto moves = legal_moves(board, state);
+    const auto encoded = encode(input, board, state);
+    const auto logits = policy(board, state, *encoded, moves);
+    cout << setprecision(9) << "{\"value\":" << encoded->remaining << ",\"x\":[";
+    for (int f = 0; f < 400; ++f) for (int c = 0; c < 40; ++c) {
+        if (f || c) cout << ',';
+        cout << features[f][c];
+    }
+    cout << "],\"codes\":[";
+    for (size_t n = 0; n < moves.size(); ++n) { if (n) cout << ','; cout << action_code(board, moves[n]); }
+    cout << "],\"features\":[";
+    for (size_t n = 0; n < moves.size(); ++n) {
+        const auto x = action_features(board, state, moves[n]);
+        for (int c = 0; c < 16; ++c) { if (n || c) cout << ','; cout << x[c]; }
+    }
+    cout << "],\"logits\":[";
+    for (size_t n = 0; n < logits.size(); ++n) { if (n) cout << ','; cout << logits[n]; }
+    cout << "]}\n";
+}
+#endif
+
+int main(int argc, char** argv) {
+#ifdef V089_DIAGNOSTIC
+    // 時間打ち切りだけを短く発火させる補助検査。提出版には含めない。
+    TimeKeeper timer(PROGRAM_TIME_LIMIT_SEC * (argc > 2 && string(argv[2]) == "deadline" ? .01 : 1.), 0);
+#else
+    TimeKeeper timer(PROGRAM_TIME_LIMIT_SEC, 0);
+#endif
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+#ifdef LOCAL
+    TraceStats trace;
+#endif
+    Input input; LOCAL_TIME(trace, "read_input", [&] { input.read(); });
+    const Board board = LOCAL_TIME(trace, "prepare_board", [&] { return Board(input); });
+    BoardState initial(input, board);
+#ifdef V089_DIAGNOSTIC
+    if (argc > 1) { ifstream snapshot(argv[1]); read_snapshot(snapshot, board, initial); }
+    if (argc > 2 && string(argv[2]) == "dump") { dump_inference(input, board, initial); return 0; }
+#else
+    (void)argc; (void)argv;
+#endif
+#ifdef V089_GREEDY
+    constexpr int width = 1, branches = 1;
+#else
+    constexpr int width = 4, branches = 2;
+#endif
+    const auto result = LOCAL_TIME(trace, "search", [&] { return search(input, board, initial, timer, width, branches); });
+    for (Move m : result.path) {
+        const auto [i, j] = board.coordinates[m.p()];
+        cout << i << ' ' << j << ' ' << m.k() << ' ' << "UDLR"[m.d()] << ' ' << m.l() << '\n';
+    }
+    LOCAL_ONLY(
+        trace.count_by("initial_E", initial.E); trace.count_by("E", result.E);
+        trace.count_by("T", result.path.size()); trace.count_by("nodes", result.nodes);
+        trace.count_by("duplicates", result.duplicates); trace.count_by("max_width", result.max_width);
+        trace.count_by("depth", result.depth); trace.count_by("inferences", result.inferences);
+        trace.count_by("deadline", result.deadline); trace.summary();
+    );
+}

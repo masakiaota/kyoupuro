@@ -1,0 +1,18 @@
+{
+  "jobs": 8,
+  "source_sha256": "0c241cc3a862d12faf100050df4ea3bafa3c520261d81e5237a41e3c54f25658",
+  "parent_sha256": "c3f819c2715f397bee0ca95bca12be3196c6f5531dbfeb19358d0afd5f6868ea",
+  "packed_weights_identical": true,
+  "nonlocal_timing_unchanged": true,
+  "local_final_seconds": 1.9,
+  "local_core_seconds": 1.8704663212435233,
+  "reference_sha256": "71f2c83402b7f84663a10d735fb1768009e37f7e65ca333c954a6f300ed98d35",
+  "local_binary_sha256": "2afed38c0cfd9bc230221a1629414a02543fee51c17a3683060dcbfbdb96d065",
+  "nonlocal_binary_sha256": "386eac45264cb1948b7bd759338ac79b77ffa8d58e1ef8ce67e52621fbe5535f",
+  "eval_runs": 1,
+  "warmup_runs": 1,
+  "diagnostic_runs": 2,
+  "diagnostic_second_run_reason": "Remove diagnostic-only layer capture copy from reference timing; solver unchanged",
+  "source_unchanged_after_evaluation": true,
+  "toolchain_manifest": "../cloud_baseline/manifest.json"
+}

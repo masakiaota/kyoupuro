@@ -1,0 +1,77 @@
+{
+  "decision": "diagnostic_failed",
+  "retained": "v113",
+  "diagnostic": {
+    "passed": false,
+    "eligible_cases": 128,
+    "cases": 128,
+    "rows": 8176,
+    "groups": 512,
+    "mean_difference": 0.01953125,
+    "fold_differences": [
+      -0.203125,
+      -0.015625,
+      0.1953125,
+      0.1015625
+    ],
+    "prediction_mae": 3.7495449831501495,
+    "oracle_mean_difference": -2.640625,
+    "changed": 84,
+    "chosen_discarded": 14,
+    "features": 18,
+    "parameters": 321,
+    "completed_at": "2026-10-04T12:09:33.508327+00:00"
+  },
+  "collection_seconds": 649.2674365419953,
+  "parent_runs": 512,
+  "all_parent_complete": true,
+  "cpp_replays": 8176,
+  "python_replays": 2048,
+  "plan_counts": {
+    "1": 0,
+    "2": 0,
+    "3": 4,
+    "4": 508
+  },
+  "models": {
+    "0": {
+      "rows": 6128,
+      "epochs": 500,
+      "seconds": 2.1362782920041354,
+      "model_sha256": "748b5e8bbb307117103b7d7bc08474366da57e6cb541ebc914f4b9b438c291e7",
+      "first_loss": 0.30476828948558154,
+      "last_loss": 0.030064060851231256
+    },
+    "1": {
+      "rows": 6128,
+      "epochs": 500,
+      "seconds": 2.1367599590012105,
+      "model_sha256": "b12470c5c59b1043d4739b5e7a611352c934d210c707ce47a70eb072933739bc",
+      "first_loss": 0.3067552983060518,
+      "last_loss": 0.02858281815448878
+    },
+    "2": {
+      "rows": 6128,
+      "epochs": 500,
+      "seconds": 2.2391377909953007,
+      "model_sha256": "e360580b7b26f86d7c995b461899ec5187052abba65edd17c39c2795b77345fd",
+      "first_loss": 0.3305265331548437,
+      "last_loss": 0.030189737692164067
+    },
+    "3": {
+      "rows": 6144,
+      "epochs": 500,
+      "seconds": 2.249618375004502,
+      "model_sha256": "6d8924c2227f0ba0c8d803209c7f6f39b0cc85fe81791684d9a5c4936b0b892b",
+      "first_loss": 0.27634459113081294,
+      "last_loss": 0.02929116024946173
+    }
+  },
+  "full_solver_evaluated": false,
+  "new_validation_evaluated": false,
+  "tools_in_evaluated": false,
+  "validation1_opened": false,
+  "official_source": "results/nn_rank/v124/20261004_plan_allocation_studio/result.json",
+  "changed_mean_difference": 0.11904761904761904,
+  "discarded_chosen_mean_difference": -0.5714285714285714
+}

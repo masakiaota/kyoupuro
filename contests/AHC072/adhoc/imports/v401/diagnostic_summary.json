@@ -1,0 +1,24 @@
+{
+  "cases": 100,
+  "all_bitwise_equal": true,
+  "all_fixed_deadline_equal": true,
+  "all_complete": true,
+  "states": 27023,
+  "logits": 8796854,
+  "forced": 1638,
+  "full": 5103,
+  "home": 3365,
+  "incremental": 23558,
+  "full_cells_per_layer": 6239436,
+  "full_seconds": 3.02633269,
+  "incremental_seconds": 1.36379744,
+  "cells": [
+    1144138,
+    1335957,
+    1621532,
+    1988022,
+    2415373
+  ],
+  "fixed_trace_encode_speedup": 2.2190485194047587,
+  "timing_caveat": "reference always first; untimed reference layer capture precedes candidate; cache/order effects not isolated"
+}

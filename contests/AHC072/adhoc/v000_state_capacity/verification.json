@@ -1,0 +1,23 @@
+{
+  "input": "tools/in/0009.txt",
+  "floor_cells": 185,
+  "state_capacity": 192,
+  "state_bytes": 768,
+  "runs": [
+    {
+      "build": "local",
+      "returncode": 0
+    },
+    {
+      "build": "nonlocal",
+      "returncode": 0
+    }
+  ],
+  "source_sha256": {
+    "src/bin/v000_template.cpp": "5504504a6c44524ce78b8cbb96f1b77730b5a57bdd6f9409013c43dc1f513e45",
+    "adhoc/bin/check_v000_tower.cpp": "7e41a0fb93821dc1564d1c8cd3f733e23a45476ac56c1731083bcacc347c3554",
+    "adhoc/bin/check_v000_apply.cpp": "29d4100135d3773655e0534033ffbc3c2d56cb48cbc535a7d7c9e5390f5165b2",
+    "adhoc/bin/check_v000_move.cpp": "3dfb082ce669b965ef0f1544162e438484dd929ce56fe0553f574c83a094299f",
+    "adhoc/bin/v030_state_capacity_bench.cpp": "db08915fa9982059ebae6c1bd37a880f45abf331dba65d9a00e7a62d04e7d00b"
+  }
+}

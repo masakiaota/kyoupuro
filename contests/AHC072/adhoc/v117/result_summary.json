@@ -1,0 +1,215 @@
+{
+  "selected": "base",
+  "accepted": false,
+  "goal_190": false,
+  "sources": {
+    "pickup": {
+      "path": "adhoc/bin/v117_pickup.cpp",
+      "sha256": "acf60c7e117682a37005737170891557e6adc046d812e90c7c0a34c7b258852f"
+    }
+  },
+  "metrics": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.44921875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.44921875,
+      "mean_elapsed_ms": 1564.53515625,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "parent": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.6640625,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.6640625,
+      "mean_elapsed_ms": 1565.5546875,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "pickup": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 216.41015625,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 216.41015625,
+      "mean_elapsed_ms": 1566.18359375,
+      "max_elapsed_ms": 1622,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    }
+  },
+  "differences": {
+    "pickup": {
+      "common_completed": 256,
+      "mean_T_difference": 0.9609375,
+      "mean_S_difference": 0.9609375,
+      "wins": 100,
+      "ties": 29,
+      "losses": 127
+    }
+  },
+  "parent_differences": {
+    "pickup": {
+      "common_completed": 256,
+      "mean_T_difference": 0.74609375,
+      "mean_S_difference": 0.74609375,
+      "wins": 91,
+      "ties": 44,
+      "losses": 121
+    }
+  },
+  "activation": {
+    "pickup": {
+      "pickup_calls": 154542,
+      "pickup_completed": 1144,
+      "pickup_first_completed": 49442,
+      "pickup_raw_saved": 1154,
+      "pickup_selected": 1144
+    }
+  },
+  "mechanism": {
+    "sources": {
+      "base": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+      "pickup": "acf60c7e117682a37005737170891557e6adc046d812e90c7c0a34c7b258852f"
+    },
+    "totals": {
+      "000000.txt": {
+        "tested": 32,
+        "extracted": 32,
+        "ordinary": 29,
+        "pickup": 0,
+        "rescues": 0,
+        "raw_saved": 0,
+        "unrestricted_matches": 84
+      },
+      "000124.txt": {
+        "tested": 32,
+        "extracted": 31,
+        "ordinary": 25,
+        "pickup": 0,
+        "rescues": 0,
+        "raw_saved": 0,
+        "unrestricted_matches": 82
+      },
+      "000252.txt": {
+        "tested": 32,
+        "extracted": 32,
+        "ordinary": 28,
+        "pickup": 1,
+        "rescues": 0,
+        "raw_saved": 1,
+        "unrestricted_matches": 87
+      },
+      "000380.txt": {
+        "tested": 32,
+        "extracted": 32,
+        "ordinary": 22,
+        "pickup": 0,
+        "rescues": 0,
+        "raw_saved": 0,
+        "unrestricted_matches": 91
+      },
+      "000508.txt": {
+        "tested": 32,
+        "extracted": 32,
+        "ordinary": 27,
+        "pickup": 0,
+        "rescues": 0,
+        "raw_saved": 0,
+        "unrestricted_matches": 87
+      },
+      "001597.txt": {
+        "tested": 32,
+        "extracted": 32,
+        "ordinary": 29,
+        "pickup": 0,
+        "rescues": 0,
+        "raw_saved": 0,
+        "unrestricted_matches": 89
+      },
+      "002613.txt": {
+        "tested": 32,
+        "extracted": 32,
+        "ordinary": 30,
+        "pickup": 0,
+        "rescues": 0,
+        "raw_saved": 0,
+        "unrestricted_matches": 82
+      },
+      "003532.txt": {
+        "tested": 32,
+        "extracted": 32,
+        "ordinary": 21,
+        "pickup": 0,
+        "rescues": 0,
+        "raw_saved": 0,
+        "unrestricted_matches": 86
+      }
+    },
+    "fixtures": {
+      "initial": true,
+      "solo": true,
+      "ride": true,
+      "no_premature_home": true,
+      "unrestricted_extra": 2
+    },
+    "independent_outputs": 216,
+    "natural_pickup": 1,
+    "gates": {
+      "pickup": {
+        "passed": true
+      }
+    },
+    "completed_at": "2026-10-04T10:24:35.687945+00:00"
+  },
+  "details": {
+    "mean_pickup_ms": 56.68741796875,
+    "max_pickup_ms": 74.987,
+    "mean_lns_attempts": 6836.66015625,
+    "state_pool_restored": true,
+    "errors": {
+      "construction_errors": 0,
+      "lns_errors": 0,
+      "lns_invalid_candidates": 0,
+      "baseline_recovery": 0,
+      "final_recovery": 0
+    }
+  },
+  "retained_candidate": {
+    "condition": "r0",
+    "source": "src/bin/v115_corridor_reinsertion.cpp",
+    "source_sha256": "00c649abb06fa8f46927ba50e5f3b7f000c806c0029bbbec683e79712d04387e",
+    "model_parent": "v111",
+    "fixed_at": "2026-10-04T10:16:25.489950+00:00"
+  },
+  "tools_in_reused": {
+    "cases": 100,
+    "complete": 100,
+    "completion_rate": 1.0,
+    "mean_S_all": 196.05,
+    "mean_E_all": 0.0,
+    "max_E": 0,
+    "mean_T_completed": 196.05,
+    "mean_elapsed_ms": 1569.38,
+    "max_elapsed_ms": 1616,
+    "mean_inferences": 264.69,
+    "mean_depth": 264.69,
+    "deadline_cases": 0
+  },
+  "result_sha256": "e541346f58d21dce3849b062b60b19727d6b9a2bb07a4b19229aa0d5cb90227f",
+  "completed_at": "2026-10-04T10:26:31.958425+00:00"
+}

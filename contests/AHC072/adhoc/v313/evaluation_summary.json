@@ -1,0 +1,49 @@
+{
+  "main": "19878a5d85bde8e6f14cf779e83998f9949af5f5",
+  "source_sha256": "19ed3103b15d612b8089514ee71147cf290a667c0761b7b3fca11ab154ab8b82",
+  "weights": "v105 fixed iteration 165; unchanged",
+  "compiler": "GCC 14.2.0",
+  "LOCAL": false,
+  "workers": 2,
+  "budget_seconds": 1.9,
+  "repetitions": 1,
+  "viewer_registered": false,
+  "primary_control": "v311_speed_only",
+  "additional_control": "v311_neural_multistart",
+  "in100": {
+    "v311_speed_only": {"complete":100,"sum":20023,"mean":200.23,"relative":93.65230143800888,"max_seconds":1.884742781},
+    "v311_neural_multistart": {"complete":100,"sum":19878,"mean":198.78,"relative":94.16948580900602,"max_seconds":1.885032087},
+    "v313": {"complete":100,"sum":20018,"mean":200.18,"relative":93.86649823229058,"max_seconds":1.885327381},
+    "v313_vs_speed": {"delta_sum":-5,"relative_delta":0.2141967942817138,"wins":46,"ties":14,"losses":40,"case_bootstrap_95_delta_mean":[-1.23,1.17]},
+    "v313_vs_standard": {"delta_sum":140,"relative_delta":-0.3029875767154263,"wins":42,"ties":9,"losses":49},
+    "reference": "frozen historical minima including v800; not latest official leaderboard"
+  },
+  "validation100": {
+    "v311_speed_only": {"complete":100,"sum":22200,"mean":222.00,"max_seconds":1.884718366},
+    "v311_neural_multistart": {"complete":100,"sum":22065,"mean":220.65,"max_seconds":1.894071191},
+    "v313": {"complete":100,"sum":22128,"mean":221.28,"max_seconds":1.893933554},
+    "v313_vs_speed": {"delta_sum":-72,"wins":51,"ties":10,"losses":39},
+    "v313_vs_standard": {"delta_sum":63,"wins":36,"ties":19,"losses":45},
+    "input_selection": "SHA256 order, excluding overlap with in100; previously used validation1 subset, not newly unseen"
+  },
+  "mechanism_in100": {
+    "recorded":19660,"rollouts":538,"completed":437,"reused_suffix_moves":9881,
+    "retained_alternatives":191,"cases_with_multiple_seeds":99,"grafted_winner_cases":72,
+    "raw_initial_sum_reduction_vs_speed":949,"extra_seconds_mean":0.0816875614,
+    "root_trajectory_hash_matches_speed":100
+  },
+  "audit": {
+    "suffix_checks":40180,"suffix_replayed_operations":5507258,
+    "incremental_hash_checks":40180,"forced_collision_checks":40180,
+    "fixed_work_neural_cases":4,"root_paths_equal":4,"fixed_work_rollouts":48,
+    "full_outputs_legal_and_complete":600,"official_rust_scorer_executed":false
+  },
+  "decision": {
+    "preregistered_primary_criterion_met":true,
+    "better_than_standard":false,
+    "mean195_reached":false,
+    "stable_improvement_established":false,
+    "recommendation":"limited candidate against speed-only; not a replacement for the standard version"
+  },
+  "posthoc_only": {"all_three_full_budget_case_min_sum":19638,"mean":196.38,"deployable_in_1_9_seconds":false}
+}

@@ -1,0 +1,234 @@
+[
+  {
+    "case": "0014.txt",
+    "description": "有限区間の置換後に、e色6匹を4匹と2匹の2便で送る部分が残った。19個の独立操作を挟む2便を1便にまとめ、さらに1手短縮した。",
+    "sequence": [
+      {
+        "pass": 7,
+        "kind": "finite",
+        "saved": 2
+      },
+      {
+        "pass": 9,
+        "kind": "pair",
+        "saved": 1
+      }
+    ],
+    "first": 335,
+    "old_end": 356,
+    "new_end": 355,
+    "before": [
+      {
+        "operation_index": 335,
+        "operation": [
+          13,
+          13,
+          2,
+          "R",
+          1
+        ],
+        "source": [
+          13,
+          13
+        ],
+        "destination": [
+          13,
+          14
+        ],
+        "source_before": "eeeeee",
+        "destination_before": "de",
+        "moving": "eeee",
+        "source_after": "ee",
+        "destination_after": "deeeee"
+      },
+      {
+        "operation_index": 355,
+        "operation": [
+          13,
+          13,
+          0,
+          "R",
+          1
+        ],
+        "source": [
+          13,
+          13
+        ],
+        "destination": [
+          13,
+          14
+        ],
+        "source_before": "ee",
+        "destination_before": "deeeee",
+        "moving": "ee",
+        "source_after": "",
+        "destination_after": "deeeeeee"
+      }
+    ],
+    "after": [
+      {
+        "operation_index": 335,
+        "operation": [
+          13,
+          13,
+          0,
+          "R",
+          1
+        ],
+        "source": [
+          13,
+          13
+        ],
+        "destination": [
+          13,
+          14
+        ],
+        "source_before": "eeeeee",
+        "destination_before": "de",
+        "moving": "eeeeee",
+        "source_after": "",
+        "destination_after": "deeeeeee"
+      }
+    ],
+    "boundary_verified": true
+  },
+  {
+    "case": "0084.txt",
+    "description": "有限区間の置換後に、cをaaiへ合流させて右回りに運ぶ3操作が残った。aaiをcへ運び、合流位置から下へ直接運ぶ2操作にした。最後の塔はどちらもaaaicとなる。",
+    "sequence": [
+      {
+        "pass": 7,
+        "kind": "finite",
+        "saved": 3
+      },
+      {
+        "pass": 10,
+        "kind": "joint",
+        "saved": 1
+      }
+    ],
+    "first": 7,
+    "old_end": 10,
+    "new_end": 9,
+    "before": [
+      {
+        "operation_index": 7,
+        "operation": [
+          1,
+          14,
+          0,
+          "R",
+          1
+        ],
+        "source": [
+          1,
+          14
+        ],
+        "destination": [
+          1,
+          15
+        ],
+        "source_before": "c",
+        "destination_before": "aai",
+        "moving": "c",
+        "source_after": "",
+        "destination_after": "aaic"
+      },
+      {
+        "operation_index": 8,
+        "operation": [
+          1,
+          15,
+          0,
+          "D",
+          1
+        ],
+        "source": [
+          1,
+          15
+        ],
+        "destination": [
+          2,
+          15
+        ],
+        "source_before": "aaic",
+        "destination_before": "",
+        "moving": "aaic",
+        "source_after": "",
+        "destination_after": "ciaa"
+      },
+      {
+        "operation_index": 9,
+        "operation": [
+          2,
+          15,
+          0,
+          "L",
+          1
+        ],
+        "source": [
+          2,
+          15
+        ],
+        "destination": [
+          2,
+          14
+        ],
+        "source_before": "ciaa",
+        "destination_before": "a",
+        "moving": "ciaa",
+        "source_after": "",
+        "destination_after": "aaaic"
+      }
+    ],
+    "after": [
+      {
+        "operation_index": 7,
+        "operation": [
+          1,
+          15,
+          0,
+          "L",
+          1
+        ],
+        "source": [
+          1,
+          15
+        ],
+        "destination": [
+          1,
+          14
+        ],
+        "source_before": "aai",
+        "destination_before": "c",
+        "moving": "aai",
+        "source_after": "",
+        "destination_after": "ciaa"
+      },
+      {
+        "operation_index": 8,
+        "operation": [
+          1,
+          14,
+          0,
+          "D",
+          1
+        ],
+        "source": [
+          1,
+          14
+        ],
+        "destination": [
+          2,
+          14
+        ],
+        "source_before": "ciaa",
+        "destination_before": "a",
+        "moving": "ciaa",
+        "source_after": "",
+        "destination_after": "aaaic"
+      }
+    ],
+    "boundary_verified": true
+  }
+]

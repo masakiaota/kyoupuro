@@ -1,0 +1,202 @@
+{
+  "control": "v315",
+  "candidate": "v318",
+  "main_snapshot": "56d2c0fe68e0790e3973cc26dbca81c577810ab4",
+  "source_sha256": "24de5a028ff3fcb97d1c1b6afbc1f9b3255865644a22057fb13243d15b99999d",
+  "control_sha256": "364cab41a22ccb8c5d84bb0b74086dbb4d1ffd635ad735fcdf8231efa21e3538",
+  "conditions": {
+    "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+    "flags": "-std=gnu++23 -O2 -Wall -Wextra -march=native -pthread -ftrivial-auto-var-init=zero -fopenmp -DATCODER -DONLINE_JUDGE -DNOMINMAX",
+    "workers": 2,
+    "LOCAL": false,
+    "budget_seconds": 1.9,
+    "internal_deadline_seconds": 1.88,
+    "lns_end_seconds": 1.8507772020725388,
+    "repetitions": 1,
+    "order": "AB/BA alternated; same CPU within pair",
+    "validators": "Independent Python/C++ literal towers; official Rust binary NOT run",
+    "reference_provenance": "Inherited historical minima including v800; NOT a live competition leaderboard"
+  },
+  "sets": {
+    "in": {
+      "versions": {
+        "v315": {
+          "sum_S": 19861,
+          "mean_S": 198.61,
+          "complete": 100,
+          "sum_E": 0,
+          "relative_mean_100": 94.29127536702545,
+          "mean_wall_seconds": 1.8819213422999905,
+          "max_wall_seconds": 1.8852058490001582,
+          "over_1_9": 0,
+          "over_2": 0,
+          "max_RSS_KiB": 15704,
+          "diagnostics": [],
+          "means": {
+            "lns_attempts": 5951.22,
+            "pre_lns": 256.31,
+            "build_seconds": 0.169031883,
+            "full_build_seconds": 0.103616318,
+            "history_only_seconds": 0.0064588867,
+            "packet_only_seconds": 0.05895672
+          },
+          "v800_fixed_relative_mean_100": 94.3330328107437
+        },
+        "v318": {
+          "sum_S": 19920,
+          "mean_S": 199.2,
+          "complete": 100,
+          "sum_E": 0,
+          "relative_mean_100": 93.99011231675512,
+          "mean_wall_seconds": 1.8818830224399858,
+          "max_wall_seconds": 1.8883501830000569,
+          "over_1_9": 0,
+          "over_2": 0,
+          "max_RSS_KiB": 15496,
+          "diagnostics": [],
+          "means": {
+            "lns_attempts": 6055.61,
+            "pre_lns": 256.31,
+            "build_seconds": 0.15769504,
+            "full_build_seconds": 0.08611261,
+            "history_only_seconds": 0.0091555959,
+            "packet_only_seconds": 0.062426784
+          },
+          "v800_fixed_relative_mean_100": 94.03186976047334
+        }
+      },
+      "comparison": {
+        "delta_sum": 59,
+        "delta_mean": 0.59,
+        "delta_relative_points": -0.30116305027037343,
+        "wins": 31,
+        "ties": 27,
+        "losses": 42,
+        "reference": "frozen historical minima including v800",
+        "case_bootstrap_95_mean_delta": [
+          -0.29,
+          1.45
+        ],
+        "case_bootstrap_95_relative_delta": [
+          -0.683935895109208,
+          0.08409999815911733
+        ],
+        "bootstrap_limitation": "Resamples cases, not repeated-run timing variation."
+      },
+      "initial_plan_checks": {
+        "first_hash_matches": 100,
+        "portfolio_metadata_matches": 95,
+        "metadata_different_cases": [
+          "0014.txt",
+          "0015.txt",
+          "0068.txt",
+          "0070.txt",
+          "0097.txt"
+        ],
+        "limitation": "Only first NN path hashes are recorded. Equal origins/lengths do not certify all additional paths."
+      }
+    },
+    "validation100": {
+      "versions": {
+        "v315": {
+          "sum_S": 22184,
+          "mean_S": 221.84,
+          "complete": 100,
+          "sum_E": 0,
+          "relative_mean_100": 99.18360630765774,
+          "mean_wall_seconds": 1.8824642189199994,
+          "max_wall_seconds": 1.8882181700000729,
+          "over_1_9": 0,
+          "over_2": 0,
+          "max_RSS_KiB": 15860,
+          "diagnostics": [],
+          "means": {
+            "lns_attempts": 4544.27,
+            "pre_lns": 280.7,
+            "build_seconds": 0.172057792,
+            "full_build_seconds": 0.108404912,
+            "history_only_seconds": 0.0064469755,
+            "packet_only_seconds": 0.057205889
+          }
+        },
+        "v318": {
+          "sum_S": 22116,
+          "mean_S": 221.16,
+          "complete": 100,
+          "sum_E": 0,
+          "relative_mean_100": 99.44376533191473,
+          "mean_wall_seconds": 1.882597850820016,
+          "max_wall_seconds": 1.8890854930000387,
+          "over_1_9": 0,
+          "over_2": 0,
+          "max_RSS_KiB": 16260,
+          "diagnostics": [],
+          "means": {
+            "lns_attempts": 4735.04,
+            "pre_lns": 280.7,
+            "build_seconds": 0.159262418,
+            "full_build_seconds": 0.089033689,
+            "history_only_seconds": 0.0090599871,
+            "packet_only_seconds": 0.061168738
+          }
+        }
+      },
+      "comparison": {
+        "delta_sum": -68,
+        "delta_mean": -0.68,
+        "delta_relative_points": 0.26015902425697546,
+        "wins": 41,
+        "ties": 23,
+        "losses": 36,
+        "reference": "two evaluated versions only; supplemental, not comparable to in reference",
+        "case_bootstrap_95_mean_delta": [
+          -1.67,
+          0.29
+        ],
+        "case_bootstrap_95_relative_delta": [
+          -0.09814274402619286,
+          0.6235186363155083
+        ],
+        "bootstrap_limitation": "Resamples cases, not repeated-run timing variation."
+      },
+      "initial_plan_checks": {
+        "first_hash_matches": 100,
+        "portfolio_metadata_matches": 93,
+        "metadata_different_cases": [
+          "0298.txt",
+          "0285.txt",
+          "0280.txt",
+          "0047.txt",
+          "0457.txt",
+          "0134.txt",
+          "0331.txt"
+        ],
+        "limitation": "Only first NN path hashes are recorded. Equal origins/lengths do not certify all additional paths."
+      }
+    }
+  },
+  "mechanism": {
+    "witness_pairs_exact": 100,
+    "candidates": 42355,
+    "history_checks": 127065,
+    "feature_scalar_checks": 8132160,
+    "selection_checks": 3600,
+    "artificial_checks": 65536,
+    "build_seconds_parent": 0.267554995,
+    "build_seconds_child": 0.18327176,
+    "selection_seconds_parent": 0.133054241,
+    "selection_seconds_child": 0.053968316,
+    "fixed_clock_pairs": 8,
+    "fixed_clock_complete": 16
+  },
+  "decision": {
+    "in_absolute_nonworse": false,
+    "in_relative_improved": false,
+    "aux_absolute_nonworse": true,
+    "all_outputs_complete": true,
+    "all_outputs_below_1_9": true,
+    "diagnostics_zero": true,
+    "mean_in_at_most_195": false,
+    "candidate_passed": false
+  }
+}

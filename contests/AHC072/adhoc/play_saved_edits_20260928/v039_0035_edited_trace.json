@@ -1,0 +1,1648 @@
+{
+  "input": "tools/in/0035.txt",
+  "output": "adhoc/play_saved_edits_20260928/v039_0035_64.txt",
+  "metrics": {
+    "M": 13,
+    "shortest_distance_sum": 151,
+    "max_height": 8,
+    "T": 64,
+    "W": 189,
+    "moved_count": 166,
+    "mixed_moves": 40,
+    "long_jumps": 8,
+    "single_moves": 21,
+    "max_packet": 8,
+    "source_returned": 5,
+    "destination_returned": 8,
+    "E": 0,
+    "S": 64
+  },
+  "per_color": {
+    "a": {
+      "W": 85,
+      "toward_home": 59
+    },
+    "b": {
+      "W": 14,
+      "toward_home": 14
+    },
+    "c": {
+      "W": 12,
+      "toward_home": 10
+    },
+    "d": {
+      "W": 38,
+      "toward_home": 30
+    },
+    "e": {
+      "W": 31,
+      "toward_home": 29
+    },
+    "f": {
+      "W": 9,
+      "toward_home": 9
+    }
+  },
+  "operations": [
+    {
+      "turn": 1,
+      "action": "8 6 0 U 1",
+      "source": [
+        8,
+        6
+      ],
+      "destination": [
+        7,
+        6
+      ],
+      "before": {
+        "(8, 6)": "a",
+        "(7, 6)": ""
+      },
+      "moving_bottom_to_top": "a",
+      "after": {
+        "(8, 6)": "",
+        "(7, 6)": "a"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 2,
+      "action": "7 5 0 R 1",
+      "source": [
+        7,
+        5
+      ],
+      "destination": [
+        7,
+        6
+      ],
+      "before": {
+        "(7, 5)": "e",
+        "(7, 6)": "a"
+      },
+      "moving_bottom_to_top": "e",
+      "after": {
+        "(7, 5)": "",
+        "(7, 6)": "ae"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 3,
+      "action": "7 6 0 U 1",
+      "source": [
+        7,
+        6
+      ],
+      "destination": [
+        6,
+        6
+      ],
+      "before": {
+        "(7, 6)": "ae",
+        "(6, 6)": ""
+      },
+      "moving_bottom_to_top": "ae",
+      "after": {
+        "(7, 6)": "",
+        "(6, 6)": "ea"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 4,
+      "action": "6 6 0 R 1",
+      "source": [
+        6,
+        6
+      ],
+      "destination": [
+        6,
+        7
+      ],
+      "before": {
+        "(6, 6)": "ea",
+        "(6, 7)": ""
+      },
+      "moving_bottom_to_top": "ea",
+      "after": {
+        "(6, 6)": "",
+        "(6, 7)": "ae"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 5,
+      "action": "6 7 0 U 1",
+      "source": [
+        6,
+        7
+      ],
+      "destination": [
+        5,
+        7
+      ],
+      "before": {
+        "(6, 7)": "ae",
+        "(5, 7)": ""
+      },
+      "moving_bottom_to_top": "ae",
+      "after": {
+        "(6, 7)": "",
+        "(5, 7)": "ea"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 6,
+      "action": "5 7 0 U 1",
+      "source": [
+        5,
+        7
+      ],
+      "destination": [
+        4,
+        7
+      ],
+      "before": {
+        "(5, 7)": "ea",
+        "(4, 7)": ""
+      },
+      "moving_bottom_to_top": "ea",
+      "after": {
+        "(5, 7)": "",
+        "(4, 7)": "ae"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 7,
+      "action": "4 7 0 U 1",
+      "source": [
+        4,
+        7
+      ],
+      "destination": [
+        3,
+        7
+      ],
+      "before": {
+        "(4, 7)": "ae",
+        "(3, 7)": ""
+      },
+      "moving_bottom_to_top": "ae",
+      "after": {
+        "(4, 7)": "",
+        "(3, 7)": "ea"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 8,
+      "action": "7 9 0 R 1",
+      "source": [
+        7,
+        9
+      ],
+      "destination": [
+        7,
+        10
+      ],
+      "before": {
+        "(7, 9)": "d",
+        "(7, 10)": ""
+      },
+      "moving_bottom_to_top": "d",
+      "after": {
+        "(7, 9)": "",
+        "(7, 10)": "d"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 9,
+      "action": "4 10 0 D 1",
+      "source": [
+        4,
+        10
+      ],
+      "destination": [
+        5,
+        10
+      ],
+      "before": {
+        "(4, 10)": "a",
+        "(5, 10)": ""
+      },
+      "moving_bottom_to_top": "a",
+      "after": {
+        "(4, 10)": "",
+        "(5, 10)": "a"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 10,
+      "action": "5 10 0 D 1",
+      "source": [
+        5,
+        10
+      ],
+      "destination": [
+        6,
+        10
+      ],
+      "before": {
+        "(5, 10)": "a",
+        "(6, 10)": ""
+      },
+      "moving_bottom_to_top": "a",
+      "after": {
+        "(5, 10)": "",
+        "(6, 10)": "a"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 11,
+      "action": "6 10 0 D 1",
+      "source": [
+        6,
+        10
+      ],
+      "destination": [
+        7,
+        10
+      ],
+      "before": {
+        "(6, 10)": "a",
+        "(7, 10)": "d"
+      },
+      "moving_bottom_to_top": "a",
+      "after": {
+        "(6, 10)": "",
+        "(7, 10)": "da"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 12,
+      "action": "7 10 0 D 1",
+      "source": [
+        7,
+        10
+      ],
+      "destination": [
+        8,
+        10
+      ],
+      "before": {
+        "(7, 10)": "da",
+        "(8, 10)": ""
+      },
+      "moving_bottom_to_top": "da",
+      "after": {
+        "(7, 10)": "",
+        "(8, 10)": "ad"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 13,
+      "action": "8 10 0 D 1",
+      "source": [
+        8,
+        10
+      ],
+      "destination": [
+        9,
+        10
+      ],
+      "before": {
+        "(8, 10)": "ad",
+        "(9, 10)": ""
+      },
+      "moving_bottom_to_top": "ad",
+      "after": {
+        "(8, 10)": "",
+        "(9, 10)": "da"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 14,
+      "action": "9 10 0 D 1",
+      "source": [
+        9,
+        10
+      ],
+      "destination": [
+        10,
+        10
+      ],
+      "before": {
+        "(9, 10)": "da",
+        "(10, 10)": ""
+      },
+      "moving_bottom_to_top": "da",
+      "after": {
+        "(9, 10)": "",
+        "(10, 10)": "ad"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 15,
+      "action": "10 10 0 L 1",
+      "source": [
+        10,
+        10
+      ],
+      "destination": [
+        10,
+        9
+      ],
+      "before": {
+        "(10, 10)": "ad",
+        "(10, 9)": "e"
+      },
+      "moving_bottom_to_top": "ad",
+      "after": {
+        "(10, 10)": "",
+        "(10, 9)": "eda"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 16,
+      "action": "10 9 1 L 2",
+      "source": [
+        10,
+        9
+      ],
+      "destination": [
+        10,
+        7
+      ],
+      "before": {
+        "(10, 9)": "eda",
+        "(10, 7)": ""
+      },
+      "moving_bottom_to_top": "da",
+      "after": {
+        "(10, 9)": "e",
+        "(10, 7)": "ad"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 17,
+      "action": "10 7 0 L 1",
+      "source": [
+        10,
+        7
+      ],
+      "destination": [
+        10,
+        6
+      ],
+      "before": {
+        "(10, 7)": "ad",
+        "(10, 6)": ""
+      },
+      "moving_bottom_to_top": "ad",
+      "after": {
+        "(10, 7)": "",
+        "(10, 6)": "da"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 18,
+      "action": "10 6 0 L 1",
+      "source": [
+        10,
+        6
+      ],
+      "destination": [
+        10,
+        5
+      ],
+      "before": {
+        "(10, 6)": "da",
+        "(10, 5)": "a"
+      },
+      "moving_bottom_to_top": "da",
+      "after": {
+        "(10, 6)": "",
+        "(10, 5)": "aad"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 19,
+      "action": "4 1 0 R 1",
+      "source": [
+        4,
+        1
+      ],
+      "destination": [
+        4,
+        2
+      ],
+      "before": {
+        "(4, 1)": "b",
+        "(4, 2)": ""
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(4, 1)": "",
+        "(4, 2)": "b"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 20,
+      "action": "4 2 0 R 1",
+      "source": [
+        4,
+        2
+      ],
+      "destination": [
+        4,
+        3
+      ],
+      "before": {
+        "(4, 2)": "b",
+        "(4, 3)": ""
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(4, 2)": "",
+        "(4, 3)": "b"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 21,
+      "action": "10 5 0 L 1",
+      "source": [
+        10,
+        5
+      ],
+      "destination": [
+        10,
+        4
+      ],
+      "before": {
+        "(10, 5)": "aad",
+        "(10, 4)": ""
+      },
+      "moving_bottom_to_top": "aad",
+      "after": {
+        "(10, 5)": "",
+        "(10, 4)": "daa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 22,
+      "action": "10 4 0 L 1",
+      "source": [
+        10,
+        4
+      ],
+      "destination": [
+        10,
+        3
+      ],
+      "before": {
+        "(10, 4)": "daa",
+        "(10, 3)": "a"
+      },
+      "moving_bottom_to_top": "daa",
+      "after": {
+        "(10, 4)": "",
+        "(10, 3)": "aaad"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 23,
+      "action": "0 0 0 R 1",
+      "source": [
+        0,
+        0
+      ],
+      "destination": [
+        0,
+        1
+      ],
+      "before": {
+        "(0, 0)": "d",
+        "(0, 1)": "a"
+      },
+      "moving_bottom_to_top": "d",
+      "after": {
+        "(0, 0)": "",
+        "(0, 1)": "ad"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 24,
+      "action": "0 1 0 R 1",
+      "source": [
+        0,
+        1
+      ],
+      "destination": [
+        0,
+        2
+      ],
+      "before": {
+        "(0, 1)": "ad",
+        "(0, 2)": ""
+      },
+      "moving_bottom_to_top": "ad",
+      "after": {
+        "(0, 1)": "",
+        "(0, 2)": "da"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 25,
+      "action": "0 2 0 D 1",
+      "source": [
+        0,
+        2
+      ],
+      "destination": [
+        1,
+        2
+      ],
+      "before": {
+        "(0, 2)": "da",
+        "(1, 2)": "f"
+      },
+      "moving_bottom_to_top": "da",
+      "after": {
+        "(0, 2)": "",
+        "(1, 2)": "fad"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 26,
+      "action": "1 2 0 R 1",
+      "source": [
+        1,
+        2
+      ],
+      "destination": [
+        1,
+        3
+      ],
+      "before": {
+        "(1, 2)": "fad",
+        "(1, 3)": "c"
+      },
+      "moving_bottom_to_top": "fad",
+      "after": {
+        "(1, 2)": "",
+        "(1, 3)": "cdaf"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 27,
+      "action": "1 3 0 D 1",
+      "source": [
+        1,
+        3
+      ],
+      "destination": [
+        2,
+        3
+      ],
+      "before": {
+        "(1, 3)": "cdaf",
+        "(2, 3)": ""
+      },
+      "moving_bottom_to_top": "cdaf",
+      "after": {
+        "(1, 3)": "",
+        "(2, 3)": "fadc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 28,
+      "action": "2 3 0 R 1",
+      "source": [
+        2,
+        3
+      ],
+      "destination": [
+        2,
+        4
+      ],
+      "before": {
+        "(2, 3)": "fadc",
+        "(2, 4)": ""
+      },
+      "moving_bottom_to_top": "fadc",
+      "after": {
+        "(2, 3)": "",
+        "(2, 4)": "cdaf"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 29,
+      "action": "4 3 0 R 1",
+      "source": [
+        4,
+        3
+      ],
+      "destination": [
+        4,
+        4
+      ],
+      "before": {
+        "(4, 3)": "b",
+        "(4, 4)": "a"
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(4, 3)": "",
+        "(4, 4)": "ab"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 30,
+      "action": "4 4 1 U 2",
+      "source": [
+        4,
+        4
+      ],
+      "destination": [
+        2,
+        4
+      ],
+      "before": {
+        "(4, 4)": "ab",
+        "(2, 4)": "cdaf"
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(4, 4)": "a",
+        "(2, 4)": "cdafb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 31,
+      "action": "2 4 3 R 3",
+      "source": [
+        2,
+        4
+      ],
+      "destination": [
+        2,
+        7
+      ],
+      "before": {
+        "(2, 4)": "cdafb",
+        "(2, 7)": ""
+      },
+      "moving_bottom_to_top": "fb",
+      "after": {
+        "(2, 4)": "cda",
+        "(2, 7)": "bf"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 32,
+      "action": "3 7 0 U 1",
+      "source": [
+        3,
+        7
+      ],
+      "destination": [
+        2,
+        7
+      ],
+      "before": {
+        "(3, 7)": "ea",
+        "(2, 7)": "bf"
+      },
+      "moving_bottom_to_top": "ea",
+      "after": {
+        "(3, 7)": "",
+        "(2, 7)": "bfae"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 33,
+      "action": "2 7 2 L 3",
+      "source": [
+        2,
+        7
+      ],
+      "destination": [
+        2,
+        4
+      ],
+      "before": {
+        "(2, 7)": "bfae",
+        "(2, 4)": "cda"
+      },
+      "moving_bottom_to_top": "ae",
+      "after": {
+        "(2, 7)": "bf",
+        "(2, 4)": "cdaea"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 34,
+      "action": "2 4 0 D 1",
+      "source": [
+        2,
+        4
+      ],
+      "destination": [
+        3,
+        4
+      ],
+      "before": {
+        "(2, 4)": "cdaea",
+        "(3, 4)": ""
+      },
+      "moving_bottom_to_top": "cdaea",
+      "after": {
+        "(2, 4)": "",
+        "(3, 4)": "aeadc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 35,
+      "action": "3 4 0 D 1",
+      "source": [
+        3,
+        4
+      ],
+      "destination": [
+        4,
+        4
+      ],
+      "before": {
+        "(3, 4)": "aeadc",
+        "(4, 4)": "a"
+      },
+      "moving_bottom_to_top": "aeadc",
+      "after": {
+        "(3, 4)": "",
+        "(4, 4)": "acdaea"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 36,
+      "action": "4 4 0 L 1",
+      "source": [
+        4,
+        4
+      ],
+      "destination": [
+        4,
+        3
+      ],
+      "before": {
+        "(4, 4)": "acdaea",
+        "(4, 3)": ""
+      },
+      "moving_bottom_to_top": "acdaea",
+      "after": {
+        "(4, 4)": "",
+        "(4, 3)": "aeadca"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 37,
+      "action": "4 3 0 D 1",
+      "source": [
+        4,
+        3
+      ],
+      "destination": [
+        5,
+        3
+      ],
+      "before": {
+        "(4, 3)": "aeadca",
+        "(5, 3)": ""
+      },
+      "moving_bottom_to_top": "aeadca",
+      "after": {
+        "(4, 3)": "",
+        "(5, 3)": "acdaea"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 38,
+      "action": "5 3 1 D 1",
+      "source": [
+        5,
+        3
+      ],
+      "destination": [
+        6,
+        3
+      ],
+      "before": {
+        "(5, 3)": "acdaea",
+        "(6, 3)": ""
+      },
+      "moving_bottom_to_top": "cdaea",
+      "after": {
+        "(5, 3)": "a",
+        "(6, 3)": "aeadc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 39,
+      "action": "6 3 0 L 1",
+      "source": [
+        6,
+        3
+      ],
+      "destination": [
+        6,
+        2
+      ],
+      "before": {
+        "(6, 3)": "aeadc",
+        "(6, 2)": ""
+      },
+      "moving_bottom_to_top": "aeadc",
+      "after": {
+        "(6, 3)": "",
+        "(6, 2)": "cdaea"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 40,
+      "action": "6 2 3 D 3",
+      "source": [
+        6,
+        2
+      ],
+      "destination": [
+        9,
+        2
+      ],
+      "before": {
+        "(6, 2)": "cdaea",
+        "(9, 2)": ""
+      },
+      "moving_bottom_to_top": "ea",
+      "after": {
+        "(6, 2)": "cda",
+        "(9, 2)": "ae"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 41,
+      "action": "9 2 0 R 1",
+      "source": [
+        9,
+        2
+      ],
+      "destination": [
+        9,
+        3
+      ],
+      "before": {
+        "(9, 2)": "ae",
+        "(9, 3)": ""
+      },
+      "moving_bottom_to_top": "ae",
+      "after": {
+        "(9, 2)": "",
+        "(9, 3)": "ea"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 42,
+      "action": "9 3 0 D 1",
+      "source": [
+        9,
+        3
+      ],
+      "destination": [
+        10,
+        3
+      ],
+      "before": {
+        "(9, 3)": "ea",
+        "(10, 3)": "aaad"
+      },
+      "moving_bottom_to_top": "ea",
+      "after": {
+        "(9, 3)": "",
+        "(10, 3)": "aaadae"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 43,
+      "action": "10 3 5 R 6",
+      "source": [
+        10,
+        3
+      ],
+      "destination": [
+        10,
+        9
+      ],
+      "before": {
+        "(10, 3)": "aaadae",
+        "(10, 9)": "e"
+      },
+      "moving_bottom_to_top": "e",
+      "after": {
+        "(10, 3)": "aaada",
+        "(10, 9)": "ee"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 44,
+      "action": "10 9 0 R 1",
+      "source": [
+        10,
+        9
+      ],
+      "destination": [
+        10,
+        10
+      ],
+      "before": {
+        "(10, 9)": "ee",
+        "(10, 10)": ""
+      },
+      "moving_bottom_to_top": "ee",
+      "after": {
+        "(10, 9)": "",
+        "(10, 10)": "ee"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 45,
+      "action": "10 10 0 R 1",
+      "source": [
+        10,
+        10
+      ],
+      "destination": [
+        10,
+        11
+      ],
+      "before": {
+        "(10, 10)": "ee",
+        "(10, 11)": ""
+      },
+      "moving_bottom_to_top": "ee",
+      "after": {
+        "(10, 10)": "",
+        "(10, 11)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "ee"
+      }
+    },
+    {
+      "turn": 46,
+      "action": "10 3 0 U 1",
+      "source": [
+        10,
+        3
+      ],
+      "destination": [
+        9,
+        3
+      ],
+      "before": {
+        "(10, 3)": "aaada",
+        "(9, 3)": ""
+      },
+      "moving_bottom_to_top": "aaada",
+      "after": {
+        "(10, 3)": "",
+        "(9, 3)": "adaaa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 47,
+      "action": "9 3 0 U 1",
+      "source": [
+        9,
+        3
+      ],
+      "destination": [
+        8,
+        3
+      ],
+      "before": {
+        "(9, 3)": "adaaa",
+        "(8, 3)": ""
+      },
+      "moving_bottom_to_top": "adaaa",
+      "after": {
+        "(9, 3)": "",
+        "(8, 3)": "aaada"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 48,
+      "action": "8 3 0 L 1",
+      "source": [
+        8,
+        3
+      ],
+      "destination": [
+        8,
+        2
+      ],
+      "before": {
+        "(8, 3)": "aaada",
+        "(8, 2)": ""
+      },
+      "moving_bottom_to_top": "aaada",
+      "after": {
+        "(8, 3)": "",
+        "(8, 2)": "adaaa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 49,
+      "action": "8 2 0 U 1",
+      "source": [
+        8,
+        2
+      ],
+      "destination": [
+        7,
+        2
+      ],
+      "before": {
+        "(8, 2)": "adaaa",
+        "(7, 2)": ""
+      },
+      "moving_bottom_to_top": "adaaa",
+      "after": {
+        "(8, 2)": "",
+        "(7, 2)": "aaada"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 50,
+      "action": "7 2 0 U 1",
+      "source": [
+        7,
+        2
+      ],
+      "destination": [
+        6,
+        2
+      ],
+      "before": {
+        "(7, 2)": "aaada",
+        "(6, 2)": "cda"
+      },
+      "moving_bottom_to_top": "aaada",
+      "after": {
+        "(7, 2)": "",
+        "(6, 2)": "cdaadaaa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 51,
+      "action": "6 2 0 R 1",
+      "source": [
+        6,
+        2
+      ],
+      "destination": [
+        6,
+        3
+      ],
+      "before": {
+        "(6, 2)": "cdaadaaa",
+        "(6, 3)": ""
+      },
+      "moving_bottom_to_top": "cdaadaaa",
+      "after": {
+        "(6, 2)": "",
+        "(6, 3)": "aaadaadc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 52,
+      "action": "6 3 7 L 3",
+      "source": [
+        6,
+        3
+      ],
+      "destination": [
+        6,
+        0
+      ],
+      "before": {
+        "(6, 3)": "aaadaadc",
+        "(6, 0)": ""
+      },
+      "moving_bottom_to_top": "c",
+      "after": {
+        "(6, 3)": "aaadaad",
+        "(6, 0)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "c"
+      }
+    },
+    {
+      "turn": 53,
+      "action": "6 3 0 U 1",
+      "source": [
+        6,
+        3
+      ],
+      "destination": [
+        5,
+        3
+      ],
+      "before": {
+        "(6, 3)": "aaadaad",
+        "(5, 3)": "a"
+      },
+      "moving_bottom_to_top": "aaadaad",
+      "after": {
+        "(6, 3)": "",
+        "(5, 3)": "adaadaaa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 54,
+      "action": "5 3 0 R 1",
+      "source": [
+        5,
+        3
+      ],
+      "destination": [
+        5,
+        4
+      ],
+      "before": {
+        "(5, 3)": "adaadaaa",
+        "(5, 4)": ""
+      },
+      "moving_bottom_to_top": "adaadaaa",
+      "after": {
+        "(5, 3)": "",
+        "(5, 4)": "aaadaad"
+      },
+      "returned": {
+        "source": "",
+        "destination": "a"
+      }
+    },
+    {
+      "turn": 55,
+      "action": "5 4 6 U 1",
+      "source": [
+        5,
+        4
+      ],
+      "destination": [
+        4,
+        4
+      ],
+      "before": {
+        "(5, 4)": "aaadaad",
+        "(4, 4)": ""
+      },
+      "moving_bottom_to_top": "d",
+      "after": {
+        "(5, 4)": "aaad",
+        "(4, 4)": "d"
+      },
+      "returned": {
+        "source": "aa",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 56,
+      "action": "5 4 3 U 1",
+      "source": [
+        5,
+        4
+      ],
+      "destination": [
+        4,
+        4
+      ],
+      "before": {
+        "(5, 4)": "aaad",
+        "(4, 4)": "d"
+      },
+      "moving_bottom_to_top": "d",
+      "after": {
+        "(5, 4)": "",
+        "(4, 4)": "dd"
+      },
+      "returned": {
+        "source": "aaa",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 57,
+      "action": "4 4 0 R 1",
+      "source": [
+        4,
+        4
+      ],
+      "destination": [
+        4,
+        5
+      ],
+      "before": {
+        "(4, 4)": "dd",
+        "(4, 5)": ""
+      },
+      "moving_bottom_to_top": "dd",
+      "after": {
+        "(4, 4)": "",
+        "(4, 5)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "dd"
+      }
+    },
+    {
+      "turn": 58,
+      "action": "2 7 0 U 1",
+      "source": [
+        2,
+        7
+      ],
+      "destination": [
+        1,
+        7
+      ],
+      "before": {
+        "(2, 7)": "bf",
+        "(1, 7)": ""
+      },
+      "moving_bottom_to_top": "bf",
+      "after": {
+        "(2, 7)": "",
+        "(1, 7)": "fb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 59,
+      "action": "1 7 1 R 2",
+      "source": [
+        1,
+        7
+      ],
+      "destination": [
+        1,
+        9
+      ],
+      "before": {
+        "(1, 7)": "fb",
+        "(1, 9)": ""
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(1, 7)": "f",
+        "(1, 9)": "b"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 60,
+      "action": "1 9 0 R 1",
+      "source": [
+        1,
+        9
+      ],
+      "destination": [
+        1,
+        10
+      ],
+      "before": {
+        "(1, 9)": "b",
+        "(1, 10)": ""
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(1, 9)": "",
+        "(1, 10)": "b"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 61,
+      "action": "1 10 0 R 1",
+      "source": [
+        1,
+        10
+      ],
+      "destination": [
+        1,
+        11
+      ],
+      "before": {
+        "(1, 10)": "b",
+        "(1, 11)": ""
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(1, 10)": "",
+        "(1, 11)": "b"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 62,
+      "action": "1 11 0 D 1",
+      "source": [
+        1,
+        11
+      ],
+      "destination": [
+        2,
+        11
+      ],
+      "before": {
+        "(1, 11)": "b",
+        "(2, 11)": ""
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(1, 11)": "",
+        "(2, 11)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "b"
+      }
+    },
+    {
+      "turn": 63,
+      "action": "1 7 0 U 1",
+      "source": [
+        1,
+        7
+      ],
+      "destination": [
+        0,
+        7
+      ],
+      "before": {
+        "(1, 7)": "f",
+        "(0, 7)": ""
+      },
+      "moving_bottom_to_top": "f",
+      "after": {
+        "(1, 7)": "",
+        "(0, 7)": "f"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 64,
+      "action": "0 7 0 L 1",
+      "source": [
+        0,
+        7
+      ],
+      "destination": [
+        0,
+        6
+      ],
+      "before": {
+        "(0, 7)": "f",
+        "(0, 6)": ""
+      },
+      "moving_bottom_to_top": "f",
+      "after": {
+        "(0, 7)": "",
+        "(0, 6)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "f"
+      }
+    }
+  ]
+}

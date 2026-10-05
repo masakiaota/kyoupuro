@@ -1,0 +1,92 @@
+{
+  "cases": [
+    {
+      "case": "0019.txt",
+      "metrics": {
+        "M": 217,
+        "shortest_distance_sum": 2672,
+        "max_height": 8,
+        "T": 1363,
+        "W": 4830,
+        "moved_count": 3948,
+        "mixed_moves": 759,
+        "long_jumps": 315,
+        "single_moves": 381,
+        "max_packet": 7,
+        "source_returned": 76,
+        "destination_returned": 141,
+        "E": 0,
+        "S": 1363
+      },
+      "structure": {
+        "core_cells": 64,
+        "core_slimes": 43,
+        "regions": 30,
+        "gate_passed": 174,
+        "core_support_jumps": 283,
+        "core_support_repeated_uses": 254,
+        "peripheral_T": 1126,
+        "cleanup_T": 237,
+        "core_supports_used": 29
+      },
+      "trace": {
+        "M": 217,
+        "cleanup_T": 237,
+        "cleanup_pickup_T": 126,
+        "core_cells": 64,
+        "core_slimes": 43,
+        "core_support_jumps": 283,
+        "core_support_repeated_uses": 254,
+        "core_supports_used": 29,
+        "delivery_cache_hits": 1297604,
+        "delivery_cache_misses": 102390,
+        "delivery_cache_size": 102390,
+        "destination_returned": 141,
+        "final_T": 1363,
+        "gate_passed": 174,
+        "group_cache_hits": 17510971,
+        "group_cache_misses": 707276,
+        "group_cache_size": 707276,
+        "groups": 62,
+        "home_launch_long_moves": 32,
+        "individual_distance_sum": 2672,
+        "initial_T": 1628,
+        "max_height": 8,
+        "mixed_carry_moves": 759,
+        "mixed_groups": 36,
+        "moved_slimes": 3948,
+        "multi_carry_moves": 982,
+        "peripheral_T": 1126,
+        "peripheral_groups": 53,
+        "peripheral_mixed_groups": 29,
+        "peripheral_pickup_T": 425,
+        "regions": 30,
+        "remaining_slimes": 0,
+        "sa_accepted": 483009,
+        "sa_best_updates": 136,
+        "sa_evaluated": 10952626,
+        "sa_improved": 66631,
+        "sa_iterations": 21373791,
+        "source_returned": 76,
+        "transport_work": 4830
+      }
+    }
+  ],
+  "normal_structure_totals": {
+    "core_cells": 64,
+    "core_slimes": 43,
+    "regions": 30,
+    "gate_passed": 174,
+    "core_support_jumps": 283,
+    "core_support_repeated_uses": 254,
+    "peripheral_T": 1126,
+    "cleanup_T": 237,
+    "core_supports_used": 29
+  },
+  "normal_coverage": {
+    "core_support_jumps": 1,
+    "core_support_repeated_uses": 1,
+    "peripheral_mixed_groups": 1
+  },
+  "violations": 0
+}

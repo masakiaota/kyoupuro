@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 376,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v021_paired_event_lns/0014.txt",
+  "best_sha256": "3ad04b185c50ed92aa71b1939c538e4209cd49e4343899f61f0fff47e39cfc3a",
+  "attempts": []
+}

@@ -1,0 +1,2227 @@
+{
+  "config": {
+    "config": {
+      "cases": 32,
+      "symmetries": 8,
+      "seeds": [
+        110001,
+        110002
+      ],
+      "checkpoints": [
+        0.05,
+        0.2,
+        1.2
+      ],
+      "workers": 6,
+      "seed_base": 1100000000000,
+      "seed_stride": 64,
+      "order_seed": 110003,
+      "bootstrap_seed": 110004,
+      "bootstrap_draws": 10000,
+      "collection_limit_seconds": 900,
+      "checkpoint_sha256": "e9d615587a1a655b7b2818e2f19564619050e2ffd669050b015b7c46766b90d3"
+    },
+    "parent_sha256": "33de72d254b10ab444919b3689004fec8c95885c032cc48b393d97e12b59e5ba",
+    "source_sha256": "031544bcde258158ea2a4450ae29cedd899551218cee713959e362981f49337d",
+    "sources": {
+      "adhoc/scripts/run_v110_labels.py": "25caf0df00a73d612bbd4120a25aaaa1b5935357e99dcc993c9c26273995babc",
+      "adhoc/scripts/v110_observe.cpp.txt": "218437afb822104a83ad6a310a28bc61c1425b25a154d0b60d528d7178e155c3",
+      "adhoc/scripts/v110_main.cpp.txt": "d3728eaa1cf31fab57354904e955fbcd500ffc5fbec1f43afda7842d7de98211",
+      "adhoc/bin/v110_lns_labels.cpp": "031544bcde258158ea2a4450ae29cedd899551218cee713959e362981f49337d",
+      "adhoc/bin/v108_multistart_control.cpp": "33de72d254b10ab444919b3689004fec8c95885c032cc48b393d97e12b59e5ba",
+      "scripts/build_solver.sh": "8286090a29e138ab4fdf332e534ab816b6b92ab1222d838a3cfff47bf2b28960",
+      "adhoc/scripts/v089_data.py": "f5b750ee6c0b277a2895bc90b124915638627ae069bc423cf1f2a7d7b5a66dba"
+    }
+  },
+  "mechanism": {
+    "passed": true,
+    "plans_checked": 16,
+    "lns_samples_checked": 12,
+    "local_judge_generation_identical": true,
+    "independent_replay": true,
+    "completed_at": "2026-10-04T05:16:11.282487+00:00"
+  },
+  "source_check": {
+    "passed": true,
+    "parent_sha256": "33de72d254b10ab444919b3689004fec8c95885c032cc48b393d97e12b59e5ba",
+    "source_sha256": "031544bcde258158ea2a4450ae29cedd899551218cee713959e362981f49337d",
+    "original_body_except_observer_identical": true,
+    "packed_sha256": "fa9fc76330efc1934c031450e0e73bf9a102089da6182c3f9c9a2c8873e8078c",
+    "both_modes_built": true
+  },
+  "result": {
+    "promising_teacher": false,
+    "cases": 32,
+    "eligible_cases": 32,
+    "coverage": [
+      {
+        "case": 0,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 1,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 2,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 3,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 4,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 5,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 6,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 7,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 8,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 9,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 10,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 11,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 12,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 13,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 14,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 15,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 16,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 17,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 18,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 19,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 20,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 21,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 22,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 23,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 24,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 25,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 26,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 27,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 28,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 29,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 30,
+        "completed": 8,
+        "unique": 8
+      },
+      {
+        "case": 31,
+        "completed": 8,
+        "unique": 8
+      }
+    ],
+    "intervals": {
+      "headroom": {
+        "mean": 5.125,
+        "ci95": [
+          3.609375,
+          6.734375
+        ]
+      },
+      "transfer_gain": {
+        "mean": 0.328125,
+        "ci95": [
+          -1.359375,
+          2.15625
+        ]
+      },
+      "pilot_gain": {
+        "mean": 3.046875,
+        "ci95": [
+          1.40625,
+          4.78125
+        ]
+      },
+      "two_stage_gain": {
+        "mean": 2.75,
+        "ci95": [
+          1.171875,
+          4.484375
+        ]
+      }
+    },
+    "pair_agreement": 0.6282258064516129,
+    "pairs": 1240,
+    "pair_boards": 32,
+    "centered_candidate_correlation": 0.45282679828074635,
+    "labels": 512,
+    "all_legal": true,
+    "total_generation_wall_seconds": 14.381958583020605,
+    "total_lns_elapsed_seconds": 614.4480649999995,
+    "maximum_checkpoint_overshoot_seconds": 0.0017479999999999996,
+    "per_case": [
+      {
+        "case": 0,
+        "unique": 8,
+        "initial_best_sym": 5,
+        "initial_shortest_final": 123.5,
+        "oracle_final": 120.0,
+        "transferred_final": 126.0,
+        "short_pilot_final": 121.0,
+        "two_stage_final": 121.0,
+        "oracle_syms": [
+          7,
+          6
+        ],
+        "final_by_seed": [
+          [
+            128,
+            126,
+            124,
+            136,
+            128,
+            125,
+            127,
+            121
+          ],
+          [
+            124,
+            121,
+            128,
+            125,
+            124,
+            122,
+            119,
+            125
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          194,
+          183,
+          195,
+          187,
+          185,
+          179,
+          188,
+          181
+        ],
+        "headroom": 3.5,
+        "transfer_gain": -2.5,
+        "pilot_gain": 2.5,
+        "two_stage_gain": 2.5
+      },
+      {
+        "case": 1,
+        "unique": 8,
+        "initial_best_sym": 6,
+        "initial_shortest_final": 237.0,
+        "oracle_final": 233.0,
+        "transferred_final": 238.0,
+        "short_pilot_final": 235.0,
+        "two_stage_final": 233.0,
+        "oracle_syms": [
+          6,
+          1
+        ],
+        "final_by_seed": [
+          [
+            233,
+            235,
+            237,
+            244,
+            239,
+            245,
+            233,
+            239
+          ],
+          [
+            239,
+            233,
+            237,
+            238,
+            240,
+            238,
+            241,
+            242
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          347,
+          354,
+          338,
+          341,
+          366,
+          366,
+          322,
+          339
+        ],
+        "headroom": 4.0,
+        "transfer_gain": -1.0,
+        "pilot_gain": 2.0,
+        "two_stage_gain": 4.0
+      },
+      {
+        "case": 2,
+        "unique": 8,
+        "initial_best_sym": 0,
+        "initial_shortest_final": 93.0,
+        "oracle_final": 88.5,
+        "transferred_final": 91.0,
+        "short_pilot_final": 88.5,
+        "two_stage_final": 88.5,
+        "oracle_syms": [
+          3,
+          1
+        ],
+        "final_by_seed": [
+          [
+            91,
+            93,
+            91,
+            88,
+            91,
+            90,
+            90,
+            93
+          ],
+          [
+            95,
+            89,
+            90,
+            89,
+            92,
+            90,
+            91,
+            90
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          120,
+          124,
+          132,
+          130,
+          126,
+          121,
+          127,
+          136
+        ],
+        "headroom": 4.5,
+        "transfer_gain": 2.0,
+        "pilot_gain": 4.5,
+        "two_stage_gain": 4.5
+      },
+      {
+        "case": 3,
+        "unique": 8,
+        "initial_best_sym": 7,
+        "initial_shortest_final": 76.5,
+        "oracle_final": 73.5,
+        "transferred_final": 75.5,
+        "short_pilot_final": 75.5,
+        "two_stage_final": 75.5,
+        "oracle_syms": [
+          2,
+          6
+        ],
+        "final_by_seed": [
+          [
+            74,
+            76,
+            73,
+            78,
+            77,
+            78,
+            76,
+            78
+          ],
+          [
+            76,
+            78,
+            75,
+            77,
+            75,
+            79,
+            74,
+            75
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          91,
+          105,
+          101,
+          99,
+          93,
+          104,
+          96,
+          88
+        ],
+        "headroom": 3.0,
+        "transfer_gain": 1.0,
+        "pilot_gain": 1.0,
+        "two_stage_gain": 1.0
+      },
+      {
+        "case": 4,
+        "unique": 8,
+        "initial_best_sym": 7,
+        "initial_shortest_final": 75.0,
+        "oracle_final": 74.5,
+        "transferred_final": 76.5,
+        "short_pilot_final": 74.5,
+        "two_stage_final": 76.0,
+        "oracle_syms": [
+          7,
+          2
+        ],
+        "final_by_seed": [
+          [
+            79,
+            75,
+            77,
+            76,
+            77,
+            79,
+            76,
+            74
+          ],
+          [
+            75,
+            76,
+            75,
+            77,
+            78,
+            76,
+            77,
+            76
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          111,
+          102,
+          102,
+          104,
+          104,
+          120,
+          101,
+          94
+        ],
+        "headroom": 0.5,
+        "transfer_gain": -1.5,
+        "pilot_gain": 0.5,
+        "two_stage_gain": -1.0
+      },
+      {
+        "case": 5,
+        "unique": 8,
+        "initial_best_sym": 0,
+        "initial_shortest_final": 135.5,
+        "oracle_final": 134.0,
+        "transferred_final": 141.0,
+        "short_pilot_final": 135.5,
+        "two_stage_final": 135.5,
+        "oracle_syms": [
+          4,
+          0
+        ],
+        "final_by_seed": [
+          [
+            137,
+            141,
+            134,
+            137,
+            134,
+            142,
+            137,
+            142
+          ],
+          [
+            134,
+            140,
+            139,
+            141,
+            145,
+            139,
+            145,
+            138
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          173,
+          203,
+          191,
+          179,
+          184,
+          178,
+          194,
+          196
+        ],
+        "headroom": 1.5,
+        "transfer_gain": -5.5,
+        "pilot_gain": 0.0,
+        "two_stage_gain": 0.0
+      },
+      {
+        "case": 6,
+        "unique": 8,
+        "initial_best_sym": 0,
+        "initial_shortest_final": 328.5,
+        "oracle_final": 324.5,
+        "transferred_final": 333.0,
+        "short_pilot_final": 325.5,
+        "two_stage_final": 325.5,
+        "oracle_syms": [
+          3,
+          1
+        ],
+        "final_by_seed": [
+          [
+            331,
+            335,
+            336,
+            325,
+            327,
+            336,
+            345,
+            340
+          ],
+          [
+            326,
+            324,
+            347,
+            331,
+            333,
+            325,
+            340,
+            338
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          426,
+          434,
+          443,
+          445,
+          455,
+          433,
+          478,
+          426
+        ],
+        "headroom": 4.0,
+        "transfer_gain": -4.5,
+        "pilot_gain": 3.0,
+        "two_stage_gain": 3.0
+      },
+      {
+        "case": 7,
+        "unique": 8,
+        "initial_best_sym": 6,
+        "initial_shortest_final": 392.0,
+        "oracle_final": 390.5,
+        "transferred_final": 393.5,
+        "short_pilot_final": 397.5,
+        "two_stage_final": 397.5,
+        "oracle_syms": [
+          0,
+          4
+        ],
+        "final_by_seed": [
+          [
+            391,
+            401,
+            404,
+            414,
+            396,
+            404,
+            393,
+            394
+          ],
+          [
+            391,
+            405,
+            403,
+            408,
+            390,
+            407,
+            391,
+            401
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          514,
+          546,
+          516,
+          517,
+          485,
+          497,
+          475,
+          495
+        ],
+        "headroom": 1.5,
+        "transfer_gain": -1.5,
+        "pilot_gain": -5.5,
+        "two_stage_gain": -5.5
+      },
+      {
+        "case": 8,
+        "unique": 8,
+        "initial_best_sym": 7,
+        "initial_shortest_final": 185.0,
+        "oracle_final": 180.0,
+        "transferred_final": 192.0,
+        "short_pilot_final": 186.0,
+        "two_stage_final": 186.0,
+        "oracle_syms": [
+          1,
+          7
+        ],
+        "final_by_seed": [
+          [
+            182,
+            180,
+            192,
+            185,
+            188,
+            184,
+            182,
+            190
+          ],
+          [
+            187,
+            194,
+            193,
+            185,
+            180,
+            189,
+            192,
+            180
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          232,
+          230,
+          252,
+          227,
+          227,
+          235,
+          252,
+          226
+        ],
+        "headroom": 5.0,
+        "transfer_gain": -7.0,
+        "pilot_gain": -1.0,
+        "two_stage_gain": -1.0
+      },
+      {
+        "case": 9,
+        "unique": 8,
+        "initial_best_sym": 0,
+        "initial_shortest_final": 172.5,
+        "oracle_final": 166.0,
+        "transferred_final": 173.5,
+        "short_pilot_final": 166.5,
+        "two_stage_final": 166.5,
+        "oracle_syms": [
+          6,
+          4
+        ],
+        "final_by_seed": [
+          [
+            173,
+            171,
+            169,
+            177,
+            173,
+            175,
+            168,
+            173
+          ],
+          [
+            172,
+            173,
+            172,
+            170,
+            164,
+            170,
+            174,
+            173
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          203,
+          223,
+          222,
+          221,
+          231,
+          209,
+          213,
+          212
+        ],
+        "headroom": 6.5,
+        "transfer_gain": -1.0,
+        "pilot_gain": 6.0,
+        "two_stage_gain": 6.0
+      },
+      {
+        "case": 10,
+        "unique": 8,
+        "initial_best_sym": 7,
+        "initial_shortest_final": 280.5,
+        "oracle_final": 266.5,
+        "transferred_final": 272.0,
+        "short_pilot_final": 270.0,
+        "two_stage_final": 270.0,
+        "oracle_syms": [
+          2,
+          0
+        ],
+        "final_by_seed": [
+          [
+            269,
+            267,
+            265,
+            274,
+            266,
+            268,
+            274,
+            284
+          ],
+          [
+            268,
+            270,
+            275,
+            273,
+            270,
+            275,
+            270,
+            277
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          416,
+          362,
+          369,
+          369,
+          360,
+          370,
+          382,
+          353
+        ],
+        "headroom": 14.0,
+        "transfer_gain": 8.5,
+        "pilot_gain": 10.5,
+        "two_stage_gain": 10.5
+      },
+      {
+        "case": 11,
+        "unique": 8,
+        "initial_best_sym": 5,
+        "initial_shortest_final": 279.0,
+        "oracle_final": 265.0,
+        "transferred_final": 275.0,
+        "short_pilot_final": 266.0,
+        "two_stage_final": 266.0,
+        "oracle_syms": [
+          6,
+          0
+        ],
+        "final_by_seed": [
+          [
+            274,
+            268,
+            277,
+            268,
+            279,
+            279,
+            266,
+            272
+          ],
+          [
+            264,
+            268,
+            278,
+            264,
+            286,
+            279,
+            276,
+            270
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          338,
+          342,
+          344,
+          343,
+          346,
+          332,
+          343,
+          350
+        ],
+        "headroom": 14.0,
+        "transfer_gain": 4.0,
+        "pilot_gain": 13.0,
+        "two_stage_gain": 13.0
+      },
+      {
+        "case": 12,
+        "unique": 8,
+        "initial_best_sym": 6,
+        "initial_shortest_final": 381.0,
+        "oracle_final": 378.5,
+        "transferred_final": 384.5,
+        "short_pilot_final": 378.5,
+        "two_stage_final": 378.5,
+        "oracle_syms": [
+          4,
+          6
+        ],
+        "final_by_seed": [
+          [
+            387,
+            393,
+            388,
+            395,
+            376,
+            385,
+            381,
+            394
+          ],
+          [
+            384,
+            388,
+            381,
+            381,
+            388,
+            396,
+            381,
+            389
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          475,
+          459,
+          503,
+          463,
+          448,
+          493,
+          441,
+          521
+        ],
+        "headroom": 2.5,
+        "transfer_gain": -3.5,
+        "pilot_gain": 2.5,
+        "two_stage_gain": 2.5
+      },
+      {
+        "case": 13,
+        "unique": 8,
+        "initial_best_sym": 4,
+        "initial_shortest_final": 298.0,
+        "oracle_final": 298.0,
+        "transferred_final": 298.0,
+        "short_pilot_final": 298.0,
+        "two_stage_final": 301.0,
+        "oracle_syms": [
+          4,
+          4
+        ],
+        "final_by_seed": [
+          [
+            318,
+            309,
+            313,
+            305,
+            303,
+            313,
+            306,
+            319
+          ],
+          [
+            309,
+            304,
+            305,
+            310,
+            293,
+            319,
+            316,
+            316
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          389,
+          383,
+          396,
+          383,
+          378,
+          419,
+          420,
+          421
+        ],
+        "headroom": 0.0,
+        "transfer_gain": 0.0,
+        "pilot_gain": 0.0,
+        "two_stage_gain": -3.0
+      },
+      {
+        "case": 14,
+        "unique": 8,
+        "initial_best_sym": 4,
+        "initial_shortest_final": 509.0,
+        "oracle_final": 509.0,
+        "transferred_final": 509.0,
+        "short_pilot_final": 509.0,
+        "two_stage_final": 509.0,
+        "oracle_syms": [
+          4,
+          4
+        ],
+        "final_by_seed": [
+          [
+            518,
+            526,
+            531,
+            509,
+            506,
+            539,
+            536,
+            511
+          ],
+          [
+            527,
+            516,
+            523,
+            522,
+            512,
+            523,
+            524,
+            525
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          644,
+          652,
+          690,
+          634,
+          627,
+          645,
+          693,
+          664
+        ],
+        "headroom": 0.0,
+        "transfer_gain": 0.0,
+        "pilot_gain": 0.0,
+        "two_stage_gain": 0.0
+      },
+      {
+        "case": 15,
+        "unique": 8,
+        "initial_best_sym": 3,
+        "initial_shortest_final": 258.5,
+        "oracle_final": 248.0,
+        "transferred_final": 252.0,
+        "short_pilot_final": 256.5,
+        "two_stage_final": 256.5,
+        "oracle_syms": [
+          7,
+          0
+        ],
+        "final_by_seed": [
+          [
+            253,
+            260,
+            255,
+            261,
+            262,
+            255,
+            265,
+            248
+          ],
+          [
+            248,
+            264,
+            251,
+            256,
+            255,
+            252,
+            260,
+            251
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          324,
+          338,
+          325,
+          310,
+          331,
+          316,
+          335,
+          329
+        ],
+        "headroom": 10.5,
+        "transfer_gain": 6.5,
+        "pilot_gain": 2.0,
+        "two_stage_gain": 2.0
+      },
+      {
+        "case": 16,
+        "unique": 8,
+        "initial_best_sym": 6,
+        "initial_shortest_final": 348.0,
+        "oracle_final": 334.0,
+        "transferred_final": 334.0,
+        "short_pilot_final": 334.0,
+        "two_stage_final": 334.0,
+        "oracle_syms": [
+          0,
+          0
+        ],
+        "final_by_seed": [
+          [
+            336,
+            346,
+            358,
+            357,
+            366,
+            342,
+            344,
+            349
+          ],
+          [
+            332,
+            345,
+            352,
+            361,
+            357,
+            341,
+            352,
+            350
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          427,
+          415,
+          416,
+          446,
+          439,
+          427,
+          402,
+          423
+        ],
+        "headroom": 14.0,
+        "transfer_gain": 14.0,
+        "pilot_gain": 14.0,
+        "two_stage_gain": 14.0
+      },
+      {
+        "case": 17,
+        "unique": 8,
+        "initial_best_sym": 1,
+        "initial_shortest_final": 350.0,
+        "oracle_final": 346.0,
+        "transferred_final": 358.5,
+        "short_pilot_final": 350.0,
+        "two_stage_final": 350.0,
+        "oracle_syms": [
+          3,
+          2
+        ],
+        "final_by_seed": [
+          [
+            375,
+            347,
+            353,
+            346,
+            363,
+            347,
+            354,
+            359
+          ],
+          [
+            367,
+            353,
+            346,
+            364,
+            371,
+            353,
+            360,
+            356
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          503,
+          461,
+          477,
+          484,
+          513,
+          462,
+          491,
+          466
+        ],
+        "headroom": 4.0,
+        "transfer_gain": -8.5,
+        "pilot_gain": 0.0,
+        "two_stage_gain": 0.0
+      },
+      {
+        "case": 18,
+        "unique": 8,
+        "initial_best_sym": 7,
+        "initial_shortest_final": 141.5,
+        "oracle_final": 138.5,
+        "transferred_final": 146.0,
+        "short_pilot_final": 142.5,
+        "two_stage_final": 142.5,
+        "oracle_syms": [
+          5,
+          7
+        ],
+        "final_by_seed": [
+          [
+            143,
+            140,
+            146,
+            152,
+            147,
+            139,
+            152,
+            145
+          ],
+          [
+            144,
+            146,
+            139,
+            150,
+            142,
+            147,
+            145,
+            138
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          197,
+          206,
+          222,
+          205,
+          207,
+          203,
+          215,
+          195
+        ],
+        "headroom": 3.0,
+        "transfer_gain": -4.5,
+        "pilot_gain": -1.0,
+        "two_stage_gain": -1.0
+      },
+      {
+        "case": 19,
+        "unique": 8,
+        "initial_best_sym": 7,
+        "initial_shortest_final": 286.0,
+        "oracle_final": 286.0,
+        "transferred_final": 286.0,
+        "short_pilot_final": 286.0,
+        "two_stage_final": 286.0,
+        "oracle_syms": [
+          7,
+          7
+        ],
+        "final_by_seed": [
+          [
+            300,
+            287,
+            293,
+            293,
+            287,
+            299,
+            292,
+            286
+          ],
+          [
+            297,
+            292,
+            303,
+            287,
+            288,
+            297,
+            286,
+            286
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          400,
+          493,
+          419,
+          409,
+          410,
+          384,
+          462,
+          351
+        ],
+        "headroom": 0.0,
+        "transfer_gain": 0.0,
+        "pilot_gain": 0.0,
+        "two_stage_gain": 0.0
+      },
+      {
+        "case": 20,
+        "unique": 8,
+        "initial_best_sym": 4,
+        "initial_shortest_final": 198.5,
+        "oracle_final": 193.0,
+        "transferred_final": 203.5,
+        "short_pilot_final": 196.5,
+        "two_stage_final": 196.5,
+        "oracle_syms": [
+          3,
+          5
+        ],
+        "final_by_seed": [
+          [
+            199,
+            197,
+            205,
+            197,
+            203,
+            202,
+            205,
+            199
+          ],
+          [
+            199,
+            190,
+            201,
+            205,
+            194,
+            189,
+            204,
+            202
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          274,
+          283,
+          307,
+          278,
+          254,
+          259,
+          264,
+          276
+        ],
+        "headroom": 5.5,
+        "transfer_gain": -5.0,
+        "pilot_gain": 2.0,
+        "two_stage_gain": 2.0
+      },
+      {
+        "case": 21,
+        "unique": 8,
+        "initial_best_sym": 4,
+        "initial_shortest_final": 182.5,
+        "oracle_final": 179.0,
+        "transferred_final": 182.5,
+        "short_pilot_final": 179.5,
+        "two_stage_final": 179.5,
+        "oracle_syms": [
+          3,
+          1
+        ],
+        "final_by_seed": [
+          [
+            180,
+            181,
+            188,
+            178,
+            181,
+            180,
+            179,
+            187
+          ],
+          [
+            185,
+            180,
+            183,
+            184,
+            184,
+            186,
+            181,
+            183
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          259,
+          244,
+          241,
+          254,
+          237,
+          259,
+          245,
+          267
+        ],
+        "headroom": 3.5,
+        "transfer_gain": 0.0,
+        "pilot_gain": 3.0,
+        "two_stage_gain": 3.0
+      },
+      {
+        "case": 22,
+        "unique": 8,
+        "initial_best_sym": 2,
+        "initial_shortest_final": 306.0,
+        "oracle_final": 294.5,
+        "transferred_final": 307.0,
+        "short_pilot_final": 295.5,
+        "two_stage_final": 303.0,
+        "oracle_syms": [
+          2,
+          4
+        ],
+        "final_by_seed": [
+          [
+            309,
+            306,
+            299,
+            304,
+            301,
+            304,
+            304,
+            307
+          ],
+          [
+            305,
+            308,
+            313,
+            306,
+            290,
+            301,
+            326,
+            311
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          439,
+          444,
+          379,
+          400,
+          416,
+          385,
+          418,
+          422
+        ],
+        "headroom": 11.5,
+        "transfer_gain": -1.0,
+        "pilot_gain": 10.5,
+        "two_stage_gain": 3.0
+      },
+      {
+        "case": 23,
+        "unique": 8,
+        "initial_best_sym": 1,
+        "initial_shortest_final": 501.5,
+        "oracle_final": 495.5,
+        "transferred_final": 495.5,
+        "short_pilot_final": 501.5,
+        "two_stage_final": 501.5,
+        "oracle_syms": [
+          3,
+          3
+        ],
+        "final_by_seed": [
+          [
+            514,
+            501,
+            531,
+            496,
+            513,
+            521,
+            517,
+            520
+          ],
+          [
+            504,
+            502,
+            530,
+            495,
+            510,
+            519,
+            518,
+            513
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          583,
+          559,
+          584,
+          572,
+          564,
+          598,
+          583,
+          584
+        ],
+        "headroom": 6.0,
+        "transfer_gain": 6.0,
+        "pilot_gain": 0.0,
+        "two_stage_gain": 0.0
+      },
+      {
+        "case": 24,
+        "unique": 8,
+        "initial_best_sym": 0,
+        "initial_shortest_final": 144.5,
+        "oracle_final": 141.5,
+        "transferred_final": 147.0,
+        "short_pilot_final": 142.0,
+        "two_stage_final": 141.5,
+        "oracle_syms": [
+          7,
+          0
+        ],
+        "final_by_seed": [
+          [
+            147,
+            141,
+            144,
+            144,
+            145,
+            144,
+            142,
+            141
+          ],
+          [
+            142,
+            142,
+            142,
+            144,
+            145,
+            143,
+            145,
+            147
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          203,
+          206,
+          207,
+          219,
+          224,
+          223,
+          210,
+          203
+        ],
+        "headroom": 3.0,
+        "transfer_gain": -2.5,
+        "pilot_gain": 2.5,
+        "two_stage_gain": 3.0
+      },
+      {
+        "case": 25,
+        "unique": 8,
+        "initial_best_sym": 2,
+        "initial_shortest_final": 142.0,
+        "oracle_final": 138.5,
+        "transferred_final": 144.0,
+        "short_pilot_final": 139.0,
+        "two_stage_final": 139.0,
+        "oracle_syms": [
+          6,
+          0
+        ],
+        "final_by_seed": [
+          [
+            142,
+            146,
+            142,
+            149,
+            146,
+            147,
+            141,
+            143
+          ],
+          [
+            136,
+            147,
+            142,
+            141,
+            149,
+            146,
+            146,
+            138
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          207,
+          204,
+          181,
+          213,
+          209,
+          192,
+          207,
+          196
+        ],
+        "headroom": 3.5,
+        "transfer_gain": -2.0,
+        "pilot_gain": 3.0,
+        "two_stage_gain": 3.0
+      },
+      {
+        "case": 26,
+        "unique": 8,
+        "initial_best_sym": 0,
+        "initial_shortest_final": 264.0,
+        "oracle_final": 249.0,
+        "transferred_final": 255.5,
+        "short_pilot_final": 249.5,
+        "two_stage_final": 249.5,
+        "oracle_syms": [
+          4,
+          7
+        ],
+        "final_by_seed": [
+          [
+            263,
+            276,
+            266,
+            271,
+            253,
+            262,
+            263,
+            254
+          ],
+          [
+            265,
+            260,
+            263,
+            265,
+            257,
+            261,
+            257,
+            245
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          317,
+          322,
+          326,
+          331,
+          327,
+          323,
+          327,
+          338
+        ],
+        "headroom": 15.0,
+        "transfer_gain": 8.5,
+        "pilot_gain": 14.5,
+        "two_stage_gain": 14.5
+      },
+      {
+        "case": 27,
+        "unique": 8,
+        "initial_best_sym": 5,
+        "initial_shortest_final": 285.5,
+        "oracle_final": 283.0,
+        "transferred_final": 290.0,
+        "short_pilot_final": 287.5,
+        "two_stage_final": 287.5,
+        "oracle_syms": [
+          0,
+          5
+        ],
+        "final_by_seed": [
+          [
+            282,
+            300,
+            290,
+            300,
+            290,
+            287,
+            290,
+            302
+          ],
+          [
+            293,
+            303,
+            298,
+            299,
+            299,
+            284,
+            302,
+            291
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          354,
+          383,
+          375,
+          361,
+          401,
+          350,
+          372,
+          379
+        ],
+        "headroom": 2.5,
+        "transfer_gain": -4.5,
+        "pilot_gain": -2.0,
+        "two_stage_gain": -2.0
+      },
+      {
+        "case": 28,
+        "unique": 8,
+        "initial_best_sym": 3,
+        "initial_shortest_final": 249.0,
+        "oracle_final": 242.0,
+        "transferred_final": 242.0,
+        "short_pilot_final": 245.0,
+        "two_stage_final": 245.0,
+        "oracle_syms": [
+          5,
+          5
+        ],
+        "final_by_seed": [
+          [
+            256,
+            254,
+            246,
+            253,
+            251,
+            244,
+            246,
+            247
+          ],
+          [
+            251,
+            247,
+            248,
+            245,
+            247,
+            240,
+            244,
+            244
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          327,
+          355,
+          335,
+          326,
+          341,
+          353,
+          365,
+          347
+        ],
+        "headroom": 7.0,
+        "transfer_gain": 7.0,
+        "pilot_gain": 4.0,
+        "two_stage_gain": 4.0
+      },
+      {
+        "case": 29,
+        "unique": 8,
+        "initial_best_sym": 0,
+        "initial_shortest_final": 347.5,
+        "oracle_final": 347.5,
+        "transferred_final": 347.5,
+        "short_pilot_final": 350.5,
+        "two_stage_final": 350.5,
+        "oracle_syms": [
+          0,
+          0
+        ],
+        "final_by_seed": [
+          [
+            348,
+            369,
+            359,
+            354,
+            360,
+            372,
+            365,
+            358
+          ],
+          [
+            347,
+            358,
+            355,
+            352,
+            353,
+            365,
+            366,
+            359
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          412,
+          454,
+          432,
+          453,
+          441,
+          446,
+          469,
+          464
+        ],
+        "headroom": 0.0,
+        "transfer_gain": 0.0,
+        "pilot_gain": -3.0,
+        "two_stage_gain": -3.0
+      },
+      {
+        "case": 30,
+        "unique": 8,
+        "initial_best_sym": 0,
+        "initial_shortest_final": 107.5,
+        "oracle_final": 107.5,
+        "transferred_final": 107.5,
+        "short_pilot_final": 107.5,
+        "two_stage_final": 107.5,
+        "oracle_syms": [
+          0,
+          0
+        ],
+        "final_by_seed": [
+          [
+            106,
+            111,
+            110,
+            109,
+            111,
+            108,
+            109,
+            106
+          ],
+          [
+            109,
+            109,
+            109,
+            109,
+            109,
+            109,
+            111,
+            110
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          132,
+          137,
+          141,
+          135,
+          146,
+          143,
+          139,
+          139
+        ],
+        "headroom": 0.0,
+        "transfer_gain": 0.0,
+        "pilot_gain": 0.0,
+        "two_stage_gain": 0.0
+      },
+      {
+        "case": 31,
+        "unique": 8,
+        "initial_best_sym": 6,
+        "initial_shortest_final": 265.5,
+        "oracle_final": 255.0,
+        "transferred_final": 256.5,
+        "short_pilot_final": 256.5,
+        "two_stage_final": 256.5,
+        "oracle_syms": [
+          2,
+          4
+        ],
+        "final_by_seed": [
+          [
+            266,
+            263,
+            256,
+            263,
+            256,
+            256,
+            267,
+            262
+          ],
+          [
+            254,
+            257,
+            257,
+            280,
+            254,
+            256,
+            264,
+            270
+          ]
+        ],
+        "symmetries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "raw_lengths": [
+          369,
+          342,
+          330,
+          387,
+          340,
+          342,
+          328,
+          367
+        ],
+        "headroom": 10.5,
+        "transfer_gain": 9.0,
+        "pilot_gain": 9.0,
+        "two_stage_gain": 9.0
+      }
+    ],
+    "training_performed": false,
+    "submission_evaluation_performed": false,
+    "completed_at": "2026-10-04T05:18:02.360513+00:00"
+  },
+  "audit": {
+    "input_count": 32,
+    "excluded_count": 109606,
+    "input_overlap": 0,
+    "unique_complete_plans": 256,
+    "checkpoint_sha256": "e9d615587a1a655b7b2818e2f19564619050e2ffd669050b015b7c46766b90d3",
+    "sources_unchanged": true,
+    "independent_formula_checked": true,
+    "lns_samples_replayed": 1536,
+    "invalid_candidates": 0,
+    "mean_attempts": 4997.619140625,
+    "min_attempts": 1386,
+    "max_attempts": 16449,
+    "same_winner_cases": 8,
+    "mean_top2_overlap": 0.78125,
+    "transfer_wins": 19,
+    "transfer_ties": 25,
+    "transfer_losses": 20,
+    "posthoc_gap_agreement": {
+      "3_to_5": {
+        "pairs": 456,
+        "agreement": 0.5175438596491229
+      },
+      "6_to_9": {
+        "pairs": 377,
+        "agreement": 0.583554376657825
+      },
+      "10_plus": {
+        "pairs": 407,
+        "agreement": 0.7936117936117936
+      }
+    },
+    "max_overshoot": 0.0017479999999999996,
+    "median_overshoot": 0.00011099999999997223
+  },
+  "guard": {
+    "reason": "child_exit",
+    "exit_code": 0,
+    "child_exit_code": 0,
+    "peak_observed_bytes": 1057685504,
+    "samples": 1025,
+    "finished_at": "2026-10-04T05:18:02.525135+00:00",
+    "elapsed_sec": 136.0416415840009
+  }
+}

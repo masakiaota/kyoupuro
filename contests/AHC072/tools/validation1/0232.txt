@@ -1,0 +1,16 @@
+15 6
+.....acbcbaea.b
+A..C.bacabaabcb
+.....e.ccc.bca.
+c.e..ba.aaa.ceD
+ccccab.c...c.cc
+.b..F.beaaeabcb
+.cc.cdc..bcacb.
+baa....aa.d.ac.
+be.acccc..bc.aa
+a..e.a......bc.
+ad.bcdcBea..ae.
+..c......aca.c.
+aEbcb.c.da...f.
+d..b....acbccbc
+....baadf.c.bcc

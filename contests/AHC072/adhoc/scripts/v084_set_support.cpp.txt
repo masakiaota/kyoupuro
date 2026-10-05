@@ -1,0 +1,108 @@
+    // 現在列の再構築で失効する。反復中に変わる係数や進行度は候補側で受け取る。
+    bool nn084_items_ready=false;
+    array<array<double,20>,max_cells> nn084_items{};
+    array<array<float,8>,max_cells> nn084_embeddings{};
+    array<bool,max_cells> nn084_encoded{};
+#if defined(LOCAL) || defined(AHC072_NN_PROBE)
+    double nn084_last_feature_ms=0,nn084_last_inference_ms=0;
+#endif
+    void prepare_nn084_items(const vector<Move>& current){
+        if(nn084_items_ready)return;
+        if(current.size()!=flights.size())throw logic_error("set flight length mismatch");
+        const double T=max<size_t>(1,current.size()),N=board_info.N;
+        array<int,max_cells> moves{},first{},last{},gap{},passengers{},same_color{},support_count{},min_slack{};
+        first.fill(-1);last.fill(-1);min_slack.fill(8);
+        for(auto& row:nn084_items)row.fill(0);
+        for(int id=0;id<board_info.cell_count;id++)if(board_info.initial[id]){
+            auto& x=nn084_items[id];const int nest=board_info.nest_pos_by_code[board_info.initial[id]];
+            x[0]=board_info.floor_dist[id][nest]/N;
+            x[1]=(abs(board_info.row[id]-board_info.row[nest])+abs(board_info.col[id]-board_info.col[nest]))/N;
+            for(int d=0;d<4;d++){x[2]+=board_info.adj[id][d]>=0;x[3]+=board_info.adj[nest][d]>=0;}
+            x[2]/=4;x[3]/=4;
+        }
+        // 個体IDの順は便の下から上。候補をまたぐ同乗情報をここで一度だけ集める。
+        for(int t=0;t<int(current.size());t++){
+            const auto& flight=flights[t];const auto move=current[t];array<int,13> colors{};
+            for(int j=0;j<flight.n;j++)++colors[board_info.initial[flight.id[j]]];
+            for(int j=0;j<flight.n;j++){
+                const int id=flight.id[j],peers=flight.n-1,color=board_info.initial[id];auto& x=nn084_items[id];
+                ++moves[id];x[5]+=move.l;
+                if(first[id]<0)first[id]=t;
+                if(last[id]>=0)gap[id]=max(gap[id],t-last[id]);
+                last[id]=t;passengers[id]+=peers;same_color[id]+=colors[color]-1;
+                x[9]+=peers;x[10]=max(x[10],double(peers));x[11]+=peers==0;
+                x[13]+=colors[color]<flight.n;x[14]+=move.l>=2;
+                x[18]+=move.k;x[19]+=j;
+            }
+        }
+        for(const auto& use:support_uses)for(int j=0;j<use.lower.n;j++){
+            const int id=use.lower.id[j];++support_count[id];
+            nn084_items[id][16]+=flights[use.time].n;min_slack[id]=min(min_slack[id],use.slack);
+        }
+        for(int id=0;id<board_info.cell_count;id++)if(board_info.initial[id]){
+            auto& x=nn084_items[id];const double count=max(1,moves[id]);
+            x[4]=moves[id]/T;x[5]/=N;
+            x[6]=first[id]<0?0:first[id]/T;x[7]=last[id]<0?0:last[id]/T;x[8]=gap[id]/T;
+            x[9]/=count*7;x[10]/=7;x[11]/=count;
+            x[12]=passengers[id]?double(same_color[id])/passengers[id]:0;
+            x[13]/=count;x[14]/=count;x[15]=support_count[id]/T;x[16]/=T;x[17]=min_slack[id]/8.0;
+            x[18]/=count*8;x[19]/=count*7;
+            for(double value:x)if(!isfinite(value))throw logic_error("nonfinite set item feature");
+        }
+        nn084_items_ready=true;
+    }
+    pair<array<float,8>,array<float,8>> nn084_pool(const Removal& candidate){
+        if(!nn084_items_ready||candidate.ids.empty()||candidate.ids.size()>12)throw logic_error("invalid set pooling state");
+        // 平均の加算順もID順に固定し、集合内の入力順による丸め差を避ける。
+        array<int,12> ids{};copy(candidate.ids.begin(),candidate.ids.end(),ids.begin());
+        for(int k=1;k<int(candidate.ids.size());k++){
+            const int id=ids[k];int j=k;
+            while(j>0&&ids[j-1]>id){ids[j]=ids[j-1];--j;}
+            ids[j]=id;
+        }
+        array<float,8> mean{},maximum;maximum.fill(-numeric_limits<float>::infinity());
+        for(int k=0;k<int(candidate.ids.size());k++){
+            const int id=ids[k];
+            if(!nn084_encoded[id]){nn084_embeddings[id]=neural_rank::encode(nn084_items[id]);nn084_encoded[id]=true;}
+            const auto& item=nn084_embeddings[id];
+            for(int j=0;j<8;j++){mean[j]+=item[j];maximum[j]=max(maximum[j],item[j]);}
+        }
+        for(int j=0;j<8;j++)mean[j]/=float(candidate.ids.size());
+        return {mean,maximum};
+    }
+// NN084_CHOOSE_CODE
+    int nn_choose(const vector<Move>& current,const vector<Move>& best,
+                  int stagnant,double progress,int cooldown) {
+#if defined(LOCAL) || defined(AHC072_NN_PROBE)
+        const auto begin=chrono::steady_clock::now();
+#endif
+        const int n=nn_sample(cooldown);
+        if(n==0)throw logic_error("NN called without eligible candidates");
+        array<array<double,32>,32> features;
+#if defined(LOCAL) || defined(AHC072_NN_PROBE)
+        const auto feature_begin=chrono::steady_clock::now();
+#endif
+        prepare_nn084_items(current);
+        for(int i=0;i<n;i++)features[i]=nn_features(candidates[nn_ranks[i]],current,best,stagnant,progress);
+#if defined(LOCAL) || defined(AHC072_NN_PROBE)
+        const auto inference_begin=chrono::steady_clock::now();
+#endif
+        int choice=nn_ranks[0];float value=numeric_limits<float>::infinity();
+        for(int i=0;i<n;i++){
+            const auto [mean,maximum]=nn084_pool(candidates[nn_ranks[i]]);
+            const float predicted=neural_rank::predict(features[i],mean,maximum);
+            if(!isfinite(predicted))throw logic_error("nonfinite NN prediction");
+            if(predicted<value){value=predicted;choice=nn_ranks[i];}
+        }
+#if defined(LOCAL) || defined(AHC072_NN_PROBE)
+        const auto finished=chrono::steady_clock::now();
+        nn084_last_feature_ms=chrono::duration<double,milli>(inference_begin-feature_begin).count();
+        nn084_last_inference_ms=chrono::duration<double,milli>(finished-inference_begin).count();
+#endif
+        LOCAL_NOTE(
+            ++local_nn.calls;local_nn.scored+=n;local_nn.changed+=choice!=nn_ranks[0];local_nn.rank_sum+=choice;
+            local_nn.feature_ms+=nn084_last_feature_ms;local_nn.inference_ms+=nn084_last_inference_ms;
+            local_nn.total_ms+=chrono::duration<double,milli>(finished-begin).count();
+        )
+        return choice;
+    }

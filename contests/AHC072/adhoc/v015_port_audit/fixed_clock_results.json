@@ -1,0 +1,197 @@
+[
+  {
+    "case": "0000",
+    "original": {
+      "operations": 51,
+      "audit": {
+        "clock_calls": "18402",
+        "sizeof_solver": "433096",
+        "rng": "7917688464896567477",
+        "profile_count": "1403",
+        "profile_blocks": "6",
+        "profile_slots": "262144",
+        "profile_used": "1403",
+        "group_slots": "131072",
+        "group_used": "3474",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 20643840
+    },
+    "ported": {
+      "operations": 51,
+      "audit": {
+        "clock_calls": "18402",
+        "sizeof_solver": "433096",
+        "rng": "7917688464896567477",
+        "profile_count": "1403",
+        "profile_blocks": "6",
+        "profile_slots": "262144",
+        "profile_used": "1403",
+        "group_slots": "131072",
+        "group_used": "3474",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 20660224
+    },
+    "same_output": true,
+    "same_audit": true
+  },
+  {
+    "case": "0001",
+    "original": {
+      "operations": 153,
+      "audit": {
+        "clock_calls": "18403",
+        "sizeof_solver": "433096",
+        "rng": "13190480022093016553",
+        "profile_count": "10964",
+        "profile_blocks": "43",
+        "profile_slots": "262144",
+        "profile_used": "10964",
+        "group_slots": "131072",
+        "group_used": "18335",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 29245440
+    },
+    "ported": {
+      "operations": 153,
+      "audit": {
+        "clock_calls": "18403",
+        "sizeof_solver": "433096",
+        "rng": "13190480022093016553",
+        "profile_count": "10964",
+        "profile_blocks": "43",
+        "profile_slots": "262144",
+        "profile_used": "10964",
+        "group_slots": "131072",
+        "group_used": "18335",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 29409280
+    },
+    "same_output": true,
+    "same_audit": true
+  },
+  {
+    "case": "0002",
+    "original": {
+      "operations": 133,
+      "audit": {
+        "clock_calls": "18403",
+        "sizeof_solver": "433096",
+        "rng": "11578946358929220850",
+        "profile_count": "245141",
+        "profile_blocks": "958",
+        "profile_slots": "1048576",
+        "profile_used": "245141",
+        "group_slots": "131072",
+        "group_used": "39887",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 241565696
+    },
+    "ported": {
+      "operations": 133,
+      "audit": {
+        "clock_calls": "18403",
+        "sizeof_solver": "433096",
+        "rng": "11578946358929220850",
+        "profile_count": "245141",
+        "profile_blocks": "958",
+        "profile_slots": "1048576",
+        "profile_used": "245141",
+        "group_slots": "131072",
+        "group_used": "39887",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 241565696
+    },
+    "same_output": true,
+    "same_audit": true
+  },
+  {
+    "case": "0003",
+    "original": {
+      "operations": 162,
+      "audit": {
+        "clock_calls": "18403",
+        "sizeof_solver": "433096",
+        "rng": "3222022583208806472",
+        "profile_count": "37503",
+        "profile_blocks": "147",
+        "profile_slots": "262144",
+        "profile_used": "37503",
+        "group_slots": "131072",
+        "group_used": "23347",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 52281344
+    },
+    "ported": {
+      "operations": 162,
+      "audit": {
+        "clock_calls": "18403",
+        "sizeof_solver": "433096",
+        "rng": "3222022583208806472",
+        "profile_count": "37503",
+        "profile_blocks": "147",
+        "profile_slots": "262144",
+        "profile_used": "37503",
+        "group_slots": "131072",
+        "group_used": "23347",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 52084736
+    },
+    "same_output": true,
+    "same_audit": true
+  },
+  {
+    "case": "0004",
+    "original": {
+      "operations": 327,
+      "audit": {
+        "clock_calls": "18403",
+        "sizeof_solver": "433096",
+        "rng": "12693433958114789515",
+        "profile_count": "352902",
+        "profile_blocks": "1379",
+        "profile_slots": "1048576",
+        "profile_used": "352902",
+        "group_slots": "131072",
+        "group_used": "64453",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 332922880
+    },
+    "ported": {
+      "operations": 327,
+      "audit": {
+        "clock_calls": "18403",
+        "sizeof_solver": "433096",
+        "rng": "12693433958114789515",
+        "profile_count": "352902",
+        "profile_blocks": "1379",
+        "profile_slots": "1048576",
+        "profile_used": "352902",
+        "group_slots": "131072",
+        "group_used": "64453",
+        "execution_capacity": "32768",
+        "assembly_capacity": "4096"
+      },
+      "max_rss_bytes": 332955648
+    },
+    "same_output": true,
+    "same_audit": true
+  }
+]

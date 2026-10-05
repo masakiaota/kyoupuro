@@ -1,0 +1,10 @@
+{
+  "local": {
+    "registered_time_changes_only": true,
+    "expanded_time_expressions": 15
+  },
+  "production": {
+    "normalized_equal": true,
+    "normalization": "source path and assert line number"
+  }
+}

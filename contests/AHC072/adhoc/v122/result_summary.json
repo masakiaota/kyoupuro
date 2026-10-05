@@ -1,0 +1,86 @@
+{
+  "decision": "development_gate_failed",
+  "pilot": {
+    "cases": 32,
+    "groups": 1005,
+    "oracle_saved": 861,
+    "better_cases": 32,
+    "complete_paths": 8755,
+    "independent_python_replays": 93,
+    "seconds": 3.741268249999848,
+    "completed_at": "2026-10-04T11:20:30.298486+00:00",
+    "oracle_mean_improvement": 0.8567164179104477,
+    "passed": true
+  },
+  "collection": {
+    "cases": 320,
+    "groups": 10007,
+    "oracle_saved": 7131,
+    "better_cases": 320,
+    "complete_paths": 86052,
+    "independent_python_replays": 905,
+    "seconds": 26.111063125004875,
+    "completed_at": "2026-10-04T11:22:54.206172+00:00",
+    "oracle_mean_improvement": 0.7126011791745778,
+    "passed": true
+  },
+  "training": {
+    "train": {
+      "groups": 7994,
+      "cases": 256,
+      "baseline_complete": 6543,
+      "model_complete": 6690,
+      "mean_difference": -0.24518388509750366,
+      "sum_difference": -1960.0,
+      "oracle_mean_difference": -0.7249186635017395,
+      "wins": 899,
+      "ties": 6708,
+      "losses": 387,
+      "changed_alternate": 6394,
+      "selected_best": 6641,
+      "complete_regressions": 73,
+      "complete_rescues": 220,
+      "passed": true
+    },
+    "development": {
+      "groups": 2013,
+      "cases": 64,
+      "baseline_complete": 1618,
+      "model_complete": 1627,
+      "mean_difference": -0.09289617836475372,
+      "sum_difference": -187.0,
+      "oracle_mean_difference": -0.6636860370635986,
+      "wins": 173,
+      "ties": 1726,
+      "losses": 114,
+      "changed_alternate": 1624,
+      "selected_best": 1613,
+      "complete_regressions": 20,
+      "complete_rescues": 29,
+      "passed": false
+    },
+    "checkpoint_sha256": "3341cd63265e342ac30777b0b493cb986401f269614320f5bb85d37c13e3c355",
+    "parameters": 1313,
+    "seconds": 5.227705583005445,
+    "completed_at": "2026-10-04T11:23:41.306501+00:00"
+  },
+  "common_completed_development": {
+    "groups": 1598,
+    "sum_difference": -92,
+    "mean_difference": -0.057571964956195244
+  },
+  "development_case_wins": 42,
+  "development_case_ties": 5,
+  "development_case_losses": 17,
+  "completion_score_is_proxy": true,
+  "full_solver_evaluated": false,
+  "timing_gate_evaluated": false,
+  "cpp_model_numerical_evaluated": false,
+  "retained_candidate": {
+    "source": "src/bin/v115_corridor_reinsertion.cpp",
+    "sha256": "00c649abb06fa8f46927ba50e5f3b7f000c806c0029bbbec683e79712d04387e"
+  },
+  "model_sha256": "c9eb5a788e163f09d8450b323c816ac1db31aa892b8dd225758c68a6c6ead567",
+  "official_source": "results/nn_rank/v122/20261004_order_studio",
+  "completed_at": "2026-10-04T11:26:14.731422+00:00"
+}

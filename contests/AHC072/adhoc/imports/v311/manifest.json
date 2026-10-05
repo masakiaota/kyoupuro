@@ -1,0 +1,31 @@
+{
+  "imported_at": "2026-10-04T12:30:11.400009+09:00",
+  "notes_origin_branch": "origin/chatgpt/v311-neural-multistart",
+  "files": [
+    {
+      "original_name": "v311_neural_multistart.cpp",
+      "stored_path": "src/bin/v311_neural_multistart.cpp",
+      "sha256": "c3f819c2715f397bee0ca95bca12be3196c6f5531dbfeb19358d0afd5f6868ea",
+      "bytes": 275022
+    },
+    {
+      "original_name": "v311_speed_only.cpp",
+      "stored_path": "adhoc/bin/v311_speed_only.cpp",
+      "sha256": "866fdc68c591e52e98978d573d6f5aefa89b273b8cc115b715667c510f01201d",
+      "bytes": 275265
+    },
+    {
+      "original_name": "v311_report.md",
+      "stored_path": "adhoc/imports/v311/report.md",
+      "sha256": "6b6e783e0494ea3945504af97278e7a68f763659c3be3e12c09ad656a263ca78",
+      "bytes": 14394
+    },
+    {
+      "original_name": "v311_paired_results.csv",
+      "stored_path": "adhoc/imports/v311/paired_results.csv",
+      "sha256": "361ce6e5b6fe1141c8803270a848a59f4c8ac4ab013488ff86f16b128f5b6556",
+      "bytes": 37902
+    }
+  ],
+  "source_edited": false
+}

@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 350,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v050_joint_towers/0089.txt",
+  "best_sha256": "081562a8cb33717fb4df7a49dc3407ba16545ada18128b88a0fc0845d0f0997e",
+  "attempts": []
+}

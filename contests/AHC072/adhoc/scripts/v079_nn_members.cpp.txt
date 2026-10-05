@@ -1,0 +1,43 @@
+    vector<int> nn_eligible;
+    array<int,32> nn_ranks{};
+    int nn_sample(int cooldown) {
+        nn_eligible.clear();
+        for(int i=0;i<int(candidates.size());i++){
+            auto it=last_tried.find(candidates[i].hash);
+            if(it==last_tried.end()||iteration-it->second>cooldown)nn_eligible.push_back(i);
+        }
+        const int n=int(nn_eligible.size());
+        if(n<=32){copy(nn_eligible.begin(),nn_eligible.end(),nn_ranks.begin());return n;}
+        copy(nn_eligible.begin(),nn_eligible.begin()+16,nn_ranks.begin());
+        const int rest=n-16;
+        for(int band=0;band<16;band++){
+            const int left=rest*band/16,right=rest*(band+1)/16;
+            nn_ranks[16+band]=nn_eligible[16+(left+right-1)/2];
+        }
+        return 32;
+    }
+    int nn_choose(const vector<Move>& current,const vector<Move>& best,
+                  int stagnant,double progress,int cooldown) {
+        LOCAL_NOTE(const auto begin=chrono::steady_clock::now();)
+        const int n=nn_sample(cooldown);
+        if(n==0)throw logic_error("NN called without eligible candidates");
+        array<array<double,32>,32> features;
+        LOCAL_NOTE(const auto feature_begin=chrono::steady_clock::now();)
+        for(int i=0;i<n;i++)features[i]=nn_features(candidates[nn_ranks[i]],current,best,stagnant,progress);
+        LOCAL_NOTE(const auto inference_begin=chrono::steady_clock::now();)
+        int choice=nn_ranks[0];float value=numeric_limits<float>::infinity();
+        for(int i=0;i<n;i++){
+            const float predicted=neural_rank::predict(features[i]);
+            if(!isfinite(predicted))throw logic_error("nonfinite NN prediction");
+            // ranksは元順位順。厳密な同点では最初の候補を保持する。
+            if(predicted<value){value=predicted;choice=nn_ranks[i];}
+        }
+        LOCAL_NOTE(
+            const auto finished=chrono::steady_clock::now();
+            ++local_nn.calls;local_nn.scored+=n;local_nn.changed+=choice!=nn_ranks[0];local_nn.rank_sum+=choice;
+            local_nn.feature_ms+=chrono::duration<double,milli>(inference_begin-feature_begin).count();
+            local_nn.inference_ms+=chrono::duration<double,milli>(finished-inference_begin).count();
+            local_nn.total_ms+=chrono::duration<double,milli>(finished-begin).count();
+        )
+        return choice;
+    }

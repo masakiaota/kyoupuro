@@ -1,0 +1,68 @@
+{
+  "observed_at": "2026-09-30T01:41:40.960105+09:00",
+  "top_cpu_processes": [
+    {
+      "pid": 46371,
+      "cpu_percent": 159.2,
+      "executable": "/System/Library/PrivateFrameworks/MediaAnalysis.framework/Versions/A/mediaanalysisd"
+    },
+    {
+      "pid": 419,
+      "cpu_percent": 43.7,
+      "executable": "/System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer"
+    },
+    {
+      "pid": 27377,
+      "cpu_percent": 34.7,
+      "executable": "/System/Applications/Mail.app/Contents/MacOS/Mail"
+    },
+    {
+      "pid": 65279,
+      "cpu_percent": 19.6,
+      "executable": "/Applications/Brave Browser.app/Contents/Frameworks/Brave Browser Framework.framework/Versions/154.1.96.59/Helpers/Brave Browser Helper (Renderer).app/Contents/MacOS/Brave Browser Helper (Renderer)"
+    },
+    {
+      "pid": 37926,
+      "cpu_percent": 13.9,
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.57/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "pid": 37837,
+      "cpu_percent": 7.4,
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.57/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)"
+    },
+    {
+      "pid": 37788,
+      "cpu_percent": 6.0,
+      "executable": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+    },
+    {
+      "pid": 37941,
+      "cpu_percent": 5.5,
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+    },
+    {
+      "pid": 985,
+      "cpu_percent": 4.8,
+      "executable": "/usr/libexec/mobileassetd"
+    },
+    {
+      "pid": 400,
+      "cpu_percent": 3.7,
+      "executable": "/usr/libexec/dasd"
+    },
+    {
+      "pid": 81046,
+      "cpu_percent": 3.6,
+      "executable": "/Applications/Typeless.app/Contents/Frameworks/Typeless Helper (Renderer).app/Contents/MacOS/Typeless Helper (Renderer)"
+    },
+    {
+      "pid": 86050,
+      "cpu_percent": 3.0,
+      "executable": "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    }
+  ],
+  "solver_jobs": 2,
+  "processes_modified": false,
+  "continuous_monitor": false
+}

@@ -1,0 +1,29 @@
+{
+  "parent": {
+    "start": "0x100030708",
+    "text_bytes_to_next_symbol": 8064,
+    "instructions": 2016,
+    "loads": 392,
+    "stores": 385,
+    "calls": 40,
+    "sp_memory_ops": 295
+  },
+  "child192": {
+    "start": "0x100081e88",
+    "text_bytes_to_next_symbol": 10296,
+    "instructions": 2574,
+    "loads": 520,
+    "stores": 475,
+    "calls": 62,
+    "sp_memory_ops": 373
+  },
+  "child400": {
+    "start": "0x100098560",
+    "text_bytes_to_next_symbol": 10316,
+    "instructions": 2579,
+    "loads": 523,
+    "stores": 463,
+    "calls": 62,
+    "sp_memory_ops": 362
+  }
+}

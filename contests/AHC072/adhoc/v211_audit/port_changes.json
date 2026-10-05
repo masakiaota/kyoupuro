@@ -1,0 +1,7 @@
+[
+  {
+    "old": "// v211_jump_steiner_collection.cpp\n// Experiment v211; parent/control: uploaded v210_collection_color_quotient.cpp.\n// Same time budget, candidate nomination, 2-tower construction, LNS and NN.\n// A subset DP jointly chooses monochrome merges, directed jump routes and a\n// meeting cell for 3..6 source towers, at most 8 slimes, on fixed background.\n// Parent SHA256: 4be4bd07bee152643fe4620f50573764a5a74167a81d5f9c280f0655789feaed\n// v210: v209の同色再挿入・候補保持と、v208の3塔以上の同色集荷構築を併用する。\n// 集荷の計画と採否判定はv208からそのまま継承する。\n// LOCAL・非LOCALとも時間管理、初期解選抜、探索と終了処理はv209を継承する。\n",
+    "new": "// v211_jump_steiner_collection.cpp\n// v211: 同色3〜6塔の集荷で、ジャンプ経路と合流先を部分集合DPにより共同で選ぶ。\n// 直接の親はv210。集荷候補選別、2塔構築、LNS、NN、時間設定を保持する。\n// 添付原版の処理と数値を両モードで保持し、この先頭コメントだけ整理した。\n// 添付元SHA-256: fd77f005445d0ea191d9f7f743dfbbbd992fb1f2068dac9ed9d674b11d943889\n",
+    "offset": 0
+  }
+]

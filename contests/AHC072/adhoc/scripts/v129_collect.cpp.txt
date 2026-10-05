@@ -1,0 +1,91 @@
+// 採取専用。親の状態と大域キャッシュを丸ごと継承し、子の変更を親へ返さない。
+static ofstream v129_labels;
+static uint64_t v129_repeat=0;
+static uint64_t v129_mix(uint64_t x) {
+    x+=0x9e3779b97f4a7c15ULL;x=(x^(x>>30))*0xbf58476d1ce4e5b9ULL;
+    x=(x^(x>>27))*0x94d049bb133111ebULL;return x^(x>>31);
+}
+static void v129_verify(const vector<Move>& moves) {
+    vector<vector<int>> towers(board_info.cell_count);
+    for(int p=0;p<board_info.cell_count;++p)if(board_info.initial[p])towers[p].push_back(board_info.initial[p]);
+    for(auto m:moves) {
+        const int p=m.p,h=int(towers[p].size());
+        if(!(m.k<h&&1<=m.l&&m.l<=m.k+1&&m.d<4))throw logic_error("reference departure");
+        static const int di[]={-1,1,0,0},dj[]={0,0,-1,1};int q=-1;
+        for(int step=1;step<=m.l;++step) {
+            const int i=board_info.row[p]+step*di[m.d],j=board_info.col[p]+step*dj[m.d];
+            if(i<0||i>=board_info.N||j<0||j>=board_info.N||board_info.C[i][j]=='#')throw logic_error("reference wall");
+            q=board_info.cell_id[i][j];
+        }
+        if(towers[q].size()+h-m.k>8)throw logic_error("reference height");
+        for(int at=h-1;at>=m.k;--at)towers[q].push_back(towers[p][at]);
+        towers[p].resize(m.k);
+        for(int cell:{p,q})while(!towers[cell].empty()&&towers[cell].back()==board_info.nest_code[cell])towers[cell].pop_back();
+    }
+    for(const auto& t:towers)if(!t.empty())throw logic_error("reference incomplete");
+}
+static void v129_path(ostream& out,const vector<Move>& path) {
+    out<<'[';
+    for(size_t i=0;i<path.size();++i){if(i)out<<',';const auto m=path[i];
+        out<<((20*board_info.row[m.p]+board_info.col[m.p])|(int(m.k)<<9)|(int(m.d)<<12)|((int(m.l)-1)<<14));}
+    out<<']';
+}
+static uint64_t v129_hash(const vector<Move>& path) {
+    uint64_t h=1469598103934665603ULL;
+    for(auto m:path){const uint64_t x=(((uint64_t(m.p)*8+m.k)*4+m.d)*8+m.l-1);h=(h^x)*1099511628211ULL;}
+    return h;
+}
+static void v129_collect(int phase,InitialSolutions& pool,vector<unique_ptr<TemporalLNS>>& searches,
+                         const vector<allocation_policy::Track>& tracks,double start,double end) {
+    if(pool.entries.size()<3)return;
+    const auto real_begin=chrono::steady_clock::now();
+    const double now=time_keeper.exact_elapsed_sec();
+    const uint64_t parent_rng=rng.x;
+    int shortest=INT_MAX;for(const auto& entry:pool.entries)shortest=min(shortest,int(entry.moves.size()));
+    vector<uint64_t> parent_states;for(const auto& s:searches)parent_states.push_back(s->random_state);
+    vector<uint64_t> parent_paths;for(const auto& e:pool.entries)parent_paths.push_back(v129_hash(e.moves));
+    for(int id=0;id<int(pool.entries.size());++id) {
+        v129_verify(pool.entries[id].moves);
+        const auto basic=allocation_policy::features(tracks[id],int(pool.entries[id].moves.size()),shortest,now,start,end);
+        const auto structure=allocation_policy::structure(pool.entries[id].moves);
+        array<float,42> f;copy(basic.begin(),basic.end(),f.begin());copy(structure.begin(),structure.end(),f.begin()+18);
+        ostringstream prefix_stream;v129_path(prefix_stream,pool.entries[id].moves);const string prefix_json=prefix_stream.str();
+        for(int rollout=0;rollout<8;++rollout) {
+        const uint64_t future_seed=129201+uint64_t(rollout);
+        int channel[2];if(pipe(channel))throw runtime_error("diagnostic pipe failed");
+        v129_labels.flush();cout.flush();cerr.flush();
+        const pid_t child=fork();if(child<0)throw runtime_error("diagnostic fork failed");
+        if(child==0) {
+            close(channel[0]);int code=0;string payload;
+            try {
+                // 診断の先行候補やforkの待ちを、この候補の探索予算へ含めない。
+                time_keeper.start_=chrono::steady_clock::now()-chrono::duration_cast<chrono::steady_clock::duration>(chrono::duration<double>(now));
+                searches[id]->random_state=v129_mix(searches[id]->random_state^future_seed^(uint64_t(phase)<<32)^uint64_t(id));
+                const int before=int(pool.entries[id].moves.size());
+                const double began=time_keeper.exact_elapsed_sec();
+                searches[id]->optimize(pool.entries[id].moves,end,start,end);
+                const double elapsed=time_keeper.exact_elapsed_sec()-began;
+                v129_verify(pool.entries[id].moves);
+                ostringstream out;out<<setprecision(17)<<"{\"phase\":"<<phase<<",\"candidate\":"<<id<<",\"count\":"<<pool.entries.size()
+                    <<",\"rollout\":"<<rollout<<",\"future_seed\":"<<future_seed
+                    <<",\"origin\":"<<pool.entries[id].origin<<",\"before\":"<<before<<",\"shortest\":"<<shortest
+                    <<",\"after\":"<<pool.entries[id].moves.size()<<",\"remaining_seconds\":"<<end-now<<",\"elapsed_seconds\":"<<elapsed
+                    <<",\"prefix_hash\":"<<parent_paths[id]<<",\"features\":[";
+                for(int j=0;j<42;++j){if(j)out<<',';out<<f[j];}out<<']';
+                if(rollout==0)out<<",\"prefix_path\":"<<prefix_json;
+                out<<",\"path\":";v129_path(out,pool.entries[id].moves);out<<"}\n";payload=out.str();
+            }catch(const exception& e){code=1;payload=string("ERROR ")+e.what()+"\n";}
+            size_t sent=0;while(sent<payload.size()){ssize_t n=write(channel[1],payload.data()+sent,payload.size()-sent);if(n<=0){code=2;break;}sent+=size_t(n);}
+            close(channel[1]);_exit(code);
+        }
+        close(channel[1]);string payload;char bytes[8192];ssize_t n;
+        while((n=read(channel[0],bytes,sizeof(bytes)))>0)payload.append(bytes,size_t(n));close(channel[0]);
+        int outcome=0;if(waitpid(child,&outcome,0)!=child||!WIFEXITED(outcome)||WEXITSTATUS(outcome)!=0)throw runtime_error("diagnostic child failed: "+payload);
+        if(payload.empty()||payload[0]!='{')throw runtime_error("diagnostic output malformed");
+        v129_labels<<payload;v129_labels.flush();
+        }
+    }
+    if(rng.x!=parent_rng)throw logic_error("parent RNG changed");
+    for(size_t i=0;i<searches.size();++i)if(searches[i]->random_state!=parent_states[i]||v129_hash(pool.entries[i].moves)!=parent_paths[i])throw logic_error("parent state changed");
+    time_keeper.start_+=chrono::steady_clock::now()-real_begin;
+}

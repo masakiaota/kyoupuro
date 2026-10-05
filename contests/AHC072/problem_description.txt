@@ -1,0 +1,134 @@
+# A - Somersault Slimes
+
+Contest: ALGO ARTIS Programming Contest 2026 September (AtCoder Heuristic Contest 072)
+
+Source: https://atcoder.jp/contests/ahc072/tasks/ahc072_a?lang=en
+
+- Time Limit: 2 sec
+- Memory Limit: 1024 MiB
+
+## Story
+
+Takahashi is the king of a colorful kingdom of slimes. As dusk approaches, he decides to send his companions, who have been playing here and there, back to their nests of matching colors.
+
+The slimes have a special skill: the "somersault jump." They stack into towers and use the springiness of the slimes below them to jump. At their king's command, the upper part of a tower flips over and flies through the air. Upon landing on a nest, slimes of the matching color return home, starting from the top.
+
+Takahashi would also like to return to his nest and rest. Help him find a sequence of jumps that sends all his companions home with as few commands as possible.
+
+## Problem Statement
+
+There is an `N x N` grid. Let `(0, 0)` be the coordinates of the top-left cell, and let `(i, j)` be the coordinates of the cell located `i` cells downward and `j` cells to the right from there. Each cell is either floor or a wall.
+
+The grid contains slimes of `K` colors, numbered `0, 1, ..., K - 1`. Slimes can stack vertically on floor cells to form towers. Slimes of different colors can share a tower, and they do not merge. The height of a tower is the number of slimes in it, with a maximum of 8. A cell with no slimes has height 0.
+
+Initially, each cell contains at most one slime, and no slime is on a nest. There is one nest of each color, and each slime aims to return to the nest of its own color.
+
+You can perform the following operation, called a "somersault jump," at most `100000` times. Send all slimes home using as few operations as possible.
+
+### Somersault Jump
+
+Choose a cell `(i, j)` containing a tower of height `h > 0`, and specify the number `k` of slimes to leave behind, a direction `d` (up, down, left, or right), and a jump distance `l`. Let `g` be the height at the destination before the operation. All of the following conditions must hold.
+
+- `k` and `l` are integers, `0 <= k < h`, and `1 <= l <= k + 1`.
+- The cells located 1, 2, ..., `l` cells from `(i, j)` in direction `d` are all floor cells within the grid. The jump may pass over intermediate towers.
+- `g + (h - k) <= 8`. In other words, the tower height after landing must be at most 8. This is checked before any slimes return home, even if doing so reduces the height.
+
+The top `h - k` slimes at the starting cell jump together, reverse their vertical order, and land on top of the tower at the destination. The order of the `k` slimes left behind and that of the slimes originally at the destination remain unchanged. Then, the following return-home process takes place at both the starting cell and the destination.
+
+### Returning Home
+
+At a cell with a nest of color `i`, repeatedly remove the top slime from the grid as long as it has color `i`. This is called returning home. If a different color is encountered, the slimes below it do not return home. Nothing happens at cells without a nest.
+
+Slimes that have returned home never reappear on the grid. Returning home happens automatically and does not count as an operation.
+
+### Example of Returning Home
+
+Suppose slimes are stacked in the order `(0, 0, 1)` from bottom to top on the nest of color 0. With `k = 2`, the top slime of color 1 jumps three cells to the right onto the nest of color 1, which has no slimes on it. The two slimes of color 0 at the starting cell and the slime of color 1 at the destination then return home. Assume that all intermediate cells are floor cells.
+
+## Scoring
+
+Let `T` be the number of operations and `E` be the number of slimes remaining on the grid after all operations. Your absolute score is
+
+`S = T + 100000 E`.
+
+The lower the absolute score, the better.
+
+For each test case, we compute the relative score
+
+`round(10^9 * MIN / YOUR)`,
+
+where `YOUR` is your absolute score and `MIN` is the lowest absolute score among all competitors obtained on that test case. The score of the submission is the sum of the relative scores.
+
+### Project Policy During the Contest
+
+This subsection is a project policy and is not part of the official problem statement.
+
+During the contest, prioritize reducing the absolute score `S`. The official relative score depends on results from other competitors and therefore cannot be evaluated from this project alone. Pseudo-relative comparisons among this project's solver versions (`vXXX`) may be used as a secondary reference, but decisions should primarily be based on improvements in absolute score.
+
+## Input
+
+Input is given from Standard Input in the following format.
+
+```text
+N K
+C_0
+...
+C_{N-1}
+```
+
+- `12 <= N <= 20`, `4 <= K <= 12`.
+- `C_i` is a string of length `N`. Its `j`-th character represents the initial state of cell `(i, j)` as follows.
+  - `#`: a wall
+  - `.`: a floor cell with neither a slime nor a nest
+  - `a`-`l`: a floor cell with one slime of color 0-11, respectively
+  - `A`-`L`: a floor cell with a nest of color 0-11, respectively
+- There are at least `2K` floor cells, and they are connected by vertical and horizontal adjacency.
+- Only the first `K` uppercase and lowercase letters are used. Each uppercase letter appears exactly once, and each lowercase letter appears at least once.
+
+## Output
+
+Output to Standard Output in the following format.
+
+For the `t`-th operation, output the starting cell `(i_t, j_t)`, the number `k_t` of slimes to leave behind, the direction `d_t`, and the jump distance `l_t`, with one operation per line for a total of `T` lines.
+
+```text
+i_0 j_0 k_0 d_0 l_0
+...
+i_{T-1} j_{T-1} k_{T-1} d_{T-1} l_{T-1}
+```
+
+`d_t` is one of the characters `U`, `D`, `L`, and `R`, corresponding to up, down, left, and right, respectively.
+
+## Input Generation
+
+The input for `seed=0` is created manually and is not included in the provisional or system tests. All other inputs are generated as follows.
+
+### Generation Parameters
+
+Generate `N` and `K` independently and uniformly at random from the integers between 12 and 20 inclusive and between 4 and 12 inclusive, respectively.
+
+Generate the slime density `rho` and the wall proposal probability `beta` independently and uniformly at random from `[0.12, 0.65)` and `[0, 0.40)`, respectively.
+
+### Terrain
+
+Initially, all cells are floor cells. Arrange all cells in a uniformly random order.
+
+In that order, independently attempt to turn each cell into a wall with probability `beta`. Make the change only if at least `2K` floor cells remain and the floor cells remain connected.
+
+### Nests and Initial Positions
+
+Choose `K` distinct floor cells uniformly at random, and place the nests of colors `0, ..., K - 1` in the order chosen.
+
+Let `F` be the number of floor cells without a nest, and let the total number of slimes be
+
+`M = max(K, round(rho F))`.
+
+Choose `M` distinct floor cells without a nest uniformly at random, and place one slime on each.
+
+### Assigning Colors
+
+Independently choose `K - 1` integers uniformly at random from the integer interval `[0, M - K]`. The same value may be chosen more than once. Sort the chosen values in ascending order as `s_1, ..., s_{K-1}`, and set `s_0 = 0` and `s_K = M - K`. For each color `i = 0, ..., K - 1`, the number of slimes is
+
+`b_i = s_{i+1} - s_i + 1`.
+
+Prepare `b_i` copies of each color `i`, uniformly shuffle all `M` colors, and assign them to the slimes at the initial positions.

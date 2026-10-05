@@ -1,0 +1,121 @@
+{
+  "assessment": {
+    "accepted": false,
+    "difference": {
+      "common_completed": 256,
+      "mean_T_difference": 2.5078125,
+      "mean_S_difference": 2.5078125,
+      "wins": 77,
+      "ties": 32,
+      "losses": 147
+    },
+    "activation": {
+      "rrt_considered": 827947,
+      "rrt_accepted_above_record": 490751,
+      "rrt_rejected_outside_band": 197511
+    },
+    "base_valid": true,
+    "current_valid": true,
+    "fixed_at": "2026-10-04T14:50:48.889204+00:00"
+  },
+  "source_sha256": "71369a3d60d391547c859f15a59d6a9f57c77b59d53df5d9be03a2a59a81f891",
+  "parent_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+  "validation": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 219.3359375,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 219.3359375,
+      "mean_elapsed_ms": 1565.26953125,
+      "max_elapsed_ms": 1625,
+      "mean_inferences": 293.67578125,
+      "mean_depth": 293.67578125,
+      "deadline_cases": 0
+    },
+    "rrt": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 221.84375,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 221.84375,
+      "mean_elapsed_ms": 1563.03125,
+      "max_elapsed_ms": 1618,
+      "mean_inferences": 293.67578125,
+      "mean_depth": 293.67578125,
+      "deadline_cases": 0
+    }
+  },
+  "diagnostics": {
+    "base": {
+      "mean_counts": {
+        "lns_attempts": 7432.03125,
+        "lns_accepted": 2169.2890625,
+        "lns_uphill": 29.953125,
+        "lns_restarts": 9.59375
+      },
+      "nn_initial_hash_matches": 256,
+      "all_pool_returned": true,
+      "errors": {
+        "lns_errors": 0,
+        "construction_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      }
+    },
+    "rrt": {
+      "mean_counts": {
+        "lns_attempts": 6686.04296875,
+        "lns_accepted": 2462.640625,
+        "lns_uphill": 256.64453125,
+        "lns_restarts": 44.99609375
+      },
+      "nn_initial_hash_matches": 256,
+      "all_pool_returned": true,
+      "errors": {
+        "lns_errors": 0,
+        "construction_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      }
+    }
+  },
+  "paired_bootstrap_95": [
+    1.74365234375,
+    3.29931640625
+  ],
+  "bootstrap_note": "Input-paired sampling only; runtime noise is not remeasured.",
+  "mechanism": true,
+  "official_source": "results/nn_rank/v130/20261004_rrt_studio/result.json",
+  "completed_at": "2026-10-04T14:50:48.891591+00:00",
+  "retained": {
+    "version": "v113",
+    "source": "src/bin/v113_integrated_nn_lns.cpp",
+    "sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258"
+  },
+  "retained_final": {
+    "reused": true,
+    "source": "results/nn_rank/v113/20261004_integrated_studio/final/result.json",
+    "tools_in": {
+      "cases": 100,
+      "complete": 100,
+      "completion_rate": 1.0,
+      "mean_S_all": 196.75,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 196.75,
+      "mean_elapsed_ms": 1569.08,
+      "max_elapsed_ms": 1616,
+      "mean_inferences": 264.69,
+      "mean_depth": 264.69,
+      "deadline_cases": 0
+    },
+    "final_valid": true
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "all_100": {
+    "build_ns": {
+      "round_totals_ns": {
+        "v028": [
+          59404000,
+          59244000,
+          59295000,
+          58997000,
+          59045000
+        ],
+        "v033": [
+          59193000,
+          59510000,
+          59087000,
+          58898000,
+          59267000
+        ]
+      },
+      "v028_median_ns": 59244000,
+      "v033_median_ns": 59193000,
+      "change_percent": -0.08608466680170013,
+      "v033_shorter_rounds": 3,
+      "speed_improved": false
+    },
+    "reconstruct_ns": {
+      "round_totals_ns": {
+        "v028": [
+          1502127000,
+          1500540000,
+          1496133000,
+          1497131000,
+          1493526000
+        ],
+        "v033": [
+          1655850000,
+          1652006000,
+          1646770000,
+          1655476000,
+          1645092000
+        ]
+      },
+      "v028_median_ns": 1497131000,
+      "v033_median_ns": 1652006000,
+      "change_percent": 10.34478612760006,
+      "v033_shorter_rounds": 0,
+      "speed_improved": false
+    },
+    "smooth_ns": {
+      "round_totals_ns": {
+        "v028": [
+          65238000,
+          64992000,
+          64975000,
+          65106000,
+          64850000
+        ],
+        "v033": [
+          51922000,
+          51567000,
+          51482000,
+          51717000,
+          51266000
+        ]
+      },
+      "v028_median_ns": 64992000,
+      "v033_median_ns": 51567000,
+      "change_percent": -20.656388478581977,
+      "v033_shorter_rounds": 5,
+      "speed_improved": true
+    },
+    "total_ns": {
+      "round_totals_ns": {
+        "v028": [
+          1626769000,
+          1624776000,
+          1620403000,
+          1621234000,
+          1617421000
+        ],
+        "v033": [
+          1766965000,
+          1763083000,
+          1757339000,
+          1766091000,
+          1755625000
+        ]
+      },
+      "v028_median_ns": 1621234000,
+      "v033_median_ns": 1763083000,
+      "change_percent": 8.749446409340056,
+      "v033_shorter_rounds": 0,
+      "speed_improved": false
+    }
+  },
+  "generated_99": {
+    "build_ns": {
+      "round_totals_ns": {
+        "v028": [
+          59337000,
+          59173000,
+          59232000,
+          58925000,
+          58979000
+        ],
+        "v033": [
+          59125000,
+          59442000,
+          59014000,
+          58830000,
+          59199000
+        ]
+      },
+      "v028_median_ns": 59173000,
+      "v033_median_ns": 59125000,
+      "change_percent": -0.08111807750156297,
+      "v033_shorter_rounds": 3,
+      "speed_improved": false
+    },
+    "reconstruct_ns": {
+      "round_totals_ns": {
+        "v028": [
+          1501010000,
+          1499397000,
+          1495034000,
+          1496002000,
+          1492329000
+        ],
+        "v033": [
+          1654565000,
+          1650785000,
+          1645514000,
+          1654135000,
+          1643922000
+        ]
+      },
+      "v028_median_ns": 1496002000,
+      "v033_median_ns": 1650785000,
+      "change_percent": 10.346443387107772,
+      "v033_shorter_rounds": 0,
+      "speed_improved": false
+    },
+    "smooth_ns": {
+      "round_totals_ns": {
+        "v028": [
+          65119000,
+          64868000,
+          64855000,
+          64967000,
+          64720000
+        ],
+        "v033": [
+          51841000,
+          51487000,
+          51399000,
+          51640000,
+          51189000
+        ]
+      },
+      "v028_median_ns": 64868000,
+      "v033_median_ns": 51487000,
+      "change_percent": -20.628044644508847,
+      "v033_shorter_rounds": 5,
+      "speed_improved": true
+    },
+    "total_ns": {
+      "round_totals_ns": {
+        "v028": [
+          1625466000,
+          1623438000,
+          1619121000,
+          1619894000,
+          1616028000
+        ],
+        "v033": [
+          1765531000,
+          1761714000,
+          1755927000,
+          1764605000,
+          1754310000
+        ]
+      },
+      "v028_median_ns": 1619894000,
+      "v033_median_ns": 1761714000,
+      "change_percent": 8.754893838732647,
+      "v033_shorter_rounds": 0,
+      "speed_improved": false
+    }
+  },
+  "case0000": {
+    "build_ns": {
+      "round_totals_ns": {
+        "v028": [
+          67000,
+          71000,
+          63000,
+          72000,
+          66000
+        ],
+        "v033": [
+          68000,
+          68000,
+          73000,
+          68000,
+          68000
+        ]
+      },
+      "v028_median_ns": 67000,
+      "v033_median_ns": 68000,
+      "change_percent": 1.4925373134328401,
+      "v033_shorter_rounds": 2,
+      "speed_improved": false
+    },
+    "reconstruct_ns": {
+      "round_totals_ns": {
+        "v028": [
+          1117000,
+          1143000,
+          1099000,
+          1129000,
+          1197000
+        ],
+        "v033": [
+          1285000,
+          1221000,
+          1256000,
+          1341000,
+          1170000
+        ]
+      },
+      "v028_median_ns": 1129000,
+      "v033_median_ns": 1256000,
+      "change_percent": 11.248892825509294,
+      "v033_shorter_rounds": 1,
+      "speed_improved": false
+    },
+    "smooth_ns": {
+      "round_totals_ns": {
+        "v028": [
+          119000,
+          124000,
+          120000,
+          139000,
+          130000
+        ],
+        "v033": [
+          81000,
+          80000,
+          83000,
+          77000,
+          77000
+        ]
+      },
+      "v028_median_ns": 124000,
+      "v033_median_ns": 80000,
+      "change_percent": -35.483870967741936,
+      "v033_shorter_rounds": 5,
+      "speed_improved": true
+    },
+    "total_ns": {
+      "round_totals_ns": {
+        "v028": [
+          1303000,
+          1338000,
+          1282000,
+          1340000,
+          1393000
+        ],
+        "v033": [
+          1434000,
+          1369000,
+          1412000,
+          1486000,
+          1315000
+        ]
+      },
+      "v028_median_ns": 1338000,
+      "v033_median_ns": 1412000,
+      "change_percent": 5.530642750373693,
+      "v033_shorter_rounds": 1,
+      "speed_improved": false
+    }
+  },
+  "verified_rows": 1200,
+  "method": "1 warmup round excluded, 5 measured rounds; CPU time; same frozen candidates",
+  "sources_unchanged": true
+}

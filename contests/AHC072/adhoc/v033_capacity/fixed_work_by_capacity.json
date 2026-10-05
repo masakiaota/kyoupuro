@@ -1,0 +1,42 @@
+{
+  "96": {
+    "cases": 1,
+    "time_change_percent": 4.1358293426208
+  },
+  "128": {
+    "cases": 14,
+    "time_change_percent": 5.958165834695417
+  },
+  "160": {
+    "cases": 17,
+    "time_change_percent": 7.265635598968934
+  },
+  "192": {
+    "cases": 21,
+    "time_change_percent": 7.487280498581095
+  },
+  "224": {
+    "cases": 17,
+    "time_change_percent": 7.8548454454205
+  },
+  "256": {
+    "cases": 12,
+    "time_change_percent": 7.372430987255396
+  },
+  "288": {
+    "cases": 11,
+    "time_change_percent": 9.326147819713304
+  },
+  "320": {
+    "cases": 3,
+    "time_change_percent": 10.851596269052855
+  },
+  "352": {
+    "cases": 2,
+    "time_change_percent": 14.052185826379372
+  },
+  "384": {
+    "cases": 1,
+    "time_change_percent": 12.559015436846854
+  }
+}

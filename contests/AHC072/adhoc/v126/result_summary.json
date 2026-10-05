@@ -1,0 +1,160 @@
+{
+  "decision": "diagnostic_failed",
+  "diagnostic": {
+    "passed": false,
+    "cases": 128,
+    "rows": 8176,
+    "groups": 512,
+    "mean_difference": 0.0078125,
+    "fold_differences": [
+      -0.109375,
+      -0.171875,
+      0.1484375,
+      0.1640625
+    ],
+    "changed": 62,
+    "oracle_mean_difference": -2.640625,
+    "parameters": 321,
+    "completed_at": "2026-10-04T12:31:19.362751+00:00"
+  },
+  "mechanism": {
+    "passed": true,
+    "grouped_records": 2048,
+    "teacher_rows": 8176,
+    "batch_initial_loss": 0.648288905620575,
+    "batch_final_loss": 0.408165842294693,
+    "gradient_direction": true,
+    "common_offset_pair_invariant": true,
+    "completed_at": "2026-10-04T12:31:03.292644+00:00"
+  },
+  "training_selection": [
+    {
+      "fold": 0,
+      "groups": 384,
+      "changed": 39,
+      "mean_difference": -0.11197916666666667
+    },
+    {
+      "fold": 1,
+      "groups": 384,
+      "changed": 45,
+      "mean_difference": 0.06510416666666667
+    },
+    {
+      "fold": 2,
+      "groups": 384,
+      "changed": 53,
+      "mean_difference": -0.078125
+    },
+    {
+      "fold": 3,
+      "groups": 384,
+      "changed": 53,
+      "mean_difference": -0.10416666666666667
+    }
+  ],
+  "histories": [
+    {
+      "fold": 0,
+      "first": {
+        "epoch": 1,
+        "loss": 0.24687018664553761,
+        "pair_loss": 0.20164481860895953,
+        "point_loss": 0.4522536800553401,
+        "lr": 0.001
+      },
+      "last": {
+        "epoch": 500,
+        "loss": 0.02946082425963444,
+        "pair_loss": 0.02711064470349811,
+        "point_loss": 0.02350179598821948,
+        "lr": 0.0001
+      },
+      "seconds": 4.126261084005819,
+      "model_sha256": "6ba3bf685047ccca646ff13ec4b44e447d1e0a17165383447d77f7033ad13ddf"
+    },
+    {
+      "fold": 1,
+      "first": {
+        "epoch": 1,
+        "loss": 0.24339997007821998,
+        "pair_loss": 0.1977514143412312,
+        "point_loss": 0.4564855486775438,
+        "lr": 0.001
+      },
+      "last": {
+        "epoch": 500,
+        "loss": 0.02989584036792318,
+        "pair_loss": 0.02683651022380218,
+        "point_loss": 0.030593299520357203,
+        "lr": 0.0001
+      },
+      "seconds": 4.00226749999274,
+      "model_sha256": "ef4480e9b1b477173a562141bc7163357b4298d1269cb8d140434c97b49d99fc"
+    },
+    {
+      "fold": 2,
+      "first": {
+        "epoch": 1,
+        "loss": 0.2628556691731016,
+        "pair_loss": 0.21408249142890176,
+        "point_loss": 0.4877317640930414,
+        "lr": 0.001
+      },
+      "last": {
+        "epoch": 500,
+        "loss": 0.03133207202578584,
+        "pair_loss": 0.028188597372112174,
+        "point_loss": 0.03143474729343628,
+        "lr": 0.0001
+      },
+      "seconds": 3.964984499994898,
+      "model_sha256": "46e1e05afa68e6f7b56246f2b68dd9e96e71c5d333b5732e69d62aa85bdef3c7"
+    },
+    {
+      "fold": 3,
+      "first": {
+        "epoch": 1,
+        "loss": 0.21487056650221348,
+        "pair_loss": 0.1737050241790712,
+        "point_loss": 0.41165541019290686,
+        "lr": 0.001
+      },
+      "last": {
+        "epoch": 500,
+        "loss": 0.02752597046007092,
+        "pair_loss": 0.02498389792162925,
+        "point_loss": 0.025420726897815864,
+        "lr": 0.0001
+      },
+      "seconds": 3.9591379999910714,
+      "model_sha256": "24c5b40247150a7f77a6234040ce509902fd1b7bca8414458c5bc17cd6a49646"
+    }
+  ],
+  "config": {
+    "script_sha256": "20e36fe94f5ed6f30d4abf457b780e0d31fa27dc4baf2ed942174bbdb041bdf5",
+    "parent_teacher_identity_sha256": "16e78e64d4fcd7f69fa9dead862e7fa462260e0c449d6096781e6ddd65f72320",
+    "folds_sha256": "72e583903c199a665adac66c22515c2c46d386c29b437f25353627d02eea17c7",
+    "model": [
+      18,
+      16,
+      1
+    ],
+    "epochs": 500,
+    "seed": 124004,
+    "batch_groups": 32,
+    "auxiliary": 0.1,
+    "scale": 20,
+    "threads": 4
+  },
+  "retained": {
+    "version": "v113",
+    "source": "src/bin/v113_integrated_nn_lns.cpp",
+    "source_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258"
+  },
+  "cpp_integration_evaluated": false,
+  "new_256_evaluated": false,
+  "tools_in_evaluated": false,
+  "validation1_opened": false,
+  "completed_at": "2026-10-04T12:32:27.076616+00:00"
+}

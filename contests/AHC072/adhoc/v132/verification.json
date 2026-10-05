@@ -1,0 +1,28 @@
+{
+  "trials": 21,
+  "main_trials": 20,
+  "source_hashes_checked": 26,
+  "admissions_independently_checked": 26,
+  "fixtures": 3,
+  "plans": [
+    {
+      "tag": "0097_control_0570",
+      "score": 579,
+      "output_sha256": "d5c4d96c8bda76b2b4f962563ab6318ad4ef4ccc42cdc3548733dfb607a8dec7"
+    }
+  ],
+  "improved_main_trials": 0,
+  "capped_main_trials": 18,
+  "best_saved_by_case": {
+    "0005": 0,
+    "0019": 0,
+    "0060": 0,
+    "0068": 0,
+    "0097": 0
+  },
+  "transition_checks": 152,
+  "physical_checks": 1176215,
+  "bound_checks": 6774995,
+  "total_search_ms": 13700.57,
+  "max_search_ms": 3152.402
+}

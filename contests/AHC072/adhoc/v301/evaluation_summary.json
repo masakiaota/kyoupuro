@@ -1,0 +1,69 @@
+{
+  "experiment": "v301",
+  "parent": "v210_collection_color_quotient",
+  "additional_control": "v211_jump_steiner_collection",
+  "decision": "rejected",
+  "goal_mean_at_most_200": false,
+  "eval_viewer_registered": false,
+  "parent_commit": "025a4328f9d9f03a12c7cf9552422c1fac3089f2",
+  "parent_sha256": "4be4bd07bee152643fe4620f50573764a5a74167a81d5f9c280f0655789feaed",
+  "candidate_sha256": "4e0fe019b62ec9da12c00abdd335a5dac59c865875285301e36c63fbd109da85",
+  "conditions": {
+    "compiler": "GCC 14.2.0",
+    "standard": "gnu++23",
+    "LOCAL": false,
+    "workers": 2,
+    "repetitions_per_version_per_input": 1,
+    "warmups_per_version_excluded": 1,
+    "parent_timing_unchanged": true,
+    "budget_seconds": 1.9,
+    "internal_deadline_seconds": 1.88,
+    "lns_deadline_expression": "1.88 * 1.9 / 1.93",
+    "order": "Six permutations of the three versions, indexed by input index modulo six; same CPU per input",
+    "primary_inputs": "Original AHC072_chatgpt_20261003.zip tools/in, all 100 inputs",
+    "supplemental_inputs": "validation1 sorted by input SHA256, first 100 distinct contents not in tools/in",
+    "relative_reference": "Fixed casewise minimum over the original archive score_detail.csv including v800",
+    "relative_formula": "100 * mean(reference / score)",
+    "official_rust_validator_run": false,
+    "independent_validators": ["Python literal stacks", "C++ literal stacks"]
+  },
+  "in100": {
+    "v210": {"total":20226,"mean":202.26,"relative100":92.72789931533927,"max_wall_seconds":1.885488142999975},
+    "v211": {"total":20301,"mean":203.01,"relative100":92.598664188349,"max_wall_seconds":1.8857953219999786},
+    "v301": {"total":20342,"mean":203.42,"relative100":92.53465255042305,"max_wall_seconds":1.8863162170000578},
+    "v301_vs_v210": {"delta_total":116,"delta_mean":1.16,"delta_relative100":-0.1932467649162325,"wins":42,"ties":13,"losses":45,"paired_case_bootstrap95_mean":[-0.16,2.73],"paired_case_bootstrap95_relative":[-0.6485712148899112,0.25723993097891723]},
+    "v301_vs_v211": {"delta_total":41,"delta_mean":0.41,"delta_relative100":-0.06401163792595468,"wins":42,"ties":10,"losses":48},
+    "case0000": {"v210":43,"v211":43,"v301":43}
+  },
+  "validation100": {
+    "v210": {"total":22860,"mean":228.60,"max_wall_seconds":1.887676039999974},
+    "v211": {"total":22771,"mean":227.71,"max_wall_seconds":1.8887496270000383},
+    "v301": {"total":22847,"mean":228.47,"max_wall_seconds":1.8881988819999833},
+    "v301_vs_v210": {"delta_total":-13,"delta_mean":-0.13,"wins":40,"ties":12,"losses":48},
+    "v301_vs_v211": {"delta_total":76,"delta_mean":0.76,"wins":41,"ties":10,"losses":49}
+  },
+  "validation": {
+    "measured_outputs":600,
+    "all_legal_and_E_zero":true,
+    "all_external_within_1_9":true,
+    "max_external_seconds":1.8887496270000383,
+    "partial_problems_compared":213,
+    "partial_problems_skipped_parent_model_infeasible":8,
+    "enumerated_permutations":1490,
+    "all_subset_optima_match_enumerated_orders":true,
+    "improved_partial_problems":38,
+    "partial_problem_moves_saved":123,
+    "manual_example":{"parent":6,"candidate":3}
+  },
+  "mechanism_in100": {
+    "windows":176,
+    "improved_windows":28,
+    "direct_moves_saved_inside_v301":47,
+    "mean_extra_search_seconds":0.0103705171,
+    "mean_pre_lns":{"v210":282.04,"v301":281.87},
+    "mean_construction_attempts":{"v210":39.85,"v301":37.42},
+    "mean_lns_attempts":{"v210":4796.17,"v301":4759.31},
+    "note":"Direct savings include candidate constructions not selected for the final solution. They are not a counterfactual improvement over v210."
+  },
+  "uncertainty":"One measured run per version and input. Case-bootstrap intervals exclude runtime replication noise. Scores from earlier environments are not used as freshly measured controls."
+}

@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 252,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v048_mono_dispatch/0028.txt",
+  "best_sha256": "57034deba117422c998877545aabdfafe39461858902e1d914699a9be7a6f7d1",
+  "attempts": []
+}

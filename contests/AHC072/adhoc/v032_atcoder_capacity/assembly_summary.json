@@ -1,0 +1,214 @@
+[
+  {
+    "symbol": "__Z12fixed_kernelILi32ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [],
+    "lines": 83
+  },
+  {
+    "symbol": "__Z12exact_kernelILb0EEyP5TowerPKS0_PK3Jobiii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 99
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi32ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [],
+    "lines": 125
+  },
+  {
+    "symbol": "__Z12exact_kernelILb1EEyP5TowerPKS0_PK3Jobiii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi64ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [],
+    "lines": 49
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi64ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [],
+    "lines": 132
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi96ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi96ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi128ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 105
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi128ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi160ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi160ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi192ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi192ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi224ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi224ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi256ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 105
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi256ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi288ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi288ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi320ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi320ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi352ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi352ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi384ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi384ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi400ELb0EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy",
+      "_memcpy",
+      "_memcpy"
+    ],
+    "lines": 97
+  },
+  {
+    "symbol": "__Z12fixed_kernelILi400ELb1EEyP10FixedStateIXT_EEPKS1_PK3Jobii",
+    "calls": [
+      "_memcpy"
+    ],
+    "lines": 138
+  }
+]

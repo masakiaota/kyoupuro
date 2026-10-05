@@ -1,0 +1,741 @@
+{
+  "plans": [
+    {
+      "case": "0001",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 150,
+        "rank_changed": 145,
+        "penalized": 109,
+        "deadlines": 0,
+        "completed": 18,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 7.5625,
+        "inserted": 16
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 7.8125,
+        "inserted": 18
+      },
+      "gate": true
+    },
+    {
+      "case": "0001",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 165,
+        "rank_changed": 162,
+        "penalized": 135,
+        "deadlines": 0,
+        "completed": 25,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 6.78125,
+        "inserted": 13
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 7.15625,
+        "inserted": 25
+      },
+      "gate": true
+    },
+    {
+      "case": "0001",
+      "plan_index": 2,
+      "diagnostic": {
+        "candidates": 159,
+        "rank_changed": 153,
+        "penalized": 134,
+        "deadlines": 0,
+        "completed": 10,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 29,
+        "success_rate": 0.90625,
+        "mean_net_removed": 6.448275862068965,
+        "inserted": 8
+      },
+      "new": {
+        "n": 32,
+        "extracted": 30,
+        "success_rate": 0.9375,
+        "mean_net_removed": 6.7,
+        "inserted": 10
+      },
+      "gate": true
+    },
+    {
+      "case": "0014",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 846,
+        "rank_changed": 844,
+        "penalized": 682,
+        "deadlines": 0,
+        "completed": 10,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 28,
+        "success_rate": 0.875,
+        "mean_net_removed": 4.107142857142857,
+        "inserted": 2
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 6.28125,
+        "inserted": 9
+      },
+      "gate": true
+    },
+    {
+      "case": "0014",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 820,
+        "rank_changed": 817,
+        "penalized": 689,
+        "deadlines": 0,
+        "completed": 11,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 28,
+        "success_rate": 0.875,
+        "mean_net_removed": 4.285714285714286,
+        "inserted": 2
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 6.5,
+        "inserted": 11
+      },
+      "gate": true
+    },
+    {
+      "case": "0014",
+      "plan_index": 2,
+      "diagnostic": {
+        "candidates": 808,
+        "rank_changed": 806,
+        "penalized": 722,
+        "deadlines": 0,
+        "completed": 12,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 29,
+        "success_rate": 0.90625,
+        "mean_net_removed": 5.9655172413793105,
+        "inserted": 3
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 8.9375,
+        "inserted": 12
+      },
+      "gate": true
+    },
+    {
+      "case": "0015",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 985,
+        "rank_changed": 980,
+        "penalized": 786,
+        "deadlines": 0,
+        "completed": 5,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 13.5,
+        "inserted": 4
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 14.59375,
+        "inserted": 4
+      },
+      "gate": true
+    },
+    {
+      "case": "0015",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 988,
+        "rank_changed": 982,
+        "penalized": 834,
+        "deadlines": 0,
+        "completed": 8,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 29,
+        "success_rate": 0.90625,
+        "mean_net_removed": 7.655172413793103,
+        "inserted": 2
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 9.1875,
+        "inserted": 8
+      },
+      "gate": true
+    },
+    {
+      "case": "0015",
+      "plan_index": 2,
+      "diagnostic": {
+        "candidates": 994,
+        "rank_changed": 992,
+        "penalized": 860,
+        "deadlines": 0,
+        "completed": 6,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 9.375,
+        "inserted": 0
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 12.8125,
+        "inserted": 6
+      },
+      "gate": true
+    },
+    {
+      "case": "0027",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 267,
+        "rank_changed": 261,
+        "penalized": 190,
+        "deadlines": 0,
+        "completed": 8,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 31,
+        "success_rate": 0.96875,
+        "mean_net_removed": 6.483870967741935,
+        "inserted": 4
+      },
+      "new": {
+        "n": 32,
+        "extracted": 31,
+        "success_rate": 0.96875,
+        "mean_net_removed": 7.548387096774194,
+        "inserted": 8
+      },
+      "gate": true
+    },
+    {
+      "case": "0027",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 259,
+        "rank_changed": 252,
+        "penalized": 202,
+        "deadlines": 0,
+        "completed": 6,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 15,
+        "success_rate": 0.46875,
+        "mean_net_removed": 4.533333333333333,
+        "inserted": 1
+      },
+      "new": {
+        "n": 32,
+        "extracted": 24,
+        "success_rate": 0.75,
+        "mean_net_removed": 4.791666666666667,
+        "inserted": 6
+      },
+      "gate": true
+    },
+    {
+      "case": "0027",
+      "plan_index": 2,
+      "diagnostic": {
+        "candidates": 276,
+        "rank_changed": 273,
+        "penalized": 199,
+        "deadlines": 0,
+        "completed": 14,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 28,
+        "success_rate": 0.875,
+        "mean_net_removed": 6.071428571428571,
+        "inserted": 6
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 7.09375,
+        "inserted": 14
+      },
+      "gate": true
+    },
+    {
+      "case": "0030",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 656,
+        "rank_changed": 654,
+        "penalized": 460,
+        "deadlines": 0,
+        "completed": 0,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 23.84375,
+        "inserted": 0
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 27.09375,
+        "inserted": 0
+      },
+      "gate": true
+    },
+    {
+      "case": "0030",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 731,
+        "rank_changed": 730,
+        "penalized": 512,
+        "deadlines": 0,
+        "completed": 0,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 27,
+        "success_rate": 0.84375,
+        "mean_net_removed": 11.37037037037037,
+        "inserted": 0
+      },
+      "new": {
+        "n": 32,
+        "extracted": 29,
+        "success_rate": 0.90625,
+        "mean_net_removed": 15.0,
+        "inserted": 0
+      },
+      "gate": true
+    },
+    {
+      "case": "0030",
+      "plan_index": 2,
+      "diagnostic": {
+        "candidates": 739,
+        "rank_changed": 734,
+        "penalized": 550,
+        "deadlines": 0,
+        "completed": 9,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 24,
+        "success_rate": 0.75,
+        "mean_net_removed": 10.5,
+        "inserted": 3
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 11.75,
+        "inserted": 9
+      },
+      "gate": true
+    },
+    {
+      "case": "0034",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 648,
+        "rank_changed": 642,
+        "penalized": 425,
+        "deadlines": 0,
+        "completed": 6,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 28,
+        "success_rate": 0.875,
+        "mean_net_removed": 11.571428571428571,
+        "inserted": 1
+      },
+      "new": {
+        "n": 32,
+        "extracted": 28,
+        "success_rate": 0.875,
+        "mean_net_removed": 14.142857142857142,
+        "inserted": 6
+      },
+      "gate": true
+    },
+    {
+      "case": "0034",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 711,
+        "rank_changed": 708,
+        "penalized": 555,
+        "deadlines": 0,
+        "completed": 3,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 24,
+        "success_rate": 0.75,
+        "mean_net_removed": 11.25,
+        "inserted": 2
+      },
+      "new": {
+        "n": 32,
+        "extracted": 30,
+        "success_rate": 0.9375,
+        "mean_net_removed": 11.3,
+        "inserted": 3
+      },
+      "gate": true
+    },
+    {
+      "case": "0034",
+      "plan_index": 2,
+      "diagnostic": {
+        "candidates": 700,
+        "rank_changed": 688,
+        "penalized": 463,
+        "deadlines": 0,
+        "completed": 7,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 23,
+        "success_rate": 0.71875,
+        "mean_net_removed": 12.73913043478261,
+        "inserted": 4
+      },
+      "new": {
+        "n": 32,
+        "extracted": 28,
+        "success_rate": 0.875,
+        "mean_net_removed": 12.964285714285714,
+        "inserted": 7
+      },
+      "gate": true
+    },
+    {
+      "case": "0042",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 653,
+        "rank_changed": 650,
+        "penalized": 518,
+        "deadlines": 0,
+        "completed": 14,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 30,
+        "success_rate": 0.9375,
+        "mean_net_removed": 9.766666666666667,
+        "inserted": 6
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 10.1875,
+        "inserted": 14
+      },
+      "gate": true
+    },
+    {
+      "case": "0042",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 643,
+        "rank_changed": 640,
+        "penalized": 544,
+        "deadlines": 0,
+        "completed": 7,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 29,
+        "success_rate": 0.90625,
+        "mean_net_removed": 6.896551724137931,
+        "inserted": 3
+      },
+      "new": {
+        "n": 32,
+        "extracted": 31,
+        "success_rate": 0.96875,
+        "mean_net_removed": 7.387096774193548,
+        "inserted": 7
+      },
+      "gate": true
+    },
+    {
+      "case": "0044",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 386,
+        "rank_changed": 383,
+        "penalized": 312,
+        "deadlines": 0,
+        "completed": 11,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 7.09375,
+        "inserted": 3
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 8.03125,
+        "inserted": 9
+      },
+      "gate": true
+    },
+    {
+      "case": "0044",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 377,
+        "rank_changed": 374,
+        "penalized": 279,
+        "deadlines": 0,
+        "completed": 14,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 28,
+        "success_rate": 0.875,
+        "mean_net_removed": 3.0357142857142856,
+        "inserted": 4
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 5.5,
+        "inserted": 13
+      },
+      "gate": true
+    },
+    {
+      "case": "0044",
+      "plan_index": 2,
+      "diagnostic": {
+        "candidates": 377,
+        "rank_changed": 374,
+        "penalized": 223,
+        "deadlines": 0,
+        "completed": 14,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 23,
+        "success_rate": 0.71875,
+        "mean_net_removed": 7.956521739130435,
+        "inserted": 8
+      },
+      "new": {
+        "n": 32,
+        "extracted": 28,
+        "success_rate": 0.875,
+        "mean_net_removed": 7.75,
+        "inserted": 14
+      },
+      "gate": true
+    },
+    {
+      "case": "0047",
+      "plan_index": 0,
+      "diagnostic": {
+        "candidates": 647,
+        "rank_changed": 647,
+        "penalized": 500,
+        "deadlines": 0,
+        "completed": 6,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 30,
+        "success_rate": 0.9375,
+        "mean_net_removed": 8.933333333333334,
+        "inserted": 1
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 10.78125,
+        "inserted": 6
+      },
+      "gate": true
+    },
+    {
+      "case": "0047",
+      "plan_index": 1,
+      "diagnostic": {
+        "candidates": 652,
+        "rank_changed": 645,
+        "penalized": 523,
+        "deadlines": 0,
+        "completed": 1,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 24,
+        "success_rate": 0.75,
+        "mean_net_removed": 7.791666666666667,
+        "inserted": 0
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 9.125,
+        "inserted": 1
+      },
+      "gate": true
+    },
+    {
+      "case": "0047",
+      "plan_index": 2,
+      "diagnostic": {
+        "candidates": 664,
+        "rank_changed": 660,
+        "penalized": 521,
+        "deadlines": 0,
+        "completed": 4,
+        "additional_rng_calls": 0,
+        "synthetic_cases": 5
+      },
+      "old": {
+        "n": 32,
+        "extracted": 29,
+        "success_rate": 0.90625,
+        "mean_net_removed": 6.413793103448276,
+        "inserted": 3
+      },
+      "new": {
+        "n": 32,
+        "extracted": 32,
+        "success_rate": 1.0,
+        "mean_net_removed": 8.1875,
+        "inserted": 4
+      },
+      "gate": true
+    }
+  ],
+  "eligible_long_cases": [
+    "0014",
+    "0015",
+    "0030",
+    "0034",
+    "0042",
+    "0047"
+  ],
+  "evaluation_gate": true
+}

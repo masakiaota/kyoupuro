@@ -1,0 +1,34 @@
+/* 3画面の文言・位置・文字寸法を同じ基準で描画する。スクロールバーの有無でも横に動かさない。 */
+html { scrollbar-gutter: stable; }
+.app-navigation { padding: 10px 12px 8px; }
+.app-navigation .view-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  box-sizing: border-box;
+  width: min(520px, 100%);
+  height: 34px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  background: #fff;
+}
+.app-navigation .view-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0;
+  color: #3f4652;
+  text-decoration: none;
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
+.app-navigation .view-tab span:first-child { font-size: 12px; opacity: .9; }
+.app-navigation .view-tab.active { color: #fff; background: #155e63; }
+.app-navigation .view-tab:focus-visible { outline: 2px solid #59aab1; outline-offset: -3px; }
+@media (max-width: 400px) { .app-navigation .view-tab { gap: 4px; font-size: 11px; } }

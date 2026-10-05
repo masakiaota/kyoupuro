@@ -1,0 +1,3502 @@
+[
+  {
+    "case": "0000.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 180.0
+    }
+  },
+  {
+    "case": "0001.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 358.0
+    }
+  },
+  {
+    "case": "0002.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 163.0
+    }
+  },
+  {
+    "case": "0003.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 141.0
+    }
+  },
+  {
+    "case": "0004.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 167.0
+    }
+  },
+  {
+    "case": "0005.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 213.0
+    }
+  },
+  {
+    "case": "0006.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 255.0
+    }
+  },
+  {
+    "case": "0007.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 151.0
+    }
+  },
+  {
+    "case": "0008.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 157.0
+    }
+  },
+  {
+    "case": "0009.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 312.0
+    }
+  },
+  {
+    "case": "0010.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 245.0
+    }
+  },
+  {
+    "case": "0011.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 157.0
+    }
+  },
+  {
+    "case": "0012.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 234.0
+    }
+  },
+  {
+    "case": "0013.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 195.0
+    }
+  },
+  {
+    "case": "0014.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 202.0
+    }
+  },
+  {
+    "case": "0015.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 109.0
+    }
+  },
+  {
+    "case": "0016.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 214.0
+    }
+  },
+  {
+    "case": "0017.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 302.0
+    }
+  },
+  {
+    "case": "0018.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 308.0
+    }
+  },
+  {
+    "case": "0019.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 358.0
+    }
+  },
+  {
+    "case": "0020.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 265.0
+    }
+  },
+  {
+    "case": "0021.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 340.0
+    }
+  },
+  {
+    "case": "0022.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 399.0
+    }
+  },
+  {
+    "case": "0023.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 298.0
+    }
+  },
+  {
+    "case": "0024.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 295.0
+    }
+  },
+  {
+    "case": "0025.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 207.0
+    }
+  },
+  {
+    "case": "0026.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 229.0
+    }
+  },
+  {
+    "case": "0027.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 223.0
+    }
+  },
+  {
+    "case": "0028.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 119.0
+    }
+  },
+  {
+    "case": "0029.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 274.0
+    }
+  },
+  {
+    "case": "0030.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 119.0
+    }
+  },
+  {
+    "case": "0031.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 299.0
+    }
+  },
+  {
+    "case": "0032.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 342.0
+    }
+  },
+  {
+    "case": "0033.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 242.0
+    }
+  },
+  {
+    "case": "0034.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 283.0
+    }
+  },
+  {
+    "case": "0035.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 181.0
+    }
+  },
+  {
+    "case": "0036.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 291.0
+    }
+  },
+  {
+    "case": "0037.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 108.0
+    }
+  },
+  {
+    "case": "0038.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 189.0
+    }
+  },
+  {
+    "case": "0039.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 142.0
+    }
+  },
+  {
+    "case": "0040.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 250.0
+    }
+  },
+  {
+    "case": "0041.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 193.0
+    }
+  },
+  {
+    "case": "0042.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 150.0
+    }
+  },
+  {
+    "case": "0043.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 227.0
+    }
+  },
+  {
+    "case": "0044.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 244.0
+    }
+  },
+  {
+    "case": "0045.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 286.0
+    }
+  },
+  {
+    "case": "0046.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 247.0
+    }
+  },
+  {
+    "case": "0047.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 280.0
+    }
+  },
+  {
+    "case": "0048.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 214.0
+    }
+  },
+  {
+    "case": "0049.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 341.0
+    }
+  },
+  {
+    "case": "0050.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 392.0
+    }
+  },
+  {
+    "case": "0051.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 166.0
+    }
+  },
+  {
+    "case": "0052.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 234.0
+    }
+  },
+  {
+    "case": "0053.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 187.0
+    }
+  },
+  {
+    "case": "0054.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 226.0
+    }
+  },
+  {
+    "case": "0055.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 129.0
+    }
+  },
+  {
+    "case": "0056.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 240.0
+    }
+  },
+  {
+    "case": "0057.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 139.0
+    }
+  },
+  {
+    "case": "0058.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 218.0
+    }
+  },
+  {
+    "case": "0059.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 154.0
+    }
+  },
+  {
+    "case": "0060.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 345.0
+    }
+  },
+  {
+    "case": "0061.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 192.0
+    }
+  },
+  {
+    "case": "0062.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 205.0
+    }
+  },
+  {
+    "case": "0063.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 253.0
+    }
+  },
+  {
+    "case": "0064.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 157.0
+    }
+  },
+  {
+    "case": "0065.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 234.0
+    }
+  },
+  {
+    "case": "0066.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 198.0
+    }
+  },
+  {
+    "case": "0067.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 121.0
+    }
+  },
+  {
+    "case": "0068.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 243.0
+    }
+  },
+  {
+    "case": "0069.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 192.0
+    }
+  },
+  {
+    "case": "0070.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 230.0
+    }
+  },
+  {
+    "case": "0071.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 160.0
+    }
+  },
+  {
+    "case": "0072.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 149.0
+    }
+  },
+  {
+    "case": "0073.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 266.0
+    }
+  },
+  {
+    "case": "0074.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 222.0
+    }
+  },
+  {
+    "case": "0075.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 115.0
+    }
+  },
+  {
+    "case": "0076.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 311.0
+    }
+  },
+  {
+    "case": "0077.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 282.0
+    }
+  },
+  {
+    "case": "0078.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 286.0
+    }
+  },
+  {
+    "case": "0079.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 276.0
+    }
+  },
+  {
+    "case": "0080.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 301.0
+    }
+  },
+  {
+    "case": "0081.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 181.0
+    }
+  },
+  {
+    "case": "0082.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 287.0
+    }
+  },
+  {
+    "case": "0083.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 140.0
+    }
+  },
+  {
+    "case": "0084.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 168.0
+    }
+  },
+  {
+    "case": "0085.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 141.0
+    }
+  },
+  {
+    "case": "0086.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 119.0
+    }
+  },
+  {
+    "case": "0087.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 156.0
+    }
+  },
+  {
+    "case": "0088.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 179.0
+    }
+  },
+  {
+    "case": "0089.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 194.0
+    }
+  },
+  {
+    "case": "0090.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 374.0
+    }
+  },
+  {
+    "case": "0091.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 131.0
+    }
+  },
+  {
+    "case": "0092.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 179.0
+    }
+  },
+  {
+    "case": "0093.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 221.0
+    }
+  },
+  {
+    "case": "0094.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 134.0
+    }
+  },
+  {
+    "case": "0095.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 157.0
+    }
+  },
+  {
+    "case": "0096.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 174.0
+    }
+  },
+  {
+    "case": "0097.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 256.0
+    }
+  },
+  {
+    "case": "0098.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 246.0
+    }
+  },
+  {
+    "case": "0099.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 216.0
+    }
+  },
+  {
+    "case": "0100.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 134.0
+    }
+  },
+  {
+    "case": "0101.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 265.0
+    }
+  },
+  {
+    "case": "0102.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 318.0
+    }
+  },
+  {
+    "case": "0103.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 124.0
+    }
+  },
+  {
+    "case": "0104.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 393.0
+    }
+  },
+  {
+    "case": "0105.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 317.0
+    }
+  },
+  {
+    "case": "0106.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 144.0
+    }
+  },
+  {
+    "case": "0107.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 147.0
+    }
+  },
+  {
+    "case": "0108.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 161.0
+    }
+  },
+  {
+    "case": "0109.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 179.0
+    }
+  },
+  {
+    "case": "0110.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 298.0
+    }
+  },
+  {
+    "case": "0111.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 243.0
+    }
+  },
+  {
+    "case": "0112.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 146.0
+    }
+  },
+  {
+    "case": "0113.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 153.0
+    }
+  },
+  {
+    "case": "0114.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 128.0
+    }
+  },
+  {
+    "case": "0115.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 225.0
+    }
+  },
+  {
+    "case": "0116.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 170.0
+    }
+  },
+  {
+    "case": "0117.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 111.0
+    }
+  },
+  {
+    "case": "0118.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 359.0
+    }
+  },
+  {
+    "case": "0119.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 210.0
+    }
+  },
+  {
+    "case": "0120.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 278.0
+    }
+  },
+  {
+    "case": "0121.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 302.0
+    }
+  },
+  {
+    "case": "0122.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 221.0
+    }
+  },
+  {
+    "case": "0123.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 167.0
+    }
+  },
+  {
+    "case": "0124.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 263.0
+    }
+  },
+  {
+    "case": "0125.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 354.0
+    }
+  },
+  {
+    "case": "0126.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 271.0
+    }
+  },
+  {
+    "case": "0127.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 95.0
+    }
+  },
+  {
+    "case": "0128.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 258.0
+    }
+  },
+  {
+    "case": "0129.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 130.0
+    }
+  },
+  {
+    "case": "0130.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 162.0
+    }
+  },
+  {
+    "case": "0131.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 398.0
+    }
+  },
+  {
+    "case": "0132.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 159.0
+    }
+  },
+  {
+    "case": "0133.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 151.0
+    }
+  },
+  {
+    "case": "0134.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 215.0
+    }
+  },
+  {
+    "case": "0135.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 303.0
+    }
+  },
+  {
+    "case": "0136.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 224.0
+    }
+  },
+  {
+    "case": "0137.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 190.0
+    }
+  },
+  {
+    "case": "0138.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 251.0
+    }
+  },
+  {
+    "case": "0139.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 174.0
+    }
+  },
+  {
+    "case": "0140.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 201.0
+    }
+  },
+  {
+    "case": "0141.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 187.0
+    }
+  },
+  {
+    "case": "0142.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 145.0
+    }
+  },
+  {
+    "case": "0143.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 174.0
+    }
+  },
+  {
+    "case": "0144.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 200.0
+    }
+  },
+  {
+    "case": "0145.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 98.0
+    }
+  },
+  {
+    "case": "0146.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 400.0
+    }
+  },
+  {
+    "case": "0147.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 187.0
+    }
+  },
+  {
+    "case": "0148.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 261.0
+    }
+  },
+  {
+    "case": "0149.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 214.0
+    }
+  },
+  {
+    "case": "0150.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 290.0
+    }
+  },
+  {
+    "case": "0151.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 125.0
+    }
+  },
+  {
+    "case": "0152.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 122.0
+    }
+  },
+  {
+    "case": "0153.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 107.0
+    }
+  },
+  {
+    "case": "0154.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 226.0
+    }
+  },
+  {
+    "case": "0155.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 322.0
+    }
+  },
+  {
+    "case": "0156.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 288.0
+    }
+  },
+  {
+    "case": "0157.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 192.0
+    }
+  },
+  {
+    "case": "0158.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 325.0
+    }
+  },
+  {
+    "case": "0159.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 166.0
+    }
+  },
+  {
+    "case": "0160.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 168.0
+    }
+  },
+  {
+    "case": "0161.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 129.0
+    }
+  },
+  {
+    "case": "0162.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 274.0
+    }
+  },
+  {
+    "case": "0163.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 238.0
+    }
+  },
+  {
+    "case": "0164.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 192.0
+    }
+  },
+  {
+    "case": "0165.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 209.0
+    }
+  },
+  {
+    "case": "0166.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 352.0
+    }
+  },
+  {
+    "case": "0167.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 196.0
+    }
+  },
+  {
+    "case": "0168.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 163.0
+    }
+  },
+  {
+    "case": "0169.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 132.0
+    }
+  },
+  {
+    "case": "0170.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 284.0
+    }
+  },
+  {
+    "case": "0171.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 175.0
+    }
+  },
+  {
+    "case": "0172.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 179.0
+    }
+  },
+  {
+    "case": "0173.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 284.0
+    }
+  },
+  {
+    "case": "0174.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 274.0
+    }
+  },
+  {
+    "case": "0175.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 291.0
+    }
+  },
+  {
+    "case": "0176.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 200.0
+    }
+  },
+  {
+    "case": "0177.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 140.0
+    }
+  },
+  {
+    "case": "0178.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 385.0
+    }
+  },
+  {
+    "case": "0179.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 307.0
+    }
+  },
+  {
+    "case": "0180.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 309.0
+    }
+  },
+  {
+    "case": "0181.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 284.0
+    }
+  },
+  {
+    "case": "0182.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 158.0
+    }
+  },
+  {
+    "case": "0183.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 377.0
+    }
+  },
+  {
+    "case": "0184.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 152.0
+    }
+  },
+  {
+    "case": "0185.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 398.0
+    }
+  },
+  {
+    "case": "0186.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 133.0
+    }
+  },
+  {
+    "case": "0187.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 355.0
+    }
+  },
+  {
+    "case": "0188.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 235.0
+    }
+  },
+  {
+    "case": "0189.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 299.0
+    }
+  },
+  {
+    "case": "0190.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 225.0
+    }
+  },
+  {
+    "case": "0191.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 146.0
+    }
+  },
+  {
+    "case": "0192.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 289.0
+    }
+  },
+  {
+    "case": "0193.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 333.0
+    }
+  },
+  {
+    "case": "0194.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 160.0
+    }
+  },
+  {
+    "case": "0195.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 107.0
+    }
+  },
+  {
+    "case": "0196.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 121.0
+    }
+  },
+  {
+    "case": "0197.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 316.0
+    }
+  },
+  {
+    "case": "0198.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 247.0
+    }
+  },
+  {
+    "case": "0199.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 339.0
+    }
+  },
+  {
+    "case": "0200.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 140.0
+    }
+  },
+  {
+    "case": "0201.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 162.0
+    }
+  },
+  {
+    "case": "0202.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 296.0
+    }
+  },
+  {
+    "case": "0203.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 103.0
+    }
+  },
+  {
+    "case": "0204.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 246.0
+    }
+  },
+  {
+    "case": "0205.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 338.0
+    }
+  },
+  {
+    "case": "0206.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 128.0
+    }
+  },
+  {
+    "case": "0207.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 228.0
+    }
+  },
+  {
+    "case": "0208.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 240.0
+    }
+  },
+  {
+    "case": "0209.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 239.0
+    }
+  },
+  {
+    "case": "0210.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 152.0
+    }
+  },
+  {
+    "case": "0211.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 221.0
+    }
+  },
+  {
+    "case": "0212.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 188.0
+    }
+  },
+  {
+    "case": "0213.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 143.0
+    }
+  },
+  {
+    "case": "0214.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 214.0
+    }
+  },
+  {
+    "case": "0215.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 275.0
+    }
+  },
+  {
+    "case": "0216.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 129.0
+    }
+  },
+  {
+    "case": "0217.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 173.0
+    }
+  },
+  {
+    "case": "0218.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 140.0
+    }
+  },
+  {
+    "case": "0219.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 351.0
+    }
+  },
+  {
+    "case": "0220.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 257.0
+    }
+  },
+  {
+    "case": "0221.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 327.0
+    }
+  },
+  {
+    "case": "0222.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 142.0
+    }
+  },
+  {
+    "case": "0223.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 110.0
+    }
+  },
+  {
+    "case": "0224.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 99.0
+    }
+  },
+  {
+    "case": "0225.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 362.0
+    }
+  },
+  {
+    "case": "0226.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 189.0
+    }
+  },
+  {
+    "case": "0227.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 290.0
+    }
+  },
+  {
+    "case": "0228.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 239.0
+    }
+  },
+  {
+    "case": "0229.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 143.0
+    }
+  },
+  {
+    "case": "0230.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 262.0
+    }
+  },
+  {
+    "case": "0231.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 245.0
+    }
+  },
+  {
+    "case": "0232.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 341.0
+    }
+  },
+  {
+    "case": "0233.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 282.0
+    }
+  },
+  {
+    "case": "0234.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 155.0
+    }
+  },
+  {
+    "case": "0235.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 189.0
+    }
+  },
+  {
+    "case": "0236.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 136.0
+    }
+  },
+  {
+    "case": "0237.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 238.0
+    }
+  },
+  {
+    "case": "0238.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 254.0
+    }
+  },
+  {
+    "case": "0239.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 221.0
+    }
+  },
+  {
+    "case": "0240.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 306.0
+    }
+  },
+  {
+    "case": "0241.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 123.0
+    }
+  },
+  {
+    "case": "0242.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 103.0
+    }
+  },
+  {
+    "case": "0243.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 240.0
+    }
+  },
+  {
+    "case": "0244.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 120.0
+    }
+  },
+  {
+    "case": "0245.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 129.0
+    }
+  },
+  {
+    "case": "0246.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 135.0
+    }
+  },
+  {
+    "case": "0247.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 109.0
+    }
+  },
+  {
+    "case": "0248.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 160.0
+    }
+  },
+  {
+    "case": "0249.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 140.0
+    }
+  },
+  {
+    "case": "0250.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 329.0
+    }
+  },
+  {
+    "case": "0251.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 182.0
+    }
+  },
+  {
+    "case": "0252.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 93.0
+    }
+  },
+  {
+    "case": "0253.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 260.0
+    }
+  },
+  {
+    "case": "0254.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 166.0
+    }
+  },
+  {
+    "case": "0255.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 255.0
+    }
+  },
+  {
+    "case": "0256.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 315.0
+    }
+  },
+  {
+    "case": "0257.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 167.0
+    }
+  },
+  {
+    "case": "0258.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 113.0
+    }
+  },
+  {
+    "case": "0259.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 147.0
+    }
+  },
+  {
+    "case": "0260.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 251.0
+    }
+  },
+  {
+    "case": "0261.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 316.0
+    }
+  },
+  {
+    "case": "0262.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 284.0
+    }
+  },
+  {
+    "case": "0263.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 297.0
+    }
+  },
+  {
+    "case": "0264.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 98.0
+    }
+  },
+  {
+    "case": "0265.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 97.0
+    }
+  },
+  {
+    "case": "0266.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 256.0
+    }
+  },
+  {
+    "case": "0267.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 217.0
+    }
+  },
+  {
+    "case": "0268.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 388.0
+    }
+  },
+  {
+    "case": "0269.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 127.0
+    }
+  },
+  {
+    "case": "0270.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 126.0
+    }
+  },
+  {
+    "case": "0271.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 189.0
+    }
+  },
+  {
+    "case": "0272.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 247.0
+    }
+  },
+  {
+    "case": "0273.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 192.0
+    }
+  },
+  {
+    "case": "0274.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 374.0
+    }
+  },
+  {
+    "case": "0275.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 168.0
+    }
+  },
+  {
+    "case": "0276.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 138.0
+    }
+  },
+  {
+    "case": "0277.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 191.0
+    }
+  },
+  {
+    "case": "0278.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 145.0
+    }
+  },
+  {
+    "case": "0279.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 247.0
+    }
+  },
+  {
+    "case": "0280.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 149.0
+    }
+  },
+  {
+    "case": "0281.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 123.0
+    }
+  },
+  {
+    "case": "0282.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 322.0
+    }
+  },
+  {
+    "case": "0283.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 142.0
+    }
+  },
+  {
+    "case": "0284.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 161.0
+    }
+  },
+  {
+    "case": "0285.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 214.0
+    }
+  },
+  {
+    "case": "0286.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 286.0
+    }
+  },
+  {
+    "case": "0287.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 130.0
+    }
+  },
+  {
+    "case": "0288.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 155.0
+    }
+  },
+  {
+    "case": "0289.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 114.0
+    }
+  },
+  {
+    "case": "0290.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 146.0
+    }
+  },
+  {
+    "case": "0291.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 183.0
+    }
+  },
+  {
+    "case": "0292.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 207.0
+    }
+  },
+  {
+    "case": "0293.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 124.0
+    }
+  },
+  {
+    "case": "0294.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 247.0
+    }
+  },
+  {
+    "case": "0295.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 169.0
+    }
+  },
+  {
+    "case": "0296.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 159.0
+    }
+  },
+  {
+    "case": "0297.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 101.0
+    }
+  },
+  {
+    "case": "0298.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 287.0
+    }
+  },
+  {
+    "case": "0299.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 128.0
+    }
+  },
+  {
+    "case": "0300.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 268.0
+    }
+  },
+  {
+    "case": "0301.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 162.0
+    }
+  },
+  {
+    "case": "0302.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 127.0
+    }
+  },
+  {
+    "case": "0303.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 314.0
+    }
+  },
+  {
+    "case": "0304.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 284.0
+    }
+  },
+  {
+    "case": "0305.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 287.0
+    }
+  },
+  {
+    "case": "0306.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 137.0
+    }
+  },
+  {
+    "case": "0307.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 107.0
+    }
+  },
+  {
+    "case": "0308.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 190.0
+    }
+  },
+  {
+    "case": "0309.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 101.0
+    }
+  },
+  {
+    "case": "0310.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 172.0
+    }
+  },
+  {
+    "case": "0311.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 122.0
+    }
+  },
+  {
+    "case": "0312.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 262.0
+    }
+  },
+  {
+    "case": "0313.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 157.0
+    }
+  },
+  {
+    "case": "0314.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 202.0
+    }
+  },
+  {
+    "case": "0315.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 323.0
+    }
+  },
+  {
+    "case": "0316.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 296.0
+    }
+  },
+  {
+    "case": "0317.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 197.0
+    }
+  },
+  {
+    "case": "0318.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 177.0
+    }
+  },
+  {
+    "case": "0319.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 187.0
+    }
+  },
+  {
+    "case": "0320.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 377.0
+    }
+  },
+  {
+    "case": "0321.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 236.0
+    }
+  },
+  {
+    "case": "0322.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 204.0
+    }
+  },
+  {
+    "case": "0323.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 303.0
+    }
+  },
+  {
+    "case": "0324.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 131.0
+    }
+  },
+  {
+    "case": "0325.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 182.0
+    }
+  },
+  {
+    "case": "0326.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 183.0
+    }
+  },
+  {
+    "case": "0327.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 130.0
+    }
+  },
+  {
+    "case": "0328.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 226.0
+    }
+  },
+  {
+    "case": "0329.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 316.0
+    }
+  },
+  {
+    "case": "0330.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 232.0
+    }
+  },
+  {
+    "case": "0331.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 212.0
+    }
+  },
+  {
+    "case": "0332.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 174.0
+    }
+  },
+  {
+    "case": "0333.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 185.0
+    }
+  },
+  {
+    "case": "0334.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 218.0
+    }
+  },
+  {
+    "case": "0335.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 298.0
+    }
+  },
+  {
+    "case": "0336.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 275.0
+    }
+  },
+  {
+    "case": "0337.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 322.0
+    }
+  },
+  {
+    "case": "0338.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 198.0
+    }
+  },
+  {
+    "case": "0339.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 355.0
+    }
+  },
+  {
+    "case": "0340.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 158.0
+    }
+  },
+  {
+    "case": "0341.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 251.0
+    }
+  },
+  {
+    "case": "0342.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 238.0
+    }
+  },
+  {
+    "case": "0343.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 240.0
+    }
+  },
+  {
+    "case": "0344.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 254.0
+    }
+  },
+  {
+    "case": "0345.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 248.0
+    }
+  },
+  {
+    "case": "0346.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 205.0
+    }
+  },
+  {
+    "case": "0347.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 185.0
+    }
+  },
+  {
+    "case": "0348.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 123.0
+    }
+  },
+  {
+    "case": "0349.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 261.0
+    }
+  },
+  {
+    "case": "0350.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 334.0
+    }
+  },
+  {
+    "case": "0351.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 105.0
+    }
+  },
+  {
+    "case": "0352.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 245.0
+    }
+  },
+  {
+    "case": "0353.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 268.0
+    }
+  },
+  {
+    "case": "0354.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 194.0
+    }
+  },
+  {
+    "case": "0355.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 100.0
+    }
+  },
+  {
+    "case": "0356.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 118.0
+    }
+  },
+  {
+    "case": "0357.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 200.0
+    }
+  },
+  {
+    "case": "0358.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 122.0
+    }
+  },
+  {
+    "case": "0359.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 397.0
+    }
+  },
+  {
+    "case": "0360.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 269.0
+    }
+  },
+  {
+    "case": "0361.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 210.0
+    }
+  },
+  {
+    "case": "0362.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 138.0
+    }
+  },
+  {
+    "case": "0363.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 261.0
+    }
+  },
+  {
+    "case": "0364.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 286.0
+    }
+  },
+  {
+    "case": "0365.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 125.0
+    }
+  },
+  {
+    "case": "0366.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 207.0
+    }
+  },
+  {
+    "case": "0367.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 194.0
+    }
+  },
+  {
+    "case": "0368.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 276.0
+    }
+  },
+  {
+    "case": "0369.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 121.0
+    }
+  },
+  {
+    "case": "0370.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 199.0
+    }
+  },
+  {
+    "case": "0371.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 140.0
+    }
+  },
+  {
+    "case": "0372.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 124.0
+    }
+  },
+  {
+    "case": "0373.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 171.0
+    }
+  },
+  {
+    "case": "0374.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 309.0
+    }
+  },
+  {
+    "case": "0375.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 297.0
+    }
+  },
+  {
+    "case": "0376.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 256.0
+    }
+  },
+  {
+    "case": "0377.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 178.0
+    }
+  },
+  {
+    "case": "0378.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 237.0
+    }
+  },
+  {
+    "case": "0379.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 113.0
+    }
+  },
+  {
+    "case": "0380.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 308.0
+    }
+  },
+  {
+    "case": "0381.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 211.0
+    }
+  },
+  {
+    "case": "0382.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 258.0
+    }
+  },
+  {
+    "case": "0383.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 298.0
+    }
+  },
+  {
+    "case": "0384.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 280.0
+    }
+  },
+  {
+    "case": "0385.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 158.0
+    }
+  },
+  {
+    "case": "0386.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 128.0
+    }
+  },
+  {
+    "case": "0387.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 107.0
+    }
+  },
+  {
+    "case": "0388.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 222.0
+    }
+  },
+  {
+    "case": "0389.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 168.0
+    }
+  },
+  {
+    "case": "0390.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 201.0
+    }
+  },
+  {
+    "case": "0391.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 348.0
+    }
+  },
+  {
+    "case": "0392.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 239.0
+    }
+  },
+  {
+    "case": "0393.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 115.0
+    }
+  },
+  {
+    "case": "0394.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 233.0
+    }
+  },
+  {
+    "case": "0395.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 270.0
+    }
+  },
+  {
+    "case": "0396.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 355.0
+    }
+  },
+  {
+    "case": "0397.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 225.0
+    }
+  },
+  {
+    "case": "0398.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 298.0
+    }
+  },
+  {
+    "case": "0399.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 174.0
+    }
+  },
+  {
+    "case": "0400.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 250.0
+    }
+  },
+  {
+    "case": "0401.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 242.0
+    }
+  },
+  {
+    "case": "0402.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 130.0
+    }
+  },
+  {
+    "case": "0403.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 117.0
+    }
+  },
+  {
+    "case": "0404.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 113.0
+    }
+  },
+  {
+    "case": "0405.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 145.0
+    }
+  },
+  {
+    "case": "0406.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 257.0
+    }
+  },
+  {
+    "case": "0407.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 143.0
+    }
+  },
+  {
+    "case": "0408.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 284.0
+    }
+  },
+  {
+    "case": "0409.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 166.0
+    }
+  },
+  {
+    "case": "0410.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 224.0
+    }
+  },
+  {
+    "case": "0411.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 148.0
+    }
+  },
+  {
+    "case": "0412.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 185.0
+    }
+  },
+  {
+    "case": "0413.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 252.0
+    }
+  },
+  {
+    "case": "0414.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 287.0
+    }
+  },
+  {
+    "case": "0415.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 124.0
+    }
+  },
+  {
+    "case": "0416.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 259.0
+    }
+  },
+  {
+    "case": "0417.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 188.0
+    }
+  },
+  {
+    "case": "0418.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 135.0
+    }
+  },
+  {
+    "case": "0419.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 163.0
+    }
+  },
+  {
+    "case": "0420.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 158.0
+    }
+  },
+  {
+    "case": "0421.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 278.0
+    }
+  },
+  {
+    "case": "0422.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 152.0
+    }
+  },
+  {
+    "case": "0423.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 302.0
+    }
+  },
+  {
+    "case": "0424.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 381.0
+    }
+  },
+  {
+    "case": "0425.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 329.0
+    }
+  },
+  {
+    "case": "0426.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 158.0
+    }
+  },
+  {
+    "case": "0427.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 242.0
+    }
+  },
+  {
+    "case": "0428.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 182.0
+    }
+  },
+  {
+    "case": "0429.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 217.0
+    }
+  },
+  {
+    "case": "0430.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 164.0
+    }
+  },
+  {
+    "case": "0431.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 370.0
+    }
+  },
+  {
+    "case": "0432.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 256.0
+    }
+  },
+  {
+    "case": "0433.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 393.0
+    }
+  },
+  {
+    "case": "0434.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 276.0
+    }
+  },
+  {
+    "case": "0435.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 271.0
+    }
+  },
+  {
+    "case": "0436.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 267.0
+    }
+  },
+  {
+    "case": "0437.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 250.0
+    }
+  },
+  {
+    "case": "0438.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 189.0
+    }
+  },
+  {
+    "case": "0439.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 300.0
+    }
+  },
+  {
+    "case": "0440.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 207.0
+    }
+  },
+  {
+    "case": "0441.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 180.0
+    }
+  },
+  {
+    "case": "0442.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 131.0
+    }
+  },
+  {
+    "case": "0443.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 288.0
+    }
+  },
+  {
+    "case": "0444.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 120.0
+    }
+  },
+  {
+    "case": "0445.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 129.0
+    }
+  },
+  {
+    "case": "0446.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 174.0
+    }
+  },
+  {
+    "case": "0447.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 189.0
+    }
+  },
+  {
+    "case": "0448.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 144.0
+    }
+  },
+  {
+    "case": "0449.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 350.0
+    }
+  },
+  {
+    "case": "0450.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 131.0
+    }
+  },
+  {
+    "case": "0451.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 131.0
+    }
+  },
+  {
+    "case": "0452.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 183.0
+    }
+  },
+  {
+    "case": "0453.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 223.0
+    }
+  },
+  {
+    "case": "0454.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 350.0
+    }
+  },
+  {
+    "case": "0455.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 278.0
+    }
+  },
+  {
+    "case": "0456.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 321.0
+    }
+  },
+  {
+    "case": "0457.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 278.0
+    }
+  },
+  {
+    "case": "0458.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 154.0
+    }
+  },
+  {
+    "case": "0459.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 121.0
+    }
+  },
+  {
+    "case": "0460.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 167.0
+    }
+  },
+  {
+    "case": "0461.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 182.0
+    }
+  },
+  {
+    "case": "0462.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 123.0
+    }
+  },
+  {
+    "case": "0463.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 333.0
+    }
+  },
+  {
+    "case": "0464.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 137.0
+    }
+  },
+  {
+    "case": "0465.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 232.0
+    }
+  },
+  {
+    "case": "0466.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 140.0
+    }
+  },
+  {
+    "case": "0467.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 254.0
+    }
+  },
+  {
+    "case": "0468.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 107.0
+    }
+  },
+  {
+    "case": "0469.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 257.0
+    }
+  },
+  {
+    "case": "0470.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 124.0
+    }
+  },
+  {
+    "case": "0471.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 188.0
+    }
+  },
+  {
+    "case": "0472.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 194.0
+    }
+  },
+  {
+    "case": "0473.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 235.0
+    }
+  },
+  {
+    "case": "0474.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 133.0
+    }
+  },
+  {
+    "case": "0475.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 202.0
+    }
+  },
+  {
+    "case": "0476.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 124.0
+    }
+  },
+  {
+    "case": "0477.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 396.0
+    }
+  },
+  {
+    "case": "0478.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 392.0
+    }
+  },
+  {
+    "case": "0479.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 156.0
+    }
+  },
+  {
+    "case": "0480.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 193.0
+    }
+  },
+  {
+    "case": "0481.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 253.0
+    }
+  },
+  {
+    "case": "0482.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 116.0
+    }
+  },
+  {
+    "case": "0483.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 218.0
+    }
+  },
+  {
+    "case": "0484.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 313.0
+    }
+  },
+  {
+    "case": "0485.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 222.0
+    }
+  },
+  {
+    "case": "0486.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 209.0
+    }
+  },
+  {
+    "case": "0487.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 263.0
+    }
+  },
+  {
+    "case": "0488.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 254.0
+    }
+  },
+  {
+    "case": "0489.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 205.0
+    }
+  },
+  {
+    "case": "0490.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 197.0
+    }
+  },
+  {
+    "case": "0491.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 133.0
+    }
+  },
+  {
+    "case": "0492.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 134.0
+    }
+  },
+  {
+    "case": "0493.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 125.0
+    }
+  },
+  {
+    "case": "0494.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 219.0
+    }
+  },
+  {
+    "case": "0495.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 175.0
+    }
+  },
+  {
+    "case": "0496.txt",
+    "use_nn": 0,
+    "features": {
+      "floors": 140.0
+    }
+  },
+  {
+    "case": "0497.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 221.0
+    }
+  },
+  {
+    "case": "0498.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 288.0
+    }
+  },
+  {
+    "case": "0499.txt",
+    "use_nn": 1,
+    "features": {
+      "floors": 241.0
+    }
+  }
+]

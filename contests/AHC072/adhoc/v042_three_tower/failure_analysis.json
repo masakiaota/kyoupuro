@@ -1,0 +1,177 @@
+{
+  "failure_depth_counts": {
+    "initial": {
+      "insert_failed:inserted=2": 1080,
+      "insert_failed:inserted=1": 1920,
+      "insert_failed:inserted=0": 600
+    },
+    "1_tower": {
+      "insert_failed:inserted=0": 175,
+      "ok:inserted=1": 55,
+      "extract_failed:inserted=0": 1200
+    },
+    "2_tower": {
+      "insert_failed:inserted=0": 655,
+      "insert_failed:inserted=1": 55,
+      "extract_failed:inserted=0": 12600
+    },
+    "3_tower": {
+      "insert_failed:inserted=0": 7200,
+      "extract_failed:inserted=0": 32400
+    }
+  },
+  "three_tower_boundaries": [
+    {
+      "time": 24,
+      "remaining_original_T": 137,
+      "skeleton_T": 140,
+      "skeleton_complete": true,
+      "extraction_limit": 141,
+      "reinsertion_limit": 140,
+      "reinsertion_slack": 0,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "insertion_failed_with_zero_added_moves"
+    },
+    {
+      "time": 25,
+      "remaining_original_T": 136,
+      "skeleton_T": 140,
+      "skeleton_complete": true,
+      "extraction_limit": 140,
+      "reinsertion_limit": 139,
+      "reinsertion_slack": -1,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "negative_reinsertion_slack"
+    },
+    {
+      "time": 26,
+      "remaining_original_T": 135,
+      "skeleton_T": 140,
+      "skeleton_complete": false,
+      "extraction_limit": 139,
+      "reinsertion_limit": 138,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    },
+    {
+      "time": 27,
+      "remaining_original_T": 134,
+      "skeleton_T": 139,
+      "skeleton_complete": false,
+      "extraction_limit": 138,
+      "reinsertion_limit": 137,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    },
+    {
+      "time": 28,
+      "remaining_original_T": 133,
+      "skeleton_T": 138,
+      "skeleton_complete": false,
+      "extraction_limit": 137,
+      "reinsertion_limit": 136,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    },
+    {
+      "time": 29,
+      "remaining_original_T": 132,
+      "skeleton_T": 137,
+      "skeleton_complete": false,
+      "extraction_limit": 136,
+      "reinsertion_limit": 135,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    },
+    {
+      "time": 30,
+      "remaining_original_T": 131,
+      "skeleton_T": 136,
+      "skeleton_complete": false,
+      "extraction_limit": 135,
+      "reinsertion_limit": 134,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    },
+    {
+      "time": 31,
+      "remaining_original_T": 130,
+      "skeleton_T": 135,
+      "skeleton_complete": false,
+      "extraction_limit": 134,
+      "reinsertion_limit": 133,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    },
+    {
+      "time": 32,
+      "remaining_original_T": 129,
+      "skeleton_T": 134,
+      "skeleton_complete": false,
+      "extraction_limit": 133,
+      "reinsertion_limit": 132,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    },
+    {
+      "time": 33,
+      "remaining_original_T": 128,
+      "skeleton_T": 133,
+      "skeleton_complete": false,
+      "extraction_limit": 132,
+      "reinsertion_limit": 131,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    },
+    {
+      "time": 35,
+      "remaining_original_T": 126,
+      "skeleton_T": 131,
+      "skeleton_complete": false,
+      "extraction_limit": 130,
+      "reinsertion_limit": 129,
+      "reinsertion_slack": null,
+      "repaired_jumps": 9,
+      "repair_extra_commands": 17,
+      "rejection": "extraction_length_limit"
+    }
+  ],
+  "independent_boundary_enumeration": {
+    "eligible_times": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      35
+    ],
+    "non_suffix_times": [
+      34
+    ],
+    "matches": true
+  },
+  "interpretation_scope": "Saved case0060 and registered targets, ties, boundaries and length limits only; no solver rerun."
+}

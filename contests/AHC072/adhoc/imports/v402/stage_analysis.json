@@ -1,0 +1,31 @@
+{
+  "stages_sum": {
+    "raw": 105914,
+    "after": 101422,
+    "ordinary": 100431
+  },
+  "ordinary_observed": 398,
+  "completed_before_smooth": 377,
+  "times_sum_ms": {
+    "total": 1426.181,
+    "selection": 276.898,
+    "repair": 650.445,
+    "smooth": 13.799,
+    "ordinary": 76.332
+  },
+  "deadline_overrun_max_ms": 100.399,
+  "deadline_cases": [
+    "0028.txt"
+  ],
+  "initial_first_hash_matches": 100,
+  "invalid_candidate_count": 0,
+  "nn106_features_total_ms": 75.03,
+  "nn106_encode_total_ms": 149.711,
+  "accepted_raw_to_before_smooth_saved": 3426,
+  "accepted_smooth_saved": 1066,
+  "v401_initial_raw_sum": 105928,
+  "v401_ordinary_initial_saved": 1163,
+  "v401_raw_seeds": 398,
+  "v402_nonaccepted_completed": 18,
+  "v402_other_attempts": 21
+}

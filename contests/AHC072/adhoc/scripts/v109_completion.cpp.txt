@@ -1,0 +1,81 @@
+// NNの前半を再生して配送DPで完成させ、別実装で列全体を照合する。
+static Move decode_v109(uint32_t code) {
+    const int flat=code&511, r=flat/20, c=flat%20;
+    if(r>=board_info.N||c>=board_info.N)throw logic_error("prefix position");
+    return {int16_t(board_info.cell_id[r][c]),uint8_t((code>>9)&7),
+            uint8_t((code>>12)&3),uint8_t(((code>>14)&7)+1)};
+}
+static uint32_t encode_v109(Move m) {
+    return uint32_t(board_info.row[m.p]*20+board_info.col[m.p]) |
+        (uint32_t(m.k)<<9)|(uint32_t(m.d)<<12)|(uint32_t(m.l-1)<<14);
+}
+int main() {
+    ios::sync_with_stdio(false);cin.tie(nullptr);
+    try {
+        board_info.read();state_pool.prepare(board_info.cell_count);
+        nn::Input input;input.N=board_info.N;input.K=board_info.K;
+        input.C.assign(board_info.C,board_info.C+input.N);
+        const nn::Board geometry(input);
+        int episodes;cin>>episodes;
+        if(!cin||episodes<1||episodes>4)throw logic_error("episode count");
+        cout<<setprecision(10)<<'[';
+        for(int episode=0;episode<episodes;++episode) {
+            int prefix_T;cin>>prefix_T;
+            if(prefix_T<0||prefix_T>512)throw logic_error("prefix length");
+            ConstructionState completed(board_info.initial);
+            for(int t=0;t<prefix_T;++t) {
+                uint32_t code;cin>>code;completed.move(decode_v109(code));
+            }
+            array<uint32_t,400> expected{};
+            for(auto& word:expected)cin>>word;
+            if(!cin)throw logic_error("incomplete payload");
+            for(int p=0;p<board_info.cell_count;++p) {
+                const int flat=board_info.row[p]*20+board_info.col[p];
+                if(expected[flat]!=completed.state[p])throw logic_error("prefix state mismatch");
+                expected[flat]=0;
+            }
+            for(auto word:expected)if(word)throw logic_error("slime outside floor");
+            const int prefix_E=completed.E;
+            string reason="completed";v109_dp_builds=0;
+            const auto started=chrono::steady_clock::now();
+            try {
+                while(completed.E) {
+                    int source=-1,rank=-1;
+                    for(int p=0;p<board_info.cell_count;++p)if(completed.state[p]) {
+                        const int score=100*height(completed.state[p])+
+                            board_info.floor_dist[p][board_info.nest_pos_by_code[top_color_code(completed.state[p])]];
+                        if(score>rank){rank=score;source=p;}
+                    }
+                    if(source<0)throw logic_error("missing remaining tower");
+                    const int before=completed.E;
+                    DeliveryDP dp(completed.state,source);
+                    if(!dp.finish_if_reachable(completed,source)){reason="unreachable";break;}
+                    if(completed.E>=before)throw logic_error("DP did not return tower");
+                }
+            } catch(const V109Budget&) {reason="dp_build_budget";}
+            const double seconds=chrono::duration<double>(chrono::steady_clock::now()-started).count();
+            // Board::applyが全操作の合法性を検査済み。独立したNN側の操作実装でも状態を照合する。
+            nn::BoardState check(input,geometry);
+            for(Move m:completed.moves) {
+                const int p=geometry.cell_id[board_info.row[m.p]][board_info.col[m.p]];
+                check.apply(geometry,nn::Move(p,m.k,m.d,m.l));
+            }
+            if(check.E!=completed.E)throw logic_error("independent replay remaining");
+            for(int p=0;p<geometry.cell_count;++p) {
+                const auto [r,c]=geometry.coordinates[p];
+                if(check.bits[p]!=completed.state[board_info.cell_id[r][c]])throw logic_error("independent replay state");
+            }
+            if(episode)cout<<',';
+            cout<<"{\"prefix_T\":"<<prefix_T<<",\"prefix_E\":"<<prefix_E
+                <<",\"T\":"<<completed.moves.size()<<",\"E\":"<<completed.E
+                <<",\"dp_builds\":"<<v109_dp_builds<<",\"dp_seconds\":"<<seconds
+                <<",\"status\":\""<<reason<<"\",\"verified\":true,\"tail\":[";
+            for(size_t i=prefix_T;i<completed.moves.size();++i) {
+                if(i>size_t(prefix_T))cout<<',';cout<<encode_v109(completed.moves[i]);
+            }
+            cout<<"]}";
+        }
+        if(state_pool.free_count!=4)throw logic_error("state pool leak");
+        cout<<"]\n";
+    } catch(const exception& e) {cerr<<e.what()<<'\n';return 1;}
+}

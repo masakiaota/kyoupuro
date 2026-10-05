@@ -1,0 +1,8 @@
+{
+  "partial": true,
+  "smoke_case": "0000.txt",
+  "modes": [
+    "local",
+    "production"
+  ]
+}

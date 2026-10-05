@@ -1,0 +1,143 @@
+{
+  "parent": {
+    "400": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 7984
+    }
+  },
+  "v035": {
+    "32": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5368
+    },
+    "64": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5804
+    },
+    "96": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5396
+    },
+    "128": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5376
+    },
+    "160": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5376
+    },
+    "192": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5412
+    },
+    "224": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5372
+    },
+    "256": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5376
+    },
+    "288": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5376
+    },
+    "320": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5412
+    },
+    "352": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5372
+    },
+    "384": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5376
+    },
+    "400": {
+      "mono_color_transfers": 1,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5376
+    }
+  },
+  "v036": {
+    "32": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5436
+    },
+    "64": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5804
+    },
+    "96": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5424
+    },
+    "128": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5444
+    },
+    "160": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5440
+    },
+    "192": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5404
+    },
+    "224": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5408
+    },
+    "256": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5444
+    },
+    "288": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5440
+    },
+    "320": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5404
+    },
+    "352": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5408
+    },
+    "384": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5444
+    },
+    "400": {
+      "mono_color_transfers": 0,
+      "clock_check_transfers": 2,
+      "text_bytes_to_next_symbol": 5440
+    }
+  }
+}

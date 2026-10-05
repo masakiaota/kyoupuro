@@ -1,0 +1,285 @@
+// v032_state_capacity_atcoder_bench.cpp
+// AtCoderコードテスト: C++23 (GCC 15.2.0)、標準入力は空でよい。
+// 事前確保した領域へのコピーを比較する。探索・解の生成は行わない。
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC optimize("O3,unroll-loops,fast-math")
+#endif
+#include <bits/stdc++.h>
+#include <time.h>
+using namespace std;
+
+constexpr int snapshots = 8;
+constexpr int rounds = 4;
+constexpr int iterations = 16384;
+
+[[noreturn]] void fail(const char* message) {
+    cerr << "ERROR: " << message << '\n';
+    exit(1);
+}
+uint64_t cpu_ns() {
+    timespec t{};
+    if (clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &t)) fail("CPU clock");
+    return uint64_t(t.tv_sec) * 1000000000ULL + t.tv_nsec;
+}
+uint32_t next_random(uint32_t& x) {
+    x ^= x << 13; x ^= x >> 17; x ^= x << 5;
+    return x;
+}
+
+struct Tower {
+    uint32_t bits = 0;
+    static constexpr array<uint32_t, 9> mask{
+        0u, 0xfu, 0xffu, 0xfffu, 0xffffu, 0xfffffu,
+        0xffffffu, 0xfffffffu, 0xffffffffu};
+    int height() const { return (bit_width(bits) + 3) / 4; }
+    int home(int c, int h) {
+        if (c < 0) return 0;
+        const uint32_t different = (bits ^ (0x11111111u * uint32_t(c + 1))) & mask[h];
+        const int remaining = (bit_width(different) + 3) / 4;
+        bits &= mask[remaining];
+        return h - remaining;
+    }
+};
+struct Job { int p, q, k, nest_p, nest_q; };
+
+// v000の塔操作。着地点と巣は指定済みで、Board.rayの参照は含めない。
+inline int apply_towers(Tower* a, const Job& job) {
+    Tower src = a[job.p], dst = a[job.q];
+    const int h = src.height(), g = dst.height(), n = h - job.k;
+    uint32_t flying = uint32_t(uint64_t(src.bits) >> (4 * job.k));
+    src.bits &= Tower::mask[job.k];
+    flying = ((flying >> 4) & 0x0f0f0f0fu) | ((flying & 0x0f0f0f0fu) << 4);
+    flying = uint32_t(uint64_t(byteswap(flying)) >> (4 * (8 - n)));
+    dst.bits |= uint32_t(uint64_t(flying) << (4 * g));
+    const int homed = src.home(job.nest_p, job.k) + dst.home(job.nest_q, g + n);
+    a[job.p] = src; a[job.q] = dst;
+    return homed;
+}
+
+// 全コピー・全書き戻しを最適化で消させない。空asm自体は命令を追加しない。
+inline void observe(const void* p) { asm volatile("" : : "r"(p) : "memory"); }
+inline uint64_t digest(const Tower* a, const Job& j, int homed) {
+    return uint64_t(a[j.p].bits) + (uint64_t(a[j.q].bits) << 1)
+         + uint64_t(homed) * 1000000007ULL;
+}
+template<int capacity> struct FixedState { array<Tower, capacity> tower{}; };
+
+// noipaは計測の呼び出し元からの特殊化を防ぐ。内側の通常の最適化は許可する。
+// 固定長は型から容量を知り、ぴったり版の床数は実行時の値のままになる。
+template<int capacity, bool with_op>
+[[gnu::noipa]] uint64_t fixed_kernel(FixedState<capacity>* __restrict__ dst,
+        const FixedState<capacity>* __restrict__ src, const Job* __restrict__ jobs,
+        int pool_mask, int count) {
+    uint64_t sum = 0;
+    for (int i = 0; i < count; ++i) {
+        auto& state = dst[i & pool_mask];
+        state = src[i & (snapshots - 1)];
+        observe(state.tower.data());
+        const Job& job = jobs[i & (snapshots - 1)];
+        int homed = 0;
+        if constexpr (with_op) {
+            homed = apply_towers(state.tower.data(), job);
+            observe(state.tower.data());
+        }
+        sum += digest(state.tower.data(), job, homed);
+    }
+    return sum;
+}
+template<bool with_op>
+[[gnu::noipa]] uint64_t exact_kernel(Tower* __restrict__ dst,
+        const Tower* __restrict__ src, const Job* __restrict__ jobs,
+        int floors, int pool_mask, int count) {
+    uint64_t sum = 0;
+    const size_t bytes = size_t(floors) * sizeof(Tower);
+    for (int i = 0; i < count; ++i) {
+        Tower* state = dst + size_t(i & pool_mask) * floors;
+        memcpy(state, src + size_t(i & (snapshots - 1)) * floors, bytes);
+        observe(state);
+        const Job& job = jobs[i & (snapshots - 1)];
+        int homed = 0;
+        if constexpr (with_op) {
+            homed = apply_towers(state, job);
+            observe(state);
+        }
+        sum += digest(state, job, homed);
+    }
+    return sum;
+}
+
+Tower random_tower(uint32_t& rng, int height) {
+    Tower t;
+    for (int i = 0; i < height; ++i) t.bits = t.bits * 16 + next_random(rng) % 12 + 1;
+    return t;
+}
+// 検証は計測外で、独立した色の配列を使う。
+int reference_apply(Tower* state, const Job& job) {
+    vector<int> src, dst;
+    for (auto [p, out] : {pair{job.p, &src}, pair{job.q, &dst}})
+        for (uint32_t b = state[p].bits; b; b >>= 4) out->push_back(int(b & 15) - 1);
+    for (int i = int(src.size()) - 1; i >= job.k; --i) dst.push_back(src[i]);
+    src.resize(job.k);
+    int homed = 0;
+    for (auto [p, nest, colors] : {tuple{job.p, job.nest_p, &src}, tuple{job.q, job.nest_q, &dst}}) {
+        while (!colors->empty() && colors->back() == nest) { colors->pop_back(); ++homed; }
+        uint32_t b = 0;
+        for (auto it = colors->rbegin(); it != colors->rend(); ++it) b = b * 16 + *it + 1;
+        state[p].bits = b;
+    }
+    return homed;
+}
+template<class T> double median(array<T, rounds> a) {
+    sort(a.begin(), a.end());
+    return (double(a[1]) + double(a[2])) * 0.5;
+}
+
+uint64_t total_checksum = 0;
+int verified_conditions = 0;
+
+template<int capacity> struct Buffers {
+    vector<FixedState<capacity>> fixed_src, fixed_dst;
+    vector<Tower> exact_src, exact_dst;
+    array<Job, snapshots> jobs;
+    Buffers(int floors, int pool) : fixed_src(snapshots), fixed_dst(pool),
+        exact_src(size_t(snapshots) * floors), exact_dst(size_t(pool) * floors) {
+        uint32_t rng = uint32_t(20260927 + floors * 31);
+        for (int s = 0; s < snapshots; ++s) {
+            auto& a = fixed_src[s].tower;
+            for (int p = 0; p < floors; ++p) a[p] = random_tower(rng, int(next_random(rng) % 9));
+            const int p = int(next_random(rng) % floors);
+            const int q = (p + 1 + int(next_random(rng) % (floors - 1))) % floors;
+            const int h = s + 1, k = s / 2, n = h - k;
+            const int g = s % (9 - n);
+            a[p] = random_tower(rng, h); a[q] = random_tower(rng, g);
+            const int nest_p = k && s % 2 ? int((a[p].bits >> (4 * (k - 1))) & 15) - 1 : -1;
+            const int nest_q = s % 3 ? int((a[p].bits >> (4 * k)) & 15) - 1 : -1;
+            jobs[s] = {p, q, k, nest_p, nest_q};
+            copy_n(a.data(), floors, exact_src.data() + size_t(s) * floors);
+        }
+    }
+    template<bool with_op> uint64_t run(int method, int floors, int pool, int count) {
+        if (method == 0) return fixed_kernel<capacity, with_op>(fixed_dst.data(), fixed_src.data(), jobs.data(), pool - 1, count);
+        return exact_kernel<with_op>(exact_dst.data(), exact_src.data(), jobs.data(), floors, pool - 1, count);
+    }
+};
+
+template<int capacity, bool with_op>
+void measure(Buffers<capacity>& b, int floors, int pool, bool check_only) {
+    const auto original = b.fixed_src;
+    auto expected = original;
+    array<uint64_t, snapshots> values{};
+    for (int s = 0; s < snapshots; ++s) {
+        int homed = 0;
+        if constexpr (with_op) homed = reference_apply(expected[s].tower.data(), b.jobs[s]);
+        values[s] = digest(expected[s].tower.data(), b.jobs[s], homed);
+    }
+    auto expected_sum = [&](int count) {
+        return accumulate(values.begin(), values.end(), uint64_t{0}) * (count / snapshots)
+             + accumulate(values.begin(), values.begin() + count % snapshots, uint64_t{0});
+    };
+    const int count = check_only ? max(16, pool) : iterations;
+    const int warmup = max(4096, pool);
+    const uint64_t expected_total = expected_sum(count), expected_warmup = expected_sum(warmup);
+    array<array<uint64_t, rounds>, 2> times{};
+    double max_wall_over_cpu = 1;
+    for (int r = 0; r < (check_only ? 1 : rounds); ++r) {
+        for (int order = 0; order < 2; ++order) {
+            const int method = (r + order + floors + pool) & 1;
+            if (check_only) {
+                if (b.template run<with_op>(method, floors, pool, count) != expected_total) fail("checksum");
+                continue;
+            }
+            if (b.template run<with_op>(method, floors, pool, warmup) != expected_warmup) fail("warmup checksum");
+            const auto w0 = chrono::steady_clock::now();
+            const uint64_t c0 = cpu_ns();
+            const uint64_t sum = b.template run<with_op>(method, floors, pool, count);
+            const uint64_t c1 = cpu_ns();
+            const auto w1 = chrono::steady_clock::now();
+            if (sum != expected_total) fail("measured checksum");
+            times[method][r] = c1 - c0;
+            const double wall = chrono::duration<double, nano>(w1 - w0).count();
+            max_wall_over_cpu = max(max_wall_over_cpu, wall / double(c1 - c0));
+            total_checksum ^= sum + uint64_t(r * 2 + method);
+        }
+    }
+    for (int slot = 0; slot < pool; ++slot) {
+        const int last = count - 1 - ((count - 1 - slot) & (pool - 1));
+        const auto& want = expected[last & (snapshots - 1)].tower;
+        if (memcmp(b.fixed_dst[slot].tower.data(), want.data(), capacity * sizeof(Tower))) fail("fixed full state");
+        if (memcmp(b.exact_dst.data() + size_t(slot) * floors, want.data(), floors * sizeof(Tower))) fail("exact full state");
+    }
+    for (int s = 0; s < snapshots; ++s) {
+        if (memcmp(b.fixed_src[s].tower.data(), original[s].tower.data(), capacity * sizeof(Tower))) fail("fixed source changed");
+        if (memcmp(b.exact_src.data() + size_t(s) * floors, original[s].tower.data(), floors * sizeof(Tower))) fail("exact source changed");
+    }
+    ++verified_conditions;
+    if (check_only) return;
+    const double f = median(times[0]) / count, e = median(times[1]) / count;
+    int exact_wins = 0;
+    for (int r = 0; r < rounds; ++r) exact_wins += times[1][r] < times[0][r];
+    cout << floors << ',' << capacity << ',' << pool << ',' << (with_op ? "copy_tower_op" : "copy")
+         << ',' << f << ',' << e << ',' << e / f << ',' << exact_wins << ',' << max_wall_over_cpu
+         << ',' << uintptr_t(b.fixed_dst.data()) % 64 << ',' << uintptr_t(b.exact_dst.data()) % 64;
+    // 各区間のCPU時間も残し、中央値だけでは見えない変動を後から確認できる。
+    for (const auto& method : times) {
+        cout << ',';
+        for (int r = 0; r < rounds; ++r) cout << (r ? "|" : "") << method[r];
+    }
+    cout << '\n';
+}
+
+template<int capacity> void run_case(int floors, int pool, bool check_only) {
+    static_assert(sizeof(FixedState<capacity>) == capacity * 4);
+    Buffers<capacity> b(floors, pool);
+    measure<capacity, false>(b, floors, pool, check_only);
+    measure<capacity, true>(b, floors, pool, check_only);
+}
+void dispatch(int floors, int pool, bool check_only) {
+    const int capacity = min(400, (floors + 31) / 32 * 32);
+#define RUN(C) case C: run_case<C>(floors, pool, check_only); break
+    switch (capacity) {
+        RUN(32); RUN(64); RUN(96); RUN(128); RUN(160); RUN(192); RUN(224);
+        RUN(256); RUN(288); RUN(320); RUN(352); RUN(384); RUN(400);
+    }
+#undef RUN
+}
+
+int main(int argc, char** argv) {
+    const uint64_t started = cpu_ns();
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+    if (argc > 2 || (argc == 2 && string_view(argv[1]) != "--check")) fail("usage: no arguments, or --check");
+    const bool check_only = argc == 2;
+    cout << "# bench=v032 compiler=" << __VERSION__ << '\n';
+#if defined(__linux__)
+    // CPU名は診断用。取得できない場合も、その旨を表示して計測内容は保つ。
+    ifstream cpuinfo("/proc/cpuinfo");
+    string line, model = "unavailable";
+    while (getline(cpuinfo, line)) if (line.starts_with("model name")) { model = line.substr(line.find(':') + 1); break; }
+    cout << "# cpu_model=" << model << '\n';
+#endif
+    cout << "# compiled_features=";
+#if defined(__x86_64__)
+    cout << " x86_64";
+#elif defined(__aarch64__)
+    cout << " aarch64";
+#endif
+#ifdef __AVX2__
+    cout << " avx2";
+#endif
+#ifdef __AVX512F__
+    cout << " avx512f";
+#endif
+    cout << "\n# iterations=" << iterations << " rounds=" << rounds << " preallocated=YES\n"
+         << "# exact_over_fixed < 1: exact faster; > 1: fixed32 faster\n"
+         << "# copy_tower_op: split/reverse/merge/home; destination already resolved\n";
+    if (!check_only) cout << "floors,capacity,pool,task,fixed_ns,exact_ns,exact_over_fixed,exact_faster_rounds,max_wall_over_cpu,fixed_base_mod64,exact_base_mod64,fixed_samples_cpu_ns,exact_samples_cpu_ns\n";
+    constexpr array floors{32,64,96,97,127,128,129,180,185,191,192,193,
+                           224,225,255,256,257,320,321,368,384,385,399,400};
+    vector<pair<int,int>> cases;
+    for (int n : floors) for (int pool : {1,64,8192}) cases.emplace_back(n, pool);
+    mt19937 rng(20260927);
+    shuffle(cases.begin(), cases.end(), rng);
+    cout << fixed << setprecision(4);
+    for (auto [n, pool] : cases) dispatch(n, pool, check_only);
+    cout << "# verified=YES conditions=" << verified_conditions << " checksum=" << total_checksum
+         << " process_cpu_ms=" << double(cpu_ns() - started) / 1e6 << '\n';
+}

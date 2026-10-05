@@ -1,0 +1,30 @@
+{
+  "version": "v320",
+  "source_snapshot": "85cbc6a8c5919810612c51097ca306bede7e32b2",
+  "training_cases": 320,
+  "training_runs": 1280,
+  "training_valid": 1280,
+  "candidate_experts": ["v111", "v113", "v315", "v210"],
+  "selected_depth": 1,
+  "feature": "same_neighbor_fraction",
+  "feature_definition": "Fraction of all initial slimes with at least one orthogonally adjacent slime of the same color",
+  "threshold": 0.10574372577025097,
+  "left_expert": "v315",
+  "right_expert": "v113",
+  "left_training_cases": 80,
+  "right_training_cases": 240,
+  "cross_validation": [
+    {"depth": 0, "cost": 1.0737561025997118, "mean_score": 229.959375},
+    {"depth": 1, "cost": 1.0732511550767696, "mean_score": 229.890625},
+    {"depth": 2, "cost": 1.0736688199650426, "mean_score": 229.946875}
+  ],
+  "objective": "mean(0.5*S/200 + 0.5*S/S_v111)",
+  "minimum_leaf_cases": 40,
+  "model_sha256": "81b5c12f34a78aa2f53c8e105a8d5a11e1eb10821b7ce6a471d0cc1b52a96704",
+  "source_sha256": "9230c3d0ee6ec5ad955f862b81eec70ce682b3f4087983631f67948ab60d23f8",
+  "source_bytes": 308024,
+  "holdout_results_seen": false,
+  "in_results_seen": false,
+  "validation1_inputs_or_results_used_for_learning": false,
+  "final_evaluation": "128 additional fresh inputs plus In100; no refitting after either evaluation"
+}

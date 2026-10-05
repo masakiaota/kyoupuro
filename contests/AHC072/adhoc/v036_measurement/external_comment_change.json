@@ -1,0 +1,9 @@
+{
+  "path": "src/bin/v035_tower_capacity_lns.cpp",
+  "expected_source_hash": "c1c94eb7648ada13ab7eeacc6f64b6953f5ad627e3e40bf08ab9388c218b7e0e",
+  "current_source_hash": "0f45fcc08dbdedc243380bc9e7f77f4a362fc2a7568fa07cb371af5bc51d47c7",
+  "only_three_header_comments_removed": true,
+  "benchmark_uses_preserved_original": true,
+  "solver_executions_before_adjustment": 0,
+  "diff": "--- frozen v035\n+++ current v035\n@@ -1,7 +1,4 @@\n // v035_tower_capacity_lns.cpp\n-// AtCoder's default -O2 is overridden for the solver, without fast-math.\n-// Reference: eijirou's public AHC007 post-contest first-place-equivalent code.\n-// https://eijirou-kyopro.hatenablog.com/entry/2022/02/01/221716\n #if defined(__GNUC__) && !defined(__clang__)\n #pragma GCC optimize(\"O3,unroll-loops,omit-frame-pointer\")\n #if defined(__x86_64__) && !defined(AHC072_PORTABLE)\n"
+}

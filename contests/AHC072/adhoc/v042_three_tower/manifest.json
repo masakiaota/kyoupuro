@@ -1,0 +1,23 @@
+{
+  "started_at": "2026-09-28T12:31:21.472080+09:00",
+  "sha256": {
+    "src/bin/v039_exact_board_lns.cpp": "ce92df43dcfcba97d48ab98e8523b86fd92bd9545e5e2bed2c73e669acb52970",
+    "adhoc/bin/v042_three_tower_probe.cpp": "cc8f9be3156158a3a67c56a722c1c55a6d9712944c5ecf01fff97cd23a1c4ca0",
+    "adhoc/scripts/run_v042_diagnostic.py": "047d859f86aa9a012089be9f7e1cffa60341eff2fcc093c891f0b3e01c6f6981",
+    "notes/experiments/v042.md": "ba5f3ab4b9d46aac547ba631395fe3ee988b7d0d07995e8f4feda2f8f9e6950b",
+    "tools/in/0060.txt": "416cf7b14c44924568dc201482a7e78177fcb7925796d4b4aa663d4b04536d71",
+    "results/out/v039_exact_board_lns/0060.txt": "fe583e231a938aef03b89286db8dad6cd46461179287b4cccd15100f9b715184",
+    "results/out/v022_dependency_lns/0060.txt": "4f545dc1aa610fd8ec568a8b4316de833594867ed93f671bc299ca0751421700",
+    "adhoc/v042_three_tower/targets.txt": "252f949626efce50dc9bb9d27fabac516c8ec029913c150c9a9b54a97c97ef8a"
+  },
+  "binary_sha256": "6a83fea72050077b91166cce9ca787c1bfc5de12be490028871bcd6bffa75d49",
+  "command": [
+    "/Users/masaki/Desktop/AHC072/target/release/v042_three_tower_probe",
+    "/Users/masaki/Desktop/AHC072/tools/in/0060.txt",
+    "/Users/masaki/Desktop/AHC072/results/out/v039_exact_board_lns/0060.txt",
+    "/Users/masaki/Desktop/AHC072/adhoc/v042_three_tower/targets.txt",
+    "/Users/masaki/Desktop/AHC072/adhoc/v042_three_tower/run"
+  ],
+  "elapsed_sec": 0.8903954169945791,
+  "hashes_unchanged_after_run": true
+}

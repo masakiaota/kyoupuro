@@ -1,0 +1,26 @@
+// check_v000_move.cpp
+// 解法を実行せず、1手のサイズと全値域の保存・読み出しを照合する。
+#define main v000_template_main
+#include "../../src/bin/v000_template.cpp"
+#undef main
+
+static_assert(sizeof(Move) == 4);
+static_assert(is_trivially_copyable_v<Move>);
+static_assert(sizeof(State<400>) == 1600);
+
+int main() {
+    int checked = 0;
+    // 飛距離とkの組み合わせの合法性は盤面側で判定するため、保存可能な全組を確認する。
+    for (int p = 0; p < 400; ++p) for (int k = 0; k < 8; ++k) {
+        for (int d = 0; d < 4; ++d) for (int l = 1; l <= 8; ++l) {
+            const Move move(p, k, d, l);
+            if (move.p() != p || move.k() != k || move.d() != d || move.l() != l) {
+                cerr << "Move round-trip mismatch: " << p << ' ' << k << ' ' << d << ' ' << l << '\n';
+                return 1;
+            }
+            ++checked;
+        }
+    }
+    cout << "OK: move_cases=" << checked << ", move_bytes=" << sizeof(Move)
+         << ", max_state_bytes=" << sizeof(State<400>) << '\n';
+}

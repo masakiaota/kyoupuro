@@ -1,0 +1,83 @@
+// 重みはこの直前に生成する。Pythonと同じ演算順で可変容量CNNを直接計算する。
+struct Encoded {
+    array<array<float, NN_WIDTH>, 400> cells{};
+    array<float, NN_WIDTH> global{};
+    float remaining = 0.f;
+};
+
+unique_ptr<Encoded> encode(const Input& input, const Board& board, const BoardState& state) {
+    auto result = make_unique<Encoded>();
+    const auto features = board_features(input, board, state);
+    auto& h = result->cells;
+    for (int p = 0; p < board.cell_count; ++p) {
+        const auto& x = features[flat_cell(board, p)];
+        for (int o = 0; o < NN_WIDTH; ++o) {
+            float v = nn_input_b[o];
+            for (int c = 0; c < 40; ++c) v += nn_input_w[o * 40 + c] * x[c];
+            h[p][o] = max(0.f, v);
+        }
+    }
+    for (int block = 0; block < NN_DEPTH; ++block) {
+        array<array<float, NN_WIDTH>, 400> depth{};
+        for (int p = 0; p < board.cell_count; ++p) {
+            const auto [i, j] = board.coordinates[p];
+            depth[p] = nn_depth_b[block];
+            for (int di = -1; di <= 1; ++di) for (int dj = -1; dj <= 1; ++dj) {
+                const int ni = i + di, nj = j + dj;
+                if (ni < 0 || ni >= input.N || nj < 0 || nj >= input.N) continue;
+                const int q = board.cell_id[ni][nj];
+                if (q < 0) continue;
+                const int kernel = (di + 1) * 3 + dj + 1;
+                for (int c = 0; c < NN_WIDTH; ++c) depth[p][c] += nn_depth_w[block][c * 9 + kernel] * h[q][c];
+            }
+            for (float& v : depth[p]) v = max(0.f, v);
+        }
+        for (int p = 0; p < board.cell_count; ++p) {
+            for (int o = 0; o < NN_WIDTH; ++o) {
+                float v = nn_point_b[block][o];
+                for (int c = 0; c < NN_WIDTH; ++c) v += nn_point_w[block][o * NN_WIDTH + c] * depth[p][c];
+                h[p][o] = max(0.f, h[p][o] + v);
+            }
+        }
+    }
+    for (int p = 0; p < board.cell_count; ++p)
+        for (int c = 0; c < NN_WIDTH; ++c) result->global[c] += h[p][c];
+    for (float& v : result->global) v /= board.cell_count;
+    float raw = nn_critic_out_b[0];
+    for (int o = 0; o < NN_HIDDEN; ++o) {
+        float v = nn_critic_b[o];
+        for (int c = 0; c < NN_WIDTH; ++c) v += nn_critic_w[o * NN_WIDTH + c] * result->global[c];
+        raw += nn_critic_out_w[o] * max(0.f, v);
+    }
+    result->remaining = (raw > 20.f ? raw : log1p(exp(raw))) * 100.f;
+    return result;
+}
+
+vector<float> policy(const Board& board, const BoardState& state, const Encoded& encoded, const vector<Move>& moves) {
+    array<array<float, NN_HIDDEN>, 400> source{}, dest{};
+    array<float, NN_HIDDEN> global{};
+    for (int o = 0; o < NN_HIDDEN; ++o) {
+        global[o] = nn_actor_b[o];
+        for (int c = 0; c < NN_WIDTH; ++c) global[o] += nn_actor_w[o * NN_ACTOR_INPUT + (2 * NN_WIDTH) + c] * encoded.global[c];
+    }
+    for (int p = 0; p < board.cell_count; ++p) for (int o = 0; o < NN_HIDDEN; ++o) {
+        for (int c = 0; c < NN_WIDTH; ++c) {
+            source[p][o] += nn_actor_w[o * NN_ACTOR_INPUT + c] * encoded.cells[p][c];
+            dest[p][o] += nn_actor_w[o * NN_ACTOR_INPUT + NN_WIDTH + c] * encoded.cells[p][c];
+        }
+    }
+    vector<float> logits; logits.reserve(moves.size());
+    for (Move move : moves) {
+        const int p = move.p(), q = board.ray[p][move.d()][move.l() - 1];
+        const auto x = action_features(board, state, move);
+        float logit = nn_actor_out_b[0];
+        for (int o = 0; o < NN_HIDDEN; ++o) {
+            float action = 0.f;
+            for (int c = 0; c < 16; ++c) action += nn_actor_w[o * NN_ACTOR_INPUT + (3 * NN_WIDTH) + c] * x[c];
+            const float v = source[p][o] + dest[q][o] + global[o] + action;
+            logit += nn_actor_out_w[o] * max(0.f, v);
+        }
+        logits.push_back(logit);
+    }
+    return logits;
+}

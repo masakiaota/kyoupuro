@@ -1,0 +1,272 @@
+{
+  "source": "Existing legal outputs only; no replacement sequence generated.",
+  "comparison": {
+    "v016_turns": [
+      33,
+      38
+    ],
+    "v016_moves": 6,
+    "witness_turns": [
+      29,
+      32
+    ],
+    "witness_moves": 4,
+    "same_nonred_state_before": true,
+    "same_nonred_state_after": true,
+    "same_remaining_blue_route": true
+  },
+  "v016_segment": [
+    {
+      "turn": 33,
+      "action": "9 8 1 R 2",
+      "source": [
+        9,
+        8
+      ],
+      "destination": [
+        9,
+        10
+      ],
+      "before": {
+        "(9, 8)": "bbdddd",
+        "(9, 10)": ""
+      },
+      "moving_bottom_to_top": "bdddd",
+      "after": {
+        "(9, 8)": "b",
+        "(9, 10)": "ddddb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 34,
+      "action": "9 8 0 R 1",
+      "source": [
+        9,
+        8
+      ],
+      "destination": [
+        9,
+        9
+      ],
+      "before": {
+        "(9, 8)": "b",
+        "(9, 9)": ""
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(9, 8)": "",
+        "(9, 9)": "b"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 35,
+      "action": "9 10 0 L 1",
+      "source": [
+        9,
+        10
+      ],
+      "destination": [
+        9,
+        9
+      ],
+      "before": {
+        "(9, 10)": "ddddb",
+        "(9, 9)": "b"
+      },
+      "moving_bottom_to_top": "ddddb",
+      "after": {
+        "(9, 10)": "",
+        "(9, 9)": "bbdddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 36,
+      "action": "9 9 2 D 2",
+      "source": [
+        9,
+        9
+      ],
+      "destination": [
+        11,
+        9
+      ],
+      "before": {
+        "(9, 9)": "bbdddd",
+        "(11, 9)": ""
+      },
+      "moving_bottom_to_top": "dddd",
+      "after": {
+        "(9, 9)": "bb",
+        "(11, 9)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "dddd"
+      }
+    },
+    {
+      "turn": 37,
+      "action": "9 9 0 R 1",
+      "source": [
+        9,
+        9
+      ],
+      "destination": [
+        9,
+        10
+      ],
+      "before": {
+        "(9, 9)": "bb",
+        "(9, 10)": ""
+      },
+      "moving_bottom_to_top": "bb",
+      "after": {
+        "(9, 9)": "",
+        "(9, 10)": "bb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 38,
+      "action": "9 10 0 R 1",
+      "source": [
+        9,
+        10
+      ],
+      "destination": [
+        9,
+        11
+      ],
+      "before": {
+        "(9, 10)": "bb",
+        "(9, 11)": ""
+      },
+      "moving_bottom_to_top": "bb",
+      "after": {
+        "(9, 10)": "",
+        "(9, 11)": "bb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    }
+  ],
+  "witness_segment": [
+    {
+      "turn": 29,
+      "action": "9 8 0 R 1",
+      "source": [
+        9,
+        8
+      ],
+      "destination": [
+        9,
+        9
+      ],
+      "before": {
+        "(9, 8)": "bbdddd",
+        "(9, 9)": ""
+      },
+      "moving_bottom_to_top": "bbdddd",
+      "after": {
+        "(9, 8)": "",
+        "(9, 9)": "ddddbb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 30,
+      "action": "9 9 4 R 2",
+      "source": [
+        9,
+        9
+      ],
+      "destination": [
+        9,
+        11
+      ],
+      "before": {
+        "(9, 9)": "ddddbb",
+        "(9, 11)": ""
+      },
+      "moving_bottom_to_top": "bb",
+      "after": {
+        "(9, 9)": "dddd",
+        "(9, 11)": "bb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 31,
+      "action": "9 9 0 D 1",
+      "source": [
+        9,
+        9
+      ],
+      "destination": [
+        10,
+        9
+      ],
+      "before": {
+        "(9, 9)": "dddd",
+        "(10, 9)": ""
+      },
+      "moving_bottom_to_top": "dddd",
+      "after": {
+        "(9, 9)": "",
+        "(10, 9)": "dddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 32,
+      "action": "10 9 0 D 1",
+      "source": [
+        10,
+        9
+      ],
+      "destination": [
+        11,
+        9
+      ],
+      "before": {
+        "(10, 9)": "dddd",
+        "(11, 9)": ""
+      },
+      "moving_bottom_to_top": "dddd",
+      "after": {
+        "(10, 9)": "",
+        "(11, 9)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "dddd"
+      }
+    }
+  ]
+}

@@ -1,0 +1,605 @@
+{
+  "matched": 100,
+  "cases": [
+    {
+      "case": "0000.txt",
+      "T": 43,
+      "ticks": 15428,
+      "common_keys": 225
+    },
+    {
+      "case": "0001.txt",
+      "T": 111,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0002.txt",
+      "T": 116,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0003.txt",
+      "T": 133,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0004.txt",
+      "T": 281,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0005.txt",
+      "T": 662,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0006.txt",
+      "T": 127,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0007.txt",
+      "T": 119,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0008.txt",
+      "T": 135,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0009.txt",
+      "T": 85,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0010.txt",
+      "T": 76,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0011.txt",
+      "T": 179,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0012.txt",
+      "T": 138,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0013.txt",
+      "T": 189,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0014.txt",
+      "T": 443,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0015.txt",
+      "T": 641,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0016.txt",
+      "T": 136,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0017.txt",
+      "T": 236,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0018.txt",
+      "T": 76,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0019.txt",
+      "T": 713,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0020.txt",
+      "T": 168,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0021.txt",
+      "T": 73,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0022.txt",
+      "T": 73,
+      "ticks": 15446,
+      "common_keys": 225
+    },
+    {
+      "case": "0023.txt",
+      "T": 86,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0024.txt",
+      "T": 130,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0025.txt",
+      "T": 61,
+      "ticks": 15429,
+      "common_keys": 225
+    },
+    {
+      "case": "0026.txt",
+      "T": 129,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0027.txt",
+      "T": 165,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0028.txt",
+      "T": 300,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0029.txt",
+      "T": 285,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0030.txt",
+      "T": 504,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0031.txt",
+      "T": 140,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0032.txt",
+      "T": 158,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0033.txt",
+      "T": 151,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0034.txt",
+      "T": 482,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0035.txt",
+      "T": 64,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0036.txt",
+      "T": 232,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0037.txt",
+      "T": 277,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0038.txt",
+      "T": 145,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0039.txt",
+      "T": 122,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0040.txt",
+      "T": 145,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0041.txt",
+      "T": 96,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0042.txt",
+      "T": 369,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0043.txt",
+      "T": 186,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0044.txt",
+      "T": 199,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0045.txt",
+      "T": 239,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0046.txt",
+      "T": 165,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0047.txt",
+      "T": 384,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0048.txt",
+      "T": 260,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0049.txt",
+      "T": 224,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0050.txt",
+      "T": 151,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0051.txt",
+      "T": 130,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0052.txt",
+      "T": 217,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0053.txt",
+      "T": 139,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0054.txt",
+      "T": 351,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0055.txt",
+      "T": 317,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0056.txt",
+      "T": 225,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0057.txt",
+      "T": 273,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0058.txt",
+      "T": 342,
+      "ticks": 15442,
+      "common_keys": 225
+    },
+    {
+      "case": "0059.txt",
+      "T": 73,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0060.txt",
+      "T": 164,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0061.txt",
+      "T": 326,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0062.txt",
+      "T": 196,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0063.txt",
+      "T": 295,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0064.txt",
+      "T": 217,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0065.txt",
+      "T": 133,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0066.txt",
+      "T": 428,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0067.txt",
+      "T": 231,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0068.txt",
+      "T": 477,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0069.txt",
+      "T": 144,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0070.txt",
+      "T": 479,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0071.txt",
+      "T": 466,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0072.txt",
+      "T": 96,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0073.txt",
+      "T": 256,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0074.txt",
+      "T": 104,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0075.txt",
+      "T": 399,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0076.txt",
+      "T": 293,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0077.txt",
+      "T": 94,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0078.txt",
+      "T": 290,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0079.txt",
+      "T": 74,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0080.txt",
+      "T": 207,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0081.txt",
+      "T": 434,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0082.txt",
+      "T": 343,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0083.txt",
+      "T": 183,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0084.txt",
+      "T": 355,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0085.txt",
+      "T": 215,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0086.txt",
+      "T": 100,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0087.txt",
+      "T": 121,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0088.txt",
+      "T": 173,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0089.txt",
+      "T": 407,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0090.txt",
+      "T": 155,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0091.txt",
+      "T": 104,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0092.txt",
+      "T": 651,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0093.txt",
+      "T": 86,
+      "ticks": 15445,
+      "common_keys": 225
+    },
+    {
+      "case": "0094.txt",
+      "T": 123,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0095.txt",
+      "T": 273,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0096.txt",
+      "T": 88,
+      "ticks": 15447,
+      "common_keys": 225
+    },
+    {
+      "case": "0097.txt",
+      "T": 611,
+      "ticks": 15443,
+      "common_keys": 225
+    },
+    {
+      "case": "0098.txt",
+      "T": 135,
+      "ticks": 15444,
+      "common_keys": 225
+    },
+    {
+      "case": "0099.txt",
+      "T": 209,
+      "ticks": 15444,
+      "common_keys": 225
+    }
+  ]
+}

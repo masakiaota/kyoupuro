@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-09-29",
+  "cpp_builds": 0,
+  "solver_executions": 0,
+  "python_syntax": "passed",
+  "protected_sha256": {
+    "src/bin/v057_search_reductions.cpp": "4bb22c34eca9d76fec12861ebd14d807d6ead618b29e79d42c8f91ce7854e29f",
+    "README.md": "8804adc3cff675aaf68a9edc3035c7fee97a129abb68486b48a8dc055995e9d0",
+    "src/bin/v000_template.cpp": "f323e0fb4b83a21202282695267bab6a0c1c37c9c3d5133bfb27c142a7982449",
+    "notes/notations.md": "3f48408efb60544d467ee48f9721dd9aff7469df90c4c23887c9483b0c2d3aef",
+    "notes/important_properties.md": "c038f600df69871a56d08555a3ddaf2ba07ed47448f5857ad6f097d11ab7a399"
+  },
+  "source_sha256": "a13b4141f6cb29ec959e6f056cf505fa4180c273f651270c79e2015493c20c05",
+  "boundary_script_sha256": "2375330c5192f2d2ba4bc8ccc1773c1acac282a5d72710815be550d44e4ce3a9",
+  "runtime_verification": "deferred_to_manual_batch"
+}

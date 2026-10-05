@@ -1,0 +1,226 @@
+{
+  "selected": "r0",
+  "accepted": true,
+  "goal_190": false,
+  "metrics": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.6640625,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.6640625,
+      "mean_elapsed_ms": 1565.5546875,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "r0": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.44921875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.44921875,
+      "mean_elapsed_ms": 1564.53515625,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "r1": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.7734375,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.7734375,
+      "mean_elapsed_ms": 1566.11328125,
+      "max_elapsed_ms": 1621,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "test": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 218.046875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 218.046875,
+      "mean_elapsed_ms": 1564.6875,
+      "max_elapsed_ms": 1624,
+      "mean_inferences": 291.90625,
+      "mean_depth": 291.90625,
+      "deadline_cases": 0
+    },
+    "tools_in": {
+      "cases": 100,
+      "complete": 100,
+      "completion_rate": 1.0,
+      "mean_S_all": 196.05,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 196.05,
+      "mean_elapsed_ms": 1569.38,
+      "max_elapsed_ms": 1616,
+      "mean_inferences": 264.69,
+      "mean_depth": 264.69,
+      "deadline_cases": 0
+    }
+  },
+  "differences": {
+    "r0": {
+      "common_completed": 256,
+      "mean_T_difference": -0.21484375,
+      "mean_S_difference": -0.21484375,
+      "wins": 109,
+      "ties": 25,
+      "losses": 122
+    },
+    "r1": {
+      "common_completed": 256,
+      "mean_T_difference": 0.109375,
+      "mean_S_difference": 0.109375,
+      "wins": 114,
+      "ties": 27,
+      "losses": 115
+    }
+  },
+  "final_differences": {
+    "test": {
+      "common_completed": 256,
+      "mean_T_difference": -0.828125,
+      "mean_S_difference": -0.828125,
+      "wins": 133,
+      "ties": 24,
+      "losses": 99
+    },
+    "tools_in": {
+      "common_completed": 100,
+      "mean_T_difference": -0.7,
+      "mean_S_difference": -0.6999999999999886,
+      "wins": 44,
+      "ties": 20,
+      "losses": 36
+    }
+  },
+  "activation": {
+    "r0": {
+      "corridor_allowed_cells": 68848011,
+      "corridor_calls": 5583597,
+      "corridor_completed": 4333948,
+      "corridor_full_groups": 478594,
+      "corridor_restricted_groups": 1438054,
+      "corridor_total_cells": 994828354
+    },
+    "r1": {
+      "corridor_allowed_cells": 156179659,
+      "corridor_calls": 5033779,
+      "corridor_completed": 4079980,
+      "corridor_full_groups": 388542,
+      "corridor_restricted_groups": 1167048,
+      "corridor_total_cells": 898713067
+    }
+  },
+  "details": {
+    "base": {
+      "state_pool_restored": true,
+      "errors": {
+        "construction_errors": 0,
+        "lns_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      },
+      "mean_lns_attempts": 7379.6875
+    },
+    "r0": {
+      "state_pool_restored": true,
+      "errors": {
+        "construction_errors": 0,
+        "lns_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      },
+      "mean_lns_attempts": 10186.73828125
+    },
+    "r1": {
+      "state_pool_restored": true,
+      "errors": {
+        "construction_errors": 0,
+        "lns_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      },
+      "mean_lns_attempts": 8289.29296875
+    },
+    "test": {
+      "state_pool_restored": true,
+      "errors": {
+        "construction_errors": 0,
+        "lns_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      },
+      "mean_lns_attempts": 9936.89453125
+    },
+    "tools_in": {
+      "state_pool_restored": true,
+      "errors": {
+        "construction_errors": 0,
+        "lns_errors": 0,
+        "lns_invalid_candidates": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0
+      },
+      "mean_lns_attempts": 11885.11
+    }
+  },
+  "mechanism": {
+    "sources": {
+      "base": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+      "r0": "486e6fe547178eac504f8a7c4a35239467399ef9cbb3e0b485a123c4af84a99b",
+      "r1": "f077f33fd38a772a57cab7942916cc560873a6e602e30e6865b60bdd01cf7bf3"
+    },
+    "gates": {
+      "r0": {
+        "cpu": 0.03048,
+        "parent_cpu": 0.059739,
+        "cpu_ratio": 0.5102194546276302,
+        "complete": 205.0,
+        "parent_complete": 211.0,
+        "completion_ratio": 0.9715639810426541,
+        "passed": true
+      },
+      "r1": {
+        "cpu": 0.039468,
+        "parent_cpu": 0.059739,
+        "cpu_ratio": 0.6606739316024708,
+        "complete": 211.0,
+        "parent_complete": 211.0,
+        "completion_ratio": 1.0,
+        "passed": true
+      }
+    },
+    "independent_outputs": 1049,
+    "completed_at": "2026-10-04T10:12:06.080268+00:00"
+  },
+  "candidate": {
+    "condition": "r0",
+    "source": "src/bin/v115_corridor_reinsertion.cpp",
+    "source_sha256": "00c649abb06fa8f46927ba50e5f3b7f000c806c0029bbbec683e79712d04387e",
+    "model_parent": "v111",
+    "fixed_at": "2026-10-04T10:16:25.489950+00:00"
+  },
+  "result_sha256": "a9bc0f39edf9e41f4bbd47ca3e795c1fd1f388665a1a34f228ac7c9c57616c38",
+  "completed_at": "2026-10-04T10:17:56.235860+00:00"
+}

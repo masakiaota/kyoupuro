@@ -1,0 +1,222 @@
+{
+  "passed": true,
+  "solver_executions": 0,
+  "builds": [
+    {
+      "config": [
+        4,
+        15
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c4_p15.cpp",
+      "source_sha256": "eeaf29caebe7fc2f08b14a4f55ff7a0ecb0a68ff3a029ad047d75139a809208c",
+      "binary": "adhoc/v204_audit/v204_c4_p15_production",
+      "binary_sha256": "70e3f5bc7d24d49cd55324b0562c317e080966037583abbb98f956fc36ff90db",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        4,
+        15
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c4_p15.cpp",
+      "source_sha256": "eeaf29caebe7fc2f08b14a4f55ff7a0ecb0a68ff3a029ad047d75139a809208c",
+      "binary": "adhoc/v204_audit/v204_c4_p15_local",
+      "binary_sha256": "d7232673163c023fe0cfb971189c421f934c472f72d7e71bbf424b2dd40e4d8d",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        3,
+        10
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c3_p10.cpp",
+      "source_sha256": "98da32b3604ba49895b433517b5c961f552dd69359d77038cea19c78148b00be",
+      "binary": "adhoc/v204_audit/v204_c3_p10_production",
+      "binary_sha256": "a9934b32ee25a4abc0e0b80193f9ee283f8291bc3e04b8fe6ecf3e56c3c5604a",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        3,
+        10
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c3_p10.cpp",
+      "source_sha256": "98da32b3604ba49895b433517b5c961f552dd69359d77038cea19c78148b00be",
+      "binary": "adhoc/v204_audit/v204_c3_p10_local",
+      "binary_sha256": "dad829ed6f9918aae9a3cd4e1ba8f978a765b069a10af26a191b8627df635546",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        3,
+        15
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c3_p15.cpp",
+      "source_sha256": "73dbda8bfb11ca32fc15c71a5ff6ec6ad761ed2e8e6717f61c092cd179ac65d1",
+      "binary": "adhoc/v204_audit/v204_c3_p15_production",
+      "binary_sha256": "74d6118cd41aca2d88431ca9f072ca03fd9766360f72b4906f673b15d22f19f1",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        3,
+        15
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c3_p15.cpp",
+      "source_sha256": "73dbda8bfb11ca32fc15c71a5ff6ec6ad761ed2e8e6717f61c092cd179ac65d1",
+      "binary": "adhoc/v204_audit/v204_c3_p15_local",
+      "binary_sha256": "313da676c0f7ad208451e329c12ec9055e2e2ca6d57c514f91c01b36cd6590ee",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        3,
+        20
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c3_p20.cpp",
+      "source_sha256": "e4302f5622860c55a1b0b6d66531b89af0fbcd832b56a7c4bf0ac9ceef79ae49",
+      "binary": "adhoc/v204_audit/v204_c3_p20_production",
+      "binary_sha256": "693e1a8850a29235d30e8fc0f1bc005b72e8d68e9fa74ea912f34f15dc223553",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        3,
+        20
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c3_p20.cpp",
+      "source_sha256": "e4302f5622860c55a1b0b6d66531b89af0fbcd832b56a7c4bf0ac9ceef79ae49",
+      "binary": "adhoc/v204_audit/v204_c3_p20_local",
+      "binary_sha256": "f99f82d5ba18a80d9c5970d1a1c4fa5210dc0ad20ec73c7e32924c30ab28cd3b",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        4,
+        10
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c4_p10.cpp",
+      "source_sha256": "fb497640cd892b6212798d822cf8dc9d97f32388b201e6e0be5950ebc4782cae",
+      "binary": "adhoc/v204_audit/v204_c4_p10_production",
+      "binary_sha256": "f7d07c6b0de972e522984febc5f04b9a0328383944d687aedf7209abe025897c",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        4,
+        10
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c4_p10.cpp",
+      "source_sha256": "fb497640cd892b6212798d822cf8dc9d97f32388b201e6e0be5950ebc4782cae",
+      "binary": "adhoc/v204_audit/v204_c4_p10_local",
+      "binary_sha256": "8d5d4ba51d057618dafea54cb1ff79a04f3e6f67d19bfa67cbd4ef01907a994a",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        4,
+        20
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c4_p20.cpp",
+      "source_sha256": "6cd413bef07658287774eaf35938e5859f1cd9458ede2d27197e4dbec75f762e",
+      "binary": "adhoc/v204_audit/v204_c4_p20_production",
+      "binary_sha256": "cd599a6948590b02c0b7dd5c549ea9bd081228111c2a6494d501f5fcdef25ae0",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        4,
+        20
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c4_p20.cpp",
+      "source_sha256": "6cd413bef07658287774eaf35938e5859f1cd9458ede2d27197e4dbec75f762e",
+      "binary": "adhoc/v204_audit/v204_c4_p20_local",
+      "binary_sha256": "4568d461741f3026d09e825d5ae533ebe5acd5ea41ae78910f1057759ad9fb41",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        5,
+        10
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c5_p10.cpp",
+      "source_sha256": "10bf912638d2f8155d0c5202d28f796e625cfe4fd16b99cbdc14820fe9528611",
+      "binary": "adhoc/v204_audit/v204_c5_p10_production",
+      "binary_sha256": "0f864d85416475b630523808d786563bdb29c0d2c39ac6529ced1f3c798c4403",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        5,
+        10
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c5_p10.cpp",
+      "source_sha256": "10bf912638d2f8155d0c5202d28f796e625cfe4fd16b99cbdc14820fe9528611",
+      "binary": "adhoc/v204_audit/v204_c5_p10_local",
+      "binary_sha256": "51db48052f74fe1cd33edcd0e02507601ddd092dfcdd64f2a296e5becfce8193",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        5,
+        15
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c5_p15.cpp",
+      "source_sha256": "7427295f5ef165c4a34c545f794895305b823a9fa9b8b83ab8e56b8ebca1ae32",
+      "binary": "adhoc/v204_audit/v204_c5_p15_production",
+      "binary_sha256": "b1da69a9ba6afeb86f2fa262c3a3aec532ae531587d2280389080b738c4174e1",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        5,
+        15
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c5_p15.cpp",
+      "source_sha256": "7427295f5ef165c4a34c545f794895305b823a9fa9b8b83ab8e56b8ebca1ae32",
+      "binary": "adhoc/v204_audit/v204_c5_p15_local",
+      "binary_sha256": "5a090fbc3f317e134f501775cf30e1869684d4f0d435bb9467dce8e91e6dffa4",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        5,
+        20
+      ],
+      "mode": "production",
+      "source": "adhoc/bin/v204_c5_p20.cpp",
+      "source_sha256": "d259c56f7fc2540bd6040244fd5845085215a18ebc1a341e906da7917eb08fb8",
+      "binary": "adhoc/v204_audit/v204_c5_p20_production",
+      "binary_sha256": "af4649dc8774b9e7e9af431d94c141fefdd8f9c38faadd2da2721bf53b0f2808",
+      "registered_difference_only": true
+    },
+    {
+      "config": [
+        5,
+        20
+      ],
+      "mode": "local",
+      "source": "adhoc/bin/v204_c5_p20.cpp",
+      "source_sha256": "d259c56f7fc2540bd6040244fd5845085215a18ebc1a341e906da7917eb08fb8",
+      "binary": "adhoc/v204_audit/v204_c5_p20_local",
+      "binary_sha256": "82f742a098cb5bd89d500fe0ae43dd0cf150ab5c8f1c934b521718208f6bb8a8",
+      "registered_difference_only": true
+    }
+  ]
+}

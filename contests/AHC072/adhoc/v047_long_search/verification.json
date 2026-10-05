@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-09-28T15:51:33.257939+00:00",
+  "experiment": "v047",
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "builds": {
+    "LOCAL": "passed",
+    "production": "passed"
+  },
+  "build_commands": [
+    "SDKROOT=\"$(xcrun --show-sdk-path)\" MACOSX_DEPLOYMENT_TARGET=15.0 scripts/build_solver.sh v047_long_search",
+    "SDKROOT=\"$(xcrun --show-sdk-path)\" MACOSX_DEPLOYMENT_TARGET=15.0 scripts/build_solver.sh v047_long_search --no-local"
+  ],
+  "tests": {
+    "passed": 8,
+    "solver_runs": 0,
+    "process_fixture": "recording stub copies predefined plans without reading a board or searching"
+  },
+  "prepare": {
+    "directory": "adhoc/v047_long_search/prepare_final",
+    "cases": 10,
+    "verified_seed_plans": 80,
+    "rejected_seed_plans": 0
+  },
+  "parent": {
+    "path": "src/bin/v039_exact_board_lns.cpp",
+    "sha256": "ce92df43dcfcba97d48ab98e8523b86fd92bd9545e5e2bed2c73e669acb52970",
+    "snapshot_matches": true
+  },
+  "readme_has_no_v047_addition": true,
+  "solver_runs": 0,
+  "unverified": [
+    "search mechanism during execution",
+    "long-duration execution",
+    "score improvement"
+  ],
+  "sha256": {
+    "adhoc/bin/v047_long_search.cpp": "8ba20077d3bea30a1d02669c199e06e70185c957f38d3981f53326e36693ac26",
+    "adhoc/scripts/run_v047_long_search.py": "4aa1d691061b52fd0ecfbd85922d6014635c02c916934461b9df0b35e628ac23",
+    "adhoc/scripts/test_v047_long_search.py": "cc0c309dc4d1a4d87568d62ca6c6589f848b5c841fa015532195b6628b639947",
+    "notes/experiments/v047.md": "35667b645e29d2b94b6b1b70824653edfcb2cfba187c9e4d153741b9c2ebd422",
+    "adhoc/v047_long_search/build/probe_local": "31c470c41b32a5a7f2960b66e1ffc537a78a8a46f7b428810043f9f78c900ddf",
+    "adhoc/v047_long_search/build/probe_production": "f63e8eab7c888a96162023f5cd714e9ebe812afeeb073404ec49e08401b10c50"
+  }
+}

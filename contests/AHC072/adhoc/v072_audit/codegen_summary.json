@@ -1,0 +1,110 @@
+{
+  "local": {
+    "v058_joint_priority": {
+      "instructions": 1940,
+      "call_sites": 36,
+      "calls": {
+        "__ZN5BoardC1ERKS_": 1,
+        "__Znwm": 4,
+        "__ZdlPvm": 5,
+        "__ZN11TemporalLNS12SpatialQueue7prepareEi": 1,
+        "__ZN11TemporalLNS12SpatialQueue5resetEi": 2,
+        "_memset": 1,
+        "__ZNK8Geometry5applyER5Board4Move.constprop.0.isra.0": 1,
+        "__ZN11TemporalLNS12SpatialQueue4pushEii": 5,
+        "_memcpy": 2,
+        "__ZNK5Clock5checkEv.constprop.0": 2,
+        "__ZZN11TemporalLNS8insertAtERK5BoardRKSt6vectorI4MoveSaIS4_EEiiiiRS6_ENKUliiiRKNS_5LabelEE_clEiiiSC_": 3,
+        "__ZNK11TemporalLNS11reconstructERKSt6vectorI4MoveSaIS1_EEi": 1,
+        "__ZNSt6vectorI4MoveSaIS0_EE14_M_move_assignEOS2_St17integral_constantIbLb1EE.isra.0": 1,
+        "___cxa_allocate_exception": 1,
+        "__ZNSt11logic_errorC1EPKc": 1,
+        "___cxa_throw": 1,
+        "__Unwind_Resume": 1,
+        "___cxa_free_exception": 1,
+        "__ZSt20__throw_length_errorPKc": 2
+      },
+      "name": "TemporalLNS::insertAt(Board const&, std::vector<Move, std::allocator<Move>> const&, int, int, int, int, std::vector<Move, std::allocator<Move>>&)"
+    },
+    "v072_joint_refactored": {
+      "instructions": 1940,
+      "call_sites": 36,
+      "calls": {
+        "__ZN5StateC1ERKS_": 1,
+        "__Znwm": 4,
+        "__ZdlPvm": 5,
+        "__ZN11TemporalLNS12SpatialQueue7prepareEi": 1,
+        "__ZN11TemporalLNS12SpatialQueue5resetEi": 2,
+        "_memset": 1,
+        "__ZNK5Board5applyER5State4Move.constprop.0.isra.0": 1,
+        "__ZN11TemporalLNS12SpatialQueue4pushEii": 5,
+        "_memcpy": 2,
+        "__ZNK10TimeKeeper5checkEv.constprop.0": 2,
+        "__ZZN11TemporalLNS9insert_atERK5StateRKSt6vectorI4MoveSaIS4_EEiiiiRS6_ENKUliiiRKNS_5LabelEE_clEiiiSC_": 3,
+        "__ZNK11TemporalLNS11reconstructERKSt6vectorI4MoveSaIS1_EEi": 1,
+        "__ZNSt6vectorI4MoveSaIS0_EE14_M_move_assignEOS2_St17integral_constantIbLb1EE.isra.0": 1,
+        "___cxa_allocate_exception": 1,
+        "__ZNSt11logic_errorC1EPKc": 1,
+        "___cxa_throw": 1,
+        "__Unwind_Resume": 1,
+        "___cxa_free_exception": 1,
+        "__ZSt20__throw_length_errorPKc": 2
+      },
+      "name": "TemporalLNS::insert_at(State const&, std::vector<Move, std::allocator<Move>> const&, int, int, int, int, std::vector<Move, std::allocator<Move>>&)"
+    }
+  },
+  "production": {
+    "v058_joint_priority": {
+      "instructions": 2010,
+      "call_sites": 42,
+      "calls": {
+        "__ZN5BoardC1ERKS_": 1,
+        "__Znwm": 5,
+        "__ZdlPvm": 6,
+        "__ZN11TemporalLNS12SpatialQueue7prepareEi": 1,
+        "__ZN11TemporalLNS12SpatialQueue5resetEi": 1,
+        "_memset": 6,
+        "__ZNK8Geometry5applyER5Board4Move.constprop.0.isra.0": 1,
+        "__ZN11TemporalLNS12SpatialQueue4pushEii": 5,
+        "_memcpy": 2,
+        "__ZNK5Clock5checkEv.constprop.0": 2,
+        "__ZZN11TemporalLNS8insertAtERK5BoardRKSt6vectorI4MoveSaIS4_EEiiiiRS6_ENKUliiiRKNS_5LabelEE_clEiiiSC_": 3,
+        "__ZNK11TemporalLNS11reconstructERKSt6vectorI4MoveSaIS1_EEi": 1,
+        "__ZNSt6vectorI4MoveSaIS0_EE14_M_move_assignEOS2_St17integral_constantIbLb1EE.isra.0": 1,
+        "___cxa_allocate_exception": 1,
+        "__ZNSt11logic_errorC1EPKc": 1,
+        "___cxa_throw": 1,
+        "__Unwind_Resume": 1,
+        "___cxa_free_exception": 1,
+        "__ZSt20__throw_length_errorPKc": 2
+      },
+      "name": "TemporalLNS::insertAt(Board const&, std::vector<Move, std::allocator<Move>> const&, int, int, int, int, std::vector<Move, std::allocator<Move>>&)"
+    },
+    "v072_joint_refactored": {
+      "instructions": 2010,
+      "call_sites": 42,
+      "calls": {
+        "__ZN5StateC1ERKS_": 1,
+        "__Znwm": 5,
+        "__ZdlPvm": 6,
+        "__ZN11TemporalLNS12SpatialQueue7prepareEi": 1,
+        "__ZN11TemporalLNS12SpatialQueue5resetEi": 1,
+        "_memset": 6,
+        "__ZNK5Board5applyER5State4Move.constprop.0.isra.0": 1,
+        "__ZN11TemporalLNS12SpatialQueue4pushEii": 5,
+        "_memcpy": 2,
+        "__ZNK10TimeKeeper5checkEv.constprop.0": 2,
+        "__ZZN11TemporalLNS9insert_atERK5StateRKSt6vectorI4MoveSaIS4_EEiiiiRS6_ENKUliiiRKNS_5LabelEE_clEiiiSC_": 3,
+        "__ZNK11TemporalLNS11reconstructERKSt6vectorI4MoveSaIS1_EEi": 1,
+        "__ZNSt6vectorI4MoveSaIS0_EE14_M_move_assignEOS2_St17integral_constantIbLb1EE.isra.0": 1,
+        "___cxa_allocate_exception": 1,
+        "__ZNSt11logic_errorC1EPKc": 1,
+        "___cxa_throw": 1,
+        "__Unwind_Resume": 1,
+        "___cxa_free_exception": 1,
+        "__ZSt20__throw_length_errorPKc": 2
+      },
+      "name": "TemporalLNS::insert_at(State const&, std::vector<Move, std::allocator<Move>> const&, int, int, int, int, std::vector<Move, std::allocator<Move>>&)"
+    }
+  }
+}

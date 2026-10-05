@@ -1,0 +1,6 @@
+{
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "local_parent_preprocessed_equal_except_main_and_pragmas": true,
+  "solver_modified": false,
+  "diagnostic_source_sha256": "cc8f9be3156158a3a67c56a722c1c55a6d9712944c5ecf01fff97cd23a1c4ca0"
+}

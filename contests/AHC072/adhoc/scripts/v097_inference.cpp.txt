@@ -1,0 +1,65 @@
+// 合法操作の集合から、塔・分割ごとの要約を作る。詳細なactorは選んだ枝だけで呼ぶ。
+struct ActionSummary {
+    array<float,33> x{};
+    void add(const array<float,16>& f){
+        for(int c=0;c<16;++c){x[c]+=f[c];x[16+c]=x[32]==0 ? f[c] : max(x[16+c],f[c]);}x[32]+=1;
+    }
+    bool valid()const{return x[32]>0;}
+    void finish(){float n=x[32];if(n==0)return;for(int c=0;c<16;++c)x[c]/=n;x[32]=log1p(n)/10.f;}
+};
+struct FactoredActions {
+    vector<Move> moves;
+    vector<array<float,16>> features;
+    array<ActionSummary,400> tower;
+    array<array<ActionSummary,8>,400> split;
+    array<array<vector<int>,8>,400> groups;
+    FactoredActions(const Board& b,const BoardState& s):moves(legal_moves(b,s)) {
+        features.reserve(moves.size());
+        for(size_t i=0;i<moves.size();++i){const Move m=moves[i];auto f=action_features(b,s,m);features.push_back(f);
+            tower[m.p()].add(f);split[m.p()][m.k()].add(f);groups[m.p()][m.k()].push_back(int(i));}
+        for(int p=0;p<b.cell_count;++p){tower[p].finish();for(auto& a:split[p])a.finish();}
+    }
+};
+struct FactorCounts {int64_t towers=0,splits=0,actions=0,legal_actions=0,duplicates=0;};
+static FactorCounts factor_counts;
+
+template<size_t A,size_t B>
+float head(const float* x,const array<float,A>& w,const array<float,NN_HIDDEN>& bias,
+           const array<float,NN_HIDDEN>& out,const array<float,1>& out_bias,int n) {
+    (void)B;float logit=out_bias[0];
+    for(int o=0;o<NN_HIDDEN;++o){float v=bias[o];for(int c=0;c<n;++c)v+=w[o*n+c]*x[c];logit+=out[o]*max(0.f,v);}return logit;
+}
+float tower_logit(const Encoded& e,const FactoredActions& a,int p) {
+    array<float,2*NN_WIDTH+33> x;copy(e.cells[p].begin(),e.cells[p].end(),x.begin());copy(e.global.begin(),e.global.end(),x.begin()+NN_WIDTH);
+    copy(a.tower[p].x.begin(),a.tower[p].x.end(),x.begin()+2*NN_WIDTH);++factor_counts.towers;
+    return head<nn_tower_w.size(),0>(x.data(),nn_tower_w,nn_tower_b,nn_tower_out_w,nn_tower_out_b,int(x.size()));
+}
+float split_logit(const Encoded& e,const FactoredActions& a,int p,int k) {
+    array<float,2*NN_WIDTH+8+33> x{};copy(e.cells[p].begin(),e.cells[p].end(),x.begin());copy(e.global.begin(),e.global.end(),x.begin()+NN_WIDTH);
+    x[2*NN_WIDTH+k]=1;copy(a.split[p][k].x.begin(),a.split[p][k].x.end(),x.begin()+2*NN_WIDTH+8);++factor_counts.splits;
+    return head<nn_split_w.size(),0>(x.data(),nn_split_w,nn_split_b,nn_split_out_w,nn_split_out_b,int(x.size()));
+}
+struct ConditionalActor {
+    const Board& board;const Encoded& e;
+    array<array<float,NN_HIDDEN>,400> source{},destination{};
+    array<bool,400> source_ready{},destination_ready{};
+    array<float,NN_HIDDEN> global{};
+    ConditionalActor(const Board& b,const Encoded& encoded):board(b),e(encoded){
+        for(int o=0;o<NN_HIDDEN;++o){global[o]=nn_actor_b[o];for(int c=0;c<NN_WIDTH;++c)global[o]+=nn_actor_w[o*NN_ACTOR_INPUT+2*NN_WIDTH+c]*e.global[c];}
+    }
+    float logit(Move m,const array<float,16>& f){
+        int p=m.p(),q=board.ray[p][m.d()][m.l()-1];
+        if(!source_ready[p]){source_ready[p]=true;for(int o=0;o<NN_HIDDEN;++o)for(int c=0;c<NN_WIDTH;++c)source[p][o]+=nn_actor_w[o*NN_ACTOR_INPUT+c]*e.cells[p][c];}
+        if(!destination_ready[q]){destination_ready[q]=true;for(int o=0;o<NN_HIDDEN;++o)for(int c=0;c<NN_WIDTH;++c)destination[q][o]+=nn_actor_w[o*NN_ACTOR_INPUT+NN_WIDTH+c]*e.cells[q][c];}
+        float result=nn_actor_out_b[0];
+        for(int o=0;o<NN_HIDDEN;++o){float v=0;for(int c=0;c<16;++c)v+=nn_actor_w[o*NN_ACTOR_INPUT+3*NN_WIDTH+c]*f[c];
+            v+=source[p][o]+destination[q][o]+global[o];result+=nn_actor_out_w[o]*max(0.f,v);}
+        ++factor_counts.actions;return result;
+    }
+};
+vector<double> log_probabilities(const vector<float>& logits) {
+    assert(!logits.empty());float m=*max_element(logits.begin(),logits.end());double sum=0;for(float x:logits)sum+=exp(double(x-m));
+    vector<double> out;for(float x:logits)out.push_back(double(x-m)-log(sum));return out;
+}
+vector<int> descending(const vector<float>& values){vector<int> ids(values.size());iota(ids.begin(),ids.end(),0);
+    stable_sort(ids.begin(),ids.end(),[&](int a,int b){return values[a]>values[b];});return ids;}

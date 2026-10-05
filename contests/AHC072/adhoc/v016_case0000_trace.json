@@ -1,0 +1,1165 @@
+{
+  "input": "/Users/masaki/Desktop/AHC072/tools/in/0000.txt",
+  "output": "/Users/masaki/Desktop/AHC072/results/out/v016_continuous_tree/0000.txt",
+  "metrics": {
+    "M": 16,
+    "shortest_distance_sum": 153,
+    "max_height": 8,
+    "T": 45,
+    "W": 187,
+    "moved_count": 158,
+    "mixed_moves": 12,
+    "long_jumps": 4,
+    "single_moves": 8,
+    "max_packet": 8,
+    "source_returned": 4,
+    "destination_returned": 12,
+    "E": 0,
+    "S": 45
+  },
+  "per_color": {
+    "a": {
+      "W": 23,
+      "toward_home": 19
+    },
+    "b": {
+      "W": 31,
+      "toward_home": 29
+    },
+    "c": {
+      "W": 66,
+      "toward_home": 64
+    },
+    "d": {
+      "W": 67,
+      "toward_home": 41
+    }
+  },
+  "operations": [
+    {
+      "turn": 1,
+      "action": "7 1 0 L 1",
+      "source": [
+        7,
+        1
+      ],
+      "destination": [
+        7,
+        0
+      ],
+      "before": {
+        "(7, 1)": "a",
+        "(7, 0)": ""
+      },
+      "moving_bottom_to_top": "a",
+      "after": {
+        "(7, 1)": "",
+        "(7, 0)": "a"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 2,
+      "action": "8 0 0 U 1",
+      "source": [
+        8,
+        0
+      ],
+      "destination": [
+        7,
+        0
+      ],
+      "before": {
+        "(8, 0)": "a",
+        "(7, 0)": "a"
+      },
+      "moving_bottom_to_top": "a",
+      "after": {
+        "(8, 0)": "",
+        "(7, 0)": "aa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 3,
+      "action": "7 0 0 U 1",
+      "source": [
+        7,
+        0
+      ],
+      "destination": [
+        6,
+        0
+      ],
+      "before": {
+        "(7, 0)": "aa",
+        "(6, 0)": ""
+      },
+      "moving_bottom_to_top": "aa",
+      "after": {
+        "(7, 0)": "",
+        "(6, 0)": "aa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 4,
+      "action": "6 0 0 U 1",
+      "source": [
+        6,
+        0
+      ],
+      "destination": [
+        5,
+        0
+      ],
+      "before": {
+        "(6, 0)": "aa",
+        "(5, 0)": "a"
+      },
+      "moving_bottom_to_top": "aa",
+      "after": {
+        "(6, 0)": "",
+        "(5, 0)": "aaa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 5,
+      "action": "5 1 0 L 1",
+      "source": [
+        5,
+        1
+      ],
+      "destination": [
+        5,
+        0
+      ],
+      "before": {
+        "(5, 1)": "a",
+        "(5, 0)": "aaa"
+      },
+      "moving_bottom_to_top": "a",
+      "after": {
+        "(5, 1)": "",
+        "(5, 0)": "aaaa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 6,
+      "action": "5 0 0 U 1",
+      "source": [
+        5,
+        0
+      ],
+      "destination": [
+        4,
+        0
+      ],
+      "before": {
+        "(5, 0)": "aaaa",
+        "(4, 0)": "c"
+      },
+      "moving_bottom_to_top": "aaaa",
+      "after": {
+        "(5, 0)": "",
+        "(4, 0)": "caaaa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 7,
+      "action": "4 0 0 U 1",
+      "source": [
+        4,
+        0
+      ],
+      "destination": [
+        3,
+        0
+      ],
+      "before": {
+        "(4, 0)": "caaaa",
+        "(3, 0)": ""
+      },
+      "moving_bottom_to_top": "caaaa",
+      "after": {
+        "(4, 0)": "",
+        "(3, 0)": "aaaac"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 8,
+      "action": "1 3 0 D 1",
+      "source": [
+        1,
+        3
+      ],
+      "destination": [
+        2,
+        3
+      ],
+      "before": {
+        "(1, 3)": "c",
+        "(2, 3)": ""
+      },
+      "moving_bottom_to_top": "c",
+      "after": {
+        "(1, 3)": "",
+        "(2, 3)": "c"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 9,
+      "action": "2 4 0 L 1",
+      "source": [
+        2,
+        4
+      ],
+      "destination": [
+        2,
+        3
+      ],
+      "before": {
+        "(2, 4)": "c",
+        "(2, 3)": "c"
+      },
+      "moving_bottom_to_top": "c",
+      "after": {
+        "(2, 4)": "",
+        "(2, 3)": "cc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 10,
+      "action": "2 3 0 D 1",
+      "source": [
+        2,
+        3
+      ],
+      "destination": [
+        3,
+        3
+      ],
+      "before": {
+        "(2, 3)": "cc",
+        "(3, 3)": "c"
+      },
+      "moving_bottom_to_top": "cc",
+      "after": {
+        "(2, 3)": "",
+        "(3, 3)": "ccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 11,
+      "action": "3 3 0 L 1",
+      "source": [
+        3,
+        3
+      ],
+      "destination": [
+        3,
+        2
+      ],
+      "before": {
+        "(3, 3)": "ccc",
+        "(3, 2)": ""
+      },
+      "moving_bottom_to_top": "ccc",
+      "after": {
+        "(3, 3)": "",
+        "(3, 2)": "ccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 12,
+      "action": "3 2 0 L 1",
+      "source": [
+        3,
+        2
+      ],
+      "destination": [
+        3,
+        1
+      ],
+      "before": {
+        "(3, 2)": "ccc",
+        "(3, 1)": ""
+      },
+      "moving_bottom_to_top": "ccc",
+      "after": {
+        "(3, 2)": "",
+        "(3, 1)": "ccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 13,
+      "action": "3 1 0 L 1",
+      "source": [
+        3,
+        1
+      ],
+      "destination": [
+        3,
+        0
+      ],
+      "before": {
+        "(3, 1)": "ccc",
+        "(3, 0)": "aaaac"
+      },
+      "moving_bottom_to_top": "ccc",
+      "after": {
+        "(3, 1)": "",
+        "(3, 0)": "aaaacccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 14,
+      "action": "3 0 4 D 5",
+      "source": [
+        3,
+        0
+      ],
+      "destination": [
+        8,
+        0
+      ],
+      "before": {
+        "(3, 0)": "aaaacccc",
+        "(8, 0)": ""
+      },
+      "moving_bottom_to_top": "cccc",
+      "after": {
+        "(3, 0)": "aaaa",
+        "(8, 0)": "cccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 15,
+      "action": "3 0 0 U 1",
+      "source": [
+        3,
+        0
+      ],
+      "destination": [
+        2,
+        0
+      ],
+      "before": {
+        "(3, 0)": "aaaa",
+        "(2, 0)": ""
+      },
+      "moving_bottom_to_top": "aaaa",
+      "after": {
+        "(3, 0)": "",
+        "(2, 0)": "aaaa"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 16,
+      "action": "2 0 0 R 1",
+      "source": [
+        2,
+        0
+      ],
+      "destination": [
+        2,
+        1
+      ],
+      "before": {
+        "(2, 0)": "aaaa",
+        "(2, 1)": ""
+      },
+      "moving_bottom_to_top": "aaaa",
+      "after": {
+        "(2, 0)": "",
+        "(2, 1)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "aaaa"
+      }
+    },
+    {
+      "turn": 17,
+      "action": "8 0 0 D 1",
+      "source": [
+        8,
+        0
+      ],
+      "destination": [
+        9,
+        0
+      ],
+      "before": {
+        "(8, 0)": "cccc",
+        "(9, 0)": "d"
+      },
+      "moving_bottom_to_top": "cccc",
+      "after": {
+        "(8, 0)": "",
+        "(9, 0)": "dcccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 18,
+      "action": "9 0 0 R 1",
+      "source": [
+        9,
+        0
+      ],
+      "destination": [
+        9,
+        1
+      ],
+      "before": {
+        "(9, 0)": "dcccc",
+        "(9, 1)": ""
+      },
+      "moving_bottom_to_top": "dcccc",
+      "after": {
+        "(9, 0)": "",
+        "(9, 1)": "ccccd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 19,
+      "action": "11 1 0 U 1",
+      "source": [
+        11,
+        1
+      ],
+      "destination": [
+        10,
+        1
+      ],
+      "before": {
+        "(11, 1)": "d",
+        "(10, 1)": ""
+      },
+      "moving_bottom_to_top": "d",
+      "after": {
+        "(11, 1)": "",
+        "(10, 1)": "d"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 20,
+      "action": "10 1 0 U 1",
+      "source": [
+        10,
+        1
+      ],
+      "destination": [
+        9,
+        1
+      ],
+      "before": {
+        "(10, 1)": "d",
+        "(9, 1)": "ccccd"
+      },
+      "moving_bottom_to_top": "d",
+      "after": {
+        "(10, 1)": "",
+        "(9, 1)": "ccccdd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 21,
+      "action": "9 1 0 R 1",
+      "source": [
+        9,
+        1
+      ],
+      "destination": [
+        9,
+        2
+      ],
+      "before": {
+        "(9, 1)": "ccccdd",
+        "(9, 2)": ""
+      },
+      "moving_bottom_to_top": "ccccdd",
+      "after": {
+        "(9, 1)": "",
+        "(9, 2)": "ddcccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 22,
+      "action": "9 2 0 R 1",
+      "source": [
+        9,
+        2
+      ],
+      "destination": [
+        9,
+        3
+      ],
+      "before": {
+        "(9, 2)": "ddcccc",
+        "(9, 3)": ""
+      },
+      "moving_bottom_to_top": "ddcccc",
+      "after": {
+        "(9, 2)": "",
+        "(9, 3)": "ccccdd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 23,
+      "action": "9 3 0 U 1",
+      "source": [
+        9,
+        3
+      ],
+      "destination": [
+        8,
+        3
+      ],
+      "before": {
+        "(9, 3)": "ccccdd",
+        "(8, 3)": "d"
+      },
+      "moving_bottom_to_top": "ccccdd",
+      "after": {
+        "(9, 3)": "",
+        "(8, 3)": "dddcccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 24,
+      "action": "8 3 0 U 1",
+      "source": [
+        8,
+        3
+      ],
+      "destination": [
+        7,
+        3
+      ],
+      "before": {
+        "(8, 3)": "dddcccc",
+        "(7, 3)": ""
+      },
+      "moving_bottom_to_top": "dddcccc",
+      "after": {
+        "(8, 3)": "",
+        "(7, 3)": "ccccddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 25,
+      "action": "7 3 0 R 1",
+      "source": [
+        7,
+        3
+      ],
+      "destination": [
+        7,
+        4
+      ],
+      "before": {
+        "(7, 3)": "ccccddd",
+        "(7, 4)": "d"
+      },
+      "moving_bottom_to_top": "ccccddd",
+      "after": {
+        "(7, 3)": "",
+        "(7, 4)": "ddddcccc"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 26,
+      "action": "7 4 0 U 1",
+      "source": [
+        7,
+        4
+      ],
+      "destination": [
+        6,
+        4
+      ],
+      "before": {
+        "(7, 4)": "ddddcccc",
+        "(6, 4)": ""
+      },
+      "moving_bottom_to_top": "ddddcccc",
+      "after": {
+        "(7, 4)": "",
+        "(6, 4)": "ccccdddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 27,
+      "action": "6 4 4 R 2",
+      "source": [
+        6,
+        4
+      ],
+      "destination": [
+        6,
+        6
+      ],
+      "before": {
+        "(6, 4)": "ccccdddd",
+        "(6, 6)": ""
+      },
+      "moving_bottom_to_top": "dddd",
+      "after": {
+        "(6, 4)": "",
+        "(6, 6)": "dddd"
+      },
+      "returned": {
+        "source": "cccc",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 28,
+      "action": "6 6 0 D 1",
+      "source": [
+        6,
+        6
+      ],
+      "destination": [
+        7,
+        6
+      ],
+      "before": {
+        "(6, 6)": "dddd",
+        "(7, 6)": ""
+      },
+      "moving_bottom_to_top": "dddd",
+      "after": {
+        "(6, 6)": "",
+        "(7, 6)": "dddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 29,
+      "action": "7 6 0 R 1",
+      "source": [
+        7,
+        6
+      ],
+      "destination": [
+        7,
+        7
+      ],
+      "before": {
+        "(7, 6)": "dddd",
+        "(7, 7)": ""
+      },
+      "moving_bottom_to_top": "dddd",
+      "after": {
+        "(7, 6)": "",
+        "(7, 7)": "dddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 30,
+      "action": "7 7 0 D 1",
+      "source": [
+        7,
+        7
+      ],
+      "destination": [
+        8,
+        7
+      ],
+      "before": {
+        "(7, 7)": "dddd",
+        "(8, 7)": "b"
+      },
+      "moving_bottom_to_top": "dddd",
+      "after": {
+        "(7, 7)": "",
+        "(8, 7)": "bdddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 31,
+      "action": "8 7 0 R 1",
+      "source": [
+        8,
+        7
+      ],
+      "destination": [
+        8,
+        8
+      ],
+      "before": {
+        "(8, 7)": "bdddd",
+        "(8, 8)": ""
+      },
+      "moving_bottom_to_top": "bdddd",
+      "after": {
+        "(8, 7)": "",
+        "(8, 8)": "ddddb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 32,
+      "action": "8 8 0 D 1",
+      "source": [
+        8,
+        8
+      ],
+      "destination": [
+        9,
+        8
+      ],
+      "before": {
+        "(8, 8)": "ddddb",
+        "(9, 8)": "b"
+      },
+      "moving_bottom_to_top": "ddddb",
+      "after": {
+        "(8, 8)": "",
+        "(9, 8)": "bbdddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 33,
+      "action": "9 8 1 R 2",
+      "source": [
+        9,
+        8
+      ],
+      "destination": [
+        9,
+        10
+      ],
+      "before": {
+        "(9, 8)": "bbdddd",
+        "(9, 10)": ""
+      },
+      "moving_bottom_to_top": "bdddd",
+      "after": {
+        "(9, 8)": "b",
+        "(9, 10)": "ddddb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 34,
+      "action": "9 8 0 R 1",
+      "source": [
+        9,
+        8
+      ],
+      "destination": [
+        9,
+        9
+      ],
+      "before": {
+        "(9, 8)": "b",
+        "(9, 9)": ""
+      },
+      "moving_bottom_to_top": "b",
+      "after": {
+        "(9, 8)": "",
+        "(9, 9)": "b"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 35,
+      "action": "9 10 0 L 1",
+      "source": [
+        9,
+        10
+      ],
+      "destination": [
+        9,
+        9
+      ],
+      "before": {
+        "(9, 10)": "ddddb",
+        "(9, 9)": "b"
+      },
+      "moving_bottom_to_top": "ddddb",
+      "after": {
+        "(9, 10)": "",
+        "(9, 9)": "bbdddd"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 36,
+      "action": "9 9 2 D 2",
+      "source": [
+        9,
+        9
+      ],
+      "destination": [
+        11,
+        9
+      ],
+      "before": {
+        "(9, 9)": "bbdddd",
+        "(11, 9)": ""
+      },
+      "moving_bottom_to_top": "dddd",
+      "after": {
+        "(9, 9)": "bb",
+        "(11, 9)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "dddd"
+      }
+    },
+    {
+      "turn": 37,
+      "action": "9 9 0 R 1",
+      "source": [
+        9,
+        9
+      ],
+      "destination": [
+        9,
+        10
+      ],
+      "before": {
+        "(9, 9)": "bb",
+        "(9, 10)": ""
+      },
+      "moving_bottom_to_top": "bb",
+      "after": {
+        "(9, 9)": "",
+        "(9, 10)": "bb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 38,
+      "action": "9 10 0 R 1",
+      "source": [
+        9,
+        10
+      ],
+      "destination": [
+        9,
+        11
+      ],
+      "before": {
+        "(9, 10)": "bb",
+        "(9, 11)": ""
+      },
+      "moving_bottom_to_top": "bb",
+      "after": {
+        "(9, 10)": "",
+        "(9, 11)": "bb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 39,
+      "action": "9 11 0 U 1",
+      "source": [
+        9,
+        11
+      ],
+      "destination": [
+        8,
+        11
+      ],
+      "before": {
+        "(9, 11)": "bb",
+        "(8, 11)": ""
+      },
+      "moving_bottom_to_top": "bb",
+      "after": {
+        "(9, 11)": "",
+        "(8, 11)": "bb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 40,
+      "action": "8 11 0 U 1",
+      "source": [
+        8,
+        11
+      ],
+      "destination": [
+        7,
+        11
+      ],
+      "before": {
+        "(8, 11)": "bb",
+        "(7, 11)": "b"
+      },
+      "moving_bottom_to_top": "bb",
+      "after": {
+        "(8, 11)": "",
+        "(7, 11)": "bbb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 41,
+      "action": "7 11 0 U 1",
+      "source": [
+        7,
+        11
+      ],
+      "destination": [
+        6,
+        11
+      ],
+      "before": {
+        "(7, 11)": "bbb",
+        "(6, 11)": ""
+      },
+      "moving_bottom_to_top": "bbb",
+      "after": {
+        "(7, 11)": "",
+        "(6, 11)": "bbb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 42,
+      "action": "6 11 0 U 1",
+      "source": [
+        6,
+        11
+      ],
+      "destination": [
+        5,
+        11
+      ],
+      "before": {
+        "(6, 11)": "bbb",
+        "(5, 11)": ""
+      },
+      "moving_bottom_to_top": "bbb",
+      "after": {
+        "(6, 11)": "",
+        "(5, 11)": "bbb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 43,
+      "action": "5 11 0 L 1",
+      "source": [
+        5,
+        11
+      ],
+      "destination": [
+        5,
+        10
+      ],
+      "before": {
+        "(5, 11)": "bbb",
+        "(5, 10)": "b"
+      },
+      "moving_bottom_to_top": "bbb",
+      "after": {
+        "(5, 11)": "",
+        "(5, 10)": "bbbb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 44,
+      "action": "5 10 0 U 1",
+      "source": [
+        5,
+        10
+      ],
+      "destination": [
+        4,
+        10
+      ],
+      "before": {
+        "(5, 10)": "bbbb",
+        "(4, 10)": ""
+      },
+      "moving_bottom_to_top": "bbbb",
+      "after": {
+        "(5, 10)": "",
+        "(4, 10)": "bbbb"
+      },
+      "returned": {
+        "source": "",
+        "destination": ""
+      }
+    },
+    {
+      "turn": 45,
+      "action": "4 10 0 L 1",
+      "source": [
+        4,
+        10
+      ],
+      "destination": [
+        4,
+        9
+      ],
+      "before": {
+        "(4, 10)": "bbbb",
+        "(4, 9)": ""
+      },
+      "moving_bottom_to_top": "bbbb",
+      "after": {
+        "(4, 10)": "",
+        "(4, 9)": ""
+      },
+      "returned": {
+        "source": "",
+        "destination": "bbbb"
+      }
+    }
+  ]
+}

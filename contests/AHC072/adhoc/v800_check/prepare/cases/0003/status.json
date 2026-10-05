@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 120,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v022_dependency_lns/0003.txt",
+  "best_sha256": "98f3c1c226e5f6aa1223231ca888dc159219c848ed2e065f56e884315e01b098",
+  "attempts": []
+}

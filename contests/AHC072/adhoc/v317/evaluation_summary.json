@@ -1,0 +1,59 @@
+{
+  "experiment": "v317",
+  "main_snapshot": "7f281e06570443c8d8198d001341164519d46455",
+  "parent": "v401",
+  "source_sha256": "5bd46f9b88d3e372ae1fb22d6f213a9188a1624ae0b54c3982773a861d57a39f",
+  "parent_sha256": "ceb38ea758212dbbd91f8faa63eb6684fd96aab4b3b60a82ea718150538d4618",
+  "default_candidate": "v317 mixed policies",
+  "ablation": "V317_LEARNED_ONLY, all seeds use fixed v109 weights",
+  "decision": "mixed default rejected; retain v401; no post-evaluation candidate switch",
+  "conditions": {
+    "compiler": "GCC 14.2.0, C++23",
+    "LOCAL": false,
+    "workers": 2,
+    "budget_seconds": 1.9,
+    "final_internal_deadline_seconds": 1.88,
+    "main_search_end_seconds": 1.850777202072539,
+    "repetitions_per_case_and_condition": 1,
+    "order": "six permutations cycled, all three variants for a case use the same CPU",
+    "supplement": "100 validation1 inputs selected by content SHA256, excluding in duplicates; previously evaluated set, not newly unseen",
+    "relative_reference": "frozen historical per-case minima including v800, 100*mean(reference/S)",
+    "official_rust_scorer_executed": false,
+    "independent_validators": ["Python literal color stacks", "C++ literal color stacks"],
+    "viewer_registered": false
+  },
+  "in100": {
+    "v401": {"sum_S":20313,"mean_S":203.13,"relative":92.52479816928575,"initial_mean_T":256.43,"complete":100,"max_external_seconds":2.023429639,"external_over_1_9":1},
+    "v317_learned": {"sum_S":20135,"mean_S":201.35,"relative":93.25590476099829,"initial_mean_T":250.78,"complete":100,"max_external_seconds":1.930518952,"external_over_1_9":1},
+    "v317": {"sum_S":20337,"mean_S":203.37,"relative":92.60034151689395,"initial_mean_T":253.89,"complete":100,"max_external_seconds":1.893888579,"external_over_1_9":0}
+  },
+  "validation100": {
+    "v401": {"sum_S":22451,"mean_S":224.51,"complete":100,"max_external_seconds":1.908018873,"external_over_1_9":2},
+    "v317_learned": {"sum_S":22530,"mean_S":225.30,"complete":100,"max_external_seconds":1.937505567,"external_over_1_9":6},
+    "v317": {"sum_S":22498,"mean_S":224.98,"complete":100,"max_external_seconds":1.912905123,"external_over_1_9":1}
+  },
+  "differences_vs_v401": {
+    "mixed_in": {"sum":24,"relative_pp":0.07554334760820539,"wins":43,"ties":11,"losses":46,"mean_difference_case_bootstrap_95":[-1.27,2.19]},
+    "learned_in": {"sum":-178,"relative_pp":0.7311065917125458,"wins":52,"ties":11,"losses":37,"mean_difference_case_bootstrap_95":[-3.27,-0.38]},
+    "mixed_validation": {"sum":47,"wins":42,"ties":15,"losses":43},
+    "learned_validation": {"sum":79,"wins":34,"ties":12,"losses":54},
+    "case0005": {"v401":613,"mixed":684,"learned":631,"retained_seeds":[3,2,3],"mixed_learned_attempts":0},
+    "excluding_in0005": {"mixed_sum":-47,"learned_sum":-196},
+    "learned_excluding_largest_gain": {"excluded_case":"0097.txt","excluded_delta":-34,"remaining_delta_sum":-144},
+    "bootstrap_limit": "Resamples cases, not rerun noise; one execution per input"
+  },
+  "mechanism": {
+    "states":39808,"logits":17233628,"logit_bit_mismatches":0,"selected_action_mismatches":0,
+    "max_logit_error":0,"fixed_clock_paths_compared":64,"model_switch_checks":500,
+    "forced_invalidations":2002,"home_full_updates":3560,
+    "mixed_learned_retained_cases_in":96,"mixed_learned_winner_cases_in":46,
+    "mixed_learned_retained_cases_validation":95,"mixed_learned_winner_cases_validation":49,
+    "mixed_mean_model_switch_ms_in":0.15287204,
+    "original_NN_path_hash_matches_mixed_vs_v401":200,
+    "all_outputs_legal":600,"all_outputs_complete":600
+  },
+  "target_mean_195_achieved": false,
+  "solver_changed_after_execution": false,
+  "additional_training": false,
+  "full_evidence": "Conversation attachment AHC072_v317_evaluation_bundle.zip"
+}

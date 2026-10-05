@@ -1,0 +1,681 @@
+{
+  "cases": 100,
+  "overlap_pairs": 1,
+  "overlap_cases": 1,
+  "never_shared_tower": 0,
+  "never_shared_tower_cases": 0,
+  "note": "Three consecutive parcel flights over identical directed endpoints; different disjoint parcels with combined size <=8. These counts do not establish legal or beneficial batching.",
+  "details": [
+    {
+      "case": "0000.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0001.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0002.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0003.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0004.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0005.txt",
+      "overlap_pairs": 1,
+      "never_shared_tower": 0,
+      "pairs": [
+        {
+          "route": [
+            [
+              [
+                7,
+                12
+              ],
+              [
+                7,
+                14
+              ]
+            ],
+            [
+              [
+                7,
+                14
+              ],
+              [
+                3,
+                14
+              ]
+            ],
+            [
+              [
+                3,
+                14
+              ],
+              [
+                3,
+                15
+              ]
+            ]
+          ],
+          "left_ids": [
+            [
+              5,
+              12
+            ],
+            [
+              8,
+              11
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              12,
+              14
+            ]
+          ],
+          "right_ids": [
+            [
+              12,
+              6
+            ]
+          ],
+          "turns": [
+            [
+              180,
+              188
+            ],
+            [
+              318,
+              326
+            ]
+          ],
+          "union_size": 5,
+          "ever_shared_tower": true
+        }
+      ]
+    },
+    {
+      "case": "0006.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0007.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0008.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0009.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0010.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0011.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0012.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0013.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0014.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0015.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0016.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0017.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0018.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0019.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0020.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0021.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0022.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0023.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0024.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0025.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0026.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0027.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0028.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0029.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0030.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0031.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0032.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0033.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0034.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0035.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0036.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0037.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0038.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0039.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0040.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0041.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0042.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0043.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0044.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0045.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0046.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0047.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0048.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0049.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0050.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0051.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0052.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0053.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0054.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0055.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0056.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0057.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0058.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0059.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0060.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0061.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0062.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0063.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0064.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0065.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0066.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0067.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0068.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0069.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0070.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0071.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0072.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0073.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0074.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0075.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0076.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0077.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0078.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0079.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0080.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0081.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0082.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0083.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0084.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0085.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0086.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0087.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0088.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0089.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0090.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0091.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0092.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0093.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0094.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0095.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0096.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0097.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0098.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    },
+    {
+      "case": "0099.txt",
+      "overlap_pairs": 0,
+      "never_shared_tower": 0,
+      "pairs": []
+    }
+  ]
+}

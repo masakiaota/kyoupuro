@@ -1,0 +1,25 @@
+{
+  "imported_at": "2026-10-04T12:30:11.410859+09:00",
+  "notes_origin_branch": "origin/chatgpt/v312-certified-neural",
+  "files": [
+    {
+      "original_name": "v312_certified_neural_constructor.cpp",
+      "stored_path": "src/bin/v312_certified_neural_constructor.cpp",
+      "sha256": "343ea578a27141f817722255c696b76510b59b59225b3d3619dda7826ab49b08",
+      "bytes": 284815
+    },
+    {
+      "original_name": "v312_report.md",
+      "stored_path": "adhoc/imports/v312/report.md",
+      "sha256": "26679fc1518b26e4472e09d41a0ac8a96069b6baf75f75ebde1db08c1be27654",
+      "bytes": 12177
+    },
+    {
+      "original_name": "v312_paired_results.csv",
+      "stored_path": "adhoc/imports/v312/paired_results.csv",
+      "sha256": "6dd41bcb7fad7cd9f332c6e00ecb04a78f02d3a881205c175ec175663e2a9266",
+      "bytes": 44354
+    }
+  ],
+  "source_edited": false
+}

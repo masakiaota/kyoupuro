@@ -1,0 +1,89 @@
+{
+  "solver_sha256": "a8ccafe277730494699719b2d65dc40ea435a1c3608247b4d270e032adc4ef86",
+  "marks": {
+    "verified_cases": 100,
+    "total": {
+      "queries": 142585,
+      "available": 25209,
+      "partners": 2377177,
+      "related_partners": 30882
+    },
+    "cases_with_related": 100
+  },
+  "reconstruction": {
+    "verified_cases": 100,
+    "same_start_time_banks": true,
+    "variants": {
+      "parent": {
+        "all_100": {
+          "calls": 6400,
+          "completed": 2885,
+          "improved": 28,
+          "improved_cases": 16,
+          "gain_sum_overlapping": 29,
+          "duplicates": 1457,
+          "mean_raw_us": 72.21265625,
+          "mean_polish_us": 7.4840625,
+          "mean_mark_us": 0.0,
+          "related_selected": 0,
+          "related_completed": 0,
+          "related_improved": 0
+        },
+        "generated_99": {
+          "calls": 6336,
+          "completed": 2835,
+          "improved": 28,
+          "improved_cases": 16,
+          "gain_sum_overlapping": 29,
+          "duplicates": 1421,
+          "mean_raw_us": 72.76657196969697,
+          "mean_polish_us": 7.5271464646464645,
+          "mean_mark_us": 0.0,
+          "related_selected": 0,
+          "related_completed": 0,
+          "related_improved": 0
+        }
+      },
+      "child": {
+        "all_100": {
+          "calls": 6400,
+          "completed": 2925,
+          "improved": 25,
+          "improved_cases": 15,
+          "gain_sum_overlapping": 26,
+          "duplicates": 1428,
+          "mean_raw_us": 78.07453125,
+          "mean_polish_us": 7.6965625,
+          "mean_mark_us": 0.23,
+          "related_selected": 1009,
+          "related_completed": 276,
+          "related_improved": 1
+        },
+        "generated_99": {
+          "calls": 6336,
+          "completed": 2874,
+          "improved": 25,
+          "improved_cases": 15,
+          "gain_sum_overlapping": 26,
+          "duplicates": 1391,
+          "mean_raw_us": 78.64425505050505,
+          "mean_polish_us": 7.73169191919192,
+          "mean_mark_us": 0.23011363636363635,
+          "related_selected": 1004,
+          "related_completed": 271,
+          "related_improved": 1
+        }
+      }
+    },
+    "matched_generated_99": {
+      "both_completed": 2766,
+      "child_only_completed": 108,
+      "parent_only_completed": 69,
+      "child_better": 1,
+      "parent_better": 4,
+      "equal": 6331,
+      "delta_sum_overlapping": 3
+    }
+  },
+  "mechanism_passed": true
+}

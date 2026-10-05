@@ -1,0 +1,117 @@
+[
+  {
+    "old": "// v210_collection_color_quotient.cpp\n// v210: v209の同色再挿入・候補保持と、v208の3塔以上の同色集荷構築を併用する。\n// 集荷の計画と採否判定はv208からそのまま継承する。\n// LOCAL・非LOCALとも時間管理、初期解選抜、探索と終了処理はv209を継承する。\n",
+    "new": "// v214_local_color_runs.cpp\n// v214: 途中の1塔・2塔の再構築だけ、選択範囲の同色連続部分を塊単位で再挿入する。\n// 塊はこの再挿入中だけ保持し、同色の背景を足場に残して離れることを許す。\n// 盤面の32 bit表現、初期構築、通常近傍、時間配分と終了処理はv210を継承する。\n",
+    "offset": 0
+  },
+  {
+    "old": "",
+    "new": "int64_t local_run_flexible_calls=0,local_run_paired_calls=0;\nint64_t local_run_reinsert_calls=0,local_run_reinserted_slimes=0;\nint64_t local_run_multi_calls=0,local_run_multi_completed=0;\nint64_t local_run_completed=0,local_run_completed_slimes=0;\n",
+    "offset": 3228
+  },
+  {
+    "old": "    static TowerBits insert_token(TowerBits w,int gap,int color_code) {\n        TowerBits upper=gap==7?0:(w>>(4*gap))<<(4*(gap+1));\n        return prefix(w,gap)|(TowerBits(color_code)<<(4*gap))|upper;\n",
+    "new": "    // 元の段と匹数を保持する。背景へ同色で接触してもこの単位へ取り込まない。\n    struct RunMember {int16_t source;uint8_t rank,shade,count;};\n    static int append_runs(array<RunMember,8>& members,int n,TowerBits word,int source,int rank) {\n        while(word) {\n            const int shade=word&15;int count=0;\n            do {++count;word>>=4;} while(word&&int(word&15)==shade);\n            members[n++]={int16_t(source),uint8_t(rank),uint8_t(shade),uint8_t(count)};\n            rank+=count;\n        }\n        return n;\n    }\n    static TowerBits run_word(const RunMember& m) {\n        return prefix(0x11111111u*m.shade,m.count);\n    }\n    static TowerBits insert_run_word(TowerBits w,int gap,const RunMember& m) {\n        // 上端が8段のときも、32 bit幅のシフトを避けて元の順序を復元する。\n        const uint64_t upper=(uint64_t(w)>>(4*gap))<<(4*(gap+m.count));\n        return TowerBits(prefix(w,gap)|(uint64_t(run_word(m))<<(4*gap))|upper);\n",
+    "offset": 139759
+  },
+  {
+    "old": "                      TowerBits packet,int cap,vector<Move>& result) {\n",
+    "new": "                      TowerBits packet,int cap,vector<Move>& result,int initial_gap=-1) {\n",
+    "offset": 154018
+  },
+  {
+    "old": "        labels[source*8+h[source]]={0,0,-1};\n",
+    "new": "        // 途中再構築では元の段順を保つため、既に戻した塊の下にも挿入する。\n        const int gap=initial_gap<0?h[source]:initial_gap;\n        if(gap>h[source])return false;\n        labels[source*8+gap]={0,0,-1};\n",
+    "offset": 155508
+  },
+  {
+    "old": "    // 途中の塔の上側を除去し、個体ごとに再挿入する。元の段から隙間を決め、開始盤面を復元する。\n    // 挿入後の個体は分離・同乗・再合流できる。\n",
+    "new": "    bool insert_run(const State& initial,const vector<Move>& base,const RunMember& m,\n                    int gap,int cap,vector<Move>& result) {\n        LOCAL_NOTE(\n            ++local_run_reinsert_calls;local_run_reinserted_slimes+=m.count;\n            local_run_multi_calls+=m.count>1;\n        )\n        const bool ok=m.count==1?insert_at(initial,base,m.source,m.shade,gap,cap,result):\n            insert_packet(initial,base,m.source,run_word(m),cap,result,gap);\n        LOCAL_NOTE(\n            local_run_completed+=ok;local_run_completed_slimes+=ok?m.count:0;\n            local_run_multi_completed+=ok&&m.count>1;\n        )\n        return ok;\n    }\n\n    // 選択した上側だけを同色の塊へまとめる。切出し位置と背景の分割は親と同じ自由度を持つ。\n",
+    "offset": 163109
+  },
+  {
+    "old": "",
+    "new": "        LOCAL_NOTE(++local_run_flexible_calls;)\n",
+    "offset": 163950
+  },
+  {
+    "old": "        const int n=height(packet);\n        if(n<2||n>8||board_info.normalize(prefix(before,cut.keep),source)!=prefix(before,cut.keep))return false;\n",
+    "new": "        const int slime_count=height(packet);\n        if(slime_count<2||slime_count>8||board_info.normalize(prefix(before,cut.keep),source)!=prefix(before,cut.keep))return false;\n        array<RunMember,8> members{};\n        const int n=append_runs(members,0,packet,source,cut.keep);\n",
+    "offset": 164168
+  },
+  {
+    "old": "        int mode=rng(4),rounds=n<=4?2:1;\n",
+    "new": "        // 追加順序の匹数条件は親を維持する。1塊では同じ順序の再試行を省く。\n        int mode=rng(4),rounds=n>1&&slime_count<=4?2:1;\n",
+    "offset": 164852
+  },
+  {
+    "old": "                    int ca=int((packet>>(4*a))&15),cb=int((packet>>(4*b))&15);\n                    return board_info.floor_dist[source][board_info.nest_pos_by_code[ca]]>board_info.floor_dist[source][board_info.nest_pos_by_code[cb]];\n",
+    "new": "                    return board_info.floor_dist[source][board_info.nest_pos_by_code[members[a].shade]]>\n                           board_info.floor_dist[source][board_info.nest_pos_by_code[members[b].shade]];\n",
+    "offset": 165329
+  },
+  {
+    "old": "            // 巣では帰巣しない元の最上段を先に置き、構築途中の帰巣を防ぐ。\n",
+    "new": "            // 巣では帰巣しない元の最上段の塊を先に戻す。\n",
+    "offset": 165676
+  },
+  {
+    "old": "                int rank=order[j],current_code=int((packet>>(4*rank))&15);\n                int gap=cut.keep+__builtin_popcount(inserted&((1u<<rank)-1));\n                TowerBits next_initial=insert_token(restored[source],gap,current_code);\n",
+    "new": "                int rank=order[j],gap=cut.keep;\n                for(int k=0;k<rank;k++)if(inserted>>k&1)gap+=members[k].count;\n                TowerBits next_initial=insert_run_word(restored[source],gap,members[rank]);\n",
+    "offset": 166030
+  },
+  {
+    "old": "                if(!insert_at(restored,tail,source,current_code,gap,cap,next)){ok=false;break;}\n",
+    "new": "                if(!insert_run(restored,tail,members[rank],gap,cap,next)){ok=false;break;}\n",
+    "offset": 166454
+  },
+  {
+    "old": "    // 同じ途中時点の2塔の上側を再構築する。各個体の出発点と元の段を保持し、\n",
+    "new": "    // 同じ途中時点の2塔の上側を再構築する。各塊の出発点と元の段を保持し、\n",
+    "offset": 167051
+  },
+  {
+    "old": "        LOCAL_NOTE(local_late_paired_anchor=false;)\n",
+    "new": "        LOCAL_NOTE(local_late_paired_anchor=false;++local_run_paired_calls;)\n",
+    "offset": 167219
+  },
+  {
+    "old": "        struct Member {int source,rank,shade,id;};\n        array<Member,8> members{};int n=0;\n",
+    "new": "        array<RunMember,8> members{};int n=0,slime_count=0;\n",
+    "offset": 170102
+  },
+  {
+    "old": "",
+    "new": "            n=append_runs(members,n,boundary[cell]>>(4*keep),cell,keep);\n            slime_count+=cur.h[cell]-keep;\n",
+    "offset": 170288
+  },
+  {
+    "old": "                members[n++]={cell,k,int(board_info.initial[id]),id};\n",
+    "new": "",
+    "offset": 170491
+  },
+  {
+    "old": "        const int mode=rng(5),rounds=n<=3?2:1;\n",
+    "new": "        const int mode=rng(5),rounds=slime_count<=3?2:1;\n",
+    "offset": 171056
+  },
+  {
+    "old": "                    // 巣では元の最上段を先に置き、他の個体をその下に挿入して帰巣を防ぐ。\n",
+    "new": "                    // 巣では元の上側の塊から戻し、その下へ置く塊の帰巣を防ぐ。\n",
+    "offset": 172081
+  },
+  {
+    "old": "                for(int k=0;k<n;k++)if((inserted>>k&1)&&members[k].source==m.source&&members[k].rank<m.rank)++gap;\n                TowerBits next_initial=insert_token(restored[m.source],gap,m.shade);\n",
+    "new": "                for(int k=0;k<n;k++)if((inserted>>k&1)&&members[k].source==m.source&&members[k].rank<m.rank)gap+=members[k].count;\n                TowerBits next_initial=insert_run_word(restored[m.source],gap,m);\n",
+    "offset": 172535
+  },
+  {
+    "old": "                if(!insert_at(restored,tail,m.source,m.shade,gap,cap,next)){ok=false;break;}\n",
+    "new": "                if(!insert_run(restored,tail,m,gap,cap,next)){ok=false;break;}\n",
+    "offset": 172961
+  },
+  {
+    "old": "",
+    "new": "        trace.count_by(\"local_run_flexible_calls\",local_run_flexible_calls);\n        trace.count_by(\"local_run_paired_calls\",local_run_paired_calls);\n        trace.count_by(\"local_run_reinsert_calls\",local_run_reinsert_calls);\n        trace.count_by(\"local_run_reinserted_slimes\",local_run_reinserted_slimes);\n        trace.count_by(\"local_run_multi_calls\",local_run_multi_calls);\n        trace.count_by(\"local_run_multi_completed\",local_run_multi_completed);\n        trace.count_by(\"local_run_completed\",local_run_completed);\n        trace.count_by(\"local_run_completed_slimes\",local_run_completed_slimes);\n",
+    "offset": 228664
+  }
+]

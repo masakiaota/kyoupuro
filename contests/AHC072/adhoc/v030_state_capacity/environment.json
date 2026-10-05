@@ -1,0 +1,22 @@
+{
+  "system": "Darwin",
+  "release": "27.0.0",
+  "machine": "arm64",
+  "cpu": "Apple M3",
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "flags": "-std=gnu++23 -O2 -Wall -Wextra -march=native -pthread -ftrivial-auto-var-init=zero -fopenmp -DATCODER -DONLINE_JUDGE -DNOMINMAX",
+  "source_pragma": "O3,unroll-loops,fast-math",
+  "repetitions": 6,
+  "iterations": 131072,
+  "warmup_iterations": 16384,
+  "threads": 1,
+  "pool_sizes": [
+    1,
+    64,
+    8192
+  ],
+  "local_time_ratio": "unused: fixed work component benchmark",
+  "started_at": "2026-09-27T20:06:31+0900",
+  "finished_at": "2026-09-27T20:07:26+0900",
+  "exit_code": 0
+}

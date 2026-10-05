@@ -1,0 +1,23 @@
+// 探索を呼ばず、人工の列の遷移だけで記録形式と有界保存を検査する。
+int main(int argc,char** argv){
+    if(argc!=2&&argc!=3)throw runtime_error("recorder self-test requires new output directory and optional saved plan");
+    filesystem::path output=argv[1];if(!filesystem::create_directory(output))throw runtime_error("self-test directory exists");
+    teacher_episodes.configure(output,12345,"synthetic");
+    const uint64_t before_rng=rng.x;
+    vector<Move> current(1000,Move{0,0,0,1}),best=current;
+    TeacherChoice choice;choice.rng_start=before_rng;
+    teacher_episodes.observe("unchanged",current,current,best.size(),0,choice,rng.x);
+    for(int step=1;step<=300;step++){
+        if(step%97==0){teacher_episodes.reset();current=best;}
+        auto after=current;
+        if(step%3==1)after.back().d=(after.back().d+1)%4;
+        else if(step%3==2)after.push_back(Move{0,0,0,1});
+        else after.resize(after.size()-4);
+        teacher_episodes.observe("artificial",current,after,best.size(),step,choice,rng.x);
+        if(after.size()<best.size())best=after;
+        current=move(after);
+    }
+    teacher_episodes.save("self_test",rng.x,0,0,0,0,0,false,false);
+    if(rng.x!=before_rng)throw logic_error("reservoir mutated solver RNG");
+    if(argc==3){geo.read();const auto plan=load_plan(argv[2]);save_moves(output/"roundtrip.txt",plan);}
+}

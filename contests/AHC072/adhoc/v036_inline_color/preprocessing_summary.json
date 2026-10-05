@@ -1,0 +1,23 @@
+{
+  "solver_executions": 0,
+  "flags": [
+    "-std=gnu++23",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-march=native",
+    "-pthread",
+    "-ftrivial-auto-var-init=zero",
+    "-fopenmp"
+  ],
+  "modes": {
+    "local": {
+      "only_mono_color_attribute_changed": true
+    },
+    "production": {
+      "only_mono_color_attribute_changed": true
+    }
+  },
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "cpu": "Apple M3"
+}

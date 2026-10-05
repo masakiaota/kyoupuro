@@ -1,0 +1,13 @@
+{
+  "source_sha256": "b1394da9585c17201ca4e62420314d3f05b7750491cfec075e379abff6c60577",
+  "binaries": {
+    "adhoc/v201_floor_audit/fixed_v201_floor_nn_selector_local": "78d591f33f5f942c9fafde1bed4839d87eff13503c48580caf554204be416705",
+    "adhoc/v201_floor_audit/fixed_v076_relative_tuned_local": "8961fd30d9fad3c14325f1d06aed85fa3dc18db162b050c80ac30f3b27503771",
+    "adhoc/v201_floor_audit/fixed_v076_relative_tuned_production": "3bc0816f1130ec1f326f6b1db7759f723bbb8f18db9f6a0a9a279804e713752f",
+    "adhoc/v201_floor_audit/v201_floor_nn_selector_production": "5011812a621db3487165f983ae506b2ce65ef5eefafadc9633001bd1c3806d13",
+    "adhoc/v201_floor_audit/fixed_v079_nn_immediate_local": "52a1300b2bfcc78c45b33de8a85dca336082dba9fcfd62a1918b71c28b357df6",
+    "adhoc/v201_floor_audit/fixed_v079_nn_immediate_production": "8b2abb7d61b46b0b2f956a092493d0547068ce90b6e4dc8d3286b41b14be70c0",
+    "adhoc/v201_floor_audit/v201_floor_nn_selector_local": "961597ba72dd854c0aa409f5c97b83afa078d02efa2725dad1faf6d6b1f5e607",
+    "adhoc/v201_floor_audit/fixed_v201_floor_nn_selector_production": "881ab0ebdf1dc9eaf90eec3578d2cce2062dbb44e02293e4292c6d6b191b301d"
+  }
+}

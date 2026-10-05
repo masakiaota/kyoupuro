@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 407,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v025_fast_math/0071.txt",
+  "best_sha256": "f54f8bd157fbf04b1bb78620b47778840ff22ce79b15e206a6351c447794ee03",
+  "attempts": []
+}

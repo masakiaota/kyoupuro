@@ -1,0 +1,6 @@
+{
+  "local_production_search_core_identical": true,
+  "search_core_sha256": "9e006dd891aa782c036b6c450c0b7f7a10e696fc97f8ded27788d34a523ec1d6",
+  "local_binary_sha256": "c51c3decdee215a87c589e5719b68a91b3e0138c7041531d119a167b8cd4bd7e",
+  "production_binary_sha256": "e8401bb9b2e72645b9b7268a321b99e5e34bae3b64bf396f3084328a37d82e6c"
+}

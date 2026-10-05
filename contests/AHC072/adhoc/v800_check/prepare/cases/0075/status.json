@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 344,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v039_exact_board_lns/0075.txt",
+  "best_sha256": "33251fbb10f1efe6c496a8dbea26889dbae94de9cca83bf504562114d1493d4c",
+  "attempts": []
+}

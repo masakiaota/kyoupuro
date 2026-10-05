@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "solver_executions": 0,
+  "builds": {
+    "src/bin/v059_repair_priority.cpp": {
+      "source_sha256": "a940c3b2c90e33d4425f531cacfd85286ff170a285fa09a97667c4bad121e002",
+      "binary": "/Users/masaki/Desktop/AHC072/adhoc/v063_audit/build_check_20260929T234111/build/v059_repair_priority",
+      "binary_sha256": "061964dd4f3290ce6804dd091611625541c58b8a39477828ca01d1183dc37ae3"
+    },
+    "src/bin/v062_deferred_passenger.cpp": {
+      "source_sha256": "a339a6bfb9be59d68717dfc69e0cb63eb709e5cfe276f2989c2271bbf80fb8ff",
+      "binary": "/Users/masaki/Desktop/AHC072/adhoc/v063_audit/build_check_20260929T234111/build/v062_deferred_passenger",
+      "binary_sha256": "3e771570fdca5cfb14539e7b50e9bb878fb7d58cb016afc2bdcb70938c20466c"
+    },
+    "adhoc/bin/check_v059_repair_priority.cpp": {
+      "source_sha256": "3167667e98ec75cdf1a645dfea85eb154bf9d36545fe06e22cdf3adf9a542388",
+      "binary": "/Users/masaki/Desktop/AHC072/adhoc/v063_audit/build_check_20260929T234111/build/check_v059_repair_priority",
+      "binary_sha256": "93bb879bebccdd86ae0f72221accb3d8a9b42bb5f86fafbe05b4330c2dfe2a52"
+    },
+    "adhoc/bin/v060_long_search.cpp": {
+      "source_sha256": "84d7a5219ebc8aa3b1207cba1f1b92d10ad933e8202f5bae97bff07cc8ae8bbe",
+      "binary": "/Users/masaki/Desktop/AHC072/adhoc/v063_audit/build_check_20260929T234111/build/v060_long_search",
+      "binary_sha256": "deb59b55f5702cbbcde3d04c381eeb857588e14907a7388b831ca015ae787a92"
+    },
+    "adhoc/bin/v061_bounded_lns_probe.cpp": {
+      "source_sha256": "a13b4141f6cb29ec959e6f056cf505fa4180c273f651270c79e2015493c20c05",
+      "binary": "/Users/masaki/Desktop/AHC072/adhoc/v063_audit/build_check_20260929T234111/build/v061_bounded_lns_probe",
+      "binary_sha256": "c4712dbd0ee5468fc474c93d56e0af0fe478c04d785e7113867209c18e177252"
+    },
+    "adhoc/bin/check_v062_deferred_passenger.cpp": {
+      "source_sha256": "b697dd06ef1d9dd4d19a3f550359d7b9ac948ce0534834ee711573f05bc01ba4",
+      "binary": "/Users/masaki/Desktop/AHC072/adhoc/v063_audit/build_check_20260929T234413/build/check_v062_deferred_passenger",
+      "binary_sha256": "97d6ebf171b02e3981319fb278260871d1372b615c45c3ab9e6721f849ba1c08"
+    },
+    "adhoc/bin/v063_sparse_lns_probe.cpp": {
+      "source_sha256": "93dfd158a5da4dd030d8fbf90f7f44c7f37eee745c7ebad27e30ef61f1bf01a5",
+      "binary": "/Users/masaki/Desktop/AHC072/adhoc/v063_audit/build_check_20260929T234413/build/v063_sparse_lns_probe",
+      "binary_sha256": "a2a7308990da36dea7676a015b3f0581badfef66c64d3ed87a6ad0f18a2188a3"
+    }
+  },
+  "fully_preprocessed_versions": [
+    "v059",
+    "v062"
+  ]
+}

@@ -1,0 +1,5453 @@
+[
+  {
+    "bin": "v039_exact_board_lns",
+    "normal_totals": {
+      "T": 20739,
+      "E": 0,
+      "W": 105033,
+      "mixed_moves": 9791,
+      "long_jumps": 4204,
+      "immediate_reversals": 9,
+      "reversals_after_pickup": 4,
+      "max_height": 791,
+      "source_returned": 1295,
+      "destination_returned": 5449,
+      "shared_route_mixed_moves": 0,
+      "shared_route_mixed_distance": 0,
+      "shared_route_long_jumps": 0,
+      "new_joint_carry_after_home": 4602,
+      "pending_support_long_jumps": 3944,
+      "guided_merge_moves": 0,
+      "guided_forward_moves": 0
+    },
+    "normal_pre_lns": 27518,
+    "cases": [
+      {
+        "case": "0000.txt",
+        "metrics": {
+          "T": 43,
+          "E": 0,
+          "W": 181,
+          "mixed_moves": 13,
+          "long_jumps": 4,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 12,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 3,
+          "pending_support_long_jumps": 3,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 11,
+          "new_joint_carry_after_home": 31
+        },
+        "pre_lns": 53
+      },
+      {
+        "case": "0001.txt",
+        "metrics": {
+          "T": 102,
+          "E": 0,
+          "W": 435,
+          "mixed_moves": 52,
+          "long_jumps": 17,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 6,
+          "destination_returned": 23,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 21,
+          "pending_support_long_jumps": 14,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 25,
+          "new_joint_carry_after_home": 71
+        },
+        "pre_lns": 130
+      },
+      {
+        "case": "0002.txt",
+        "metrics": {
+          "T": 111,
+          "E": 0,
+          "W": 464,
+          "mixed_moves": 55,
+          "long_jumps": 13,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 19,
+          "destination_returned": 24,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 6,
+          "pending_support_long_jumps": 11,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 23,
+          "new_joint_carry_after_home": 92
+        },
+        "pre_lns": 138
+      },
+      {
+        "case": "0003.txt",
+        "metrics": {
+          "T": 127,
+          "E": 0,
+          "W": 562,
+          "mixed_moves": 68,
+          "long_jumps": 18,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 15,
+          "destination_returned": 22,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 25,
+          "pending_support_long_jumps": 16,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 30,
+          "new_joint_carry_after_home": 58
+        },
+        "pre_lns": 163
+      },
+      {
+        "case": "0004.txt",
+        "metrics": {
+          "T": 259,
+          "E": 0,
+          "W": 1347,
+          "mixed_moves": 132,
+          "long_jumps": 65,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 14,
+          "destination_returned": 74,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 22,
+          "pending_support_long_jumps": 62,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 15,
+          "new_joint_carry_after_home": 175
+        },
+        "pre_lns": 351
+      },
+      {
+        "case": "0005.txt",
+        "metrics": {
+          "T": 598,
+          "E": 0,
+          "W": 3506,
+          "mixed_moves": 303,
+          "long_jumps": 133,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 19,
+          "destination_returned": 103,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 115,
+          "pending_support_long_jumps": 133,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 16,
+          "new_joint_carry_after_home": 229
+        },
+        "pre_lns": 858
+      },
+      {
+        "case": "0006.txt",
+        "metrics": {
+          "T": 113,
+          "E": 0,
+          "W": 542,
+          "mixed_moves": 75,
+          "long_jumps": 21,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 1,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 39,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 26,
+          "pending_support_long_jumps": 19,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 42,
+          "new_joint_carry_after_home": 72,
+          "immediate_reversal": 111
+        },
+        "pre_lns": 155
+      },
+      {
+        "case": "0007.txt",
+        "metrics": {
+          "T": 117,
+          "E": 0,
+          "W": 600,
+          "mixed_moves": 64,
+          "long_jumps": 16,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 16,
+          "destination_returned": 31,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 5,
+          "pending_support_long_jumps": 14,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 26,
+          "new_joint_carry_after_home": 95
+        },
+        "pre_lns": 160
+      },
+      {
+        "case": "0008.txt",
+        "metrics": {
+          "T": 131,
+          "E": 0,
+          "W": 617,
+          "mixed_moves": 55,
+          "long_jumps": 29,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 5,
+          "destination_returned": 39,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 38,
+          "pending_support_long_jumps": 26,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 14,
+          "new_joint_carry_after_home": 55
+        },
+        "pre_lns": 172
+      },
+      {
+        "case": "0009.txt",
+        "metrics": {
+          "T": 83,
+          "E": 0,
+          "W": 353,
+          "mixed_moves": 29,
+          "long_jumps": 9,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 1,
+          "destination_returned": 23,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 11,
+          "pending_support_long_jumps": 9,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 31,
+          "new_joint_carry_after_home": 66
+        },
+        "pre_lns": 96
+      },
+      {
+        "case": "0010.txt",
+        "metrics": {
+          "T": 70,
+          "E": 0,
+          "W": 298,
+          "mixed_moves": 44,
+          "long_jumps": 7,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 12,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 22,
+          "pending_support_long_jumps": 5,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 34,
+          "new_joint_carry_after_home": 44
+        },
+        "pre_lns": 92
+      },
+      {
+        "case": "0011.txt",
+        "metrics": {
+          "T": 152,
+          "E": 0,
+          "W": 749,
+          "mixed_moves": 86,
+          "long_jumps": 32,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 42,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 25,
+          "pending_support_long_jumps": 27,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "new_joint_carry_after_home": 95
+        },
+        "pre_lns": 214
+      },
+      {
+        "case": "0012.txt",
+        "metrics": {
+          "T": 125,
+          "E": 0,
+          "W": 652,
+          "mixed_moves": 77,
+          "long_jumps": 32,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 1,
+          "max_height": 8,
+          "source_returned": 10,
+          "destination_returned": 29,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 42,
+          "pending_support_long_jumps": 30,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 31,
+          "immediate_reversal": 64,
+          "new_joint_carry_after_home": 70
+        },
+        "pre_lns": 181
+      },
+      {
+        "case": "0013.txt",
+        "metrics": {
+          "T": 180,
+          "E": 0,
+          "W": 938,
+          "mixed_moves": 97,
+          "long_jumps": 22,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 40,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 78,
+          "pending_support_long_jumps": 21,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 66,
+          "new_joint_carry_after_home": 82
+        },
+        "pre_lns": 253
+      },
+      {
+        "case": "0014.txt",
+        "metrics": {
+          "T": 377,
+          "E": 0,
+          "W": 2014,
+          "mixed_moves": 172,
+          "long_jumps": 100,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 115,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 69,
+          "pending_support_long_jumps": 98,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 16,
+          "new_joint_carry_after_home": 165
+        },
+        "pre_lns": 461
+      },
+      {
+        "case": "0015.txt",
+        "metrics": {
+          "T": 546,
+          "E": 0,
+          "W": 2963,
+          "mixed_moves": 312,
+          "long_jumps": 126,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 42,
+          "destination_returned": 109,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 87,
+          "pending_support_long_jumps": 119,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 3,
+          "new_joint_carry_after_home": 220,
+          "immediate_reversal": 516
+        },
+        "pre_lns": 707
+      },
+      {
+        "case": "0016.txt",
+        "metrics": {
+          "T": 129,
+          "E": 0,
+          "W": 617,
+          "mixed_moves": 51,
+          "long_jumps": 25,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 8,
+          "destination_returned": 41,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 9,
+          "pending_support_long_jumps": 23,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 21,
+          "new_joint_carry_after_home": 95
+        },
+        "pre_lns": 164
+      },
+      {
+        "case": "0017.txt",
+        "metrics": {
+          "T": 208,
+          "E": 0,
+          "W": 1073,
+          "mixed_moves": 94,
+          "long_jumps": 49,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 12,
+          "destination_returned": 90,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 34,
+          "pending_support_long_jumps": 47,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 58,
+          "new_joint_carry_after_home": 107
+        },
+        "pre_lns": 266
+      },
+      {
+        "case": "0018.txt",
+        "metrics": {
+          "T": 74,
+          "E": 0,
+          "W": 258,
+          "mixed_moves": 31,
+          "long_jumps": 15,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 6,
+          "destination_returned": 16,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 14,
+          "pending_support_long_jumps": 14,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 14,
+          "new_joint_carry_after_home": 35
+        },
+        "pre_lns": 92
+      },
+      {
+        "case": "0019.txt",
+        "metrics": {
+          "T": 643,
+          "E": 0,
+          "W": 3234,
+          "mixed_moves": 322,
+          "long_jumps": 178,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 46,
+          "destination_returned": 171,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 126,
+          "pending_support_long_jumps": 173,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 12,
+          "new_joint_carry_after_home": 211
+        },
+        "pre_lns": 825
+      },
+      {
+        "case": "0020.txt",
+        "metrics": {
+          "T": 149,
+          "E": 0,
+          "W": 756,
+          "mixed_moves": 55,
+          "long_jumps": 28,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 1,
+          "max_height": 8,
+          "source_returned": 17,
+          "destination_returned": 54,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 45,
+          "pending_support_long_jumps": 27,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 25,
+          "new_joint_carry_after_home": 57,
+          "immediate_reversal": 123
+        },
+        "pre_lns": 189
+      },
+      {
+        "case": "0021.txt",
+        "metrics": {
+          "T": 65,
+          "E": 0,
+          "W": 240,
+          "mixed_moves": 27,
+          "long_jumps": 10,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 7,
+          "destination_returned": 16,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 10,
+          "pending_support_long_jumps": 8,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 29,
+          "new_joint_carry_after_home": 52
+        },
+        "pre_lns": 85
+      },
+      {
+        "case": "0022.txt",
+        "metrics": {
+          "T": 68,
+          "E": 0,
+          "W": 222,
+          "mixed_moves": 27,
+          "long_jumps": 9,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 1,
+          "destination_returned": 19,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 2,
+          "pending_support_long_jumps": 8,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 36,
+          "new_joint_carry_after_home": 65
+        },
+        "pre_lns": 79
+      },
+      {
+        "case": "0023.txt",
+        "metrics": {
+          "T": 83,
+          "E": 0,
+          "W": 357,
+          "mixed_moves": 58,
+          "long_jumps": 16,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 17,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 17,
+          "pending_support_long_jumps": 12,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 25,
+          "new_joint_carry_after_home": 64
+        },
+        "pre_lns": 115
+      },
+      {
+        "case": "0024.txt",
+        "metrics": {
+          "T": 120,
+          "E": 0,
+          "W": 565,
+          "mixed_moves": 45,
+          "long_jumps": 22,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 0,
+          "destination_returned": 27,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 22,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 12,
+          "new_joint_carry_after_home": 68
+        },
+        "pre_lns": 174
+      },
+      {
+        "case": "0025.txt",
+        "metrics": {
+          "T": 58,
+          "E": 0,
+          "W": 203,
+          "mixed_moves": 15,
+          "long_jumps": 10,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 5,
+          "destination_returned": 18,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 9,
+          "pending_support_long_jumps": 9,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 25,
+          "new_joint_carry_after_home": 45
+        },
+        "pre_lns": 75
+      },
+      {
+        "case": "0026.txt",
+        "metrics": {
+          "T": 120,
+          "E": 0,
+          "W": 617,
+          "mixed_moves": 64,
+          "long_jumps": 17,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 28,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 20,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 38,
+          "new_joint_carry_after_home": 92
+        },
+        "pre_lns": 163
+      },
+      {
+        "case": "0027.txt",
+        "metrics": {
+          "T": 148,
+          "E": 0,
+          "W": 805,
+          "mixed_moves": 66,
+          "long_jumps": 29,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 39,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 57,
+          "pending_support_long_jumps": 28,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 18,
+          "new_joint_carry_after_home": 74
+        },
+        "pre_lns": 208
+      },
+      {
+        "case": "0028.txt",
+        "metrics": {
+          "T": 254,
+          "E": 0,
+          "W": 1231,
+          "mixed_moves": 136,
+          "long_jumps": 52,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 10,
+          "destination_returned": 65,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 38,
+          "pending_support_long_jumps": 49,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 37,
+          "new_joint_carry_after_home": 58
+        },
+        "pre_lns": 383
+      },
+      {
+        "case": "0029.txt",
+        "metrics": {
+          "T": 257,
+          "E": 0,
+          "W": 1190,
+          "mixed_moves": 136,
+          "long_jumps": 54,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 27,
+          "destination_returned": 71,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 49,
+          "pending_support_long_jumps": 50,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 8,
+          "new_joint_carry_after_home": 84,
+          "immediate_reversal": 251
+        },
+        "pre_lns": 331
+      },
+      {
+        "case": "0030.txt",
+        "metrics": {
+          "T": 447,
+          "E": 0,
+          "W": 2793,
+          "mixed_moves": 140,
+          "long_jumps": 88,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 7,
+          "destination_returned": 117,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 170,
+          "pending_support_long_jumps": 86,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 74,
+          "new_joint_carry_after_home": 101
+        },
+        "pre_lns": 624
+      },
+      {
+        "case": "0031.txt",
+        "metrics": {
+          "T": 123,
+          "E": 0,
+          "W": 496,
+          "mixed_moves": 52,
+          "long_jumps": 22,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 6,
+          "destination_returned": 35,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 29,
+          "pending_support_long_jumps": 21,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 15,
+          "new_joint_carry_after_home": 83
+        },
+        "pre_lns": 157
+      },
+      {
+        "case": "0032.txt",
+        "metrics": {
+          "T": 156,
+          "E": 0,
+          "W": 724,
+          "mixed_moves": 76,
+          "long_jumps": 31,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 7,
+          "destination_returned": 42,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 50,
+          "pending_support_long_jumps": 29,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 18,
+          "new_joint_carry_after_home": 52
+        },
+        "pre_lns": 203
+      },
+      {
+        "case": "0033.txt",
+        "metrics": {
+          "T": 146,
+          "E": 0,
+          "W": 691,
+          "mixed_moves": 75,
+          "long_jumps": 30,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 17,
+          "destination_returned": 46,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 17,
+          "pending_support_long_jumps": 26,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 32,
+          "new_joint_carry_after_home": 75
+        },
+        "pre_lns": 184
+      },
+      {
+        "case": "0034.txt",
+        "metrics": {
+          "T": 416,
+          "E": 0,
+          "W": 2341,
+          "mixed_moves": 114,
+          "long_jumps": 75,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 7,
+          "destination_returned": 114,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 58,
+          "pending_support_long_jumps": 75,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 14,
+          "immediate_reversal": 193,
+          "new_joint_carry_after_home": 221
+        },
+        "pre_lns": 582
+      },
+      {
+        "case": "0035.txt",
+        "metrics": {
+          "T": 67,
+          "E": 0,
+          "W": 207,
+          "mixed_moves": 44,
+          "long_jumps": 9,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 7,
+          "source_returned": 5,
+          "destination_returned": 8,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 3,
+          "pending_support_long_jumps": 9,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 16,
+          "new_joint_carry_after_home": 63
+        },
+        "pre_lns": 77
+      },
+      {
+        "case": "0036.txt",
+        "metrics": {
+          "T": 206,
+          "E": 0,
+          "W": 1001,
+          "mixed_moves": 90,
+          "long_jumps": 51,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 26,
+          "destination_returned": 65,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 76,
+          "pending_support_long_jumps": 48,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 10,
+          "new_joint_carry_after_home": 93
+        },
+        "pre_lns": 277
+      },
+      {
+        "case": "0037.txt",
+        "metrics": {
+          "T": 245,
+          "E": 0,
+          "W": 1281,
+          "mixed_moves": 112,
+          "long_jumps": 40,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 70,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 55,
+          "pending_support_long_jumps": 40,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "new_joint_carry_after_home": 34,
+          "pending_support_long_jump": 43
+        },
+        "pre_lns": 335
+      },
+      {
+        "case": "0038.txt",
+        "metrics": {
+          "T": 133,
+          "E": 0,
+          "W": 668,
+          "mixed_moves": 50,
+          "long_jumps": 17,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 6,
+          "destination_returned": 38,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 28,
+          "new_joint_carry_after_home": 39
+        },
+        "pre_lns": 163
+      },
+      {
+        "case": "0039.txt",
+        "metrics": {
+          "T": 114,
+          "E": 0,
+          "W": 469,
+          "mixed_moves": 50,
+          "long_jumps": 20,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 3,
+          "destination_returned": 28,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 41,
+          "pending_support_long_jumps": 19,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 33,
+          "new_joint_carry_after_home": 40
+        },
+        "pre_lns": 144
+      },
+      {
+        "case": "0040.txt",
+        "metrics": {
+          "T": 137,
+          "E": 0,
+          "W": 510,
+          "mixed_moves": 72,
+          "long_jumps": 18,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 2,
+          "destination_returned": 22,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 33,
+          "pending_support_long_jumps": 18,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 38,
+          "new_joint_carry_after_home": 74
+        },
+        "pre_lns": 184
+      },
+      {
+        "case": "0041.txt",
+        "metrics": {
+          "T": 89,
+          "E": 0,
+          "W": 413,
+          "mixed_moves": 57,
+          "long_jumps": 14,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 12,
+          "destination_returned": 31,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 11,
+          "pending_support_long_jumps": 12,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 35,
+          "new_joint_carry_after_home": 60
+        },
+        "pre_lns": 117
+      },
+      {
+        "case": "0042.txt",
+        "metrics": {
+          "T": 323,
+          "E": 0,
+          "W": 1758,
+          "mixed_moves": 190,
+          "long_jumps": 62,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 36,
+          "destination_returned": 79,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 51,
+          "pending_support_long_jumps": 54,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 34,
+          "new_joint_carry_after_home": 211
+        },
+        "pre_lns": 391
+      },
+      {
+        "case": "0043.txt",
+        "metrics": {
+          "T": 170,
+          "E": 0,
+          "W": 796,
+          "mixed_moves": 94,
+          "long_jumps": 34,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 14,
+          "destination_returned": 25,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 55,
+          "pending_support_long_jumps": 30,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 27,
+          "new_joint_carry_after_home": 78
+        },
+        "pre_lns": 237
+      },
+      {
+        "case": "0044.txt",
+        "metrics": {
+          "T": 186,
+          "E": 0,
+          "W": 903,
+          "mixed_moves": 96,
+          "long_jumps": 36,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 1,
+          "max_height": 8,
+          "source_returned": 18,
+          "destination_returned": 45,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 47,
+          "pending_support_long_jumps": 32,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 37,
+          "new_joint_carry_after_home": 98,
+          "immediate_reversal": 170
+        },
+        "pre_lns": 246
+      },
+      {
+        "case": "0045.txt",
+        "metrics": {
+          "T": 194,
+          "E": 0,
+          "W": 1047,
+          "mixed_moves": 104,
+          "long_jumps": 39,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 18,
+          "destination_returned": 66,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 25,
+          "pending_support_long_jumps": 32,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 2,
+          "new_joint_carry_after_home": 57
+        },
+        "pre_lns": 254
+      },
+      {
+        "case": "0046.txt",
+        "metrics": {
+          "T": 156,
+          "E": 0,
+          "W": 788,
+          "mixed_moves": 68,
+          "long_jumps": 21,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 57,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 38,
+          "pending_support_long_jumps": 20,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 23,
+          "new_joint_carry_after_home": 53
+        },
+        "pre_lns": 202
+      },
+      {
+        "case": "0047.txt",
+        "metrics": {
+          "T": 336,
+          "E": 0,
+          "W": 1895,
+          "mixed_moves": 130,
+          "long_jumps": 80,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 10,
+          "destination_returned": 104,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 77,
+          "pending_support_long_jumps": 78,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 23,
+          "new_joint_carry_after_home": 48
+        },
+        "pre_lns": 434
+      },
+      {
+        "case": "0048.txt",
+        "metrics": {
+          "T": 228,
+          "E": 0,
+          "W": 1216,
+          "mixed_moves": 91,
+          "long_jumps": 54,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 20,
+          "destination_returned": 84,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 27,
+          "pending_support_long_jumps": 48,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "new_joint_carry_after_home": 55
+        },
+        "pre_lns": 300
+      },
+      {
+        "case": "0049.txt",
+        "metrics": {
+          "T": 197,
+          "E": 0,
+          "W": 1007,
+          "mixed_moves": 80,
+          "long_jumps": 48,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 19,
+          "destination_returned": 72,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 53,
+          "pending_support_long_jumps": 42,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 19,
+          "new_joint_carry_after_home": 113
+        },
+        "pre_lns": 245
+      },
+      {
+        "case": "0050.txt",
+        "metrics": {
+          "T": 143,
+          "E": 0,
+          "W": 692,
+          "mixed_moves": 91,
+          "long_jumps": 23,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 8,
+          "destination_returned": 33,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 49,
+          "pending_support_long_jumps": 21,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 3,
+          "new_joint_carry_after_home": 54
+        },
+        "pre_lns": 193
+      },
+      {
+        "case": "0051.txt",
+        "metrics": {
+          "T": 118,
+          "E": 0,
+          "W": 569,
+          "mixed_moves": 47,
+          "long_jumps": 17,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 10,
+          "destination_returned": 35,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 28,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 10,
+          "new_joint_carry_after_home": 44
+        },
+        "pre_lns": 156
+      },
+      {
+        "case": "0052.txt",
+        "metrics": {
+          "T": 190,
+          "E": 0,
+          "W": 873,
+          "mixed_moves": 107,
+          "long_jumps": 44,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 19,
+          "destination_returned": 45,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 39,
+          "pending_support_long_jumps": 41,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 10,
+          "new_joint_carry_after_home": 128
+        },
+        "pre_lns": 266
+      },
+      {
+        "case": "0053.txt",
+        "metrics": {
+          "T": 129,
+          "E": 0,
+          "W": 567,
+          "mixed_moves": 64,
+          "long_jumps": 18,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 7,
+          "destination_returned": 35,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 44,
+          "pending_support_long_jumps": 17,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 43,
+          "new_joint_carry_after_home": 48
+        },
+        "pre_lns": 180
+      },
+      {
+        "case": "0054.txt",
+        "metrics": {
+          "T": 301,
+          "E": 0,
+          "W": 1412,
+          "mixed_moves": 136,
+          "long_jumps": 64,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 7,
+          "destination_returned": 79,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 43,
+          "pending_support_long_jumps": 63,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 73,
+          "new_joint_carry_after_home": 213
+        },
+        "pre_lns": 402
+      },
+      {
+        "case": "0055.txt",
+        "metrics": {
+          "T": 287,
+          "E": 0,
+          "W": 1546,
+          "mixed_moves": 133,
+          "long_jumps": 72,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 17,
+          "destination_returned": 105,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 41,
+          "pending_support_long_jumps": 69,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 25,
+          "new_joint_carry_after_home": 47
+        },
+        "pre_lns": 356
+      },
+      {
+        "case": "0056.txt",
+        "metrics": {
+          "T": 203,
+          "E": 0,
+          "W": 956,
+          "mixed_moves": 102,
+          "long_jumps": 47,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 6,
+          "destination_returned": 60,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 49,
+          "pending_support_long_jumps": 44,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 9,
+          "new_joint_carry_after_home": 113
+        },
+        "pre_lns": 259
+      },
+      {
+        "case": "0057.txt",
+        "metrics": {
+          "T": 243,
+          "E": 0,
+          "W": 1159,
+          "mixed_moves": 109,
+          "long_jumps": 43,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 21,
+          "destination_returned": 75,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 64,
+          "pending_support_long_jumps": 40,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 42,
+          "new_joint_carry_after_home": 76
+        },
+        "pre_lns": 322
+      },
+      {
+        "case": "0058.txt",
+        "metrics": {
+          "T": 302,
+          "E": 0,
+          "W": 1573,
+          "mixed_moves": 169,
+          "long_jumps": 60,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 15,
+          "destination_returned": 56,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 115,
+          "pending_support_long_jumps": 58,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 21,
+          "new_joint_carry_after_home": 76
+        },
+        "pre_lns": 435
+      },
+      {
+        "case": "0059.txt",
+        "metrics": {
+          "T": 68,
+          "E": 0,
+          "W": 258,
+          "mixed_moves": 26,
+          "long_jumps": 8,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 2,
+          "destination_returned": 21,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 11,
+          "pending_support_long_jumps": 7,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 39,
+          "new_joint_carry_after_home": 50
+        },
+        "pre_lns": 87
+      },
+      {
+        "case": "0060.txt",
+        "metrics": {
+          "T": 161,
+          "E": 0,
+          "W": 701,
+          "mixed_moves": 85,
+          "long_jumps": 23,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 30,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 45,
+          "pending_support_long_jumps": 22,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 36,
+          "new_joint_carry_after_home": 79
+        },
+        "pre_lns": 206
+      },
+      {
+        "case": "0061.txt",
+        "metrics": {
+          "T": 297,
+          "E": 0,
+          "W": 1639,
+          "mixed_moves": 135,
+          "long_jumps": 54,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 71,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 79,
+          "pending_support_long_jumps": 52,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 11,
+          "new_joint_carry_after_home": 105
+        },
+        "pre_lns": 408
+      },
+      {
+        "case": "0062.txt",
+        "metrics": {
+          "T": 180,
+          "E": 0,
+          "W": 871,
+          "mixed_moves": 88,
+          "long_jumps": 42,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 20,
+          "destination_returned": 50,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 47,
+          "pending_support_long_jumps": 37,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 31,
+          "new_joint_carry_after_home": 33
+        },
+        "pre_lns": 217
+      },
+      {
+        "case": "0063.txt",
+        "metrics": {
+          "T": 261,
+          "E": 0,
+          "W": 1233,
+          "mixed_moves": 124,
+          "long_jumps": 55,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 65,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 40,
+          "pending_support_long_jumps": 53,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 53,
+          "new_joint_carry_after_home": 83
+        },
+        "pre_lns": 358
+      },
+      {
+        "case": "0064.txt",
+        "metrics": {
+          "T": 192,
+          "E": 0,
+          "W": 1012,
+          "mixed_moves": 105,
+          "long_jumps": 25,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 50,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 27,
+          "pending_support_long_jumps": 21,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 58,
+          "new_joint_carry_after_home": 96
+        },
+        "pre_lns": 251
+      },
+      {
+        "case": "0065.txt",
+        "metrics": {
+          "T": 125,
+          "E": 0,
+          "W": 513,
+          "mixed_moves": 62,
+          "long_jumps": 19,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 14,
+          "destination_returned": 18,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 34,
+          "pending_support_long_jumps": 17,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 35,
+          "new_joint_carry_after_home": 70
+        },
+        "pre_lns": 165
+      },
+      {
+        "case": "0066.txt",
+        "metrics": {
+          "T": 423,
+          "E": 0,
+          "W": 2537,
+          "mixed_moves": 173,
+          "long_jumps": 104,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 8,
+          "destination_returned": 85,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 206,
+          "pending_support_long_jumps": 102,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 40,
+          "new_joint_carry_after_home": 55
+        },
+        "pre_lns": 571
+      },
+      {
+        "case": "0067.txt",
+        "metrics": {
+          "T": 198,
+          "E": 0,
+          "W": 957,
+          "mixed_moves": 82,
+          "long_jumps": 26,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 2,
+          "destination_returned": 48,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 51,
+          "pending_support_long_jumps": 26,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 39,
+          "new_joint_carry_after_home": 44
+        },
+        "pre_lns": 278
+      },
+      {
+        "case": "0068.txt",
+        "metrics": {
+          "T": 426,
+          "E": 0,
+          "W": 2184,
+          "mixed_moves": 222,
+          "long_jumps": 102,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 42,
+          "destination_returned": 115,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 81,
+          "pending_support_long_jumps": 92,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 36,
+          "new_joint_carry_after_home": 193
+        },
+        "pre_lns": 543
+      },
+      {
+        "case": "0069.txt",
+        "metrics": {
+          "T": 135,
+          "E": 0,
+          "W": 597,
+          "mixed_moves": 61,
+          "long_jumps": 21,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 2,
+          "destination_returned": 40,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 40,
+          "pending_support_long_jumps": 21,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 29,
+          "new_joint_carry_after_home": 54
+        },
+        "pre_lns": 182
+      },
+      {
+        "case": "0070.txt",
+        "metrics": {
+          "T": 409,
+          "E": 0,
+          "W": 2121,
+          "mixed_moves": 205,
+          "long_jumps": 98,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 23,
+          "destination_returned": 91,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 104,
+          "pending_support_long_jumps": 93,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 41,
+          "new_joint_carry_after_home": 127
+        },
+        "pre_lns": 557
+      },
+      {
+        "case": "0071.txt",
+        "metrics": {
+          "T": 407,
+          "E": 0,
+          "W": 1955,
+          "mixed_moves": 217,
+          "long_jumps": 86,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 19,
+          "destination_returned": 97,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 107,
+          "pending_support_long_jumps": 83,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 39,
+          "new_joint_carry_after_home": 178
+        },
+        "pre_lns": 599
+      },
+      {
+        "case": "0072.txt",
+        "metrics": {
+          "T": 90,
+          "E": 0,
+          "W": 334,
+          "mixed_moves": 49,
+          "long_jumps": 11,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 16,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 16,
+          "pending_support_long_jumps": 9,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 38,
+          "new_joint_carry_after_home": 39
+        },
+        "pre_lns": 125
+      },
+      {
+        "case": "0073.txt",
+        "metrics": {
+          "T": 233,
+          "E": 0,
+          "W": 1270,
+          "mixed_moves": 101,
+          "long_jumps": 54,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 84,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 69,
+          "pending_support_long_jumps": 51,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 7,
+          "new_joint_carry_after_home": 64
+        },
+        "pre_lns": 316
+      },
+      {
+        "case": "0074.txt",
+        "metrics": {
+          "T": 99,
+          "E": 0,
+          "W": 466,
+          "mixed_moves": 60,
+          "long_jumps": 17,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 19,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 27,
+          "pending_support_long_jumps": 12,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 19,
+          "new_joint_carry_after_home": 34
+        },
+        "pre_lns": 128
+      },
+      {
+        "case": "0075.txt",
+        "metrics": {
+          "T": 344,
+          "E": 0,
+          "W": 1888,
+          "mixed_moves": 155,
+          "long_jumps": 74,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 83,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 59,
+          "pending_support_long_jumps": 69,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 43,
+          "new_joint_carry_after_home": 116
+        },
+        "pre_lns": 455
+      },
+      {
+        "case": "0076.txt",
+        "metrics": {
+          "T": 270,
+          "E": 0,
+          "W": 1488,
+          "mixed_moves": 133,
+          "long_jumps": 59,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 17,
+          "destination_returned": 74,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 75,
+          "pending_support_long_jumps": 56,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 16,
+          "new_joint_carry_after_home": 98
+        },
+        "pre_lns": 363
+      },
+      {
+        "case": "0077.txt",
+        "metrics": {
+          "T": 86,
+          "E": 0,
+          "W": 357,
+          "mixed_moves": 44,
+          "long_jumps": 15,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 17,
+          "destination_returned": 17,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 17,
+          "pending_support_long_jumps": 10,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 23,
+          "new_joint_carry_after_home": 59
+        },
+        "pre_lns": 119
+      },
+      {
+        "case": "0078.txt",
+        "metrics": {
+          "T": 263,
+          "E": 0,
+          "W": 1420,
+          "mixed_moves": 139,
+          "long_jumps": 56,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 20,
+          "destination_returned": 66,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 77,
+          "pending_support_long_jumps": 50,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 22,
+          "new_joint_carry_after_home": 130
+        },
+        "pre_lns": 355
+      },
+      {
+        "case": "0079.txt",
+        "metrics": {
+          "T": 69,
+          "E": 0,
+          "W": 214,
+          "mixed_moves": 32,
+          "long_jumps": 8,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 10,
+          "destination_returned": 9,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 9,
+          "pending_support_long_jumps": 4,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 36,
+          "new_joint_carry_after_home": 48
+        },
+        "pre_lns": 85
+      },
+      {
+        "case": "0080.txt",
+        "metrics": {
+          "T": 176,
+          "E": 0,
+          "W": 860,
+          "mixed_moves": 78,
+          "long_jumps": 46,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 58,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 54,
+          "pending_support_long_jumps": 45,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 2,
+          "new_joint_carry_after_home": 71
+        },
+        "pre_lns": 238
+      },
+      {
+        "case": "0081.txt",
+        "metrics": {
+          "T": 384,
+          "E": 0,
+          "W": 2021,
+          "mixed_moves": 138,
+          "long_jumps": 107,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 23,
+          "destination_returned": 119,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 70,
+          "pending_support_long_jumps": 102,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 11,
+          "new_joint_carry_after_home": 152
+        },
+        "pre_lns": 474
+      },
+      {
+        "case": "0082.txt",
+        "metrics": {
+          "T": 325,
+          "E": 0,
+          "W": 1636,
+          "mixed_moves": 165,
+          "long_jumps": 69,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 17,
+          "destination_returned": 92,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 76,
+          "pending_support_long_jumps": 65,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 24,
+          "new_joint_carry_after_home": 103
+        },
+        "pre_lns": 438
+      },
+      {
+        "case": "0083.txt",
+        "metrics": {
+          "T": 168,
+          "E": 0,
+          "W": 794,
+          "mixed_moves": 91,
+          "long_jumps": 41,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 11,
+          "destination_returned": 53,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 32,
+          "pending_support_long_jumps": 39,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 2,
+          "new_joint_carry_after_home": 66
+        },
+        "pre_lns": 236
+      },
+      {
+        "case": "0084.txt",
+        "metrics": {
+          "T": 314,
+          "E": 0,
+          "W": 1658,
+          "mixed_moves": 165,
+          "long_jumps": 72,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 23,
+          "destination_returned": 95,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 50,
+          "pending_support_long_jumps": 68,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 13,
+          "new_joint_carry_after_home": 142
+        },
+        "pre_lns": 397
+      },
+      {
+        "case": "0085.txt",
+        "metrics": {
+          "T": 199,
+          "E": 0,
+          "W": 936,
+          "mixed_moves": 73,
+          "long_jumps": 25,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 55,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 40,
+          "pending_support_long_jumps": 25,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 78,
+          "new_joint_carry_after_home": 118
+        },
+        "pre_lns": 273
+      },
+      {
+        "case": "0086.txt",
+        "metrics": {
+          "T": 100,
+          "E": 0,
+          "W": 315,
+          "mixed_moves": 47,
+          "long_jumps": 15,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 4,
+          "destination_returned": 22,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 20,
+          "pending_support_long_jumps": 14,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 18,
+          "new_joint_carry_after_home": 61
+        },
+        "pre_lns": 121
+      },
+      {
+        "case": "0087.txt",
+        "metrics": {
+          "T": 114,
+          "E": 0,
+          "W": 561,
+          "mixed_moves": 51,
+          "long_jumps": 17,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 12,
+          "destination_returned": 34,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 11,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 26,
+          "new_joint_carry_after_home": 84
+        },
+        "pre_lns": 139
+      },
+      {
+        "case": "0088.txt",
+        "metrics": {
+          "T": 150,
+          "E": 0,
+          "W": 763,
+          "mixed_moves": 63,
+          "long_jumps": 27,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 8,
+          "destination_returned": 52,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 30,
+          "pending_support_long_jumps": 26,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 13,
+          "new_joint_carry_after_home": 87
+        },
+        "pre_lns": 198
+      },
+      {
+        "case": "0089.txt",
+        "metrics": {
+          "T": 374,
+          "E": 0,
+          "W": 1911,
+          "mixed_moves": 191,
+          "long_jumps": 88,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 24,
+          "destination_returned": 90,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 84,
+          "pending_support_long_jumps": 81,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 12,
+          "new_joint_carry_after_home": 140
+        },
+        "pre_lns": 478
+      },
+      {
+        "case": "0090.txt",
+        "metrics": {
+          "T": 155,
+          "E": 0,
+          "W": 718,
+          "mixed_moves": 74,
+          "long_jumps": 23,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 1,
+          "destination_returned": 32,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 27,
+          "pending_support_long_jumps": 22,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 30,
+          "new_joint_carry_after_home": 60
+        },
+        "pre_lns": 204
+      },
+      {
+        "case": "0091.txt",
+        "metrics": {
+          "T": 103,
+          "E": 0,
+          "W": 485,
+          "mixed_moves": 54,
+          "long_jumps": 20,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 24,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 10,
+          "pending_support_long_jumps": 13,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 9,
+          "new_joint_carry_after_home": 82
+        },
+        "pre_lns": 126
+      },
+      {
+        "case": "0092.txt",
+        "metrics": {
+          "T": 549,
+          "E": 0,
+          "W": 3246,
+          "mixed_moves": 182,
+          "long_jumps": 115,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 24,
+          "destination_returned": 145,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 82,
+          "pending_support_long_jumps": 114,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 11,
+          "new_joint_carry_after_home": 110
+        },
+        "pre_lns": 725
+      },
+      {
+        "case": "0093.txt",
+        "metrics": {
+          "T": 87,
+          "E": 0,
+          "W": 296,
+          "mixed_moves": 45,
+          "long_jumps": 12,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 6,
+          "destination_returned": 16,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 11,
+          "pending_support_long_jumps": 11,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 21,
+          "new_joint_carry_after_home": 50
+        },
+        "pre_lns": 109
+      },
+      {
+        "case": "0094.txt",
+        "metrics": {
+          "T": 115,
+          "E": 0,
+          "W": 464,
+          "mixed_moves": 54,
+          "long_jumps": 12,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 38,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 2,
+          "pending_support_long_jumps": 10,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 53,
+          "new_joint_carry_after_home": 95
+        },
+        "pre_lns": 142
+      },
+      {
+        "case": "0095.txt",
+        "metrics": {
+          "T": 255,
+          "E": 0,
+          "W": 1371,
+          "mixed_moves": 114,
+          "long_jumps": 56,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 11,
+          "destination_returned": 86,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 37,
+          "pending_support_long_jumps": 54,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 13,
+          "new_joint_carry_after_home": 46
+        },
+        "pre_lns": 332
+      },
+      {
+        "case": "0096.txt",
+        "metrics": {
+          "T": 84,
+          "E": 0,
+          "W": 319,
+          "mixed_moves": 39,
+          "long_jumps": 13,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 10,
+          "destination_returned": 30,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 12,
+          "pending_support_long_jumps": 12,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 18,
+          "new_joint_carry_after_home": 52
+        },
+        "pre_lns": 106
+      },
+      {
+        "case": "0097.txt",
+        "metrics": {
+          "T": 582,
+          "E": 0,
+          "W": 3348,
+          "mixed_moves": 229,
+          "long_jumps": 109,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 6,
+          "destination_returned": 110,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 215,
+          "pending_support_long_jumps": 106,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 21,
+          "new_joint_carry_after_home": 51,
+          "immediate_reversal": 556
+        },
+        "pre_lns": 801
+      },
+      {
+        "case": "0098.txt",
+        "metrics": {
+          "T": 129,
+          "E": 0,
+          "W": 556,
+          "mixed_moves": 59,
+          "long_jumps": 14,
+          "immediate_reversals": 0,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 16,
+          "destination_returned": 32,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 29,
+          "pending_support_long_jumps": 10,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 27,
+          "new_joint_carry_after_home": 62
+        },
+        "pre_lns": 163
+      },
+      {
+        "case": "0099.txt",
+        "metrics": {
+          "T": 188,
+          "E": 0,
+          "W": 1001,
+          "mixed_moves": 90,
+          "long_jumps": 35,
+          "immediate_reversals": 1,
+          "reversals_after_pickup": 0,
+          "max_height": 8,
+          "source_returned": 20,
+          "destination_returned": 49,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 41,
+          "pending_support_long_jumps": 34,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 8,
+          "new_joint_carry_after_home": 76,
+          "immediate_reversal": 136
+        },
+        "pre_lns": 245
+      }
+    ]
+  },
+  {
+    "bin": "v045_regional_backbone",
+    "normal_totals": {
+      "T": 49099,
+      "E": 0,
+      "W": 141099,
+      "mixed_moves": 18246,
+      "long_jumps": 7161,
+      "immediate_reversals": 1796,
+      "reversals_after_pickup": 1167,
+      "max_height": 715,
+      "source_returned": 1597,
+      "destination_returned": 5147,
+      "shared_route_mixed_moves": 0,
+      "shared_route_mixed_distance": 0,
+      "shared_route_long_jumps": 0,
+      "new_joint_carry_after_home": 4883,
+      "pending_support_long_jumps": 6485,
+      "guided_merge_moves": 0,
+      "guided_forward_moves": 0
+    },
+    "normal_pre_lns": 0,
+    "cases": [
+      {
+        "case": "0000.txt",
+        "metrics": {
+          "T": 112,
+          "E": 0,
+          "W": 231,
+          "mixed_moves": 0,
+          "long_jumps": 4,
+          "immediate_reversals": 2,
+          "reversals_after_pickup": 2,
+          "max_height": 4,
+          "source_returned": 0,
+          "destination_returned": 16,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 15,
+          "pending_support_long_jumps": 4,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 15,
+          "immediate_reversal": 49,
+          "new_joint_carry_after_home": 73
+        }
+      },
+      {
+        "case": "0001.txt",
+        "metrics": {
+          "T": 278,
+          "E": 0,
+          "W": 613,
+          "mixed_moves": 120,
+          "long_jumps": 23,
+          "immediate_reversals": 10,
+          "reversals_after_pickup": 6,
+          "max_height": 7,
+          "source_returned": 7,
+          "destination_returned": 22,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 49,
+          "pending_support_long_jumps": 19,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 30,
+          "immediate_reversal": 82,
+          "new_joint_carry_after_home": 227
+        }
+      },
+      {
+        "case": "0002.txt",
+        "metrics": {
+          "T": 242,
+          "E": 0,
+          "W": 694,
+          "mixed_moves": 94,
+          "long_jumps": 20,
+          "immediate_reversals": 10,
+          "reversals_after_pickup": 7,
+          "max_height": 8,
+          "source_returned": 16,
+          "destination_returned": 27,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 0,
+          "pending_support_long_jumps": 16,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 8,
+          "immediate_reversal": 44
+        }
+      },
+      {
+        "case": "0003.txt",
+        "metrics": {
+          "T": 306,
+          "E": 0,
+          "W": 734,
+          "mixed_moves": 138,
+          "long_jumps": 38,
+          "immediate_reversals": 8,
+          "reversals_after_pickup": 5,
+          "max_height": 8,
+          "source_returned": 12,
+          "destination_returned": 25,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 25,
+          "pending_support_long_jumps": 32,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 15,
+          "immediate_reversal": 32,
+          "new_joint_carry_after_home": 253
+        }
+      },
+      {
+        "case": "0004.txt",
+        "metrics": {
+          "T": 805,
+          "E": 0,
+          "W": 1923,
+          "mixed_moves": 312,
+          "long_jumps": 115,
+          "immediate_reversals": 25,
+          "reversals_after_pickup": 12,
+          "max_height": 8,
+          "source_returned": 23,
+          "destination_returned": 65,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 157,
+          "pending_support_long_jumps": 107,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 2,
+          "immediate_reversal": 26,
+          "new_joint_carry_after_home": 568
+        }
+      },
+      {
+        "case": "0005.txt",
+        "metrics": {
+          "T": 1324,
+          "E": 0,
+          "W": 3978,
+          "mixed_moves": 621,
+          "long_jumps": 330,
+          "immediate_reversals": 33,
+          "reversals_after_pickup": 20,
+          "max_height": 8,
+          "source_returned": 34,
+          "destination_returned": 88,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 163,
+          "pending_support_long_jumps": 319,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 2,
+          "pending_support_long_jump": 23,
+          "new_joint_carry_after_home": 1056
+        }
+      },
+      {
+        "case": "0006.txt",
+        "metrics": {
+          "T": 279,
+          "E": 0,
+          "W": 674,
+          "mixed_moves": 129,
+          "long_jumps": 39,
+          "immediate_reversals": 17,
+          "reversals_after_pickup": 9,
+          "max_height": 7,
+          "source_returned": 12,
+          "destination_returned": 36,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 37,
+          "pending_support_long_jumps": 37,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 2,
+          "pending_support_long_jump": 10,
+          "new_joint_carry_after_home": 94
+        }
+      },
+      {
+        "case": "0007.txt",
+        "metrics": {
+          "T": 218,
+          "E": 0,
+          "W": 844,
+          "mixed_moves": 105,
+          "long_jumps": 10,
+          "immediate_reversals": 14,
+          "reversals_after_pickup": 10,
+          "max_height": 8,
+          "source_returned": 7,
+          "destination_returned": 40,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 0,
+          "pending_support_long_jumps": 8,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 18,
+          "pending_support_long_jump": 52
+        }
+      },
+      {
+        "case": "0008.txt",
+        "metrics": {
+          "T": 326,
+          "E": 0,
+          "W": 699,
+          "mixed_moves": 72,
+          "long_jumps": 52,
+          "immediate_reversals": 8,
+          "reversals_after_pickup": 7,
+          "max_height": 7,
+          "source_returned": 3,
+          "destination_returned": 41,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 70,
+          "pending_support_long_jumps": 51,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 3,
+          "pending_support_long_jump": 11,
+          "new_joint_carry_after_home": 232
+        }
+      },
+      {
+        "case": "0009.txt",
+        "metrics": {
+          "T": 227,
+          "E": 0,
+          "W": 457,
+          "mixed_moves": 44,
+          "long_jumps": 8,
+          "immediate_reversals": 6,
+          "reversals_after_pickup": 4,
+          "max_height": 6,
+          "source_returned": 2,
+          "destination_returned": 22,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 0,
+          "pending_support_long_jumps": 8,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 17,
+          "immediate_reversal": 45
+        }
+      },
+      {
+        "case": "0010.txt",
+        "metrics": {
+          "T": 171,
+          "E": 0,
+          "W": 428,
+          "mixed_moves": 58,
+          "long_jumps": 11,
+          "immediate_reversals": 7,
+          "reversals_after_pickup": 7,
+          "max_height": 6,
+          "source_returned": 4,
+          "destination_returned": 21,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 0,
+          "pending_support_long_jumps": 7,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 6,
+          "pending_support_long_jump": 33
+        }
+      },
+      {
+        "case": "0011.txt",
+        "metrics": {
+          "T": 363,
+          "E": 0,
+          "W": 951,
+          "mixed_moves": 163,
+          "long_jumps": 70,
+          "immediate_reversals": 11,
+          "reversals_after_pickup": 4,
+          "max_height": 8,
+          "source_returned": 18,
+          "destination_returned": 46,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 29,
+          "pending_support_long_jumps": 58,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 75,
+          "new_joint_carry_after_home": 320
+        }
+      },
+      {
+        "case": "0012.txt",
+        "metrics": {
+          "T": 293,
+          "E": 0,
+          "W": 864,
+          "mixed_moves": 162,
+          "long_jumps": 25,
+          "immediate_reversals": 14,
+          "reversals_after_pickup": 9,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 26,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 21,
+          "pending_support_long_jumps": 17,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 17,
+          "new_joint_carry_after_home": 239
+        }
+      },
+      {
+        "case": "0013.txt",
+        "metrics": {
+          "T": 436,
+          "E": 0,
+          "W": 916,
+          "mixed_moves": 133,
+          "long_jumps": 48,
+          "immediate_reversals": 10,
+          "reversals_after_pickup": 5,
+          "max_height": 7,
+          "source_returned": 9,
+          "destination_returned": 40,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 77,
+          "pending_support_long_jumps": 46,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 3,
+          "pending_support_long_jump": 13,
+          "new_joint_carry_after_home": 354
+        }
+      },
+      {
+        "case": "0014.txt",
+        "metrics": {
+          "T": 830,
+          "E": 0,
+          "W": 2968,
+          "mixed_moves": 413,
+          "long_jumps": 205,
+          "immediate_reversals": 35,
+          "reversals_after_pickup": 22,
+          "max_height": 8,
+          "source_returned": 53,
+          "destination_returned": 84,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 53,
+          "pending_support_long_jumps": 189,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 69,
+          "new_joint_carry_after_home": 679
+        }
+      },
+      {
+        "case": "0015.txt",
+        "metrics": {
+          "T": 1300,
+          "E": 0,
+          "W": 4003,
+          "mixed_moves": 551,
+          "long_jumps": 285,
+          "immediate_reversals": 47,
+          "reversals_after_pickup": 32,
+          "max_height": 8,
+          "source_returned": 40,
+          "destination_returned": 111,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 150,
+          "pending_support_long_jumps": 269,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 3,
+          "immediate_reversal": 49,
+          "new_joint_carry_after_home": 1027
+        }
+      },
+      {
+        "case": "0016.txt",
+        "metrics": {
+          "T": 321,
+          "E": 0,
+          "W": 793,
+          "mixed_moves": 77,
+          "long_jumps": 47,
+          "immediate_reversals": 8,
+          "reversals_after_pickup": 5,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 36,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 57,
+          "pending_support_long_jumps": 41,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 71,
+          "new_joint_carry_after_home": 195
+        }
+      },
+      {
+        "case": "0017.txt",
+        "metrics": {
+          "T": 439,
+          "E": 0,
+          "W": 1815,
+          "mixed_moves": 203,
+          "long_jumps": 122,
+          "immediate_reversals": 27,
+          "reversals_after_pickup": 17,
+          "max_height": 8,
+          "source_returned": 25,
+          "destination_returned": 77,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 53,
+          "pending_support_long_jumps": 106,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 3,
+          "pending_support_long_jump": 13,
+          "new_joint_carry_after_home": 369
+        }
+      },
+      {
+        "case": "0018.txt",
+        "metrics": {
+          "T": 169,
+          "E": 0,
+          "W": 238,
+          "mixed_moves": 28,
+          "long_jumps": 13,
+          "immediate_reversals": 4,
+          "reversals_after_pickup": 3,
+          "max_height": 4,
+          "source_returned": 3,
+          "destination_returned": 19,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 31,
+          "pending_support_long_jumps": 10,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 4,
+          "new_joint_carry_after_home": 105,
+          "immediate_reversal": 104
+        }
+      },
+      {
+        "case": "0019.txt",
+        "metrics": {
+          "T": 1363,
+          "E": 0,
+          "W": 4658,
+          "mixed_moves": 748,
+          "long_jumps": 303,
+          "immediate_reversals": 68,
+          "reversals_after_pickup": 41,
+          "max_height": 8,
+          "source_returned": 73,
+          "destination_returned": 144,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 138,
+          "pending_support_long_jumps": 269,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 10,
+          "new_joint_carry_after_home": 1127
+        }
+      },
+      {
+        "case": "0020.txt",
+        "metrics": {
+          "T": 418,
+          "E": 0,
+          "W": 1148,
+          "mixed_moves": 101,
+          "long_jumps": 80,
+          "immediate_reversals": 15,
+          "reversals_after_pickup": 11,
+          "max_height": 8,
+          "source_returned": 15,
+          "destination_returned": 56,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 70,
+          "pending_support_long_jumps": 72,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 2,
+          "pending_support_long_jump": 9,
+          "new_joint_carry_after_home": 54
+        }
+      },
+      {
+        "case": "0021.txt",
+        "metrics": {
+          "T": 157,
+          "E": 0,
+          "W": 320,
+          "mixed_moves": 31,
+          "long_jumps": 11,
+          "immediate_reversals": 5,
+          "reversals_after_pickup": 4,
+          "max_height": 5,
+          "source_returned": 5,
+          "destination_returned": 18,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 24,
+          "pending_support_long_jumps": 9,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 94,
+          "new_joint_carry_after_home": 124
+        }
+      },
+      {
+        "case": "0022.txt",
+        "metrics": {
+          "T": 168,
+          "E": 0,
+          "W": 304,
+          "mixed_moves": 47,
+          "long_jumps": 13,
+          "immediate_reversals": 5,
+          "reversals_after_pickup": 2,
+          "max_height": 4,
+          "source_returned": 4,
+          "destination_returned": 16,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 16,
+          "pending_support_long_jumps": 11,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 19,
+          "pending_support_long_jump": 22,
+          "new_joint_carry_after_home": 143
+        }
+      },
+      {
+        "case": "0023.txt",
+        "metrics": {
+          "T": 271,
+          "E": 0,
+          "W": 367,
+          "mixed_moves": 61,
+          "long_jumps": 16,
+          "immediate_reversals": 4,
+          "reversals_after_pickup": 0,
+          "max_height": 4,
+          "source_returned": 3,
+          "destination_returned": 23,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 21,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 103,
+          "new_joint_carry_after_home": 210
+        }
+      },
+      {
+        "case": "0024.txt",
+        "metrics": {
+          "T": 300,
+          "E": 0,
+          "W": 565,
+          "mixed_moves": 53,
+          "long_jumps": 15,
+          "immediate_reversals": 5,
+          "reversals_after_pickup": 2,
+          "max_height": 8,
+          "source_returned": 1,
+          "destination_returned": 26,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 39,
+          "new_joint_carry_after_home": 282
+        }
+      },
+      {
+        "case": "0025.txt",
+        "metrics": {
+          "T": 136,
+          "E": 0,
+          "W": 279,
+          "mixed_moves": 28,
+          "long_jumps": 19,
+          "immediate_reversals": 5,
+          "reversals_after_pickup": 4,
+          "max_height": 5,
+          "source_returned": 4,
+          "destination_returned": 19,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 2,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 13,
+          "new_joint_carry_after_home": 125
+        }
+      },
+      {
+        "case": "0026.txt",
+        "metrics": {
+          "T": 329,
+          "E": 0,
+          "W": 701,
+          "mixed_moves": 97,
+          "long_jumps": 35,
+          "immediate_reversals": 6,
+          "reversals_after_pickup": 5,
+          "max_height": 6,
+          "source_returned": 11,
+          "destination_returned": 26,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 6,
+          "pending_support_long_jumps": 28,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 10,
+          "immediate_reversal": 43,
+          "new_joint_carry_after_home": 296
+        }
+      },
+      {
+        "case": "0027.txt",
+        "metrics": {
+          "T": 338,
+          "E": 0,
+          "W": 889,
+          "mixed_moves": 69,
+          "long_jumps": 57,
+          "immediate_reversals": 10,
+          "reversals_after_pickup": 10,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 39,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 56,
+          "pending_support_long_jumps": 51,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 3,
+          "pending_support_long_jump": 5,
+          "new_joint_carry_after_home": 243
+        }
+      },
+      {
+        "case": "0028.txt",
+        "metrics": {
+          "T": 637,
+          "E": 0,
+          "W": 1695,
+          "mixed_moves": 297,
+          "long_jumps": 82,
+          "immediate_reversals": 20,
+          "reversals_after_pickup": 13,
+          "max_height": 8,
+          "source_returned": 25,
+          "destination_returned": 50,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 20,
+          "pending_support_long_jumps": 70,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 6,
+          "pending_support_long_jump": 13,
+          "new_joint_carry_after_home": 559
+        }
+      },
+      {
+        "case": "0029.txt",
+        "metrics": {
+          "T": 710,
+          "E": 0,
+          "W": 1906,
+          "mixed_moves": 340,
+          "long_jumps": 111,
+          "immediate_reversals": 33,
+          "reversals_after_pickup": 19,
+          "max_height": 7,
+          "source_returned": 31,
+          "destination_returned": 67,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 54,
+          "pending_support_long_jumps": 99,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 4,
+          "immediate_reversal": 35,
+          "new_joint_carry_after_home": 607
+        }
+      },
+      {
+        "case": "0030.txt",
+        "metrics": {
+          "T": 744,
+          "E": 0,
+          "W": 2973,
+          "mixed_moves": 198,
+          "long_jumps": 154,
+          "immediate_reversals": 24,
+          "reversals_after_pickup": 22,
+          "max_height": 8,
+          "source_returned": 23,
+          "destination_returned": 101,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 74,
+          "pending_support_long_jumps": 149,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 3,
+          "pending_support_long_jump": 16,
+          "new_joint_carry_after_home": 482
+        }
+      },
+      {
+        "case": "0031.txt",
+        "metrics": {
+          "T": 307,
+          "E": 0,
+          "W": 602,
+          "mixed_moves": 109,
+          "long_jumps": 30,
+          "immediate_reversals": 8,
+          "reversals_after_pickup": 5,
+          "max_height": 5,
+          "source_returned": 12,
+          "destination_returned": 29,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 29,
+          "pending_support_long_jumps": 21,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 20,
+          "immediate_reversal": 44,
+          "new_joint_carry_after_home": 246
+        }
+      },
+      {
+        "case": "0032.txt",
+        "metrics": {
+          "T": 463,
+          "E": 0,
+          "W": 1104,
+          "mixed_moves": 164,
+          "long_jumps": 41,
+          "immediate_reversals": 18,
+          "reversals_after_pickup": 13,
+          "max_height": 7,
+          "source_returned": 12,
+          "destination_returned": 37,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 81,
+          "pending_support_long_jumps": 35,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 3,
+          "immediate_reversal": 75,
+          "new_joint_carry_after_home": 331
+        }
+      },
+      {
+        "case": "0033.txt",
+        "metrics": {
+          "T": 379,
+          "E": 0,
+          "W": 1089,
+          "mixed_moves": 157,
+          "long_jumps": 76,
+          "immediate_reversals": 16,
+          "reversals_after_pickup": 9,
+          "max_height": 8,
+          "source_returned": 18,
+          "destination_returned": 45,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 46,
+          "pending_support_long_jumps": 69,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 8,
+          "immediate_reversal": 18,
+          "new_joint_carry_after_home": 306
+        }
+      },
+      {
+        "case": "0034.txt",
+        "metrics": {
+          "T": 841,
+          "E": 0,
+          "W": 2627,
+          "mixed_moves": 157,
+          "long_jumps": 84,
+          "immediate_reversals": 30,
+          "reversals_after_pickup": 26,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 99,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 12,
+          "pending_support_long_jumps": 79,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 10,
+          "immediate_reversal": 83,
+          "new_joint_carry_after_home": 822
+        }
+      },
+      {
+        "case": "0035.txt",
+        "metrics": {
+          "T": 103,
+          "E": 0,
+          "W": 163,
+          "mixed_moves": 37,
+          "long_jumps": 7,
+          "immediate_reversals": 4,
+          "reversals_after_pickup": 2,
+          "max_height": 4,
+          "source_returned": 3,
+          "destination_returned": 10,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 0,
+          "pending_support_long_jumps": 7,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 4,
+          "pending_support_long_jump": 10
+        }
+      },
+      {
+        "case": "0036.txt",
+        "metrics": {
+          "T": 650,
+          "E": 0,
+          "W": 1631,
+          "mixed_moves": 256,
+          "long_jumps": 94,
+          "immediate_reversals": 28,
+          "reversals_after_pickup": 11,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 69,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 85,
+          "pending_support_long_jumps": 87,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 9,
+          "immediate_reversal": 39,
+          "new_joint_carry_after_home": 451
+        }
+      },
+      {
+        "case": "0037.txt",
+        "metrics": {
+          "T": 652,
+          "E": 0,
+          "W": 1875,
+          "mixed_moves": 223,
+          "long_jumps": 80,
+          "immediate_reversals": 26,
+          "reversals_after_pickup": 22,
+          "max_height": 7,
+          "source_returned": 17,
+          "destination_returned": 57,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 74,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 2,
+          "pending_support_long_jump": 19,
+          "new_joint_carry_after_home": 594
+        }
+      },
+      {
+        "case": "0038.txt",
+        "metrics": {
+          "T": 239,
+          "E": 0,
+          "W": 836,
+          "mixed_moves": 71,
+          "long_jumps": 23,
+          "immediate_reversals": 12,
+          "reversals_after_pickup": 12,
+          "max_height": 7,
+          "source_returned": 8,
+          "destination_returned": 36,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 4,
+          "pending_support_long_jumps": 19,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 5,
+          "pending_support_long_jump": 14,
+          "new_joint_carry_after_home": 236
+        }
+      },
+      {
+        "case": "0039.txt",
+        "metrics": {
+          "T": 299,
+          "E": 0,
+          "W": 719,
+          "mixed_moves": 131,
+          "long_jumps": 27,
+          "immediate_reversals": 11,
+          "reversals_after_pickup": 6,
+          "max_height": 7,
+          "source_returned": 10,
+          "destination_returned": 21,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 29,
+          "pending_support_long_jumps": 21,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 20,
+          "new_joint_carry_after_home": 269
+        }
+      },
+      {
+        "case": "0040.txt",
+        "metrics": {
+          "T": 406,
+          "E": 0,
+          "W": 500,
+          "mixed_moves": 52,
+          "long_jumps": 26,
+          "immediate_reversals": 2,
+          "reversals_after_pickup": 0,
+          "max_height": 3,
+          "source_returned": 2,
+          "destination_returned": 22,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 10,
+          "pending_support_long_jumps": 24,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 21,
+          "immediate_reversal": 164,
+          "new_joint_carry_after_home": 357
+        }
+      },
+      {
+        "case": "0041.txt",
+        "metrics": {
+          "T": 192,
+          "E": 0,
+          "W": 585,
+          "mixed_moves": 111,
+          "long_jumps": 34,
+          "immediate_reversals": 7,
+          "reversals_after_pickup": 5,
+          "max_height": 8,
+          "source_returned": 20,
+          "destination_returned": 23,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 15,
+          "pending_support_long_jumps": 21,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 4,
+          "immediate_reversal": 17,
+          "new_joint_carry_after_home": 148
+        }
+      },
+      {
+        "case": "0042.txt",
+        "metrics": {
+          "T": 868,
+          "E": 0,
+          "W": 2524,
+          "mixed_moves": 284,
+          "long_jumps": 126,
+          "immediate_reversals": 21,
+          "reversals_after_pickup": 17,
+          "max_height": 8,
+          "source_returned": 30,
+          "destination_returned": 85,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 60,
+          "pending_support_long_jumps": 109,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 74,
+          "new_joint_carry_after_home": 726
+        }
+      },
+      {
+        "case": "0043.txt",
+        "metrics": {
+          "T": 416,
+          "E": 0,
+          "W": 994,
+          "mixed_moves": 170,
+          "long_jumps": 57,
+          "immediate_reversals": 10,
+          "reversals_after_pickup": 6,
+          "max_height": 8,
+          "source_returned": 11,
+          "destination_returned": 28,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 16,
+          "pending_support_long_jumps": 51,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 7,
+          "immediate_reversal": 113,
+          "new_joint_carry_after_home": 342
+        }
+      },
+      {
+        "case": "0044.txt",
+        "metrics": {
+          "T": 495,
+          "E": 0,
+          "W": 1049,
+          "mixed_moves": 159,
+          "long_jumps": 62,
+          "immediate_reversals": 17,
+          "reversals_after_pickup": 6,
+          "max_height": 7,
+          "source_returned": 10,
+          "destination_returned": 53,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 31,
+          "pending_support_long_jumps": 61,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 7,
+          "immediate_reversal": 31,
+          "new_joint_carry_after_home": 393
+        }
+      },
+      {
+        "case": "0045.txt",
+        "metrics": {
+          "T": 327,
+          "E": 0,
+          "W": 1401,
+          "mixed_moves": 164,
+          "long_jumps": 46,
+          "immediate_reversals": 28,
+          "reversals_after_pickup": 17,
+          "max_height": 8,
+          "source_returned": 21,
+          "destination_returned": 63,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 42,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 19,
+          "new_joint_carry_after_home": 40,
+          "immediate_reversal": 39
+        }
+      },
+      {
+        "case": "0046.txt",
+        "metrics": {
+          "T": 271,
+          "E": 0,
+          "W": 1022,
+          "mixed_moves": 80,
+          "long_jumps": 43,
+          "immediate_reversals": 18,
+          "reversals_after_pickup": 13,
+          "max_height": 8,
+          "source_returned": 16,
+          "destination_returned": 45,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 38,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 9,
+          "immediate_reversal": 21,
+          "new_joint_carry_after_home": 244
+        }
+      },
+      {
+        "case": "0047.txt",
+        "metrics": {
+          "T": 799,
+          "E": 0,
+          "W": 2619,
+          "mixed_moves": 209,
+          "long_jumps": 111,
+          "immediate_reversals": 31,
+          "reversals_after_pickup": 25,
+          "max_height": 8,
+          "source_returned": 14,
+          "destination_returned": 100,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 64,
+          "pending_support_long_jumps": 109,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 3,
+          "immediate_reversal": 81,
+          "new_joint_carry_after_home": 672
+        }
+      },
+      {
+        "case": "0048.txt",
+        "metrics": {
+          "T": 479,
+          "E": 0,
+          "W": 1896,
+          "mixed_moves": 238,
+          "long_jumps": 74,
+          "immediate_reversals": 30,
+          "reversals_after_pickup": 24,
+          "max_height": 8,
+          "source_returned": 30,
+          "destination_returned": 74,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 24,
+          "pending_support_long_jumps": 59,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 3,
+          "pending_support_long_jump": 8,
+          "new_joint_carry_after_home": 446
+        }
+      },
+      {
+        "case": "0049.txt",
+        "metrics": {
+          "T": 413,
+          "E": 0,
+          "W": 1597,
+          "mixed_moves": 138,
+          "long_jumps": 66,
+          "immediate_reversals": 19,
+          "reversals_after_pickup": 15,
+          "max_height": 8,
+          "source_returned": 15,
+          "destination_returned": 76,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 31,
+          "pending_support_long_jumps": 59,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 50,
+          "new_joint_carry_after_home": 367
+        }
+      },
+      {
+        "case": "0050.txt",
+        "metrics": {
+          "T": 415,
+          "E": 0,
+          "W": 778,
+          "mixed_moves": 150,
+          "long_jumps": 37,
+          "immediate_reversals": 8,
+          "reversals_after_pickup": 2,
+          "max_height": 7,
+          "source_returned": 11,
+          "destination_returned": 30,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 54,
+          "pending_support_long_jumps": 32,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 4,
+          "immediate_reversal": 76,
+          "new_joint_carry_after_home": 297
+        }
+      },
+      {
+        "case": "0051.txt",
+        "metrics": {
+          "T": 277,
+          "E": 0,
+          "W": 809,
+          "mixed_moves": 96,
+          "long_jumps": 43,
+          "immediate_reversals": 14,
+          "reversals_after_pickup": 7,
+          "max_height": 8,
+          "source_returned": 10,
+          "destination_returned": 35,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 21,
+          "pending_support_long_jumps": 40,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 3,
+          "immediate_reversal": 38,
+          "new_joint_carry_after_home": 241
+        }
+      },
+      {
+        "case": "0052.txt",
+        "metrics": {
+          "T": 489,
+          "E": 0,
+          "W": 1247,
+          "mixed_moves": 239,
+          "long_jumps": 81,
+          "immediate_reversals": 26,
+          "reversals_after_pickup": 9,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 51,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 59,
+          "pending_support_long_jumps": 78,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 8,
+          "pending_support_long_jump": 23,
+          "new_joint_carry_after_home": 373
+        }
+      },
+      {
+        "case": "0053.txt",
+        "metrics": {
+          "T": 360,
+          "E": 0,
+          "W": 911,
+          "mixed_moves": 171,
+          "long_jumps": 37,
+          "immediate_reversals": 14,
+          "reversals_after_pickup": 10,
+          "max_height": 7,
+          "source_returned": 13,
+          "destination_returned": 29,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 17,
+          "pending_support_long_jumps": 32,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 21,
+          "immediate_reversal": 52,
+          "new_joint_carry_after_home": 317
+        }
+      },
+      {
+        "case": "0054.txt",
+        "metrics": {
+          "T": 800,
+          "E": 0,
+          "W": 2084,
+          "mixed_moves": 261,
+          "long_jumps": 70,
+          "immediate_reversals": 28,
+          "reversals_after_pickup": 20,
+          "max_height": 8,
+          "source_returned": 19,
+          "destination_returned": 67,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 103,
+          "pending_support_long_jumps": 62,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 4,
+          "pending_support_long_jump": 7,
+          "new_joint_carry_after_home": 596
+        }
+      },
+      {
+        "case": "0055.txt",
+        "metrics": {
+          "T": 704,
+          "E": 0,
+          "W": 2378,
+          "mixed_moves": 321,
+          "long_jumps": 148,
+          "immediate_reversals": 36,
+          "reversals_after_pickup": 23,
+          "max_height": 8,
+          "source_returned": 31,
+          "destination_returned": 91,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 75,
+          "pending_support_long_jumps": 136,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 16,
+          "new_joint_carry_after_home": 597
+        }
+      },
+      {
+        "case": "0056.txt",
+        "metrics": {
+          "T": 533,
+          "E": 0,
+          "W": 1450,
+          "mixed_moves": 202,
+          "long_jumps": 42,
+          "immediate_reversals": 21,
+          "reversals_after_pickup": 15,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 53,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 62,
+          "pending_support_long_jumps": 35,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 10,
+          "pending_support_long_jump": 19,
+          "new_joint_carry_after_home": 435
+        }
+      },
+      {
+        "case": "0057.txt",
+        "metrics": {
+          "T": 509,
+          "E": 0,
+          "W": 1641,
+          "mixed_moves": 225,
+          "long_jumps": 48,
+          "immediate_reversals": 24,
+          "reversals_after_pickup": 17,
+          "max_height": 8,
+          "source_returned": 28,
+          "destination_returned": 68,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 26,
+          "pending_support_long_jumps": 37,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 7,
+          "immediate_reversal": 113,
+          "new_joint_carry_after_home": 474
+        }
+      },
+      {
+        "case": "0058.txt",
+        "metrics": {
+          "T": 758,
+          "E": 0,
+          "W": 1925,
+          "mixed_moves": 302,
+          "long_jumps": 61,
+          "immediate_reversals": 29,
+          "reversals_after_pickup": 16,
+          "max_height": 7,
+          "source_returned": 17,
+          "destination_returned": 54,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 103,
+          "pending_support_long_jumps": 57,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 7,
+          "pending_support_long_jump": 14,
+          "new_joint_carry_after_home": 612
+        }
+      },
+      {
+        "case": "0059.txt",
+        "metrics": {
+          "T": 196,
+          "E": 0,
+          "W": 274,
+          "mixed_moves": 28,
+          "long_jumps": 16,
+          "immediate_reversals": 2,
+          "reversals_after_pickup": 1,
+          "max_height": 4,
+          "source_returned": 3,
+          "destination_returned": 20,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 2,
+          "pending_support_long_jumps": 14,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 7,
+          "immediate_reversal": 94,
+          "new_joint_carry_after_home": 189
+        }
+      },
+      {
+        "case": "0060.txt",
+        "metrics": {
+          "T": 378,
+          "E": 0,
+          "W": 677,
+          "mixed_moves": 139,
+          "long_jumps": 29,
+          "immediate_reversals": 9,
+          "reversals_after_pickup": 3,
+          "max_height": 5,
+          "source_returned": 2,
+          "destination_returned": 32,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 58,
+          "pending_support_long_jumps": 27,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 56,
+          "new_joint_carry_after_home": 270
+        }
+      },
+      {
+        "case": "0061.txt",
+        "metrics": {
+          "T": 463,
+          "E": 0,
+          "W": 1939,
+          "mixed_moves": 256,
+          "long_jumps": 56,
+          "immediate_reversals": 27,
+          "reversals_after_pickup": 22,
+          "max_height": 8,
+          "source_returned": 23,
+          "destination_returned": 61,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 33,
+          "pending_support_long_jumps": 49,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 3,
+          "immediate_reversal": 20,
+          "new_joint_carry_after_home": 412
+        }
+      },
+      {
+        "case": "0062.txt",
+        "metrics": {
+          "T": 515,
+          "E": 0,
+          "W": 1293,
+          "mixed_moves": 179,
+          "long_jumps": 109,
+          "immediate_reversals": 19,
+          "reversals_after_pickup": 10,
+          "max_height": 8,
+          "source_returned": 15,
+          "destination_returned": 55,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 98,
+          "pending_support_long_jumps": 101,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 2,
+          "immediate_reversal": 18,
+          "new_joint_carry_after_home": 365
+        }
+      },
+      {
+        "case": "0063.txt",
+        "metrics": {
+          "T": 776,
+          "E": 0,
+          "W": 1469,
+          "mixed_moves": 228,
+          "long_jumps": 48,
+          "immediate_reversals": 20,
+          "reversals_after_pickup": 8,
+          "max_height": 7,
+          "source_returned": 11,
+          "destination_returned": 58,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 72,
+          "pending_support_long_jumps": 47,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 6,
+          "pending_support_long_jump": 12,
+          "new_joint_carry_after_home": 608
+        }
+      },
+      {
+        "case": "0064.txt",
+        "metrics": {
+          "T": 387,
+          "E": 0,
+          "W": 1376,
+          "mixed_moves": 79,
+          "long_jumps": 31,
+          "immediate_reversals": 14,
+          "reversals_after_pickup": 12,
+          "max_height": 8,
+          "source_returned": 7,
+          "destination_returned": 56,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 24,
+          "pending_support_long_jumps": 29,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 7,
+          "pending_support_long_jump": 21,
+          "new_joint_carry_after_home": 342
+        }
+      },
+      {
+        "case": "0065.txt",
+        "metrics": {
+          "T": 392,
+          "E": 0,
+          "W": 743,
+          "mixed_moves": 118,
+          "long_jumps": 39,
+          "immediate_reversals": 9,
+          "reversals_after_pickup": 5,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 23,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 48,
+          "pending_support_long_jumps": 32,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 23,
+          "immediate_reversal": 44,
+          "new_joint_carry_after_home": 291
+        }
+      },
+      {
+        "case": "0066.txt",
+        "metrics": {
+          "T": 915,
+          "E": 0,
+          "W": 2827,
+          "mixed_moves": 235,
+          "long_jumps": 141,
+          "immediate_reversals": 18,
+          "reversals_after_pickup": 13,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 84,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 129,
+          "pending_support_long_jumps": 136,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 8,
+          "immediate_reversal": 52,
+          "new_joint_carry_after_home": 704
+        }
+      },
+      {
+        "case": "0067.txt",
+        "metrics": {
+          "T": 524,
+          "E": 0,
+          "W": 1205,
+          "mixed_moves": 65,
+          "long_jumps": 52,
+          "immediate_reversals": 8,
+          "reversals_after_pickup": 6,
+          "max_height": 7,
+          "source_returned": 2,
+          "destination_returned": 48,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 49,
+          "pending_support_long_jumps": 51,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 21,
+          "immediate_reversal": 113,
+          "new_joint_carry_after_home": 424
+        }
+      },
+      {
+        "case": "0068.txt",
+        "metrics": {
+          "T": 696,
+          "E": 0,
+          "W": 2752,
+          "mixed_moves": 328,
+          "long_jumps": 75,
+          "immediate_reversals": 40,
+          "reversals_after_pickup": 33,
+          "max_height": 8,
+          "source_returned": 37,
+          "destination_returned": 120,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 28,
+          "pending_support_long_jumps": 57,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 12,
+          "new_joint_carry_after_home": 429
+        }
+      },
+      {
+        "case": "0069.txt",
+        "metrics": {
+          "T": 327,
+          "E": 0,
+          "W": 599,
+          "mixed_moves": 95,
+          "long_jumps": 21,
+          "immediate_reversals": 7,
+          "reversals_after_pickup": 4,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 33,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 15,
+          "pending_support_long_jumps": 18,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 30,
+          "new_joint_carry_after_home": 279
+        }
+      },
+      {
+        "case": "0070.txt",
+        "metrics": {
+          "T": 1200,
+          "E": 0,
+          "W": 3185,
+          "mixed_moves": 465,
+          "long_jumps": 277,
+          "immediate_reversals": 34,
+          "reversals_after_pickup": 14,
+          "max_height": 8,
+          "source_returned": 25,
+          "destination_returned": 89,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 199,
+          "pending_support_long_jumps": 265,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 5,
+          "immediate_reversal": 44,
+          "new_joint_carry_after_home": 884
+        }
+      },
+      {
+        "case": "0071.txt",
+        "metrics": {
+          "T": 952,
+          "E": 0,
+          "W": 2651,
+          "mixed_moves": 486,
+          "long_jumps": 130,
+          "immediate_reversals": 44,
+          "reversals_after_pickup": 25,
+          "max_height": 8,
+          "source_returned": 40,
+          "destination_returned": 76,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 110,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 2,
+          "pending_support_long_jump": 11,
+          "new_joint_carry_after_home": 859
+        }
+      },
+      {
+        "case": "0072.txt",
+        "metrics": {
+          "T": 231,
+          "E": 0,
+          "W": 494,
+          "mixed_moves": 97,
+          "long_jumps": 8,
+          "immediate_reversals": 6,
+          "reversals_after_pickup": 5,
+          "max_height": 7,
+          "source_returned": 7,
+          "destination_returned": 18,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 33,
+          "pending_support_long_jumps": 6,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 68,
+          "new_joint_carry_after_home": 171
+        }
+      },
+      {
+        "case": "0073.txt",
+        "metrics": {
+          "T": 582,
+          "E": 0,
+          "W": 1686,
+          "mixed_moves": 197,
+          "long_jumps": 108,
+          "immediate_reversals": 20,
+          "reversals_after_pickup": 13,
+          "max_height": 7,
+          "source_returned": 16,
+          "destination_returned": 77,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 85,
+          "pending_support_long_jumps": 99,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 2,
+          "pending_support_long_jump": 9,
+          "new_joint_carry_after_home": 454
+        }
+      },
+      {
+        "case": "0074.txt",
+        "metrics": {
+          "T": 248,
+          "E": 0,
+          "W": 692,
+          "mixed_moves": 131,
+          "long_jumps": 21,
+          "immediate_reversals": 11,
+          "reversals_after_pickup": 8,
+          "max_height": 8,
+          "source_returned": 14,
+          "destination_returned": 27,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 22,
+          "pending_support_long_jumps": 11,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 15,
+          "immediate_reversal": 18,
+          "new_joint_carry_after_home": 207
+        }
+      },
+      {
+        "case": "0075.txt",
+        "metrics": {
+          "T": 882,
+          "E": 0,
+          "W": 2488,
+          "mixed_moves": 322,
+          "long_jumps": 144,
+          "immediate_reversals": 18,
+          "reversals_after_pickup": 14,
+          "max_height": 8,
+          "source_returned": 37,
+          "destination_returned": 68,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 81,
+          "pending_support_long_jumps": 128,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 246,
+          "new_joint_carry_after_home": 734
+        }
+      },
+      {
+        "case": "0076.txt",
+        "metrics": {
+          "T": 551,
+          "E": 0,
+          "W": 1890,
+          "mixed_moves": 149,
+          "long_jumps": 96,
+          "immediate_reversals": 23,
+          "reversals_after_pickup": 18,
+          "max_height": 8,
+          "source_returned": 12,
+          "destination_returned": 79,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 81,
+          "pending_support_long_jumps": 89,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 8,
+          "pending_support_long_jump": 11,
+          "new_joint_carry_after_home": 84
+        }
+      },
+      {
+        "case": "0077.txt",
+        "metrics": {
+          "T": 275,
+          "E": 0,
+          "W": 519,
+          "mixed_moves": 81,
+          "long_jumps": 38,
+          "immediate_reversals": 7,
+          "reversals_after_pickup": 3,
+          "max_height": 8,
+          "source_returned": 8,
+          "destination_returned": 26,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 42,
+          "pending_support_long_jumps": 34,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 8,
+          "immediate_reversal": 45,
+          "new_joint_carry_after_home": 188
+        }
+      },
+      {
+        "case": "0078.txt",
+        "metrics": {
+          "T": 569,
+          "E": 0,
+          "W": 1854,
+          "mixed_moves": 268,
+          "long_jumps": 95,
+          "immediate_reversals": 26,
+          "reversals_after_pickup": 20,
+          "max_height": 8,
+          "source_returned": 29,
+          "destination_returned": 57,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 48,
+          "pending_support_long_jumps": 82,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 4,
+          "pending_support_long_jump": 24,
+          "new_joint_carry_after_home": 517
+        }
+      },
+      {
+        "case": "0079.txt",
+        "metrics": {
+          "T": 163,
+          "E": 0,
+          "W": 248,
+          "mixed_moves": 43,
+          "long_jumps": 2,
+          "immediate_reversals": 7,
+          "reversals_after_pickup": 4,
+          "max_height": 4,
+          "source_returned": 2,
+          "destination_returned": 17,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 0,
+          "pending_support_long_jumps": 2,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 34,
+          "pending_support_long_jump": 61
+        }
+      },
+      {
+        "case": "0080.txt",
+        "metrics": {
+          "T": 502,
+          "E": 0,
+          "W": 1374,
+          "mixed_moves": 238,
+          "long_jumps": 72,
+          "immediate_reversals": 17,
+          "reversals_after_pickup": 8,
+          "max_height": 8,
+          "source_returned": 20,
+          "destination_returned": 51,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 82,
+          "pending_support_long_jumps": 60,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 4,
+          "immediate_reversal": 64,
+          "new_joint_carry_after_home": 372
+        }
+      },
+      {
+        "case": "0081.txt",
+        "metrics": {
+          "T": 753,
+          "E": 0,
+          "W": 3199,
+          "mixed_moves": 283,
+          "long_jumps": 162,
+          "immediate_reversals": 42,
+          "reversals_after_pickup": 27,
+          "max_height": 8,
+          "source_returned": 31,
+          "destination_returned": 111,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 85,
+          "pending_support_long_jumps": 142,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 6,
+          "pending_support_long_jump": 9,
+          "new_joint_carry_after_home": 651
+        }
+      },
+      {
+        "case": "0082.txt",
+        "metrics": {
+          "T": 751,
+          "E": 0,
+          "W": 2370,
+          "mixed_moves": 286,
+          "long_jumps": 147,
+          "immediate_reversals": 35,
+          "reversals_after_pickup": 25,
+          "max_height": 8,
+          "source_returned": 28,
+          "destination_returned": 81,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 103,
+          "pending_support_long_jumps": 133,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 9,
+          "immediate_reversal": 36,
+          "new_joint_carry_after_home": 593
+        }
+      },
+      {
+        "case": "0083.txt",
+        "metrics": {
+          "T": 408,
+          "E": 0,
+          "W": 1076,
+          "mixed_moves": 208,
+          "long_jumps": 51,
+          "immediate_reversals": 20,
+          "reversals_after_pickup": 11,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 42,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 45,
+          "pending_support_long_jumps": 41,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 4,
+          "immediate_reversal": 98,
+          "new_joint_carry_after_home": 257
+        }
+      },
+      {
+        "case": "0084.txt",
+        "metrics": {
+          "T": 760,
+          "E": 0,
+          "W": 2800,
+          "mixed_moves": 313,
+          "long_jumps": 142,
+          "immediate_reversals": 30,
+          "reversals_after_pickup": 18,
+          "max_height": 8,
+          "source_returned": 21,
+          "destination_returned": 97,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 110,
+          "pending_support_long_jumps": 136,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 7,
+          "immediate_reversal": 43,
+          "new_joint_carry_after_home": 610
+        }
+      },
+      {
+        "case": "0085.txt",
+        "metrics": {
+          "T": 484,
+          "E": 0,
+          "W": 1374,
+          "mixed_moves": 138,
+          "long_jumps": 38,
+          "immediate_reversals": 16,
+          "reversals_after_pickup": 12,
+          "max_height": 8,
+          "source_returned": 11,
+          "destination_returned": 48,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 0,
+          "pending_support_long_jumps": 34,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 2,
+          "immediate_reversal": 40
+        }
+      },
+      {
+        "case": "0086.txt",
+        "metrics": {
+          "T": 188,
+          "E": 0,
+          "W": 341,
+          "mixed_moves": 50,
+          "long_jumps": 16,
+          "immediate_reversals": 7,
+          "reversals_after_pickup": 3,
+          "max_height": 6,
+          "source_returned": 5,
+          "destination_returned": 21,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 17,
+          "immediate_reversal": 28,
+          "new_joint_carry_after_home": 131
+        }
+      },
+      {
+        "case": "0087.txt",
+        "metrics": {
+          "T": 242,
+          "E": 0,
+          "W": 749,
+          "mixed_moves": 102,
+          "long_jumps": 21,
+          "immediate_reversals": 14,
+          "reversals_after_pickup": 11,
+          "max_height": 8,
+          "source_returned": 11,
+          "destination_returned": 35,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 9,
+          "pending_support_long_jumps": 16,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 8,
+          "pending_support_long_jump": 24,
+          "new_joint_carry_after_home": 227
+        }
+      },
+      {
+        "case": "0088.txt",
+        "metrics": {
+          "T": 339,
+          "E": 0,
+          "W": 1307,
+          "mixed_moves": 101,
+          "long_jumps": 19,
+          "immediate_reversals": 20,
+          "reversals_after_pickup": 15,
+          "max_height": 8,
+          "source_returned": 9,
+          "destination_returned": 51,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 5,
+          "pending_support_long_jumps": 18,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 9,
+          "pending_support_long_jump": 16,
+          "new_joint_carry_after_home": 323
+        }
+      },
+      {
+        "case": "0089.txt",
+        "metrics": {
+          "T": 934,
+          "E": 0,
+          "W": 2855,
+          "mixed_moves": 384,
+          "long_jumps": 172,
+          "immediate_reversals": 35,
+          "reversals_after_pickup": 22,
+          "max_height": 8,
+          "source_returned": 29,
+          "destination_returned": 85,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 143,
+          "pending_support_long_jumps": 161,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 6,
+          "immediate_reversal": 66,
+          "new_joint_carry_after_home": 753
+        }
+      },
+      {
+        "case": "0090.txt",
+        "metrics": {
+          "T": 486,
+          "E": 0,
+          "W": 902,
+          "mixed_moves": 173,
+          "long_jumps": 31,
+          "immediate_reversals": 11,
+          "reversals_after_pickup": 7,
+          "max_height": 5,
+          "source_returned": 9,
+          "destination_returned": 24,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 72,
+          "pending_support_long_jumps": 29,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 4,
+          "pending_support_long_jump": 13,
+          "new_joint_carry_after_home": 400
+        }
+      },
+      {
+        "case": "0091.txt",
+        "metrics": {
+          "T": 217,
+          "E": 0,
+          "W": 667,
+          "mixed_moves": 91,
+          "long_jumps": 25,
+          "immediate_reversals": 10,
+          "reversals_after_pickup": 6,
+          "max_height": 8,
+          "source_returned": 13,
+          "destination_returned": 33,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 30,
+          "pending_support_long_jumps": 19,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 4,
+          "immediate_reversal": 36,
+          "new_joint_carry_after_home": 183
+        }
+      },
+      {
+        "case": "0092.txt",
+        "metrics": {
+          "T": 1140,
+          "E": 0,
+          "W": 4930,
+          "mixed_moves": 272,
+          "long_jumps": 209,
+          "immediate_reversals": 38,
+          "reversals_after_pickup": 25,
+          "max_height": 8,
+          "source_returned": 25,
+          "destination_returned": 144,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 91,
+          "pending_support_long_jumps": 207,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 7,
+          "pending_support_long_jump": 13,
+          "new_joint_carry_after_home": 1006
+        }
+      },
+      {
+        "case": "0093.txt",
+        "metrics": {
+          "T": 216,
+          "E": 0,
+          "W": 288,
+          "mixed_moves": 54,
+          "long_jumps": 10,
+          "immediate_reversals": 6,
+          "reversals_after_pickup": 3,
+          "max_height": 3,
+          "source_returned": 1,
+          "destination_returned": 21,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 19,
+          "pending_support_long_jumps": 10,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 13,
+          "immediate_reversal": 42,
+          "new_joint_carry_after_home": 172
+        }
+      },
+      {
+        "case": "0094.txt",
+        "metrics": {
+          "T": 241,
+          "E": 0,
+          "W": 696,
+          "mixed_moves": 126,
+          "long_jumps": 20,
+          "immediate_reversals": 10,
+          "reversals_after_pickup": 9,
+          "max_height": 8,
+          "source_returned": 20,
+          "destination_returned": 27,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 0,
+          "pending_support_long_jumps": 13,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 10,
+          "immediate_reversal": 67
+        }
+      },
+      {
+        "case": "0095.txt",
+        "metrics": {
+          "T": 530,
+          "E": 0,
+          "W": 1587,
+          "mixed_moves": 235,
+          "long_jumps": 73,
+          "immediate_reversals": 23,
+          "reversals_after_pickup": 14,
+          "max_height": 8,
+          "source_returned": 20,
+          "destination_returned": 77,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 49,
+          "pending_support_long_jumps": 71,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 4,
+          "pending_support_long_jump": 7,
+          "new_joint_carry_after_home": 451
+        }
+      },
+      {
+        "case": "0096.txt",
+        "metrics": {
+          "T": 187,
+          "E": 0,
+          "W": 433,
+          "mixed_moves": 87,
+          "long_jumps": 19,
+          "immediate_reversals": 11,
+          "reversals_after_pickup": 8,
+          "max_height": 7,
+          "source_returned": 13,
+          "destination_returned": 27,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 16,
+          "pending_support_long_jumps": 15,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 4,
+          "immediate_reversal": 18,
+          "new_joint_carry_after_home": 161
+        }
+      },
+      {
+        "case": "0097.txt",
+        "metrics": {
+          "T": 1314,
+          "E": 0,
+          "W": 3900,
+          "mixed_moves": 525,
+          "long_jumps": 210,
+          "immediate_reversals": 33,
+          "reversals_after_pickup": 18,
+          "max_height": 8,
+          "source_returned": 22,
+          "destination_returned": 94,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 178,
+          "pending_support_long_jumps": 199,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "immediate_reversal": 9,
+          "pending_support_long_jump": 27,
+          "new_joint_carry_after_home": 1088
+        }
+      },
+      {
+        "case": "0098.txt",
+        "metrics": {
+          "T": 324,
+          "E": 0,
+          "W": 670,
+          "mixed_moves": 51,
+          "long_jumps": 72,
+          "immediate_reversals": 4,
+          "reversals_after_pickup": 3,
+          "max_height": 7,
+          "source_returned": 5,
+          "destination_returned": 43,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 7,
+          "pending_support_long_jumps": 69,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 3,
+          "immediate_reversal": 53,
+          "new_joint_carry_after_home": 254
+        }
+      },
+      {
+        "case": "0099.txt",
+        "metrics": {
+          "T": 519,
+          "E": 0,
+          "W": 1267,
+          "mixed_moves": 170,
+          "long_jumps": 85,
+          "immediate_reversals": 15,
+          "reversals_after_pickup": 11,
+          "max_height": 7,
+          "source_returned": 19,
+          "destination_returned": 50,
+          "shared_route_mixed_moves": 0,
+          "shared_route_mixed_distance": 0,
+          "shared_route_long_jumps": 0,
+          "new_joint_carry_after_home": 68,
+          "pending_support_long_jumps": 73,
+          "guided_merge_moves": 0,
+          "guided_forward_moves": 0
+        },
+        "witnesses": {
+          "pending_support_long_jump": 8,
+          "immediate_reversal": 51,
+          "new_joint_carry_after_home": 384
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "old": "// v207_color_quotient_reinsertion.cpp\n// Experiment v207. Direct parent: v206_lazy_candidate_bank.cpp.\n// Controls: v206 and v204_control_190, each re-evaluated with the same budget.\n// Equal-colored consecutive slimes are indistinguishable: insertion gaps\n// inside the same color run describe exactly the same physical tower.\n// Close these equivalent labels without adding any output operation.\n// The original gap DP otherwise unnecessarily preserves a tagged identity.\n// Only single-token reinsertion changes; no saved answers or case features.\n// Parent SHA256: 6d3d455b1d86ea60ec23ac480c6ccf87c77628c786dfdebd86cd74e69cdb4309\n// Inherited v206 architecture, whose direct parent/control was: uploaded v204_initial_race_tuned.cpp.\n// Retain regular ID-set nominations for at most four accepted trajectories.\n// Rebuild flight/support/checkpoint histories before use, and time-dependent\n// packet cuts on demand. Refresh NN scores against the current trajectory.\n// The 5-seed initial race and insertion/reduction algorithms are unchanged.\n// Both this solver and its v204 control share the same 1.90-second total budget\n// and 20ms output reserve. Compile without LOCAL for submission.\n// No saved test answers, per-input scores, or v800 data are embedded.\n// Original SHA256: 5d4ed7aa921a9468d5ff290e61bdce84667f9c5b989a624afaf6caece12e89d4\n",
+    "new": "// v209_color_quotient_reinsertion.cpp\n// v209: 同じ色順になる1個体の再挿入位置を、追加操作なしで同一視する。直接の親はv207。\n// 添付版v207_color_quotient_reinsertion.cppを改番した。候補保持は既に含まれる。\n// LOCALの時間は既登録v207へ揃え、非LOCALの計時と処理は添付版を保持する。\n// 添付元SHA-256: 5e67c951c4ea3abb067a399007fc2c0824e12bcdd777bc462bf9d778463fa4dc\n",
+    "offset": 0
+  },
+  {
+    "old": "#define LOCAL_SECONDS(value) (PROGRAM_TIME_LIMIT_SEC * ((value) / 1.930) * (1.880 / 1.900))",
+    "new": "// 既存版と同じLOCAL時間配分で比較する。非LOCALは持ち込み版の式を保持する。\n#define LOCAL_SECONDS(value) (PROGRAM_TIME_LIMIT_SEC * ((value) / JUDGE_TIME_LIMIT_SEC))",
+    "offset": 2638
+  },
+  {
+    "old": "    const double start=time_keeper.exact_elapsed_sec(),end=LOCAL_SECONDS(1.900);",
+    "new": "#ifdef LOCAL\n    const double start=time_keeper.exact_elapsed_sec(),end=PROGRAM_TIME_LIMIT_SEC;\n#else\n    const double start=time_keeper.exact_elapsed_sec(),end=LOCAL_SECONDS(1.900);\n#endif",
+    "offset": 204334
+  }
+]

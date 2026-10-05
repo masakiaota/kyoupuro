@@ -1,0 +1,13 @@
+12 4
+bb.#a.d...#.
+.b..a....dd.
+..dba....d..
+ddd..b.....#
+b.dd..daa...
+#acd.....d..
+...A.....cCb
+...b...da#.b
+bddb..ddd#..
+.#dd...cd.c.
+cd#D##.a#...
+B......#bcca

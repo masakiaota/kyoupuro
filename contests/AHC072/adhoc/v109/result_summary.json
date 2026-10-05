@@ -1,0 +1,480 @@
+{
+  "experiment": "v109",
+  "run": "results/nn_rank/v109/20261004_dp_reward_studio",
+  "verified_at": "2026-10-04T16:03:51.581371+09:00",
+  "accepted": false,
+  "preregistered_learning_gate_passed": true,
+  "final": {
+    "accepted": false,
+    "retained": "v108 original weights and multistart control",
+    "heldout_evaluated": false,
+    "reason": "preregistered adoption condition not met",
+    "completed_at": "2026-10-04T06:50:42.739860+00:00"
+  },
+  "training": {
+    "iterations": 240,
+    "environment_steps": 8232111,
+    "seconds": 6611.151962667005,
+    "reason": "iteration_budget",
+    "episodes": 30720,
+    "successes": 30416,
+    "checkpoint_sha256": "222e1fa4c365c5137c9f17f31a486c37e1e4a58fa1fc5c5c9e236e7b3c58de52",
+    "model_sha256": "1773d6e814639c54ea593b60b0fb2faae0a52d8e9ba58ff381f238611b57dcfa",
+    "completed_at": "2026-10-04T06:49:12.612414+00:00"
+  },
+  "training_episode_checks": {
+    "verified": 30720,
+    "statuses": {
+      "completed": 30416,
+      "unreachable": 304
+    },
+    "nn_stops": {
+      "boundary": 27881,
+      "prefix_budget": 2812,
+      "completed": 27
+    },
+    "failed_mean_E": 94.9407894736842,
+    "failed_max_E": 204
+  },
+  "learning_curve": [
+    {
+      "first": 1,
+      "last": 60,
+      "episodes": 7680,
+      "successes": 7577,
+      "mean_T_completed": 356.97241652369013,
+      "mean_cost_all": 3.991873840332031,
+      "mean_prefix_T": 265.70911458333336,
+      "mean_dp_T": 92.73776041666666,
+      "entropy": 2.9952507784266107,
+      "approx_kl": 0.0007140164142434071,
+      "statuses": {
+        "completed": 7577,
+        "unreachable": 103
+      }
+    },
+    {
+      "first": 61,
+      "last": 120,
+      "episodes": 7680,
+      "successes": 7581,
+      "mean_T_completed": 357.33240997229916,
+      "mean_cost_all": 3.9758824666341144,
+      "mean_prefix_T": 269.07981770833334,
+      "mean_dp_T": 89.36744791666666,
+      "entropy": 2.9840498670027396,
+      "approx_kl": 0.0004050846399319213,
+      "statuses": {
+        "completed": 7581,
+        "unreachable": 99
+      }
+    },
+    {
+      "first": 121,
+      "last": 180,
+      "episodes": 7680,
+      "successes": 7623,
+      "mean_T_completed": 353.1735537190083,
+      "mean_cost_all": 3.7642488403320313,
+      "mean_prefix_T": 268.439453125,
+      "mean_dp_T": 85.45455729166666,
+      "entropy": 2.97297533068172,
+      "approx_kl": 0.00033053363661356903,
+      "statuses": {
+        "completed": 7623,
+        "unreachable": 57
+      }
+    },
+    {
+      "first": 181,
+      "last": 240,
+      "episodes": 7680,
+      "successes": 7635,
+      "mean_T_completed": 354.71460379829733,
+      "mean_cost_all": 3.7307985229492187,
+      "mean_prefix_T": 268.66106770833335,
+      "mean_dp_T": 86.61315104166667,
+      "entropy": 3.013183844193076,
+      "approx_kl": 0.0002054440269682216,
+      "statuses": {
+        "completed": 7635,
+        "unreachable": 45
+      }
+    }
+  ],
+  "timing_seconds": {
+    "rollout_seconds": 1284.7237228690356,
+    "update_seconds": 5320.458495292158,
+    "nn_collect_seconds": 1260.7074544010538,
+    "dp_wait_seconds": 22.077211781041115,
+    "dp_cpu_seconds": 38.358153
+  },
+  "optimizer_updates": 129104,
+  "audit_before": {
+    "summary": {
+      "episodes": 128,
+      "successes": 128,
+      "mean_T_completed": 354.703125,
+      "mean_E_finished": 0.0,
+      "mean_cost_all": 3.54703125,
+      "mean_prefix_T": 269.078125,
+      "mean_dp_T": 85.625,
+      "mean_dp_builds": 60.2421875,
+      "statuses": {
+        "completed": 128
+      }
+    },
+    "by_boundary": {
+      "0": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 390.4375,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.904375,
+        "mean_prefix_T": 219.4375,
+        "mean_dp_T": 171.0,
+        "mean_dp_builds": 120.9375,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "1": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 313.1875,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.131875,
+        "mean_prefix_T": 218.46875,
+        "mean_dp_T": 94.71875,
+        "mean_dp_builds": 63.8125,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "2": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 363.53125,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.6353125,
+        "mean_prefix_T": 311.3125,
+        "mean_dp_T": 52.21875,
+        "mean_dp_builds": 37.0625,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "3": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 351.65625,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.5165625,
+        "mean_prefix_T": 327.09375,
+        "mean_dp_T": 24.5625,
+        "mean_dp_builds": 19.15625,
+        "statuses": {
+          "completed": 32
+        }
+      }
+    },
+    "checkpoint_sha256": "e9d615587a1a655b7b2818e2f19564619050e2ffd669050b015b7c46766b90d3",
+    "timing": {
+      "nn_collect_seconds": 4.012442874998669,
+      "dp_wait_seconds": 0.024012374997255392,
+      "dp_cpu_seconds": 0.100553,
+      "dp_tasks": 32
+    },
+    "completed_at": "2026-10-04T04:58:59.773907+00:00"
+  },
+  "audit_after": {
+    "summary": {
+      "episodes": 128,
+      "successes": 128,
+      "mean_T_completed": 350.5234375,
+      "mean_E_finished": 0.0,
+      "mean_cost_all": 3.5052343749999997,
+      "mean_prefix_T": 278.7734375,
+      "mean_dp_T": 71.75,
+      "mean_dp_builds": 60.0546875,
+      "statuses": {
+        "completed": 128
+      }
+    },
+    "by_boundary": {
+      "0": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 387.5,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.875,
+        "mean_prefix_T": 231.28125,
+        "mean_dp_T": 156.21875,
+        "mean_dp_builds": 121.875,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "1": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 305.75,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.0575,
+        "mean_prefix_T": 228.5,
+        "mean_dp_T": 77.25,
+        "mean_dp_builds": 63.0,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "2": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 357.625,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.57625,
+        "mean_prefix_T": 323.25,
+        "mean_dp_T": 34.375,
+        "mean_dp_builds": 35.1875,
+        "statuses": {
+          "completed": 32
+        }
+      },
+      "3": {
+        "episodes": 32,
+        "successes": 32,
+        "mean_T_completed": 351.21875,
+        "mean_E_finished": 0.0,
+        "mean_cost_all": 3.5121875,
+        "mean_prefix_T": 332.0625,
+        "mean_dp_T": 19.15625,
+        "mean_dp_builds": 20.15625,
+        "statuses": {
+          "completed": 32
+        }
+      }
+    },
+    "checkpoint_sha256": "222e1fa4c365c5137c9f17f31a486c37e1e4a58fa1fc5c5c9e236e7b3c58de52",
+    "timing": {
+      "nn_collect_seconds": 4.820336499993573,
+      "dp_wait_seconds": 0.02555275001213886,
+      "dp_cpu_seconds": 0.10817,
+      "dp_tasks": 32
+    },
+    "completed_at": "2026-10-04T06:49:18.651876+00:00"
+  },
+  "audit_difference": {
+    "mean_T_completed": -4.1796875,
+    "mean_prefix_T": 9.6953125,
+    "mean_dp_T": -13.875,
+    "mean_cost_all": -0.04179687500000018
+  },
+  "audit_boundary_difference": {
+    "0": {
+      "mean_T_completed": -2.9375,
+      "mean_prefix_T": 11.84375,
+      "mean_dp_T": -14.78125
+    },
+    "1": {
+      "mean_T_completed": -7.4375,
+      "mean_prefix_T": 10.03125,
+      "mean_dp_T": -17.46875
+    },
+    "2": {
+      "mean_T_completed": -5.90625,
+      "mean_prefix_T": 11.9375,
+      "mean_dp_T": -17.84375
+    },
+    "3": {
+      "mean_T_completed": -0.4375,
+      "mean_prefix_T": 4.96875,
+      "mean_dp_T": -5.40625
+    }
+  },
+  "validation": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 217.875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 217.875,
+      "mean_elapsed_ms": 1563.1328125,
+      "max_elapsed_ms": 1612,
+      "mean_inferences": 292.88671875,
+      "mean_depth": 292.88671875,
+      "deadline_cases": 0
+    },
+    "learned": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 217.4453125,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 217.4453125,
+      "mean_elapsed_ms": 1563.80078125,
+      "max_elapsed_ms": 1619,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "multistart": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 217.3984375,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 217.3984375,
+      "mean_elapsed_ms": 1562.2890625,
+      "max_elapsed_ms": 1606,
+      "mean_inferences": 292.88671875,
+      "mean_depth": 292.88671875,
+      "deadline_cases": 0
+    },
+    "versus_same_solver": {
+      "common_completed": 256,
+      "mean_T_difference": -0.4296875,
+      "mean_S_difference": -0.4296875,
+      "wins": 119,
+      "ties": 26,
+      "losses": 111
+    },
+    "versus_multistart": {
+      "common_completed": 256,
+      "mean_T_difference": 0.046875,
+      "mean_S_difference": 0.046875,
+      "wins": 104,
+      "ties": 20,
+      "losses": 132
+    }
+  },
+  "construction": {
+    "base": {
+      "mean_pre_lns": 291.03515625,
+      "nn_complete": 256,
+      "mean_nn_T_completed": 292.88671875,
+      "mean_nn_seconds": 0.04420380859375,
+      "mean_dp_seconds": 0.003847515625,
+      "mean_construction_seconds": 0.04824665234375,
+      "dp_attempts": 1023.0,
+      "dp_completed": 837.0,
+      "dp_adopted": 777.0,
+      "mean_lns_attempts": 7631.72265625
+    },
+    "learned": {
+      "mean_pre_lns": 287.17578125,
+      "nn_complete": 256,
+      "mean_nn_T_completed": 289.27734375,
+      "mean_nn_seconds": 0.04504324609375,
+      "mean_dp_seconds": 0.00409398046875,
+      "mean_construction_seconds": 0.04932969140625,
+      "dp_attempts": 1020.0,
+      "dp_completed": 855.0,
+      "dp_adopted": 762.0,
+      "mean_lns_attempts": 7641.20703125
+    }
+  },
+  "mechanism": {
+    "passed": true,
+    "all_legally_replayed": true,
+    "value_independent": true,
+    "critic_unchanged": true,
+    "prefix_only_update": true,
+    "optimizer_roundtrip": true,
+    "generator_roundtrip": true,
+    "resume_weight_max_error": 5.960464477539062e-07,
+    "varied_groups": 8,
+    "seconds": 6.846052834007423,
+    "timing": {
+      "nn_collect_seconds": 1.6380619169940474,
+      "dp_wait_seconds": 0.026360667005064897,
+      "dp_cpu_seconds": 0.035407,
+      "dp_tasks": 8
+    },
+    "metrics": {
+      "policy_loss": 0.001455401252314914,
+      "value_loss": 0.0,
+      "entropy": 2.9948017075657845,
+      "approx_kl": 2.644268715812359e-05,
+      "clip_fraction": 0.0,
+      "bc_ce": 0.0,
+      "reverse_ce": 0.0,
+      "gradient_norm": 0.36526468116790056,
+      "updates": 32,
+      "kl_stopped": false,
+      "learning_rate": 6e-06,
+      "policy_loss_scale": 0.636328125,
+      "reverse_samples": 0,
+      "bc_samples": 0
+    },
+    "summary": {
+      "episodes": 32,
+      "successes": 32,
+      "mean_T_completed": 355.34375,
+      "mean_E_finished": 0.0,
+      "mean_cost_all": 3.5534375000000002,
+      "mean_prefix_T": 254.53125,
+      "mean_dp_T": 100.8125,
+      "mean_dp_builds": 78.34375,
+      "statuses": {
+        "completed": 32
+      }
+    },
+    "completed_at": "2026-10-04T04:56:34.229812+00:00"
+  },
+  "numerical": {
+    "passed": true,
+    "checks": 36,
+    "errors": {
+      "features": 4.901161143600063e-10,
+      "actions": 3.662795899916915e-10,
+      "logits": 0.0001529863281461985,
+      "value": 8.388134766335043e-05
+    },
+    "source_sha256": "c3a8402fbeef98385ff209c3bf07d7350f82b2646409ca9dfcc700eb3f12b9db",
+    "model_sha256": "1773d6e814639c54ea593b60b0fb2faae0a52d8e9ba58ff381f238611b57dcfa",
+    "preprocessing_outside_model_identical": true,
+    "completed_at": "2026-10-04T06:49:56.134982+00:00"
+  },
+  "identity": {
+    "source": "adhoc/bin/v109_assisted_learned.cpp",
+    "source_sha256": "c3a8402fbeef98385ff209c3bf07d7350f82b2646409ca9dfcc700eb3f12b9db",
+    "checkpoint_sha256": "222e1fa4c365c5137c9f17f31a486c37e1e4a58fa1fc5c5c9e236e7b3c58de52",
+    "model_sha256": "1773d6e814639c54ea593b60b0fb2faae0a52d8e9ba58ff381f238611b57dcfa"
+  },
+  "guard": {
+    "reason": "child_exit",
+    "exit_code": 0,
+    "child_exit_code": 0,
+    "peak_observed_bytes": 7291538672,
+    "samples": 52123,
+    "finished_at": "2026-10-04T06:50:43.007254+00:00",
+    "elapsed_sec": 6708.479052082999
+  },
+  "pipeline": {
+    "exit_code": 0,
+    "seconds": 6707.973883375002,
+    "finished_at": "2026-10-04T06:50:42.878782+00:00"
+  },
+  "verification": {
+    "frozen_source_hashes": 33,
+    "official_unique_cases": 256,
+    "official_unique_runs": 1,
+    "all_legal": true,
+    "all_completed": true,
+    "pool_recovered": true,
+    "errors_zero": true,
+    "no_re_evaluation": true
+  },
+  "limits": [
+    "single timed solver comparison; no repeated noise measurement",
+    "32 fixed audit inputs with four stochastic trials each",
+    "training cohorts use different fresh inputs",
+    "heldout and tools/in skipped by preregistered nonadoption rule",
+    "v109 validation mean remains above 200 moves"
+  ]
+}

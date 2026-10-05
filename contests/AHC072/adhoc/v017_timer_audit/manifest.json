@@ -1,0 +1,14 @@
+{
+  "parent_sha256": "dc9411f97e1d28a2bfba2a0a51d40b1aa989db0fbb77c49df593d8db3cb8fa30",
+  "solver_sha256": "6e6ff1ab864bc4228f20cfec7a28325cd4e092dd30f909c8641aeb6f8d6a25ce",
+  "bin": "v017_timer_origin",
+  "label": "timer_origin_local",
+  "local": true,
+  "jobs": 2,
+  "cases": 100,
+  "solver_executed": true,
+  "run_id": "20260926T225428+0900_v017_timer_origin_dba982",
+  "evaluation_count": 1,
+  "all_cases_valid": true,
+  "source_unchanged_after_evaluation": true
+}

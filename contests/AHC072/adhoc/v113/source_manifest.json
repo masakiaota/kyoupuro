@@ -1,0 +1,1350 @@
+{
+  "parents": {
+    "base": {
+      "path": "src/bin/v111_weight_portfolio.cpp",
+      "sha256": "dd45427b0e3e791bf40c1a7f7560c734abde1d20452ffa6c34cd878fd8c02316"
+    },
+    "common": {
+      "path": "src/bin/v311_neural_multistart.cpp",
+      "sha256": "c3f819c2715f397bee0ca95bca12be3196c6f5531dbfeb19358d0afd5f6868ea"
+    },
+    "r": {
+      "path": "src/bin/v315_reactive_racing.cpp",
+      "sha256": "364cab41a22ccb8c5d84bb0b74086dbb4d1ffd635ad735fcdf8231efa21e3538"
+    },
+    "s": {
+      "path": "src/bin/v314_conditional_support.cpp",
+      "sha256": "0c321cd70539ddcfeab378a26502c48733224b0921a5433cc4b87ef8689d363b"
+    },
+    "h": {
+      "path": "src/bin/v318_bit_parallel_history.cpp",
+      "sha256": "24de5a028ff3fcb97d1c1b6afbc1f9b3255865644a22057fb13243d15b99999d"
+    },
+    "hrp": {
+      "path": "src/bin/v319_integrated_learned_racing.cpp",
+      "sha256": "931b5b40e4595c9a500f1d5a2f978e067fc867a26137d8b9a55f4d13e5ee8cbb"
+    }
+  },
+  "sources": {
+    "h": {
+      "path": "adhoc/bin/v113_integrated_h.cpp",
+      "sha256": "0f445699d2e15646409c7ce54c121f363d1bfbfc12017370fec7c54d7b813f42",
+      "edits": {
+        "h": [
+          {
+            "old_lines": [
+              2470,
+              2469
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "4a2c24a4e29552183c6ce2234d5fb84e92f72ccd49cb45b0fa58da3f069cada2"
+          },
+          {
+            "old_lines": [
+              2478,
+              2477
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "5586999c7b43a36f19fa12117d00352319c6ad48fee622b467ec7e6e6425902a"
+          },
+          {
+            "old_lines": [
+              2590,
+              2589
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "19bc1d05d5fb105ca641f3c61b7d7b14c64618648ff522ad787145219c0ed00c"
+          },
+          {
+            "old_lines": [
+              2646,
+              2645
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "6210feff1d0ae870a179de853143abe5ce9668e3b51e2034b1b4d6063b27da7f"
+          },
+          {
+            "old_lines": [
+              2671,
+              2673
+            ],
+            "before_sha256": "a82f5bbfe05ff7381f0a413906aa75a6ab9744c689799571bd671ada0596f799",
+            "after_sha256": "32715d37f6380c36cfbe5fb6a1bca7d6743d538425148cd0d76858a0ea65d8d7"
+          },
+          {
+            "old_lines": [
+              2675,
+              2688
+            ],
+            "before_sha256": "3570188b2288e4b16aa8437b36fbac4cb75870c72c2d950887005efa19d486cb",
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "old_lines": [
+              2726,
+              2726
+            ],
+            "before_sha256": "adca1a8029f92723473801fd6cf77c749e0e4345865e6a146cdf3c17961170cd",
+            "after_sha256": "c877af1c9172cc5e1ebf79560ba3de1c6ed1ae0fb677553eeaab55203ea06f67"
+          },
+          {
+            "old_lines": [
+              2728,
+              2735
+            ],
+            "before_sha256": "c499a2327cacaaffe27b5e24c5fa94887a3668c573e38670e0de6f08f75f5a0d",
+            "after_sha256": "20e5763f3a727a23bd59b210d572b22de8695d65792ab5b9c4b3f45bf9cc633c"
+          },
+          {
+            "old_lines": [
+              3667,
+              3666
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "6210feff1d0ae870a179de853143abe5ce9668e3b51e2034b1b4d6063b27da7f"
+          },
+          {
+            "old_lines": [
+              3672,
+              3673
+            ],
+            "before_sha256": "faeb161aea0192e638ab248fa56023585d1956a73e695abeab67dc927344ad59",
+            "after_sha256": "56981ca857d9b2ee8597520ddda5eb741ca2c74a98f19a5b491534efff293fb2"
+          },
+          {
+            "old_lines": [
+              3713,
+              3713
+            ],
+            "before_sha256": "4b70c9553536a4d2f89e77dc4eaba0200119eda8fa1e2f90388e0c79a014afdb",
+            "after_sha256": "1434b74e48dd2c6f5dcac2e7a4aa76a81116e8ec054a3aa82a20f58a14541145"
+          },
+          {
+            "old_lines": [
+              3716,
+              3716
+            ],
+            "before_sha256": "65314c7240c6483bb1b3a927c8a704ed3c3271b4639079edd123aea0d0092dbc",
+            "after_sha256": "2f27c8b437a6e3837c225b54b90791c35fca0bed71b938b088c8577b94bcdb9a"
+          },
+          {
+            "old_lines": [
+              3722,
+              3723
+            ],
+            "before_sha256": "7384519dfb0b65ea0bc4357639d4df08f930f9ddd2ef60b5696e608024ae232e",
+            "after_sha256": "ca988d0550440adaef45e5be6330fb47b597b461d4b19b25242d4cb731f9e98f"
+          },
+          {
+            "old_lines": [
+              3730,
+              3734
+            ],
+            "before_sha256": "da45c8391b221c242658329242b3aa22b7db28bb078a673d9df18542dbad4f69",
+            "after_sha256": "8edf4cea2866a3f1eb2bcd747936dfcc048047852b06f882a13b401e4079eea5"
+          },
+          {
+            "old_lines": [
+              4476,
+              4475
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "958d6902a5373417fc948b7e6de3caed9d013e71080fcfa1bd15f3d50bfda15d"
+          }
+        ]
+      }
+    },
+    "r": {
+      "path": "adhoc/bin/v113_integrated_r.cpp",
+      "sha256": "48e15cbe1f740c1f3eda25eb03a87ec39f4e96285ab680ce933c8173fef0ba2c",
+      "edits": {
+        "r": [
+          {
+            "old_lines": [
+              4181,
+              4180
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "1eceaea0128603aa5c80e00bebd74d14664613c9753b25cdac32fde333a9583e"
+          },
+          {
+            "old_lines": [
+              4234,
+              4234
+            ],
+            "before_sha256": "feb1122c9da9f1b188e52b3176b56e41e5042de65bff76f11b653e3eee3f5387",
+            "after_sha256": "136ac533ae60552a85685915aa80de506da4b70e1a0efc98c6225ea55bc299fe"
+          },
+          {
+            "old_lines": [
+              4246,
+              4246
+            ],
+            "before_sha256": "885f753a181f8f03c96bef3bb8b328bb2d72b943ef0dc8db201c49b01a29e82f",
+            "after_sha256": "667ce9d4449470da1a4e12fb190870cb3ee8c9185a9d4e1a4c96f4941d4a4ff1"
+          },
+          {
+            "old_lines": [
+              4249,
+              4249
+            ],
+            "before_sha256": "87e4e0e57052d33593319330599ec3413115e86864fb13355313484635684201",
+            "after_sha256": "6e26180f8e8a8d70d779ea4433a8a0cd313a9b5f2b842e17177da3c49619bb7f"
+          },
+          {
+            "old_lines": [
+              4251,
+              4251
+            ],
+            "before_sha256": "326027a1f850b274d42d5d1f8ac63fa22b47403a73ff7164e0770762fd195b6a",
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "old_lines": [
+              4438,
+              4437
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "0d027f1a79a36d6e2590a5032075222c0a3577b22e9bf9d3e601ae0aa4507c76"
+          }
+        ]
+      }
+    },
+    "s": {
+      "path": "adhoc/bin/v113_integrated_s.cpp",
+      "sha256": "5a1bccaf9424dbb8b03534108c34cd32e2da4728581ffcc0d5650ecec50ce2f3",
+      "edits": {
+        "s": [
+          {
+            "old_lines": [
+              2510,
+              2509
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "c5d8d3c9c8abb2ac2ce83dfc2c068dad841fcdecfa031fb1b0044b72ab805738"
+          },
+          {
+            "old_lines": [
+              2869,
+              2868
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "780034d98b00fb639572d618d077d0a6a87104d271ac215abd156ff314bcde20"
+          },
+          {
+            "old_lines": [
+              2882,
+              2883
+            ],
+            "before_sha256": "7d392d3ccbda8068f2d046393f16380bdc5117c1febd5a3bf1dc21d1c0f00346",
+            "after_sha256": "efc62980ec75b373613ac3b4bfa7bf7e70db9f7ca7223feffb3f173823284571"
+          },
+          {
+            "old_lines": [
+              2924,
+              2923
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "b0acce07f8f80de406d944b420c1e4c2eda171b3e98a5fe6a439c2bf067d9e51"
+          },
+          {
+            "old_lines": [
+              2937,
+              2936
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "993a3c44118a95c6bf8de50805cd5a13715c44c12f6bd9dc3dc64455b0a7ba21"
+          },
+          {
+            "old_lines": [
+              2945,
+              2945
+            ],
+            "before_sha256": "193fa0588975b23fa69df5fffaf22814defd14f4080ff500b037c4c8e97446a7",
+            "after_sha256": "516240ff7af7092c3581dbe245e254b3f2e400de08a02c4d4559ac69d5cb42fe"
+          },
+          {
+            "old_lines": [
+              2951,
+              2950
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "93e26a812d71d3a61153981821b1483fad5a5e9004920c97a8800ca8d2a86e8a"
+          },
+          {
+            "old_lines": [
+              2955,
+              2954
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "aae1eec7cf82a50b1abec9f42ec394b2275f4ee6638fd6100e20fc3430475e5f"
+          },
+          {
+            "old_lines": [
+              2978,
+              2977
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "8d575a87a3a1fb6224bc0a4a369ae5e9dc8949e49e75e0acad0d3c66f7503216"
+          },
+          {
+            "old_lines": [
+              3006,
+              3005
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "e12f66e9e829d0ab4005b95a6b548b577cd70ca2b8a47213a2af3b619e863c67"
+          },
+          {
+            "old_lines": [
+              3878,
+              3878
+            ],
+            "before_sha256": "e093ad420590ad8e082ca021bc96a960b51e902d35f7f96eca81b3b115db2484",
+            "after_sha256": "74990553de746fed6523b3c9b1a76d482ccdbda4bc8826c2cd025b6150a73b7f"
+          },
+          {
+            "old_lines": [
+              3881,
+              3881
+            ],
+            "before_sha256": "5a41f79196d121fcdb2dd269a220502976e8f39aee7d51ffc4670ebc144ccf29",
+            "after_sha256": "3d6632d40d18b9bc12686ca72f507fae5dc7fb5d4c980a179585698be28fd052"
+          },
+          {
+            "old_lines": [
+              3888,
+              3888
+            ],
+            "before_sha256": "99b8e513b1aa7ef22213622cd1a6696e16bb7eb1e30351faabf63a761ade8dd3",
+            "after_sha256": "611defd51c8b06322d479055cef5f59a5e6c2177fffde884547dfa021f24dfa8"
+          },
+          {
+            "old_lines": [
+              3896,
+              3895
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "265897b9b19a75210a8662bab724fcdc5a494a1f4f080b8e69b897192387ddfa"
+          },
+          {
+            "old_lines": [
+              4042,
+              4041
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "07bed9a0c7ab407f1f5c7feb97e0290afdc6e2b1127e7531121d01e34ec3fa04"
+          },
+          {
+            "old_lines": [
+              4052,
+              4051
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "17d093ac5cb13885662af78be06e6386dc3f0baea54cf0378a7209eeb9a926ce"
+          },
+          {
+            "old_lines": [
+              4069,
+              4069
+            ],
+            "before_sha256": "bcd5ea844a1e5254efa41471b2fa96728787411a93ae07441acdcf78442e3aa6",
+            "after_sha256": "ed004d18823589fd3cf5048d67985a8099fa69559113122f5e04e67191ad66f9"
+          },
+          {
+            "old_lines": [
+              4438,
+              4437
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "77910192b8840c99ad5cc63ac75cf5636c42baea0950ba423a973d8021f09a1a"
+          }
+        ]
+      }
+    },
+    "hr": {
+      "path": "adhoc/bin/v113_integrated_hr.cpp",
+      "sha256": "044027db69c343eff388812326ada7a5525984ff71e84cdb2ad0cc00f89db7a5",
+      "edits": {
+        "r": [
+          {
+            "old_lines": [
+              4181,
+              4180
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "1eceaea0128603aa5c80e00bebd74d14664613c9753b25cdac32fde333a9583e"
+          },
+          {
+            "old_lines": [
+              4234,
+              4234
+            ],
+            "before_sha256": "feb1122c9da9f1b188e52b3176b56e41e5042de65bff76f11b653e3eee3f5387",
+            "after_sha256": "136ac533ae60552a85685915aa80de506da4b70e1a0efc98c6225ea55bc299fe"
+          },
+          {
+            "old_lines": [
+              4246,
+              4246
+            ],
+            "before_sha256": "885f753a181f8f03c96bef3bb8b328bb2d72b943ef0dc8db201c49b01a29e82f",
+            "after_sha256": "667ce9d4449470da1a4e12fb190870cb3ee8c9185a9d4e1a4c96f4941d4a4ff1"
+          },
+          {
+            "old_lines": [
+              4249,
+              4249
+            ],
+            "before_sha256": "87e4e0e57052d33593319330599ec3413115e86864fb13355313484635684201",
+            "after_sha256": "6e26180f8e8a8d70d779ea4433a8a0cd313a9b5f2b842e17177da3c49619bb7f"
+          },
+          {
+            "old_lines": [
+              4251,
+              4251
+            ],
+            "before_sha256": "326027a1f850b274d42d5d1f8ac63fa22b47403a73ff7164e0770762fd195b6a",
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "old_lines": [
+              4438,
+              4437
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "0d027f1a79a36d6e2590a5032075222c0a3577b22e9bf9d3e601ae0aa4507c76"
+          }
+        ],
+        "h": [
+          {
+            "old_lines": [
+              2470,
+              2469
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "4a2c24a4e29552183c6ce2234d5fb84e92f72ccd49cb45b0fa58da3f069cada2"
+          },
+          {
+            "old_lines": [
+              2478,
+              2477
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "5586999c7b43a36f19fa12117d00352319c6ad48fee622b467ec7e6e6425902a"
+          },
+          {
+            "old_lines": [
+              2590,
+              2589
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "19bc1d05d5fb105ca641f3c61b7d7b14c64618648ff522ad787145219c0ed00c"
+          },
+          {
+            "old_lines": [
+              2646,
+              2645
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "6210feff1d0ae870a179de853143abe5ce9668e3b51e2034b1b4d6063b27da7f"
+          },
+          {
+            "old_lines": [
+              2671,
+              2673
+            ],
+            "before_sha256": "a82f5bbfe05ff7381f0a413906aa75a6ab9744c689799571bd671ada0596f799",
+            "after_sha256": "32715d37f6380c36cfbe5fb6a1bca7d6743d538425148cd0d76858a0ea65d8d7"
+          },
+          {
+            "old_lines": [
+              2675,
+              2688
+            ],
+            "before_sha256": "3570188b2288e4b16aa8437b36fbac4cb75870c72c2d950887005efa19d486cb",
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "old_lines": [
+              2726,
+              2726
+            ],
+            "before_sha256": "adca1a8029f92723473801fd6cf77c749e0e4345865e6a146cdf3c17961170cd",
+            "after_sha256": "c877af1c9172cc5e1ebf79560ba3de1c6ed1ae0fb677553eeaab55203ea06f67"
+          },
+          {
+            "old_lines": [
+              2728,
+              2735
+            ],
+            "before_sha256": "c499a2327cacaaffe27b5e24c5fa94887a3668c573e38670e0de6f08f75f5a0d",
+            "after_sha256": "20e5763f3a727a23bd59b210d572b22de8695d65792ab5b9c4b3f45bf9cc633c"
+          },
+          {
+            "old_lines": [
+              3667,
+              3666
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "6210feff1d0ae870a179de853143abe5ce9668e3b51e2034b1b4d6063b27da7f"
+          },
+          {
+            "old_lines": [
+              3672,
+              3673
+            ],
+            "before_sha256": "faeb161aea0192e638ab248fa56023585d1956a73e695abeab67dc927344ad59",
+            "after_sha256": "56981ca857d9b2ee8597520ddda5eb741ca2c74a98f19a5b491534efff293fb2"
+          },
+          {
+            "old_lines": [
+              3713,
+              3713
+            ],
+            "before_sha256": "4b70c9553536a4d2f89e77dc4eaba0200119eda8fa1e2f90388e0c79a014afdb",
+            "after_sha256": "1434b74e48dd2c6f5dcac2e7a4aa76a81116e8ec054a3aa82a20f58a14541145"
+          },
+          {
+            "old_lines": [
+              3716,
+              3716
+            ],
+            "before_sha256": "65314c7240c6483bb1b3a927c8a704ed3c3271b4639079edd123aea0d0092dbc",
+            "after_sha256": "2f27c8b437a6e3837c225b54b90791c35fca0bed71b938b088c8577b94bcdb9a"
+          },
+          {
+            "old_lines": [
+              3722,
+              3723
+            ],
+            "before_sha256": "7384519dfb0b65ea0bc4357639d4df08f930f9ddd2ef60b5696e608024ae232e",
+            "after_sha256": "ca988d0550440adaef45e5be6330fb47b597b461d4b19b25242d4cb731f9e98f"
+          },
+          {
+            "old_lines": [
+              3730,
+              3734
+            ],
+            "before_sha256": "da45c8391b221c242658329242b3aa22b7db28bb078a673d9df18542dbad4f69",
+            "after_sha256": "8edf4cea2866a3f1eb2bcd747936dfcc048047852b06f882a13b401e4079eea5"
+          },
+          {
+            "old_lines": [
+              4476,
+              4475
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "958d6902a5373417fc948b7e6de3caed9d013e71080fcfa1bd15f3d50bfda15d"
+          }
+        ]
+      }
+    },
+    "hs": {
+      "path": "adhoc/bin/v113_integrated_hs.cpp",
+      "sha256": "bbfbc5fb5dff0fa7defac432339b75f84d3e82c2dc62b3b0bd2b834a7890923c",
+      "edits": {
+        "h": [
+          {
+            "old_lines": [
+              2470,
+              2469
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "4a2c24a4e29552183c6ce2234d5fb84e92f72ccd49cb45b0fa58da3f069cada2"
+          },
+          {
+            "old_lines": [
+              2478,
+              2477
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "5586999c7b43a36f19fa12117d00352319c6ad48fee622b467ec7e6e6425902a"
+          },
+          {
+            "old_lines": [
+              2590,
+              2589
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "19bc1d05d5fb105ca641f3c61b7d7b14c64618648ff522ad787145219c0ed00c"
+          },
+          {
+            "old_lines": [
+              2646,
+              2645
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "6210feff1d0ae870a179de853143abe5ce9668e3b51e2034b1b4d6063b27da7f"
+          },
+          {
+            "old_lines": [
+              2671,
+              2673
+            ],
+            "before_sha256": "a82f5bbfe05ff7381f0a413906aa75a6ab9744c689799571bd671ada0596f799",
+            "after_sha256": "32715d37f6380c36cfbe5fb6a1bca7d6743d538425148cd0d76858a0ea65d8d7"
+          },
+          {
+            "old_lines": [
+              2675,
+              2688
+            ],
+            "before_sha256": "3570188b2288e4b16aa8437b36fbac4cb75870c72c2d950887005efa19d486cb",
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "old_lines": [
+              2726,
+              2726
+            ],
+            "before_sha256": "adca1a8029f92723473801fd6cf77c749e0e4345865e6a146cdf3c17961170cd",
+            "after_sha256": "c877af1c9172cc5e1ebf79560ba3de1c6ed1ae0fb677553eeaab55203ea06f67"
+          },
+          {
+            "old_lines": [
+              2728,
+              2735
+            ],
+            "before_sha256": "c499a2327cacaaffe27b5e24c5fa94887a3668c573e38670e0de6f08f75f5a0d",
+            "after_sha256": "20e5763f3a727a23bd59b210d572b22de8695d65792ab5b9c4b3f45bf9cc633c"
+          },
+          {
+            "old_lines": [
+              3667,
+              3666
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "6210feff1d0ae870a179de853143abe5ce9668e3b51e2034b1b4d6063b27da7f"
+          },
+          {
+            "old_lines": [
+              3672,
+              3673
+            ],
+            "before_sha256": "faeb161aea0192e638ab248fa56023585d1956a73e695abeab67dc927344ad59",
+            "after_sha256": "56981ca857d9b2ee8597520ddda5eb741ca2c74a98f19a5b491534efff293fb2"
+          },
+          {
+            "old_lines": [
+              3713,
+              3713
+            ],
+            "before_sha256": "4b70c9553536a4d2f89e77dc4eaba0200119eda8fa1e2f90388e0c79a014afdb",
+            "after_sha256": "1434b74e48dd2c6f5dcac2e7a4aa76a81116e8ec054a3aa82a20f58a14541145"
+          },
+          {
+            "old_lines": [
+              3716,
+              3716
+            ],
+            "before_sha256": "65314c7240c6483bb1b3a927c8a704ed3c3271b4639079edd123aea0d0092dbc",
+            "after_sha256": "2f27c8b437a6e3837c225b54b90791c35fca0bed71b938b088c8577b94bcdb9a"
+          },
+          {
+            "old_lines": [
+              3722,
+              3723
+            ],
+            "before_sha256": "7384519dfb0b65ea0bc4357639d4df08f930f9ddd2ef60b5696e608024ae232e",
+            "after_sha256": "ca988d0550440adaef45e5be6330fb47b597b461d4b19b25242d4cb731f9e98f"
+          },
+          {
+            "old_lines": [
+              3730,
+              3734
+            ],
+            "before_sha256": "da45c8391b221c242658329242b3aa22b7db28bb078a673d9df18542dbad4f69",
+            "after_sha256": "8edf4cea2866a3f1eb2bcd747936dfcc048047852b06f882a13b401e4079eea5"
+          },
+          {
+            "old_lines": [
+              4476,
+              4475
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "958d6902a5373417fc948b7e6de3caed9d013e71080fcfa1bd15f3d50bfda15d"
+          }
+        ],
+        "s": [
+          {
+            "old_lines": [
+              2510,
+              2509
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "c5d8d3c9c8abb2ac2ce83dfc2c068dad841fcdecfa031fb1b0044b72ab805738"
+          },
+          {
+            "old_lines": [
+              2869,
+              2868
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "780034d98b00fb639572d618d077d0a6a87104d271ac215abd156ff314bcde20"
+          },
+          {
+            "old_lines": [
+              2882,
+              2883
+            ],
+            "before_sha256": "7d392d3ccbda8068f2d046393f16380bdc5117c1febd5a3bf1dc21d1c0f00346",
+            "after_sha256": "efc62980ec75b373613ac3b4bfa7bf7e70db9f7ca7223feffb3f173823284571"
+          },
+          {
+            "old_lines": [
+              2924,
+              2923
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "b0acce07f8f80de406d944b420c1e4c2eda171b3e98a5fe6a439c2bf067d9e51"
+          },
+          {
+            "old_lines": [
+              2937,
+              2936
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "993a3c44118a95c6bf8de50805cd5a13715c44c12f6bd9dc3dc64455b0a7ba21"
+          },
+          {
+            "old_lines": [
+              2945,
+              2945
+            ],
+            "before_sha256": "193fa0588975b23fa69df5fffaf22814defd14f4080ff500b037c4c8e97446a7",
+            "after_sha256": "516240ff7af7092c3581dbe245e254b3f2e400de08a02c4d4559ac69d5cb42fe"
+          },
+          {
+            "old_lines": [
+              2951,
+              2950
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "93e26a812d71d3a61153981821b1483fad5a5e9004920c97a8800ca8d2a86e8a"
+          },
+          {
+            "old_lines": [
+              2955,
+              2954
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "aae1eec7cf82a50b1abec9f42ec394b2275f4ee6638fd6100e20fc3430475e5f"
+          },
+          {
+            "old_lines": [
+              2978,
+              2977
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "8d575a87a3a1fb6224bc0a4a369ae5e9dc8949e49e75e0acad0d3c66f7503216"
+          },
+          {
+            "old_lines": [
+              3006,
+              3005
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "e12f66e9e829d0ab4005b95a6b548b577cd70ca2b8a47213a2af3b619e863c67"
+          },
+          {
+            "old_lines": [
+              3878,
+              3878
+            ],
+            "before_sha256": "e093ad420590ad8e082ca021bc96a960b51e902d35f7f96eca81b3b115db2484",
+            "after_sha256": "74990553de746fed6523b3c9b1a76d482ccdbda4bc8826c2cd025b6150a73b7f"
+          },
+          {
+            "old_lines": [
+              3881,
+              3881
+            ],
+            "before_sha256": "5a41f79196d121fcdb2dd269a220502976e8f39aee7d51ffc4670ebc144ccf29",
+            "after_sha256": "3d6632d40d18b9bc12686ca72f507fae5dc7fb5d4c980a179585698be28fd052"
+          },
+          {
+            "old_lines": [
+              3888,
+              3888
+            ],
+            "before_sha256": "99b8e513b1aa7ef22213622cd1a6696e16bb7eb1e30351faabf63a761ade8dd3",
+            "after_sha256": "611defd51c8b06322d479055cef5f59a5e6c2177fffde884547dfa021f24dfa8"
+          },
+          {
+            "old_lines": [
+              3896,
+              3895
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "265897b9b19a75210a8662bab724fcdc5a494a1f4f080b8e69b897192387ddfa"
+          },
+          {
+            "old_lines": [
+              4042,
+              4041
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "07bed9a0c7ab407f1f5c7feb97e0290afdc6e2b1127e7531121d01e34ec3fa04"
+          },
+          {
+            "old_lines": [
+              4052,
+              4051
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "17d093ac5cb13885662af78be06e6386dc3f0baea54cf0378a7209eeb9a926ce"
+          },
+          {
+            "old_lines": [
+              4069,
+              4069
+            ],
+            "before_sha256": "bcd5ea844a1e5254efa41471b2fa96728787411a93ae07441acdcf78442e3aa6",
+            "after_sha256": "ed004d18823589fd3cf5048d67985a8099fa69559113122f5e04e67191ad66f9"
+          },
+          {
+            "old_lines": [
+              4438,
+              4437
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "77910192b8840c99ad5cc63ac75cf5636c42baea0950ba423a973d8021f09a1a"
+          }
+        ]
+      }
+    },
+    "rs": {
+      "path": "adhoc/bin/v113_integrated_rs.cpp",
+      "sha256": "788208cedc82de72edc83185802072a1613f00baee36f02f1276c1934c3f11b1",
+      "edits": {
+        "r": [
+          {
+            "old_lines": [
+              4181,
+              4180
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "1eceaea0128603aa5c80e00bebd74d14664613c9753b25cdac32fde333a9583e"
+          },
+          {
+            "old_lines": [
+              4234,
+              4234
+            ],
+            "before_sha256": "feb1122c9da9f1b188e52b3176b56e41e5042de65bff76f11b653e3eee3f5387",
+            "after_sha256": "136ac533ae60552a85685915aa80de506da4b70e1a0efc98c6225ea55bc299fe"
+          },
+          {
+            "old_lines": [
+              4246,
+              4246
+            ],
+            "before_sha256": "885f753a181f8f03c96bef3bb8b328bb2d72b943ef0dc8db201c49b01a29e82f",
+            "after_sha256": "667ce9d4449470da1a4e12fb190870cb3ee8c9185a9d4e1a4c96f4941d4a4ff1"
+          },
+          {
+            "old_lines": [
+              4249,
+              4249
+            ],
+            "before_sha256": "87e4e0e57052d33593319330599ec3413115e86864fb13355313484635684201",
+            "after_sha256": "6e26180f8e8a8d70d779ea4433a8a0cd313a9b5f2b842e17177da3c49619bb7f"
+          },
+          {
+            "old_lines": [
+              4251,
+              4251
+            ],
+            "before_sha256": "326027a1f850b274d42d5d1f8ac63fa22b47403a73ff7164e0770762fd195b6a",
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "old_lines": [
+              4438,
+              4437
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "0d027f1a79a36d6e2590a5032075222c0a3577b22e9bf9d3e601ae0aa4507c76"
+          }
+        ],
+        "s": [
+          {
+            "old_lines": [
+              2510,
+              2509
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "c5d8d3c9c8abb2ac2ce83dfc2c068dad841fcdecfa031fb1b0044b72ab805738"
+          },
+          {
+            "old_lines": [
+              2869,
+              2868
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "780034d98b00fb639572d618d077d0a6a87104d271ac215abd156ff314bcde20"
+          },
+          {
+            "old_lines": [
+              2882,
+              2883
+            ],
+            "before_sha256": "7d392d3ccbda8068f2d046393f16380bdc5117c1febd5a3bf1dc21d1c0f00346",
+            "after_sha256": "efc62980ec75b373613ac3b4bfa7bf7e70db9f7ca7223feffb3f173823284571"
+          },
+          {
+            "old_lines": [
+              2924,
+              2923
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "b0acce07f8f80de406d944b420c1e4c2eda171b3e98a5fe6a439c2bf067d9e51"
+          },
+          {
+            "old_lines": [
+              2937,
+              2936
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "993a3c44118a95c6bf8de50805cd5a13715c44c12f6bd9dc3dc64455b0a7ba21"
+          },
+          {
+            "old_lines": [
+              2945,
+              2945
+            ],
+            "before_sha256": "193fa0588975b23fa69df5fffaf22814defd14f4080ff500b037c4c8e97446a7",
+            "after_sha256": "516240ff7af7092c3581dbe245e254b3f2e400de08a02c4d4559ac69d5cb42fe"
+          },
+          {
+            "old_lines": [
+              2951,
+              2950
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "93e26a812d71d3a61153981821b1483fad5a5e9004920c97a8800ca8d2a86e8a"
+          },
+          {
+            "old_lines": [
+              2955,
+              2954
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "aae1eec7cf82a50b1abec9f42ec394b2275f4ee6638fd6100e20fc3430475e5f"
+          },
+          {
+            "old_lines": [
+              2978,
+              2977
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "8d575a87a3a1fb6224bc0a4a369ae5e9dc8949e49e75e0acad0d3c66f7503216"
+          },
+          {
+            "old_lines": [
+              3006,
+              3005
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "e12f66e9e829d0ab4005b95a6b548b577cd70ca2b8a47213a2af3b619e863c67"
+          },
+          {
+            "old_lines": [
+              3878,
+              3878
+            ],
+            "before_sha256": "e093ad420590ad8e082ca021bc96a960b51e902d35f7f96eca81b3b115db2484",
+            "after_sha256": "74990553de746fed6523b3c9b1a76d482ccdbda4bc8826c2cd025b6150a73b7f"
+          },
+          {
+            "old_lines": [
+              3881,
+              3881
+            ],
+            "before_sha256": "5a41f79196d121fcdb2dd269a220502976e8f39aee7d51ffc4670ebc144ccf29",
+            "after_sha256": "3d6632d40d18b9bc12686ca72f507fae5dc7fb5d4c980a179585698be28fd052"
+          },
+          {
+            "old_lines": [
+              3888,
+              3888
+            ],
+            "before_sha256": "99b8e513b1aa7ef22213622cd1a6696e16bb7eb1e30351faabf63a761ade8dd3",
+            "after_sha256": "611defd51c8b06322d479055cef5f59a5e6c2177fffde884547dfa021f24dfa8"
+          },
+          {
+            "old_lines": [
+              3896,
+              3895
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "265897b9b19a75210a8662bab724fcdc5a494a1f4f080b8e69b897192387ddfa"
+          },
+          {
+            "old_lines": [
+              4042,
+              4041
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "07bed9a0c7ab407f1f5c7feb97e0290afdc6e2b1127e7531121d01e34ec3fa04"
+          },
+          {
+            "old_lines": [
+              4052,
+              4051
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "17d093ac5cb13885662af78be06e6386dc3f0baea54cf0378a7209eeb9a926ce"
+          },
+          {
+            "old_lines": [
+              4069,
+              4069
+            ],
+            "before_sha256": "bcd5ea844a1e5254efa41471b2fa96728787411a93ae07441acdcf78442e3aa6",
+            "after_sha256": "ed004d18823589fd3cf5048d67985a8099fa69559113122f5e04e67191ad66f9"
+          },
+          {
+            "old_lines": [
+              4438,
+              4437
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "77910192b8840c99ad5cc63ac75cf5636c42baea0950ba423a973d8021f09a1a"
+          }
+        ]
+      }
+    },
+    "hrs": {
+      "path": "adhoc/bin/v113_integrated_hrs.cpp",
+      "sha256": "1536615a2b25fb809c8b671f9ddc6be12cd07c845e018ae3fea64256ea97d5c4",
+      "edits": {
+        "r": [
+          {
+            "old_lines": [
+              4181,
+              4180
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "1eceaea0128603aa5c80e00bebd74d14664613c9753b25cdac32fde333a9583e"
+          },
+          {
+            "old_lines": [
+              4234,
+              4234
+            ],
+            "before_sha256": "feb1122c9da9f1b188e52b3176b56e41e5042de65bff76f11b653e3eee3f5387",
+            "after_sha256": "136ac533ae60552a85685915aa80de506da4b70e1a0efc98c6225ea55bc299fe"
+          },
+          {
+            "old_lines": [
+              4246,
+              4246
+            ],
+            "before_sha256": "885f753a181f8f03c96bef3bb8b328bb2d72b943ef0dc8db201c49b01a29e82f",
+            "after_sha256": "667ce9d4449470da1a4e12fb190870cb3ee8c9185a9d4e1a4c96f4941d4a4ff1"
+          },
+          {
+            "old_lines": [
+              4249,
+              4249
+            ],
+            "before_sha256": "87e4e0e57052d33593319330599ec3413115e86864fb13355313484635684201",
+            "after_sha256": "6e26180f8e8a8d70d779ea4433a8a0cd313a9b5f2b842e17177da3c49619bb7f"
+          },
+          {
+            "old_lines": [
+              4251,
+              4251
+            ],
+            "before_sha256": "326027a1f850b274d42d5d1f8ac63fa22b47403a73ff7164e0770762fd195b6a",
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "old_lines": [
+              4438,
+              4437
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "0d027f1a79a36d6e2590a5032075222c0a3577b22e9bf9d3e601ae0aa4507c76"
+          }
+        ],
+        "h": [
+          {
+            "old_lines": [
+              2470,
+              2469
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "4a2c24a4e29552183c6ce2234d5fb84e92f72ccd49cb45b0fa58da3f069cada2"
+          },
+          {
+            "old_lines": [
+              2478,
+              2477
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "5586999c7b43a36f19fa12117d00352319c6ad48fee622b467ec7e6e6425902a"
+          },
+          {
+            "old_lines": [
+              2590,
+              2589
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "19bc1d05d5fb105ca641f3c61b7d7b14c64618648ff522ad787145219c0ed00c"
+          },
+          {
+            "old_lines": [
+              2646,
+              2645
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "6210feff1d0ae870a179de853143abe5ce9668e3b51e2034b1b4d6063b27da7f"
+          },
+          {
+            "old_lines": [
+              2671,
+              2673
+            ],
+            "before_sha256": "a82f5bbfe05ff7381f0a413906aa75a6ab9744c689799571bd671ada0596f799",
+            "after_sha256": "32715d37f6380c36cfbe5fb6a1bca7d6743d538425148cd0d76858a0ea65d8d7"
+          },
+          {
+            "old_lines": [
+              2675,
+              2688
+            ],
+            "before_sha256": "3570188b2288e4b16aa8437b36fbac4cb75870c72c2d950887005efa19d486cb",
+            "after_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "old_lines": [
+              2726,
+              2726
+            ],
+            "before_sha256": "adca1a8029f92723473801fd6cf77c749e0e4345865e6a146cdf3c17961170cd",
+            "after_sha256": "c877af1c9172cc5e1ebf79560ba3de1c6ed1ae0fb677553eeaab55203ea06f67"
+          },
+          {
+            "old_lines": [
+              2728,
+              2735
+            ],
+            "before_sha256": "c499a2327cacaaffe27b5e24c5fa94887a3668c573e38670e0de6f08f75f5a0d",
+            "after_sha256": "20e5763f3a727a23bd59b210d572b22de8695d65792ab5b9c4b3f45bf9cc633c"
+          },
+          {
+            "old_lines": [
+              3667,
+              3666
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "6210feff1d0ae870a179de853143abe5ce9668e3b51e2034b1b4d6063b27da7f"
+          },
+          {
+            "old_lines": [
+              3672,
+              3673
+            ],
+            "before_sha256": "faeb161aea0192e638ab248fa56023585d1956a73e695abeab67dc927344ad59",
+            "after_sha256": "56981ca857d9b2ee8597520ddda5eb741ca2c74a98f19a5b491534efff293fb2"
+          },
+          {
+            "old_lines": [
+              3713,
+              3713
+            ],
+            "before_sha256": "4b70c9553536a4d2f89e77dc4eaba0200119eda8fa1e2f90388e0c79a014afdb",
+            "after_sha256": "1434b74e48dd2c6f5dcac2e7a4aa76a81116e8ec054a3aa82a20f58a14541145"
+          },
+          {
+            "old_lines": [
+              3716,
+              3716
+            ],
+            "before_sha256": "65314c7240c6483bb1b3a927c8a704ed3c3271b4639079edd123aea0d0092dbc",
+            "after_sha256": "2f27c8b437a6e3837c225b54b90791c35fca0bed71b938b088c8577b94bcdb9a"
+          },
+          {
+            "old_lines": [
+              3722,
+              3723
+            ],
+            "before_sha256": "7384519dfb0b65ea0bc4357639d4df08f930f9ddd2ef60b5696e608024ae232e",
+            "after_sha256": "ca988d0550440adaef45e5be6330fb47b597b461d4b19b25242d4cb731f9e98f"
+          },
+          {
+            "old_lines": [
+              3730,
+              3734
+            ],
+            "before_sha256": "da45c8391b221c242658329242b3aa22b7db28bb078a673d9df18542dbad4f69",
+            "after_sha256": "8edf4cea2866a3f1eb2bcd747936dfcc048047852b06f882a13b401e4079eea5"
+          },
+          {
+            "old_lines": [
+              4476,
+              4475
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "958d6902a5373417fc948b7e6de3caed9d013e71080fcfa1bd15f3d50bfda15d"
+          }
+        ],
+        "s": [
+          {
+            "old_lines": [
+              2510,
+              2509
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "c5d8d3c9c8abb2ac2ce83dfc2c068dad841fcdecfa031fb1b0044b72ab805738"
+          },
+          {
+            "old_lines": [
+              2869,
+              2868
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "780034d98b00fb639572d618d077d0a6a87104d271ac215abd156ff314bcde20"
+          },
+          {
+            "old_lines": [
+              2882,
+              2883
+            ],
+            "before_sha256": "7d392d3ccbda8068f2d046393f16380bdc5117c1febd5a3bf1dc21d1c0f00346",
+            "after_sha256": "efc62980ec75b373613ac3b4bfa7bf7e70db9f7ca7223feffb3f173823284571"
+          },
+          {
+            "old_lines": [
+              2924,
+              2923
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "b0acce07f8f80de406d944b420c1e4c2eda171b3e98a5fe6a439c2bf067d9e51"
+          },
+          {
+            "old_lines": [
+              2937,
+              2936
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "993a3c44118a95c6bf8de50805cd5a13715c44c12f6bd9dc3dc64455b0a7ba21"
+          },
+          {
+            "old_lines": [
+              2945,
+              2945
+            ],
+            "before_sha256": "193fa0588975b23fa69df5fffaf22814defd14f4080ff500b037c4c8e97446a7",
+            "after_sha256": "516240ff7af7092c3581dbe245e254b3f2e400de08a02c4d4559ac69d5cb42fe"
+          },
+          {
+            "old_lines": [
+              2951,
+              2950
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "93e26a812d71d3a61153981821b1483fad5a5e9004920c97a8800ca8d2a86e8a"
+          },
+          {
+            "old_lines": [
+              2955,
+              2954
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "aae1eec7cf82a50b1abec9f42ec394b2275f4ee6638fd6100e20fc3430475e5f"
+          },
+          {
+            "old_lines": [
+              2978,
+              2977
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "8d575a87a3a1fb6224bc0a4a369ae5e9dc8949e49e75e0acad0d3c66f7503216"
+          },
+          {
+            "old_lines": [
+              3006,
+              3005
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "e12f66e9e829d0ab4005b95a6b548b577cd70ca2b8a47213a2af3b619e863c67"
+          },
+          {
+            "old_lines": [
+              3878,
+              3878
+            ],
+            "before_sha256": "e093ad420590ad8e082ca021bc96a960b51e902d35f7f96eca81b3b115db2484",
+            "after_sha256": "74990553de746fed6523b3c9b1a76d482ccdbda4bc8826c2cd025b6150a73b7f"
+          },
+          {
+            "old_lines": [
+              3881,
+              3881
+            ],
+            "before_sha256": "5a41f79196d121fcdb2dd269a220502976e8f39aee7d51ffc4670ebc144ccf29",
+            "after_sha256": "3d6632d40d18b9bc12686ca72f507fae5dc7fb5d4c980a179585698be28fd052"
+          },
+          {
+            "old_lines": [
+              3888,
+              3888
+            ],
+            "before_sha256": "99b8e513b1aa7ef22213622cd1a6696e16bb7eb1e30351faabf63a761ade8dd3",
+            "after_sha256": "611defd51c8b06322d479055cef5f59a5e6c2177fffde884547dfa021f24dfa8"
+          },
+          {
+            "old_lines": [
+              3896,
+              3895
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "265897b9b19a75210a8662bab724fcdc5a494a1f4f080b8e69b897192387ddfa"
+          },
+          {
+            "old_lines": [
+              4042,
+              4041
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "07bed9a0c7ab407f1f5c7feb97e0290afdc6e2b1127e7531121d01e34ec3fa04"
+          },
+          {
+            "old_lines": [
+              4052,
+              4051
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "17d093ac5cb13885662af78be06e6386dc3f0baea54cf0378a7209eeb9a926ce"
+          },
+          {
+            "old_lines": [
+              4069,
+              4069
+            ],
+            "before_sha256": "bcd5ea844a1e5254efa41471b2fa96728787411a93ae07441acdcf78442e3aa6",
+            "after_sha256": "ed004d18823589fd3cf5048d67985a8099fa69559113122f5e04e67191ad66f9"
+          },
+          {
+            "old_lines": [
+              4438,
+              4437
+            ],
+            "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "after_sha256": "77910192b8840c99ad5cc63ac75cf5636c42baea0950ba423a973d8021f09a1a"
+          }
+        ]
+      }
+    },
+    "hrp": {
+      "path": "src/bin/v319_integrated_learned_racing.cpp",
+      "sha256": "931b5b40e4595c9a500f1d5a2f978e067fc867a26137d8b9a55f4d13e5ee8cbb",
+      "edits": {},
+      "upstream": "37e3864"
+    }
+  }
+}

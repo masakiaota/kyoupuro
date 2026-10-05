@@ -1,0 +1,50 @@
+[
+  {
+    "tag": "0005_0000",
+    "first_failure": 0,
+    "reference_move": "11 7 0 R 1",
+    "required_background_move": [
+      12,
+      5,
+      0,
+      "R",
+      1
+    ]
+  },
+  {
+    "tag": "0068_0000",
+    "first_failure": 0,
+    "reference_move": "17 0 0 U 1",
+    "required_background_move": [
+      2,
+      0,
+      0,
+      "D",
+      1
+    ]
+  },
+  {
+    "tag": "0097_0000",
+    "first_failure": 1,
+    "reference_move": "3 4 0 R 1",
+    "required_background_move": [
+      13,
+      7,
+      0,
+      "R",
+      1
+    ]
+  },
+  {
+    "tag": "0019_0000",
+    "first_failure": 0,
+    "reference_move": "19 19 0 L 1",
+    "required_background_move": [
+      12,
+      2,
+      0,
+      "L",
+      1
+    ]
+  }
+]

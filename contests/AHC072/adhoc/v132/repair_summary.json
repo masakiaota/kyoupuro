@@ -1,0 +1,6 @@
+{
+  "reason": "Inherited fixture asserted an optimal result, while the preregistered search stops at the first improvement. Update only fixture contract; search, candidates, ordering, budgets remain unchanged.",
+  "completed_real_trials": 0,
+  "task_search_unchanged": true,
+  "task_search_sha256": "486843d12ae1e01026a9d87cb8d698b3532d4cfaba9d836691e5043febacc6e7"
+}

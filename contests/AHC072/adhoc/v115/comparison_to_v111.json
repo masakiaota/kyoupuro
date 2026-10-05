@@ -1,0 +1,121 @@
+{
+  "source": "saved_results_only",
+  "baseline_sha256": "7b96b5506dedb9f231f37f9ee8be0af13689d90adca08b5f163c46d84f433d97",
+  "candidate_sha256": "a9bc0f39edf9e41f4bbd47ca3e795c1fd1f388665a1a34f228ac7c9c57616c38",
+  "comparisons": {
+    "validation": {
+      "difference": {
+        "common_completed": 256,
+        "mean_T_difference": -0.6875,
+        "mean_S_difference": -0.6875,
+        "wins": 117,
+        "ties": 30,
+        "losses": 109
+      },
+      "baseline": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 216.13671875,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 216.13671875,
+        "mean_elapsed_ms": 1563.84375,
+        "max_elapsed_ms": 1618,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      },
+      "candidate": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 215.44921875,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 215.44921875,
+        "mean_elapsed_ms": 1564.53515625,
+        "max_elapsed_ms": 1627,
+        "mean_inferences": 289.27734375,
+        "mean_depth": 289.27734375,
+        "deadline_cases": 0
+      }
+    },
+    "test": {
+      "difference": {
+        "common_completed": 256,
+        "mean_T_difference": -1.33984375,
+        "mean_S_difference": -1.33984375,
+        "wins": 136,
+        "ties": 18,
+        "losses": 102
+      },
+      "baseline": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 219.38671875,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 219.38671875,
+        "mean_elapsed_ms": 1563.55078125,
+        "max_elapsed_ms": 1621,
+        "mean_inferences": 291.90625,
+        "mean_depth": 291.90625,
+        "deadline_cases": 0
+      },
+      "candidate": {
+        "cases": 256,
+        "complete": 256,
+        "completion_rate": 1.0,
+        "mean_S_all": 218.046875,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 218.046875,
+        "mean_elapsed_ms": 1564.6875,
+        "max_elapsed_ms": 1624,
+        "mean_inferences": 291.90625,
+        "mean_depth": 291.90625,
+        "deadline_cases": 0
+      }
+    },
+    "in": {
+      "difference": {
+        "common_completed": 100,
+        "mean_T_difference": -0.82,
+        "mean_S_difference": -0.8199999999999932,
+        "wins": 45,
+        "ties": 11,
+        "losses": 44
+      },
+      "baseline": {
+        "cases": 100,
+        "complete": 100,
+        "completion_rate": 1.0,
+        "mean_S_all": 196.87,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 196.87,
+        "mean_elapsed_ms": 1567.01,
+        "max_elapsed_ms": 1620,
+        "mean_inferences": 264.69,
+        "mean_depth": 264.69,
+        "deadline_cases": 0
+      },
+      "candidate": {
+        "cases": 100,
+        "complete": 100,
+        "completion_rate": 1.0,
+        "mean_S_all": 196.05,
+        "mean_E_all": 0.0,
+        "max_E": 0,
+        "mean_T_completed": 196.05,
+        "mean_elapsed_ms": 1569.38,
+        "max_elapsed_ms": 1616,
+        "mean_inferences": 264.69,
+        "mean_depth": 264.69,
+        "deadline_cases": 0
+      }
+    }
+  }
+}

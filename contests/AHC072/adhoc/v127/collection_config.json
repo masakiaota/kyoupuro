@@ -1,0 +1,16 @@
+{
+  "base_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+  "source_sha256": "b661f15d32c90b10af3b7f8526ec92310ecf5bf8709d2782c390a332b5420524",
+  "scripts": {
+    "build_v127_allocation.py": "318cf8a7cd3f150ece8ae1cf1e73adf99a227d0d737ada45af2c226e906ac033",
+    "build_v124_allocation.py": "8d45a13043288634c82a5fb61ae042999278d1773fb1848560e698626dec5ce6",
+    "run_v127_collection.py": "1ff259cf81005ea79f80581b978837089dd0f9f69d06b61fcf15200cbe47e2eb",
+    "v124_features.cpp.txt": "ef54a31689790c0bcfde00e958a597817dbdc92150a4de8512dd1a8f3750bee3",
+    "v127_collect.cpp.txt": "88cc3b81938a011b3c8cc908a3ba341ca7b46fe64aefbc5732d592c2ea38c771"
+  },
+  "inputs_sha256": "036171024d7c147338f8e4647bce960144abd31ea1fb07e4b6538dca61da4435",
+  "repeats": [
+    127101
+  ],
+  "jobs": 12
+}

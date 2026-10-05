@@ -1,0 +1,14 @@
+{
+  "flags": [
+    "-std=gnu++23",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-march=native",
+    "-pthread",
+    "-ftrivial-auto-var-init=zero",
+    "-fopenmp"
+  ],
+  "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+  "MACOSX_DEPLOYMENT_TARGET": "15.0"
+}

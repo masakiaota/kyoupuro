@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 56,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v020_o3_event_lns/0025.txt",
+  "best_sha256": "b8b2748c5a2dbdc8464c456e42a5b8f9eddfe1796cf4815924fdc15f7ee0457a",
+  "attempts": []
+}

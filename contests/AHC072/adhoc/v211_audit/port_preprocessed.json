@@ -1,0 +1,10 @@
+{
+  "local": {
+    "equal_after_diagnostic_normalization": true,
+    "original_preprocessed_sha256": "f637642d5393a5c4531191447fdf5c6c591e541ab4a92f70c6252634150c8b55"
+  },
+  "production": {
+    "equal_after_diagnostic_normalization": true,
+    "original_preprocessed_sha256": "92a050ce4d49a8964104ef5ecd2086dd1eee26338f87a308ef2384cf16d292ad"
+  }
+}

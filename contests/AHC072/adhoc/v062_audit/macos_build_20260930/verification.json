@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "checked_at": "2026-09-30T00:04:52.757023+09:00",
+  "solver_executions": 0,
+  "solver_sha256": "a339a6bfb9be59d68717dfc69e0cb63eb709e5cfe276f2989c2271bbf80fb8ff",
+  "steps": [
+    {
+      "command": [
+        "sh",
+        "-n",
+        "scripts/build_solver.sh"
+      ],
+      "exit_code": 0,
+      "log": "/Users/masaki/Desktop/AHC072/adhoc/v062_audit/macos_build_20260930/00.log"
+    },
+    {
+      "command": [
+        "scripts/build_solver.sh",
+        "v062_deferred_passenger"
+      ],
+      "exit_code": 0,
+      "log": "/Users/masaki/Desktop/AHC072/adhoc/v062_audit/macos_build_20260930/01.log"
+    },
+    {
+      "command": [
+        "cargo",
+        "build",
+        "--release",
+        "--quiet",
+        "--manifest-path",
+        "tools/Cargo.toml",
+        "--bin",
+        "vis"
+      ],
+      "exit_code": 0,
+      "log": "/Users/masaki/Desktop/AHC072/adhoc/v062_audit/macos_build_20260930/02.log"
+    }
+  ]
+}

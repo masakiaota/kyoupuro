@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "partial": {
+    "passed": true,
+    "symbolic_checks": 107022,
+    "artificial_parent": 6,
+    "artificial_child": 5,
+    "problems": 749,
+    "mono_problems": 577,
+    "mixed_problems": 172,
+    "excluded_extract": 51,
+    "conditions": 2247,
+    "parent_success": 1362,
+    "child_success": 1366,
+    "rescued": 4,
+    "shorter": 9,
+    "saved": 9,
+    "legal_paths": 2731
+  },
+  "smoke": [
+    {
+      "mode": "local",
+      "T": 43,
+      "output_sha256": "0e96779e86cf7f17686fe6f10814a1f458a17f8de7f25f7b2e5233483743f15d"
+    },
+    {
+      "mode": "production",
+      "T": 43,
+      "output_sha256": "2a768da2c02192483e635a3ef177bf5b28be923aad7d5aeac41223bb3f814610"
+    }
+  ]
+}

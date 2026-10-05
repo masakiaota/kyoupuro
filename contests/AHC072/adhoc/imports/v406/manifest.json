@@ -1,0 +1,1005 @@
+{
+  "version": "v406",
+  "source_sha256": "c8bb1eb4335e61877318101574e98fb87dd54f9ace9bb22aa23d92d6b00f0a36",
+  "note_sha256": "4e7ef79e77b219fb4e76b4b17aa360eeabe044e9ec2c3db01584dd68596cf865",
+  "backlog_sha256": "711c7325ac06ee8cee2e1910a238b1ada34c1f4009a5db063fd6197352293924",
+  "zip_sha256": "f30904abe6c44e19f9aefd294564abdcaa9e83ce54ecf0da02d3f0a877f72553",
+  "zip_bytes": 801487,
+  "file_count": 246,
+  "publication_files": [
+    "src/bin/v406_two_policy_portfolio.cpp",
+    "notes/experiments/v406.md",
+    "notes/backlog.md",
+    "adhoc/imports/v406/reproduction.zip",
+    "adhoc/imports/v406/manifest.json"
+  ],
+  "files": {
+    "results/analysis/v406/DIAGNOSTIC_REPRODUCE.txt": {
+      "sha256": "0e835555f4870f42e2c65302e4b0227367155a1c47e5ab1363efdd5b3a6fd2d1",
+      "bytes": 3272
+    },
+    "results/analysis/v406/REPRODUCE.txt": {
+      "sha256": "9b03cf9b117b21bbeccbcce011240041102203ef2485c244b288ff06a3bab07d",
+      "bytes": 1960
+    },
+    "results/analysis/v406/audit.log": {
+      "sha256": "f107ef87a8381e81c8c082aa3d5b5ca0b4daffd2cf9e84a12a3a3dd794db627b",
+      "bytes": 1547
+    },
+    "results/analysis/v406/build_local.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "results/analysis/v406/build_nonlocal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "results/analysis/v406/case_traces.json": {
+      "sha256": "f4269094c32820b1912d34fabdbe4cdf3c757d1f3c8230169e267f5bbc1850e3",
+      "bytes": 1702085
+    },
+    "results/analysis/v406/diagnostic.jsonl": {
+      "sha256": "88e84580fddb69f510a6f1613fe162606e4d129dd20b01be797a148e68d2afe9",
+      "bytes": 12420
+    },
+    "results/analysis/v406/diagnostic.stderr": {
+      "sha256": "a5b9b3712af524c1638c8a6b427530453cd8c0650c57a3e4ec92b47a65f698e7",
+      "bytes": 69
+    },
+    "results/analysis/v406/diagnostic_build.log": {
+      "sha256": "1986b70ab6f0e9d3a7705a3a5aab4c8f324bf0533e2e6f8560623ca618e8af91",
+      "bytes": 435
+    },
+    "results/analysis/v406/diagnostic_build_superseded_before_execution.log": {
+      "sha256": "d49d3c2f41e2165da3d9ea547729e6366b37a171e11e268ab0e31be4472d4f9a",
+      "bytes": 1147
+    },
+    "results/analysis/v406/diagnostic_check.log": {
+      "sha256": "cc402d4b40b119b97287aeecd83b733d166a56afa739c17fbcc0f23ce0c79ff5",
+      "bytes": 2989
+    },
+    "results/analysis/v406/diagnostic_execution.json": {
+      "sha256": "7647661fbacb0033e15f703e32080e6558b7ad3cfc33eb75b5eda88e91e19f23",
+      "bytes": 817
+    },
+    "results/analysis/v406/diagnostic_generation.json": {
+      "sha256": "c9de4b70913a4a0b52b2cd26f45f71fc795a0818f588c0173a692f1ed9288217",
+      "bytes": 2407
+    },
+    "results/analysis/v406/diagnostic_manifest.json": {
+      "sha256": "c9de4b70913a4a0b52b2cd26f45f71fc795a0818f588c0173a692f1ed9288217",
+      "bytes": 2407
+    },
+    "results/analysis/v406/diagnostic_result.json": {
+      "sha256": "cc402d4b40b119b97287aeecd83b733d166a56afa739c17fbcc0f23ce0c79ff5",
+      "bytes": 2989
+    },
+    "results/analysis/v406/diagnostic_run.log": {
+      "sha256": "7647661fbacb0033e15f703e32080e6558b7ad3cfc33eb75b5eda88e91e19f23",
+      "bytes": 817
+    },
+    "results/analysis/v406/eval.log": {
+      "sha256": "0d5e8296f10491ecfceb4608611bfa6be68a01282d13ab7a49c10da1476f3100",
+      "bytes": 11486
+    },
+    "results/analysis/v406/frozen_manifest.json": {
+      "sha256": "78a24da98c10ae1f6c3396185326f87a862a77cefa72ed54d6c84ac539724965",
+      "bytes": 1529
+    },
+    "results/analysis/v406/full_artifact_hashes.json": {
+      "sha256": "98adaf06b9f21272a969b31b7ea6ff2edd4971e879dbe0830341fc83918adaab",
+      "bytes": 1431
+    },
+    "results/analysis/v406/initial_candidate_differences.json": {
+      "sha256": "2243e776e77efd9b6fd43f2a95c2777850d42c6f9d23a8c3332ef34ecafb6206",
+      "bytes": 55376
+    },
+    "results/analysis/v406/memory.json": {
+      "sha256": "b3dfa242f456d6f8aeeb0fea58b14b5bb190cb826eaa98603729e8e593ffe125",
+      "bytes": 1911
+    },
+    "results/analysis/v406/paired.csv": {
+      "sha256": "636168d169060b02c4f381f77e533263e021962dc10c78e32a044f4ea71095a1",
+      "bytes": 4858
+    },
+    "results/analysis/v406/parent_portfolio.json": {
+      "sha256": "7b0808d8ec74fe9c167011073b1e44b8a3ca69f051fe60f6a3bbdcab8177f771",
+      "bytes": 83983
+    },
+    "results/analysis/v406/preprocessed_local.patch": {
+      "sha256": "d022c570c237e084fa7e3fe9e102560c00a42027ca2b8558eeb07027bf323736",
+      "bytes": 47384
+    },
+    "results/analysis/v406/preprocessed_nonlocal.patch": {
+      "sha256": "f5c7d8837bcae6eddaa505ad4257a299cfebbf849739e781ea6463f79aabfabb",
+      "bytes": 44862
+    },
+    "results/analysis/v406/records.json": {
+      "sha256": "f76aa1e992ca2056978f76018c7fcc653ba02ee032c65522d902fc6766e9a91a",
+      "bytes": 44985
+    },
+    "results/analysis/v406/replay.json": {
+      "sha256": "fe8705eb059051aa6004b0173df0a6bb4939e20f352374895c09974bcbe0a3d0",
+      "bytes": 32800
+    },
+    "results/analysis/v406/result.json": {
+      "sha256": "8e44fa6906a16ae061b4059f5b4aa45fa865dd8ad84db5b90735d0ace4594cfb",
+      "bytes": 8507
+    },
+    "results/analysis/v406/review_gate.json": {
+      "sha256": "e799f8171c267d437e5a9ce51825277f7b5070cae4258387f132d096b52c6dcb",
+      "bytes": 1134
+    },
+    "results/analysis/v406/source.patch": {
+      "sha256": "7ba21f6ffd0fde5c210db5fe1b859df7f1aebb5df291a69b02c9db9c521ca25e",
+      "bytes": 47739
+    },
+    "results/analysis/v406/static_audit.json": {
+      "sha256": "f107ef87a8381e81c8c082aa3d5b5ca0b4daffd2cf9e84a12a3a3dd794db627b",
+      "bytes": 1547
+    },
+    "results/analysis/v406/summary.log": {
+      "sha256": "8781dd498e8d8fd1dbb70a78b955f833007613f8a6839d5ffad180bc4daa2777",
+      "bytes": 6368
+    },
+    "results/out/v406_two_policy_portfolio/0000.txt": {
+      "sha256": "73c569e73e290d30ae27768b6fe5069d6d6fa7d25c804cbe9e96abc80a4972cc",
+      "bytes": 439
+    },
+    "results/out/v406_two_policy_portfolio/0000.txt.err": {
+      "sha256": "0cfaa924d30c864d6c563752b485368b9f5c7714b5aad897a2de2f9bf90987bd",
+      "bytes": 19555
+    },
+    "results/out/v406_two_policy_portfolio/0001.txt": {
+      "sha256": "1b194bea70cbcfd52bcf83bb53c5c4a56a277edec69597ae867ffcd38223bcc3",
+      "bytes": 1087
+    },
+    "results/out/v406_two_policy_portfolio/0001.txt.err": {
+      "sha256": "b40eef3a53958b03d65c820ef7eacc24821c2e9d1a307e8c8fe54bcc8efb27c0",
+      "bytes": 19559
+    },
+    "results/out/v406_two_policy_portfolio/0002.txt": {
+      "sha256": "c5418c1aae287c55f52992c6a9b2793d2b31dfb5ac5ac994e191312c43cfa550",
+      "bytes": 1102
+    },
+    "results/out/v406_two_policy_portfolio/0002.txt.err": {
+      "sha256": "3c28772b172a44a7a6c96425add3fe3b25e3aad527038535996df8a169bedce9",
+      "bytes": 19550
+    },
+    "results/out/v406_two_policy_portfolio/0003.txt": {
+      "sha256": "5fd1c548c18d3bbed11fad5a7b04a5285752ede11a23e4af6bc79dbbdeb51d90",
+      "bytes": 1340
+    },
+    "results/out/v406_two_policy_portfolio/0003.txt.err": {
+      "sha256": "8ca1899bc838cddd613e1b5e8dbbbf1d71ff91eb88044138b7030445dfb3e54e",
+      "bytes": 19570
+    },
+    "results/out/v406_two_policy_portfolio/0004.txt": {
+      "sha256": "35ca797687dff9e3595615ad13c514cf1d8bb2bdca00b26a8baaf62995bf3d43",
+      "bytes": 2627
+    },
+    "results/out/v406_two_policy_portfolio/0004.txt.err": {
+      "sha256": "18e9c6aa6f3d419ea5d7237e860eabed2e41dd43aa2d5e8dcef3e13685232a87",
+      "bytes": 19550
+    },
+    "results/out/v406_two_policy_portfolio/0005.txt": {
+      "sha256": "fe7bf6f5e8ab26e84086ef2caf3d162046cb8039061fbdd298262acfcf78d682",
+      "bytes": 6947
+    },
+    "results/out/v406_two_policy_portfolio/0005.txt.err": {
+      "sha256": "a9f79d9311e0e793c6a569b02e7756ae3abadcbc8b00501e102ec7b32d0d408d",
+      "bytes": 19557
+    },
+    "results/out/v406_two_policy_portfolio/0006.txt": {
+      "sha256": "28a481016ce62c15dfcc95f2ff9c864f6a1584502d34b6a8ec64e88f879b3f68",
+      "bytes": 1189
+    },
+    "results/out/v406_two_policy_portfolio/0006.txt.err": {
+      "sha256": "ec9be109e571cfa526141b2b106b91acf178becacaa2438122a147f1b0dc9471",
+      "bytes": 19557
+    },
+    "results/out/v406_two_policy_portfolio/0007.txt": {
+      "sha256": "fac475939fb1d6878c8d9198539170f15da5c167f51622354e8231a3558af87e",
+      "bytes": 1119
+    },
+    "results/out/v406_two_policy_portfolio/0007.txt.err": {
+      "sha256": "1092a2d69989d3ad1e91db04b5fec5552f603f0324940408686abe20a4dbd241",
+      "bytes": 19547
+    },
+    "results/out/v406_two_policy_portfolio/0008.txt": {
+      "sha256": "5ee74fa669144cc01d73d0b87a2405c22ca2f68184645276cfd30f1fe28fb5e9",
+      "bytes": 1318
+    },
+    "results/out/v406_two_policy_portfolio/0008.txt.err": {
+      "sha256": "9d99c6257e4aceb98c8f2bf1a58d7317ee9fec28340e49ecf97d79771787b4d3",
+      "bytes": 19556
+    },
+    "results/out/v406_two_policy_portfolio/0009.txt": {
+      "sha256": "d37d31e409f73b5f36fe82df090914965f117069c1ea1bd02ef7a70805eae234",
+      "bytes": 858
+    },
+    "results/out/v406_two_policy_portfolio/0009.txt.err": {
+      "sha256": "5ecad6756024a2f8c714747a0113675f4db508b5a4d483246697167555bc4f46",
+      "bytes": 19539
+    },
+    "results/out/v406_two_policy_portfolio/0010.txt": {
+      "sha256": "2f5c456e1d70d7252df2d1d0cc0c1fd98435e9ef9da479a5e6aa6e8e62c1d5af",
+      "bytes": 709
+    },
+    "results/out/v406_two_policy_portfolio/0010.txt.err": {
+      "sha256": "f9ede6b0d19bb4561f37b30839a7aa27db8d94bb157a765094deb04263d52786",
+      "bytes": 19522
+    },
+    "results/out/v406_two_policy_portfolio/0011.txt": {
+      "sha256": "ed58fa88edf4fee2b4bddd4c1a17347077ca046e23589dc9704d1bbe03587852",
+      "bytes": 1582
+    },
+    "results/out/v406_two_policy_portfolio/0011.txt.err": {
+      "sha256": "af5e537d07ca461396581066bb3c890e2dc86271947e0d2e32a072b4cb07db2a",
+      "bytes": 19549
+    },
+    "results/out/v406_two_policy_portfolio/0012.txt": {
+      "sha256": "d5e082c3abfaa83ec4f6011c470dee95f62fa922e652f4d5829b3bda5a88f2e0",
+      "bytes": 1331
+    },
+    "results/out/v406_two_policy_portfolio/0012.txt.err": {
+      "sha256": "024e691e13abf3bb623980a4e9e36867c561b90a3709b69a2d5085fe62f98ba7",
+      "bytes": 19556
+    },
+    "results/out/v406_two_policy_portfolio/0013.txt": {
+      "sha256": "bd3e8c536feb0cc990dd6b15eee0b7361f13769942c239e0aaa8830e1e3efcb8",
+      "bytes": 2049
+    },
+    "results/out/v406_two_policy_portfolio/0013.txt.err": {
+      "sha256": "26fac03fc0bf63887da017c5aa10cece83470a9f5da6b5faac9f4020ac73d45d",
+      "bytes": 19579
+    },
+    "results/out/v406_two_policy_portfolio/0014.txt": {
+      "sha256": "03c94853641d63998145adbabad13ff9aa0dde37bd79f758943f8ca0c142815b",
+      "bytes": 3797
+    },
+    "results/out/v406_two_policy_portfolio/0014.txt.err": {
+      "sha256": "ca0eab27c08ec5477a92187d90bbbade5f5b53a76063d2fb8b6d9fe567f14d5d",
+      "bytes": 19512
+    },
+    "results/out/v406_two_policy_portfolio/0015.txt": {
+      "sha256": "05e9862acbeae192147e3484ecef4ed396c92ccff21a31582dfc283efb68c677",
+      "bytes": 5784
+    },
+    "results/out/v406_two_policy_portfolio/0015.txt.err": {
+      "sha256": "877d54902c3e4253d56921bd5177f45b6d1270f3966085e5b96d281cab0d76e1",
+      "bytes": 19520
+    },
+    "results/out/v406_two_policy_portfolio/0016.txt": {
+      "sha256": "6ce090cb5cd79b432338146b75eae4dc55818a379674d0471ee386410a878708",
+      "bytes": 1271
+    },
+    "results/out/v406_two_policy_portfolio/0016.txt.err": {
+      "sha256": "062981762d8e5b09a266eeb939789fe035e065058f3abd82244095e28dbd81bc",
+      "bytes": 19556
+    },
+    "results/out/v406_two_policy_portfolio/0017.txt": {
+      "sha256": "8117e0bfc8d5af5fc3d14c353042fc14550d2732c8b5a09dcda5b5501fecc332",
+      "bytes": 2088
+    },
+    "results/out/v406_two_policy_portfolio/0017.txt.err": {
+      "sha256": "22f7ce6f38afbc1920455b6c1943cc453083849542e85225962992f128a5cbf2",
+      "bytes": 19508
+    },
+    "results/out/v406_two_policy_portfolio/0018.txt": {
+      "sha256": "8cd8fdff3221c5c6ede343a5846697d9c4792efd1b2ba62ea52e81181a1acc35",
+      "bytes": 738
+    },
+    "results/out/v406_two_policy_portfolio/0018.txt.err": {
+      "sha256": "d27c5c77c606cb0b85208af39ac209d84ceeea3f1d89af6f1fdb037205c72a87",
+      "bytes": 19554
+    },
+    "results/out/v406_two_policy_portfolio/0019.txt": {
+      "sha256": "7df0547edd134ed68c89bf037a9602598f898384a2c7a6a37853b718eb0928b1",
+      "bytes": 6498
+    },
+    "results/out/v406_two_policy_portfolio/0019.txt.err": {
+      "sha256": "9a247791ccac8f6fd3e1b8ffca7befd1075682dc3f365fbf4e7e5d0c061b5abb",
+      "bytes": 18166
+    },
+    "results/out/v406_two_policy_portfolio/0020.txt": {
+      "sha256": "dbac9fe1e78edf4ceef1df8b6576ad75a1aea9db85daba3fb375543b53912739",
+      "bytes": 1414
+    },
+    "results/out/v406_two_policy_portfolio/0020.txt.err": {
+      "sha256": "36ee12cbc4797fd15cf8730a88bedeca2e3e919aa7e708a44e7b53bef2b69499",
+      "bytes": 19548
+    },
+    "results/out/v406_two_policy_portfolio/0021.txt": {
+      "sha256": "68e1ab4ec0ef948f3c878b3a6f9361f1610528659e00c5a5564c71c8599463fd",
+      "bytes": 721
+    },
+    "results/out/v406_two_policy_portfolio/0021.txt.err": {
+      "sha256": "82a99cda0c90b6b9400712cb12b007d1f18b7596ff2a963083d821229e6b250e",
+      "bytes": 19519
+    },
+    "results/out/v406_two_policy_portfolio/0022.txt": {
+      "sha256": "938300af9146165059783a83590399d41bdc93b88df3abb08182d1f5e28db7a3",
+      "bytes": 699
+    },
+    "results/out/v406_two_policy_portfolio/0022.txt.err": {
+      "sha256": "12321efd477ba6f90ead057339689948cd144b53905327d73b56583cf2afe5d6",
+      "bytes": 19531
+    },
+    "results/out/v406_two_policy_portfolio/0023.txt": {
+      "sha256": "246293fba7184e4eb0d4b9da47aa0339b25f593aab33e5d1759c539d68ad308f",
+      "bytes": 832
+    },
+    "results/out/v406_two_policy_portfolio/0023.txt.err": {
+      "sha256": "f2a6adea196ca6cb30eee86e5eeb1f00cbe918d47ddd1e7d5583c2c1d05b94d4",
+      "bytes": 19524
+    },
+    "results/out/v406_two_policy_portfolio/0024.txt": {
+      "sha256": "08a98b6c92081e053916f62a5e61224ec05f0b2dde454425a3b2a7870782681b",
+      "bytes": 1324
+    },
+    "results/out/v406_two_policy_portfolio/0024.txt.err": {
+      "sha256": "39de513f13c70d1eaf888502da54a515002955ce1c7ae4e3b5488af206f5f308",
+      "bytes": 19571
+    },
+    "results/out/v406_two_policy_portfolio/0025.txt": {
+      "sha256": "5ad61f44b7ecb5616a8c432cddd31e81198a74c4b5f1a73ec8acd82cd2f931b0",
+      "bytes": 606
+    },
+    "results/out/v406_two_policy_portfolio/0025.txt.err": {
+      "sha256": "a385e20b72a38cb0b052708e4628114a8239dda8e7f25758768a133335e6be6c",
+      "bytes": 19530
+    },
+    "results/out/v406_two_policy_portfolio/0026.txt": {
+      "sha256": "cb0337590ce64036f9d037b43049ad31168ac2a47b65df60f9cd36f642e317f9",
+      "bytes": 1375
+    },
+    "results/out/v406_two_policy_portfolio/0026.txt.err": {
+      "sha256": "de1faa941fe6a273e4370ce7ec37b576f6ae8347202356bb06424da271111011",
+      "bytes": 19586
+    },
+    "results/out/v406_two_policy_portfolio/0027.txt": {
+      "sha256": "118d18ef5e0bd79ecd182ef1aca3de8344a6f6dac6cde90796a8db15813429ee",
+      "bytes": 1479
+    },
+    "results/out/v406_two_policy_portfolio/0027.txt.err": {
+      "sha256": "6d70607cdb48aa944add862baea5a49a0dd7f30d72c3481f242bb94cef94b66e",
+      "bytes": 19567
+    },
+    "results/out/v406_two_policy_portfolio/0028.txt": {
+      "sha256": "fdc55909ee0d5a605b6d093303a5151eb1e2d5947669de1d8bc14b421d019b77",
+      "bytes": 2658
+    },
+    "results/out/v406_two_policy_portfolio/0028.txt.err": {
+      "sha256": "4de8c5065e3a9c9900ddfb1213c14ae64d590d0e9a165cb433289812e5dcefe6",
+      "bytes": 19552
+    },
+    "results/out/v406_two_policy_portfolio/0029.txt": {
+      "sha256": "3ab4221d8c15531bdb5401f7cf839306f4cba0cec8fb771a09bbf13558373e4d",
+      "bytes": 2635
+    },
+    "results/out/v406_two_policy_portfolio/0029.txt.err": {
+      "sha256": "f9a300c50748921260ac987a17d0de6b6e1f8e3b777a8d955385a007d18d14f9",
+      "bytes": 19559
+    },
+    "results/out/v406_two_policy_portfolio/0030.txt": {
+      "sha256": "faf21df0d16887ca978d6c2703d0ad36bdd53d859a58bfddc9ac6f4f7b1d1746",
+      "bytes": 4719
+    },
+    "results/out/v406_two_policy_portfolio/0030.txt.err": {
+      "sha256": "d166be5b67fb57ac4c4e447d3f1bddc4dbb2456be84178c73998a1c8bedf8ebd",
+      "bytes": 19533
+    },
+    "results/out/v406_two_policy_portfolio/0031.txt": {
+      "sha256": "21c30b04372c576f01886812dbc892e0434fba381368d5453f95521ee31757f7",
+      "bytes": 1282
+    },
+    "results/out/v406_two_policy_portfolio/0031.txt.err": {
+      "sha256": "0709f8ca32c8ea2c38787d3179c67d153465b1b0efd3c4eb2e468cdaa34c0d46",
+      "bytes": 19557
+    },
+    "results/out/v406_two_policy_portfolio/0032.txt": {
+      "sha256": "c452a620a40fa60769de15fc1505a777bf0b2a165f695ca85ae1ef0efb7d8429",
+      "bytes": 1504
+    },
+    "results/out/v406_two_policy_portfolio/0032.txt.err": {
+      "sha256": "d5fa4b519d0fba8fa6a3b6b043dfe99f11ca86a866dcd615e940beee09cdfbe6",
+      "bytes": 19581
+    },
+    "results/out/v406_two_policy_portfolio/0033.txt": {
+      "sha256": "98de3d8483eb486618f1bf7d0c2b5ab28d3db520b3b16fc2b179f5c96c6c8807",
+      "bytes": 1441
+    },
+    "results/out/v406_two_policy_portfolio/0033.txt.err": {
+      "sha256": "7bde0785baa02dc7fd632f441ae9bc63835d387e556939c1f4f20dcb0d06e5d9",
+      "bytes": 19542
+    },
+    "results/out/v406_two_policy_portfolio/0034.txt": {
+      "sha256": "08541ec6eac5ecc77d1eed2d38a361059947107ae7dfca1457cd7d77baaacbaf",
+      "bytes": 4326
+    },
+    "results/out/v406_two_policy_portfolio/0034.txt.err": {
+      "sha256": "7a81f479a3dfd4f326028f07edd5f40b25d2c9e598c034c186be6e19269ab9ad",
+      "bytes": 19543
+    },
+    "results/out/v406_two_policy_portfolio/0035.txt": {
+      "sha256": "8f0f02f5da697abe8e09238008f70b90441d0c3c17c216f08b89d8715437e766",
+      "bytes": 652
+    },
+    "results/out/v406_two_policy_portfolio/0035.txt.err": {
+      "sha256": "5c58a7a14ce37ea8c7ed372659c3c2dfddc060cad6ddec7fca111d6fc9048230",
+      "bytes": 19553
+    },
+    "results/out/v406_two_policy_portfolio/0036.txt": {
+      "sha256": "cd0c2c70d0b43394a4513ff3e19a12089d4aed2d6bb22eb0784a202792a8755b",
+      "bytes": 2089
+    },
+    "results/out/v406_two_policy_portfolio/0036.txt.err": {
+      "sha256": "1e888d581a1ece2f3693380452fb30da1060c8cfcd6e7a540b51c2662eecab72",
+      "bytes": 19521
+    },
+    "results/out/v406_two_policy_portfolio/0037.txt": {
+      "sha256": "c16dfdfc3c5f6444cbd2019890176b204d086150ad648479fa160e0af1a649bb",
+      "bytes": 2618
+    },
+    "results/out/v406_two_policy_portfolio/0037.txt.err": {
+      "sha256": "ba021e563bda440433498d159cd637dcc16de8697b473210fbb4724f185234a8",
+      "bytes": 19572
+    },
+    "results/out/v406_two_policy_portfolio/0038.txt": {
+      "sha256": "af1eb9de1fdd47839e6054885eace9f7e3bec05b3de1fbf034cbbe390f5ed049",
+      "bytes": 1317
+    },
+    "results/out/v406_two_policy_portfolio/0038.txt.err": {
+      "sha256": "0a36fd8ca8467393d16e3df6cad9d6ddb8eea57a1e7f1f3f950b5ebc6263f0ee",
+      "bytes": 19541
+    },
+    "results/out/v406_two_policy_portfolio/0039.txt": {
+      "sha256": "bd3deb4238325b898522c69cec3acc445ad20adc81ee1960590ab9afd0f1ce54",
+      "bytes": 1276
+    },
+    "results/out/v406_two_policy_portfolio/0039.txt.err": {
+      "sha256": "255809ecb7101261bcc96c4f44e55eecc45e195b9c09a1d76b7af366829b92ee",
+      "bytes": 19580
+    },
+    "results/out/v406_two_policy_portfolio/0040.txt": {
+      "sha256": "4ff4b83dd15c87dd13f647dccc588df1078d1e9f0f33f9835230fdb38750b055",
+      "bytes": 1479
+    },
+    "results/out/v406_two_policy_portfolio/0040.txt.err": {
+      "sha256": "e5d25ff1a2f44bcd87adfe49405be7b8a53dfdcafdc738eaa65ef2641d6a9bb7",
+      "bytes": 19586
+    },
+    "results/out/v406_two_policy_portfolio/0041.txt": {
+      "sha256": "a56370c579a7d2806a9565ae44d8e836d656a142e47ec6b8071a62dccc3e17b1",
+      "bytes": 860
+    },
+    "results/out/v406_two_policy_portfolio/0041.txt.err": {
+      "sha256": "3b86da73f525cc11b59bc9b80217b4e55526923dc80bdeec27afd2486bdc1c6f",
+      "bytes": 19529
+    },
+    "results/out/v406_two_policy_portfolio/0042.txt": {
+      "sha256": "ea4be531dbb59ccebffb2d91422b48f1e038557d9513bd6a949200fee7c26271",
+      "bytes": 3314
+    },
+    "results/out/v406_two_policy_portfolio/0042.txt.err": {
+      "sha256": "8ec377f7e0443ac161126ecf2a9e21934e81718aa4b08b649e56bc2f699394d2",
+      "bytes": 19543
+    },
+    "results/out/v406_two_policy_portfolio/0043.txt": {
+      "sha256": "36062c1ae90b7b9215642131bc6b1bf91d5e5dcc77ac75176137afaed77c7b2f",
+      "bytes": 1636
+    },
+    "results/out/v406_two_policy_portfolio/0043.txt.err": {
+      "sha256": "48551009d66289072e37a2b29b2b5ff737f81a0c96adec17df5e93c092bab84e",
+      "bytes": 19565
+    },
+    "results/out/v406_two_policy_portfolio/0044.txt": {
+      "sha256": "9b294f7b5a64ba128f7ced092cfcae3ae295665b6f0e3f20fd65c3a768467dbb",
+      "bytes": 1853
+    },
+    "results/out/v406_two_policy_portfolio/0044.txt.err": {
+      "sha256": "60a466bdbd996f5328851c7d77911c2946dc5c7e2b65fdb9ba2d613b0abc335c",
+      "bytes": 19539
+    },
+    "results/out/v406_two_policy_portfolio/0045.txt": {
+      "sha256": "120ecc19ec07e77b22d8e56b91f06344ec7d15585ed3d1ee1cbf44ae0691cf8f",
+      "bytes": 2010
+    },
+    "results/out/v406_two_policy_portfolio/0045.txt.err": {
+      "sha256": "7fa8e201f7658feaa3ce26d6d53dcbf93bf9c5aa6c1484962a0278d201ac5d80",
+      "bytes": 19536
+    },
+    "results/out/v406_two_policy_portfolio/0046.txt": {
+      "sha256": "a870b0c03baa331dfe93253fc21ceeac297f5d86ee4ab2764963f91f86fa21fe",
+      "bytes": 1503
+    },
+    "results/out/v406_two_policy_portfolio/0046.txt.err": {
+      "sha256": "5f05de0e6715e5dfe96a868fd42532c0022916c8a502024f48fcff0b937afd31",
+      "bytes": 19547
+    },
+    "results/out/v406_two_policy_portfolio/0047.txt": {
+      "sha256": "71384c5182f5355c561472a029865ad7b23be7e3deda951c0949f5d634e039d9",
+      "bytes": 3244
+    },
+    "results/out/v406_two_policy_portfolio/0047.txt.err": {
+      "sha256": "73288ebbe81deaf316d74846eea85fd162467ba7bc66bb66bb9c8a28287d40f2",
+      "bytes": 19526
+    },
+    "results/out/v406_two_policy_portfolio/0048.txt": {
+      "sha256": "78bfe02d797e8ee46fe317e0fd3358d0e969996ddd00ee0b78c423a7712e91f6",
+      "bytes": 2318
+    },
+    "results/out/v406_two_policy_portfolio/0048.txt.err": {
+      "sha256": "a504bd97768a8685b50b72dd6bce367b3f7ab89f623a4fe684085b2426bf5b86",
+      "bytes": 19526
+    },
+    "results/out/v406_two_policy_portfolio/0049.txt": {
+      "sha256": "6665fc846b80239df2fc0d084c0d0184ff0dbb5a8aae8a7752f9120566006aa6",
+      "bytes": 1875
+    },
+    "results/out/v406_two_policy_portfolio/0049.txt.err": {
+      "sha256": "4d8c77078b994c4cb451d37aa22ce18aef0bd30136ce32b07bc28c63ca9eeb08",
+      "bytes": 19534
+    },
+    "results/out/v406_two_policy_portfolio/0050.txt": {
+      "sha256": "91e319e86208760efb4a62dfe1928dd4d2c5156b90e487948c6d7db105651629",
+      "bytes": 1446
+    },
+    "results/out/v406_two_policy_portfolio/0050.txt.err": {
+      "sha256": "68c924fdcb73e3ddc1712e0036a8608b66df148211531c62cf878738f7a23c17",
+      "bytes": 19567
+    },
+    "results/out/v406_two_policy_portfolio/0051.txt": {
+      "sha256": "04dbba659e5720ddcff58dcf1d9be6aa7199c9341499256f6dba41a10dd68e98",
+      "bytes": 1278
+    },
+    "results/out/v406_two_policy_portfolio/0051.txt.err": {
+      "sha256": "5670dca55b27509a324123bbcb70c33f650c49a5ab352388731faa778c3f5a6a",
+      "bytes": 19547
+    },
+    "results/out/v406_two_policy_portfolio/0052.txt": {
+      "sha256": "84988705fbc29efc5a136937b82e4ec8bcabc9cde4451d5fba3cea74f9f0ab94",
+      "bytes": 2011
+    },
+    "results/out/v406_two_policy_portfolio/0052.txt.err": {
+      "sha256": "de7f60a7d2abde9acd252bfd7fe7b3493d4d41f2d89844c342f57f6f87a87c43",
+      "bytes": 19564
+    },
+    "results/out/v406_two_policy_portfolio/0053.txt": {
+      "sha256": "10115e6cdf7d71ca7cb1b1dfebeb7202696f2eaf8a973d80ae1a95249bc1b9b9",
+      "bytes": 1364
+    },
+    "results/out/v406_two_policy_portfolio/0053.txt.err": {
+      "sha256": "97c479397edc507e05e792a06917110894d76b87d4a39b35e73df2983b561003",
+      "bytes": 19563
+    },
+    "results/out/v406_two_policy_portfolio/0054.txt": {
+      "sha256": "75404c12e01dca39415c36d2b00446f695df18d866df74def8a3ca5f64d89076",
+      "bytes": 3086
+    },
+    "results/out/v406_two_policy_portfolio/0054.txt.err": {
+      "sha256": "27c54b2fe51bcc4b569b6de3fbfa6e88c35340c3752a2eb94136bdd2e5d3c970",
+      "bytes": 19560
+    },
+    "results/out/v406_two_policy_portfolio/0055.txt": {
+      "sha256": "4bd7aa7fe3460c76462af3be262aaf4c9c4c95107dc37a7d4f604b64e36332e3",
+      "bytes": 2916
+    },
+    "results/out/v406_two_policy_portfolio/0055.txt.err": {
+      "sha256": "5c08022159191f1587ab581e9c6c86ff1b2a269cf8bb06c9ab3505c90dbdd478",
+      "bytes": 19537
+    },
+    "results/out/v406_two_policy_portfolio/0056.txt": {
+      "sha256": "56650bc1d2a7d98e2e417ade7f362774ed9b7521a7ab360044878aec393c8700",
+      "bytes": 2045
+    },
+    "results/out/v406_two_policy_portfolio/0056.txt.err": {
+      "sha256": "28b73eb282afe7c0396f855ec7fb71a75f6447b74f60eb279d67e37aa62287db",
+      "bytes": 19588
+    },
+    "results/out/v406_two_policy_portfolio/0057.txt": {
+      "sha256": "57b625e0d7224b36eab90e1f7759c0fd7d0e933e37ab6e5d9e01020ff5b2ab9d",
+      "bytes": 2487
+    },
+    "results/out/v406_two_policy_portfolio/0057.txt.err": {
+      "sha256": "576a1f50ec2c013a31480dce36526ecf1c731f0f30bbba13b9e6e83de389a347",
+      "bytes": 19565
+    },
+    "results/out/v406_two_policy_portfolio/0058.txt": {
+      "sha256": "436f9ec9f372da1f58064a978eed3d51a6b67cac025c04b674d38cc36b356ab0",
+      "bytes": 3191
+    },
+    "results/out/v406_two_policy_portfolio/0058.txt.err": {
+      "sha256": "1418b0616f0825647ddfbb43155624a0269f33650d19f69f1ce2cc16b5901998",
+      "bytes": 19551
+    },
+    "results/out/v406_two_policy_portfolio/0059.txt": {
+      "sha256": "b01441fab0d48f79a874b98ede1904036cac14b526d20b67c49f5861d536797e",
+      "bytes": 715
+    },
+    "results/out/v406_two_policy_portfolio/0059.txt.err": {
+      "sha256": "8b4cf3b2eee1559643e09c166883bc421a3e39a8f4ac9972f9ad89bb8843dbca",
+      "bytes": 19522
+    },
+    "results/out/v406_two_policy_portfolio/0060.txt": {
+      "sha256": "5cd65457a0dd5269ed434ed83e367f3c34533f74f351a5ecfc9f05df78d60a7c",
+      "bytes": 1652
+    },
+    "results/out/v406_two_policy_portfolio/0060.txt.err": {
+      "sha256": "2d8186ac2f7a075b87837c0eb070ef6f3ddf39bdf768cbaed2f1798e72404603",
+      "bytes": 19583
+    },
+    "results/out/v406_two_policy_portfolio/0061.txt": {
+      "sha256": "e4a639c3881d4b508fa344b94005d1631f4e31c8ca02b320c405235c7f8a2962",
+      "bytes": 2869
+    },
+    "results/out/v406_two_policy_portfolio/0061.txt.err": {
+      "sha256": "0956fd82657a63f6c7cc1dd3eae0166ce191e1454fc61dd2f3dae7ddfca11feb",
+      "bytes": 19534
+    },
+    "results/out/v406_two_policy_portfolio/0062.txt": {
+      "sha256": "0a4697ce924a033d0ef2522525c804ba7bda6dc6888c05f2749c97db77a9c074",
+      "bytes": 1707
+    },
+    "results/out/v406_two_policy_portfolio/0062.txt.err": {
+      "sha256": "9959f4e8d3e65a9946cd952dd8e43984d0e56ac5b8592128a0eee55d9bc6b84a",
+      "bytes": 19567
+    },
+    "results/out/v406_two_policy_portfolio/0063.txt": {
+      "sha256": "f8402b9f7cdfd0da47e3eeabc88afbf2bb50b0a8dda8cd335a39e735d605ee35",
+      "bytes": 2702
+    },
+    "results/out/v406_two_policy_portfolio/0063.txt.err": {
+      "sha256": "07308af4f52b0991a6be212bf12cf303306abdf8dae2901bb96bb0abee757501",
+      "bytes": 19566
+    },
+    "results/out/v406_two_policy_portfolio/0064.txt": {
+      "sha256": "dcc7448d9c20ecfd7e07e72aff1a4d1eea17f58f3e6f7d3cfe198b09627a0c6c",
+      "bytes": 2011
+    },
+    "results/out/v406_two_policy_portfolio/0064.txt.err": {
+      "sha256": "ab14cac11af35c2dc9a800a988256c366ebfa1851f33eaa00c439de95f2418c1",
+      "bytes": 19567
+    },
+    "results/out/v406_two_policy_portfolio/0065.txt": {
+      "sha256": "09e0fa58ed7a0aefea16f81be066266383d57f66ef718123fb6cf89bf4f7292e",
+      "bytes": 1366
+    },
+    "results/out/v406_two_policy_portfolio/0065.txt.err": {
+      "sha256": "bbc9e90098ada43723c47e4809507c4b4fd31d2e060dbd2efdabf2e9e5de1604",
+      "bytes": 19557
+    },
+    "results/out/v406_two_policy_portfolio/0066.txt": {
+      "sha256": "d43bfa8930b65806b3ea35c7ea1694524976f939ef5fca33d9a699c507800eb6",
+      "bytes": 4292
+    },
+    "results/out/v406_two_policy_portfolio/0066.txt.err": {
+      "sha256": "0722a740d77f505c2e81f8af1bf9e50f19424521549b420d82626593bf2b87d2",
+      "bytes": 19568
+    },
+    "results/out/v406_two_policy_portfolio/0067.txt": {
+      "sha256": "eb4caf989b23c9792ae10ee88a1cb18c9a8d80de00e105bf56b69d16d650ddc9",
+      "bytes": 2070
+    },
+    "results/out/v406_two_policy_portfolio/0067.txt.err": {
+      "sha256": "151b82c3dbf5fcf4c2dc4af8fe9cce31f2c4f3453cd5dd252cdbe7eb89d93752",
+      "bytes": 19537
+    },
+    "results/out/v406_two_policy_portfolio/0068.txt": {
+      "sha256": "3b04a0cc776d16e5c26b104cc948852de5c5fb221c80618e19063eee175d4f6b",
+      "bytes": 4521
+    },
+    "results/out/v406_two_policy_portfolio/0068.txt.err": {
+      "sha256": "0a3967a89d11e9876b8bf3630343a39de1c8c72503811f3d2f44bf9413a50bcc",
+      "bytes": 18353
+    },
+    "results/out/v406_two_policy_portfolio/0069.txt": {
+      "sha256": "1aafa73c495916c250656d99dec6ea30be0fcfac904153d444a86efda7e1fa7e",
+      "bytes": 1352
+    },
+    "results/out/v406_two_policy_portfolio/0069.txt.err": {
+      "sha256": "598530bf192e6c0668e80d6e9a380260e13e76c4301d9d4d1532c8532ef364c5",
+      "bytes": 19573
+    },
+    "results/out/v406_two_policy_portfolio/0070.txt": {
+      "sha256": "17ce5f3624fbb8eba2cd18c3c50c3702f298ef83fd61f0a5c8d0feef735f5d33",
+      "bytes": 4205
+    },
+    "results/out/v406_two_policy_portfolio/0070.txt.err": {
+      "sha256": "0077781c6cbb7c718f44e7d013ca92c4f7ae6a3a6d2ca37b12121d4d67fefd3e",
+      "bytes": 19538
+    },
+    "results/out/v406_two_policy_portfolio/0071.txt": {
+      "sha256": "60b48c926ee2d99045dfd366a504482e6e96df53b9459455592dad4a8b44627d",
+      "bytes": 4336
+    },
+    "results/out/v406_two_policy_portfolio/0071.txt.err": {
+      "sha256": "cdc2f0a874976ab8210f56f24b190905d224f6f788b59eb1cd630f899b999c35",
+      "bytes": 19533
+    },
+    "results/out/v406_two_policy_portfolio/0072.txt": {
+      "sha256": "4f5fdd055ccafbbf0271d5e8f7302a3ed5edd5194cf4616fbaa4aa58fed89638",
+      "bytes": 927
+    },
+    "results/out/v406_two_policy_portfolio/0072.txt.err": {
+      "sha256": "cddfd37a9bad4dc12176e20081a2b5ac16171c4359e6f46c02b2670171012767",
+      "bytes": 19533
+    },
+    "results/out/v406_two_policy_portfolio/0073.txt": {
+      "sha256": "3e0555a383942dd544a1ac0ad6e96369027db696de16d34682b6cf50c892853d",
+      "bytes": 2452
+    },
+    "results/out/v406_two_policy_portfolio/0073.txt.err": {
+      "sha256": "affa0b1ad53e1e6d361277c6cc5527d617ea4bc70f5297e62966e3bcbd4211d6",
+      "bytes": 19533
+    },
+    "results/out/v406_two_policy_portfolio/0074.txt": {
+      "sha256": "1b01fc2ad793dc300e8f0e0958a5a7dbb36ee9fb52c75be92e218d4e3e9d9b8a",
+      "bytes": 992
+    },
+    "results/out/v406_two_policy_portfolio/0074.txt.err": {
+      "sha256": "587ea12b7fe430628c48be26b116f7a04ab300fe93945cbf0a9fe7a15f080f79",
+      "bytes": 19540
+    },
+    "results/out/v406_two_policy_portfolio/0075.txt": {
+      "sha256": "49fb6234a9d4c121369ba526774ba2af578953d03b2a18fa53ff6d467423abfe",
+      "bytes": 3758
+    },
+    "results/out/v406_two_policy_portfolio/0075.txt.err": {
+      "sha256": "e3498cd7c6b10606b721bcc3f4693dc9215f72b6e1b9d7f3003a1c7eb5f2c167",
+      "bytes": 19550
+    },
+    "results/out/v406_two_policy_portfolio/0076.txt": {
+      "sha256": "842747e3df005618b938c78eb95dae0588485cff4db76922556f6844b9f5fa93",
+      "bytes": 2664
+    },
+    "results/out/v406_two_policy_portfolio/0076.txt.err": {
+      "sha256": "779c2998249a817b9a00fc202f376b549b8df37438277397e02132c9164b573e",
+      "bytes": 19534
+    },
+    "results/out/v406_two_policy_portfolio/0077.txt": {
+      "sha256": "0b45aa3a728dd0d688dc83292b5ae17cafbf7d9bd21449daafed541101c662a6",
+      "bytes": 852
+    },
+    "results/out/v406_two_policy_portfolio/0077.txt.err": {
+      "sha256": "28123f30aacd4f71cf33143c9ab28c4d208911ec8af12569d2b505056cf89a5a",
+      "bytes": 19536
+    },
+    "results/out/v406_two_policy_portfolio/0078.txt": {
+      "sha256": "1957f205f7953e1d2ce15e93935a05af8aefeae8a167b223a50f2b6a34a8a23a",
+      "bytes": 2679
+    },
+    "results/out/v406_two_policy_portfolio/0078.txt.err": {
+      "sha256": "156dca82d70c3d8340f51bd8c7cfdbfa1aea7cefa70e0610bd3f66441702bc51",
+      "bytes": 19557
+    },
+    "results/out/v406_two_policy_portfolio/0079.txt": {
+      "sha256": "d548ddc6125371c38e9399160badcaf5d4e0a116b91bce47f62b81bc36b4e439",
+      "bytes": 711
+    },
+    "results/out/v406_two_policy_portfolio/0079.txt.err": {
+      "sha256": "513154b379a55bda64078f1673bd9322584a4364b86040bcb16373f03d71f1c1",
+      "bytes": 19531
+    },
+    "results/out/v406_two_policy_portfolio/0080.txt": {
+      "sha256": "212f11f3df8a10d01f6c0eac578eea43d62a776a0fbfac0612310020aee636f4",
+      "bytes": 1820
+    },
+    "results/out/v406_two_policy_portfolio/0080.txt.err": {
+      "sha256": "ff8cfca5141828f3781494652e153e3dc5d43cab024d07cbc6e135f6acf9482c",
+      "bytes": 19536
+    },
+    "results/out/v406_two_policy_portfolio/0081.txt": {
+      "sha256": "39caeac61eb1ec20f58dba0d4081f0a42fe30fc29a4c6e7358258bb2472164a3",
+      "bytes": 3702
+    },
+    "results/out/v406_two_policy_portfolio/0081.txt.err": {
+      "sha256": "06fe947eca5828f9702b39c4d48e9016781e18b859842c125fd590a562c48551",
+      "bytes": 19544
+    },
+    "results/out/v406_two_policy_portfolio/0082.txt": {
+      "sha256": "ab8438fcc1fc601c8c624cce8c20ac6ee6b46410724c0df85a3993f9abe99ee2",
+      "bytes": 3235
+    },
+    "results/out/v406_two_policy_portfolio/0082.txt.err": {
+      "sha256": "36aa88fd143f6a082882024404bb22cdd904f6868afcfc3628f38d0bade720fa",
+      "bytes": 19550
+    },
+    "results/out/v406_two_policy_portfolio/0083.txt": {
+      "sha256": "e5131a9ac60199eae0b49b031c883dec5dbbd66d6084cc954150dc61c41765ea",
+      "bytes": 1716
+    },
+    "results/out/v406_two_policy_portfolio/0083.txt.err": {
+      "sha256": "a69a134f5d0927733ecc25b911297206e609a9875b2f98e01fb2ef96e8d0ed93",
+      "bytes": 19564
+    },
+    "results/out/v406_two_policy_portfolio/0084.txt": {
+      "sha256": "cb623941435f28565fef10113d561c7aba8f5423b840c4e2aacac2f2a93608a2",
+      "bytes": 3275
+    },
+    "results/out/v406_two_policy_portfolio/0084.txt.err": {
+      "sha256": "8046f2e5ee86fde4682a50b2e87ae811193f280d16bfb4fd10865694dd7a284f",
+      "bytes": 19550
+    },
+    "results/out/v406_two_policy_portfolio/0085.txt": {
+      "sha256": "799def320c8c88b14d4dd3f6ffd0d80aa4e553a89a54f147c8472a238c366383",
+      "bytes": 2233
+    },
+    "results/out/v406_two_policy_portfolio/0085.txt.err": {
+      "sha256": "0d76c6fcc05299f7cc9e63b72bb7b98c35fc732db168b9ef37e2d332bc3520e3",
+      "bytes": 19575
+    },
+    "results/out/v406_two_policy_portfolio/0086.txt": {
+      "sha256": "bb936819d12fea74363f518867b6502d59747b13e7ee0156e59b3602e8e01a39",
+      "bytes": 967
+    },
+    "results/out/v406_two_policy_portfolio/0086.txt.err": {
+      "sha256": "e3c79cbce383df8244a73c4f01cd459e8d07d1326220c7437a49cb1a952cca13",
+      "bytes": 19555
+    },
+    "results/out/v406_two_policy_portfolio/0087.txt": {
+      "sha256": "ecd32c2fc05f6f0588792dfd6e3a193fe6233c23dce1e0b6ca0d1391b71496a3",
+      "bytes": 1211
+    },
+    "results/out/v406_two_policy_portfolio/0087.txt.err": {
+      "sha256": "902d9afb806ffd8b237f4a177439fe28d3d10260eb16e0a4048c8b9a18d4c12a",
+      "bytes": 19574
+    },
+    "results/out/v406_two_policy_portfolio/0088.txt": {
+      "sha256": "bd0b7a2b8967b77c6c43b2152a91c1e53ca9c0c7f10d69588e90f48170311ee3",
+      "bytes": 1509
+    },
+    "results/out/v406_two_policy_portfolio/0088.txt.err": {
+      "sha256": "575cffdf1d1840c81da901251cdcc3f7e1256265dc89e045458b9bfc83403318",
+      "bytes": 19580
+    },
+    "results/out/v406_two_policy_portfolio/0089.txt": {
+      "sha256": "ec13421f0fa4835fa2c4cb50967aa249c5879816afba026ceb702793bb824bb8",
+      "bytes": 3754
+    },
+    "results/out/v406_two_policy_portfolio/0089.txt.err": {
+      "sha256": "f0d48a39f7dba4ccbd4c10a920e6deea3a6e230402270fd2bdfa47e4de58c656",
+      "bytes": 19543
+    },
+    "results/out/v406_two_policy_portfolio/0090.txt": {
+      "sha256": "dd4139665e00c2e7522e934de513def18f9be7f6dc0ad2351e7708abf2fa7bbe",
+      "bytes": 1643
+    },
+    "results/out/v406_two_policy_portfolio/0090.txt.err": {
+      "sha256": "58330f5c39e53eb6903b391593ceb39d32035c3b3209b263049a3c04f89cfd80",
+      "bytes": 19581
+    },
+    "results/out/v406_two_policy_portfolio/0091.txt": {
+      "sha256": "9664163c8289c29d499c8e7904e026fe009b4ba20c8ff1c8685c2d5af54f2641",
+      "bytes": 1049
+    },
+    "results/out/v406_two_policy_portfolio/0091.txt.err": {
+      "sha256": "4d21cc6e6b69518e49756cd06176cd582e9ba820839eab0b4476d3213e047c2c",
+      "bytes": 19553
+    },
+    "results/out/v406_two_policy_portfolio/0092.txt": {
+      "sha256": "d0b62da06af73377a8e81f5b9ea526b6ad26148a9e9376e9d7fa751646913cc6",
+      "bytes": 5713
+    },
+    "results/out/v406_two_policy_portfolio/0092.txt.err": {
+      "sha256": "14ff64b36168d985c1ce565b64d0033231bc292e67982883b5d947765a5c1c28",
+      "bytes": 19533
+    },
+    "results/out/v406_two_policy_portfolio/0093.txt": {
+      "sha256": "7980ec8695f2bcdddf574cd4997004f63c45bc284802bac82d947db595cd5452",
+      "bytes": 822
+    },
+    "results/out/v406_two_policy_portfolio/0093.txt.err": {
+      "sha256": "85a4994a1beec7162e27b16dee30c1961c13f3cfd01c75146e458b45922f6748",
+      "bytes": 19541
+    },
+    "results/out/v406_two_policy_portfolio/0094.txt": {
+      "sha256": "e3dc793c3fff6c82199e867cb8b4a1090b099dc56426507db56a40fee6142cfc",
+      "bytes": 1245
+    },
+    "results/out/v406_two_policy_portfolio/0094.txt.err": {
+      "sha256": "0c7b8ee503b1657fce79f7559794578d4ccd90d568887bdb240bc31058f5969f",
+      "bytes": 19584
+    },
+    "results/out/v406_two_policy_portfolio/0095.txt": {
+      "sha256": "e73cda31cbe254ff8a02b867a8cb9f8299ac0980312506bc29ed39c64142a368",
+      "bytes": 2394
+    },
+    "results/out/v406_two_policy_portfolio/0095.txt.err": {
+      "sha256": "3904648c97092d283f444883a1937523587a702cbad1f0fba75757b549f0fa28",
+      "bytes": 19531
+    },
+    "results/out/v406_two_policy_portfolio/0096.txt": {
+      "sha256": "56e93d58256880852d049403b236cc93a8fb08d3ae782ee14fda6cc875235feb",
+      "bytes": 849
+    },
+    "results/out/v406_two_policy_portfolio/0096.txt.err": {
+      "sha256": "be051948ee27079144840825fa72a53cabeef7d0746f92e0d4b3ce335688a0de",
+      "bytes": 19547
+    },
+    "results/out/v406_two_policy_portfolio/0097.txt": {
+      "sha256": "92c200846ba8dbc083ca6788568e09320cd2eaa6025b6c2a8a7b6b53e82e639f",
+      "bytes": 5903
+    },
+    "results/out/v406_two_policy_portfolio/0097.txt.err": {
+      "sha256": "00552aced4c66eb2046aede4f483e12bc242d1336f4628886655002ac6cbbcc2",
+      "bytes": 19552
+    },
+    "results/out/v406_two_policy_portfolio/0098.txt": {
+      "sha256": "086157fc7bd466b22a5559c9f62d9e2f55081cc905ea604d9bf293a9e9b98aac",
+      "bytes": 1387
+    },
+    "results/out/v406_two_policy_portfolio/0098.txt.err": {
+      "sha256": "983dd82ba11f4f0ab260dfe7da795f16bbff9d877120f075dad8b31ad8bc8455",
+      "bytes": 19568
+    },
+    "results/out/v406_two_policy_portfolio/0099.txt": {
+      "sha256": "8780524e1e4a8fb4631eaf30abff5b742908a51f45623b23cd15fe520dd3b7e8",
+      "bytes": 1858
+    },
+    "results/out/v406_two_policy_portfolio/0099.txt.err": {
+      "sha256": "879fdb74fb8a8b927eac2365e4ae24246a2f893208a9acd56c0ca3878c65340e",
+      "bytes": 19592
+    },
+    "results/analysis/cloud_baseline/fixed_reference.json": {
+      "sha256": "71f2c83402b7f84663a10d735fb1768009e37f7e65ca333c954a6f300ed98d35",
+      "bytes": 14022
+    },
+    "results/analysis/v401/records.json": {
+      "sha256": "589119420adfda3c301662805535a2257fa1107ce4dc3a20778b091ffdc7aa98",
+      "bytes": 43482
+    },
+    "results/analysis/v401/result.json": {
+      "sha256": "8753c0e1e3c1ad16e3d7042ab10d6fe91de2c21df05986edc9d63f8088013edd",
+      "bytes": 3298
+    },
+    "adhoc/scripts/check_v406_diagnostic.py": {
+      "sha256": "4fe5edf657e2a706a0ce1a9078c82a835a14b9e5db3eb44e216e69a9b8dc1d95",
+      "bytes": 3390
+    },
+    "adhoc/scripts/build_v406_diagnostic.py": {
+      "sha256": "1978db25cc184d997f0b1ea4c33f4e418dff08db28093fa3ee2b3f5978518f50",
+      "bytes": 19823
+    },
+    "adhoc/scripts/package_v406.py": {
+      "sha256": "a7efdd79243c4779cc11e5cf1119ff5b81692938f436869fa29bf81a70ad50f6",
+      "bytes": 4739
+    },
+    "adhoc/scripts/run_v406_diagnostic.py": {
+      "sha256": "290ba2af150d59f59b50c2f7d1232f45209dbf75c73e70f0301911d13bb67ed7",
+      "bytes": 1794
+    },
+    "adhoc/scripts/materialize_v406.py": {
+      "sha256": "6198d7a880ca35ee90bd01b67d5dbe1bcf95fc49b90b3ea492b26e839610c561",
+      "bytes": 5448
+    },
+    "adhoc/scripts/summarize_v406.py": {
+      "sha256": "7c4dfbe720203b868d0b23498d49aa39c09b035e8cf0c9eeedf3623ea3ebca42",
+      "bytes": 7147
+    },
+    "adhoc/scripts/audit_v406.py": {
+      "sha256": "6429fa33d306013975cc92d1f8a7d8e36e18d9df60fec6b6045e048ff1367e83",
+      "bytes": 3479
+    },
+    "adhoc/scripts/run_v406_eval.py": {
+      "sha256": "369c7e50a8cd673c729f953987c1aa715fd23f1c0bf85a14832691a4b8809f21",
+      "bytes": 1624
+    },
+    "adhoc/scripts/replay_slime_output.py": {
+      "sha256": "72f3e03b3490b5e6a01013e91ab306b93e95101ed8dbc4ee156230c4c8695c46",
+      "bytes": 4179
+    },
+    "adhoc/scripts/cloud_gcc15.py": {
+      "sha256": "a661915bcb1ca1448b3f045ff1f5a6240d7cde8af2461ec479f7fcb3eaacce92",
+      "bytes": 918
+    },
+    "adhoc/scripts/cloud_toolchain_env.sh": {
+      "sha256": "3167d0a02f85621d2a2b2dcd3095a954be1804228ed75d42e2bf582bd5f240cf",
+      "bytes": 427
+    }
+  },
+  "publication_base": "5c21e8ce4a9835434ec689dd08cccd968998750c",
+  "backlog_status": "Merged reviewed v406/v407 records onto publication_base, preserving concurrent records",
+  "added_observation_id": "O100"
+}

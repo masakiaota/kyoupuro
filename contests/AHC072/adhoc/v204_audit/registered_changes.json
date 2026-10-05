@@ -1,0 +1,200 @@
+{
+  "v204_c4_p15.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c4_p15.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==4"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>4"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.15*(round+1))"
+    ]
+  ],
+  "v204_c3_p10.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c3_p10.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==3"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>3"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各10%を使い、最短候補の継続探索へ80%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.10*(round+1))"
+    ]
+  ],
+  "v204_c3_p15.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c3_p15.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==3"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>3"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.15*(round+1))"
+    ]
+  ],
+  "v204_c3_p20.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c3_p20.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==3"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>3"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各20%を使い、最短候補の継続探索へ60%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.20*(round+1))"
+    ]
+  ],
+  "v204_c4_p10.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c4_p10.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==4"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>4"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各10%を使い、最短候補の継続探索へ80%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.10*(round+1))"
+    ]
+  ],
+  "v204_c4_p20.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c4_p20.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==4"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>4"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各20%を使い、最短候補の継続探索へ60%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.20*(round+1))"
+    ]
+  ],
+  "v204_c5_p10.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c5_p10.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==5"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>5"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各10%を使い、最短候補の継続探索へ80%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.10*(round+1))"
+    ]
+  ],
+  "v204_c5_p15.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c5_p15.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==5"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>5"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.15*(round+1))"
+    ]
+  ],
+  "v204_c5_p20.cpp": [
+    [
+      "// v203_floor_nn_initial_race.cpp",
+      "// v204_c5_p20.cpp"
+    ],
+    [
+      "entries.size()==4",
+      "entries.size()==5"
+    ],
+    [
+      "entries.size()>4",
+      "entries.size()>5"
+    ],
+    [
+      "// 最初の2段階に各15%を使い、最短候補の継続探索へ70%を残す。",
+      "// 最初の2段階に各20%を使い、最短候補の継続探索へ60%を残す。"
+    ],
+    [
+      "budget*(0.15*(round+1))",
+      "budget*(0.20*(round+1))"
+    ]
+  ]
+}

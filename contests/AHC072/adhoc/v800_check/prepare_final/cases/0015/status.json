@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 543,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v024_incoming_reinsertion/0015.txt",
+  "best_sha256": "0c424f796eb25dbdb3c045b9e585e1ce4ced80f8319817a8d16fec7324e87ce5",
+  "attempts": []
+}

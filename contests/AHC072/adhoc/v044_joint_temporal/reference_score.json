@@ -1,0 +1,9 @@
+{
+  "case": "0097",
+  "source": "adhoc/v043_audit/plans/0097_570.txt",
+  "T": 579,
+  "E": 0,
+  "suffix_T": 9,
+  "official_stdout": "Score = 579\n",
+  "new_candidate": false
+}

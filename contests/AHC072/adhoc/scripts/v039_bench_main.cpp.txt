@@ -1,0 +1,142 @@
+struct WorkResult {
+    array<uint64_t,4> ns{},wall_ns{};
+    vector<uint64_t> signature;
+    int completed=0;
+};
+
+template<class A>
+static WorkResult work(A&,const Case& c) {
+    using Move=typename A::Move;
+    auto answer=moves_for<A>(c);
+    typename A::LNS lns;
+    WorkResult result;
+    auto wall=chrono::steady_clock::now();auto start=cpu_ns();
+    lns.initializeSpatialCuts();lns.makeCandidates(answer);
+    lns.supportWeight=5;lns.rideWeight=1;
+    result.ns[0]=cpu_ns()-start;
+    result.wall_ns[0]=chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now()-wall).count();
+    result.signature.push_back(lns.candidates.size());result.signature.push_back(lns.checkpoints.size());
+    for(const auto& cut:c.candidates) {
+        wall=chrono::steady_clock::now();start=cpu_ns();
+        {
+            typename A::Board initial;
+            vector<Move> base,rebuilt,polished,compressed;
+            const bool extracted=lns.extract(answer,cut.ids,base,initial);
+            bool ok=false;
+            if(extracted) {
+                A::random_state()=cut.hash^0x7c35d64bb3f069a1ULL;
+                vector<pair<double,int>> order;auto& g=A::geometry();
+                for(int id:cut.ids) {
+                    double weight=g.dist[id][g.home[g.initial[id]]];
+                    weight*=0.6+0.8*A::random_unit();order.emplace_back(-weight,id);
+                }
+                sort(order.begin(),order.end());
+                ok=lns.insertTwoOrders(initial,base,order,int(answer.size())+4,rebuilt);
+            }
+            result.ns[1]+=cpu_ns()-start;
+            result.wall_ns[1]+=chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now()-wall).count();
+            if(ok) {
+                wall=chrono::steady_clock::now();start=cpu_ns();polished=A::smooth(rebuilt);
+                result.ns[2]+=cpu_ns()-start;
+                result.wall_ns[2]+=chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now()-wall).count();
+                wall=chrono::steady_clock::now();start=cpu_ns();compressed=A::compress(polished);
+                result.ns[3]+=cpu_ns()-start;
+                result.wall_ns[3]+=chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now()-wall).count();
+                ++result.completed;
+            }
+            result.signature.push_back(extracted);result.signature.push_back(ok);
+            if(extracted) {
+                for(int p=0;p<A::geometry().V;p++)result.signature.push_back(initial[p]);
+                append_moves(result.signature,base);result.signature.push_back(A::random_state());
+            }
+            if(ok) {
+                append_moves(result.signature,rebuilt);append_moves(result.signature,polished);
+                append_moves(result.signature,compressed);
+            }
+            // 盤面の返却と一時vectorの解放も費用へ含め、照合だけを除く。
+            wall=chrono::steady_clock::now();start=cpu_ns();
+        }
+        result.ns[1]+=cpu_ns()-start;
+        result.wall_ns[1]+=chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now()-wall).count();
+    }
+    return result;
+}
+
+template<class A,bool owned>
+[[gnu::noipa]] uint64_t copy_kernel(const typename A::Board& source,typename A::Board& target,int floors) {
+    uint64_t sum=0;
+    for(uint32_t i=0;i<16384;i++) {
+        if constexpr(owned) {
+            typename A::Board trial=source;
+            asm volatile(""::"r"(&trial[0]):"memory");
+            trial[0]^=i;sum+=trial[0]+uint64_t(trial[floors-1]);
+            asm volatile(""::"r"(&trial[0]):"memory");
+        } else {
+            target=source;
+            asm volatile(""::"r"(&target[0]):"memory");
+            target[0]^=i;sum+=target[0]+uint64_t(target[floors-1]);
+            asm volatile(""::"r"(&target[0]):"memory");
+        }
+    }
+    return sum;
+}
+
+template<class A>
+static array<pair<uint64_t,uint64_t>,2> copies(A&,const Case& c) {
+    typename A::Board source=A::geometry().initial,target;
+    const auto moves=moves_for<A>(c);
+    for(size_t t=0;t<moves.size()/2;t++)A::geometry().apply(source,moves[t]);
+    array<pair<uint64_t,uint64_t>,2> result;
+    auto start=cpu_ns();auto sum=copy_kernel<A,false>(source,target,c.input.cell_count);
+    result[0]={cpu_ns()-start,sum};
+    start=cpu_ns();sum=copy_kernel<A,true>(source,target,c.input.cell_count);
+    result[1]={cpu_ns()-start,sum};
+    return result;
+}
+
+int main(int argc,char** argv) {
+    if(argc!=3)throw runtime_error("usage: bench fixture output");
+    const filesystem::path root=argv[1],out=argv[2];
+    vector<filesystem::path> paths;
+    for(auto entry:filesystem::directory_iterator(root/"tools/in"))if(entry.path().extension()==".txt")paths.push_back(entry.path());
+    sort(paths.begin(),paths.end());vector<Case> cases;size_t candidates=0;
+    ofstream sizes(out/"sizes.csv");
+    sizes<<"case,floors,parent_payload,child_payload,child_handle,child_pool_payload,child_pool_metadata\n";
+    for(const auto& path:paths) {
+        cases.push_back(load_case(root,path));const auto& c=cases.back();candidates+=c.candidates.size();
+        sizes<<c.name<<','<<c.input.cell_count<<",1600,"<<4*c.input.cell_count<<','<<sizeof(child::Board)
+             <<','<<4*4*c.input.cell_count<<','<<sizeof(child::BoardPool)<<'\n';
+    }
+    if(cases.size()!=100)throw runtime_error("case count");
+    cout<<"cases="<<cases.size()<<" candidates="<<candidates<<" real_clock=1 LOCAL=0\n"<<flush;
+    ofstream samples(out/"fixed_work_samples.csv"),copy_samples(out/"copy_samples.csv");
+    samples<<"round,case,floors,variant,position,candidates,completed,build_ns,reconstruct_ns,smooth_ns,compress_ns,total_ns,total_wall_ns,checksum\n";
+    copy_samples<<"round,case,floors,variant,position,task,iterations,cpu_ns,checksum\n";
+    vector<vector<uint64_t>> expected(cases.size());
+    for(int round=0;round<=5;round++) {
+        for(size_t index=0;index<cases.size();index++) {
+            const auto& c=cases[index];array<WorkResult,2> work_result;
+            array<array<pair<uint64_t,uint64_t>,2>,2> copy_result;
+            array<int,2> position{};
+            for(int pos=0;pos<2;pos++) {
+                const int variant=(pos+round+int(index))%2;position[variant]=pos;
+                if(variant==0){Parent a(c.input);work_result[0]=work(a,c);copy_result[0]=copies(a,c);}
+                else {Child a(c.input);work_result[1]=work(a,c);copy_result[1]=copies(a,c);}
+                if(child::board_pool.storage&&child::board_pool.free_count!=child::BoardPool::slots)throw runtime_error("pool leak");
+            }
+            if(work_result[0].signature!=work_result[1].signature)throw runtime_error("work mismatch "+c.name);
+            if(round==0)expected[index]=work_result[0].signature;
+            else if(expected[index]!=work_result[0].signature)throw runtime_error("changed workload "+c.name);
+            for(int task=0;task<2;task++)if(copy_result[0][task].second!=copy_result[1][task].second)throw runtime_error("copy mismatch");
+            for(int variant=0;variant<2;variant++) {
+                const auto& r=work_result[variant];const char* name=variant?"v039":"v037";
+                samples<<round<<','<<c.name<<','<<c.input.cell_count<<','<<name<<','<<position[variant]<<','<<c.candidates.size()<<','<<r.completed;
+                for(auto ns:r.ns)samples<<','<<ns;
+                samples<<','<<accumulate(r.ns.begin(),r.ns.end(),uint64_t(0))<<','<<accumulate(r.wall_ns.begin(),r.wall_ns.end(),uint64_t(0))<<','<<checksum(r.signature)<<'\n';
+                for(int task=0;task<2;task++)copy_samples<<round<<','<<c.name<<','<<c.input.cell_count<<','<<name<<','<<position[variant]<<','<<(task?"create_copy_destroy":"reuse_copy")
+                    <<",16384,"<<copy_result[variant][task].first<<','<<copy_result[variant][task].second<<'\n';
+            }
+        }
+        samples.flush();copy_samples.flush();cout<<"round="<<round<<" verified=100\n"<<flush;
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "cases": 100,
+  "candidates": 4382,
+  "shortened": 507,
+  "summed_candidate_savings": 933,
+  "strict_preference_changed": 8,
+  "probability_changed": 70,
+  "mean_pair_us": 6.47695,
+  "independently_validated": 4482,
+  "changed_cases": 41,
+  "proceed_to_evaluation": true
+}

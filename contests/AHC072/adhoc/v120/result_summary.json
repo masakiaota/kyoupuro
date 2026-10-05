@@ -1,0 +1,234 @@
+{
+  "selected": "base",
+  "retained": "v115",
+  "candidate": {
+    "condition": "r0",
+    "source": "src/bin/v115_corridor_reinsertion.cpp",
+    "source_sha256": "00c649abb06fa8f46927ba50e5f3b7f000c806c0029bbbec683e79712d04387e",
+    "model_parent": "v111",
+    "fixed_at": "2026-10-04T10:16:25.489950+00:00"
+  },
+  "validation": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.44921875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.44921875,
+      "mean_elapsed_ms": 1564.53515625,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "adaptive": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.57421875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.57421875,
+      "mean_elapsed_ms": 1565.3203125,
+      "max_elapsed_ms": 1633,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    }
+  },
+  "differences": {
+    "adaptive": {
+      "common_completed": 256,
+      "mean_T_difference": 0.125,
+      "mean_S_difference": 0.125,
+      "wins": 102,
+      "ties": 31,
+      "losses": 123
+    }
+  },
+  "activation": {
+    "adaptive": {
+      "allocation_0_changes": 773688,
+      "allocation_0_max_ppm": 182997418,
+      "allocation_0_min_ppm": 140859487,
+      "allocation_0_saved": 39593,
+      "allocation_0_trials": 1902055,
+      "allocation_1_changes": 16060,
+      "allocation_1_max_ppm": 70430406,
+      "allocation_1_min_ppm": 35228652,
+      "allocation_1_saved": 6398,
+      "allocation_1_trials": 539000,
+      "allocation_2_changes": 2431,
+      "allocation_2_max_ppm": 11377183,
+      "allocation_2_min_ppm": 6549437,
+      "allocation_2_saved": 472,
+      "allocation_2_trials": 100273,
+      "allocation_3_changes": 24275,
+      "allocation_3_max_ppm": 35643231,
+      "allocation_3_min_ppm": 13654534,
+      "allocation_3_saved": 5157,
+      "allocation_3_trials": 213209,
+      "allocation_4_changes": 17710,
+      "allocation_4_max_ppm": 20602786,
+      "allocation_4_min_ppm": 9187093,
+      "allocation_4_saved": 1178,
+      "allocation_4_trials": 140619,
+      "allocation_5_changes": 23297,
+      "allocation_5_max_ppm": 4653898,
+      "allocation_5_min_ppm": 1606268,
+      "allocation_5_saved": 608,
+      "allocation_5_trials": 26439,
+      "allocation_draws": 2792895,
+      "allocation_observations": 2921595,
+      "allocation_updates": 45159
+    }
+  },
+  "observations": {
+    "mean_lns_attempts": 10288.55859375,
+    "baseline_mean_lns_attempts": 10186.73828125,
+    "all_methods_active_cases": 256,
+    "adaptive_active_cases": 256,
+    "initial_nn_same_hash": 256,
+    "pool_returned_cases": 256,
+    "errors": {
+      "construction_errors": 0,
+      "lns_errors": 0,
+      "lns_invalid_candidates": 0,
+      "baseline_recovery": 0,
+      "final_recovery": 0
+    },
+    "methods": [
+      {
+        "name": "通常",
+        "trials": 1902055,
+        "fraction": 0.6510330829563988,
+        "saved_across_all_seeds": 39593,
+        "changed": 773688,
+        "mean_time_ms": 921.22605078125,
+        "mean_case_min_probability": 0.55023237109375,
+        "mean_case_max_probability": 0.7148336640625
+      },
+      {
+        "name": "依存拡張",
+        "trials": 539000,
+        "fraction": 0.18448826753879302,
+        "saved_across_all_seeds": 6398,
+        "changed": 16060,
+        "mean_time_ms": 158.57012109375,
+        "mean_case_min_probability": 0.137611921875,
+        "mean_case_max_probability": 0.2751187734375
+      },
+      {
+        "name": "束",
+        "trials": 100273,
+        "fraction": 0.03432132105921594,
+        "saved_across_all_seeds": 472,
+        "changed": 2431,
+        "mean_time_ms": 49.84967578125,
+        "mean_case_min_probability": 0.02558373828125,
+        "mean_case_max_probability": 0.04444212109375
+      },
+      {
+        "name": "分解",
+        "trials": 213209,
+        "fraction": 0.07297691842983028,
+        "saved_across_all_seeds": 5157,
+        "changed": 24275,
+        "mean_time_ms": 94.25399609375,
+        "mean_case_min_probability": 0.0533380234375,
+        "mean_case_max_probability": 0.13923137109375
+      },
+      {
+        "name": "二塔",
+        "trials": 140619,
+        "fraction": 0.04813090110025517,
+        "saved_across_all_seeds": 1178,
+        "changed": 17710,
+        "mean_time_ms": 54.9903203125,
+        "mean_case_min_probability": 0.03588708203125,
+        "mean_case_max_probability": 0.0804796328125
+      },
+      {
+        "name": "並べ替え",
+        "trials": 26439,
+        "fraction": 0.009049508915506769,
+        "saved_across_all_seeds": 608,
+        "changed": 23297,
+        "mean_time_ms": 3.310984375,
+        "mean_case_min_probability": 0.006274484375,
+        "mean_case_max_probability": 0.0181792890625
+      }
+    ]
+  },
+  "mechanism": {
+    "sources": {
+      "adhoc/bin/v120_adaptive_repair.cpp": "6d8b5d96eac2fa9082122da7e5801ef2148364609e5a9078fc239edd97e1a5ac",
+      "src/bin/v115_corridor_reinsertion.cpp": "00c649abb06fa8f46927ba50e5f3b7f000c806c0029bbbec683e79712d04387e"
+    },
+    "synthetic": {
+      "observations": 1536,
+      "max_error": 2.220446049250313e-16,
+      "cheap_method_preferred": true,
+      "equal_reward_cost": {
+        "observations": 1536,
+        "equal_reward": true,
+        "cost_ratio": 100,
+        "probability_ratio": 8.24164736859801
+      }
+    },
+    "fixed_reference_pairs": 4,
+    "independent_outputs": 16,
+    "activation": [
+      45701,
+      12611,
+      2320,
+      4689,
+      3098,
+      543
+    ],
+    "preprocessing_repair_algorithms_identical": true,
+    "gates": {
+      "adaptive": {
+        "passed": true
+      }
+    },
+    "completed_at": "2026-10-04T11:00:48.989633+00:00"
+  },
+  "retained_final": {
+    "test": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 218.046875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 218.046875,
+      "mean_elapsed_ms": 1564.6875,
+      "max_elapsed_ms": 1624,
+      "mean_inferences": 291.90625,
+      "mean_depth": 291.90625,
+      "deadline_cases": 0
+    },
+    "tools_in": {
+      "cases": 100,
+      "complete": 100,
+      "completion_rate": 1.0,
+      "mean_S_all": 196.05,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 196.05,
+      "mean_elapsed_ms": 1569.38,
+      "max_elapsed_ms": 1616,
+      "mean_inferences": 264.69,
+      "mean_depth": 264.69,
+      "deadline_cases": 0
+    }
+  },
+  "reused_final": true,
+  "goal_190": false,
+  "source_hash_verified": true,
+  "official_source": "results/nn_rank/v120/20261004_adaptive_studio/result.json",
+  "completed_at": "2026-10-04T11:02:45.156203+00:00"
+}

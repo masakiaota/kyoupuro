@@ -1,0 +1,30 @@
+{
+  "original": {
+    "path": "/Users/masaki/Downloads/ahc072_mixed_tree.cpp",
+    "sha256": "f10b4b2998e4d31e9537438637de0ac61a553bb5c06da7bd3573272c21334bcd",
+    "submission_id": 79532264,
+    "score": 12498,
+    "memory_kib": 196156,
+    "time_ms": 1849
+  },
+  "ported": {
+    "path": "/Users/masaki/Desktop/AHC072/src/bin/v015_mixed_tree.cpp",
+    "sha256": "dc9411f97e1d28a2bfba2a0a51d40b1aa989db0fbb77c49df593d8db3cb8fa30",
+    "submission_id": 79549091,
+    "score": 12564,
+    "memory_kib": 201740,
+    "time_ms": 1849
+  },
+  "solver_executed": true,
+  "execution_mode": "Diagnostic fixed-clock harness only; no normal-clock score evaluation or source modification.",
+  "diagnostic": {
+    "cases": 5,
+    "outputs_byte_identical": 5,
+    "all_original_log_fields_identical": 5,
+    "rng_and_cache_fields_identical": 5,
+    "sizeof_solver_bytes": 433096,
+    "maximum_absolute_rss_difference_kib": 192
+  },
+  "compiler": "Homebrew GCC 15.1.0, C++23, macOS arm64, LOCAL undefined",
+  "limits": "Judge runs use GCC 15.2.0; relative contributions of generated code differences, timer start shift and execution scheduling variation are not isolated."
+}

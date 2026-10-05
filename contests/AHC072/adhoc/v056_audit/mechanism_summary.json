@@ -1,0 +1,15 @@
+{
+  "cases": 100,
+  "all_outputs_and_rng_equal": true,
+  "tower_checks": 26112,
+  "flexible_calls": 25944,
+  "flexible_success": 16129,
+  "paired_calls": 6400,
+  "paired_success": 2794,
+  "mask_checks": 6579173,
+  "trial_moves": 20812,
+  "trial_restores": 41624,
+  "extract_calls": 63349,
+  "insert_calls": 197433,
+  "insert_success": 169617
+}

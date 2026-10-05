@@ -1,0 +1,76 @@
+static constexpr array<const char*,3> variant_names{"v028","v035","v036"};
+
+template<class A>
+static void write_size(ostream& out,const Case& c,const char* name) {
+    static_assert(is_trivially_copyable_v<typename A::Board>);
+    using Geometry=remove_reference_t<decltype(A::geometry())>;
+    out<<c.name<<','<<c.input.cell_count<<','<<name<<','<<sizeof(typename A::Board)/4
+       <<','<<sizeof(typename A::Board)<<','<<sizeof(typename A::IdentityBoard)
+       <<','<<sizeof(Geometry::dist)<<','<<sizeof(Geometry)<<','<<sizeof(typename A::LNS)<<'\n';
+}
+
+int main(int argc,char** argv) {
+    if(argc!=3)throw runtime_error("usage: bench fixture_root output_dir");
+    const filesystem::path root=argv[1],out=argv[2];
+    map<string,array<uint64_t,3>> previous;
+    ifstream saved(out/"previous_checksums.csv");string line;
+    getline(saved,line);
+    while(getline(saved,line)) {
+        replace(line.begin(),line.end(),',',' ');istringstream fields(line);
+        string name;array<uint64_t,3> values{};fields>>name>>values[0]>>values[1]>>values[2];
+        if(!fields)throw runtime_error("invalid prior checksum");
+        previous[name]=values;
+    }
+    ofstream sizes(out/"capacity_sizes.csv");
+    sizes<<"case,floors,variant,capacity,board_bytes,identity_bytes,dist_bytes,geometry_bytes,lns_bytes\n";
+    vector<filesystem::path> paths;
+    for(auto entry:filesystem::directory_iterator(root/"tools/in"))if(entry.path().extension()==".txt")paths.push_back(entry.path());
+    sort(paths.begin(),paths.end());vector<Case> cases;
+    size_t candidate_count=0;
+    for(const auto& path:paths) {
+        cases.push_back(load_case(root,path));auto& c=cases.back();candidate_count+=c.candidates.size();
+        v035::with_board_capacity(c.input.cell_count,[&]<size_t capacity>() {
+            write_size<Parent>(sizes,c,"v028");
+            write_size<V035<capacity>>(sizes,c,"v035");write_size<V036<capacity>>(sizes,c,"v036");
+        });
+    }
+    if(cases.size()!=100||previous.size()!=100||candidate_count!=6357)throw runtime_error("changed workload");
+    cout<<"loaded_cases="<<cases.size()<<" candidates="<<candidate_count<<" variants=3 real_clock=1 LOCAL=0\n"<<flush;
+    ofstream samples(out/"fixed_work_samples.csv");
+    samples<<"round,case,capacity,variant,position,candidates,completed,build_ns,reconstruct_ns,smooth_ns,total_ns,build_wall_ns,reconstruct_wall_ns,smooth_wall_ns,total_wall_ns,checksum\n";
+    vector<vector<uint64_t>> expected(cases.size());
+    for(int round=0;round<=5;round++) {
+        for(size_t index=0;index<cases.size();index++) {
+            const auto& c=cases[index];
+            v035::with_board_capacity(c.input.cell_count,[&]<size_t capacity>() {
+                array<WorkResult,3> result;
+                array<int,3> positions{};
+                // 各ケースと巡回で順番をずらし、測定順の偏りを分散する。
+                for(int position=0;position<3;position++) {
+                    const int variant=(position+round+int(index))%3;positions[variant]=position;
+                    switch(variant) {
+                        case 0:{Parent a(c.input);result[0]=work(a,c);break;}
+                        case 1:{V035<capacity> a(c.input);result[1]=work(a,c);break;}
+                        case 2:{V036<capacity> a(c.input);result[2]=work(a,c);break;}
+                    }
+                }
+                for(int variant=1;variant<3;variant++)
+                    if(result[0].signature!=result[variant].signature)throw runtime_error("work mismatch "+c.name+" "+variant_names[variant]);
+                if(round==0)expected[index]=result[0].signature;
+                else if(result[0].signature!=expected[index])throw runtime_error("work changed "+c.name);
+                const auto prior=previous.at(c.name);
+                if(prior[0]!=c.candidates.size()||prior[1]!=uint64_t(result[0].completed)||prior[2]!=checksum(result[0].signature))
+                    throw runtime_error("changed workload relative to v035 "+c.name);
+                for(int variant=0;variant<3;variant++) {
+                    const auto& r=result[variant];const auto ns=accumulate(r.ns.begin(),r.ns.end(),uint64_t(0));
+                    const auto wall=accumulate(r.wall_ns.begin(),r.wall_ns.end(),uint64_t(0));
+                    if(!r.ns[0]||!r.ns[1]||(r.completed&&!r.ns[2]))throw runtime_error("zero active timing "+c.name);
+                    samples<<round<<','<<c.name<<','<<capacity<<','<<variant_names[variant]<<','<<positions[variant]<<','<<c.candidates.size()
+                           <<','<<r.completed<<','<<r.ns[0]<<','<<r.ns[1]<<','<<r.ns[2]<<','<<ns
+                           <<','<<r.wall_ns[0]<<','<<r.wall_ns[1]<<','<<r.wall_ns[2]<<','<<wall<<','<<checksum(r.signature)<<'\n';
+                }
+            });
+        }
+        samples.flush();cout<<"round="<<round<<" verified_cases="<<cases.size()<<" variants=3\n"<<flush;
+    }
+}

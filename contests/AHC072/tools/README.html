@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Usage</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  line-height: 1.6;
+  color: #24292f;
+  background: #ffffff;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px 96px;
+}
+h1, h2, h3, h4 { line-height: 1.3; margin-top: 32px; margin-bottom: 12px; }
+h1 { font-size: 2em; border-bottom: 1px solid #d8dee4; padding-bottom: 8px; }
+h2 { font-size: 1.5em; border-bottom: 1px solid #d8dee4; padding-bottom: 6px; }
+h3 { font-size: 1.2em; }
+a { color: #0969da; }
+p, ul, ol { margin: 0 0 12px; }
+li { margin: 2px 0; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: #f0f2f5;
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+}
+pre {
+  background: #f0f2f5;
+  border-radius: 6px;
+  padding: 14px 16px;
+  overflow-x: auto;
+}
+pre code { background: none; padding: 0; font-size: 0.88em; }
+table { border-collapse: collapse; margin: 0 0 16px; }
+th, td { border: 1px solid #d8dee4; padding: 6px 12px; }
+th { background: #f0f2f5; }
+</style>
+</head>
+<body>
+<ul>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#input-generation">Input Generation</a></li>
+<li><a href="#visualization">Visualization</a></li>
+<li><a href="#porting-to-other-languages">Porting to other languages</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E3%81%84%E6%96%B9">使い方</a><ul>
+<li><a href="#%E5%AE%9F%E8%A1%8C%E7%92%B0%E5%A2%83">実行環境</a></li>
+<li><a href="#%E5%85%A5%E5%8A%9B%E7%94%9F%E6%88%90">入力生成</a></li>
+<li><a href="#%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%A9%E3%82%A4%E3%82%B6">ビジュアライザ</a></li>
+<li><a href="#%E4%BB%96%E8%A8%80%E8%AA%9E%E3%81%B8%E3%81%AE%E7%A7%BB%E6%A4%8D">他言語への移植</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="usage">Usage</h1>
+<h2 id="requirements">Requirements</h2>
+<p>Please install a compiler for Rust language (see https://www.rust-lang.org).
+If a compile error occurs, the compiler version may be old.
+You can update to the latest compiler by executing the following command.</p>
+<pre><code>rustup update
+</code></pre>
+<p>For those who are not familiar with the Rust language environment, we have prepared a <a href="https://img.atcoder.jp/ahc072/BrsBAXF2_windows.zip">pre-compiled binary for Windows</a>.
+The following examples assume that you will be working in the directory where this README is located.</p>
+<h2 id="input-generation">Input Generation</h2>
+<p>The <code>in</code> directory contains pre-generated input files for seed=0-99.
+If you want more inputs, prepare <code>seeds.txt</code> which contains a list of random seeds (unsigned 64bit integers) and execute the following command.</p>
+<pre><code>cargo run -r --bin gen seeds.txt
+</code></pre>
+<p>This will output input files into <code>in</code> directory.
+When using the precompiled binary for Windows, execute the following command.</p>
+<pre><code>./gen.exe seeds.txt
+</code></pre>
+<p>If you use the command prompt instead of WSL, use <code>gen.exe</code> instead of <code>./gen.exe</code>.</p>
+<p>Run one of the following commands for the complete and up-to-date list of options.</p>
+<pre><code>cargo run -r --bin gen -- --help
+./gen.exe --help
+</code></pre>
+<h2 id="visualization">Visualization</h2>
+<p>Let <code>in.txt</code> be an input file and <code>out.txt</code> be an output file.
+You can visualize the output by executing the following command.</p>
+<pre><code>cargo run -r --bin vis in.txt out.txt
+</code></pre>
+<p>When using the precompiled binary for Windows,</p>
+<pre><code>./vis.exe in.txt out.txt
+</code></pre>
+<p>The above command writes a visualization result to <code>vis.html</code>.
+It also outputs the score to standard output.
+If you only need the score, <code>--no-vis</code> skips writing <code>vis.html</code>.
+<code>vis.html</code> shows the last visualization position; <code>-t &lt;TURN&gt;</code> selects another position instead.</p>
+<p>You can also use a <a href="https://img.atcoder.jp/ahc072/BrsBAXF2.html?lang=en">web visualizer</a> which is more rich in features.</p>
+<h2 id="porting-to-other-languages">Porting to other languages</h2>
+<p>If you want to port the scoring function to another language, <code>src/lib.rs</code> is the only file you need.
+Input generation, validation of the input/output format, and the score computation are all contained in that single file.
+<code>src/vis.rs</code> is only used by the visualizer and does not need to be ported.</p>
+<h1 id="使い方">使い方</h1>
+<h2 id="実行環境">実行環境</h2>
+<p>Rust言語のコンパイル環境が必要です。
+https://www.rust-lang.org/ja を参考に各自インストールして下さい。
+コンパイルエラーになった場合、コンパイラのバージョンが古い可能性があります。
+以下のコマンド実行することで最新のコンパイラに更新が可能です。</p>
+<pre><code>rustup update
+</code></pre>
+<p>Rust言語の環境構築が面倒な方向けに、<a href="https://img.atcoder.jp/ahc072/BrsBAXF2_windows.zip">Windows用のコンパイル済みバイナリ</a>も用意してあります。
+以下の実行例では、このREADMEが置かれているディレクトリに移動して作業することを想定しています。</p>
+<h2 id="入力生成">入力生成</h2>
+<p><code>in</code> ディレクトリに予め生成された seed=0~99 に対する入力ファイルが置かれています。
+より多くの入力が欲しい場合は、<code>seeds.txt</code> に欲しい入力ファイルの数だけ乱数seed値(符号なし64bit整数値)を記入し、以下のコマンドを実行します。</p>
+<pre><code>cargo run -r --bin gen seeds.txt
+</code></pre>
+<p>生成された入力ファイルは <code>in</code> ディレクトリに出力されます。
+Windows用のコンパイル済バイナリを使用する場合は以下のようにします。</p>
+<pre><code>./gen.exe seeds.txt
+</code></pre>
+<p>WSLではなくコマンドプロンプトを使用する場合は <code>./gen.exe</code> ではなく <code>gen.exe</code> として下さい。</p>
+<p>利用可能なオプションの完全かつ最新の一覧は、次のいずれかを実行して確認して下さい。</p>
+<pre><code>cargo run -r --bin gen -- --help
+./gen.exe --help
+</code></pre>
+<h2 id="ビジュアライザ">ビジュアライザ</h2>
+<p>入力ファイル名を<code>in.txt</code>、出力ファイル名を<code>out.txt</code>としたとき、以下のコマンドを実行します。</p>
+<pre><code>cargo run -r --bin vis in.txt out.txt
+</code></pre>
+<p>Windows用のコンパイル済バイナリを使用する場合は以下のようにします。</p>
+<pre><code>./vis.exe in.txt out.txt
+</code></pre>
+<p>出力のビジュアライズ結果は <code>vis.html</code> というファイルに書き出されます。
+標準出力にはスコアを出力します。
+スコアだけが必要な場合は <code>--no-vis</code> を付けると <code>vis.html</code> の書き出しを省略できます。
+<code>vis.html</code> には表示軸の最後の位置が描かれます。<code>-t &lt;TURN&gt;</code> を付けると別の位置を選べます。</p>
+<p>より機能が豊富な<a href="https://img.atcoder.jp/ahc072/BrsBAXF2.html?lang=ja">ウェブ版のビジュアライザ</a>も利用可能です。</p>
+<h2 id="他言語への移植">他言語への移植</h2>
+<p>スコア計算等を他言語へ移植したい場合、対象は <code>src/lib.rs</code> のみです。
+入力生成・入出力形式の検証・スコア計算は、すべてこの 1 ファイルに含まれています。
+<code>src/vis.rs</code> はビジュアライザ専用のため、移植は不要です。</p>
+</body>
+</html>

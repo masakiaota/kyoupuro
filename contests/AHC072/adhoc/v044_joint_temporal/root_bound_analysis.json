@@ -1,0 +1,149 @@
+[
+  {
+    "tag": "0097_control_0570",
+    "schedule_operations": 0,
+    "required_operations": 0,
+    "original_tail": 12,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0000",
+    "schedule_operations": 138,
+    "required_operations": 138,
+    "original_tail": 161,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0024",
+    "schedule_operations": 123,
+    "required_operations": 123,
+    "original_tail": 137,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0025",
+    "schedule_operations": 123,
+    "required_operations": 123,
+    "original_tail": 136,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0026",
+    "schedule_operations": 123,
+    "required_operations": 123,
+    "original_tail": 135,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0027",
+    "schedule_operations": 123,
+    "required_operations": 123,
+    "original_tail": 134,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0028",
+    "schedule_operations": 123,
+    "required_operations": 123,
+    "original_tail": 133,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0029",
+    "schedule_operations": 122,
+    "required_operations": 122,
+    "original_tail": 132,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0030",
+    "schedule_operations": 121,
+    "required_operations": 121,
+    "original_tail": 131,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0031",
+    "schedule_operations": 120,
+    "required_operations": 120,
+    "original_tail": 130,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0032",
+    "schedule_operations": 119,
+    "required_operations": 119,
+    "original_tail": 129,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0033",
+    "schedule_operations": 118,
+    "required_operations": 118,
+    "original_tail": 128,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0060_0035",
+    "schedule_operations": 116,
+    "required_operations": 116,
+    "original_tail": 126,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0005_0000",
+    "schedule_operations": 592,
+    "required_operations": 592,
+    "original_tail": 598,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0005_0223",
+    "schedule_operations": 373,
+    "required_operations": 373,
+    "original_tail": 375,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0068_0000",
+    "schedule_operations": 420,
+    "required_operations": 420,
+    "original_tail": 426,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0068_0264",
+    "schedule_operations": 162,
+    "required_operations": 162,
+    "original_tail": 162,
+    "required_equals_original": true
+  },
+  {
+    "tag": "0097_0000",
+    "schedule_operations": 561,
+    "required_operations": 561,
+    "original_tail": 582,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0097_0568",
+    "schedule_operations": 14,
+    "required_operations": 14,
+    "original_tail": 14,
+    "required_equals_original": true
+  },
+  {
+    "tag": "0019_0000",
+    "schedule_operations": 634,
+    "required_operations": 633,
+    "original_tail": 643,
+    "required_equals_original": false
+  },
+  {
+    "tag": "0019_0269",
+    "schedule_operations": 372,
+    "required_operations": 371,
+    "original_tail": 374,
+    "required_equals_original": false
+  }
+]

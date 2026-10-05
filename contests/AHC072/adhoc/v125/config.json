@@ -1,0 +1,15 @@
+{
+  "sources": {
+    "base": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+    "full": "00c649abb06fa8f46927ba50e5f3b7f000c806c0029bbbec683e79712d04387e",
+    "late": "c42b7fd06a8dc0defe6ac85d1eb2028c07ad7215c8d2eb89c3a1d04c8c8e0489"
+  },
+  "input_manifest_sha256": "52b1649b7286c1cc5f8f9f60d473cc627e38c58bf6133f25e2ad682651a215f7",
+  "scripts": {
+    "build_v125_late.py": "737bf8e0bdca45f6ab54aefc6685f291f2a14af400da5174b9be9230af9b5217",
+    "check_v125_late.py": "1f528edde3ac14f1789e9353e7463682deb587a061eb85554bc00de24480962a",
+    "run_v125_late.py": "48f209e34732a6250bf5a7622feee6b8e3054d350e1441447788f2948ae71f84"
+  },
+  "switch_fraction": 0.5,
+  "jobs": 12
+}

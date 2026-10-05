@@ -1,0 +1,2218 @@
+{
+  "passed": true,
+  "pairs": 200,
+  "times": {
+    "local": {
+      "v058_joint_priority": 3.848478,
+      "v072_joint_refactored": 3.845123,
+      "child_parent_ratio": 0.9991282267951123
+    },
+    "production": {
+      "v058_joint_priority": 4.820923,
+      "v072_joint_refactored": 4.809246,
+      "child_parent_ratio": 0.9975778497188195
+    }
+  },
+  "cases": [
+    {
+      "mode": "local",
+      "case": "0000.txt",
+      "T": 43,
+      "clock_calls": 15436,
+      "rng": 8981252136166831888,
+      "cpu_sec": {
+        "v058_joint_priority": 0.035506,
+        "v072_joint_refactored": 0.024989
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0001.txt",
+      "T": 113,
+      "clock_calls": 15449,
+      "rng": 16869540247035171714,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.064857,
+        "v058_joint_priority": 0.050763
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0002.txt",
+      "T": 124,
+      "clock_calls": 15448,
+      "rng": 3397289825596715861,
+      "cpu_sec": {
+        "v058_joint_priority": 0.032052,
+        "v072_joint_refactored": 0.032371
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0003.txt",
+      "T": 147,
+      "clock_calls": 15448,
+      "rng": 17703454991195233939,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.067558,
+        "v058_joint_priority": 0.067949
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0004.txt",
+      "T": 315,
+      "clock_calls": 15446,
+      "rng": 11700500067683141453,
+      "cpu_sec": {
+        "v058_joint_priority": 0.036904,
+        "v072_joint_refactored": 0.036444
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0005.txt",
+      "T": 718,
+      "clock_calls": 15449,
+      "rng": 7254717736598337167,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.036432,
+        "v058_joint_priority": 0.036625
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0006.txt",
+      "T": 131,
+      "clock_calls": 15448,
+      "rng": 11318630650543833471,
+      "cpu_sec": {
+        "v058_joint_priority": 0.028537,
+        "v072_joint_refactored": 0.028748
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0007.txt",
+      "T": 124,
+      "clock_calls": 15448,
+      "rng": 10208297282925293892,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.029306,
+        "v058_joint_priority": 0.029452
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0008.txt",
+      "T": 148,
+      "clock_calls": 15448,
+      "rng": 3886974852244871526,
+      "cpu_sec": {
+        "v058_joint_priority": 0.037335,
+        "v072_joint_refactored": 0.037361
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0009.txt",
+      "T": 86,
+      "clock_calls": 15451,
+      "rng": 13009696227280897416,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.051204,
+        "v058_joint_priority": 0.051334
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0010.txt",
+      "T": 78,
+      "clock_calls": 15449,
+      "rng": 10184712735333880718,
+      "cpu_sec": {
+        "v058_joint_priority": 0.033093,
+        "v072_joint_refactored": 0.03305
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0011.txt",
+      "T": 196,
+      "clock_calls": 15448,
+      "rng": 3066038417272205262,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.031416,
+        "v058_joint_priority": 0.031483
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0012.txt",
+      "T": 149,
+      "clock_calls": 15448,
+      "rng": 5422667289685357729,
+      "cpu_sec": {
+        "v058_joint_priority": 0.046119,
+        "v072_joint_refactored": 0.04676
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0013.txt",
+      "T": 209,
+      "clock_calls": 15448,
+      "rng": 6386005315058500292,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.035033,
+        "v058_joint_priority": 0.034108
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0014.txt",
+      "T": 487,
+      "clock_calls": 15449,
+      "rng": 4699524649176084843,
+      "cpu_sec": {
+        "v058_joint_priority": 0.039418,
+        "v072_joint_refactored": 0.039431
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0015.txt",
+      "T": 752,
+      "clock_calls": 15449,
+      "rng": 8059082496827484003,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.037824,
+        "v058_joint_priority": 0.038143
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0016.txt",
+      "T": 148,
+      "clock_calls": 15448,
+      "rng": 10219450266615901195,
+      "cpu_sec": {
+        "v058_joint_priority": 0.038904,
+        "v072_joint_refactored": 0.039069
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0017.txt",
+      "T": 240,
+      "clock_calls": 15448,
+      "rng": 8740261922411249853,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.03128,
+        "v058_joint_priority": 0.031373
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0018.txt",
+      "T": 77,
+      "clock_calls": 15449,
+      "rng": 7112115874243311232,
+      "cpu_sec": {
+        "v058_joint_priority": 0.041016,
+        "v072_joint_refactored": 0.041011
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0019.txt",
+      "T": 877,
+      "clock_calls": 15449,
+      "rng": 2068918156133239959,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.05034,
+        "v058_joint_priority": 0.050727
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0020.txt",
+      "T": 176,
+      "clock_calls": 15448,
+      "rng": 7559221009350906037,
+      "cpu_sec": {
+        "v058_joint_priority": 0.0285,
+        "v072_joint_refactored": 0.028725
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0021.txt",
+      "T": 70,
+      "clock_calls": 15449,
+      "rng": 6311364259124242798,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.049821,
+        "v058_joint_priority": 0.049374
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0022.txt",
+      "T": 72,
+      "clock_calls": 15450,
+      "rng": 11389943306127705082,
+      "cpu_sec": {
+        "v058_joint_priority": 0.040502,
+        "v072_joint_refactored": 0.039553
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0023.txt",
+      "T": 91,
+      "clock_calls": 15449,
+      "rng": 978110579096381034,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.051946,
+        "v058_joint_priority": 0.052205
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0024.txt",
+      "T": 132,
+      "clock_calls": 15448,
+      "rng": 15289461800453487729,
+      "cpu_sec": {
+        "v058_joint_priority": 0.049187,
+        "v072_joint_refactored": 0.049102
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0025.txt",
+      "T": 61,
+      "clock_calls": 15437,
+      "rng": 16719051961745512915,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.046574,
+        "v058_joint_priority": 0.046738
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0026.txt",
+      "T": 133,
+      "clock_calls": 15448,
+      "rng": 282199788208043824,
+      "cpu_sec": {
+        "v058_joint_priority": 0.057029,
+        "v072_joint_refactored": 0.056798
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0027.txt",
+      "T": 167,
+      "clock_calls": 15448,
+      "rng": 10212912144066752403,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.030861,
+        "v058_joint_priority": 0.030913
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0028.txt",
+      "T": 339,
+      "clock_calls": 15446,
+      "rng": 13219803252642067006,
+      "cpu_sec": {
+        "v058_joint_priority": 0.035643,
+        "v072_joint_refactored": 0.035727
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0029.txt",
+      "T": 304,
+      "clock_calls": 15449,
+      "rng": 12971157058987012835,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.034935,
+        "v058_joint_priority": 0.034831
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0030.txt",
+      "T": 509,
+      "clock_calls": 15449,
+      "rng": 10246208258986543602,
+      "cpu_sec": {
+        "v058_joint_priority": 0.030267,
+        "v072_joint_refactored": 0.030195
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0031.txt",
+      "T": 138,
+      "clock_calls": 15448,
+      "rng": 16166561111626065748,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.045775,
+        "v058_joint_priority": 0.045959
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0032.txt",
+      "T": 177,
+      "clock_calls": 15448,
+      "rng": 13507734897893482233,
+      "cpu_sec": {
+        "v058_joint_priority": 0.037164,
+        "v072_joint_refactored": 0.036949
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0033.txt",
+      "T": 167,
+      "clock_calls": 15448,
+      "rng": 17889667271933847075,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.030546,
+        "v058_joint_priority": 0.030682
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0034.txt",
+      "T": 497,
+      "clock_calls": 15449,
+      "rng": 960532672434471699,
+      "cpu_sec": {
+        "v058_joint_priority": 0.033362,
+        "v072_joint_refactored": 0.033316
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0035.txt",
+      "T": 65,
+      "clock_calls": 15451,
+      "rng": 17034223679068159590,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.030847,
+        "v058_joint_priority": 0.030896
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0036.txt",
+      "T": 257,
+      "clock_calls": 15448,
+      "rng": 8623724380619338343,
+      "cpu_sec": {
+        "v058_joint_priority": 0.031678,
+        "v072_joint_refactored": 0.031342
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0037.txt",
+      "T": 307,
+      "clock_calls": 15449,
+      "rng": 11813411876732124716,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.032253,
+        "v058_joint_priority": 0.032433
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0038.txt",
+      "T": 151,
+      "clock_calls": 15448,
+      "rng": 14646377118730299288,
+      "cpu_sec": {
+        "v058_joint_priority": 0.035455,
+        "v072_joint_refactored": 0.035475
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0039.txt",
+      "T": 129,
+      "clock_calls": 15448,
+      "rng": 3794286223026742527,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.065658,
+        "v058_joint_priority": 0.065577
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0040.txt",
+      "T": 154,
+      "clock_calls": 15448,
+      "rng": 2847702860352850241,
+      "cpu_sec": {
+        "v058_joint_priority": 0.060435,
+        "v072_joint_refactored": 0.060199
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0041.txt",
+      "T": 100,
+      "clock_calls": 15449,
+      "rng": 2687750740414267591,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.040356,
+        "v058_joint_priority": 0.040203
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0042.txt",
+      "T": 393,
+      "clock_calls": 15449,
+      "rng": 7585687943660155041,
+      "cpu_sec": {
+        "v058_joint_priority": 0.039019,
+        "v072_joint_refactored": 0.039052
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0043.txt",
+      "T": 187,
+      "clock_calls": 15448,
+      "rng": 1751745050267571544,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.04283,
+        "v058_joint_priority": 0.042082
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0044.txt",
+      "T": 209,
+      "clock_calls": 15448,
+      "rng": 7368168885013490511,
+      "cpu_sec": {
+        "v058_joint_priority": 0.032374,
+        "v072_joint_refactored": 0.031889
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0045.txt",
+      "T": 249,
+      "clock_calls": 15448,
+      "rng": 7859903065983135187,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.033078,
+        "v058_joint_priority": 0.031969
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0046.txt",
+      "T": 175,
+      "clock_calls": 15448,
+      "rng": 2748716893666707743,
+      "cpu_sec": {
+        "v058_joint_priority": 0.032668,
+        "v072_joint_refactored": 0.030571
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0047.txt",
+      "T": 404,
+      "clock_calls": 15449,
+      "rng": 16398553106171989333,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.034722,
+        "v058_joint_priority": 0.034814
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0048.txt",
+      "T": 288,
+      "clock_calls": 15449,
+      "rng": 13026949374490598344,
+      "cpu_sec": {
+        "v058_joint_priority": 0.037205,
+        "v072_joint_refactored": 0.037058
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0049.txt",
+      "T": 250,
+      "clock_calls": 15448,
+      "rng": 11394044191984394650,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.033958,
+        "v058_joint_priority": 0.034124
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0050.txt",
+      "T": 153,
+      "clock_calls": 15448,
+      "rng": 9570633546031149424,
+      "cpu_sec": {
+        "v058_joint_priority": 0.034942,
+        "v072_joint_refactored": 0.034974
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0051.txt",
+      "T": 142,
+      "clock_calls": 15448,
+      "rng": 53655086480348803,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.038791,
+        "v058_joint_priority": 0.038844
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0052.txt",
+      "T": 242,
+      "clock_calls": 15448,
+      "rng": 16125843705564069257,
+      "cpu_sec": {
+        "v058_joint_priority": 0.029252,
+        "v072_joint_refactored": 0.029115
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0053.txt",
+      "T": 148,
+      "clock_calls": 15448,
+      "rng": 7309024074963341271,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.03936,
+        "v058_joint_priority": 0.03936
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0054.txt",
+      "T": 355,
+      "clock_calls": 15447,
+      "rng": 18164391718335655767,
+      "cpu_sec": {
+        "v058_joint_priority": 0.030019,
+        "v072_joint_refactored": 0.030091
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0055.txt",
+      "T": 343,
+      "clock_calls": 15446,
+      "rng": 17149729349525465916,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.039231,
+        "v058_joint_priority": 0.039734
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0056.txt",
+      "T": 244,
+      "clock_calls": 15448,
+      "rng": 10216028156302167046,
+      "cpu_sec": {
+        "v058_joint_priority": 0.025941,
+        "v072_joint_refactored": 0.025868
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0057.txt",
+      "T": 291,
+      "clock_calls": 15448,
+      "rng": 6913006363100877366,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.028926,
+        "v058_joint_priority": 0.02909
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0058.txt",
+      "T": 370,
+      "clock_calls": 15449,
+      "rng": 4485782771958779680,
+      "cpu_sec": {
+        "v058_joint_priority": 0.030456,
+        "v072_joint_refactored": 0.030509
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0059.txt",
+      "T": 70,
+      "clock_calls": 15449,
+      "rng": 7089512981449377478,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.049517,
+        "v058_joint_priority": 0.049912
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0060.txt",
+      "T": 171,
+      "clock_calls": 15448,
+      "rng": 18049722316905681991,
+      "cpu_sec": {
+        "v058_joint_priority": 0.063721,
+        "v072_joint_refactored": 0.063306
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0061.txt",
+      "T": 348,
+      "clock_calls": 15447,
+      "rng": 145797785323885874,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.029965,
+        "v058_joint_priority": 0.030062
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0062.txt",
+      "T": 215,
+      "clock_calls": 15448,
+      "rng": 14547826041757876553,
+      "cpu_sec": {
+        "v058_joint_priority": 0.028366,
+        "v072_joint_refactored": 0.028165
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0063.txt",
+      "T": 316,
+      "clock_calls": 15449,
+      "rng": 3944798385066496530,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.039004,
+        "v058_joint_priority": 0.039228
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0064.txt",
+      "T": 233,
+      "clock_calls": 15448,
+      "rng": 12445813267836837176,
+      "cpu_sec": {
+        "v058_joint_priority": 0.025805,
+        "v072_joint_refactored": 0.02584
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0065.txt",
+      "T": 136,
+      "clock_calls": 15448,
+      "rng": 6947098268996665373,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.055688,
+        "v058_joint_priority": 0.055394
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0066.txt",
+      "T": 482,
+      "clock_calls": 15449,
+      "rng": 227268078283231065,
+      "cpu_sec": {
+        "v058_joint_priority": 0.030931,
+        "v072_joint_refactored": 0.030936
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0067.txt",
+      "T": 248,
+      "clock_calls": 15448,
+      "rng": 13025484945012178336,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.037078,
+        "v058_joint_priority": 0.037209
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0068.txt",
+      "T": 524,
+      "clock_calls": 15449,
+      "rng": 16545215194077194312,
+      "cpu_sec": {
+        "v058_joint_priority": 0.036044,
+        "v072_joint_refactored": 0.035961
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0069.txt",
+      "T": 146,
+      "clock_calls": 15448,
+      "rng": 11179843294237759606,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.036264,
+        "v058_joint_priority": 0.036348
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0070.txt",
+      "T": 518,
+      "clock_calls": 15449,
+      "rng": 2135634265882399380,
+      "cpu_sec": {
+        "v058_joint_priority": 0.039656,
+        "v072_joint_refactored": 0.039652
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0071.txt",
+      "T": 552,
+      "clock_calls": 15449,
+      "rng": 11715183258854619279,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.028491,
+        "v058_joint_priority": 0.028477
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0072.txt",
+      "T": 96,
+      "clock_calls": 15448,
+      "rng": 16056959874367632372,
+      "cpu_sec": {
+        "v058_joint_priority": 0.053969,
+        "v072_joint_refactored": 0.053895
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0073.txt",
+      "T": 279,
+      "clock_calls": 15447,
+      "rng": 3454531801863443007,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.031178,
+        "v058_joint_priority": 0.031203
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0074.txt",
+      "T": 112,
+      "clock_calls": 15447,
+      "rng": 17595806318010988752,
+      "cpu_sec": {
+        "v058_joint_priority": 0.034032,
+        "v072_joint_refactored": 0.034062
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0075.txt",
+      "T": 441,
+      "clock_calls": 15449,
+      "rng": 8105909161076687786,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.038315,
+        "v058_joint_priority": 0.038521
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0076.txt",
+      "T": 307,
+      "clock_calls": 15449,
+      "rng": 5265659034535979360,
+      "cpu_sec": {
+        "v058_joint_priority": 0.028178,
+        "v072_joint_refactored": 0.028061
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0077.txt",
+      "T": 98,
+      "clock_calls": 15449,
+      "rng": 8622387188083302037,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.041988,
+        "v058_joint_priority": 0.041648
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0078.txt",
+      "T": 322,
+      "clock_calls": 15449,
+      "rng": 15687340096045798920,
+      "cpu_sec": {
+        "v058_joint_priority": 0.042093,
+        "v072_joint_refactored": 0.041866
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0079.txt",
+      "T": 73,
+      "clock_calls": 15449,
+      "rng": 2129554885412077451,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.04337,
+        "v058_joint_priority": 0.043462
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0080.txt",
+      "T": 218,
+      "clock_calls": 15448,
+      "rng": 11653668442880241768,
+      "cpu_sec": {
+        "v058_joint_priority": 0.034,
+        "v072_joint_refactored": 0.034339
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0081.txt",
+      "T": 450,
+      "clock_calls": 15449,
+      "rng": 7578313830332348276,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.045564,
+        "v058_joint_priority": 0.045343
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0082.txt",
+      "T": 386,
+      "clock_calls": 15449,
+      "rng": 3348973233440120557,
+      "cpu_sec": {
+        "v058_joint_priority": 0.029902,
+        "v072_joint_refactored": 0.030074
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0083.txt",
+      "T": 217,
+      "clock_calls": 15448,
+      "rng": 4786780332430206246,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.024683,
+        "v058_joint_priority": 0.025122
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0084.txt",
+      "T": 386,
+      "clock_calls": 15449,
+      "rng": 9169332100105003995,
+      "cpu_sec": {
+        "v058_joint_priority": 0.037952,
+        "v072_joint_refactored": 0.037156
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0085.txt",
+      "T": 226,
+      "clock_calls": 15448,
+      "rng": 16496190513991257261,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.031888,
+        "v058_joint_priority": 0.032123
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0086.txt",
+      "T": 103,
+      "clock_calls": 15449,
+      "rng": 2949753694089565441,
+      "cpu_sec": {
+        "v058_joint_priority": 0.031306,
+        "v072_joint_refactored": 0.031188
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0087.txt",
+      "T": 132,
+      "clock_calls": 15448,
+      "rng": 2440499549866955219,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.049799,
+        "v058_joint_priority": 0.049816
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0088.txt",
+      "T": 193,
+      "clock_calls": 15448,
+      "rng": 17964414686416298742,
+      "cpu_sec": {
+        "v058_joint_priority": 0.035527,
+        "v072_joint_refactored": 0.035185
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0089.txt",
+      "T": 442,
+      "clock_calls": 15449,
+      "rng": 7237488796343503925,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.04032,
+        "v058_joint_priority": 0.040765
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0090.txt",
+      "T": 165,
+      "clock_calls": 15448,
+      "rng": 1787246614079344641,
+      "cpu_sec": {
+        "v058_joint_priority": 0.064908,
+        "v072_joint_refactored": 0.064694
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0091.txt",
+      "T": 115,
+      "clock_calls": 15448,
+      "rng": 830887281752509230,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.030056,
+        "v058_joint_priority": 0.030231
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0092.txt",
+      "T": 708,
+      "clock_calls": 15449,
+      "rng": 10452879407132369522,
+      "cpu_sec": {
+        "v058_joint_priority": 0.043493,
+        "v072_joint_refactored": 0.043276
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0093.txt",
+      "T": 88,
+      "clock_calls": 15449,
+      "rng": 17141554388674200916,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.039181,
+        "v058_joint_priority": 0.039174
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0094.txt",
+      "T": 132,
+      "clock_calls": 15448,
+      "rng": 5141384583449110347,
+      "cpu_sec": {
+        "v058_joint_priority": 0.039726,
+        "v072_joint_refactored": 0.039367
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0095.txt",
+      "T": 296,
+      "clock_calls": 15448,
+      "rng": 10037621793682373676,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.03944,
+        "v058_joint_priority": 0.039279
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0096.txt",
+      "T": 93,
+      "clock_calls": 15449,
+      "rng": 1950738278934951626,
+      "cpu_sec": {
+        "v058_joint_priority": 0.037922,
+        "v072_joint_refactored": 0.039135
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0097.txt",
+      "T": 673,
+      "clock_calls": 15449,
+      "rng": 6907893793718681455,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.036653,
+        "v058_joint_priority": 0.037624
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0098.txt",
+      "T": 140,
+      "clock_calls": 15448,
+      "rng": 11101212583665565334,
+      "cpu_sec": {
+        "v058_joint_priority": 0.032291,
+        "v072_joint_refactored": 0.032375
+      }
+    },
+    {
+      "mode": "local",
+      "case": "0099.txt",
+      "T": 243,
+      "clock_calls": 15448,
+      "rng": 9963108733309716452,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.036688,
+        "v058_joint_priority": 0.035948
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0000.txt",
+      "T": 43,
+      "clock_calls": 19285,
+      "rng": 12923323390466155845,
+      "cpu_sec": {
+        "v058_joint_priority": 0.044142,
+        "v072_joint_refactored": 0.030021
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0001.txt",
+      "T": 112,
+      "clock_calls": 19305,
+      "rng": 2603348311924176731,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.076534,
+        "v058_joint_priority": 0.069525
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0002.txt",
+      "T": 121,
+      "clock_calls": 19305,
+      "rng": 2764183095364234378,
+      "cpu_sec": {
+        "v058_joint_priority": 0.043701,
+        "v072_joint_refactored": 0.044386
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0003.txt",
+      "T": 138,
+      "clock_calls": 19305,
+      "rng": 15839641713985451738,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.08736,
+        "v058_joint_priority": 0.086912
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0004.txt",
+      "T": 298,
+      "clock_calls": 19304,
+      "rng": 14980171019832683285,
+      "cpu_sec": {
+        "v058_joint_priority": 0.048836,
+        "v072_joint_refactored": 0.048183
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0005.txt",
+      "T": 712,
+      "clock_calls": 19303,
+      "rng": 16234321694956593440,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.045966,
+        "v058_joint_priority": 0.045895
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0006.txt",
+      "T": 140,
+      "clock_calls": 19304,
+      "rng": 1828569341287997314,
+      "cpu_sec": {
+        "v058_joint_priority": 0.046988,
+        "v072_joint_refactored": 0.047177
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0007.txt",
+      "T": 123,
+      "clock_calls": 19305,
+      "rng": 6746398068850074220,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.037264,
+        "v058_joint_priority": 0.037097
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0008.txt",
+      "T": 139,
+      "clock_calls": 19304,
+      "rng": 15718677518773951976,
+      "cpu_sec": {
+        "v058_joint_priority": 0.047836,
+        "v072_joint_refactored": 0.047771
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0009.txt",
+      "T": 90,
+      "clock_calls": 19308,
+      "rng": 4145935451563292299,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.067357,
+        "v058_joint_priority": 0.068715
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0010.txt",
+      "T": 76,
+      "clock_calls": 19295,
+      "rng": 3049724365205062297,
+      "cpu_sec": {
+        "v058_joint_priority": 0.038386,
+        "v072_joint_refactored": 0.040364
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0011.txt",
+      "T": 192,
+      "clock_calls": 19304,
+      "rng": 8353066660574040837,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.044562,
+        "v058_joint_priority": 0.042356
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0012.txt",
+      "T": 139,
+      "clock_calls": 19303,
+      "rng": 18182579578087377660,
+      "cpu_sec": {
+        "v058_joint_priority": 0.062435,
+        "v072_joint_refactored": 0.061032
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0013.txt",
+      "T": 205,
+      "clock_calls": 19304,
+      "rng": 8689916258739963792,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.048232,
+        "v058_joint_priority": 0.048402
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0014.txt",
+      "T": 449,
+      "clock_calls": 19303,
+      "rng": 12894948364281472425,
+      "cpu_sec": {
+        "v058_joint_priority": 0.045294,
+        "v072_joint_refactored": 0.045345
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0015.txt",
+      "T": 720,
+      "clock_calls": 19303,
+      "rng": 13163835452899199886,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.054336,
+        "v058_joint_priority": 0.054007
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0016.txt",
+      "T": 144,
+      "clock_calls": 19304,
+      "rng": 977035271899337493,
+      "cpu_sec": {
+        "v058_joint_priority": 0.048545,
+        "v072_joint_refactored": 0.048363
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0017.txt",
+      "T": 239,
+      "clock_calls": 19304,
+      "rng": 13412165992369192476,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.038808,
+        "v058_joint_priority": 0.04075
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0018.txt",
+      "T": 81,
+      "clock_calls": 19306,
+      "rng": 1154356111324704487,
+      "cpu_sec": {
+        "v058_joint_priority": 0.049665,
+        "v072_joint_refactored": 0.05051
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0019.txt",
+      "T": 806,
+      "clock_calls": 19303,
+      "rng": 11912297521169517646,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.059538,
+        "v058_joint_priority": 0.059059
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0020.txt",
+      "T": 171,
+      "clock_calls": 19304,
+      "rng": 10793521115498347663,
+      "cpu_sec": {
+        "v058_joint_priority": 0.035331,
+        "v072_joint_refactored": 0.034969
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0021.txt",
+      "T": 71,
+      "clock_calls": 19292,
+      "rng": 11715626936668286005,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.058168,
+        "v058_joint_priority": 0.057552
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0022.txt",
+      "T": 73,
+      "clock_calls": 19299,
+      "rng": 8403758637028985537,
+      "cpu_sec": {
+        "v058_joint_priority": 0.053621,
+        "v072_joint_refactored": 0.052811
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0023.txt",
+      "T": 96,
+      "clock_calls": 19305,
+      "rng": 9341454432919770636,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.057119,
+        "v058_joint_priority": 0.057182
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0024.txt",
+      "T": 130,
+      "clock_calls": 19304,
+      "rng": 8675692507735088330,
+      "cpu_sec": {
+        "v058_joint_priority": 0.066137,
+        "v072_joint_refactored": 0.065898
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0025.txt",
+      "T": 58,
+      "clock_calls": 19285,
+      "rng": 817038603995375818,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.05719,
+        "v058_joint_priority": 0.057315
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0026.txt",
+      "T": 138,
+      "clock_calls": 19304,
+      "rng": 13461398435026612970,
+      "cpu_sec": {
+        "v058_joint_priority": 0.070752,
+        "v072_joint_refactored": 0.070899
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0027.txt",
+      "T": 165,
+      "clock_calls": 19304,
+      "rng": 6536976622798042294,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.037285,
+        "v058_joint_priority": 0.037201
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0028.txt",
+      "T": 313,
+      "clock_calls": 19305,
+      "rng": 16269856721075111517,
+      "cpu_sec": {
+        "v058_joint_priority": 0.037265,
+        "v072_joint_refactored": 0.03712
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0029.txt",
+      "T": 295,
+      "clock_calls": 19304,
+      "rng": 9222907381155737872,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.046335,
+        "v058_joint_priority": 0.046303
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0030.txt",
+      "T": 510,
+      "clock_calls": 19303,
+      "rng": 13841747601399661150,
+      "cpu_sec": {
+        "v058_joint_priority": 0.041281,
+        "v072_joint_refactored": 0.041405
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0031.txt",
+      "T": 135,
+      "clock_calls": 19304,
+      "rng": 9703694554022640780,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.056993,
+        "v058_joint_priority": 0.057769
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0032.txt",
+      "T": 163,
+      "clock_calls": 19304,
+      "rng": 18306822386757299561,
+      "cpu_sec": {
+        "v058_joint_priority": 0.060045,
+        "v072_joint_refactored": 0.060192
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0033.txt",
+      "T": 156,
+      "clock_calls": 19304,
+      "rng": 891883603572873869,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.040587,
+        "v058_joint_priority": 0.040266
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0034.txt",
+      "T": 486,
+      "clock_calls": 19303,
+      "rng": 8857035778326400117,
+      "cpu_sec": {
+        "v058_joint_priority": 0.041737,
+        "v072_joint_refactored": 0.041841
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0035.txt",
+      "T": 64,
+      "clock_calls": 19302,
+      "rng": 7445499573644122815,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.035623,
+        "v058_joint_priority": 0.035575
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0036.txt",
+      "T": 257,
+      "clock_calls": 19304,
+      "rng": 11283223454017511136,
+      "cpu_sec": {
+        "v058_joint_priority": 0.033922,
+        "v072_joint_refactored": 0.033764
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0037.txt",
+      "T": 296,
+      "clock_calls": 19304,
+      "rng": 2439694176627381199,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.05139,
+        "v058_joint_priority": 0.051488
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0038.txt",
+      "T": 146,
+      "clock_calls": 19304,
+      "rng": 10107665662287670115,
+      "cpu_sec": {
+        "v058_joint_priority": 0.0462,
+        "v072_joint_refactored": 0.046226
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0039.txt",
+      "T": 126,
+      "clock_calls": 19305,
+      "rng": 16507859043170152177,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.084944,
+        "v058_joint_priority": 0.085164
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0040.txt",
+      "T": 151,
+      "clock_calls": 19304,
+      "rng": 738500709342751862,
+      "cpu_sec": {
+        "v058_joint_priority": 0.078547,
+        "v072_joint_refactored": 0.07847
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0041.txt",
+      "T": 99,
+      "clock_calls": 19306,
+      "rng": 7058372691275993312,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.051337,
+        "v058_joint_priority": 0.051446
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0042.txt",
+      "T": 388,
+      "clock_calls": 19305,
+      "rng": 10713647206647599797,
+      "cpu_sec": {
+        "v058_joint_priority": 0.048118,
+        "v072_joint_refactored": 0.048118
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0043.txt",
+      "T": 191,
+      "clock_calls": 19304,
+      "rng": 13228313603397467762,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.057971,
+        "v058_joint_priority": 0.058251
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0044.txt",
+      "T": 210,
+      "clock_calls": 19304,
+      "rng": 3063593523041617783,
+      "cpu_sec": {
+        "v058_joint_priority": 0.046344,
+        "v072_joint_refactored": 0.046245
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0045.txt",
+      "T": 247,
+      "clock_calls": 19304,
+      "rng": 15053914499097445433,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.043533,
+        "v058_joint_priority": 0.043583
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0046.txt",
+      "T": 170,
+      "clock_calls": 19304,
+      "rng": 3072144588426738276,
+      "cpu_sec": {
+        "v058_joint_priority": 0.030508,
+        "v072_joint_refactored": 0.030621
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0047.txt",
+      "T": 405,
+      "clock_calls": 19305,
+      "rng": 6219736755726580196,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.050892,
+        "v058_joint_priority": 0.050874
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0048.txt",
+      "T": 264,
+      "clock_calls": 19304,
+      "rng": 11115950759660947843,
+      "cpu_sec": {
+        "v058_joint_priority": 0.039851,
+        "v072_joint_refactored": 0.039857
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0049.txt",
+      "T": 234,
+      "clock_calls": 19304,
+      "rng": 6030765058681750071,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.041009,
+        "v058_joint_priority": 0.041191
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0050.txt",
+      "T": 151,
+      "clock_calls": 19304,
+      "rng": 10687255080118235029,
+      "cpu_sec": {
+        "v058_joint_priority": 0.047999,
+        "v072_joint_refactored": 0.047953
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0051.txt",
+      "T": 135,
+      "clock_calls": 19304,
+      "rng": 10560161581933209449,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.045235,
+        "v058_joint_priority": 0.045295
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0052.txt",
+      "T": 231,
+      "clock_calls": 19304,
+      "rng": 12240360731686597506,
+      "cpu_sec": {
+        "v058_joint_priority": 0.039059,
+        "v072_joint_refactored": 0.039464
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0053.txt",
+      "T": 147,
+      "clock_calls": 19304,
+      "rng": 13892594294101927025,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.052009,
+        "v058_joint_priority": 0.052019
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0054.txt",
+      "T": 363,
+      "clock_calls": 19304,
+      "rng": 13211316359645996284,
+      "cpu_sec": {
+        "v058_joint_priority": 0.036693,
+        "v072_joint_refactored": 0.036854
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0055.txt",
+      "T": 358,
+      "clock_calls": 19304,
+      "rng": 620431089958425762,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.041077,
+        "v058_joint_priority": 0.041161
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0056.txt",
+      "T": 247,
+      "clock_calls": 19304,
+      "rng": 11301973244851978452,
+      "cpu_sec": {
+        "v058_joint_priority": 0.036454,
+        "v072_joint_refactored": 0.036147
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0057.txt",
+      "T": 287,
+      "clock_calls": 19305,
+      "rng": 8194004966260328497,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.035945,
+        "v058_joint_priority": 0.036025
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0058.txt",
+      "T": 359,
+      "clock_calls": 19304,
+      "rng": 15652047536534691271,
+      "cpu_sec": {
+        "v058_joint_priority": 0.031524,
+        "v072_joint_refactored": 0.031393
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0059.txt",
+      "T": 73,
+      "clock_calls": 19300,
+      "rng": 10243061524279699301,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.062204,
+        "v058_joint_priority": 0.062125
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0060.txt",
+      "T": 167,
+      "clock_calls": 19304,
+      "rng": 17870417173821923445,
+      "cpu_sec": {
+        "v058_joint_priority": 0.070227,
+        "v072_joint_refactored": 0.069843
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0061.txt",
+      "T": 320,
+      "clock_calls": 19304,
+      "rng": 16496774973986724585,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.032182,
+        "v058_joint_priority": 0.032064
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0062.txt",
+      "T": 205,
+      "clock_calls": 19304,
+      "rng": 4205303675399127555,
+      "cpu_sec": {
+        "v058_joint_priority": 0.042342,
+        "v072_joint_refactored": 0.04247
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0063.txt",
+      "T": 300,
+      "clock_calls": 19304,
+      "rng": 18114681121726046267,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.036503,
+        "v058_joint_priority": 0.03645
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0064.txt",
+      "T": 223,
+      "clock_calls": 19303,
+      "rng": 8568607535704882872,
+      "cpu_sec": {
+        "v058_joint_priority": 0.031063,
+        "v072_joint_refactored": 0.031093
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0065.txt",
+      "T": 141,
+      "clock_calls": 19304,
+      "rng": 1042909716149625797,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.072612,
+        "v058_joint_priority": 0.072742
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0066.txt",
+      "T": 485,
+      "clock_calls": 19303,
+      "rng": 11025618159018044754,
+      "cpu_sec": {
+        "v058_joint_priority": 0.035809,
+        "v072_joint_refactored": 0.035603
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0067.txt",
+      "T": 226,
+      "clock_calls": 19304,
+      "rng": 4006107423169481315,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.049272,
+        "v058_joint_priority": 0.04935
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0068.txt",
+      "T": 500,
+      "clock_calls": 19303,
+      "rng": 5715270642411385717,
+      "cpu_sec": {
+        "v058_joint_priority": 0.051105,
+        "v072_joint_refactored": 0.050577
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0069.txt",
+      "T": 154,
+      "clock_calls": 19304,
+      "rng": 15700253739126116768,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.052384,
+        "v058_joint_priority": 0.052465
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0070.txt",
+      "T": 494,
+      "clock_calls": 19303,
+      "rng": 12644846868763268205,
+      "cpu_sec": {
+        "v058_joint_priority": 0.048397,
+        "v072_joint_refactored": 0.048356
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0071.txt",
+      "T": 539,
+      "clock_calls": 19303,
+      "rng": 16677440740275696569,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.03718,
+        "v058_joint_priority": 0.037167
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0072.txt",
+      "T": 99,
+      "clock_calls": 19305,
+      "rng": 16758697837307680915,
+      "cpu_sec": {
+        "v058_joint_priority": 0.061513,
+        "v072_joint_refactored": 0.061397
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0073.txt",
+      "T": 278,
+      "clock_calls": 19304,
+      "rng": 7252915528305636716,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.032792,
+        "v058_joint_priority": 0.032901
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0074.txt",
+      "T": 108,
+      "clock_calls": 19305,
+      "rng": 3631127429481197833,
+      "cpu_sec": {
+        "v058_joint_priority": 0.052383,
+        "v072_joint_refactored": 0.052353
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0075.txt",
+      "T": 436,
+      "clock_calls": 19303,
+      "rng": 212726990945658284,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.044749,
+        "v058_joint_priority": 0.044795
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0076.txt",
+      "T": 288,
+      "clock_calls": 19304,
+      "rng": 1166545532306716372,
+      "cpu_sec": {
+        "v058_joint_priority": 0.036039,
+        "v072_joint_refactored": 0.036004
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0077.txt",
+      "T": 99,
+      "clock_calls": 19306,
+      "rng": 14236206138383549301,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.056137,
+        "v058_joint_priority": 0.05623
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0078.txt",
+      "T": 305,
+      "clock_calls": 19304,
+      "rng": 15553326772609359458,
+      "cpu_sec": {
+        "v058_joint_priority": 0.040247,
+        "v072_joint_refactored": 0.040015
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0079.txt",
+      "T": 73,
+      "clock_calls": 19285,
+      "rng": 3516043851660834167,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.055273,
+        "v058_joint_priority": 0.055399
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0080.txt",
+      "T": 210,
+      "clock_calls": 19304,
+      "rng": 6834415652149615437,
+      "cpu_sec": {
+        "v058_joint_priority": 0.037249,
+        "v072_joint_refactored": 0.03724
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0081.txt",
+      "T": 453,
+      "clock_calls": 19303,
+      "rng": 8826303694047992763,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.046365,
+        "v058_joint_priority": 0.046032
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0082.txt",
+      "T": 369,
+      "clock_calls": 19304,
+      "rng": 15266630489669950113,
+      "cpu_sec": {
+        "v058_joint_priority": 0.033999,
+        "v072_joint_refactored": 0.033813
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0083.txt",
+      "T": 201,
+      "clock_calls": 19304,
+      "rng": 338781542181952206,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.032552,
+        "v058_joint_priority": 0.032775
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0084.txt",
+      "T": 380,
+      "clock_calls": 19304,
+      "rng": 7177038923948436668,
+      "cpu_sec": {
+        "v058_joint_priority": 0.039423,
+        "v072_joint_refactored": 0.039433
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0085.txt",
+      "T": 241,
+      "clock_calls": 19304,
+      "rng": 5793164494525872681,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.037858,
+        "v058_joint_priority": 0.038012
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0086.txt",
+      "T": 105,
+      "clock_calls": 19305,
+      "rng": 17763863936598148801,
+      "cpu_sec": {
+        "v058_joint_priority": 0.038425,
+        "v072_joint_refactored": 0.037556
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0087.txt",
+      "T": 122,
+      "clock_calls": 19304,
+      "rng": 9051902159450071166,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.064551,
+        "v058_joint_priority": 0.064796
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0088.txt",
+      "T": 176,
+      "clock_calls": 19304,
+      "rng": 16919859055316819370,
+      "cpu_sec": {
+        "v058_joint_priority": 0.039774,
+        "v072_joint_refactored": 0.039758
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0089.txt",
+      "T": 440,
+      "clock_calls": 19302,
+      "rng": 17107216562665759347,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.042371,
+        "v058_joint_priority": 0.042483
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0090.txt",
+      "T": 169,
+      "clock_calls": 19304,
+      "rng": 4441427803969291710,
+      "cpu_sec": {
+        "v058_joint_priority": 0.07654,
+        "v072_joint_refactored": 0.076381
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0091.txt",
+      "T": 111,
+      "clock_calls": 19305,
+      "rng": 18011140698132163276,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.041586,
+        "v058_joint_priority": 0.041716
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0092.txt",
+      "T": 692,
+      "clock_calls": 19303,
+      "rng": 405756739158774878,
+      "cpu_sec": {
+        "v058_joint_priority": 0.047821,
+        "v072_joint_refactored": 0.04778
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0093.txt",
+      "T": 88,
+      "clock_calls": 19306,
+      "rng": 16081188892794054705,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.053651,
+        "v058_joint_priority": 0.053586
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0094.txt",
+      "T": 128,
+      "clock_calls": 19305,
+      "rng": 17566076379257402984,
+      "cpu_sec": {
+        "v058_joint_priority": 0.05835,
+        "v072_joint_refactored": 0.057961
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0095.txt",
+      "T": 288,
+      "clock_calls": 19304,
+      "rng": 16556032281918158997,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.036261,
+        "v058_joint_priority": 0.036369
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0096.txt",
+      "T": 90,
+      "clock_calls": 19305,
+      "rng": 9882794552448300327,
+      "cpu_sec": {
+        "v058_joint_priority": 0.050556,
+        "v072_joint_refactored": 0.050392
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0097.txt",
+      "T": 636,
+      "clock_calls": 19303,
+      "rng": 16661668377013735270,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.050012,
+        "v058_joint_priority": 0.050039
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0098.txt",
+      "T": 135,
+      "clock_calls": 19305,
+      "rng": 11172919039235559212,
+      "cpu_sec": {
+        "v058_joint_priority": 0.048394,
+        "v072_joint_refactored": 0.048144
+      }
+    },
+    {
+      "mode": "production",
+      "case": "0099.txt",
+      "T": 226,
+      "clock_calls": 19302,
+      "rng": 10564026194563179495,
+      "cpu_sec": {
+        "v072_joint_refactored": 0.048584,
+        "v058_joint_priority": 0.048177
+      }
+    }
+  ]
+}

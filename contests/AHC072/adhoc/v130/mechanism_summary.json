@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "source_sha256": "71369a3d60d391547c859f15a59d6a9f57c77b59d53df5d9be03a2a59a81f891",
+  "preprocessing_outside_change_identical": true,
+  "completed_at": "2026-10-04T14:49:15.112779+00:00",
+  "runs": [
+    {
+      "case": 2,
+      "mode": "local",
+      "seconds": 1.940707667003153,
+      "T": 196,
+      "E": 0,
+      "S": 196,
+      "complete": true
+    },
+    {
+      "case": 2,
+      "mode": "judge",
+      "seconds": 2.2106662090081954,
+      "T": 202,
+      "E": 0,
+      "S": 202,
+      "complete": true
+    },
+    {
+      "case": 3,
+      "mode": "local",
+      "seconds": 1.5608636249962728,
+      "T": 230,
+      "E": 0,
+      "S": 230,
+      "complete": true
+    },
+    {
+      "case": 3,
+      "mode": "judge",
+      "seconds": 1.896429291999084,
+      "T": 223,
+      "E": 0,
+      "S": 223,
+      "complete": true
+    },
+    {
+      "case": 7,
+      "mode": "local",
+      "seconds": 1.5654584589938167,
+      "T": 510,
+      "E": 0,
+      "S": 510,
+      "complete": true
+    },
+    {
+      "case": 7,
+      "mode": "judge",
+      "seconds": 1.8996254579978995,
+      "T": 510,
+      "E": 0,
+      "S": 510,
+      "complete": true
+    },
+    {
+      "case": 10,
+      "mode": "local",
+      "seconds": 1.5618957920087269,
+      "T": 333,
+      "E": 0,
+      "S": 333,
+      "complete": true
+    },
+    {
+      "case": 10,
+      "mode": "judge",
+      "seconds": 1.896428250009194,
+      "T": 329,
+      "E": 0,
+      "S": 329,
+      "complete": true
+    }
+  ]
+}

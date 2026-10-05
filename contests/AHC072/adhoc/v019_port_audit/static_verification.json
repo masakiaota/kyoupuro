@@ -1,0 +1,31 @@
+{
+  "original_sha256": "a06e207123e827deaf94a6c8785dc21a0d8bd7292f7d452dbadf0d98bc898301",
+  "solver_sha256": "1d825e06d51da0f6d80df1a7022e5062606ec9b9eb7171238495b8ee546f5600",
+  "compiler": "g++-15 (Homebrew GCC 15.1.0) 15.1.0",
+  "flags": [
+    "-std=gnu++23",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-march=native",
+    "-pthread",
+    "-ftrivial-auto-var-init=zero",
+    "-fopenmp"
+  ],
+  "preprocessing": "-E -P; full macro expansion",
+  "nonlocal_preprocessed_tokens_equal": true,
+  "solver_executions_during_audit": 0,
+  "nonlocal_assembly_equal_except_filename_symbol": true,
+  "assembly_differences": [
+    "file-derived static initializer symbol"
+  ],
+  "local_preprocessed_diff_reviewed": true,
+  "local_changes": [
+    "common time scaling, ratio 0.80, deadline 1.512 seconds",
+    "main-entry timer",
+    "phase measurement, counters, summary",
+    "independent final-output validation"
+  ],
+  "local_and_nonlocal_builds": "passed without warnings",
+  "normalized_nonlocal_assembly_sha256": "31d7badaf78359e70811a5a4d270dea6fb73b63561b4a006c94701538b1ba02c"
+}

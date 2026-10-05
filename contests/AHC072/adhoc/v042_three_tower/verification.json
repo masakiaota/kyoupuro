@@ -1,0 +1,189 @@
+{
+  "metadata": {
+    "original_T": 161,
+    "reference_T": 161,
+    "original_id": 0,
+    "reference_id": 0,
+    "ordinary_candidates": 191,
+    "ordinary_target_supersets": 0,
+    "expanded_target_supersets": 0,
+    "scenarios": 78,
+    "eligible_times": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      35
+    ],
+    "non_suffix_times": [
+      34
+    ],
+    "expected_trials": 57940,
+    "actual_trials": 57940,
+    "completed": 55,
+    "unique_outputs": 1,
+    "rng_unchanged": true,
+    "best": {
+      "initial": -1,
+      "one_tower": 161,
+      "three_towers": -1,
+      "two_towers": -1
+    }
+  },
+  "groups": {
+    "initial": {
+      "attempts": 3600,
+      "completed": 0,
+      "statuses": {
+        "insert_failed": 3600
+      },
+      "raw_improved": 0,
+      "polished_improved": 0,
+      "improved_with_motif": 0,
+      "best_T": null,
+      "best_trials": [],
+      "elapsed_us": 193370.0
+    },
+    "1_tower": {
+      "attempts": 1430,
+      "completed": 55,
+      "statuses": {
+        "insert_failed": 175,
+        "ok": 55,
+        "extract_failed": 1200
+      },
+      "raw_improved": 0,
+      "polished_improved": 0,
+      "improved_with_motif": 0,
+      "best_T": 161,
+      "best_trials": [
+        {
+          "scenario": "suffix_24_2",
+          "support": "0",
+          "ride": "1",
+          "order": "a2",
+          "status": "ok",
+          "inserted": "1",
+          "raw_T": "161",
+          "polished_T": "161",
+          "raw_id": "0",
+          "polished_id": "0",
+          "elapsed_us": "59.000",
+          "motif": []
+        },
+        {
+          "scenario": "suffix_24_2",
+          "support": "2",
+          "ride": "1",
+          "order": "a2",
+          "status": "ok",
+          "inserted": "1",
+          "raw_T": "161",
+          "polished_T": "161",
+          "raw_id": "0",
+          "polished_id": "0",
+          "elapsed_us": "45.000",
+          "motif": []
+        },
+        {
+          "scenario": "suffix_24_2",
+          "support": "8",
+          "ride": "1",
+          "order": "a2",
+          "status": "ok",
+          "inserted": "1",
+          "raw_T": "161",
+          "polished_T": "161",
+          "raw_id": "0",
+          "polished_id": "0",
+          "elapsed_us": "35.000",
+          "motif": []
+        },
+        {
+          "scenario": "suffix_24_2",
+          "support": "5",
+          "ride": "4",
+          "order": "a2",
+          "status": "ok",
+          "inserted": "1",
+          "raw_T": "161",
+          "polished_T": "161",
+          "raw_id": "0",
+          "polished_id": "0",
+          "elapsed_us": "29.000",
+          "motif": []
+        },
+        {
+          "scenario": "suffix_24_2",
+          "support": "5",
+          "ride": "1",
+          "order": "a2",
+          "status": "ok",
+          "inserted": "1",
+          "raw_T": "161",
+          "polished_T": "161",
+          "raw_id": "0",
+          "polished_id": "0",
+          "elapsed_us": "32.000",
+          "motif": []
+        }
+      ],
+      "elapsed_us": 2527.0
+    },
+    "2_tower": {
+      "attempts": 13310,
+      "completed": 0,
+      "statuses": {
+        "insert_failed": 710,
+        "extract_failed": 12600
+      },
+      "raw_improved": 0,
+      "polished_improved": 0,
+      "improved_with_motif": 0,
+      "best_T": null,
+      "best_trials": [],
+      "elapsed_us": 4303.0
+    },
+    "3_tower": {
+      "attempts": 39600,
+      "completed": 0,
+      "statuses": {
+        "insert_failed": 7200,
+        "extract_failed": 32400
+      },
+      "raw_improved": 0,
+      "polished_improved": 0,
+      "improved_with_motif": 0,
+      "best_T": null,
+      "best_trials": [],
+      "elapsed_us": 38607.0
+    }
+  },
+  "strict_three_tower_effect": false,
+  "independently_validated_outputs": 1,
+  "official_best_scores": {
+    "0": 161
+  },
+  "v039_motif": [],
+  "v022_motif": [
+    {
+      "turn": 71,
+      "source": [
+        14,
+        15
+      ],
+      "destination": [
+        11,
+        15
+      ],
+      "support": "aa",
+      "moving": "hjche"
+    }
+  ]
+}

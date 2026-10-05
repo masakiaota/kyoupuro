@@ -1,0 +1,181 @@
+// 採取器だけで使う。子プロセスはfork時点の全メモリを継承する。
+void validate_output(const vector<Move>& answer);
+const char* nn_env=getenv("NN_TEACHER_DIR");
+const bool nn_enabled=nn_env && *nn_env;
+const string nn_directory=nn_enabled?nn_env:"";
+bool nn_child=false,nn_first_done=false;
+int nn_next_phase=0,nn_phase=0,nn_rank=0,nn_first_T=0,nn_first_best_T=0;
+bool nn_first_completed=false;
+double nn_begin=0,nn_deadline=0,nn_first_elapsed=0,nn_last_accept=0;
+uint64_t nn_snapshot_hash=0,nn_candidate_hash=0,nn_saved_rng=0;
+array<double,32> nn_x{};
+string nn_first_outcome="unfinished";
+
+void nn_outcome(const char* s){if(nn_child&&!nn_first_done)nn_first_outcome=s;}
+uint64_t nn_mix(uint64_t h,uint64_t v){return (h^v)*1099511628211ULL;}
+uint64_t nn_moves_hash(const vector<Move>& a){
+    uint64_t h=1469598103934665603ULL;
+    for(auto m:a)h=nn_mix(h,uint64_t(m.p)|(uint64_t(m.k)<<16)|(uint64_t(m.d)<<24)|(uint64_t(m.l)<<32));
+    return h;
+}
+int64_t nn_error_count(){
+    int64_t n=0;
+    for(const auto& [k,v]:trace.counts)
+        if(k.find("error")!=string::npos||k.find("invalid")!=string::npos||k.find("recovery")!=string::npos)n+=v;
+    return n;
+}
+struct NnFirstTrialGuard {
+    const vector<Move>& current;const vector<Move>& best;
+    NnFirstTrialGuard(const vector<Move>& c,const vector<Move>& b):current(c),best(b){}
+    ~NnFirstTrialGuard(){
+        if(!nn_child||nn_first_done)return;
+        nn_first_T=int(current.size());nn_first_best_T=int(best.size());
+        nn_first_elapsed=time_keeper.exact_elapsed_sec()-nn_begin;
+        nn_first_completed=uncaught_exceptions()==0 && time_keeper.exact_elapsed_sec()<=nn_deadline;
+        nn_first_done=true;
+    }
+};
+void nn_write_moves(ostream& out,const vector<Move>& moves){
+    out<<'[';bool first=true;
+    for(auto m:moves){if(!first)out<<',';first=false;out<<'['<<m.p<<','<<int(m.k)<<','<<int(m.d)<<','<<int(m.l)<<']';}
+    out<<']';
+}
+[[noreturn]] void nn_finish(const vector<Move>& current,const vector<Move>& best,bool deadline_hit){
+    const double elapsed=time_keeper.exact_elapsed_sec()-nn_begin;
+    // 探索時計から外して独立再生する。assert無効のビルドは禁止する。
+    if(state_pool.free_count!=4||nn_error_count()!=0||nn_last_accept>nn_deadline)_exit(74);
+    validate_output(current);validate_output(best);
+    ofstream f(nn_directory+"/candidates.jsonl",ios::app);
+    f<<setprecision(17)<<"{\"phase\":"<<nn_phase<<",\"rank\":"<<nn_rank
+     <<",\"candidate_hash\":\""<<nn_candidate_hash<<"\",\"snapshot_hash\":\""<<nn_snapshot_hash
+     <<"\",\"rng\":\""<<nn_saved_rng<<"\",\"features\":[";
+    for(int i=0;i<32;i++){if(i)f<<',';f<<nn_x[i];}
+    f<<"],\"best_T\":"<<best.size()<<",\"current_T\":"<<current.size()
+     <<",\"best_hash\":\""<<nn_moves_hash(best)<<"\",\"current_hash\":\""<<nn_moves_hash(current)
+     <<"\",\"first_T\":"<<nn_first_T<<",\"first_best_T\":"<<nn_first_best_T
+     <<",\"first_completed\":"<<(nn_first_completed?"true":"false")
+     <<",\"first_outcome\":\""<<nn_first_outcome<<"\",\"first_elapsed\":"<<nn_first_elapsed
+     <<",\"elapsed\":"<<elapsed<<",\"budget\":"<<nn_deadline-nn_begin
+     <<",\"last_accept_elapsed\":"<<nn_last_accept-nn_begin
+     <<",\"deadline_hit\":"<<(deadline_hit?"true":"false")
+     <<",\"pool_free\":"<<state_pool.free_count<<",\"E\":0,\"errors\":"<<nn_error_count()<<"}\n";
+    f.close();if(!f)_exit(75);
+    _exit(0);
+}
+// NN_MEMBER_CODE
+    uint64_t nn_fingerprint(const vector<Move>& current,const vector<Move>& best)const{
+        uint64_t h=nn_mix(nn_moves_hash(current),nn_moves_hash(best));
+        h=nn_mix(h,rng.x);h=nn_mix(h,iteration);h=nn_mix(h,regular_selections);
+        h=nn_mix(h,support_weight);h=nn_mix(h,ride_weight);h=nn_mix(h,state_pool.free_count);
+        h=nn_mix(h,bit_cast<uint64_t>(paired_seconds));h=nn_mix(h,bit_cast<uint64_t>(block_seconds));
+        h=nn_mix(h,bit_cast<uint64_t>(search_reductions.heavy_seconds));h=nn_mix(h,search_reductions.next_heavy);
+        for(const auto& [key,value]:last_tried){h=nn_mix(h,key);h=nn_mix(h,value);}
+        for(const auto& c:candidates){h=nn_mix(h,c.hash);h=nn_mix(h,bit_cast<uint64_t>(c.priority));for(int id:c.ids)h=nn_mix(h,id);}
+        return h;
+    }
+    array<double,32> nn_features(const Removal& c,const vector<Move>& current,const vector<Move>& best,
+                                  int stagnant,double progress)const{
+        array<double,32>x{};const double n=c.ids.size(),T=max<size_t>(1,current.size());
+        x[0]=board_info.N;x[1]=board_info.K;x[2]=board_info.M;x[3]=board_info.cell_count;
+        x[4]=double(board_info.M)/board_info.cell_count;x[5]=current.size();x[6]=best.size();
+        x[7]=double(current.size())-double(best.size());x[8]=progress;x[9]=stagnant;
+        x[10]=n;x[11]=n/max(1,board_info.M);
+        array<int,13>colors{};array<bool,max_cells>selected{};
+        double sum=0,lo=1e9,hi=0;
+        for(int id:c.ids){
+            selected[id]=true;int color=int(board_info.initial[id]);++colors[color];
+            double d=board_info.floor_dist[id][board_info.nest_pos_by_code[color]];
+            sum+=d;lo=min(lo,d);hi=max(hi,d);
+        }
+        for(int count:colors)if(count){++x[12];x[13]=max(x[13],count/n);x[14]-=(count/n)*log(count/n);}
+        x[15]=removed_commands(c.ids);x[16]=c.broken_support_jumps;x[17]=x[15]/n;x[18]=x[16]/n;
+        x[19]=c.priority;x[20]=sum/n;x[21]=hi;x[22]=lo;
+        int pairs=0;for(int a:c.ids)for(int b:c.ids)if(a<b){
+            double d=board_info.floor_dist[a][b];x[23]+=d;x[24]=max(x[24],d);++pairs;
+        }
+        x[23]/=max(1,pairs);
+        int first=-1,last=-1,used=0,passengers=0;
+        for(int t=0;t<int(flights.size());t++){
+            int count=0;for(int i=0;i<flights[t].n;i++)count+=selected[flights[t].id[i]];
+            if(count){if(first<0)first=t;last=t;++used;passengers+=count;}
+        }
+        x[25]=first<0?0:first/T;x[26]=last<0?0:last/T;x[27]=first<0?0:(last-first)/T;
+        x[28]=used/T;x[29]=passengers/n;x[30]=support_weight;x[31]=ride_weight;
+        for(double value:x)if(!isfinite(value))throw logic_error("nonfinite teacher feature");
+        return x;
+    }
+    void nn_snapshot(const vector<Move>& current,const vector<Move>& best,int stagnant,
+                     double end,int cooldown,int& choice){
+        static constexpr array<double,4>phases={0.10,0.35,0.60,0.85};
+        if(nn_next_phase>=4)return;
+        const auto paused_at=chrono::steady_clock::now();
+        const double elapsed=chrono::duration<double>(paused_at-time_keeper.start_).count();
+        const double progress=clamp((elapsed-lns_start)/max(LOCAL_SECONDS(0.02),end-lns_start),0.0,1.0);
+        if(progress<phases[nn_next_phase])return;
+        vector<int>eligible;
+        for(int i=0;i<int(candidates.size());i++){
+            auto it=last_tried.find(candidates[i].hash);
+            if(it==last_tried.end()||iteration-it->second>cooldown)eligible.push_back(i);
+        }
+        // 適格候補がないときは通常のランダム選択へ進み、採取地点を次へ送る。
+        if(eligible.empty())return;
+        if(choice!=eligible.front())throw logic_error("teacher eligibility mismatch");
+        vector<int>ranks;
+        if(eligible.size()<=32)ranks=eligible;
+        else{
+            ranks.assign(eligible.begin(),eligible.begin()+16);
+            const int rest=int(eligible.size())-16;
+            for(int band=0;band<16;band++){
+                int left=rest*band/16,right=rest*(band+1)/16;
+                ranks.push_back(eligible[16+(left+right-1)/2]);
+            }
+        }
+        if(state_pool.free_count!=4||nn_error_count()!=0)throw logic_error("teacher invalid snapshot");
+        const uint64_t fingerprint=nn_fingerprint(current,best),saved_rng=rng.x;
+        vector<array<double,32>>features;
+        for(int rank:ranks)features.push_back(nn_features(candidates[rank],current,best,stagnant,progress));
+        {
+            ofstream f(nn_directory+"/states.jsonl",ios::app);
+            f<<setprecision(17)<<"{\"phase\":"<<nn_next_phase<<",\"progress\":"<<progress
+             <<",\"elapsed\":"<<elapsed<<",\"lns_start\":"<<lns_start
+             <<",\"iteration\":"<<iteration<<",\"stagnant\":"<<stagnant
+             <<",\"snapshot_hash\":\""<<fingerprint<<"\",\"rng\":\""<<saved_rng
+             <<"\",\"baseline_rank\":"<<choice<<",\"pool_free\":"<<state_pool.free_count
+             <<",\"current\":";nn_write_moves(f,current);f<<",\"best\":";nn_write_moves(f,best);
+            f<<",\"candidates\":[";
+            for(size_t i=0;i<ranks.size();i++){
+                if(i)f<<',';
+                const auto& c=candidates[ranks[i]];
+                f<<"{\"rank\":"<<ranks[i]<<",\"hash\":\""<<c.hash<<"\",\"ids\":[";
+                for(size_t j=0;j<c.ids.size();j++){if(j)f<<',';f<<c.ids[j];}f<<"]}";
+            }
+            f<<"]}\n";f.close();if(!f)throw logic_error("snapshot write failed");
+        }
+        cout.flush();cerr.flush();
+        const size_t rotation=saved_rng%ranks.size();
+        for(size_t k=0;k<ranks.size();k++){
+            const size_t index=(k+rotation)%ranks.size();
+            pid_t pid=fork();
+            if(pid<0)throw runtime_error("teacher fork failed");
+            if(pid==0){
+                if(nn_fingerprint(current,best)!=fingerprint)_exit(76);
+                nn_child=true;nn_phase=nn_next_phase;nn_rank=ranks[index];nn_x=features[index];
+                nn_saved_rng=saved_rng;nn_snapshot_hash=fingerprint;nn_candidate_hash=candidates[nn_rank].hash;
+                nn_begin=elapsed;nn_deadline=min(end,elapsed+PROGRAM_TIME_LIMIT_SEC*0.02);nn_last_accept=elapsed;
+                nn_first_T=int(current.size());nn_first_best_T=int(best.size());
+                choice=nn_rank;
+                time_keeper.start_=chrono::steady_clock::now()-chrono::duration_cast<chrono::steady_clock::duration>(chrono::duration<double>(elapsed));
+                time_keeper.time_limit_sec=nn_deadline;
+                return;
+            }
+            int status=0;pid_t waited;
+            do{waited=waitpid(pid,&status,0);}while(waited<0&&errno==EINTR);
+            if(waited!=pid||!WIFEXITED(status)||WEXITSTATUS(status)!=0){
+                cerr<<"teacher child failed rank="<<ranks[index]<<" wait_status="<<status<<'\n';_exit(77);
+            }
+            if(nn_fingerprint(current,best)!=fingerprint)throw logic_error("parent state changed by trial");
+        }
+        ++nn_next_phase;
+        // 教師作成中の待機・特徴計算・保存時間を親の探索時計に加えない。
+        time_keeper.start_+=chrono::steady_clock::now()-paused_at;
+    }

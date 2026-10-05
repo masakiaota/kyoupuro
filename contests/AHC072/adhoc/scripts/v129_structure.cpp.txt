@@ -1,0 +1,66 @@
+namespace allocation_policy {
+// 選択時点の完成列だけを再生する。個体IDは初期床IDで、将来の探索結果を使わない。
+array<float,24> structure(const vector<Move>& moves) {
+    array<array<int,8>,max_cells> towers{};
+    array<int,max_cells> heights{},transport{},support{};
+    array<bool,max_cells> revisited{},homed{};
+    array<bitset<max_cells>,max_cells> seen{};
+    double initial_distance=0;
+    for(int p=0;p<board_info.cell_count;++p)if(board_info.initial[p]) {
+        towers[p][0]=p;heights[p]=1;seen[p].set(p);
+        initial_distance+=board_info.floor_dist[p][board_info.nest_pos_by_code[board_info.initial[p]]];
+    }
+    double carried=0,single=0,bulk=0,mixed=0,color_sum=0,jumps=0,length_sum=0,left_sum=0,merges=0;
+    double home_moves=0,nonprogress=0,distance_up=0,traveled=0,revisits=0,home_sum=0,home_square=0;
+    int returned=0;
+    for(size_t step=0;step<moves.size();++step) {
+        const Move m=moves[step];const int p=m.p;
+        if(p<0||p>=board_info.cell_count||m.d>=4||m.l<1||m.l>8||m.k>=heights[p]||m.l>m.k+1)
+            throw logic_error("structure departure");
+        const int q=board_info.ray[p][m.d][m.l],h=heights[p],n=h-m.k;
+        if(q<0||heights[q]+n>8)throw logic_error("structure landing");
+        int colors=0,progress=0;
+        carried+=n;single+=n==1;bulk+=n>=4;jumps+=m.l>1;
+        length_sum+=m.l;left_sum+=m.k;merges+=heights[q]>0;traveled+=n*m.l;
+        if(m.l>1)for(int z=0;z<m.k;++z)++support[towers[p][z]];
+        for(int z=h-1;z>=m.k;--z) {
+            const int id=towers[p][z],color=int(board_info.initial[id]);
+            const int goal=board_info.nest_pos_by_code[color];
+            const int improvement=int(board_info.floor_dist[p][goal])-int(board_info.floor_dist[q][goal]);
+            progress+=improvement;distance_up+=max(0,-improvement);colors|=1<<color;++transport[id];
+            if(seen[id].test(q)){++revisits;revisited[id]=true;}seen[id].set(q);
+            towers[q][heights[q]++]=id;
+        }
+        heights[p]=m.k;nonprogress+=progress<=0;
+        const int variety=__builtin_popcount(unsigned(colors));mixed+=variety>1;color_sum+=variety;
+        const int before_returned=returned;
+        for(int cell:{p,q})while(heights[cell]&&board_info.initial[towers[cell][heights[cell]-1]]==TowerBits(board_info.nest_code[cell])) {
+            const int id=towers[cell][--heights[cell]];
+            if(homed[id])throw logic_error("structure duplicate home");
+            homed[id]=true;++returned;
+            const double fraction=double(step+1)/max<size_t>(1,moves.size());
+            home_sum+=fraction;home_square+=fraction*fraction;
+        }
+        home_moves+=returned>before_returned;
+    }
+    if(returned!=board_info.M)throw logic_error("structure incomplete");
+    double movement_sum=0,movement_square=0,one=0,repeat_people=0,support_people=0;
+    int max_movement=0,max_support=0;
+    for(int p=0;p<board_info.cell_count;++p)if(board_info.initial[p]) {
+        movement_sum+=transport[p];movement_square+=double(transport[p])*transport[p];
+        max_movement=max(max_movement,transport[p]);one+=transport[p]==1;
+        repeat_people+=revisited[p];support_people+=support[p]>0;max_support=max(max_support,support[p]);
+        if(!homed[p])throw logic_error("structure missing home");
+    }
+    const double count=max(1,board_info.M),steps=max<size_t>(1,moves.size());
+    const double movement_mean=movement_sum/count,home_mean=home_sum/count;
+    return {float(carried/steps/8),float(single/steps),float(bulk/steps),float(mixed/steps),float(color_sum/steps/8),
+            float(jumps/steps),float(length_sum/steps/8),float(left_sum/steps/8),float(merges/steps),
+            float(home_moves/steps),float(returned/max(1.0,home_moves)/8),float(nonprogress/steps),
+            float(distance_up/max(1.0,traveled)),float(traveled/max(1.0,initial_distance)-1),
+            float(movement_mean/16),float(sqrt(max(0.0,movement_square/count-movement_mean*movement_mean))/16),
+            float(max_movement/64.0),float(one/count),float(repeat_people/count),float(revisits/max(1.0,carried)),
+            float(support_people/count),float(max_support/steps),float(home_mean),
+            float(sqrt(max(0.0,home_square/count-home_mean*home_mean)))};
+}
+}

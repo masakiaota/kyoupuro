@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 187,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v035_tower_capacity_lns/0052.txt",
+  "best_sha256": "4947579a7cd1191941ef4b77c25be177c4703d38b666a0aefad3ea205cbd2377",
+  "attempts": []
+}

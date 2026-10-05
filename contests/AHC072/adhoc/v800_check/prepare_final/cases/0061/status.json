@@ -1,0 +1,9 @@
+{
+  "status": "prepared",
+  "T": 278,
+  "elapsed_ms": 0,
+  "new_elapsed_ms": 0,
+  "best_source": "results/out/v043_cooperative_events/0061.txt",
+  "best_sha256": "0eb71555e37b01aa4ece647ffe008f61951a28552671a5c55a1b5272dd66d08a",
+  "attempts": []
+}

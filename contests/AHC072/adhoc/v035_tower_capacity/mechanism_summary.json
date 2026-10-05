@@ -1,0 +1,20 @@
+{
+  "fixed_clock": {
+    "verified_cases": 100,
+    "output_equal": true,
+    "all_shared_counts_equal": true,
+    "rng_equal": true,
+    "ticks_equal": true,
+    "child_ubsan_trap": true
+  },
+  "fixed_work": {
+    "cases": 100,
+    "rows": 1800,
+    "variants": 3,
+    "contents_equal": true,
+    "source_hashes_unchanged": true,
+    "execution_order_rotated": true,
+    "candidates_per_round": 6357
+  },
+  "board_memory_reduction_percent": 47.63636363636363
+}

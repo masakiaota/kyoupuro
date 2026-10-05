@@ -1,0 +1,108 @@
+{
+  "cases": 100,
+  "loops": 4,
+  "cases_with_loops": 3,
+  "note": "Consecutive three-move returns of the same mixed packet. Counts are not guaranteed reductions.",
+  "details": [
+    {
+      "case": "0015.txt",
+      "first_turn": 386,
+      "last_turn": 388,
+      "size": 7,
+      "word": "bjbkkaa",
+      "path": [
+        [
+          13,
+          7
+        ],
+        [
+          14,
+          7
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          13,
+          7
+        ]
+      ]
+    },
+    {
+      "case": "0060.txt",
+      "first_turn": 42,
+      "last_turn": 44,
+      "size": 5,
+      "word": "ggccc",
+      "path": [
+        [
+          9,
+          7
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          7
+        ]
+      ]
+    },
+    {
+      "case": "0060.txt",
+      "first_turn": 43,
+      "last_turn": 45,
+      "size": 5,
+      "word": "cccgg",
+      "path": [
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          7
+        ],
+        [
+          9,
+          6
+        ]
+      ]
+    },
+    {
+      "case": "0076.txt",
+      "first_turn": 76,
+      "last_turn": 78,
+      "size": 5,
+      "word": "fffhe",
+      "path": [
+        [
+          12,
+          0
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          12,
+          0
+        ]
+      ]
+    }
+  ]
+}

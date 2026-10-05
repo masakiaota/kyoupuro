@@ -1,0 +1,9 @@
+{
+  "parent_sha256": "4bb22c34eca9d76fec12861ebd14d807d6ead618b29e79d42c8f91ce7854e29f",
+  "child_sha256": "a339a6bfb9be59d68717dfc69e0cb63eb709e5cfe276f2989c2271bbf80fb8ff",
+  "restored_parent_equal": true,
+  "fully_preprocessed_modes": [
+    "local",
+    "production"
+  ]
+}

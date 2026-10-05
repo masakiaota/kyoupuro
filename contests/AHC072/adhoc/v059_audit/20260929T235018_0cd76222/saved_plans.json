@@ -1,0 +1,237 @@
+[
+  {
+    "case": "0001",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0001/seeds/00.txt"
+    ],
+    "T": 102,
+    "sha256": "570f9f1eb8c3d3de3355ba00725d26c6fcfb3c1f626fd361ccccbe1e13379758"
+  },
+  {
+    "case": "0001",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0001/best.txt"
+    ],
+    "T": 100,
+    "sha256": "d68078b2e04a1aa782cdbb81c99920e84b25d314bbd8971fbdf524605ae3c356"
+  },
+  {
+    "case": "0001",
+    "index": 2,
+    "origins": [
+      "results/out/v057_search_reductions/0001.txt"
+    ],
+    "T": 104,
+    "sha256": "83391ff041809e3e35db13e4908ef959ada1871e2fc3865277af67b3a975186a"
+  },
+  {
+    "case": "0014",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0014/seeds/00.txt"
+    ],
+    "T": 376,
+    "sha256": "3ad04b185c50ed92aa71b1939c538e4209cd49e4343899f61f0fff47e39cfc3a"
+  },
+  {
+    "case": "0014",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0014/best.txt"
+    ],
+    "T": 331,
+    "sha256": "b59a9d8b51c784e7a3a4347a55ad06d6e7e87a6e8febc4543800e83285ab5cf0"
+  },
+  {
+    "case": "0014",
+    "index": 2,
+    "origins": [
+      "results/out/v057_search_reductions/0014.txt"
+    ],
+    "T": 382,
+    "sha256": "f2d04db0c525a488c80fa061193962941c4f6d99cc1fd7deceb2bf46c4e9da2c"
+  },
+  {
+    "case": "0015",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0015/seeds/00.txt"
+    ],
+    "T": 542,
+    "sha256": "4228edee2c8b0237eeb7e594482697fe5f5f3c81858beddbbc5340fb3a0cf891"
+  },
+  {
+    "case": "0015",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0015/best.txt"
+    ],
+    "T": 459,
+    "sha256": "0d345846e580704bf1b1460157ab2b67ae2f11e61eadb20b59884d03ded1fdc1"
+  },
+  {
+    "case": "0015",
+    "index": 2,
+    "origins": [
+      "results/out/v057_search_reductions/0015.txt"
+    ],
+    "T": 562,
+    "sha256": "31fd5181feece0a6cd446e1cb9ecbd515b7f6e823cd96a599748cdce5e0e37a8"
+  },
+  {
+    "case": "0027",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0027/seeds/00.txt"
+    ],
+    "T": 143,
+    "sha256": "778a0424f47127b7a5760f2b45ec6840ce398e220e65edd8a059d1af6cbff5a8"
+  },
+  {
+    "case": "0027",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0027/best.txt"
+    ],
+    "T": 130,
+    "sha256": "570ad1b200b4eb8869c22214ef147f9462ce2656b5d9d0245548a32cafc16724"
+  },
+  {
+    "case": "0027",
+    "index": 2,
+    "origins": [
+      "results/out/v057_search_reductions/0027.txt"
+    ],
+    "T": 143,
+    "sha256": "4b14b248d73c9c4ccdb6cf36f1a0907e1db9607a8e40e42f173163e1c01a7951"
+  },
+  {
+    "case": "0030",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0030/seeds/00.txt"
+    ],
+    "T": 429,
+    "sha256": "a3a69e69c85999be5f24026feb7f99d31663425b190296a1d7631e54d543d8ff"
+  },
+  {
+    "case": "0030",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0030/best.txt"
+    ],
+    "T": 382,
+    "sha256": "52f70c92e3f065584b80e039eb9a51d29a0d8b2f5ab49158fe3ea3c970150f2a"
+  },
+  {
+    "case": "0030",
+    "index": 2,
+    "origins": [
+      "results/out/v057_search_reductions/0030.txt"
+    ],
+    "T": 448,
+    "sha256": "2026fcd433ccfd89a82daf6894abfe5fe6861af1e561b3646f595a45a6268dd1"
+  },
+  {
+    "case": "0034",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0034/seeds/00.txt"
+    ],
+    "T": 401,
+    "sha256": "d5e83bbc9ea8952d9b3e8f40e6eb4f3245805f4cb20a58c9564748eb0d4ea3a6"
+  },
+  {
+    "case": "0034",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0034/best.txt"
+    ],
+    "T": 373,
+    "sha256": "d95d54184ac735e50fb6b7bc8ac33972362a9c5de2e37cbf6a6485293ea5c313"
+  },
+  {
+    "case": "0034",
+    "index": 2,
+    "origins": [
+      "results/out/v057_search_reductions/0034.txt"
+    ],
+    "T": 417,
+    "sha256": "35385379bcfbee1669b1b74098a354f95da05687458814661ccc62bb7709654c"
+  },
+  {
+    "case": "0042",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0042/seeds/00.txt",
+      "results/out/v057_search_reductions/0042.txt"
+    ],
+    "T": 321,
+    "sha256": "5472a1bc90881da3aad589a9731bd038296de906e9b9d3fbe6f5490a2e49b348"
+  },
+  {
+    "case": "0042",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0042/best.txt"
+    ],
+    "T": 292,
+    "sha256": "c3d57121034542efcc1b4f8d8ad173a3a0c40209074ad5b0d70f83c954f095e9"
+  },
+  {
+    "case": "0044",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0044/seeds/00.txt"
+    ],
+    "T": 175,
+    "sha256": "1df3484a9ffd63cc72c9edb6ea9402dd73f9d53ead9bb38747fcea3f35bab900"
+  },
+  {
+    "case": "0044",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0044/best.txt"
+    ],
+    "T": 163,
+    "sha256": "569b3d530c1f054a9a3db97180db3741e470bb7c0f4bdc28ed214fc2b950c22e"
+  },
+  {
+    "case": "0044",
+    "index": 2,
+    "origins": [
+      "results/out/v057_search_reductions/0044.txt"
+    ],
+    "T": 187,
+    "sha256": "b21497f215d3daa2e285e41f06d690e50a62065cf5ab9863062292b2e8e79ada"
+  },
+  {
+    "case": "0047",
+    "index": 0,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0047/seeds/00.txt"
+    ],
+    "T": 322,
+    "sha256": "c35856137c96e75937f40e165dc4a36aad74827e77ac7722412f2fe0d5f50cfc"
+  },
+  {
+    "case": "0047",
+    "index": 1,
+    "origins": [
+      "results/long_search/v800/20260929T150407_c945d3d4/cases/0047/best.txt"
+    ],
+    "T": 288,
+    "sha256": "4c09890b2a7929e58643094524774a9209489712b154b52f3208949741a3abc0"
+  },
+  {
+    "case": "0047",
+    "index": 2,
+    "origins": [
+      "results/out/v057_search_reductions/0047.txt"
+    ],
+    "T": 323,
+    "sha256": "7572d911448c71e3a71ad282e68737ae11a3f9f7c2b0f886ec1a0ff68e189bf7"
+  }
+]

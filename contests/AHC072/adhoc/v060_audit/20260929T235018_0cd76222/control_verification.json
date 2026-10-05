@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "solver_executions": 0,
+  "checks": [
+    {
+      "scenario": "multistart",
+      "passed": true,
+      "mock_launches": 5
+    },
+    {
+      "scenario": "continuous",
+      "passed": true,
+      "mock_launches": 1
+    },
+    {
+      "scenario": "failure",
+      "passed": true,
+      "mock_launches": 1
+    },
+    {
+      "scenario": "interrupt",
+      "passed": true,
+      "mock_launches": 1
+    },
+    {
+      "scenario": "process_limit",
+      "passed": true,
+      "actual_processes": 0
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+20 5
+.d.#db.e..cd.##cDbcb
+dec...c.b..c##d...Ba
+.#...c.d.c#c.#.#.#.#
+C.#ccdc#b##...c#.#c#
+...bcdd.#....c.ddc.#
+b...#becec#c..c.c#..
+cc..edc.c.c.cc..ccdd
+...##d...dccec..dcc#
+.d.c..e.##c...#d.#.c
+bcbccd..e#.#.#.#bdc#
+.c#.#c.ccc##cbcd.cc#
+.#d#.c.###cccc......
+#c..edcad..ccc.c.c.d
+c###.cd..##....bc#..
+.###c#c#..b.##.cc#c.
+cccdae#.c#cdc..cc.#d
+dc##cA.b...cce#.#.#c
+#E#c#..cc..c.b..c#cd
+.c.db..cbcb##.d...##
+cc#.#d.c#c..#cb.cccc

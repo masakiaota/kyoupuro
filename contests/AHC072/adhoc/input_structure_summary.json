@@ -1,0 +1,821 @@
+{
+  "all_generated": {
+    "cases": 99,
+    "N": {
+      "mean": 15.5455,
+      "median": 16,
+      "min": 12,
+      "max": 20
+    },
+    "K": {
+      "mean": 7.4343,
+      "median": 7,
+      "min": 4,
+      "max": 12
+    },
+    "M": {
+      "mean": 68.1212,
+      "median": 61,
+      "min": 13,
+      "max": 217
+    },
+    "wall_fraction": {
+      "mean": 0.2123,
+      "median": 0.2347,
+      "min": 0.0,
+      "max": 0.3673
+    },
+    "slime_density": {
+      "mean": 0.3578,
+      "median": 0.3481,
+      "min": 0.1286,
+      "max": 0.6489
+    },
+    "largest_color_share": {
+      "mean": 0.3508,
+      "median": 0.3265,
+      "min": 0.1538,
+      "max": 0.6984
+    },
+    "top_two_color_share": {
+      "mean": 0.5643,
+      "median": 0.5467,
+      "min": 0.3077,
+      "max": 0.9016
+    },
+    "effective_colors": {
+      "mean": 4.8912,
+      "median": 4.771,
+      "min": 1.9183,
+      "max": 9.3889
+    },
+    "small_color_fraction": {
+      "mean": 0.3213,
+      "median": 0.25,
+      "min": 0.0,
+      "max": 0.9167
+    },
+    "small_color_slime_share": {
+      "mean": 0.1389,
+      "median": 0.0682,
+      "min": 0.0,
+      "max": 0.8182
+    },
+    "own_nest_distance": {
+      "mean": 12.7066,
+      "median": 11.7381,
+      "min": 7.025,
+      "max": 26.2131
+    },
+    "individual_distance_sum": {
+      "mean": 909.9293,
+      "median": 698,
+      "min": 151,
+      "max": 3198
+    },
+    "shortest_path_turns": {
+      "mean": 3.1082,
+      "median": 2.6667,
+      "min": 0.8378,
+      "max": 10.0246
+    },
+    "nearest_any_distance": {
+      "mean": 1.5323,
+      "median": 1.3902,
+      "min": 1.0282,
+      "max": 3.0417
+    },
+    "nearest_same_distance": {
+      "mean": 4.6544,
+      "median": 4.1972,
+      "min": 1.8812,
+      "max": 14.1
+    },
+    "floor_with_ray_4": {
+      "mean": 0.7145,
+      "median": 0.7174,
+      "min": 0.3125,
+      "max": 1
+    },
+    "floor_with_ray_6": {
+      "mean": 0.4873,
+      "median": 0.4175,
+      "min": 0.0833,
+      "max": 1
+    },
+    "slime_with_other_at_distance_2": {
+      "mean": 0.5322,
+      "median": 0.561,
+      "min": 0,
+      "max": 0.9155
+    },
+    "aligned_nest_pairs_within_8": {
+      "mean": 1.5455,
+      "median": 1,
+      "min": 0,
+      "max": 9
+    }
+  },
+  "few_colors_K_le_6": {
+    "cases": 42,
+    "N": {
+      "mean": 15.8095,
+      "median": 16.0,
+      "min": 12,
+      "max": 20
+    },
+    "K": {
+      "mean": 4.8571,
+      "median": 5.0,
+      "min": 4,
+      "max": 6
+    },
+    "M": {
+      "mean": 69.8095,
+      "median": 59.5,
+      "min": 13,
+      "max": 169
+    },
+    "wall_fraction": {
+      "mean": 0.2196,
+      "median": 0.2461,
+      "min": 0.0104,
+      "max": 0.3673
+    },
+    "slime_density": {
+      "mean": 0.3547,
+      "median": 0.3478,
+      "min": 0.13,
+      "max": 0.6265
+    },
+    "largest_color_share": {
+      "mean": 0.4431,
+      "median": 0.4271,
+      "min": 0.2727,
+      "max": 0.6984
+    },
+    "top_two_color_share": {
+      "mean": 0.6928,
+      "median": 0.6823,
+      "min": 0.5152,
+      "max": 0.9016
+    },
+    "effective_colors": {
+      "mean": 3.3309,
+      "median": 3.2928,
+      "min": 1.9183,
+      "max": 4.771
+    },
+    "small_color_fraction": {
+      "mean": 0.179,
+      "median": 0.1667,
+      "min": 0.0,
+      "max": 0.8333
+    },
+    "small_color_slime_share": {
+      "mean": 0.0526,
+      "median": 0.0214,
+      "min": 0.0,
+      "max": 0.5385
+    },
+    "own_nest_distance": {
+      "mean": 12.9197,
+      "median": 11.6719,
+      "min": 7.4348,
+      "max": 25.1075
+    },
+    "individual_distance_sum": {
+      "mean": 944.6429,
+      "median": 769.5,
+      "min": 151,
+      "max": 2834
+    },
+    "shortest_path_turns": {
+      "mean": 3.2682,
+      "median": 2.9843,
+      "min": 0.8934,
+      "max": 8.3656
+    },
+    "nearest_any_distance": {
+      "mean": 1.5199,
+      "median": 1.4014,
+      "min": 1.033,
+      "max": 2.3913
+    },
+    "nearest_same_distance": {
+      "mean": 3.832,
+      "median": 2.9884,
+      "min": 1.8812,
+      "max": 14.1
+    },
+    "floor_with_ray_4": {
+      "mean": 0.7102,
+      "median": 0.717,
+      "min": 0.4094,
+      "max": 1
+    },
+    "floor_with_ray_6": {
+      "mean": 0.4755,
+      "median": 0.3973,
+      "min": 0.115,
+      "max": 1
+    },
+    "slime_with_other_at_distance_2": {
+      "mean": 0.5179,
+      "median": 0.5698,
+      "min": 0.1212,
+      "max": 0.8944
+    },
+    "aligned_nest_pairs_within_8": {
+      "mean": 0.6667,
+      "median": 0.5,
+      "min": 0,
+      "max": 3
+    }
+  },
+  "many_colors_K_ge_10": {
+    "cases": 26,
+    "N": {
+      "mean": 15.6538,
+      "median": 16.0,
+      "min": 12,
+      "max": 20
+    },
+    "K": {
+      "mean": 10.9615,
+      "median": 11.0,
+      "min": 10,
+      "max": 12
+    },
+    "M": {
+      "mean": 69.5385,
+      "median": 64.0,
+      "min": 22,
+      "max": 217
+    },
+    "wall_fraction": {
+      "mean": 0.2178,
+      "median": 0.2355,
+      "min": 0.051,
+      "max": 0.3432
+    },
+    "slime_density": {
+      "mean": 0.3557,
+      "median": 0.3745,
+      "min": 0.1286,
+      "max": 0.6096
+    },
+    "largest_color_share": {
+      "mean": 0.2513,
+      "median": 0.2389,
+      "min": 0.1538,
+      "max": 0.3529
+    },
+    "top_two_color_share": {
+      "mean": 0.4232,
+      "median": 0.4263,
+      "min": 0.3077,
+      "max": 0.5294
+    },
+    "effective_colors": {
+      "mean": 6.9892,
+      "median": 6.7657,
+      "min": 5.4444,
+      "max": 9.3889
+    },
+    "small_color_fraction": {
+      "mean": 0.4943,
+      "median": 0.4773,
+      "min": 0.1,
+      "max": 0.9167
+    },
+    "small_color_slime_share": {
+      "mean": 0.2637,
+      "median": 0.1642,
+      "min": 0.0184,
+      "max": 0.8182
+    },
+    "own_nest_distance": {
+      "mean": 12.3357,
+      "median": 11.2939,
+      "min": 8,
+      "max": 19.3333
+    },
+    "individual_distance_sum": {
+      "mean": 884.7308,
+      "median": 684.5,
+      "min": 176,
+      "max": 2672
+    },
+    "shortest_path_turns": {
+      "mean": 2.9327,
+      "median": 2.7142,
+      "min": 1.022,
+      "max": 7.2254
+    },
+    "nearest_any_distance": {
+      "mean": 1.5646,
+      "median": 1.4669,
+      "min": 1.0783,
+      "max": 3.0417
+    },
+    "nearest_same_distance": {
+      "mean": 5.8684,
+      "median": 5.9767,
+      "min": 3.0138,
+      "max": 12.4737
+    },
+    "floor_with_ray_4": {
+      "mean": 0.7052,
+      "median": 0.6546,
+      "min": 0.3125,
+      "max": 0.9892
+    },
+    "floor_with_ray_6": {
+      "mean": 0.4868,
+      "median": 0.4263,
+      "min": 0.0833,
+      "max": 0.9414
+    },
+    "slime_with_other_at_distance_2": {
+      "mean": 0.5344,
+      "median": 0.5532,
+      "min": 0.2059,
+      "max": 0.871
+    },
+    "aligned_nest_pairs_within_8": {
+      "mean": 2.8846,
+      "median": 2.0,
+      "min": 1,
+      "max": 9
+    }
+  },
+  "few_walls_le_10_percent": {
+    "cases": 16,
+    "N": {
+      "mean": 15.125,
+      "median": 14.5,
+      "min": 12,
+      "max": 20
+    },
+    "K": {
+      "mean": 7.5,
+      "median": 7.0,
+      "min": 4,
+      "max": 12
+    },
+    "M": {
+      "mean": 80.375,
+      "median": 70.0,
+      "min": 23,
+      "max": 217
+    },
+    "wall_fraction": {
+      "mean": 0.0511,
+      "median": 0.0532,
+      "min": 0.0,
+      "max": 0.0969
+    },
+    "slime_density": {
+      "mean": 0.3681,
+      "median": 0.3544,
+      "min": 0.1322,
+      "max": 0.6096
+    },
+    "largest_color_share": {
+      "mean": 0.3442,
+      "median": 0.3605,
+      "min": 0.1971,
+      "max": 0.4225
+    },
+    "top_two_color_share": {
+      "mean": 0.5575,
+      "median": 0.5664,
+      "min": 0.3869,
+      "max": 0.7174
+    },
+    "effective_colors": {
+      "mean": 4.797,
+      "median": 4.3646,
+      "min": 3.3587,
+      "max": 7.0125
+    },
+    "small_color_fraction": {
+      "mean": 0.2365,
+      "median": 0.2083,
+      "min": 0.0,
+      "max": 0.6667
+    },
+    "small_color_slime_share": {
+      "mean": 0.0732,
+      "median": 0.0327,
+      "min": 0.0,
+      "max": 0.3243
+    },
+    "own_nest_distance": {
+      "mean": 10.0728,
+      "median": 9.9285,
+      "min": 7.025,
+      "max": 12.8696
+    },
+    "individual_distance_sum": {
+      "mean": 866.125,
+      "median": 722.5,
+      "min": 171,
+      "max": 2672
+    },
+    "shortest_path_turns": {
+      "mean": 1.042,
+      "median": 1.0626,
+      "min": 0.8378,
+      "max": 1.2949
+    },
+    "nearest_any_distance": {
+      "mean": 1.3554,
+      "median": 1.2002,
+      "min": 1.0282,
+      "max": 2.3913
+    },
+    "nearest_same_distance": {
+      "mean": 3.545,
+      "median": 3.4664,
+      "min": 2.1758,
+      "max": 5.8235
+    },
+    "floor_with_ray_4": {
+      "mean": 0.9804,
+      "median": 0.9912,
+      "min": 0.9153,
+      "max": 1
+    },
+    "floor_with_ray_6": {
+      "mean": 0.9296,
+      "median": 0.9411,
+      "min": 0.7119,
+      "max": 1
+    },
+    "slime_with_other_at_distance_2": {
+      "mean": 0.6932,
+      "median": 0.7341,
+      "min": 0.2703,
+      "max": 0.9155
+    },
+    "aligned_nest_pairs_within_8": {
+      "mean": 2.4375,
+      "median": 2.5,
+      "min": 0,
+      "max": 5
+    }
+  },
+  "many_walls_ge_25_percent": {
+    "cases": 43,
+    "N": {
+      "mean": 15.6047,
+      "median": 16,
+      "min": 12,
+      "max": 20
+    },
+    "K": {
+      "mean": 7.4651,
+      "median": 7,
+      "min": 4,
+      "max": 12
+    },
+    "M": {
+      "mean": 62.3023,
+      "median": 49,
+      "min": 13,
+      "max": 169
+    },
+    "wall_fraction": {
+      "mean": 0.2994,
+      "median": 0.2969,
+      "min": 0.25,
+      "max": 0.3673
+    },
+    "slime_density": {
+      "mean": 0.3648,
+      "median": 0.3793,
+      "min": 0.13,
+      "max": 0.6489
+    },
+    "largest_color_share": {
+      "mean": 0.3578,
+      "median": 0.3226,
+      "min": 0.181,
+      "max": 0.6984
+    },
+    "top_two_color_share": {
+      "mean": 0.5693,
+      "median": 0.5312,
+      "min": 0.3182,
+      "max": 0.9016
+    },
+    "effective_colors": {
+      "mean": 4.8662,
+      "median": 4.771,
+      "min": 1.9183,
+      "max": 9.0
+    },
+    "small_color_fraction": {
+      "mean": 0.3711,
+      "median": 0.2857,
+      "min": 0.0,
+      "max": 0.9167
+    },
+    "small_color_slime_share": {
+      "mean": 0.1773,
+      "median": 0.0909,
+      "min": 0.0,
+      "max": 0.8182
+    },
+    "own_nest_distance": {
+      "mean": 14.7721,
+      "median": 14.2373,
+      "min": 8,
+      "max": 26.2131
+    },
+    "individual_distance_sum": {
+      "mean": 988.3953,
+      "median": 710,
+      "min": 151,
+      "max": 3198
+    },
+    "shortest_path_turns": {
+      "mean": 4.603,
+      "median": 4.2308,
+      "min": 1.8529,
+      "max": 10.0246
+    },
+    "nearest_any_distance": {
+      "mean": 1.5907,
+      "median": 1.5067,
+      "min": 1.119,
+      "max": 3.0417
+    },
+    "nearest_same_distance": {
+      "mean": 5.5029,
+      "median": 5,
+      "min": 2.1124,
+      "max": 14.1
+    },
+    "floor_with_ray_4": {
+      "mean": 0.5293,
+      "median": 0.5175,
+      "min": 0.3125,
+      "max": 0.7167
+    },
+    "floor_with_ray_6": {
+      "mean": 0.246,
+      "median": 0.2378,
+      "min": 0.0833,
+      "max": 0.4352
+    },
+    "slime_with_other_at_distance_2": {
+      "mean": 0.475,
+      "median": 0.4959,
+      "min": 0.1212,
+      "max": 0.7988
+    },
+    "aligned_nest_pairs_within_8": {
+      "mean": 1.1395,
+      "median": 1,
+      "min": 0,
+      "max": 4
+    }
+  },
+  "sparse_slimes_lt_25_percent": {
+    "cases": 24,
+    "N": {
+      "mean": 15.0833,
+      "median": 15.0,
+      "min": 12,
+      "max": 19
+    },
+    "K": {
+      "mean": 7.375,
+      "median": 7.0,
+      "min": 4,
+      "max": 12
+    },
+    "M": {
+      "mean": 30.2083,
+      "median": 26.5,
+      "min": 13,
+      "max": 59
+    },
+    "wall_fraction": {
+      "mean": 0.1987,
+      "median": 0.1842,
+      "min": 0.0173,
+      "max": 0.3253
+    },
+    "slime_density": {
+      "mean": 0.1719,
+      "median": 0.1539,
+      "min": 0.1286,
+      "max": 0.2475
+    },
+    "largest_color_share": {
+      "mean": 0.3298,
+      "median": 0.3114,
+      "min": 0.1538,
+      "max": 0.625
+    },
+    "top_two_color_share": {
+      "mean": 0.5405,
+      "median": 0.5303,
+      "min": 0.3077,
+      "max": 0.7917
+    },
+    "effective_colors": {
+      "mean": 5.2781,
+      "median": 4.9149,
+      "min": 2.2677,
+      "max": 9.3889
+    },
+    "small_color_fraction": {
+      "mean": 0.5211,
+      "median": 0.5982,
+      "min": 0.0,
+      "max": 0.9167
+    },
+    "small_color_slime_share": {
+      "mean": 0.321,
+      "median": 0.2888,
+      "min": 0.0,
+      "max": 0.8182
+    },
+    "own_nest_distance": {
+      "mean": 12.0128,
+      "median": 11.3013,
+      "min": 7.4348,
+      "max": 19.8889
+    },
+    "individual_distance_sum": {
+      "mean": 368.2083,
+      "median": 352.0,
+      "min": 151,
+      "max": 840
+    },
+    "shortest_path_turns": {
+      "mean": 2.7261,
+      "median": 2.0608,
+      "min": 0.8378,
+      "max": 5.9697
+    },
+    "nearest_any_distance": {
+      "mean": 2.1264,
+      "median": 2.044,
+      "min": 1.449,
+      "max": 3.0417
+    },
+    "nearest_same_distance": {
+      "mean": 6.5954,
+      "median": 6.1727,
+      "min": 2.9348,
+      "max": 14.1
+    },
+    "floor_with_ray_4": {
+      "mean": 0.7439,
+      "median": 0.799,
+      "min": 0.4158,
+      "max": 1
+    },
+    "floor_with_ray_6": {
+      "mean": 0.5167,
+      "median": 0.5086,
+      "min": 0.099,
+      "max": 1
+    },
+    "slime_with_other_at_distance_2": {
+      "mean": 0.3122,
+      "median": 0.2858,
+      "min": 0,
+      "max": 0.6364
+    },
+    "aligned_nest_pairs_within_8": {
+      "mean": 1.5,
+      "median": 1.0,
+      "min": 0,
+      "max": 5
+    }
+  },
+  "dense_slimes_ge_50_percent": {
+    "cases": 22,
+    "N": {
+      "mean": 15.8182,
+      "median": 16.0,
+      "min": 12,
+      "max": 20
+    },
+    "K": {
+      "mean": 7.3636,
+      "median": 7.0,
+      "min": 4,
+      "max": 12
+    },
+    "M": {
+      "mean": 109.0909,
+      "median": 103.0,
+      "min": 48,
+      "max": 217
+    },
+    "wall_fraction": {
+      "mean": 0.2032,
+      "median": 0.2093,
+      "min": 0.051,
+      "max": 0.3367
+    },
+    "slime_density": {
+      "mean": 0.5554,
+      "median": 0.5457,
+      "min": 0.5,
+      "max": 0.6489
+    },
+    "largest_color_share": {
+      "mean": 0.3584,
+      "median": 0.344,
+      "min": 0.1971,
+      "max": 0.6066
+    },
+    "top_two_color_share": {
+      "mean": 0.5851,
+      "median": 0.6093,
+      "min": 0.3869,
+      "max": 0.9016
+    },
+    "effective_colors": {
+      "mean": 4.6583,
+      "median": 4.0749,
+      "min": 2.1722,
+      "max": 7.0125
+    },
+    "small_color_fraction": {
+      "mean": 0.1651,
+      "median": 0.1667,
+      "min": 0.0,
+      "max": 0.5833
+    },
+    "small_color_slime_share": {
+      "mean": 0.0329,
+      "median": 0.0195,
+      "min": 0.0,
+      "max": 0.2031
+    },
+    "own_nest_distance": {
+      "mean": 13.1393,
+      "median": 12.0711,
+      "min": 8.9014,
+      "max": 26.2131
+    },
+    "individual_distance_sum": {
+      "mean": 1485.4091,
+      "median": 1292.0,
+      "min": 460,
+      "max": 3198
+    },
+    "shortest_path_turns": {
+      "mean": 3.1275,
+      "median": 2.6581,
+      "min": 1.022,
+      "max": 10.0246
+    },
+    "nearest_any_distance": {
+      "mean": 1.1471,
+      "median": 1.1418,
+      "min": 1.0282,
+      "max": 1.2976
+    },
+    "nearest_same_distance": {
+      "mean": 3.0534,
+      "median": 2.8585,
+      "min": 1.8812,
+      "max": 4.8852
+    },
+    "floor_with_ray_4": {
+      "mean": 0.7432,
+      "median": 0.7716,
+      "min": 0.3909,
+      "max": 0.9927
+    },
+    "floor_with_ray_6": {
+      "mean": 0.5187,
+      "median": 0.5315,
+      "min": 0.1421,
+      "max": 0.956
+    },
+    "slime_with_other_at_distance_2": {
+      "mean": 0.7521,
+      "median": 0.7541,
+      "min": 0.5714,
+      "max": 0.9155
+    },
+    "aligned_nest_pairs_within_8": {
+      "mean": 1.2727,
+      "median": 1.0,
+      "min": 0,
+      "max": 5
+    }
+  }
+}

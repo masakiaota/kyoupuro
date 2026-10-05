@@ -1,0 +1,288 @@
+{
+  "selected": "base",
+  "accepted": false,
+  "goal_190": false,
+  "metrics": {
+    "base": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.6640625,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.6640625,
+      "mean_elapsed_ms": 1565.5546875,
+      "max_elapsed_ms": 1627,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "b08": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 215.8515625,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 215.8515625,
+      "mean_elapsed_ms": 1566.0625,
+      "max_elapsed_ms": 1620,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    },
+    "b20": {
+      "cases": 256,
+      "complete": 256,
+      "completion_rate": 1.0,
+      "mean_S_all": 216.26171875,
+      "mean_E_all": 0.0,
+      "max_E": 0,
+      "mean_T_completed": 216.26171875,
+      "mean_elapsed_ms": 1563.97265625,
+      "max_elapsed_ms": 1618,
+      "mean_inferences": 289.27734375,
+      "mean_depth": 289.27734375,
+      "deadline_cases": 0
+    }
+  },
+  "differences": {
+    "b08": {
+      "common_completed": 256,
+      "mean_T_difference": 0.1875,
+      "mean_S_difference": 0.1875,
+      "wins": 93,
+      "ties": 57,
+      "losses": 106
+    },
+    "b20": {
+      "common_completed": 256,
+      "mean_T_difference": 0.59765625,
+      "mean_S_difference": 0.59765625,
+      "wins": 93,
+      "ties": 48,
+      "losses": 115
+    }
+  },
+  "activation": {
+    "b08": {
+      "cooperative_calls": 618197,
+      "cooperative_completed": 343,
+      "cooperative_demands": 22372,
+      "cooperative_first_ok": 523112,
+      "cooperative_pair_ok": 6842,
+      "cooperative_raw_saved": 326,
+      "cooperative_selected": 343,
+      "cooperative_shadow_ok": 22372,
+      "cooperative_static_ok": 600939
+    },
+    "b20": {
+      "cooperative_calls": 614500,
+      "cooperative_completed": 395,
+      "cooperative_demands": 21833,
+      "cooperative_first_ok": 519421,
+      "cooperative_pair_ok": 6679,
+      "cooperative_raw_saved": 361,
+      "cooperative_selected": 395,
+      "cooperative_shadow_ok": 21833,
+      "cooperative_static_ok": 596182
+    }
+  },
+  "mechanism": {
+    "sources": {
+      "base": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+      "b08": "4664d685a0266cf5cebeec824feb14c729a087c79730ab434a39bb529fac2521",
+      "b20": "44c4b4da03a9b9710dbe0f8982deb2bcf29431afb9a0c41405b19c94cdf01b9c"
+    },
+    "totals": {
+      "base": {
+        "000000.txt": {
+          "tested": 64,
+          "ordinary": 58,
+          "cooperative": 0
+        },
+        "000124.txt": {
+          "tested": 64,
+          "ordinary": 47,
+          "cooperative": 0
+        },
+        "000252.txt": {
+          "tested": 64,
+          "ordinary": 57,
+          "cooperative": 0
+        },
+        "000380.txt": {
+          "tested": 64,
+          "ordinary": 46,
+          "cooperative": 0
+        },
+        "000508.txt": {
+          "tested": 64,
+          "ordinary": 50,
+          "cooperative": 0
+        },
+        "001597.txt": {
+          "tested": 64,
+          "ordinary": 59,
+          "cooperative": 0
+        },
+        "002613.txt": {
+          "tested": 64,
+          "ordinary": 56,
+          "cooperative": 0
+        },
+        "003532.txt": {
+          "tested": 64,
+          "ordinary": 46,
+          "cooperative": 0
+        },
+        "fixture": {
+          "tested": 1,
+          "ordinary": 1,
+          "cooperative": 0
+        }
+      },
+      "b08": {
+        "000000.txt": {
+          "tested": 64,
+          "ordinary": 58,
+          "cooperative": 4,
+          "demands": 5,
+          "static_ok": 108,
+          "shadow_ok": 5
+        },
+        "000124.txt": {
+          "tested": 64,
+          "ordinary": 47,
+          "cooperative": 1,
+          "demands": 3,
+          "static_ok": 114,
+          "shadow_ok": 3
+        },
+        "000252.txt": {
+          "tested": 64,
+          "ordinary": 57,
+          "cooperative": 2,
+          "demands": 5,
+          "static_ok": 128,
+          "shadow_ok": 5
+        },
+        "000380.txt": {
+          "tested": 64,
+          "ordinary": 46,
+          "cooperative": 1,
+          "demands": 3,
+          "static_ok": 124,
+          "shadow_ok": 3
+        },
+        "000508.txt": {
+          "tested": 64,
+          "ordinary": 50,
+          "cooperative": 4,
+          "demands": 8,
+          "static_ok": 128,
+          "shadow_ok": 8
+        },
+        "001597.txt": {
+          "tested": 64,
+          "ordinary": 59,
+          "cooperative": 7,
+          "demands": 12,
+          "static_ok": 124,
+          "shadow_ok": 12
+        },
+        "002613.txt": {
+          "tested": 64,
+          "ordinary": 56,
+          "cooperative": 3,
+          "demands": 4,
+          "static_ok": 122,
+          "shadow_ok": 4
+        },
+        "003532.txt": {
+          "tested": 64,
+          "ordinary": 46,
+          "cooperative": 2,
+          "demands": 4,
+          "static_ok": 126,
+          "shadow_ok": 4
+        },
+        "fixture": {
+          "tested": 1,
+          "ordinary": 1,
+          "cooperative": 1,
+          "demands": 1,
+          "static_ok": 2,
+          "shadow_ok": 1
+        }
+      }
+    },
+    "independent_outputs": 865,
+    "natural_cooperative": 24,
+    "gate": true,
+    "completed_at": "2026-10-04T09:58:19.319746+00:00"
+  },
+  "details": {
+    "b08": {
+      "mean_cooperative_ms": 75.3163046875,
+      "max_cooperative_ms": 97.296,
+      "cases_with_completion": 136,
+      "state_pool_restored": true,
+      "errors": {
+        "construction_errors": 0,
+        "lns_errors": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0,
+        "lns_invalid_candidates": 0
+      }
+    },
+    "b20": {
+      "mean_cooperative_ms": 75.0213984375,
+      "max_cooperative_ms": 98.047,
+      "cases_with_completion": 149,
+      "state_pool_restored": true,
+      "errors": {
+        "construction_errors": 0,
+        "lns_errors": 0,
+        "baseline_recovery": 0,
+        "final_recovery": 0,
+        "lns_invalid_candidates": 0
+      }
+    }
+  },
+  "sources": {
+    "b08": {
+      "path": "adhoc/bin/v114_cooperative_b08.cpp",
+      "sha256": "4664d685a0266cf5cebeec824feb14c729a087c79730ab434a39bb529fac2521",
+      "fraction": 0.08
+    },
+    "b20": {
+      "path": "adhoc/bin/v114_cooperative_b20.cpp",
+      "sha256": "44c4b4da03a9b9710dbe0f8982deb2bcf29431afb9a0c41405b19c94cdf01b9c",
+      "fraction": 0.2
+    }
+  },
+  "retained_candidate": {
+    "condition": "hr",
+    "source": "src/bin/v113_integrated_nn_lns.cpp",
+    "source_sha256": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+    "model_parent": "v111",
+    "fixed_at": "2026-10-04T09:34:25.916355+00:00"
+  },
+  "tools_in_reused": {
+    "cases": 100,
+    "complete": 100,
+    "completion_rate": 1.0,
+    "mean_S_all": 196.75,
+    "mean_E_all": 0.0,
+    "max_E": 0,
+    "mean_T_completed": 196.75,
+    "mean_elapsed_ms": 1569.08,
+    "max_elapsed_ms": 1616,
+    "mean_inferences": 264.69,
+    "mean_depth": 264.69,
+    "deadline_cases": 0
+  },
+  "result_sha256": "22db177e1d85e7e40cfec1f1b03d09b2f1d26f89ef361731378111252b89133e",
+  "completed_at": "2026-10-04T10:00:16.767149+00:00"
+}

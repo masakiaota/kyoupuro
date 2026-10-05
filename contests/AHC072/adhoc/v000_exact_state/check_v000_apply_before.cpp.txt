@@ -1,0 +1,137 @@
+// check_v000_apply.cpp
+// 解法を実行せず、境界例と保存済み操作列を独立した色配列の更新と照合する。
+#define main v000_template_main
+#include "../../src/bin/v000_template.cpp"
+#undef main
+
+static_assert(sizeof(Move) == 4);
+static_assert(sizeof(State<400>) == 1600);
+static_assert(is_trivially_copyable_v<State<400>>);
+using Colors = vector<int>;
+using Reference = array<Colors, 400>;
+int64_t checked = 0;
+
+void require(bool condition, const char* message) {
+    if (!condition) throw runtime_error(message);
+}
+
+uint32_t pack(const Colors& colors) {
+    uint32_t bits = 0;
+    for (auto it = colors.rbegin(); it != colors.rend(); ++it) bits = bits * 16 + *it + 1;
+    return bits;
+}
+
+Reference initial_reference(const Input& input, const Board& board) {
+    Reference ref;
+    for (int p = 0; p < board.cell_count; ++p) {
+        const auto [i, j] = board.coordinates[p];
+        const char c = input.C[i][j];
+        if ('a' <= c && c <= 'l') ref[p].push_back(c - 'a');
+    }
+    return ref;
+}
+
+template<int capacity>
+int check_move(const Input& input, const Board& board, State<capacity>& state,
+               Reference& ref, int p, int k, int d, int l) {
+    require(0 <= p && p < board.cell_count && 0 <= d && d < 4, "cell or direction");
+    require(0 <= k && k < int(ref[p].size()) && 1 <= l && l <= k + 1, "departure");
+    auto [i, j] = board.coordinates[p];
+    // rayを使わず、途中の全マスを元の座標上で調べる。
+    for (int step = 0; step < l; ++step) {
+        if (d == 0) --i;
+        if (d == 1) ++i;
+        if (d == 2) --j;
+        if (d == 3) ++j;
+        require(0 <= i && i < input.N && 0 <= j && j < input.N, "boundary");
+        require(input.C[i][j] != '#', "wall");
+    }
+    const int q = board.cell_id[i][j];
+    require(ref[q].size() + ref[p].size() - k <= 8, "capacity before home");
+    const int before = int(ref[p].size() + ref[q].size());
+    for (int index = int(ref[p].size()) - 1; index >= k; --index) ref[q].push_back(ref[p][index]);
+    ref[p].resize(k);
+    for (int cell : {p, q}) {
+        const auto [row, col] = board.coordinates[cell];
+        const char nest = input.C[row][col];
+        if ('A' <= nest && nest <= 'L') {
+            while (!ref[cell].empty() && ref[cell].back() == nest - 'A') ref[cell].pop_back();
+        }
+    }
+    const int expected = before - int(ref[p].size() + ref[q].size());
+    const int actual = state.apply(board, Move(p, k, d, l));
+    require(actual == expected, "home count");
+    // 操作対象以外と未使用の末尾も含め、選択した容量の全要素を照合する。
+    for (int cell = 0; cell < capacity; ++cell) require(state.tower[cell].bits == pack(ref[cell]), "board update");
+    ++checked;
+    return actual;
+}
+
+void check_edges() {
+    Input input{20, 12, vector<string>(20, string(20, '.'))};
+    for (int c = 0; c < input.K; ++c) {
+        input.C[0][c] = char('A' + c);
+        input.C[19][c] = char('a' + c);
+    }
+    const Board board(input);
+    const auto run = [&](int p, int k, int d, int l, Colors source, Colors dest, int homed,
+                         int intermediate = -1) {
+        State<400> state(input, board);
+        Reference ref = initial_reference(input, board);
+        const int q = board.ray[p][d][l - 1];
+        require(q >= 0, "edge-case geometry");
+        ref[p] = source; state.tower[p].bits = pack(source);
+        ref[q] = dest; state.tower[q].bits = pack(dest);
+        if (intermediate >= 0) {
+            ref[intermediate] = Colors(8, 6);
+            state.tower[intermediate].bits = pack(ref[intermediate]);
+        }
+        require(check_move(input, board, state, ref, p, k, d, l) == homed, "edge-case home count");
+    };
+    run(0, 2, 3, 3, {0, 0, 3, 7, 6}, {5}, 3);                 // 両地点の帰巣
+    run(168, 0, 3, 1, {0, 1, 2, 3, 4, 5, 6, 7}, {}, 0);     // 高さ8を丸ごと反転
+    run(168, 7, 0, 8, {1, 2, 3, 4, 5, 6, 7, 8},
+        {1, 2, 3, 4, 5, 6, 7}, 1, 88);                       // 距離8・途中に高さ8・帰巣前高さ8
+    run(2, 2, 3, 1, {4, 4, 3, 3, 3}, {}, 3);                 // 着地した全匹が帰巣
+    for (int d = 0; d < 4; ++d) {
+        run(168, 1, d, 2, {0, 1, 2}, {3, 4, 5, 6, 7, 8}, 0); // 全方向・満杯への着地
+    }
+}
+
+int main(int argc, char** argv) {
+    try {
+        require(argc == 3, "usage: check_v000_apply <input_dir> <saved_output_dir>");
+        check_edges();
+        vector<filesystem::path> inputs;
+        for (const auto& entry : filesystem::directory_iterator(argv[1])) {
+            if (entry.path().extension() == ".txt") inputs.push_back(entry.path());
+        }
+        sort(inputs.begin(), inputs.end());
+        for (const auto& path : inputs) {
+            ifstream in(path), out(filesystem::path(argv[2]) / path.filename());
+            require(bool(in) && bool(out), "cannot open input/output");
+            Input input; input.read(in);
+            const Board board(input);
+            with_state_capacity(board.cell_count, [&]<int capacity>() {
+                State<capacity> state(input, board);
+                Reference ref = initial_reference(input, board);
+                int i, j, k, l;
+                char d;
+                while (out >> i) {
+                    require(bool(out >> j >> k >> d >> l), "incomplete operation");
+                    require(0 <= i && i < input.N && 0 <= j && j < input.N, "output coordinates");
+                    const auto direction = string_view("UDLR").find(d);
+                    require(direction != string_view::npos, "output direction");
+                    check_move(input, board, state, ref, board.cell_id[i][j], k, int(direction), l);
+                }
+                require(out.eof(), "invalid output token");
+                for (const auto& colors : ref) require(colors.empty(), "slimes remain");
+            });
+        }
+        cout << "OK: edge_cases=8, replay_cases=" << inputs.size() << ", apply_checks=" << checked
+             << ", max_state_bytes=" << sizeof(State<400>) << '\n';
+    } catch (const exception& error) {
+        cerr << error.what() << '\n';
+        return 1;
+    }
+}

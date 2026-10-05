@@ -1,0 +1,15 @@
+{
+  "file_bytes": [
+    362536,
+    362552
+  ],
+  "instructions_equal": true,
+  "headers_equal": false,
+  "frozen_sha256": "a333e071f7e7ab04c1de249ddd0e7d080f1b6f77bc6f4143992e7d19a5fa35d9",
+  "eval_sha256": "138e18935a1b5ee2e49634ff42b3a1ff502406d94ae532b14de60cab54e2d8c6",
+  "all_section_contents_equal": true,
+  "signing_identifiers": [
+    "Identifier=child_local",
+    "Identifier=v039_exact_board_lns"
+  ]
+}

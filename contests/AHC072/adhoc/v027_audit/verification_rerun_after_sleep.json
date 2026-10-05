@@ -1,0 +1,63 @@
+{
+  "output": "/Users/masaki/Desktop/AHC072/adhoc/v027_evaluation_summary.json",
+  "run_id": "20260927T182647+0900_v027_resampled_start_lns_ffcc2b",
+  "adopt": false,
+  "mean_T": 210.28,
+  "total_T": 21028,
+  "comparisons": {
+    "v026_late_start_lns": {
+      "baseline_T": 20900,
+      "baseline_mean_T": 209.0,
+      "delta_T": 128,
+      "delta_percent": 0.6124401913875598,
+      "wins": 33,
+      "ties": 12,
+      "losses": 55
+    },
+    "v022_dependency_lns": {
+      "baseline_T": 20951,
+      "baseline_mean_T": 209.51,
+      "delta_T": 77,
+      "delta_percent": 0.3675242231874373,
+      "wins": 42,
+      "ties": 9,
+      "losses": 49
+    }
+  },
+  "verified_cases": 100,
+  "max_elapsed_ms": 1558,
+  "error_count": 0,
+  "mechanism_passed": true,
+  "direct_improved_cases": 22,
+  "any_improved_cases": 28,
+  "pre_lns_differences": {
+    "cases": 2,
+    "total": -10
+  },
+  "relative_changes_percent": {
+    "lns_attempts": -2.4190499438849433,
+    "candidate_build_time": 4.133047543906865
+  },
+  "resampled_counts": {
+    "lns_resampled_start_alternative_generated": 1622721,
+    "lns_resampled_start_draws": 5378711,
+    "lns_resampled_start_eligible_sets": 2646617,
+    "lns_resampled_start_flexible_accepted": 779,
+    "lns_resampled_start_flexible_attempts": 8725,
+    "lns_resampled_start_flexible_completed": 4198,
+    "lns_resampled_start_flexible_improvements": 25,
+    "lns_resampled_start_flexible_saved": 45,
+    "lns_resampled_start_intermediate_generated": 1622802,
+    "lns_resampled_start_packet_accepted": 122,
+    "lns_resampled_start_packet_attempts": 3342,
+    "lns_resampled_start_packet_completed": 952,
+    "lns_resampled_start_packet_improvements": 5,
+    "lns_resampled_start_packet_saved": 5,
+    "lns_resampled_start_paired_accepted": 276,
+    "lns_resampled_start_paired_attempts": 2640,
+    "lns_resampled_start_paired_completed": 1197,
+    "lns_resampled_start_paired_improvements": 8,
+    "lns_resampled_start_paired_saved": 12,
+    "lns_resampled_start_unique_later_times": 10746398
+  }
+}

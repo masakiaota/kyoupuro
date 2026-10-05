@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-09-28T00:01:10.963106+09:00",
+  "checked_files": 413,
+  "sources_unchanged": true,
+  "preregistration_preserved": true,
+  "size_rows_verified": 500,
+  "sample_rows_verified": 3000,
+  "binary_sha256": {
+    "bench_local": "92a43339ff8048a0586f5fd35d94449249becfc32b2c0edaf370dc9cd2c43065",
+    "bench_production": "81f6a31d1abefaa67bad476d3764077cbf444cb7fb77f462d7fd08aaa4d22d67"
+  }
+}

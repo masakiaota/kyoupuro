@@ -1,0 +1,204 @@
+{
+  "normal_average": 495.949494949495,
+  "all_average": 492.11,
+  "normal_metrics": {
+    "M": 6744,
+    "shortest_distance_sum": 90083,
+    "max_height": 715,
+    "T": 49099,
+    "W": 141099,
+    "moved_count": 123864,
+    "mixed_moves": 18246,
+    "long_jumps": 7161,
+    "single_moves": 19962,
+    "max_packet": 629,
+    "source_returned": 1597,
+    "destination_returned": 5147,
+    "E": 0,
+    "S": 49099
+  },
+  "normal_trace_totals": {
+    "M": 6744,
+    "cleanup_T": 9792,
+    "cleanup_pickup_T": 4753,
+    "core_cells": 4305,
+    "core_slimes": 1656,
+    "core_support_jumps": 6485,
+    "core_support_repeated_uses": 5330,
+    "core_supports_used": 1155,
+    "delivery_cache_hits": 37686481,
+    "delivery_cache_misses": 1575703,
+    "delivery_cache_size": 1575703,
+    "destination_returned": 5147,
+    "final_T": 49099,
+    "gate_passed": 5088,
+    "group_cache_hits": 2403213278,
+    "group_cache_misses": 29983478,
+    "group_cache_size": 29983478,
+    "groups": 2315,
+    "home_launch_long_moves": 676,
+    "individual_distance_sum": 90083,
+    "initial_T": 55104,
+    "max_height": 715,
+    "mixed_carry_moves": 18246,
+    "mixed_groups": 1073,
+    "moved_slimes": 123864,
+    "multi_carry_moves": 29137,
+    "peripheral_T": 39307,
+    "peripheral_groups": 1850,
+    "peripheral_mixed_groups": 845,
+    "peripheral_pickup_T": 14410,
+    "regions": 1216,
+    "remaining_slimes": 0,
+    "sa_accepted": 107874241,
+    "sa_best_updates": 3205,
+    "sa_evaluated": 1489757666,
+    "sa_improved": 14562860,
+    "sa_iterations": 3275137021,
+    "source_returned": 1597,
+    "transport_work": 141099
+  },
+  "normal_ratios": {
+    "avg_packet": 2.522739770667427,
+    "W_over_shortest": 1.566322169554744,
+    "peripheral_pickup_fraction": 0.29348866575694005,
+    "peripheral_delivery_fraction": 0.5070775372207174,
+    "cleanup_fraction": 0.19943379702234262
+  },
+  "comparisons": [
+    {
+      "bin": "v001_mixed_deque",
+      "normal_average_before": 307.73737373737373,
+      "normal_difference": 18633,
+      "normal_change_percent": 61.159981618853806,
+      "wins": 0,
+      "ties": 0,
+      "losses": 99,
+      "focus_cases": {
+        "0005.txt": {
+          "before": 830,
+          "after": 1324,
+          "difference": 494
+        },
+        "0019.txt": {
+          "before": 817,
+          "after": 1363,
+          "difference": 546
+        },
+        "0060.txt": {
+          "before": 293,
+          "after": 378,
+          "difference": 85
+        },
+        "0068.txt": {
+          "before": 515,
+          "after": 696,
+          "difference": 181
+        },
+        "0097.txt": {
+          "before": 791,
+          "after": 1314,
+          "difference": 523
+        }
+      }
+    },
+    {
+      "bin": "v003_spring_network",
+      "normal_average_before": 274.0,
+      "normal_difference": 21973,
+      "normal_change_percent": 81.00346531003466,
+      "wins": 1,
+      "ties": 0,
+      "losses": 98,
+      "focus_cases": {
+        "0005.txt": {
+          "before": 681,
+          "after": 1324,
+          "difference": 643
+        },
+        "0019.txt": {
+          "before": 724,
+          "after": 1363,
+          "difference": 639
+        },
+        "0060.txt": {
+          "before": 275,
+          "after": 378,
+          "difference": 103
+        },
+        "0068.txt": {
+          "before": 467,
+          "after": 696,
+          "difference": 229
+        },
+        "0097.txt": {
+          "before": 685,
+          "after": 1314,
+          "difference": 629
+        }
+      }
+    },
+    {
+      "bin": "v039_exact_board_lns",
+      "normal_average_before": 209.4848484848485,
+      "normal_difference": 28360,
+      "normal_change_percent": 136.74719128212547,
+      "wins": 0,
+      "ties": 0,
+      "losses": 99,
+      "focus_cases": {
+        "0005.txt": {
+          "before": 598,
+          "after": 1324,
+          "difference": 726
+        },
+        "0019.txt": {
+          "before": 643,
+          "after": 1363,
+          "difference": 720
+        },
+        "0060.txt": {
+          "before": 161,
+          "after": 378,
+          "difference": 217
+        },
+        "0068.txt": {
+          "before": 426,
+          "after": 696,
+          "difference": 270
+        },
+        "0097.txt": {
+          "before": 582,
+          "after": 1314,
+          "difference": 732
+        }
+      }
+    }
+  ],
+  "eval_summary": {
+    "bin": "v045_regional_backbone",
+    "total_avg": "492",
+    "total_sum": "49211",
+    "total_min": "103",
+    "total_max": "1363",
+    "avg_elapsed": "1489",
+    "max_elapsed": "1536",
+    "eval_set": "tools/in",
+    "total_cases": "100",
+    "label": "regional_backbone",
+    "executed_at": "2026-09-28T22:36:48+09:00"
+  },
+  "mechanism_checks": {
+    "delivery_dp": {
+      "comparisons": 390,
+      "mismatches": 0
+    },
+    "full_audit_violations": 0,
+    "coverage": {
+      "core_support_jumps": 99,
+      "core_support_repeated_uses": 99,
+      "peripheral_mixed_groups": 99
+    },
+    "source_and_input_hashes_unchanged": true
+  }
+}

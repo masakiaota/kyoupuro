@@ -1,0 +1,384 @@
+[
+  {
+    "mode": "fixed",
+    "capacity": 32,
+    "moves": 0,
+    "lines": 81,
+    "calls": {}
+  },
+  {
+    "mode": "exact",
+    "capacity": null,
+    "moves": 0,
+    "lines": 99,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 400,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 32,
+    "moves": 1,
+    "lines": 85,
+    "calls": {
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 1
+    }
+  },
+  {
+    "mode": "exact",
+    "capacity": null,
+    "moves": 1,
+    "lines": 116,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 400,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 32,
+    "moves": 4,
+    "lines": 336,
+    "calls": {}
+  },
+  {
+    "mode": "exact",
+    "capacity": null,
+    "moves": 4,
+    "lines": 334,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 400,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 64,
+    "moves": 0,
+    "lines": 49,
+    "calls": {}
+  },
+  {
+    "mode": "fixed",
+    "capacity": 64,
+    "moves": 1,
+    "lines": 93,
+    "calls": {
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 64,
+    "moves": 4,
+    "lines": 344,
+    "calls": {}
+  },
+  {
+    "mode": "fixed",
+    "capacity": 96,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 96,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 96,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 128,
+    "moves": 0,
+    "lines": 94,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 128,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 128,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 160,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 160,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 160,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 192,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 192,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 192,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 224,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 224,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 224,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 256,
+    "moves": 0,
+    "lines": 94,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 256,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 256,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 288,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 288,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 288,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 320,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 320,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 320,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 352,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 352,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 352,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 384,
+    "moves": 0,
+    "lines": 95,
+    "calls": {
+      "_memcpy": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 384,
+    "moves": 1,
+    "lines": 113,
+    "calls": {
+      "_memcpy": 3,
+      "__ZN5bench5applyEP5TowerRK5Board4Move": 3
+    }
+  },
+  {
+    "mode": "fixed",
+    "capacity": 384,
+    "moves": 4,
+    "lines": 340,
+    "calls": {
+      "_memcpy": 1
+    }
+  }
+]

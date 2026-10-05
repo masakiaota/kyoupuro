@@ -1,0 +1,15 @@
+14 5
+#....#.#.#a#.e
+bb#c#ed.c.bd.c
+d...Bc.#.##d.#
+.d#de##caee..#
+#..bdd.#.e#ee#
+c..ce.#.e#aedd
+..#dc.##a.####
+d.#.bdd.a#.b.e
+b.#.#.....d#ed
+.#.#.###..cc.e
+.de..EC..cc..b
+d.e#ee###Ad.b.
+.#e.#cd.c.b..e
+#edd.#e#e.bDec

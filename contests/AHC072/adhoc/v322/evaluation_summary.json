@@ -1,0 +1,73 @@
+{
+  "verdict": "not_adopted",
+  "reason": "in relative score decreased",
+  "source_sha256": "abb46ec1d213e38840fd3780d9fdfc512f17383faa9b5234070d809bb9789fd9",
+  "compiler": "GCC14.2",
+  "LOCAL": false,
+  "nominal_budget_seconds": 1.9,
+  "jobs": 2,
+  "replicates": 1,
+  "validation1_used": false,
+  "sets": {
+    "fresh128": {
+      "n": 128,
+      "delta_sum": -78,
+      "delta_mean": -0.609375,
+      "wins": 56,
+      "draws": 13,
+      "losses": 59,
+      "v113": {
+        "sum": 30497,
+        "mean": 238.2578125
+      },
+      "v322": {
+        "sum": 30419,
+        "mean": 237.6484375
+      }
+    },
+    "in": {
+      "n": 100,
+      "delta_sum": -21,
+      "delta_mean": -0.21,
+      "wins": 37,
+      "draws": 18,
+      "losses": 45,
+      "v113": {
+        "sum": 19993,
+        "mean": 199.93,
+        "relative_v800_mean_100": 93.94094165020238
+      },
+      "v322": {
+        "sum": 19972,
+        "mean": 199.72,
+        "relative_v800_mean_100": 93.78786684070494
+      }
+    }
+  },
+  "legality": {
+    "outputs": 456,
+    "legal_complete": 456,
+    "official": "Rust vis --no-vis",
+    "independent": "Python lists",
+    "diagnostic_errors": 0,
+    "warmups_excluded": 2
+  },
+  "time": {
+    "v113_max": 1.92597519,
+    "v322_max": 1.940659383,
+    "v113_over_1_9": 1,
+    "v322_over_1_9": 3,
+    "over_2": 0
+  },
+  "mechanism": {
+    "atomic_conditions": 393216,
+    "fixture_outputs_official_checked": 8,
+    "rewrite_attempts": 33527,
+    "rewrite_completed": 84,
+    "rewrite_raw_saved": 94,
+    "long_span_completions": 9,
+    "max_completed_span": 246,
+    "new_first_nn_hash_matches": 228
+  },
+  "data_payload_sha256": "76c9028c5b4f6c9d84883d1e0d4caec28a9f125475d56d9d6a7fb86ce2e9aca2"
+}

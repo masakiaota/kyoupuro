@@ -1,0 +1,602 @@
+[
+  {
+    "old": "// v210_collection_color_quotient.cpp\n// v210: v209の同色再挿入・候補保持と、v208の3塔以上の同色集荷構築を併用する。\n// 集荷の計画と採否判定はv208からそのまま継承する。\n// LOCAL・非LOCALとも時間管理、初期解選抜、探索と終了処理はv209を継承する。\n",
+    "new": "// v213_atomic_color_runs.cpp\n// v213: 同色の連続部分を全工程で分割しない。塔は色と匹数の塊を64 bitに詰める。\n// v210の時間・選抜条件を維持し、構築・LNS・経路短縮に同じ制約を適用する。\n",
+    "offset": 0
+  },
+  {
+    "old": "// 塔は下から4 bitずつ色c+1を詰める。空は0。色符号は1..K、巣なしは0。\nusing TowerBits = uint32_t;\n",
+    "new": "// 下から1 byteずつ同色の塊を詰める。下位4 bitは色c+1、上位4 bitは匹数−1。\nusing TowerBits = uint64_t;\n",
+    "offset": 8034
+  },
+  {
+    "old": "constexpr TowerBits tower_mask[9]={0u,0xfu,0xffu,0xfffu,0xffffu,0xfffffu,0xffffffu,0xfffffffu,0xffffffffu};\ninline int height(TowerBits a) { return a ? (32-__builtin_clz(a)+3)/4 : 0; }\ninline TowerBits prefix(TowerBits a,int k) { return a & tower_mask[k]; }\n",
+    "new": "// 同色8匹も1 byteで表し、反転はbyte交換、分割候補は塊の境界だけを巡回する。\n// 塔全体を固定長にして、盤面コピーとハッシュのための動的確保を避ける。\ninline int runs(TowerBits a) { return a ? (64-__builtin_clzll(a)+7)/8 : 0; }\ninline int height(TowerBits a) {\n    const uint64_t extras=(a>>4)&0x0f0f0f0f0f0f0f0fULL;\n    return runs(a)+int((extras*0x0101010101010101ULL)>>56);\n}\ninline int first_run_size(TowerBits a) { return int((a>>4)&15)+1; }\ninline int top_color_code(TowerBits a) { return a ? int((a>>(8*(runs(a)-1)))&15) : 0; }\ninline int top_run_size(TowerBits a) { return a ? int((a>>(8*(runs(a)-1)+4))&15)+1 : 0; }\ninline int mono_color_code(TowerBits a) { return !a ? 0 : (a<256 ? int(a&15) : -1); }\n",
+    "offset": 10781
+  },
+  {
+    "old": "    if(!a)return 0;\n    int shift=(8-height(a))*4;\n    a=((a>>4)&0x0f0f0f0fu)|((a&0x0f0f0f0fu)<<4);\n    return __builtin_bswap32(a)>>shift;\n",
+    "new": "    return a ? __builtin_bswap64(a)>>(8*(8-runs(a))) : 0;\n",
+    "offset": 11471
+  },
+  {
+    "old": "    int h=height(lower);\n    if(h==8) {if(upper)throw logic_error(\"tower overflow\");return lower;}\n    return lower|(upper<<(4*h));\n",
+    "new": "    if(!lower)return upper;\n    if(!upper)return lower;\n    const int shift=8*(runs(lower)-1);\n    if(int((lower>>shift)&15)==int(upper&15)) {\n        // 接合した同色の塊を統合し、以後の分割候補から内部を消す。\n        lower+=TowerBits(first_run_size(upper))<<(shift+4);\n        upper>>=8;\n    }\n    const int offset=8*runs(lower);\n    assert(!upper||offset<64);\n    return upper ? lower|(upper<<offset) : lower;\n",
+    "offset": 11596
+  },
+  {
+    "old": "inline int top_color_code(TowerBits a) {return a ? a>>(4*(height(a)-1)) : 0;}\ninline int mono_color_code(TowerBits a) {\n    if(!a)return 0;\n    int current_code=a&15;\n    return ((a^(0x11111111u*current_code))&tower_mask[height(a)]) ? -1 : current_code;\n",
+    "new": "// 仮想的な除去・逆探索にも使うため、切出し自体は塊の途中を扱える。\n// 実際の順方向操作を作る箇所は必ずrun_boundaryで検査する。\ninline TowerBits prefix(TowerBits a,int k) {\n    TowerBits result=0;int shift=0;\n    while(a&&k>0) {\n        const int n=min(k,first_run_size(a));\n        result|=TowerBits((a&15)|((n-1)<<4))<<shift;\n        k-=n;a>>=8;shift+=8;\n    }\n    return result;\n",
+    "offset": 11983
+  },
+  {
+    "old": "",
+    "new": "inline TowerBits suffix(TowerBits a,int k) {\n    while(a&&k>=first_run_size(a)){k-=first_run_size(a);a>>=8;}\n    if(k&&a)a-=TowerBits(k)<<4;\n    return a;\n}\ninline bool run_boundary(TowerBits a,int k) {\n    while(k>0&&a){k-=first_run_size(a);a>>=8;}\n    return k==0;\n}\nstruct RunCuts {\n    struct Iterator {\n        TowerBits rest;int keep;\n        int operator*()const{return keep;}\n        Iterator& operator++(){keep+=first_run_size(rest);rest>>=8;return *this;}\n        bool operator!=(const Iterator& other)const{return rest!=other.rest;}\n    };\n    TowerBits word;\n    Iterator begin()const{return {word,0};}\n    Iterator end()const{return {0,0};}\n};\ninline TowerBits insert_word(TowerBits a,int gap,TowerBits piece) {\n    return append_tower(append_tower(prefix(a,gap),piece),suffix(a,gap));\n}\n// 有限区間の索引は従来の32 bit色列を使い、位置と合わせて64 bitに保つ。\ninline uint32_t expanded_word(TowerBits a) {\n    uint32_t word=0;int shift=0;\n    for(;a;a>>=8)for(int i=0;i<first_run_size(a);i++,shift+=4)word|=uint32_t(a&15)<<shift;\n    return word;\n}\ninline TowerBits packed_word(uint32_t a) {\n    TowerBits word=0;for(;a;a>>=4)word=append_tower(word,TowerBits(a&15));return word;\n}\nstruct InfeasibleConstruction {};\n#ifdef LOCAL\nstruct AtomicStats {\n    int64_t dp_positions=0,dp_boundaries=0,router_join_stops=0;\n    int64_t insert_split_prunes=0,extract_split_prunes=0,run_reinsertions=0,run_reinserted_slimes=0;\n    int64_t board_operations=0,departure_runs=0,departure_slimes=0,blocked_constructions=0;\n    void summary()const {\n        auto add=[&](const char* key,int64_t n){trace.count_by(string(\"atomic_\")+key,n);};\n        add(\"dp_positions\",dp_positions);add(\"dp_boundaries\",dp_boundaries);\n        add(\"router_join_stops\",router_join_stops);add(\"insert_split_prunes\",insert_split_prunes);\n        add(\"extract_split_prunes\",extract_split_prunes);add(\"run_reinsertions\",run_reinsertions);\n        add(\"run_reinserted_slimes\",run_reinserted_slimes);add(\"board_operations\",board_operations);\n        add(\"departure_runs\",departure_runs);add(\"departure_slimes\",departure_slimes);\n        add(\"blocked_constructions\",blocked_constructions);add(\"tower_bytes\",sizeof(TowerBits));\n    }\n} atomic_stats;\n#endif\n",
+    "offset": 12313
+  },
+  {
+    "old": "    int m=0;\n    for(;a;a>>=4) m|=1<<((a&15)-1);\n    return m;\n}\ninline int runs(TowerBits a) {\n    int r=0, last=-1;\n    for(;a;a>>=4) { int current_code=a&15; r+=current_code!=last; last=current_code; }\n    return r;\n",
+    "new": "    int m=0;for(;a;a>>=8)m|=1<<((a&15)-1);return m;\n",
+    "offset": 15226
+  },
+  {
+    "old": "        TowerBits different=(a^(0x11111111u*code))&tower_mask[height(a)];\n        return prefix(a,height(different));\n",
+    "new": "        if(top_color_code(a)!=code)return a;\n        const int shift=8*(runs(a)-1);\n        return shift ? a&((TowerBits(1)<<shift)-1) : 0;\n",
+    "offset": 17454
+  },
+  {
+    "old": "",
+    "new": "        if(!run_boundary(b[p],m.k))throw logic_error(\"atomic color split\");\n        LOCAL_ONLY(++atomic_stats.board_operations;atomic_stats.departure_runs+=runs(b[p]);atomic_stats.departure_slimes+=h);\n",
+    "offset": 17795
+  },
+  {
+    "old": "        TowerBits flight=reverse_tower(b[p]>>(4*m.k));\n",
+    "new": "        TowerBits flight=reverse_tower(suffix(b[p],m.k));\n",
+    "offset": 18277
+  },
+  {
+    "old": "            for(int k=1;k<h;k++) {\n                if(((s[o]>>(4*(k-1)))&15)==((s[o]>>(4*k))&15)) continue;\n",
+    "new": "            for(int k:RunCuts{s[o]}) {if(k==0)continue;\n",
+    "offset": 20731
+  },
+  {
+    "old": "                right[o][k]=get(reverse_tower(s[o]>>(4*k)));\n",
+    "new": "                right[o][k]=get(reverse_tower(suffix(s[o],k)));\n",
+    "offset": 20867
+  },
+  {
+    "old": "",
+    "new": "            if(p!=src&&top_color_code(b[p])==tc[o^1]){LOCAL_ONLY(++atomic_stats.router_join_stops);continue;}\n",
+    "offset": 23035
+  },
+  {
+    "old": "// 1束の全分割位置を評価する。上側を帰巣させてから下側を扱うため、未処理部分の容量を保てる。\n",
+    "new": "// 同色の塊の境界だけを評価し、最初の分割か帰巣までの操作を発行する。\n",
+    "offset": 24003
+  },
+  {
+    "old": "    int bh[max_cells];\n",
+    "new": "    int bh[max_cells],background_top[max_cells];\n",
+    "offset": 24289
+  },
+  {
+    "old": "            for(int k=1;k<h;k++) {\n",
+    "new": "            LOCAL_ONLY(atomic_stats.dp_positions+=max(0,h-1);atomic_stats.dp_boundaries+=runs(s[o])-1);\n            for(int k:RunCuts{s[o]}) {if(k==0)continue;\n",
+    "offset": 25388
+  },
+  {
+    "old": "                right[o][k]=get(reverse_tower(s[o]>>(4*k)));\n",
+    "new": "                right[o][k]=get(reverse_tower(suffix(s[o],k)));\n",
+    "offset": 25596
+  },
+  {
+    "old": "            } else for(int k=1;k<h;k++) {\n",
+    "new": "            } else for(int k:RunCuts{s[o]}) {if(k==0)continue;\n",
+    "offset": 25978
+  },
+  {
+    "old": "",
+    "new": "                if(background_top[q]==int(s[no]&15)){LOCAL_ONLY(++atomic_stats.router_join_stops);continue;}\n",
+    "offset": 26899
+  },
+  {
+    "old": "    void emit(ConstructionState &w,TowerBits word,int p) {\n        while((word=board_info.normalize(word,p))) {\n            Ref ref=get(word); int id=ref.o*board_info.cell_count+p;\n            if(ref.p->cost[id]>=infinite_cost) throw logic_error(\"unreachable delivery\");\n            Action a=ref.p->action[id]; int h=height(word);\n            int base=height(w.state[p])-h;\n            if(base<0) throw logic_error(\"packet disappeared\");\n            if(a.type==0) {\n                int q=board_info.ray[p][a.d][a.l];\n                w.move({int16_t(p),uint8_t(base),a.d,a.l});\n                word=reverse_tower(word); p=q;\n            } else if(a.type==1) {\n                TowerBits lo=prefix(word,a.k),hi=reverse_tower(word>>(4*a.k));\n                int q=board_info.ray[p][a.d][a.l];\n                w.move({int16_t(p),uint8_t(base+a.k),a.d,a.l});\n                emit(w,hi,q); word=lo;\n            } else throw logic_error(\"unexpected DP boundary\");\n        }\n    }\n",
+    "new": "",
+    "offset": 27286
+  },
+  {
+    "old": "        for(int p=0;p<board_info.cell_count;p++) bh[p]=p==selected ? 0 : height(b[p]);\n",
+    "new": "        for(int p=0;p<board_info.cell_count;p++) {\n            bh[p]=p==selected ? 0 : height(b[p]);\n            background_top[p]=p==selected ? 0 : top_color_code(b[p]);\n        }\n",
+    "offset": 27367
+  },
+  {
+    "old": "    void finish(ConstructionState &w,int p) { TowerBits a=w.state[p]; get(a); emit(w,a,p); }\n",
+    "new": "",
+    "offset": 27863
+  },
+  {
+    "old": "            if(r.p->cost[id]>=infinite_cost) throw logic_error(\"unreachable event\");\n",
+    "new": "            if(r.p->cost[id]>=infinite_cost) throw InfeasibleConstruction();\n",
+    "offset": 28141
+  },
+  {
+    "old": "// 期限付近の1匹ずつの帰巣。高さ8の塔を先に空け、通過先の容量を確保する。\nvoid finish_singles(ConstructionState &w) {\n    LOCAL_NOTE(trace.count_by(\"finish_singles_calls\", 1);)\n",
+    "new": "// 期限付近の同色の塊ごとの帰巣。高さ8の塔を先に空け、通過先の容量を確保する。\nvoid finish_runs(ConstructionState &w) {\n    LOCAL_NOTE(trace.count_by(\"finish_runs_calls\", 1);)\n",
+    "offset": 28810
+  },
+  {
+    "old": "        bh[s]=height(board_info.normalize(prefix(w.state[s],hs-1),s));\n",
+    "new": "        const int amount=top_run_size(w.state[s]),leave=hs-amount;\n        bh[s]=height(board_info.normalize(prefix(w.state[s],leave),s));\n",
+    "offset": 29517
+  },
+  {
+    "old": "                if(bh[v]>=8||prev[v]!=-2) continue;\n",
+    "new": "                if(bh[v]+amount>8||prev[v]!=-2)continue;\n                if(v!=goal&&top_color_code(w.state[v])==current_code)continue;\n",
+    "offset": 30043
+  },
+  {
+    "old": "        if(prev[goal]==-2) throw logic_error(\"single blocked by full towers\");\n",
+    "new": "        if(prev[goal]==-2) throw InfeasibleConstruction();\n",
+    "offset": 30258
+  },
+  {
+    "old": "            path.push_back({int16_t(p),uint8_t(p==s?hs-1:bh[p]),dd[v],ll[v]});\n",
+    "new": "            path.push_back({int16_t(p),uint8_t(p==s?leave:bh[p]),dd[v],ll[v]});\n",
+    "offset": 30418
+  },
+  {
+    "old": "            TowerBits a=w.state[p]; int n=0;\n            while(a&&top_color_code(a)==current_code) { n++;a=prefix(a,height(a)-1); }\n            return n;\n",
+    "new": "            return top_color_code(w.state[p])==current_code?top_run_size(w.state[p]):0;\n",
+    "offset": 32702
+  },
+  {
+    "old": "                int amt=top_count(p),space=8-height(w.state[v]);\n                if(space<amt&&top_count(v)) { flush(v);space=8-height(w.state[v]); }\n                int take=min(amt,space);\n                if(take<=0) throw logic_error(\"baseline capacity\");\n",
+    "new": "                const int amt=top_count(p);\n                auto capacity=[&]{return min(8-height(w.state[v]),(v==root?8:7)-top_count(v));};\n                if(capacity()<amt&&top_count(v))flush(v);\n                const int take=amt;\n                if(capacity()<take)throw logic_error(\"atomic baseline capacity\");\n",
+    "offset": 32997
+  },
+  {
+    "old": "                    if(q<0||board_info.adj[dest][d]!=q||height(w.state[q])+take>8) break;\n",
+    "new": "                    if(q<0||board_info.adj[dest][d]!=q||height(w.state[q])+take>8||\n                       (q!=root&&top_count(q)+take>7)) break;\n",
+    "offset": 33636
+  },
+  {
+    "old": "",
+    "new": "                    if(background[next]&&top_color_code(w.state[next])==color)continue;\n",
+    "offset": 42931
+  },
+  {
+    "old": "        ConstructionState trial(w.state);\n        dp.first_event(trial,p);\n        int old_potential=0,new_potential=0;\n        for(int v=0;v<board_info.cell_count;v++) if(before[v]!=trial.state[v]) {\n            old_potential+=pot.value(before[v],v);\n            new_potential+=pot.value(trial.state[v],v);\n        }\n        // 周囲の塔を合流させると分割DPの利得を失う場合は、元の束の帰巣まで完了させる。\n        if(new_potential+int(trial.moves.size())<=old_potential+1) {\n            for(auto m:trial.moves) w.move(m);\n            sync(before,++family_counter);\n        } else {\n            dp.finish(w,p);\n            sync(before,0);\n        }\n",
+    "new": "        // 分割・帰巣の直後に塊と足場が変わるため、次の配送は更新後の盤面で計画する。\n        dp.first_event(w,p);\n        sync(before,++family_counter);\n",
+    "offset": 47896
+  },
+  {
+    "old": "            if(time_keeper.exact_elapsed_sec()>LOCAL_SECONDS(1.80)) {finish_singles(w);break;}\n",
+    "new": "            if(time_keeper.exact_elapsed_sec()>LOCAL_SECONDS(1.80)) {finish_runs(w);break;}\n",
+    "offset": 48704
+  },
+  {
+    "old": "            DeliveryDP dp(w.state,p);dp.finish(w,p);\n",
+    "new": "            DeliveryDP dp(w.state,p);dp.first_event(w,p);\n",
+    "offset": 49114
+  },
+  {
+    "old": "        source=s;keep=k;packet=b[s]>>(4*k);amount=height(packet);\n",
+    "new": "        source=s;keep=k;packet=suffix(b[s],k);amount=height(packet);\n",
+    "offset": 53131
+  },
+  {
+    "old": "",
+    "new": "        if(k>=height(b[s])||!run_boundary(b[s],k))return;\n        const int source_top=top_color_code(board_info.normalize(prefix(b[s],k),s));\n",
+    "offset": 53388
+  },
+  {
+    "old": "",
+    "new": "            const int lower_top=p==s?source_top:top_color_code(b[p]);\n            if(z!=s*2&&lower_top==top[o^1]){LOCAL_ONLY(++atomic_stats.router_join_stops);continue;}\n",
+    "offset": 53917
+  },
+  {
+    "old": "        TowerBits word=b[p]>>(4*k);State end=b;\n",
+    "new": "        TowerBits word=suffix(b[p],k);State end=b;\n",
+    "offset": 55313
+  },
+  {
+    "old": "            if(m.p!=q||height(end[q])-m.k!=h||end[q]>>(4*m.k)!=traveling)break;\n",
+    "new": "            if(m.p!=q||height(end[q])-m.k!=h||suffix(end[q],m.k)!=traveling)break;\n",
+    "offset": 55489
+  },
+  {
+    "old": "                for(int k=max(l-1,ha+hb-8);k<ha;k++) {\n",
+    "new": "                for(int k:RunCuts{s[a]}) {\n                    if(k<max(l-1,ha+hb-8))continue;\n",
+    "offset": 62420
+  },
+  {
+    "old": "                    next[b]=append_tower(s[b],reverse_tower(s[a]>>(4*k)));\n",
+    "new": "                    next[b]=append_tower(s[b],reverse_tower(suffix(s[a],k)));\n",
+    "offset": 62598
+  },
+  {
+    "old": "                    previous[a]=append_tower(s[a],reverse_tower(s[b]>>(4*(hb-amount))));\n",
+    "new": "                    previous[a]=append_tower(s[a],reverse_tower(suffix(s[b],hb-amount)));\n",
+    "offset": 63004
+  },
+  {
+    "old": "",
+    "new": "                    if(!run_boundary(previous[a],ha))continue;\n",
+    "offset": 63150
+  },
+  {
+    "old": "            TowerBits parcel=w.end[a]>>(4*m.k);\n",
+    "new": "            TowerBits parcel=suffix(w.end[a],m.k);\n",
+    "offset": 67420
+  },
+  {
+    "old": "            check[b]=append_tower(check[b],reverse_tower(check[a]>>(4*m.k)));\n",
+    "new": "            check[b]=append_tower(check[b],reverse_tower(suffix(check[a],m.k)));\n",
+    "offset": 69724
+  },
+  {
+    "old": "    return result;\n}\n\n#ifdef LOCAL\nstruct MonoDispatchStats {\n    int64_t scans=0,windows=0,routes=0,replacements=0,saved=0,independent=0;\n    void summary() const {\n        auto count=[&](const char* key,int64_t value){trace.count_by(string(\"mono_dispatch_\")+key,value);};\n        count(\"scans\",scans);count(\"windows\",windows);count(\"routes\",routes);\n        count(\"replacements\",replacements);count(\"saved\",saved);count(\"independent\",independent);\n    }\n} local_mono_dispatch;\n#endif\n\n// 同色のp→q、p→r、r→qを、踏み台部分もまとめて輸送する。\n// p/q/rへ触れない操作は交換し、それ以外の接触で区間を閉じる。\nint consolidate_mono_dispatch(const vector<Move>& answer,int begin,State& board,\n                            vector<Move>& out,int& saved) {\n    saved=0;\n    const Move first=answer[begin];const int p=first.p;\n    if(first.k==0)return begin;\n    const TowerBits first_word=board[p]>>(4*first.k);\n    const int color_code=mono_color_code(first_word);\n    if(color_code<=0||top_color_code(prefix(board[p],first.k))!=color_code)return begin;\n    LOCAL_NOTE(++local_mono_dispatch.scans;)\n    const int q=board_info.ray[p][first.d][first.l];\n    const int stop=min(int(answer.size()),begin+64);\n    auto dest=[&](int i){const Move m=answer[i];return board_info.ray[m.p][m.d][m.l];};\n    auto touches=[&](int i,int cell){return answer[i].p==cell||dest(i)==cell;};\n    int second=begin+1;\n    while(second<stop&&!touches(second,p)&&!touches(second,q))++second;\n    if(second==stop||answer[second].p!=p)return begin;\n    const int r=dest(second);\n    if(r==p||r==q)return begin;\n    // 置換を最初の出発へ移すため、中継塔に変更がないことを積み順まで確認する。\n    for(int i=begin+1;i<second;i++)if(touches(i,r))return begin;\n    int third=second+1;\n    while(third<stop&&!touches(third,p)&&!touches(third,q)&&!touches(third,r))++third;\n    if(third==stop||answer[third].p!=r||dest(third)!=q)return begin;\n    LOCAL_NOTE(++local_mono_dispatch.windows;)\n    State end=board;\n    TowerBits second_word=0;\n    for(int i=begin;i<=third;i++) {\n        const Move m=answer[i];\n        if(i==second) {\n            second_word=end[p]>>(4*m.k);\n            if(mono_color_code(second_word)!=color_code)return begin;\n        }\n        if(i==third&&(m.k!=height(board[r])||end[r]>>(4*m.k)!=second_word))return begin;\n        board_info.apply(end,m);\n    }\n    const int keep=answer[second].k;\n    if(keep>=first.k||mono_color_code(board[p]>>(4*keep))!=color_code)return begin;\n    LOCAL_NOTE(++local_mono_dispatch.routes;)\n    PortionRouter router;router.run(board,p,keep,q,2);\n    for(int orientation=0;orientation<2;orientation++) {\n        const int length=router.cost(q,orientation);\n        if(length<0||length>=3)continue;\n        const auto path=router.path(q,orientation);\n        State check=board;bool legal=true;\n        try {\n            for(const Move m:path)board_info.apply(check,m);\n            for(int i=begin+1;i<third;i++)if(i!=second)board_info.apply(check,answer[i]);\n        }catch(const exception&){legal=false;}\n        // 容量は帰巣前に検査する。全盤面の一致で、踏み台や中継巣の帰巣も確認する。\n        if(!legal||!(check==end))continue;\n        out.insert(out.end(),path.begin(),path.end());\n        for(int i=begin+1;i<third;i++)if(i!=second)out.push_back(answer[i]);\n        saved=3-length;board=end;\n        LOCAL_NOTE(++local_mono_dispatch.replacements;local_mono_dispatch.saved+=saved;\n                   local_mono_dispatch.independent+=third-begin-2;)\n        return third+1;\n    }\n    return begin;\n}\n\nvector<Move> compress_mono_dispatch(const vector<Move>& answer,double deadline) {\n    State board=board_info.initial;vector<Move> result;result.reserve(answer.size());\n    for(int i=0;i<int(answer.size());) {\n        if(time_keeper.exact_elapsed_sec()>=deadline) {\n            result.insert(result.end(),answer.begin()+i,answer.end());return result;\n        }\n        int saved=0;int next=consolidate_mono_dispatch(answer,i,board,result,saved);\n        if(next>i)i=next;\n        else{board_info.apply(board,answer[i]);result.push_back(answer[i++]);}\n    }\n    if(board_info.count(board))throw logic_error(\"mono dispatch incomplete\");\n",
+    "new": "",
+    "offset": 71512
+  },
+  {
+    "old": "    TowerBits traveling=board[first.p]>>(4*first.k);goal=first.p;\n",
+    "new": "    TowerBits traveling=suffix(board[first.p],first.k);goal=first.p;\n",
+    "offset": 73210
+  },
+  {
+    "old": "        if(m.p!=goal||height(board[goal])-m.k!=amount||board[goal]>>(4*m.k)!=traveling)break;\n",
+    "new": "        if(m.p!=goal||height(board[goal])-m.k!=amount||suffix(board[goal],m.k)!=traveling)break;\n",
+    "offset": 73359
+  },
+  {
+    "old": "    const TowerBits packet=board[first.p]>>(4*first.k);\n",
+    "new": "    const TowerBits packet=suffix(board[first.p],first.k);\n",
+    "offset": 74706
+  },
+  {
+    "old": "        source=p;keep=k;TowerBits packet=b[p]>>(4*k);int amount=height(packet);\n",
+    "new": "        source=p;keep=k;TowerBits packet=suffix(b[p],k);int amount=height(packet);\n",
+    "offset": 80846
+  },
+  {
+    "old": "",
+    "new": "        if(k>=height(b[p])||!run_boundary(b[p],k))return;\n        const int source_top=top_color_code(board_info.normalize(prefix(b[p],k),p));\n",
+    "offset": 81128
+  },
+  {
+    "old": "",
+    "new": "            const int lower_top=v==p?source_top:top_color_code(b[v]);\n            if(at!=p*2&&lower_top==top[o^1]){LOCAL_ONLY(++atomic_stats.router_join_stops);continue;}\n",
+    "offset": 81590
+  },
+  {
+    "old": "    int n=0;while(a&&b&&(a&15)==(b&15)){++n;a>>=4;b>>=4;}return n;\n",
+    "new": "    int n=0;\n    while(a&&b&&(a&15)==(b&15)) {\n        int k=min(first_run_size(a),first_run_size(b));n+=k;a=suffix(a,k);b=suffix(b,k);\n    }\n    return n;\n",
+    "offset": 82991
+  },
+  {
+    "old": "            const int a=local[p],b=local[q];TowerBits packet=w.end[a]>>(4*m.k);\n",
+    "new": "            const int a=local[p],b=local[q];TowerBits packet=suffix(w.end[a],m.k);\n",
+    "offset": 86220
+  },
+  {
+    "old": "    static TowerBits word(uint64_t x){return TowerBits(x);}\n",
+    "new": "    static TowerBits word(uint64_t x){return packed_word(uint32_t(x));}\n",
+    "offset": 87922
+  },
+  {
+    "old": "            TowerBits w=h==8?0:b[p]>>(4*h);\n            if(w){if(n==16)throw logic_error(\"finite capacity\");s[n++]=(uint64_t(p)<<32)|w;}\n",
+    "new": "            TowerBits w=h==8?0:suffix(b[p],h);\n            if(w){if(n==16)throw logic_error(\"finite capacity\");s[n++]=(uint64_t(p)<<32)|expanded_word(w);}\n",
+    "offset": 88336
+  },
+  {
+    "old": "            for(TowerBits a=w;a;a>>=4)++actual[a&15];\n",
+    "new": "            for(TowerBits a=w;a;a>>=8)actual[a&15]+=first_run_size(a);\n",
+    "offset": 88991
+  },
+  {
+    "old": "            TowerBits suffix=matched==8?0:w>>(4*matched);\n            for(unsigned mask=color_mask(suffix);mask;mask&=mask-1)\n",
+    "new": "            TowerBits unmatched=matched==8?0:suffix(w,matched);\n            for(unsigned mask=color_mask(unmatched);mask;mask&=mask-1)\n",
+    "offset": 89192
+  },
+  {
+    "old": "            for(TowerBits w=initial[p];w;w>>=4)++initial_counts[w&15];\n            for(TowerBits w=window.end[i];w;w>>=4)++required[w&15];\n",
+    "new": "            for(TowerBits w=initial[p];w;w>>=8)initial_counts[w&15]+=first_run_size(w);\n            for(TowerBits w=window.end[i];w;w>>=8)required[w&15]+=first_run_size(w);\n",
+    "offset": 90473
+  },
+  {
+    "old": "        for(int p=0;p<board_info.cell_count;p++)if(goal_word[p])target[next_target++]=(uint64_t(p)<<32)|goal_word[p];\n",
+    "new": "        for(int p=0;p<board_info.cell_count;p++)if(goal_word[p])target[next_target++]=(uint64_t(p)<<32)|expanded_word(goal_word[p]);\n",
+    "offset": 90683
+  },
+  {
+    "old": "                    for(int k=0;k<height(w);k++) {\n",
+    "new": "                    for(int k:RunCuts{w}) {\n",
+    "offset": 93793
+  },
+  {
+    "old": "                        TowerBits packet=board[p]>>(4*keep);bool mono=mono_color_code(packet)>0;\n",
+    "new": "                        TowerBits packet=suffix(board[p],keep);bool mono=mono_color_code(packet)>0;\n",
+    "offset": 94115
+  },
+  {
+    "old": "enum FinalReduction { FINAL_ROUTE,FINAL_PAIR,FINAL_JOINT,FINAL_MONO,FINAL_STRICT,FINAL_SLACK,FINAL_FINITE,FINAL_KINDS };\nconstexpr const char* final_reduction_names[]={\"route\",\"pair\",\"joint\",\"mono\",\"strict\",\"slack\",\"finite\"};\n",
+    "new": "enum FinalReduction { FINAL_ROUTE,FINAL_PAIR,FINAL_JOINT,FINAL_STRICT,FINAL_SLACK,FINAL_FINITE,FINAL_KINDS };\nconstexpr const char* final_reduction_names[]={\"route\",\"pair\",\"joint\",\"strict\",\"slack\",\"finite\"};\n",
+    "offset": 100156
+  },
+  {
+    "old": "            local_mono_dispatch.summary();coupled_routes.summary();finite.summary();\n",
+    "new": "            coupled_routes.summary();finite.summary();\n",
+    "offset": 101660
+  },
+  {
+    "old": "                check();apply_final_reduction(answer,FINAL_MONO,stats,[&]{return compress_mono_dispatch(answer,deadline);});\n",
+    "new": "",
+    "offset": 103194
+  },
+  {
+    "old": "            if(time_keeper.exact_elapsed_sec()<deadline)\n                apply(answer,FINAL_MONO,[&]{return compress_mono_dispatch(answer,deadline);});\n",
+    "new": "",
+    "offset": 106314
+  },
+  {
+    "old": "        for(int i=0;i<h[p];i++)w|=board_info.initial[a[p][i]]<<(4*i);\n",
+    "new": "        for(int i=0;i<h[p];i++)w=append_tower(w,board_info.initial[a[p][i]]);\n",
+    "offset": 110799
+  },
+  {
+    "old": "",
+    "new": "        if(m.k&&board_info.initial[a[p][m.k-1]]==board_info.initial[a[p][m.k]])\n            throw logic_error(\"atomic identity split\");\n",
+    "offset": 111192
+  },
+  {
+    "old": "",
+    "new": "    friend struct AtomicProbe;\n",
+    "offset": 126643
+  },
+  {
+    "old": "        if(top_only) {\n            if(int((word>>(4*(h-1)))&15)!=color_code)return;\n            int first=h-1;\n            while(first>0&&int((word>>(4*(first-1)))&15)==color_code)--first;\n            Label best=labels[h];\n            for(int g=first;g<h;g++)if(better(labels[g].cost,labels[g].bonus,best))best=labels[g];\n            if(better(best.cost,best.bonus,labels[h])) {\n                alias_cost_relaxations+=best.cost<labels[h].cost;\n                ++alias_top_relaxations;labels[h]=best;\n",
+    "new": "        int first=0;\n        for(TowerBits a=word;a;a>>=8) {\n            int last=first+first_run_size(a);\n            if(int(a&15)==color_code&&(!top_only||last==h)) {\n                Label best=labels[first];\n                for(int g=first+1;g<=last;g++)if(better(labels[g].cost,labels[g].bonus,best))best=labels[g];\n                for(int g=top_only?last:first;g<=last;g++)if(better(best.cost,best.bonus,labels[g])) {\n                    alias_cost_relaxations+=best.cost<labels[g].cost;\n                    if(top_only)++alias_top_relaxations;else ++alias_gap_relaxations;\n                    labels[g]=best;\n                }\n",
+    "offset": 136817
+  },
+  {
+    "old": "            return;\n        }\n        // Each nibble is independent: (d & 7)+7 has no carry into its next\n        // nibble. A high bit is zero iff the original nibble was zero.\n        const TowerBits diff=word^(0x11111111u*unsigned(color_code));\n        TowerBits matches=~(((diff&0x77777777u)+0x77777777u)|diff)&0x88888888u;\n        while(matches) {\n            const int first=__builtin_ctz(matches)/4;\n            int last=first+1;\n            while(last<h&&int((word>>(4*last))&15)==color_code)++last;\n            Label best=labels[first];\n            for(int g=first+1;g<=last;g++)if(better(labels[g].cost,labels[g].bonus,best))best=labels[g];\n            for(int g=first;g<=last;g++)if(better(best.cost,best.bonus,labels[g])) {\n                alias_cost_relaxations+=best.cost<labels[g].cost;\n                ++alias_gap_relaxations;labels[g]=best;\n            }\n            matches&=~tower_mask[last];\n",
+    "new": "            first=last;\n",
+    "offset": 137464
+  },
+  {
+    "old": "\n",
+    "new": "",
+    "offset": 137504
+  },
+  {
+    "old": "        TowerBits upper=gap==7?0:(w>>(4*gap))<<(4*(gap+1));\n        return prefix(w,gap)|(TowerBits(color_code)<<(4*gap))|upper;\n",
+    "new": "        return insert_word(w,gap,TowerBits(color_code));\n",
+    "offset": 137576
+  },
+  {
+    "old": "",
+    "new": "                if(keep&&board_info.initial[cur.a[p][keep-1]]==board_info.initial[cur.a[p][keep]]) {\n                    LOCAL_ONLY(++atomic_stats.extract_split_prunes);return false;\n                }\n",
+    "offset": 139609
+  },
+  {
+    "old": "                    TowerBits moving=before[p]>>(4*keep);bool mono=mono_color_code(moving)>0;\n",
+    "new": "                    TowerBits moving=suffix(before[p],keep);bool mono=mono_color_code(moving)>0;\n",
+    "offset": 140088
+  },
+  {
+    "old": "        const int shade=mono_color_code(b[a.p]>>(4*a.k));\n",
+    "new": "        const int shade=mono_color_code(suffix(b[a.p],a.k));\n",
+    "offset": 141740
+  },
+  {
+    "old": "",
+    "new": "                if(top_color_code(b[p])==color_code){LOCAL_ONLY(++atomic_stats.router_join_stops);continue;}\n",
+    "offset": 143878
+  },
+  {
+    "old": "",
+    "new": "            const TowerBits before_p=b[p];\n",
+    "offset": 145350
+  },
+  {
+    "old": "",
+    "new": "                if(location==p&&!run_boundary(insert_token(before_p,gap,color_code),m.k+added_keep)) {\n                    LOCAL_ONLY(++atomic_stats.insert_split_prunes);return;\n                }\n",
+    "offset": 145755
+  },
+  {
+    "old": "                      TowerBits packet,int cap,vector<Move>& result) {\n",
+    "new": "                      TowerBits packet,int cap,vector<Move>& result,int initial_gap=-1) {\n",
+    "offset": 151565
+  },
+  {
+    "old": "        labels[source*8+h[source]]={0,0,-1};\n",
+    "new": "        if(initial_gap<0)initial_gap=h[source];\n        if(initial_gap>h[source])return false;\n        labels[source*8+initial_gap]={0,0,-1};\n",
+    "offset": 153055
+  },
+  {
+    "old": "",
+    "new": "                if(top_color_code(b[p])==int(words[i]&15)){LOCAL_ONLY(++atomic_stats.router_join_stops);continue;}\n",
+    "offset": 154489
+  },
+  {
+    "old": "",
+    "new": "            const TowerBits before_p=b[p];\n",
+    "offset": 155886
+  },
+  {
+    "old": "",
+    "new": "                if(location==p&&!run_boundary(insert_word(before_p,gap,words[i]),m.k+add)) {\n                    LOCAL_ONLY(++atomic_stats.insert_split_prunes);return;\n                }\n",
+    "offset": 156315
+  },
+  {
+    "old": "",
+    "new": "                    // 帰巣を止めた背景と下端が同色なら、塊だけの即時再出発も分割になる。\n                    if(int(words[ni]&15)==board_info.nest_code[tag_cell]) {\n                        LOCAL_ONLY(++atomic_stats.insert_split_prunes);return;\n                    }\n",
+    "offset": 157765
+  },
+  {
+    "old": "        TowerBits before=cur.word(source),packet=before>>(4*cut.keep);\n",
+    "new": "        TowerBits before=cur.word(source),packet=suffix(before,cut.keep);\n",
+    "offset": 160213
+  },
+  {
+    "old": "    // 途中の塔の上側を除去し、個体ごとに再挿入する。元の段から隙間を決め、開始盤面を復元する。\n    // 挿入後の個体は分離・同乗・再合流できる。\n",
+    "new": "    bool insert_run(const State& initial,const vector<Move>& base,int source,TowerBits piece,\n                    int gap,int cap,vector<Move>& result) {\n        assert(mono_color_code(piece)>0);\n        LOCAL_ONLY(++atomic_stats.run_reinsertions;atomic_stats.run_reinserted_slimes+=height(piece));\n        if(height(piece)==1)return insert_at(initial,base,source,int(piece&15),gap,cap,result);\n        return insert_packet(initial,base,source,piece,cap,result,gap);\n    }\n\n    // 途中の上側を同色の塊へ分け、塊ごとに経路を作り直す。塊内部の個体順は探索しない。\n",
+    "offset": 161198
+  },
+  {
+    "old": "        TowerBits before=cur.word(source),packet=before>>(4*cut.keep);\n        const int n=height(packet);\n        if(n<2||n>8||board_info.normalize(prefix(before,cut.keep),source)!=prefix(before,cut.keep))return false;\n",
+    "new": "        TowerBits before=cur.word(source),packet=suffix(before,cut.keep);\n        const int n=runs(packet);\n        if(n<1||!run_boundary(before,cut.keep)||\n           board_info.normalize(prefix(before,cut.keep),source)!=prefix(before,cut.keep))return false;\n        array<TowerBits,8> pieces{};\n        for(TowerBits a=packet; a; a>>=8)pieces[runs(packet)-runs(a)]=a&255;\n",
+    "offset": 161956
+  },
+  {
+    "old": "        int mode=rng(4),rounds=n<=4?2:1;\n",
+    "new": "        int mode=rng(4),rounds=n==1?1:(n<=4?2:1);\n",
+    "offset": 162730
+  },
+  {
+    "old": "            time_keeper.check();\n            array<int,8> order{};\n            iota(order.begin(),order.begin()+n,0);\n",
+    "new": "            time_keeper.check();array<int,8> order{};iota(order.begin(),order.begin()+n,0);\n",
+    "offset": 162828
+  },
+  {
+    "old": "            else if(style==2) {\n                stable_sort(order.begin(),order.begin()+n,[&](int a,int b){\n                    int ca=int((packet>>(4*a))&15),cb=int((packet>>(4*b))&15);\n                    return board_info.floor_dist[source][board_info.nest_pos_by_code[ca]]>board_info.floor_dist[source][board_info.nest_pos_by_code[cb]];\n                });\n            }else if(style==3) {\n                for(int j=n-1;j>0;j--)swap(order[j],order[rng(j+1)]);\n",
+    "new": "            else if(style==2)stable_sort(order.begin(),order.begin()+n,[&](int a,int b){\n                return board_info.floor_dist[source][board_info.nest_pos_by_code[pieces[a]&15]]>\n                       board_info.floor_dist[source][board_info.nest_pos_by_code[pieces[b]&15]];\n            });\n            else if(style==3)for(int j=n-1;j>0;j--)swap(order[j],order[rng(j+1)]);\n            if(board_info.nest_code[source]) {\n                auto at=find(order.begin(),order.begin()+n,n-1);rotate(order.begin(),at,at+1);\n",
+    "offset": 163022
+  },
+  {
+    "old": "            // 巣では帰巣しない元の最上段を先に置き、構築途中の帰巣を防ぐ。\n            if(board_info.nest_code[source]) {\n                auto at=find(order.begin(),order.begin()+n,n-1);\n                rotate(order.begin(),at,at+1);\n            }\n            State restored=initial;unsigned inserted=0;\n            vector<Move> tail=skeleton;bool ok=true;\n",
+    "new": "            State restored=initial;unsigned inserted=0;vector<Move> tail=skeleton;bool ok=true;\n",
+    "offset": 163560
+  },
+  {
+    "old": "                int rank=order[j],current_code=int((packet>>(4*rank))&15);\n                int gap=cut.keep+__builtin_popcount(inserted&((1u<<rank)-1));\n                TowerBits next_initial=insert_token(restored[source],gap,current_code);\n",
+    "new": "                int rank=order[j],gap=cut.keep;\n                for(int k=0;k<rank;k++)if(inserted>>k&1)gap+=height(pieces[k]);\n                TowerBits next_initial=insert_word(restored[source],gap,pieces[rank]);\n",
+    "offset": 163691
+  },
+  {
+    "old": "                vector<Move> next;\n                int cap=min(allowance,best_length_value-1)-int(tail.size());\n                if(!insert_at(restored,tail,source,current_code,gap,cap,next)){ok=false;break;}\n",
+    "new": "                vector<Move> next;int cap=min(allowance,best_length_value-1)-int(tail.size());\n                if(!insert_run(restored,tail,source,pieces[rank],gap,cap,next)){ok=false;break;}\n",
+    "offset": 163999
+  },
+  {
+    "old": "        result.insert(result.end(),best_tail.begin(),best_tail.end());\n        return true;\n",
+    "new": "        result.insert(result.end(),best_tail.begin(),best_tail.end());return true;\n",
+    "offset": 164598
+  },
+  {
+    "old": "    // 同じ途中時点の2塔の上側を再構築する。各個体の出発点と元の段を保持し、\n",
+    "new": "    // 同じ途中時点の2塔の上側を再構築する。各塊の出発点と元の段を保持し、\n",
+    "offset": 164688
+  },
+  {
+    "old": "                if(board_info.normalize(prefix(boundary[cell],k),cell)==prefix(boundary[cell],k))ks[count++]=k;\n",
+    "new": "                if(run_boundary(boundary[cell],k)&&board_info.normalize(prefix(boundary[cell],k),cell)==prefix(boundary[cell],k))ks[count++]=k;\n",
+    "offset": 165841
+  },
+  {
+    "old": "        unsigned pc=unsigned(color_mask(boundary[p]>>(4*keep_p)));\n",
+    "new": "        unsigned pc=unsigned(color_mask(suffix(boundary[p],keep_p)));\n",
+    "offset": 166200
+  },
+  {
+    "old": "            unsigned qc=unsigned(color_mask(boundary[q]>>(4*k)));\n",
+    "new": "            unsigned qc=unsigned(color_mask(suffix(boundary[q],k)));\n",
+    "offset": 166731
+  },
+  {
+    "old": "        struct Member {int source,rank,shade,id;};\n",
+    "new": "        struct Member {int source,rank,shade;TowerBits word;};\n",
+    "offset": 167752
+  },
+  {
+    "old": "",
+    "new": "            int rank=keep;\n            for(TowerBits rest=suffix(boundary[cell],keep);rest;rest>>=8) {\n                members[n++]={cell,rank,int(rest&15),rest&255};rank+=first_run_size(rest);\n            }\n",
+    "offset": 167984
+  },
+  {
+    "old": "                int id=cur.a[cell][k];\n                members[n++]={cell,k,int(board_info.initial[id]),id};\n                key=(key^uint64_t(id+1))*0x9e3779b97f4a7c15ULL;\n                cur.alive[id]=0;\n",
+    "new": "                int id=cur.a[cell][k];key=(key^uint64_t(id+1))*0x9e3779b97f4a7c15ULL;cur.alive[id]=0;\n",
+    "offset": 168240
+  },
+  {
+    "old": "                for(int k=0;k<n;k++)if((inserted>>k&1)&&members[k].source==m.source&&members[k].rank<m.rank)++gap;\n                TowerBits next_initial=insert_token(restored[m.source],gap,m.shade);\n",
+    "new": "                for(int k=0;k<n;k++)if((inserted>>k&1)&&members[k].source==m.source&&members[k].rank<m.rank)gap+=height(members[k].word);\n                TowerBits next_initial=insert_word(restored[m.source],gap,m.word);\n",
+    "offset": 170284
+  },
+  {
+    "old": "                if(!insert_at(restored,tail,m.source,m.shade,gap,cap,next)){ok=false;break;}\n",
+    "new": "                if(!insert_run(restored,tail,m.source,m.word,gap,cap,next)){ok=false;break;}\n",
+    "offset": 170718
+  },
+  {
+    "old": "                const Move& m=original[t];departing[t]=b[m.p]>>(4*m.k);\n",
+    "new": "                const Move& m=original[t];departing[t]=suffix(b[m.p],m.k);\n",
+    "offset": 172660
+  },
+  {
+    "old": "                    bool continuation=m.p==last_cell&&travelling&&(b[m.p]>>(4*m.k))==travelling;\n",
+    "new": "                    bool continuation=m.p==last_cell&&travelling&&(suffix(b[m.p],m.k))==travelling;\n",
+    "offset": 174507
+  },
+  {
+    "old": "                Move m=original[t];TowerBits flying=b[m.p]>>(4*m.k);\n",
+    "new": "                Move m=original[t];TowerBits flying=suffix(b[m.p],m.k);\n",
+    "offset": 175003
+  },
+  {
+    "old": "            // 塔全体、跳ぶ束、上側2匹を候補にする。再挿入時には個体へ分解できる。\n",
+    "new": "            // 塔全体、跳ぶ束、上側2匹を候補にし、同色の塊を途中で切る候補は除く。\n",
+    "offset": 180229
+  },
+  {
+    "old": "                int n=int(board.h[p])-k;if(k<0||n<2)continue;\n",
+    "new": "                int n=int(board.h[p])-k;if(k<0||n<2||!run_boundary(word,k))continue;\n",
+    "offset": 180377
+  },
+  {
+    "old": "",
+    "new": "        assert(k==0||board_info.initial[tower[p][k-1]]!=board_info.initial[tower[p][k]]);\n",
+    "offset": 209727
+  },
+  {
+    "old": "",
+    "new": "    trace.count_by(\"atomic_output_same_color_splits\",0);\n",
+    "offset": 211258
+  },
+  {
+    "old": "    for (const string key : {\"finish_singles_calls\", \"baseline_recovery\", \"final_recovery\",\n",
+    "new": "    for (const string key : {\"finish_runs_calls\", \"baseline_recovery\", \"final_recovery\",\n",
+    "offset": 216785
+  },
+  {
+    "old": "        LOCAL_NOTE(trace.count_by(\"baseline_recovery\", 1);)cerr<<\"baseline diagnostic: \"<<e.what()<<'\\n';\n        ConstructionState w(board_info.initial);finish_singles(w);best=move(w.moves);baseline=best.size();\n",
+    "new": "        cerr<<\"baseline diagnostic: \"<<e.what()<<'\\n';return 1;\n",
+    "offset": 217875
+  },
+  {
+    "old": "         catch(const exception& e){LOCAL_NOTE(trace.count_by(\"construction_errors\", 1);)cerr<<\"construction diagnostic: \"<<e.what()<<'\\n';}\n",
+    "new": "         catch(const InfeasibleConstruction&){LOCAL_ONLY(++atomic_stats.blocked_constructions);}\n         catch(const exception& e){cerr<<\"construction diagnostic: \"<<e.what()<<'\\n';return 1;}\n",
+    "offset": 219302
+  },
+  {
+    "old": "    catch(const exception& e){LOCAL_NOTE(trace.count_by(\"lns_errors\", 1);)cerr<<\"LNS diagnostic: \"<<e.what()<<'\\n';}\n",
+    "new": "    catch(const exception& e){cerr<<\"LNS diagnostic: \"<<e.what()<<'\\n';return 1;}\n",
+    "offset": 220199
+  },
+  {
+    "old": "        LOCAL_NOTE(trace.count_by(\"final_recovery\", 1);)cerr<<\"final diagnostic: \"<<e.what()<<'\\n';\n        ConstructionState w(board_info.initial);finish_singles(w);best=move(w.moves);\n",
+    "new": "        cerr<<\"final diagnostic: \"<<e.what()<<'\\n';return 1;\n",
+    "offset": 221516
+  },
+  {
+    "old": "",
+    "new": "        atomic_stats.summary();\n",
+    "offset": 227298
+  },
+  {
+    "old": "",
+    "new": "    return 0;\n",
+    "offset": 227694
+  }
+]

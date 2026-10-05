@@ -1,0 +1,389 @@
+{
+  "features": [
+    "N",
+    "K",
+    "M",
+    "floors",
+    "density",
+    "wall_fraction",
+    "largest_color_fraction",
+    "color_concentration",
+    "M_per_K",
+    "singleton_color_fraction",
+    "mean_home_distance",
+    "max_home_distance",
+    "mean_nest_distance",
+    "dead_end_fraction",
+    "mean_degree",
+    "mean_straight_reach",
+    "mean_nearest_same_color_manhattan"
+  ],
+  "outer": [
+    {
+      "fold": 0,
+      "candidates": [
+        "v111",
+        "v113",
+        "v315"
+      ],
+      "chosen": {
+        "depth": 0,
+        "min_leaf": 80,
+        "held_total": 87401
+      },
+      "tuning": [
+        {
+          "depth": 0,
+          "min_leaf": 40,
+          "held_total": 87401
+        },
+        {
+          "depth": 0,
+          "min_leaf": 80,
+          "held_total": 87401
+        },
+        {
+          "depth": 1,
+          "min_leaf": 40,
+          "held_total": 87506
+        },
+        {
+          "depth": 1,
+          "min_leaf": 80,
+          "held_total": 87517
+        },
+        {
+          "depth": 2,
+          "min_leaf": 40,
+          "held_total": 87482
+        },
+        {
+          "depth": 2,
+          "min_leaf": 80,
+          "held_total": 87520
+        }
+      ],
+      "tree": {
+        "expert": "v113",
+        "count": 400,
+        "train_cost": 87401
+      }
+    },
+    {
+      "fold": 1,
+      "candidates": [
+        "v111",
+        "v113",
+        "v315"
+      ],
+      "chosen": {
+        "depth": 0,
+        "min_leaf": 80,
+        "held_total": 84361
+      },
+      "tuning": [
+        {
+          "depth": 0,
+          "min_leaf": 40,
+          "held_total": 84361
+        },
+        {
+          "depth": 0,
+          "min_leaf": 80,
+          "held_total": 84361
+        },
+        {
+          "depth": 1,
+          "min_leaf": 40,
+          "held_total": 84470
+        },
+        {
+          "depth": 1,
+          "min_leaf": 80,
+          "held_total": 84450
+        },
+        {
+          "depth": 2,
+          "min_leaf": 40,
+          "held_total": 84379
+        },
+        {
+          "depth": 2,
+          "min_leaf": 80,
+          "held_total": 84480
+        }
+      ],
+      "tree": {
+        "expert": "v113",
+        "count": 400,
+        "train_cost": 84361
+      }
+    },
+    {
+      "fold": 2,
+      "candidates": [
+        "v111",
+        "v113",
+        "v315"
+      ],
+      "chosen": {
+        "depth": 0,
+        "min_leaf": 80,
+        "held_total": 86076
+      },
+      "tuning": [
+        {
+          "depth": 0,
+          "min_leaf": 40,
+          "held_total": 86076
+        },
+        {
+          "depth": 0,
+          "min_leaf": 80,
+          "held_total": 86076
+        },
+        {
+          "depth": 1,
+          "min_leaf": 40,
+          "held_total": 86117
+        },
+        {
+          "depth": 1,
+          "min_leaf": 80,
+          "held_total": 86188
+        },
+        {
+          "depth": 2,
+          "min_leaf": 40,
+          "held_total": 86165
+        },
+        {
+          "depth": 2,
+          "min_leaf": 80,
+          "held_total": 86225
+        }
+      ],
+      "tree": {
+        "expert": "v113",
+        "count": 400,
+        "train_cost": 86076
+      }
+    },
+    {
+      "fold": 3,
+      "candidates": [
+        "v111",
+        "v113",
+        "v315"
+      ],
+      "chosen": {
+        "depth": 0,
+        "min_leaf": 80,
+        "held_total": 87210
+      },
+      "tuning": [
+        {
+          "depth": 0,
+          "min_leaf": 40,
+          "held_total": 87210
+        },
+        {
+          "depth": 0,
+          "min_leaf": 80,
+          "held_total": 87210
+        },
+        {
+          "depth": 1,
+          "min_leaf": 40,
+          "held_total": 87287
+        },
+        {
+          "depth": 1,
+          "min_leaf": 80,
+          "held_total": 87289
+        },
+        {
+          "depth": 2,
+          "min_leaf": 40,
+          "held_total": 87221
+        },
+        {
+          "depth": 2,
+          "min_leaf": 80,
+          "held_total": 87289
+        }
+      ],
+      "tree": {
+        "expert": "v113",
+        "count": 400,
+        "train_cost": 87210
+      }
+    },
+    {
+      "fold": 4,
+      "candidates": [
+        "v111",
+        "v113",
+        "v315"
+      ],
+      "chosen": {
+        "depth": 0,
+        "min_leaf": 80,
+        "held_total": 85472
+      },
+      "tuning": [
+        {
+          "depth": 0,
+          "min_leaf": 40,
+          "held_total": 85472
+        },
+        {
+          "depth": 0,
+          "min_leaf": 80,
+          "held_total": 85472
+        },
+        {
+          "depth": 1,
+          "min_leaf": 40,
+          "held_total": 85638
+        },
+        {
+          "depth": 1,
+          "min_leaf": 80,
+          "held_total": 85536
+        },
+        {
+          "depth": 2,
+          "min_leaf": 40,
+          "held_total": 85600
+        },
+        {
+          "depth": 2,
+          "min_leaf": 80,
+          "held_total": 85619
+        }
+      ],
+      "tree": {
+        "expert": "v113",
+        "count": 400,
+        "train_cost": 85472
+      }
+    }
+  ],
+  "final_config": {
+    "depth": 0,
+    "min_leaf": 80,
+    "held_total": 107630
+  },
+  "final_tuning": [
+    {
+      "depth": 0,
+      "min_leaf": 40,
+      "held_total": 107630
+    },
+    {
+      "depth": 0,
+      "min_leaf": 80,
+      "held_total": 107630
+    },
+    {
+      "depth": 1,
+      "min_leaf": 40,
+      "held_total": 107703
+    },
+    {
+      "depth": 1,
+      "min_leaf": 80,
+      "held_total": 107666
+    },
+    {
+      "depth": 2,
+      "min_leaf": 40,
+      "held_total": 107730
+    },
+    {
+      "depth": 2,
+      "min_leaf": 80,
+      "held_total": 107699
+    }
+  ],
+  "final_candidates": [
+    "v111",
+    "v113",
+    "v315"
+  ],
+  "final_tree": {
+    "expert": "v113",
+    "count": 500,
+    "train_cost": 107630
+  },
+  "oof_comparison": {
+    "v111": {
+      "sum": 107630,
+      "mean": 215.26,
+      "delta": -418,
+      "win": 229,
+      "tie": 104,
+      "loss": 167,
+      "relative": 99.29860910609668,
+      "relative_delta": 0.2752270966614235
+    },
+    "v113": {
+      "sum": 107630,
+      "mean": 215.26,
+      "delta": 0,
+      "win": 0,
+      "tie": 500,
+      "loss": 0,
+      "relative": 99.29860910609668,
+      "relative_delta": 0.0
+    },
+    "v214": {
+      "sum": 107630,
+      "mean": 215.26,
+      "delta": -3276,
+      "win": 349,
+      "tie": 42,
+      "loss": 109,
+      "relative": 99.29860910609668,
+      "relative_delta": 2.2650209973965016
+    },
+    "v315": {
+      "sum": 107630,
+      "mean": 215.26,
+      "delta": -769,
+      "win": 260,
+      "tie": 44,
+      "loss": 196,
+      "relative": 99.29860910609668,
+      "relative_delta": 0.5107484045661878
+    }
+  },
+  "oof_vs_train_selected_constant": {
+    "sum": 107630,
+    "mean": 215.26,
+    "delta": 0,
+    "win": 0,
+    "tie": 500,
+    "loss": 0,
+    "relative": 99.29860910609668,
+    "relative_delta": 0.0
+  },
+  "oof_experts": {
+    "v113": 500
+  },
+  "training_oracle_sum": 106500,
+  "source_sha256": {
+    "v111": "dd45427b0e3e791bf40c1a7f7560c734abde1d20452ffa6c34cd878fd8c02316",
+    "v113": "037f9fcca137552c097bc396428699850cf591cf58e513e874c9058309bfd258",
+    "v315": "364cab41a22ccb8c5d84bb0b74086dbb4d1ffd635ad735fcdf8231efa21e3538",
+    "v214": "f441add3a6295c6344897ed4969d64f98d5e039b141e1d6e7765ab25fccabd9e"
+  },
+  "method": "pre-registered nested CV",
+  "run_directory": "results/analysis/v321/20261004T192354",
+  "cv_cases": 500,
+  "nested_folds": [
+    5,
+    4
+  ]
+}

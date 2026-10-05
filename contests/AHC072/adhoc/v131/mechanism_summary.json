@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "source_sha256": "c959854dc6bd19c094f91079c6b0f7bb3e1b801a026c9fc67010e423184c6832",
+  "partial_problems": 505,
+  "counts": {
+    "primary_matches": 1010,
+    "alternates": 596,
+    "extra_completed": 573
+  },
+  "python_replayed": 1063,
+  "locally_better": 54,
+  "local_saved": 92,
+  "rescued": 0,
+  "old_seconds": 0.2506167888925,
+  "new_seconds": 0.359334468836,
+  "reports": [
+    {
+      "case": 1,
+      "mode": "local",
+      "T": 75,
+      "E": 0,
+      "S": 75,
+      "complete": true
+    },
+    {
+      "case": 1,
+      "mode": "judge",
+      "T": 74,
+      "E": 0,
+      "S": 74,
+      "complete": true
+    },
+    {
+      "case": 2,
+      "mode": "local",
+      "T": 195,
+      "E": 0,
+      "S": 195,
+      "complete": true
+    },
+    {
+      "case": 2,
+      "mode": "judge",
+      "T": 194,
+      "E": 0,
+      "S": 194,
+      "complete": true
+    },
+    {
+      "case": 3,
+      "mode": "local",
+      "T": 224,
+      "E": 0,
+      "S": 224,
+      "complete": true
+    },
+    {
+      "case": 3,
+      "mode": "judge",
+      "T": 218,
+      "E": 0,
+      "S": 218,
+      "complete": true
+    },
+    {
+      "case": 5,
+      "mode": "local",
+      "T": 167,
+      "E": 0,
+      "S": 167,
+      "complete": true
+    },
+    {
+      "case": 5,
+      "mode": "judge",
+      "T": 168,
+      "E": 0,
+      "S": 168,
+      "complete": true
+    }
+  ],
+  "completed_at": "2026-10-04T15:07:27.080001+00:00"
+}

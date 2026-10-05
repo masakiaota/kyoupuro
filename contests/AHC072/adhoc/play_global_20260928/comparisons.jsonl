@@ -1,0 +1,6 @@
+{"name": "case0025", "a": "n50", "b": "n62", "same_board": true, "T_a": 39, "T_b": 35, "E_a": 14, "E_b": 14}
+{"name": "case0025", "a": "n109", "b": "n121", "same_board": true, "T_a": 82, "T_b": 80, "E_a": 0, "E_b": 0}
+{"name": "case0035", "a": "n80", "b": "n115", "same_board": true, "T_a": 80, "T_b": 77, "E_a": 0, "E_b": 0}
+{"name": "case0033", "a": "n34", "b": "n49", "same_board": true, "T_a": 34, "T_b": 32, "E_a": 57, "E_b": 57}
+{"name": "case0033", "a": "n42", "b": "n57", "same_board": true, "T_a": 42, "T_b": 40, "E_a": 50, "E_b": 50}
+{"name": "case0033", "a": "n76", "b": "n80", "same_board": true, "T_a": 59, "T_b": 55, "E_a": 47, "E_b": 47}

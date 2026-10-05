@@ -1,0 +1,54 @@
+{
+  "0": {
+    "insert_failed": {
+      "candidates": 11118,
+      "total_ns": 3507377000.0,
+      "extract_ns": 124554000.0,
+      "insert_ns": 3382823000.0,
+      "insert_calls": 35420,
+      "successful_insert_ns": 2784998000.0
+    },
+    "completed": {
+      "candidates": 23104,
+      "total_ns": 4214112000.0,
+      "extract_ns": 125307000.0,
+      "insert_ns": 4088805000.0,
+      "insert_calls": 50287,
+      "successful_insert_ns": 4088805000.0
+    },
+    "extract_failed": {
+      "candidates": 5579,
+      "total_ns": 82718000.0,
+      "extract_ns": 82718000.0,
+      "insert_ns": 0,
+      "insert_calls": 0,
+      "successful_insert_ns": 0
+    }
+  },
+  "1": {
+    "insert_failed": {
+      "candidates": 17442,
+      "total_ns": 10302970000.0,
+      "extract_ns": 194867000.0,
+      "insert_ns": 10108103000.0,
+      "insert_calls": 84598,
+      "successful_insert_ns": 9076902000.0
+    },
+    "completed": {
+      "candidates": 5281,
+      "total_ns": 3095788000.0,
+      "extract_ns": 32099000.0,
+      "insert_ns": 3063689000.0,
+      "insert_calls": 26655,
+      "successful_insert_ns": 3063689000.0
+    },
+    "extract_failed": {
+      "candidates": 2404,
+      "total_ns": 42085000.0,
+      "extract_ns": 42085000.0,
+      "insert_ns": 0,
+      "insert_calls": 0,
+      "successful_insert_ns": 0
+    }
+  }
+}
