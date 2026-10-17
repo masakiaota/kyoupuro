@@ -87,7 +87,3 @@ python3 setup.py ~/Downloads/tools.zip
 - [状態クラス](snippets/state.md)：盤面と評価値をまとめて持つ。`__init__`、`self`、コピー、変更、取り消しの例がある。
 - `snippets/annealing_delta.py`：差分評価で高速化する焼きなまし。変更による得点差と、変更を取り消す処理を書く。
 - `snippets/graph.py`：BFS、Dijkstra、Union-Find。必要な関数やクラスだけを `main.py` に貼る。
-
-## 利用条件
-
-生成 AI で事前作成したコードは、コンテスト開始前に公開する。提出ファイルには、冒頭の出典コメント2行を残す。[公式規則](https://info.atcoder.jp/entry/short-ahc-llm-rules-ja)
