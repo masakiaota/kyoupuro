@@ -1,5 +1,5 @@
 # 以下のテンプレートを使用
-# https://github.com/masakiaota/kyoupuro/tree/f6ab34c0de0880a491742d528bb99a58714f5063/contests/AHC073
+# https://github.com/masakiaota/kyoupuro/tree/9afb105b7761edfd67f158672e5c47caa90510f8/contests/AHC073
 # 入力: N K の後に、空白を含まない文字列の盤面が N 行。
 # 戻り値: N, K, grid。grid[i][j] は1文字の str。
 # 盤面を書き換えるなら、grid の各行を list(...) にする。

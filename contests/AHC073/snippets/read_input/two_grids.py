@@ -1,5 +1,5 @@
 # 以下のテンプレートを使用
-# https://github.com/masakiaota/kyoupuro/tree/f6ab34c0de0880a491742d528bb99a58714f5063/contests/AHC073
+# https://github.com/masakiaota/kyoupuro/tree/9afb105b7761edfd67f158672e5c47caa90510f8/contests/AHC073
 # 入力: si sj、N 行の整数盤面 t、N 行の整数盤面 p。
 # 変える箇所: N。サイズが先頭行に含まれるなら、そこから N も読む。
 # 戻り値: si, sj, t, p。

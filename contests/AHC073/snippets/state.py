@@ -1,5 +1,5 @@
 # 以下のテンプレートを使用
-# https://github.com/masakiaota/kyoupuro/tree/master/contests/AHC073
+# https://github.com/masakiaota/kyoupuro/tree/9afb105b7761edfd67f158672e5c47caa90510f8/contests/AHC073
 """整数盤面の状態。class State 全体を main.py の read_input より前に貼る。
 
 例は「1マスの値を書き換え、盤面の合計を評価値にする」操作。

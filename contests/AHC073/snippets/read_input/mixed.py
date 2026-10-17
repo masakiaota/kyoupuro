@@ -1,5 +1,5 @@
 # 以下のテンプレートを使用
-# https://github.com/masakiaota/kyoupuro/tree/f6ab34c0de0880a491742d528bb99a58714f5063/contests/AHC073
+# https://github.com/masakiaota/kyoupuro/tree/9afb105b7761edfd67f158672e5c47caa90510f8/contests/AHC073
 # 入力: N M eps（整数、整数、小数）、続く M 行は d x0 y0 ... x(d-1) y(d-1)。
 # 戻り値: N, M, eps, shapes。shapes[k] は座標ペアのリスト。
 # 初期入力の M 行だけを読むので、対話型の初期入力にも使える。
