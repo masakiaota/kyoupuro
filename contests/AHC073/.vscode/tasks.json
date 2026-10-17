@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "AHC: 少数ケースを評価",
+      "type": "process",
+      "command": "python3",
+      "args": ["eval.py", "--quick"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "group": {"kind": "build", "isDefault": true},
+      "presentation": {"reveal": "always", "panel": "dedicated", "clear": true},
+      "problemMatcher": [],
+      "runOptions": {"instanceLimit": 1}
+    },
+    {
+      "label": "AHC: 全ケースを評価",
+      "type": "process",
+      "command": "python3",
+      "args": ["eval.py"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "presentation": {"reveal": "always", "panel": "dedicated", "clear": true},
+      "problemMatcher": [],
+      "runOptions": {"instanceLimit": 1}
+    },
+    {
+      "label": "AHC: 時間を単独実行で確認",
+      "type": "process",
+      "command": "python3",
+      "args": ["eval.py", "--quick", "-j", "1"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "presentation": {"reveal": "always", "panel": "dedicated", "clear": true},
+      "problemMatcher": [],
+      "runOptions": {"instanceLimit": 1}
+    }
+  ]
+}

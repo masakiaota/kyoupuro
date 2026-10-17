@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 500,
+  "task.saveBeforeRun": "always"
+}
