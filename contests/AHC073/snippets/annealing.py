@@ -38,7 +38,7 @@ def read_input():
     raise NotImplementedError("TODO: read_input 入力を読み、他の関数に渡す値を返す")
 
 
-# 引数: 入力 data。戻り値: リストで表した完成解。data は書き換えない。
+# 引数: 入力 data。戻り値: 完成解 state。data は書き換えない。
 # 記入例（AHC073とは無関係）:
 # n, _ = data
 # return list(range(n))

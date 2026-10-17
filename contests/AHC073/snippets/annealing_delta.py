@@ -7,7 +7,7 @@
 大きいほど良い評価値。最小化は -cost を返す。
 調整する数値: TIME_LIMIT, START_TEMPERATURE, END_TEMPERATURE, RANDOM_SEED
 AHC073の問題仕様は未記入。
-状態が入れ子のリストなら copy_state だけを変更する。
+状態はリストや state.py の State を使える。2次元リストなら copy_state を変更する。
 
 TIME_LIMIT は公式の時間制限より余裕を持たせて変更する。
 START_TIME は実行開始直後に記録し、初期化と入力の時間も含む。
@@ -39,7 +39,7 @@ def read_input():
     raise NotImplementedError("TODO: read_input 入力を読み、他の関数に渡す値を返す")
 
 
-# 引数: 入力 data。戻り値: リストで表した完成解。data は書き換えない。
+# 引数: 入力 data。戻り値: 完成解 state。data は書き換えない。
 # 記入例（AHC073とは無関係）:
 # n, _ = data
 # return [0] * n
@@ -47,11 +47,11 @@ def make_initial(data):
     raise NotImplementedError("TODO: make_initial 最初の完成解を作る")
 
 
-# 引数: リストで表した state。戻り値: 最良解保存用のコピー。state は書き換えない。
-# 通常のリストは state[:] でよい。
-# 入れ子のリストなら return [row[:] for row in state] にここだけ変更する。
+# 引数: state。戻り値: 最良解保存用のコピー。state は書き換えない。
+# 通常のリストと state.py の State は、そのまま使える。
+# 2次元リストなら return [row[:] for row in state] にここだけ変更する。
 def copy_state(state):
-    return state[:]
+    return state.copy()
 
 
 # 引数: 入力 data と完成解 state。戻り値: 大きいほど良い数値。どちらも書き換えない。

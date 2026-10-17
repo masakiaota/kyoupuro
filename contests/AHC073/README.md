@@ -84,6 +84,7 @@ python3 setup.py ~/Downloads/tools.zip
 
 ## 追加の部品
 
+- [状態クラス](snippets/state.md)：盤面と評価値をまとめて持つ。`__init__`、`self`、コピー、変更、取り消しの例がある。
 - `snippets/annealing_delta.py`：差分評価で高速化する焼きなまし。変更による得点差と、変更を取り消す処理を書く。
 - `snippets/graph.py`：BFS、Dijkstra、Union-Find。必要な関数やクラスだけを `main.py` に貼る。
 
