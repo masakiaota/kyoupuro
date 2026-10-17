@@ -1,5 +1,5 @@
 # 以下のテンプレートを使用
-# https://github.com/masakiaota/kyoupuro/tree/master/contests/AHC073
+# https://github.com/masakiaota/kyoupuro/tree/f6ab34c0de0880a491742d528bb99a58714f5063/contests/AHC073
 """
 問題で決めた手数まで完走するビームサーチ。このファイル全体を main.py にコピーして使う。
 

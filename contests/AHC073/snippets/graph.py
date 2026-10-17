@@ -1,5 +1,5 @@
 # 以下のテンプレートを使用
-# https://github.com/masakiaota/kyoupuro/tree/master/contests/AHC073
+# https://github.com/masakiaota/kyoupuro/tree/f6ab34c0de0880a491742d528bb99a58714f5063/contests/AHC073
 """
 グラフの貼り付け用部品。BFS、Dijkstra、UnionFind はそれぞれ独立している。
 使う部品だけを main.py にコピーする。AHC073の問題仕様は未記入。

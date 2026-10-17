@@ -1,5 +1,5 @@
 # 以下のテンプレートを使用
-# https://github.com/masakiaota/kyoupuro/tree/master/contests/AHC073
+# https://github.com/masakiaota/kyoupuro/tree/f6ab34c0de0880a491742d528bb99a58714f5063/contests/AHC073
 """
 貪欲法の最小骨組み。問題に合わせてこの main.py を直接編集する。
 

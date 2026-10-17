@@ -1,5 +1,5 @@
 # 以下のテンプレートを使用
-# https://github.com/masakiaota/kyoupuro/tree/master/contests/AHC073
+# https://github.com/masakiaota/kyoupuro/tree/f6ab34c0de0880a491742d528bb99a58714f5063/contests/AHC073
 """
 候補の中から毎回一番良いものを選ぶ貪欲法。このファイル全体を main.py にコピーして使う。
 
