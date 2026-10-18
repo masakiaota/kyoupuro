@@ -1,18 +1,18 @@
 // v000_template.cpp
 #include <bits/stdc++.h>
+#include <cassert>
 
 using namespace std;
 
 /// AtCoder 側の基準の探索打ち切り秒数。コンテストごとに調整する。
 constexpr double JUDGE_TIME_LIMIT_SEC = 1.90;
-/// LOCAL 時はローカル実行の速度差を見込んで探索時間を短くする。
-constexpr double LOCAL_TIME_RATIO = 0.80;
-
-#ifdef LOCAL
-constexpr double PROGRAM_TIME_LIMIT_SEC = JUDGE_TIME_LIMIT_SEC * LOCAL_TIME_RATIO;
+/// 未指定時と提出時は実時間を使う。LOCAL の倍率はビルド時に渡す。
+#if defined(LOCAL) && defined(AHC_LOCAL_TIME_RATIO)
+constexpr double LOCAL_TIME_RATIO = AHC_LOCAL_TIME_RATIO;
 #else
-constexpr double PROGRAM_TIME_LIMIT_SEC = JUDGE_TIME_LIMIT_SEC;
+constexpr double LOCAL_TIME_RATIO = 1.0;
 #endif
+static_assert(LOCAL_TIME_RATIO > 0.0 && LOCAL_TIME_RATIO <= numeric_limits<double>::max());
 
 #ifdef LOCAL
 struct TraceStats {
@@ -75,11 +75,19 @@ decltype(auto) local_time_impl(TraceStats& trace, const string& key, F&& body) {
 #endif
 
 class TimeKeeper {
+    using Clock = chrono::steady_clock;
+    // 時計の単位変換と端末補正をまとめ、時計更新時の割り算をなくす。
+    static constexpr double TICK_TO_JUDGE_SEC =
+        (double(Clock::period::num) / double(Clock::period::den)) / LOCAL_TIME_RATIO;
+    static_assert(TICK_TO_JUDGE_SEC > 0.0 && TICK_TO_JUDGE_SEC <= numeric_limits<double>::max());
+
 public:
-    /// check_interval_log2 = 8 なら 2^8 = 256 反復ごとに時計更新する。
-    explicit TimeKeeper(double time_limit_sec, uint32_t check_interval_log2)
-        : start_(chrono::steady_clock::now()), time_limit_sec_(time_limit_sec) {
-        assert(time_limit_sec > 0.0);
+    /// 引数と返す時間は AtCoder 相当の秒。既定は 2^10 = 1024 反復ごとに更新する。
+    /// 1 反復が重い場合は更新間隔を短くする。0 なら毎反復更新する。
+    explicit TimeKeeper(double time_limit_sec, uint32_t check_interval_log2 = 10)
+        : start_(Clock::now()), time_limit_sec_(time_limit_sec),
+          inverse_time_limit_(1.0 / time_limit_sec) {
+        assert(time_limit_sec > 0.0 && isfinite(time_limit_sec));
         assert(check_interval_log2 < 63);
         check_mask_ = check_interval_log2 == 0 ? 0 : (uint64_t{1} << check_interval_log2) - 1;
         force_update();
@@ -98,13 +106,18 @@ public:
     [[gnu::always_inline]] void force_update() {
         const double elapsed = exact_elapsed_sec();
         elapsed_sec_ = elapsed;
-        progress_ = clamp(elapsed / time_limit_sec_, 0.0, 1.0);
+        progress_ = clamp(elapsed * inverse_time_limit_, 0.0, 1.0);
         is_over_ = elapsed >= time_limit_sec_;
     }
 
-    /// batched な経過時間。
+    /// 最後の時計更新時点の経過秒数。取得だけでは時計を更新しない。
     [[gnu::always_inline]] double elapsed_sec() const {
         return elapsed_sec_;
+    }
+
+    /// 最後の時計更新時点の残り秒数。
+    [[gnu::always_inline]] double remaining_sec() const {
+        return max(0.0, time_limit_sec_ - elapsed_sec_);
     }
 
     /// batched な進捗率 [0, 1]。
@@ -117,19 +130,20 @@ public:
         return is_over_;
     }
 
-    /// ログ用の正確な経過時間。
+    /// 時計をその場で読み取った AtCoder 相当の経過秒数。
     double exact_elapsed_sec() const {
-        return chrono::duration<double>(chrono::steady_clock::now() - start_).count();
+        return double((Clock::now() - start_).count()) * TICK_TO_JUDGE_SEC;
     }
 
-    /// ログ用の正確な残り時間。
+    /// 時計をその場で読み取った AtCoder 相当の残り秒数。
     double exact_remaining_sec() const {
         return max(0.0, time_limit_sec_ - exact_elapsed_sec());
     }
 
 private:
-    chrono::steady_clock::time_point start_;
+    Clock::time_point start_;
     double time_limit_sec_;
+    double inverse_time_limit_;
     uint64_t iter_ = 0;
     uint64_t check_mask_ = 0;
     double elapsed_sec_ = 0.0;
@@ -138,8 +152,8 @@ private:
 };
 
 int main() {
-    // TimeKeeper は main 開始直後に作り、探索打ち切りには PROGRAM_TIME_LIMIT_SEC を使う。
-    // フェーズ切替などの時間系パラメータは PROGRAM_TIME_LIMIT_SEC に対する割合で指定する。
-    [[maybe_unused]] TimeKeeper time_keeper(PROGRAM_TIME_LIMIT_SEC, 8);
+    // main 開始直後から計測する。終了時刻やフェーズ切替は AtCoder 基準の秒で指定する。
+    // 探索ループの step() で時計を更新し、最新の値が必要な箇所では force_update() を呼ぶ。
+    [[maybe_unused]] TimeKeeper time_keeper(JUDGE_TIME_LIMIT_SEC);
     return 0;
 }

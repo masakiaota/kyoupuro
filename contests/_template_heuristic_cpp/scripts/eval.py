@@ -20,6 +20,7 @@ from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 from typing import Iterator, Optional
 
+from local_config import LocalProfile, describe_profile, load_profile
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -62,16 +63,12 @@ def eprint(message: str) -> None:
     print(message, file=sys.stderr, flush=True)
 
 
-def default_jobs() -> int:
-    return 2
-
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="./scripts/eval.py",
         description=(
             "Build solver and scorer once, warm up with one solver -> score run, "
-            "then evaluate solver -> score per case. Elapsed metrics exclude scorer time."
+            "then run all solvers before scoring their outputs. Elapsed metrics exclude scorer time."
         ),
     )
     parser.add_argument("bin_name", help="C++ solver name under src/bin or adhoc/bin")
@@ -91,9 +88,10 @@ def parse_args() -> argparse.Namespace:
         "-j",
         "--jobs",
         type=int,
-        default=default_jobs(),
-        help="Parallel jobs (default: 2)",
+        default=None,
+        help="Parallel jobs (default: local profile, or 1 if unavailable)",
     )
+    parser.add_argument("--profile", help="Select a local profile instead of matching the hostname")
     parser.add_argument(
         "--label",
         default="",
@@ -115,7 +113,7 @@ def parse_args() -> argparse.Namespace:
         help="Wait for another eval.py to finish instead of exiting immediately",
     )
     args = parser.parse_args()
-    if args.jobs < 1:
+    if args.jobs is not None and args.jobs < 1:
         parser.error("jobs must be >= 1")
     return args
 
@@ -152,10 +150,12 @@ def ensure_tools_ready() -> None:
         raise SystemExit(f"error: tools manifest not found: {TOOLS_MANIFEST}")
 
 
-def build_solver(bin_name: str, *, local_enabled: bool) -> None:
+def build_solver(bin_name: str, *, local_enabled: bool, local_time_ratio: float) -> None:
     command = [str(BUILD_SOLVER)]
     if not local_enabled:
         command.append("--no-local")
+    else:
+        command.extend(["--time-ratio", repr(local_time_ratio)])
     command.append(bin_name)
     result = subprocess.run(command, cwd=ROOT_DIR, stdout=subprocess.DEVNULL)
     if result.returncode != 0:
@@ -310,10 +310,9 @@ def parse_score(stdout: str) -> Optional[int]:
         return None
 
 
-def run_case(
+def run_solver(
     case_path: Path,
     solver_bin: Path,
-    score_bin: Path,
     output_dir: Path,
     verbose: bool,
 ) -> CaseResult:
@@ -357,6 +356,23 @@ def run_case(
             stdout_path=stdout_path,
         )
 
+    return CaseResult(case_name, "run_ok", None, run_elapsed, stdout_path)
+
+
+def score_case(
+    case_path: Path,
+    run: CaseResult,
+    score_bin: Path,
+    output_dir: Path,
+    verbose: bool,
+) -> CaseResult:
+    if run.status != "run_ok":
+        return run
+    case_name = run.case_name
+    output_path = output_dir / case_name
+    err_path = output_dir / f"{case_name}.err"
+    stdout_path = run.stdout_path
+    run_elapsed = run.elapsed
     try:
         with err_path.open("ab") as ferr:
             score_result = subprocess.run(
@@ -409,6 +425,17 @@ def run_case(
     )
 
 
+def run_case(
+    case_path: Path,
+    solver_bin: Path,
+    score_bin: Path,
+    output_dir: Path,
+    verbose: bool,
+) -> CaseResult:
+    run = run_solver(case_path, solver_bin, output_dir, verbose)
+    return score_case(case_path, run, score_bin, output_dir, verbose)
+
+
 def evaluate_cases(
     input_files: list[Path],
     solver_bin: Path,
@@ -417,16 +444,21 @@ def evaluate_cases(
     jobs: int,
     verbose: bool,
 ) -> list[CaseResult]:
-    if jobs == 1:
-        return [run_case(path, solver_bin, score_bin, output_dir, verbose) for path in input_files]
-
     results_by_name: dict[str, CaseResult] = {}
     with ThreadPoolExecutor(max_workers=jobs) as executor:
         future_map = {
-            executor.submit(run_case, path, solver_bin, score_bin, output_dir, verbose): path
+            executor.submit(run_solver, path, solver_bin, output_dir, verbose): path
             for path in input_files
         }
         for future in as_completed(future_map):
+            result = future.result()
+            results_by_name[result.case_name] = result
+        # 採点処理の CPU / メモリ負荷が、設定した solver の並列実行に混ざらないようにする。
+        score_futures = [
+            executor.submit(score_case, path, results_by_name[path.name], score_bin, output_dir, verbose)
+            for path in input_files
+        ]
+        for future in as_completed(score_futures):
             result = future.result()
             results_by_name[result.case_name] = result
     return [results_by_name[path.name] for path in input_files]
@@ -495,6 +527,8 @@ def make_records(
     label: str,
     normalized_input_dir: str,
     local_enabled: bool,
+    profile: LocalProfile,
+    jobs: int,
 ) -> list[dict[str, object]]:
     records: list[dict[str, object]] = []
     for result in results:
@@ -505,6 +539,11 @@ def make_records(
                 "bin": bin_name,
                 "label": label,
                 "local": local_enabled,
+                "profile": profile.name,
+                "hostname": profile.hostname,
+                "local_time_ratio": profile.local_time_ratio if local_enabled else 1.0,
+                "jobs": jobs,
+                "config_default_reason": profile.reason,
                 "input_dir": normalized_input_dir,
                 "case_name": result.case_name,
                 "score": result.score if result.status == "ok" else None,
@@ -522,6 +561,7 @@ def run_eval_locked(
     normalized_input_dir: str,
     is_tools_in: bool,
     local_enabled: bool,
+    profile: LocalProfile,
 ) -> int:
     if not args.dry_run:
         ensure_csv_header(SUMMARY_CSV, SUMMARY_HEADER)
@@ -538,7 +578,7 @@ def run_eval_locked(
             f"parallel={args.jobs} output={output_dir}"
         )
 
-    build_solver(args.bin_name, local_enabled=local_enabled)
+    build_solver(args.bin_name, local_enabled=local_enabled, local_time_ratio=profile.local_time_ratio)
     build_tool("score")
 
     solver_bin = SOLVER_BIN_DIR / args.bin_name
@@ -593,6 +633,8 @@ def run_eval_locked(
                 label=args.label,
                 normalized_input_dir=normalized_input_dir,
                 local_enabled=local_enabled,
+                profile=profile,
+                jobs=args.jobs,
             ),
         )
 
@@ -631,6 +673,14 @@ def run_eval_locked(
 
 def main() -> int:
     args = parse_args()
+    profile = load_profile(args.profile)
+    eprint(describe_profile(profile))
+    if args.jobs is None:
+        args.jobs = profile.eval_jobs
+    elif args.jobs != profile.eval_jobs:
+        eprint(f"eval: jobs={args.jobs} overrides profile jobs={profile.eval_jobs}; calibration conditions differ")
+    effective_ratio = 1.0 if args.no_local else profile.local_time_ratio
+    eprint(f"eval: local={'off' if args.no_local else 'on'} ratio={effective_ratio:g} parallel={args.jobs}")
     resolve_solver_source(args.bin_name)
     ensure_tools_ready()
 
@@ -652,6 +702,7 @@ def main() -> int:
             normalized_input_dir=normalized_input_dir,
             is_tools_in=is_tools_in,
             local_enabled=local_enabled,
+            profile=profile,
         )
 
 

@@ -8,8 +8,8 @@
 
 ## 評価運用ルール
 - `scripts/run.sh` は単発の手動実行専用であり、solver を既定で `LOCAL` マクロ付きで build する。`--no-local` は `LOCAL` マクロなしの本番相当ビルドに使う。
-- `scripts/eval.py` は評価パイプライン本体である。solver は既定で `LOCAL` マクロ付き、tools の score は Cargo の `--release` で build する。先頭入力で `run -> score` を 1 回ウォームアップしてから、本番の `run -> score` をケース単位で実行する。ウォームアップ結果は保存・集計しない。既定は `-j 2` であり、ユーザーの明示的な指定がない限りジョブ数は変更しない。
-- solver 内で時間制限や打ち切り判定を実装する場合は、`v000_template.cpp` の `JUDGE_TIME_LIMIT_SEC`、`LOCAL_TIME_RATIO`、`PROGRAM_TIME_LIMIT_SEC` を使う。`LOCAL` 時だけ `LOCAL_TIME_RATIO` を掛けた時間で探索を打ち切り、timer は `main` 開始直後を基準に作る。フェーズ切替や終了前処理などの時間系パラメータは、秒数を直書きせず `PROGRAM_TIME_LIMIT_SEC` に対する割合で指定する。
+- `scripts/eval.py` は評価パイプライン本体である。solver は既定で `LOCAL` マクロ付き、tools の score は Cargo の `--release` で build する。先頭入力で `run -> score` を 1 回ウォームアップしてから、全 solver を並列実行し、その後に採点する。ウォームアップ結果は保存と集計の対象外である。並列数は端末設定に従い、設定を読めない場合や一致する端末がない場合は 1 並列、時間補正なしとする。`-j` による明示指定を優先する。
+- solver 内の時間制限やフェーズ切替は AtCoder 基準の秒で記述し、`v000_template.cpp` の `TimeKeeper` で判定する。timer は `main` 開始直後に作る。`LOCAL` 時の時間換算は timer 内部で行う。
 - `results/out/<bin_name>/` は最新評価の scratch/workspace である。`eval.py` 実行時に同名 basename の出力が並ぶ前提なので、重複 basename は拒否する。
 - `results/score_summary.csv` は評価要約ログである。列順は `bin,total_avg,total_sum,total_min,total_max,avg_elapsed,max_elapsed,eval_set,total_cases,label,executed_at` で、経過時間は整数 ms で記録する。全ケース成功時のみ追記する。
 - `results/score_detail.csv` は `tools/in` 専用の wide-format 比較表である。列順は `bin,total_avg,max_elapsed,<case_name_1>,...,label,executed_at` で、全ケース成功時のみ追記する。
@@ -32,7 +32,7 @@
 - `scripts/run.sh`
   - `src/bin/<name>.cpp` をビルドし、stdin か 1 つの input file で手動実行する。既定で `LOCAL` を定義し、`--no-local` で無効化する。
 - `scripts/eval.py`
-  - solver と score を build し、先頭入力のウォームアップ後にケース単位で並列評価する。
+  - solver と score を build し、先頭入力のウォームアップ後に全 solver を並列実行してから採点する。
   - 既定入力は `tools/in`、出力は `results/out/<bin_name>` である。
   - `--label` で実験ラベルを付け、`--dry-run` で蓄積ファイルを更新せずに確認できる。`--no-local` で solver の `LOCAL` マクロを無効化する。
   - `-h` / `--help` で使い方を確認できる。

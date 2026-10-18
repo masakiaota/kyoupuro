@@ -7,19 +7,32 @@ ROOT_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 usage() {
     cat >&2 <<'EOF'
 Usage:
-  ./scripts/build_solver.sh [--no-local] <bin_name>
+  ./scripts/build_solver.sh [--no-local] [--profile NAME] [--time-ratio RATIO] <bin_name>
 
 Build src/bin/<bin_name>.cpp or adhoc/bin/<bin_name>.cpp.
 The LOCAL macro is defined unless --no-local is specified.
+Local ratio comes from config/local_profiles.json (default: 1).
+--time-ratio passes the value already selected by eval.py.
 Set CXX to override the compiler (default: g++-15).
 EOF
 }
 
 LOCAL_BUILD=1
-if [ "${1:-}" = "--no-local" ]; then
-    LOCAL_BUILD=0
-    shift
-fi
+PROFILE=
+RATIO_OVERRIDE=
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --no-local) LOCAL_BUILD=0; shift ;;
+        --profile|--time-ratio)
+            if [ "$#" -lt 2 ]; then usage; exit 1; fi
+            if [ "$1" = "--profile" ]; then PROFILE=$2; else RATIO_OVERRIDE=$2; fi
+            shift 2 ;;
+        -h|--help) usage; exit 0 ;;
+        --) shift; break ;;
+        -*) usage; exit 1 ;;
+        *) break ;;
+    esac
+done
 
 if [ "$#" -ne 1 ]; then
     usage
@@ -51,11 +64,20 @@ OUTPUT_FILE="$OUTPUT_DIR/$BIN_NAME"
 mkdir -p "$OUTPUT_DIR"
 
 if [ "$LOCAL_BUILD" -eq 1 ]; then
+    if [ -n "$RATIO_OVERRIDE" ]; then
+        LOCAL_TIME_RATIO=$(python3 "$SCRIPT_DIR/local_config.py" --ratio "$RATIO_OVERRIDE")
+    elif [ -n "$PROFILE" ]; then
+        LOCAL_TIME_RATIO=$(python3 "$SCRIPT_DIR/local_config.py" --profile "$PROFILE")
+    else
+        LOCAL_TIME_RATIO=$(python3 "$SCRIPT_DIR/local_config.py")
+    fi
+    printf 'build: local=on ratio=%s compiler=%s\n' "$LOCAL_TIME_RATIO" "$CXX_BIN" >&2
     "$CXX_BIN" \
         -std=gnu++23 -O2 -Wall -Wextra -march=native -pthread \
-        -ftrivial-auto-var-init=zero -fopenmp -DLOCAL \
+        -ftrivial-auto-var-init=zero -fopenmp -DLOCAL "-DAHC_LOCAL_TIME_RATIO=$LOCAL_TIME_RATIO" \
         "$SOURCE_FILE" -o "$OUTPUT_FILE"
 else
+    printf 'build: local=off ratio=1 compiler=%s\n' "$CXX_BIN" >&2
     "$CXX_BIN" \
         -std=gnu++23 -O2 -Wall -Wextra -march=native -pthread \
         -ftrivial-auto-var-init=zero -fopenmp \

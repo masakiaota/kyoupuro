@@ -1,0 +1,12 @@
+{
+  "dummy": {
+    "hostname": "dummy.local",
+    "local_time_ratio": 0.55,
+    "eval_jobs": 25
+  },
+  "dummy2": {
+    "hostname": "dummy2-host",
+    "local_time_ratio": 0.8,
+    "eval_jobs": 2
+  }
+}

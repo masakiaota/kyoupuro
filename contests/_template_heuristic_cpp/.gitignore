@@ -12,6 +12,8 @@ tools.zip
 results/**
 !results/score_summary.csv
 *.log
+__pycache__/
+config/local_profiles.json
 
 # リポジトリ直下の *.cpp 除外を、この C++ テンプレート配下では解除する。
 !*.cpp

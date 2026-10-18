@@ -9,8 +9,8 @@ BUILD_SCRIPT="$SCRIPT_DIR/build_solver.sh"
 usage() {
     cat >&2 <<'EOF'
 Usage:
-  ./scripts/run.sh [--no-local] <bin_name>
-  ./scripts/run.sh [--no-local] <bin_name> <input_file>
+  ./scripts/run.sh [--no-local] [--profile NAME] <bin_name>
+  ./scripts/run.sh [--no-local] [--profile NAME] <bin_name> <input_file>
 
 Run one solver manually.
 By default, the solver is built with the LOCAL macro.
@@ -20,10 +20,19 @@ EOF
 }
 
 LOCAL_BUILD=1
-if [ "${1:-}" = "--no-local" ]; then
-    LOCAL_BUILD=0
-    shift
-fi
+PROFILE=
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --no-local) LOCAL_BUILD=0; shift ;;
+        --profile)
+            if [ "$#" -lt 2 ]; then usage; exit 1; fi
+            PROFILE=$2; shift 2 ;;
+        -h|--help) usage; exit 0 ;;
+        --) shift; break ;;
+        -*) usage; exit 1 ;;
+        *) break ;;
+    esac
+done
 
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
     usage
@@ -52,13 +61,15 @@ if [ -n "$INPUT_FILE" ]; then
 fi
 
 START_ALL=$(date +%s)
+set -- "$BIN_NAME"
+if [ -n "$PROFILE" ]; then set -- --profile "$PROFILE" "$@"; fi
 if [ "$LOCAL_BUILD" -eq 1 ]; then
-    "$BUILD_SCRIPT" "$BIN_NAME" >/dev/null
     LOCAL_LABEL=on
 else
-    "$BUILD_SCRIPT" --no-local "$BIN_NAME" >/dev/null
+    set -- --no-local "$@"
     LOCAL_LABEL=off
 fi
+"$BUILD_SCRIPT" "$@" >/dev/null
 BIN_EXEC="$BIN_PATH/$BIN_NAME"
 
 if [ ! -x "$BIN_EXEC" ]; then
