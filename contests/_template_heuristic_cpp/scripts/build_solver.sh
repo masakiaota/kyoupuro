@@ -59,6 +59,16 @@ if ! command -v "$CXX_BIN" >/dev/null 2>&1; then
     exit 1
 fi
 
+# GCC 15.1 の古い SDK 参照と、新しい Darwin での対象 OS 版の誤判定を避ける。
+# 明示的に指定された SDK と対象 OS 版は保持する。
+if [ "$(uname -s)" = "Darwin" ]; then
+    if [ -z "${SDKROOT:-}" ]; then
+        SDKROOT=$(xcrun --show-sdk-path)
+    fi
+    : "${MACOSX_DEPLOYMENT_TARGET:=15.0}"
+    export SDKROOT MACOSX_DEPLOYMENT_TARGET
+fi
+
 OUTPUT_DIR="$ROOT_DIR/target/release"
 OUTPUT_FILE="$OUTPUT_DIR/$BIN_NAME"
 mkdir -p "$OUTPUT_DIR"
