@@ -11,4 +11,6 @@ tools/target/
 tools.zip
 results/**
 !results/score_summary.csv
+!results/score_detail.csv
+!results/eval_records.jsonl
 *.log

@@ -11,9 +11,17 @@ tools/target/
 tools.zip
 results/**
 !results/score_summary.csv
+!results/score_detail.csv
+!results/eval_records.jsonl
 *.log
 __pycache__/
 config/local_profiles.json
 
 # リポジトリ直下の *.cpp 除外を、この C++ テンプレート配下では解除する。
 !*.cpp
+
+# 公式 vis の既定出力 (cargo run --bin vis で cwd に書かれる)
+vis.html
+
+# Claude Code の個人設定
+.claude/settings.local.json
