@@ -5,6 +5,7 @@
 - このディレクトリが project root である。親や兄弟ディレクトリには依存しない。
 - 言語は Rust のみである。
 - AtCoder のジャッジ環境を前提にし、現在の依存環境以外は用いない。
+- Git は main ブランチ 1 本で運用する。作業ブランチや PR は作らず、main に直接コミットして push する。
 
 ## 評価運用ルール
 - `scripts/run.sh` は単発の手動実行専用であり、solver を既定で `--release --features local` 付きで build する。ローカルでの実行確認や評価は原則 `local` feature 付きで行い、`--no-local` は本番相当の挙動や `local` feature なしでの compile 確認に限って使う。

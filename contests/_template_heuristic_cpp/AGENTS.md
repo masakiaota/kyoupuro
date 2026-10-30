@@ -5,6 +5,7 @@
 - このディレクトリが project root である。親や兄弟ディレクトリには依存しない。
 - solver の言語は C++ のみである。AtCoder 公式 tools と visualizer の WASM では、配布形態に合わせて Rust を使ってよい。
 - C++23 と GCC 15 系を前提にする。solver は AtCoder へ直接提出できる単一の `.cpp` とする。
+- Git は main ブランチ 1 本で運用する。作業ブランチや PR は作らず、main に直接コミットして push する。
 
 ## 評価運用ルール
 - `scripts/run.sh` は単発の手動実行専用であり、solver を既定で `LOCAL` マクロ付きで build する。`--no-local` は `LOCAL` マクロなしの本番相当ビルドに使う。
