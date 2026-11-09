@@ -1,0 +1,85 @@
+AHC074 A - Layered Barcode Display (HACK TO THE FUTURE 2027)
+https://atcoder.jp/contests/ahc074/tasks/ahc074_a
+TL 2 sec, ML 1024 MiB, reactive (interactive) problem.
+Compressed spec for AI. Full official text: `git show 8800304:problem_description.txt` (read only if this spec is insufficient).
+
+## Glossary (EN / JA / symbol)
+- window / 窓 / N windows in a row, index j (0 <= j < N)
+- sheet / 紙・シート / K sheets, index k (0 <= k < K); a sheet keeps its number when moved
+- stack, sheet order (top to bottom) / 紙の山・紙の順序 (上から)
+- design, pattern / 紙の模様・デザイン / S[k]
+- white / black / hole / 白 / 黒 / 穴 / '0' / '1' / '.'
+- item / 商品 / P items, index v
+- barcode / バーコード / A[v]
+- order / 注文 / R orders, index r; ordered item a[r]
+- display, displayed barcode / 表示
+- sheet visible through window j / 窓 j から見えている紙
+- operation (move a sheet) / 操作 (紙の移動) / (k, d)
+- insertion position / 挿入位置 / d
+- incorrect order, error / 誤り・エラー / E = number of incorrect orders
+- total operations / 総操作回数 / T
+- device / 装置 (barcode display device with N windows; holds the stacked sheets)
+
+Story context: Takahashi runs F Cafe, where a (kitchen) robot makes the item whose barcode is shown on the device. Customer order sequence is unknown in advance. A sheet is pulled out by its part exposed at the front and reinserted at any position.
+
+## Rules
+- Initial info: P distinct barcodes A[0..P-1], each a length-N string over {0,1}.
+- Then design every sheet: S[k] is a length-N string over {0 (white), 1 (black), . (hole)}. An all-hole sheet is allowed. Designs are fixed afterwards.
+- Initial sheet order (top to bottom): 0, 1, ..., K-1. All sheets are stacked with positions aligned to the windows.
+- Window j shows the color of the topmost sheet with no hole at position j (= the sheet visible through window j). If no such sheet exists, it shows white.
+- Then R orders arrive one at a time. For order r, a[r] is given; try to make the display equal A[a[r]] by repeating the operation:
+  - Operation (k, d): sheet k must be visible through at least one window. Remove sheet k and reinsert it below the top d of the remaining sheets. 0 <= k < K, 0 <= d < K; d=0 puts it on top, d=K-1 at the bottom. Other sheets keep their relative order.
+- At most 2K operations per order.
+- After the operations, if the display != A[a[r]], the order counts as one error (regardless of how many windows mismatch). Proceed to the next order either way.
+- The next order is revealed only after the current order is processed. The sheet order carries over between orders.
+
+## Score
+Absolute score = 2KE + T (minimize). E = number of incorrect orders, T = total number of operations over all orders.
+
+## Constraints
+In all test cases: N=64, K=192, P=256, R=1024. Each A[v] contains exactly 32 ones.
+
+## Input Generation
+- A: sample P strings uniformly without replacement from all length-64 0/1 strings with exactly 32 ones, in sampled order.
+- a[0]: uniform from 0..P-1. For r >= 1, a[r] is uniform from the P-1 items other than a[r-1].
+
+## I/O
+Input (initial):
+```text
+N K P R
+A[0]
+...
+A[P-1]
+```
+Output (designs):
+```text
+S[0]
+...
+S[K-1]
+```
+Then repeat R times. Input:
+```text
+a[r]
+```
+Output (m operations; 0 <= m <= 2K; if no operations, output only 0):
+```text
+m
+k[0] d[0]
+...
+k[m-1] d[m-1]
+```
+- Every output ends with a newline, and stdout must be flushed (otherwise possible TLE).
+- Terminate after outputting the operations for the last order. If the last order is processed normally, no further input is given.
+- If an invalid design, operation, or output format is detected, -1 is given and the solution is judged invalid (that case scores nothing): terminate immediately.
+- Stopping output before all orders are processed, or extra output after the interaction ends, is invalid.
+
+## Local tools input file
+Initial info followed by all orders:
+```text
+a[0]
+...
+a[R-1]
+```
+
+## Notes
+- Time limit handling is done by the solver template (TimeKeeper). Use the time budget fully to get a better score.
