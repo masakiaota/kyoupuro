@@ -11,7 +11,7 @@
 - 対象 solver
 - 問題文
 - `notes/notations.md`
-- `src/bin/v000_template.cpp`
+- `src/bin/v0000_template.cpp`
 - 評価スクリプト
 - 目標スコア
 - 時間制限または `max_elapsed` の許容条件

@@ -14,7 +14,10 @@ const PROJECT_KEY = crypto
 const SRC_BIN_DIR = path.join(ROOT_DIR, "src", "bin");
 const TOOLS_MANIFEST_PATH = path.join(ROOT_DIR, "tools", "Cargo.toml");
 const BUILD_SOLVER_PATH = path.join(ROOT_DIR, "scripts", "build_solver.sh");
-const EVAL_RECORDS_PATH = path.join(ROOT_DIR, "results", "eval_records.jsonl");
+const EVAL_RECORDS_DIR = path.join(ROOT_DIR, "results", "eval_records");
+// 単発の評価セットは eval viewer に載せない。件数が増えると表示が重くなるためである。
+// adhoc/ 配下と project 外の入力による記録を読み込み対象から外す。
+const EVAL_RECORDS_EXCLUDED_ENTRIES = ["adhoc", "adhoc.jsonl", "_external"];
 const TOOLS_INPUT_DIR = path.join(ROOT_DIR, "tools", "in");
 const RESULTS_OUT_DIR = path.join(ROOT_DIR, "results", "out");
 const SOLVER_BIN_DIR = path.join(ROOT_DIR, "target", "release");
@@ -67,7 +70,7 @@ function listRunnableBins() {
         ent.isFile() &&
         ent.name.endsWith(".cpp") &&
         /^v\d{3}.*\.cpp$/.test(ent.name) &&
-        ent.name !== "v000_template.cpp",
+        ent.name !== "v0000_template.cpp",
     )
     .map((ent) => ent.name.slice(0, -4))
     .sort((left, right) => left.localeCompare(right, "ja"));
@@ -103,33 +106,16 @@ function safeRelativePath(filePath) {
 }
 
 function findLatestElapsedMs(binName, caseName) {
-  if (!binName || !caseName || !fs.existsSync(EVAL_RECORDS_PATH)) {
+  if (!binName || !caseName) {
     return null;
   }
-  const evalSet = safeRelativePath(TOOLS_INPUT_DIR);
-  let latest = null;
   try {
-    for (const record of readEvalRecords()) {
-      if (
-        record &&
-        typeof record === "object" &&
-        record.bin === binName &&
-        record.case_name === caseName &&
-        record.input_dir === evalSet &&
-        typeof record.elapsed === "number"
-      ) {
-        if (
-          !latest ||
-          String(record.executed_at ?? "").localeCompare(String(latest.executed_at ?? "")) > 0
-        ) {
-          latest = record;
-        }
-      }
-    }
+    const parsed = loadEvalSet(safeRelativePath(TOOLS_INPUT_DIR));
+    const latest = parsed?.latestElapsed.get(`${binName}\0${caseName}`);
+    return latest ? latest.elapsed : null;
   } catch {
     return null;
   }
-  return latest ? latest.elapsed : null;
 }
 
 function buildTool(binName) {
@@ -250,7 +236,8 @@ function solverBinApiPlugin() {
           return;
         }
         try {
-          sendJson(res, 200, buildEvalViewData());
+          const requested = new URL(req.url ?? "", "http://localhost").searchParams.get("evalSet");
+          sendJson(res, 200, buildEvalViewData(requested ?? ""));
         } catch (e) {
           sendJson(res, 500, { error: String(e) });
         }
@@ -373,156 +360,234 @@ function solverBinApiPlugin() {
   };
 }
 
-function buildEvalViewData() {
-  const records = readEvalRecords();
-  const runMap = new Map();
+// eval viewer は選択中の評価セットだけを読み込む。評価セットは
+// results/eval_records/<input_dir>.jsonl の 1 ファイルに対応する (scripts/eval.py)。
+function listEvalRecordFiles(directory = EVAL_RECORDS_DIR, isTopLevel = true) {
+  if (!fs.existsSync(directory)) {
+    return [];
+  }
+  const files = [];
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    if (isTopLevel && EVAL_RECORDS_EXCLUDED_ENTRIES.includes(entry.name)) {
+      continue;
+    }
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...listEvalRecordFiles(entryPath, false));
+    } else if (entry.isFile() && entry.name.endsWith(".jsonl")) {
+      files.push(entryPath);
+    }
+  }
+  return files.sort();
+}
 
-  for (const record of records) {
-    if (!record || typeof record !== "object") {
-      continue;
-    }
-    const runId = typeof record.run_id === "string" ? record.run_id : "";
-    if (!runId) {
-      continue;
-    }
-    if (!runMap.has(runId)) {
-      runMap.set(runId, {
-        id: runId,
-        bin: typeof record.bin === "string" ? record.bin : "",
-        label: typeof record.label === "string" ? record.label : "",
-        executedAt: typeof record.executed_at === "string" ? record.executed_at : "",
-        evalSet: typeof record.input_dir === "string" ? record.input_dir : "",
-        caseScores: {},
-        caseElapsed: {},
-        hasFailure: false,
-      });
-    }
+function evalSetOfRecordFile(file) {
+  const relative = path.relative(EVAL_RECORDS_DIR, file).split(path.sep).join("/");
+  return relative.slice(0, -".jsonl".length);
+}
 
-    const run = runMap.get(runId);
-    const caseName = typeof record.case_name === "string" ? record.case_name : "";
-    const status = typeof record.status === "string" ? record.status : "";
-    if (status !== "ok") {
-      run.hasFailure = true;
-      continue;
+function listEvalSets() {
+  return listEvalRecordFiles().map(evalSetOfRecordFile);
+}
+
+function recordFileOfEvalSet(evalSet) {
+  return listEvalRecordFiles().find((file) => evalSetOfRecordFile(file) === evalSet) ?? null;
+}
+
+// 記録ファイルごとの集計状態。記録は追記専用なので、前回読んだ位置より後ろだけを読み足す。
+// 数百 MB の記録でも、全体を読むのは dev server の起動後に初めて選ばれたときの 1 回だけになる。
+const evalSetCache = new Map();
+const READ_CHUNK_BYTES = 1 << 22;
+
+function loadEvalSet(evalSet) {
+  const file = recordFileOfEvalSet(evalSet);
+  if (!file) {
+    return null;
+  }
+  const stat = fs.statSync(file);
+  let entry = evalSetCache.get(file);
+  // 縮んだファイルは書き換えられたものとして、先頭から読み直す。
+  if (!entry || stat.size < entry.offset) {
+    entry = { offset: 0, runMap: new Map(), latestElapsed: new Map(), view: null };
+    evalSetCache.set(file, entry);
+  }
+  if (stat.size > entry.offset || !entry.view) {
+    readAppendedRecords(file, evalSet, entry, stat.size);
+    entry.view = buildEvalSetView(evalSet, entry);
+  }
+  return entry.view;
+}
+
+// entry.offset から end までの完結した行を読み、集計状態へ反映する。
+// 書き込み途中の最終行は次回に回すので、評価の実行中に読んでも壊れない。
+function readAppendedRecords(file, evalSet, entry, end) {
+  const fd = fs.openSync(file, "r");
+  try {
+    const chunk = Buffer.allocUnsafe(READ_CHUNK_BYTES);
+    let pending = Buffer.alloc(0);
+    let position = entry.offset;
+    while (position < end) {
+      const bytesRead = fs.readSync(fd, chunk, 0, Math.min(READ_CHUNK_BYTES, end - position), position);
+      if (bytesRead <= 0) {
+        break;
+      }
+      position += bytesRead;
+      const data = pending.length
+        ? Buffer.concat([pending, chunk.subarray(0, bytesRead)])
+        : chunk.subarray(0, bytesRead);
+      let lineStart = 0;
+      for (;;) {
+        const newline = data.indexOf(0x0a, lineStart);
+        if (newline < 0) {
+          break;
+        }
+        addEvalRecordLine(data.toString("utf-8", lineStart, newline), file, evalSet, entry);
+        lineStart = newline + 1;
+      }
+      pending = Buffer.from(data.subarray(lineStart));
     }
-    if (!caseName || typeof record.score !== "number" || typeof record.elapsed !== "number") {
-      run.hasFailure = true;
-      continue;
+    entry.offset = position - pending.length;
+  } finally {
+    fs.closeSync(fd);
+  }
+}
+
+function addEvalRecordLine(line, file, evalSet, entry) {
+  if (!line.trim()) {
+    return;
+  }
+  let record;
+  try {
+    record = JSON.parse(line);
+  } catch (error) {
+    throw new Error(`Failed to parse ${file}: ${String(error)}`);
+  }
+  if (!record || typeof record !== "object") {
+    return;
+  }
+  const bin = typeof record.bin === "string" ? record.bin : "";
+  const label = typeof record.label === "string" ? record.label : "";
+  const executedAt = typeof record.executed_at === "string" ? record.executed_at : "";
+  const caseName = typeof record.case_name === "string" ? record.case_name : "";
+
+  if (bin && caseName && typeof record.elapsed === "number") {
+    const key = `${bin}\0${caseName}`;
+    const previous = entry.latestElapsed.get(key);
+    if (!previous || executedAt.localeCompare(previous.executedAt) > 0) {
+      entry.latestElapsed.set(key, { executedAt, elapsed: record.elapsed });
     }
-    if (
-      run.bin !== (typeof record.bin === "string" ? record.bin : "") ||
-      run.label !== (typeof record.label === "string" ? record.label : "") ||
-      run.executedAt !== (typeof record.executed_at === "string" ? record.executed_at : "") ||
-      run.evalSet !== (typeof record.input_dir === "string" ? record.input_dir : "")
-    ) {
-      run.hasFailure = true;
-      continue;
-    }
-    run.caseScores[caseName] = record.score;
-    run.caseElapsed[caseName] = record.elapsed;
   }
 
-  const runsByEvalSet = {};
-  const caseNamesByEvalSet = {};
-  const caseSortOptionsByEvalSet = {};
-  const caseMetaByEvalSet = {};
+  const runId = typeof record.run_id === "string" ? record.run_id : "";
+  if (!runId) {
+    return;
+  }
+  let run = entry.runMap.get(runId);
+  if (!run) {
+    run = { id: runId, bin, label, executedAt, caseScores: new Map(), maxElapsed: 0, hasFailure: false };
+    entry.runMap.set(runId, run);
+  }
+  if (
+    record.status !== "ok" ||
+    !caseName ||
+    typeof record.score !== "number" ||
+    typeof record.elapsed !== "number" ||
+    record.input_dir !== evalSet ||
+    run.bin !== bin ||
+    run.label !== label ||
+    run.executedAt !== executedAt
+  ) {
+    run.hasFailure = true;
+    return;
+  }
+  run.caseScores.set(caseName, record.score);
+  run.maxElapsed = Math.max(run.maxElapsed, record.elapsed);
+}
 
-  for (const run of runMap.values()) {
-    if (run.hasFailure) {
-      continue;
+function buildEvalSetView(evalSet, entry) {
+  const validRuns = Array.from(entry.runMap.values()).filter(
+    (run) => !run.hasFailure && run.caseScores.size > 0,
+  );
+  const caseNameSet = new Set();
+  for (const run of validRuns) {
+    for (const caseName of run.caseScores.keys()) {
+      caseNameSet.add(caseName);
     }
-    const caseNames = Object.keys(run.caseScores).sort();
-    if (caseNames.length === 0) {
-      continue;
+  }
+  const caseNames = Array.from(caseNameSet).sort();
+
+  const runs = validRuns.map((run) => {
+    let sum = 0;
+    for (const score of run.caseScores.values()) {
+      sum += score;
     }
-    const totalAvg = Math.round(
-      caseNames.reduce((acc, caseName) => acc + run.caseScores[caseName], 0) / caseNames.length,
-    );
-    const maxElapsed = Math.max(...caseNames.map((caseName) => run.caseElapsed[caseName]));
-    const resultRun = {
+    return {
       id: run.id,
       bin: run.bin,
-      totalAvg,
-      maxElapsed,
+      // 平均と最大経過時間は、表示中の列に関係なく全ケースで集計する。
+      totalAvg: Math.round(sum / run.caseScores.size),
+      maxElapsed: run.maxElapsed,
       label: run.label,
       executedAt: run.executedAt,
-      caseScores: run.caseScores,
-      caseElapsed: run.caseElapsed,
+      // caseNames と同じ並びの配列で送り、ケース名の繰り返しを省く。未実行のケースは null。
+      scores: caseNames.map((caseName) => run.caseScores.get(caseName) ?? null),
     };
-    if (!runsByEvalSet[run.evalSet]) {
-      runsByEvalSet[run.evalSet] = [];
-      caseNamesByEvalSet[run.evalSet] = new Set();
-      caseSortOptionsByEvalSet[run.evalSet] = [...CASE_SORT_OPTIONS];
-      caseMetaByEvalSet[run.evalSet] = {};
+  });
+  runs.sort((left, right) => {
+    if (right.totalAvg !== left.totalAvg) {
+      return right.totalAvg - left.totalAvg;
     }
-    runsByEvalSet[run.evalSet].push(resultRun);
-    for (const caseName of caseNames) {
-      caseNamesByEvalSet[run.evalSet].add(caseName);
-    }
-  }
+    return right.executedAt.localeCompare(left.executedAt);
+  });
 
-  const evalSets = Object.keys(runsByEvalSet).sort();
-  const normalizedCaseNamesByEvalSet = {};
-  for (const evalSet of evalSets) {
-    normalizedCaseNamesByEvalSet[evalSet] = Array.from(caseNamesByEvalSet[evalSet]).sort();
-    caseMetaByEvalSet[evalSet] = buildCaseMetaByEvalSet(
-      evalSet,
-      normalizedCaseNamesByEvalSet[evalSet],
-    );
-    runsByEvalSet[evalSet].sort((left, right) => {
-      if (right.totalAvg !== left.totalAvg) {
-        return right.totalAvg - left.totalAvg;
-      }
-      return right.executedAt.localeCompare(left.executedAt);
-    });
-  }
+  // ケース名の集合が変わらなければ、入力ファイルを読む metadata は前回のものを使い回す。
+  const previous = entry.view;
+  const sameCases =
+    previous &&
+    previous.caseNames.length === caseNames.length &&
+    previous.caseNames.every((caseName, index) => caseName === caseNames[index]);
+  return {
+    caseNames,
+    caseSortOptions: [...CASE_SORT_OPTIONS],
+    caseMeta: sameCases ? previous.caseMeta : buildCaseMetaByEvalSet(evalSet, caseNames),
+    runs,
+    latestElapsed: entry.latestElapsed,
+  };
+}
 
+function buildEvalViewData(requestedEvalSet) {
+  const evalSets = listEvalSets();
+  const evalSet = evalSets.includes(requestedEvalSet) ? requestedEvalSet : (evalSets[0] ?? "");
+  const parsed = evalSet ? loadEvalSet(evalSet) : null;
   return {
     projectKey: PROJECT_KEY,
     evalSets,
-    runsByEvalSet,
-    caseNamesByEvalSet: normalizedCaseNamesByEvalSet,
-    caseSortOptionsByEvalSet,
-    caseMetaByEvalSet,
+    evalSet,
+    caseNames: parsed?.caseNames ?? [],
+    caseSortOptions: parsed?.caseSortOptions ?? [...CASE_SORT_OPTIONS],
+    caseMeta: parsed?.caseMeta ?? {},
+    runs: parsed?.runs ?? [],
   };
 }
 
+// 記録を読まずに答える軽い問い合わせ。画面はこれを定期的に呼び、変化があったときだけデータを取り直す。
 function buildEvalViewVersion() {
-  if (!fs.existsSync(EVAL_RECORDS_PATH)) {
-    return {
-      exists: false,
-      mtimeMs: 0,
-      size: 0,
-      signature: "missing:0",
-    };
-  }
-  const stat = fs.statSync(EVAL_RECORDS_PATH);
+  const files = listEvalRecordFiles();
+  const entries = files.map((file) => {
+    const stat = fs.statSync(file);
+    return [evalSetOfRecordFile(file), stat.mtimeMs, stat.size];
+  });
   return {
-    exists: true,
-    mtimeMs: stat.mtimeMs,
-    size: stat.size,
-    signature: `${stat.mtimeMs}:${stat.size}`,
+    projectKey: PROJECT_KEY,
+    evalSets: entries.map((entry) => entry[0]),
+    exists: files.length > 0,
+    mtimeMs: entries.reduce((max, entry) => Math.max(max, entry[1]), 0),
+    size: entries.reduce((sum, entry) => sum + entry[2], 0),
+    // ファイルの増減や同サイズの置換も更新として検知する。
+    signature: files.length
+      ? crypto.createHash("sha256").update(JSON.stringify(entries)).digest("hex")
+      : "missing:0",
   };
-}
-
-function readEvalRecords() {
-  if (!fs.existsSync(EVAL_RECORDS_PATH)) {
-    return [];
-  }
-  const raw = fs.readFileSync(EVAL_RECORDS_PATH, "utf-8");
-  const lines = raw.split(/\r?\n/);
-  const records = [];
-  for (const line of lines) {
-    if (!line.trim()) {
-      continue;
-    }
-    try {
-      records.push(JSON.parse(line));
-    } catch (error) {
-      throw new Error(`Failed to parse eval_records.jsonl: ${String(error)}`);
-    }
-  }
-  return records;
 }
 
 export default defineConfig({

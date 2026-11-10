@@ -8,6 +8,7 @@ import json
 import math
 from pathlib import Path
 import socket
+import subprocess
 import sys
 
 CONFIG_PATH = Path(__file__).resolve().parent.parent / "config" / "local_profiles.json"
@@ -31,13 +32,25 @@ def parse_ratio(value: object) -> float:
     return ratio
 
 
+def detect_hostname() -> str:
+    if sys.platform == "darwin":
+        # Mac の設定は Bonjour 名で照合する。gethostname() は別の名前を返すことがある。
+        name = subprocess.check_output(
+            ["/usr/sbin/scutil", "--get", "LocalHostName"], text=True
+        ).strip()
+        if not name:
+            raise ValueError("LocalHostName is empty")
+        return f"{name}.local"
+    return socket.gethostname()
+
+
 def load_profile(
     profile_name: str | None = None,
     *,
     path: Path = CONFIG_PATH,
     hostname: str | None = None,
 ) -> LocalProfile:
-    hostname = socket.gethostname() if hostname is None else hostname
+    hostname = detect_hostname() if hostname is None else hostname
     try:
         profiles = json.loads(path.read_text(encoding="utf-8"))
         if not isinstance(profiles, dict):

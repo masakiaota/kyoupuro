@@ -17,8 +17,8 @@ _template_heuristic_cpp/
 ├── .agents/skills/              # AI 用スキル
 ├── .claude/commands/            # スキル起動用コマンド
 ├── src/bin/
-│   ├── v000_template.cpp        # 問題固有の共通土台
-│   └── v001_*.cpp 以降          # 試行錯誤する solver。各ファイルを直接提出する
+│   ├── v0000_template.cpp        # 問題固有の共通土台
+│   └── v0001_*.cpp 以降          # 試行錯誤する solver。各ファイルを直接提出する
 ├── adhoc/
 │   ├── bin/                     # bench / probe / check などの C++ 補助コード
 │   └── scripts/                 # 単発の分析・検証スクリプト
@@ -26,35 +26,39 @@ _template_heuristic_cpp/
 │   ├── build_solver.sh          # C++ solver の共通ビルド入口
 │   ├── run.sh                   # 単発の手動実行
 │   ├── eval.py                  # 並列評価パイプライン
+│   ├── eval_records.py          # 評価セット別の評価記録の保存先
+│   ├── local_config.py          # 端末別の時間係数と並列数
 │   ├── gen_tools.sh             # 追加入力生成の wrapper
 │   └── unpack_tools.sh          # 公式配布 zip の展開
 ├── notes/
+│   ├── status.md                # 目標、評価方針、提出状況、実験中の一覧
 │   ├── notations.md             # 記号の正本
 │   ├── important_properties.md  # 問題から導かれる性質の正本
 │   ├── experiments/             # 1 実験 1 ファイルの実験記録
 │   │   ├── README.md            # 実験ノートの書式と運用規則
-│   │   └── vXXX.md              # 派生元、事前登録、判定、考察
-│   └── backlog.md               # 実験アイデアと確定知見の台帳
+│   │   └── vNNNN.md              # 派生元、事前登録、判定、考察
+│   ├── backlog.md               # 検討を続ける案、問い、観察の台帳
+│   └── handoffs/                # 引き継ぎ文書
 ├── results/                     # 評価ログと出力
-├── samples/                     # サンプル入出力
 └── tools/                       # 公式 generator / tester / scorer の展開先
 ```
 
 ## 最初にやること
 
-1. 公式配布物を `tools/` と `samples/` に置く (`./scripts/unpack_tools.sh ./tools.zip`)
+1. 公式配布物を `tools/` に置く (`./scripts/unpack_tools.sh ./tools.zip`)
 2. `.agents/skills/write-problem-description/SKILL.md` に従い、`problem_description.txt` と `notes/notations.md` を整える
-3. `scripts/eval.py` を contest の scoring tool の呼び出し方に合わせて編集する
+3. `scripts/eval.py` を contest の scoring tool の呼び出し方に合わせて編集し、`PROBLEM_TIME_LIMIT_SEC` を問題文の実行時間制限に合わせる。インタラクティブ問題では solver を公式 tester 経由で起動するように書き換える
 4. 必要なら `.agents/skills/make-ahc-visualizer/SKILL.md` に従って visualizer を作る
-5. `.agents/skills/make-v000-template/SKILL.md` に従い、`src/bin/v000_template.cpp` に入出力・`State`・操作適用の共通土台を作る
+5. `.agents/skills/make-v0000-template/SKILL.md` に従い、`src/bin/v0000_template.cpp` に入出力・`State`・操作適用の共通土台を作る
 6. 見えてきた重要な性質を `notes/important_properties.md` に整理する
+7. `notes/status.md` に目標と評価方針を書く
 
 ## C++ のビルド
 
 既定では `g++-15` を使う。別の実行ファイルを使う場合は `CXX` を指定する。
 
 ```bash
-CXX=/opt/homebrew/bin/g++-15 ./scripts/run.sh v001_solver ./tools/in/0000.txt
+CXX=/opt/homebrew/bin/g++-15 ./scripts/run.sh v0001_solver ./tools/in/0000.txt
 ```
 
 基本オプションは AtCoder の C++23 環境に合わせて `-std=gnu++23 -O2 -Wall -Wextra -march=native` などを使う。通常ビルドでは `LOCAL` マクロを定義し、`--no-local` では AtCoder 側の主要マクロを定義する。
@@ -63,11 +67,11 @@ CXX=/opt/homebrew/bin/g++-15 ./scripts/run.sh v001_solver ./tools/in/0000.txt
 
 ## 実験の流れ
 
-1. 着手前に `notes/backlog.md` と `notes/experiments/` のファイル名および Front Matter を照合し、`notes/experiments/vXXX.md` に事前登録する
-2. 共通土台は `src/bin/v000_template.cpp` に、試行錯誤する solver は `src/bin/v001_*.cpp` 以降に書く
+1. 着手前に `notes/status.md` の「実験中」と関連する過去実験を照合し、`notes/experiments/vNNNN.md` に事前登録して番号を push する
+2. 共通土台は `src/bin/v0000_template.cpp` に、試行錯誤する solver は `src/bin/v0001_*.cpp` 以降に書く
 3. `./scripts/run.sh` で単発確認する
-4. `./scripts/eval.py` で公式スコアを確認する
-5. 判定、結果、考察を同じ `notes/experiments/vXXX.md` に追記し、`notes/backlog.md` の状態を更新する
+4. `./scripts/eval.py` の標準 LOCAL で公式スコアを確認する。経過時間は solver の process CPU 時間である
+5. 判定、結果、考察を同じ `notes/experiments/vNNNN.md` に追記し、`notes/status.md` の「実験中」から消す
 6. 提出時は対象の `src/bin/<bin_name>.cpp` を直接使う
 
 ## よく使うコマンド

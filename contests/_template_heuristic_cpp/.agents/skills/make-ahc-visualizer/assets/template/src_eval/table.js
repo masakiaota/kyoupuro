@@ -256,7 +256,10 @@ function startRowDrag(event, tbody, row, handle, onManualOrder) {
 }
 
 export function renderResultTable(table, payload) {
-  const { runs, caseNames, scoreUnit = "raw", rowSort, onSort, onManualOrder } = payload;
+  const { runs, caseNames, caseIndexByName, scoreUnit = "raw", rowSort, onSort, onManualOrder } =
+    payload;
+  // run.scores は評価セット全体のケース名順に並ぶので、表示する列の位置を先に引いておく。
+  const caseIndexes = caseNames.map((caseName) => caseIndexByName.get(caseName));
   table.textContent = "";
 
   const thead = document.createElement("thead");
@@ -298,8 +301,8 @@ export function renderResultTable(table, payload) {
       createCell("td", formatScore(run.totalAvg), "sticky sticky-avg align-right mono"),
     );
     row.appendChild(createCell("td", formatMs(run.maxElapsed), "sticky sticky-elapsed align-right mono"));
-    for (const caseName of caseNames) {
-      const score = run.caseScores?.[caseName];
+    for (const caseIndex of caseIndexes) {
+      const score = run.scores?.[caseIndex];
       row.appendChild(createCell("td", formatScore(score, scoreUnit), "align-right mono"));
     }
     row.appendChild(createCell("td", run.label || "", "muted"));

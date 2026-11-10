@@ -26,7 +26,7 @@ subagent solver は解説を測る使い捨てプローブであり、改善対�
 
 - `problem_description.txt`
 - `notes/notations.md`
-- `src/bin/v000_template.cpp`
+- `src/bin/v0000_template.cpp`
 - 解説 Markdown
 - `scripts/eval.py`
 - `scripts/run.sh`
@@ -45,16 +45,16 @@ subagent solver は解説を測る使い捨てプローブであり、改善対�
 
 厳守事項:
 - src/bin 以下の既存 solver を参照してはいけない。
-- 読んでよい src/bin の既存ファイルは src/bin/v000_template.cpp だけである。
+- 読んでよい src/bin の既存ファイルは src/bin/v0000_template.cpp だけである。
 - <対象 solver>、過去の再現 solver、その他の既存 solver を読まない。
-- rg src/bin や sed src/bin/*.cpp のように、v000 以外が出力されうる探索をしない。
+- rg src/bin や sed src/bin/*.cpp のように、v0000 以外が出力されうる探索をしない。
 - 実装ファイルとして新規に作ってよいのは <new solver file> のみである。
 - 他の人の変更を戻さない。
 
 読んでよい主なファイル:
 - problem_description.txt
 - notes/notations.md
-- src/bin/v000_template.cpp
+- src/bin/v0000_template.cpp
 - <解説ファイル>
 - scripts/eval.py, scripts/run.sh, scripts/build_solver.sh
 

@@ -14,7 +14,7 @@ subagent solver を改善したり、次の検証のベースにしたりしな�
 - Phase 1 で記録した採用削除と不採用削除
 - 問題文
 - `notes/notations.md`
-- `src/bin/v000_template.cpp`
+- `src/bin/v0000_template.cpp`
 - `japanese-tech-writing`
 - 目標スコア
 - 出力する解説ファイル名
@@ -37,7 +37,7 @@ subagent solver を改善したり、次の検証のベースにしたりしな�
 - 解説本文が、人間にとって読みやすい
 - 解説本文が、何をするかだけでなく、なぜ必要かを説明している
 - 実装細部を書きすぎず、本質のアイデアを中心にしている
-- subagent が v000 以外の既存 solver を読まずに再実装できる
+- subagent が v0000 以外の既存 solver を読まずに再実装できる
 - subagent の再実装が目標スコアを超える
 - subagent の結果を、事前に固定した Phase 1 の完成 solver の評価結果と比較している
 - subagent の成功が過度な試行錯誤や評価後チューニングに依存していない
@@ -92,7 +92,7 @@ subagent には、読んでよいファイルを明示する。
 
 - `problem_description.txt`
 - `notes/notations.md`
-- `src/bin/v000_template.cpp`
+- `src/bin/v0000_template.cpp`
 - 解説 Markdown
 - `scripts/eval.py`
 - `scripts/run.sh`

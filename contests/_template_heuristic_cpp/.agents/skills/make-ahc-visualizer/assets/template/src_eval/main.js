@@ -1,5 +1,5 @@
 import { renderApp } from "./render.js";
-import { createInitialState, replaceEvalData, setEvalSet } from "./state.js";
+import { ROW_PAGE_SIZE, createInitialState, replaceEvalData } from "./state.js";
 
 const POLL_INTERVAL_MS = 2000;
 const STORAGE_PREFIX = "ahc-visualizer";
@@ -11,6 +11,12 @@ const els = {
   scoreUnit: document.getElementById("scoreUnit"),
   tableEmpty: document.getElementById("tableEmpty"),
   resultTable: document.getElementById("resultTable"),
+  casePrev: document.getElementById("casePrev"),
+  caseNext: document.getElementById("caseNext"),
+  casePageLabel: document.getElementById("casePageLabel"),
+  rowMore: document.getElementById("rowMore"),
+  rowCountLabel: document.getElementById("rowCountLabel"),
+  rowMoreButton: document.getElementById("rowMoreButton"),
 };
 
 let evalStorageKey = "";
@@ -45,8 +51,8 @@ function writeSessionJson(key, value) {
   }
 }
 
-function loadSavedEvalState(data) {
-  configureEvalStorage(data.projectKey);
+function loadSavedEvalState(projectKey) {
+  configureEvalStorage(projectKey);
   return readSessionJson(evalStorageKey);
 }
 
@@ -63,8 +69,9 @@ function saveEvalState(state) {
   });
 }
 
-async function loadEvalViewData() {
-  const res = await fetch("/api/eval-view-data");
+// 選択中の評価セットだけを取得する。ほかの評価セットは選ばれるまで読み込まない。
+async function loadEvalViewData(evalSet) {
+  const res = await fetch(`/api/eval-view-data?evalSet=${encodeURIComponent(evalSet ?? "")}`);
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);
   }
@@ -88,7 +95,7 @@ async function pollEvalViewData(state) {
     const version = await loadEvalViewVersion();
     const signature = typeof version.signature === "string" ? version.signature : "";
     if (signature && signature !== state.evalVersionSignature) {
-      const data = await loadEvalViewData();
+      const data = await loadEvalViewData(state.selectedEvalSet);
       configureEvalStorage(data.projectKey);
       replaceEvalData(state, data);
       state.evalVersionSignature = signature;
@@ -105,11 +112,11 @@ async function pollEvalViewData(state) {
 
 async function main() {
   try {
-    const [data, version] = await Promise.all([
-      loadEvalViewData(),
-      loadEvalViewVersion(),
-    ]);
-    const state = createInitialState(data, loadSavedEvalState(data));
+    // 先に軽い問い合わせで評価セットの一覧を得て、前回選んでいた評価セットだけを読み込む。
+    const version = await loadEvalViewVersion();
+    const savedState = loadSavedEvalState(version.projectKey);
+    const data = await loadEvalViewData(savedState?.selectedEvalSet);
+    const state = createInitialState(data, savedState);
     state.evalVersionSignature = typeof version.signature === "string" ? version.signature : "";
 
     const renderAndSave = () => {
@@ -117,13 +124,36 @@ async function main() {
       saveEvalState(state);
     };
 
-    els.evalSet.addEventListener("change", () => {
-      setEvalSet(state, els.evalSet.value);
+    els.evalSet.addEventListener("change", async () => {
+      els.evalSet.disabled = true;
+      try {
+        replaceEvalData(state, await loadEvalViewData(els.evalSet.value));
+      } catch (error) {
+        console.warn("eval set load failed", error);
+      } finally {
+        els.evalSet.disabled = false;
+      }
+      renderAndSave();
+    });
+
+    els.casePrev.addEventListener("click", () => {
+      state.casePage -= 1;
+      renderAndSave();
+    });
+
+    els.caseNext.addEventListener("click", () => {
+      state.casePage += 1;
+      renderAndSave();
+    });
+
+    els.rowMoreButton.addEventListener("click", () => {
+      state.rowLimit += ROW_PAGE_SIZE;
       renderAndSave();
     });
 
     els.caseSort.addEventListener("change", () => {
       state.caseSort = els.caseSort.value;
+      state.casePage = 0;
       renderAndSave();
     });
 

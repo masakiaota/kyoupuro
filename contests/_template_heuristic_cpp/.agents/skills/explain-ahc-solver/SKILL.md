@@ -37,7 +37,7 @@ Phase 1 が完了するまで、Phase 2 に入らない。
 1. `problem_description.txt`
 2. `notes/notations.md`
 3. 対象 solver
-4. `src/bin/v000_template.cpp`
+4. `src/bin/v0000_template.cpp`
 5. 評価に使う `scripts/eval.py`, `scripts/run.sh`, `scripts/build_solver.sh`
 
 Phase 2 に入る前に、`japanese-tech-writing` を読む。
@@ -69,7 +69,7 @@ Phase 2 は、解説 Markdown を書いただけでは完了しない。
 - 解説本文が `japanese-tech-writing` に従っている
 - 解説本文が、何をするかだけでなく、なぜ必要かを説明している
 - 実装細部を書きすぎず、本質のアイデアを中心にしている
-- 新規 subagent が、v000 以外の既存 solver を読まずに再実装している
+- 新規 subagent が、v0000 以外の既存 solver を読まずに再実装している
 - subagent の再実装が目標スコアを超えている
 - subagent の結果を、固定した Phase 1 の完成 solver と比較している
 - subagent の成功が過度な試行錯誤や評価後チューニングに依存していない

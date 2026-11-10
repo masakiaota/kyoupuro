@@ -1,16 +1,12 @@
 const ROW_SORT_KEYS = new Set(["bin", "totalAvg", "executedAt"]);
 const SCORE_UNITS = new Set(["raw", "k", "m", "cap100k"]);
+// 一度に描画するケース列と行の数。評価セットが大きくても表のセル数を抑える。
+export const CASE_PAGE_SIZE = 100;
+export const ROW_PAGE_SIZE = 200;
 
 export function createInitialState(data, savedState = null) {
-  const evalSets = Array.isArray(data.evalSets) ? data.evalSets : [];
-  let selectedEvalSet = evalSets[0] ?? "";
-  if (
-    savedState &&
-    typeof savedState.selectedEvalSet === "string" &&
-    evalSets.includes(savedState.selectedEvalSet)
-  ) {
-    selectedEvalSet = savedState.selectedEvalSet;
-  }
+  // data は選択中の評価セット 1 つぶんだけを持つ。
+  const selectedEvalSet = typeof data.evalSet === "string" ? data.evalSet : "";
   return {
     data,
     selectedEvalSet,
@@ -20,29 +16,28 @@ export function createInitialState(data, savedState = null) {
       : { key: "totalAvg", dir: "desc" },
     manualRunOrder: normalizeManualRunOrder(data, selectedEvalSet, savedState?.manualRunOrder),
     scoreUnit: SCORE_UNITS.has(savedState?.scoreUnit) ? savedState.scoreUnit : "raw",
+    casePage: 0,
+    rowLimit: ROW_PAGE_SIZE,
     evalVersionSignature: "",
     lastUpdatedAt: new Date(),
     isPolling: false,
   };
 }
 
-export function setEvalSet(state, evalSet) {
-  const evalSets = Array.isArray(state.data.evalSets) ? state.data.evalSets : [];
-  state.selectedEvalSet = evalSets.includes(evalSet) ? evalSet : (evalSets[0] ?? "");
+function resetViewForEvalSet(state) {
   state.caseSort = firstCaseSortKey(state.data, state.selectedEvalSet);
   state.rowSort = { key: "totalAvg", dir: "desc" };
   state.manualRunOrder = [];
+  state.casePage = 0;
+  state.rowLimit = ROW_PAGE_SIZE;
 }
 
 export function replaceEvalData(state, data) {
   const previousEvalSet = state.selectedEvalSet;
   state.data = data;
-  const evalSets = Array.isArray(data.evalSets) ? data.evalSets : [];
-  if (!evalSets.includes(previousEvalSet)) {
-    state.selectedEvalSet = evalSets[0] ?? "";
-    state.caseSort = firstCaseSortKey(data, state.selectedEvalSet);
-    state.rowSort = { key: "totalAvg", dir: "desc" };
-    state.manualRunOrder = [];
+  state.selectedEvalSet = typeof data.evalSet === "string" ? data.evalSet : "";
+  if (state.selectedEvalSet !== previousEvalSet) {
+    resetViewForEvalSet(state);
     return;
   }
 
@@ -55,21 +50,21 @@ export function replaceEvalData(state, data) {
 }
 
 export function getRunsForEvalSet(data, evalSet) {
-  return Array.isArray(data.runsByEvalSet?.[evalSet]) ? data.runsByEvalSet[evalSet] : [];
+  return data.evalSet === evalSet && Array.isArray(data.runs) ? data.runs : [];
 }
 
 export function getCaseNamesForEvalSet(data, evalSet) {
-  return Array.isArray(data.caseNamesByEvalSet?.[evalSet]) ? data.caseNamesByEvalSet[evalSet] : [];
+  return data.evalSet === evalSet && Array.isArray(data.caseNames) ? data.caseNames : [];
 }
 
 export function getCaseSortOptionsForEvalSet(data, evalSet) {
-  return Array.isArray(data.caseSortOptionsByEvalSet?.[evalSet])
-    ? data.caseSortOptionsByEvalSet[evalSet]
+  return data.evalSet === evalSet && Array.isArray(data.caseSortOptions)
+    ? data.caseSortOptions
     : [];
 }
 
 export function getCaseMetaForEvalSet(data, evalSet) {
-  return data.caseMetaByEvalSet?.[evalSet] ?? {};
+  return data.evalSet === evalSet ? (data.caseMeta ?? {}) : {};
 }
 
 export function firstCaseSortKey(data, evalSet) {

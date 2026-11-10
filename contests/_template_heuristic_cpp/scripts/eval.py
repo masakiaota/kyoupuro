@@ -5,8 +5,11 @@ import argparse
 import csv
 import fcntl
 import json
+import math
 import os
+import re
 import secrets
+import signal
 import shutil
 import subprocess
 import sys
@@ -21,6 +24,7 @@ from pathlib import Path
 from typing import Iterator, Optional
 
 from local_config import LocalProfile, describe_profile, load_profile
+from eval_records import records_path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -31,9 +35,15 @@ TOOLS_BIN_DIR = ROOT_DIR / "tools" / "target" / "release"
 DEFAULT_INPUT_DIR = ROOT_DIR / "tools" / "in"
 SUMMARY_CSV = ROOT_DIR / "results" / "score_summary.csv"
 DETAIL_CSV = ROOT_DIR / "results" / "score_detail.csv"
-RECORDS_JSONL = ROOT_DIR / "results" / "eval_records.jsonl"
 EVAL_LOCK = ROOT_DIR / "results" / ".eval.lock"
 LOCK_BUSY_EXIT_CODE = 75
+# 問題文の実行時間制限 (秒)。コンテストごとに合わせる。
+PROBLEM_TIME_LIMIT_SEC = 2.0
+# 時間切れは solver が報告する process CPU 時間で判定する。実時間の打ち切りは、並列評価で CPU を
+# 待つぶんの延長を許し、ハングだけを止めるための上限であり、時間切れ判定の制限時間の 3 倍とする。
+HANG_GUARD_FACTOR = 3.0
+# v0000_template.cpp の TimeKeeper が終了時に stderr へ出す行。
+SOLVER_TIME_PATTERN = re.compile(rb"^time_keeper: solver_ms=(\d+) wait_ms=(\d+)$", re.MULTILINE)
 
 SUMMARY_HEADER = [
     "bin",
@@ -57,6 +67,8 @@ class CaseResult:
     score: Optional[int]
     elapsed: int
     stdout_path: str
+    # "solver": TimeKeeper が報告した計算時間。"wall": 報告のない solver の実時間。
+    elapsed_source: str = "wall"
 
 
 def eprint(message: str) -> None:
@@ -68,7 +80,9 @@ def parse_args() -> argparse.Namespace:
         prog="./scripts/eval.py",
         description=(
             "Build solver and scorer once, warm up with one solver -> score run, "
-            "then run all solvers before scoring their outputs. Elapsed metrics exclude scorer time."
+            "then run all solvers before scoring their outputs. "
+            "Elapsed metrics and time limits use the process CPU time reported by TimeKeeper; "
+            "solvers without the report fall back to wall time."
         ),
     )
     parser.add_argument("bin_name", help="C++ solver name under src/bin or adhoc/bin")
@@ -93,6 +107,16 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--profile", help="Select a local profile instead of matching the hostname")
     parser.add_argument(
+        "--time-limit-sec",
+        type=float,
+        default=None,
+        help=(
+            "Measured per-case time limit in seconds, without LOCAL scaling; "
+            "does not change solver budgets "
+            "(default: PROBLEM_TIME_LIMIT_SEC scaled by the local profile)"
+        ),
+    )
+    parser.add_argument(
         "--label",
         default="",
         help="Optional experiment label recorded in CSV/JSONL",
@@ -100,7 +124,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Do not write score_summary.csv, score_detail.csv, or eval_records.jsonl",
+        help="Do not write score_summary.csv, score_detail.csv, or dataset evaluation records",
     )
     parser.add_argument(
         "--no-local",
@@ -115,6 +139,10 @@ def parse_args() -> argparse.Namespace:
     args = parser.parse_args()
     if args.jobs is not None and args.jobs < 1:
         parser.error("jobs must be >= 1")
+    if args.time_limit_sec is not None and (
+        not math.isfinite(args.time_limit_sec) or args.time_limit_sec <= 0
+    ):
+        parser.error("time-limit-sec must be finite and > 0")
     return args
 
 
@@ -225,7 +253,7 @@ def ensure_csv_header(path: Path, header: list[str]) -> None:
 
 def append_csv_row(path: Path, row: list[str | int]) -> None:
     with path.open("a", encoding="utf-8", newline="") as handle:
-        writer = csv.writer(handle)
+        writer = csv.writer(handle, lineterminator="\n")
         writer.writerow(row)
 
 
@@ -310,11 +338,25 @@ def parse_score(stdout: str) -> Optional[int]:
         return None
 
 
+def persist_capture(path: Path, content: bytes) -> None:
+    # Truncated workspace captures were observed after normal child exits.
+    # Publish complete bytes after exit and verify them before later scoring.
+    temporary = path.with_name(path.name + ".capture_partial")
+    with temporary.open("wb") as handle:
+        handle.write(content)
+        handle.flush()
+        os.fsync(handle.fileno())
+    temporary.replace(path)
+    if path.read_bytes() != content:
+        raise OSError(f"capture verification failed: {path}")
+
+
 def run_solver(
     case_path: Path,
     solver_bin: Path,
     output_dir: Path,
     verbose: bool,
+    timeout_sec: float,
 ) -> CaseResult:
     case_name = case_path.name
     output_path = output_dir / case_name
@@ -324,17 +366,32 @@ def run_solver(
     if verbose:
         eprint(f"start: {case_name}")
 
+    hang_guard_sec = timeout_sec * HANG_GUARD_FACTOR
     run_start_ns = time.monotonic_ns()
     try:
-        with case_path.open("rb") as fin, output_path.open("wb") as fout, err_path.open(
-            "wb"
-        ) as ferr:
-            run_result = subprocess.run(
+        with case_path.open("rb") as fin:
+            # インタラクティブ問題では公式 tester 経由の起動に書き換える。
+            # 独立した session で起動し、ハング時は子プロセスごとまとめて止める。
+            process = subprocess.Popen(
                 [str(solver_bin)],
                 stdin=fin,
-                stdout=fout,
-                stderr=ferr,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                start_new_session=True,
             )
+            try:
+                captured_stdout, captured_stderr = process.communicate(timeout=hang_guard_sec)
+                returncode = process.returncode
+            except subprocess.TimeoutExpired:
+                os.killpg(process.pid, signal.SIGKILL)
+                captured_stdout, captured_stderr = process.communicate()
+                captured_stderr += f"eval: wall-clock hang guard exceeded ({hang_guard_sec:g}s)\n".encode()
+                persist_capture(output_path, captured_stdout)
+                persist_capture(err_path, captured_stderr)
+                run_elapsed = (time.monotonic_ns() - run_start_ns) // 1_000_000
+                return CaseResult(case_name, "timeout", None, int(run_elapsed), stdout_path)
+            persist_capture(output_path, captured_stdout)
+            persist_capture(err_path, captured_stderr)
     except OSError:
         run_elapsed = (time.monotonic_ns() - run_start_ns) // 1_000_000
         return CaseResult(
@@ -345,18 +402,27 @@ def run_solver(
             stdout_path=stdout_path,
         )
     run_elapsed = int((time.monotonic_ns() - run_start_ns) // 1_000_000)
-    if run_result.returncode != 0:
+    elapsed, elapsed_source = run_elapsed, "wall"
+    reports = SOLVER_TIME_PATTERN.findall(err_path.read_bytes())
+    if reports:
+        elapsed, elapsed_source = int(reports[-1][0]), "solver"
+    if returncode != 0:
         if verbose:
             eprint(f"fail(run): {case_name}")
         return CaseResult(
             case_name=case_name,
             status="run_fail",
             score=None,
-            elapsed=run_elapsed,
+            elapsed=elapsed,
             stdout_path=stdout_path,
+            elapsed_source=elapsed_source,
         )
+    if elapsed > timeout_sec * 1000:
+        with err_path.open("ab") as ferr:
+            ferr.write(f"eval: time limit exceeded ({elapsed_source}={elapsed}ms)\n".encode())
+        return CaseResult(case_name, "timeout", None, elapsed, stdout_path, elapsed_source)
 
-    return CaseResult(case_name, "run_ok", None, run_elapsed, stdout_path)
+    return CaseResult(case_name, "run_ok", None, elapsed, stdout_path, elapsed_source)
 
 
 def score_case(
@@ -388,6 +454,7 @@ def score_case(
             score=None,
             elapsed=run_elapsed,
             stdout_path=stdout_path,
+            elapsed_source=run.elapsed_source,
         )
     if score_result.returncode != 0:
         if verbose:
@@ -398,6 +465,7 @@ def score_case(
             score=None,
             elapsed=run_elapsed,
             stdout_path=stdout_path,
+            elapsed_source=run.elapsed_source,
         )
 
     score = parse_score(score_result.stdout)
@@ -410,6 +478,7 @@ def score_case(
             score=None,
             elapsed=run_elapsed,
             stdout_path=stdout_path,
+            elapsed_source=run.elapsed_source,
         )
 
     if verbose:
@@ -422,6 +491,7 @@ def score_case(
         score=score,
         elapsed=run_elapsed,
         stdout_path=stdout_path,
+        elapsed_source=run.elapsed_source,
     )
 
 
@@ -431,8 +501,9 @@ def run_case(
     score_bin: Path,
     output_dir: Path,
     verbose: bool,
+    timeout_sec: float,
 ) -> CaseResult:
-    run = run_solver(case_path, solver_bin, output_dir, verbose)
+    run = run_solver(case_path, solver_bin, output_dir, verbose, timeout_sec)
     return score_case(case_path, run, score_bin, output_dir, verbose)
 
 
@@ -443,11 +514,12 @@ def evaluate_cases(
     output_dir: Path,
     jobs: int,
     verbose: bool,
+    timeout_sec: float,
 ) -> list[CaseResult]:
     results_by_name: dict[str, CaseResult] = {}
     with ThreadPoolExecutor(max_workers=jobs) as executor:
         future_map = {
-            executor.submit(run_solver, path, solver_bin, output_dir, verbose): path
+            executor.submit(run_solver, path, solver_bin, output_dir, verbose, timeout_sec): path
             for path in input_files
         }
         for future in as_completed(future_map):
@@ -470,6 +542,7 @@ def warm_up_case(
     score_bin: Path,
     output_dir: Path,
     verbose: bool,
+    timeout_sec: float,
 ) -> None:
     if verbose:
         eprint(f"warmup: start case={case_path.name}")
@@ -482,6 +555,7 @@ def warm_up_case(
                 score_bin=score_bin,
                 output_dir=Path(temp_dir),
                 verbose=False,
+                timeout_sec=timeout_sec,
             )
     except OSError as error:
         if verbose:
@@ -529,6 +603,7 @@ def make_records(
     local_enabled: bool,
     profile: LocalProfile,
     jobs: int,
+    time_limit_ms: int,
 ) -> list[dict[str, object]]:
     records: list[dict[str, object]] = []
     for result in results:
@@ -548,6 +623,8 @@ def make_records(
                 "case_name": result.case_name,
                 "score": result.score if result.status == "ok" else None,
                 "elapsed": result.elapsed,
+                "elapsed_source": result.elapsed_source,
+                "time_limit_ms": time_limit_ms,
                 "status": result.status,
                 "stdout_path": result.stdout_path,
             }
@@ -591,6 +668,13 @@ def run_eval_locked(
     executed_dt = datetime.now().astimezone()
     executed_at = executed_dt.isoformat(timespec="seconds")
     run_id = make_run_id(executed_dt, args.bin_name)
+    # 明示した上限は計測値そのものへ適用する。探索用のLOCAL倍率とは分けて扱う。
+    timeout_sec = (
+        args.time_limit_sec
+        if args.time_limit_sec is not None
+        else PROBLEM_TIME_LIMIT_SEC * (profile.local_time_ratio if local_enabled else 1.0)
+    )
+    eprint(f"eval: time_limit={timeout_sec:g}s hang_guard={timeout_sec * HANG_GUARD_FACTOR:g}s")
 
     warm_up_case(
         case_path=input_files[0],
@@ -598,6 +682,7 @@ def run_eval_locked(
         score_bin=score_bin,
         output_dir=output_dir,
         verbose=args.verbose,
+        timeout_sec=timeout_sec,
     )
 
     results = evaluate_cases(
@@ -607,6 +692,7 @@ def run_eval_locked(
         output_dir=output_dir,
         jobs=args.jobs,
         verbose=args.verbose,
+        timeout_sec=timeout_sec,
     )
 
     success_count = sum(result.status == "ok" for result in results)
@@ -623,8 +709,9 @@ def run_eval_locked(
     )
 
     if not args.dry_run:
+        record_file = records_path(normalized_input_dir)
         append_jsonl(
-            RECORDS_JSONL,
+            record_file,
             make_records(
                 results=results,
                 run_id=run_id,
@@ -635,6 +722,7 @@ def run_eval_locked(
                 local_enabled=local_enabled,
                 profile=profile,
                 jobs=args.jobs,
+                time_limit_ms=round(timeout_sec * 1000),
             ),
         )
 

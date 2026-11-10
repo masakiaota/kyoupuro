@@ -77,7 +77,9 @@ chmod +x scripts/build_wasm.sh scripts/dev_vis.sh
 - `src_eval/case_sorters.js`
   - metadata sort に対応する sorter を追加する
 
-問題固有 metadata は `results/eval_records.jsonl` に混ぜない。eval viewer 側で `input_dir` と `case_name` から case file を読んで復元する。
+eval viewer は選択中の評価セットだけを読み込み、ケース列を 100 件ずつ、行を 200 件ずつ描画する。記録は追記分だけを読み足す。件数の多い評価セットでも重くならないための仕組みなので、全評価セットを一括で読む処理や全ケースを一度に描画する処理へ戻さない。
+
+問題固有 metadata は `results/eval_records/` の評価記録に混ぜない。eval viewer 側で `input_dir` と `case_name` から case file を読んで復元する。
 
 ## 5. フロントエンド接続
 
@@ -109,5 +111,6 @@ corepack yarn build
 - 同梱テンプレートを使わず UI/API を作り直すこと
 - 公式 visualizer があるのに独自描画を優先すること
 - `src_vis/wasm/` の生成物を手書き編集すること
-- `eval_records.jsonl` に問題固有 metadata を追加すること
+- 評価記録に問題固有 metadata を追加すること
+- `adhoc/` 配下の入力や project 外の入力による評価記録を eval viewer に読み込ませること
 - この skill の同梱テンプレート自体を編集すること

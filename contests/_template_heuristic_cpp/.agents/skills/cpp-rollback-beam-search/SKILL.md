@@ -21,7 +21,7 @@ solver にテンプレートをコピーし、1行目のファイル名コメン
 
 ```sh
 SKILL_DIR=".agents/skills/cpp-rollback-beam-search"
-solver_name="v001_rollback_beam"
+solver_name="v0001_rollback_beam"
 cp "$SKILL_DIR/assets/cpp/euler_tour_edges_rollback_beam.cpp" "src/bin/${solver_name}.cpp"
 ```
 

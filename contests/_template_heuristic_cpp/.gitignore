@@ -9,10 +9,15 @@ src_vis/wasm/*
 !src_vis/wasm/.gitkeep
 tools/target/
 tools.zip
+# 追加した共有の評価セットは生成手順から作り直す (AGENTS.md)。
+tools/in_*/
 results/**
 !results/score_summary.csv
 !results/score_detail.csv
-!results/eval_records.jsonl
+# 評価の個票は評価セット別に保存し、tools/in だけを共有する。
+!results/eval_records/
+!results/eval_records/tools/
+!results/eval_records/tools/in.jsonl
 *.log
 __pycache__/
 config/local_profiles.json
@@ -25,3 +30,17 @@ vis.html
 
 # Claude Code の個人設定
 .claude/settings.local.json
+
+# adhoc ではコードと Markdown だけを Git で管理する。データは各端末に置く (AGENTS.md)。
+/adhoc/**
+!/adhoc/**/
+!/adhoc/**/*.cpp
+!/adhoc/**/*.hpp
+!/adhoc/**/*.h
+!/adhoc/**/*.inc
+!/adhoc/**/*.py
+!/adhoc/**/*.sh
+!/adhoc/**/*.js
+!/adhoc/**/*.rs
+!/adhoc/**/*.md
+!/adhoc/**/.gitkeep

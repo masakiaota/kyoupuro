@@ -1,4 +1,5 @@
 import {
+  CASE_PAGE_SIZE,
   getCaseMetaForEvalSet,
   getCaseNamesForEvalSet,
   getCaseSortOptionsForEvalSet,
@@ -13,10 +14,26 @@ export function renderApp(state, els, onStateChange = () => {}) {
   renderCaseSortSelect(state, els);
   renderScoreUnitSelect(state, els);
 
-  const runs = orderedRuns(state, getRunsForEvalSet(state.data, state.selectedEvalSet));
+  const allRuns = orderedRuns(state, getRunsForEvalSet(state.data, state.selectedEvalSet));
+  // 行は上位から rowLimit 件だけ描画する。並べ替えは全 run に対して行う。
+  const runs = allRuns.slice(0, state.rowLimit);
   const caseNames = getCaseNamesForEvalSet(state.data, state.selectedEvalSet);
   const caseMetaByName = getCaseMetaForEvalSet(state.data, state.selectedEvalSet);
-  const sortedCaseNames = sortCaseNames(caseNames, state.caseSort, caseMetaByName);
+  const allSortedCaseNames = sortCaseNames(caseNames, state.caseSort, caseMetaByName);
+  // ケース列は並べ替えた後の 1 ページぶんだけ描画する。
+  const pageCount = Math.max(1, Math.ceil(allSortedCaseNames.length / CASE_PAGE_SIZE));
+  state.casePage = Math.min(Math.max(0, state.casePage), pageCount - 1);
+  const caseBegin = state.casePage * CASE_PAGE_SIZE;
+  const sortedCaseNames = allSortedCaseNames.slice(caseBegin, caseBegin + CASE_PAGE_SIZE);
+  const caseIndexByName = new Map(caseNames.map((caseName, index) => [caseName, index]));
+  renderPagers(state, els, {
+    caseBegin,
+    caseShown: sortedCaseNames.length,
+    caseTotal: allSortedCaseNames.length,
+    pageCount,
+    rowShown: runs.length,
+    rowTotal: allRuns.length,
+  });
 
   if (runs.length === 0 || sortedCaseNames.length === 0) {
     els.resultTable.hidden = true;
@@ -34,6 +51,7 @@ export function renderApp(state, els, onStateChange = () => {}) {
   renderResultTable(els.resultTable, {
     runs,
     caseNames: sortedCaseNames,
+    caseIndexByName,
     scoreUnit: state.scoreUnit,
     rowSort: state.rowSort,
     onSort(columnKey) {
@@ -50,11 +68,26 @@ export function renderApp(state, els, onStateChange = () => {}) {
     },
     onManualOrder(runIds) {
       state.rowSort = null;
-      state.manualRunOrder = runIds;
+      // 描画していない行は、手動で並べた行の後ろに元の順で続ける。
+      const moved = new Set(runIds);
+      state.manualRunOrder = [
+        ...runIds,
+        ...allRuns.map((run) => run.id).filter((id) => !moved.has(id)),
+      ];
       renderApp(state, els, onStateChange);
       onStateChange();
     },
   });
+}
+
+function renderPagers(state, els, counts) {
+  const { caseBegin, caseShown, caseTotal, pageCount, rowShown, rowTotal } = counts;
+  els.casePageLabel.textContent =
+    caseTotal === 0 ? "0 / 0" : `${caseBegin + 1}–${caseBegin + caseShown} / ${caseTotal}`;
+  els.casePrev.disabled = state.casePage <= 0;
+  els.caseNext.disabled = state.casePage >= pageCount - 1;
+  els.rowMore.hidden = rowShown >= rowTotal;
+  els.rowCountLabel.textContent = `${rowShown} / ${rowTotal} runs`;
 }
 
 function renderEvalSetSelect(state, els) {
