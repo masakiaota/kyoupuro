@@ -43,6 +43,10 @@ _template_heuristic_cpp/
 └── tools/                       # 公式 generator / tester / scorer の展開先
 ```
 
+## 準備
+
+コードのビルドと実行は [junban](https://github.com/masakiaota/junban) を通して行う。複数のセッションの計算が重なって、実行時間の計測がぶれるのを防ぐためである。先に junban をインストールしておく。規則とコマンド例は `AGENTS.md` の「計算ジョブの実行」にある。
+
 ## 最初にやること
 
 1. 公式配布物を `tools/` に置く (`./scripts/unpack_tools.sh ./tools.zip`)
@@ -58,7 +62,7 @@ _template_heuristic_cpp/
 既定では `g++-15` を使う。別の実行ファイルを使う場合は `CXX` を指定する。
 
 ```bash
-CXX=/opt/homebrew/bin/g++-15 ./scripts/run.sh v0001_solver ./tools/in/0000.txt
+CXX=/opt/homebrew/bin/g++-15 junban run -c 1 ./scripts/run.sh v0001_solver ./tools/in/0000.txt
 ```
 
 基本オプションは AtCoder の C++23 環境に合わせて `-std=gnu++23 -O2 -Wall -Wextra -march=native` などを使う。通常ビルドでは `LOCAL` マクロを定義し、`--no-local` では AtCoder 側の主要マクロを定義する。
@@ -69,20 +73,21 @@ CXX=/opt/homebrew/bin/g++-15 ./scripts/run.sh v0001_solver ./tools/in/0000.txt
 
 1. 着手前に `notes/status.md` の「実験中」と関連する過去実験を照合し、`notes/experiments/vNNNN.md` に事前登録して番号を push する
 2. 共通土台は `src/bin/v0000_template.cpp` に、試行錯誤する solver は `src/bin/v0001_*.cpp` 以降に書く
-3. `./scripts/run.sh` で単発確認する
-4. `./scripts/eval.py` の標準 LOCAL で公式スコアを確認する。経過時間は solver の process CPU 時間である
+3. `junban run -c 1 ./scripts/run.sh` で単発確認する
+4. `junban run ./scripts/eval.py` の標準 LOCAL で公式スコアを確認する。経過時間は solver の process CPU 時間である
 5. 判定、結果、考察を同じ `notes/experiments/vNNNN.md` に追記し、`notes/status.md` の「実験中」から消す
 6. 提出時は対象の `src/bin/<bin_name>.cpp` を直接使う
 
 ## よく使うコマンド
 
 ```bash
-./scripts/run.sh <bin_name>
-./scripts/run.sh <bin_name> ./tools/in/0000.txt
-./scripts/run.sh --no-local <bin_name> ./tools/in/0000.txt
-./scripts/eval.py <bin_name>
-./scripts/eval.py -v --label baseline <bin_name>
-./scripts/eval.py --dry-run <bin_name>
+junban run -c 1 ./scripts/run.sh <bin_name>
+junban run -c 1 ./scripts/run.sh <bin_name> ./tools/in/0000.txt
+junban run -c 1 ./scripts/run.sh --no-local <bin_name> ./tools/in/0000.txt
+junban run ./scripts/eval.py <bin_name>
+junban run ./scripts/eval.py -v --label baseline <bin_name>
+junban run ./scripts/eval.py --dry-run <bin_name>
+junban ls
 ./scripts/eval.py --help
 ./scripts/unpack_tools.sh ./tools.zip
 ```

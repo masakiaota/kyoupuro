@@ -10,6 +10,42 @@
 - 作業ディレクトリもこの 1 つだけを使い、worktree や別 clone を作らない。複数セッションが同じディレクトリを共有するため、作業前に `git pull` し、コミットしたらすぐ push する。
 - Git ではコードと Markdown を管理し、データは管理しない。解析結果、教師データ、追加生成した入力、solver の出力、アーカイブは各端末に置く。例外は `.gitignore` が明示的に許可した評価要約だけである。データを `git add -f` で追加しない。
 
+## 計算ジョブの実行
+この端末では、複数のセッションが同時に計算を走らせる。計算が重なると実行時間の計測がぶれるので、[junban](https://github.com/masakiaota/junban) で順番に実行する。コマンドの前に `junban run` を付けると、順番が来るまで待ってから実行される。入出力と終了コードは直接実行した場合と変わらない。
+
+- コードをビルドまたは実行するコマンドには、`junban run` を付ける。ファイルの閲覧、検索、編集と git には付けない。
+- 使うコア数を `-c` で指定する。`-c` を省略すると全コアを確保し、単独で走る。評価 (`scripts/eval.py`) と、全コアを使うビルドは `-c` を省略する。
+- `junban run` が並べるのは、直後のコマンド 1 つだけである。`&&`、`;`、パイプ、ループで複数のコマンドをつなぐときは、`junban run sh -c '...'` で全体を包む。
+- サーバーのように終わらないものには付けない。
+
+```bash
+# ビルド
+junban run -c 1 ./scripts/build_solver.sh v0003_reconnect
+junban run cargo build --release --manifest-path tools/Cargo.toml   # 全コアを使うので -c なし
+
+# 単発の実行
+junban run -c 1 ./scripts/run.sh v0003_reconnect ./tools/in/0000.txt
+
+# 評価 (-c を付けない)
+junban run ./scripts/eval.py --label baseline v0003_reconnect
+
+# 分析や検証のスクリプト
+junban run -c 1 python3 adhoc/scripts/analyze_scores.py
+junban run -c 8 --estimate 30m python3 adhoc/scripts/sweep_params.py --jobs 8
+
+# 複数のコマンドをつなぐときは、sh -c で全体を包む
+junban run -c 1 sh -c './scripts/build_solver.sh v0003_reconnect && ./target/release/v0003_reconnect < tools/in/0000.txt'
+
+# 付けないもの
+ls results/
+grep -n "判定" notes/experiments/v0003.md
+git status
+./scripts/dev_vis.sh   # visualizer の開発サーバー。終わらないので付けない
+
+# 行列の状況を見る
+junban ls
+```
+
 ## 評価運用ルール
 - solver のスコアと実行時間の計測、および実験の判定は、`scripts/eval.py` の標準 `LOCAL` だけで行う。標準 `LOCAL` とは、端末設定 (`config/local_profiles.json`) の時間係数と並列数をそのまま使う評価である。端末ごとに速度と並列数を調整して条件をそろえているので、`--no-local`、`-j`、`--profile`、`--time-limit-sec` を指定した測定や、別の端末の測定との差を判定に使わない。
 - `scripts/run.sh` は単発の手動実行専用であり、solver を既定で `LOCAL` マクロ付きで build する。`--no-local` は `LOCAL` マクロなしの本番相当ビルドに使う。
@@ -44,7 +80,7 @@
 - `scripts/run.sh`
   - `src/bin/<name>.cpp` をビルドし、stdin か 1 つの input file で手動実行する。
 - `scripts/eval.py`
-  - 既定入力は `tools/in`、出力は `results/out/<bin_name>` である。
+  - `junban run ./scripts/eval.py <bin_name>` で実行する。junban を通さない実行は拒否する。既定入力は `tools/in`、出力は `results/out/<bin_name>` である。
   - `--label` で実験ラベルを付け、`--dry-run` で蓄積ファイルを更新せずに確認できる。`-h` / `--help` で使い方を確認できる。
 - `scripts/gen_tools.sh`
   - `tools` 側の `gen` バイナリを呼ぶ薄い wrapper である。

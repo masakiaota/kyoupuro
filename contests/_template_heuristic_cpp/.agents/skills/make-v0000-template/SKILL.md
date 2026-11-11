@@ -38,7 +38,7 @@ AHC の `v0000_template.cpp` に、問題固有だが solver 戦略に依存し�
 
 7. ユーザーが許可した段階だけ `v0000_template.cpp` に反映する。
 
-8. 各反映後に `./scripts/build_solver.sh v0000_template` を実行する。
+8. 各反映後に `junban run -c 1 ./scripts/build_solver.sh v0000_template` を実行する。
 
 ## しないこと
 

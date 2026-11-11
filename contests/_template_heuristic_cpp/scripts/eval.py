@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import fcntl
 import json
 import math
 import os
@@ -16,12 +15,11 @@ import sys
 import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime
 from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
-from typing import Iterator, Optional
+from typing import Optional
 
 from local_config import LocalProfile, describe_profile, load_profile
 from eval_records import records_path
@@ -35,8 +33,6 @@ TOOLS_BIN_DIR = ROOT_DIR / "tools" / "target" / "release"
 DEFAULT_INPUT_DIR = ROOT_DIR / "tools" / "in"
 SUMMARY_CSV = ROOT_DIR / "results" / "score_summary.csv"
 DETAIL_CSV = ROOT_DIR / "results" / "score_detail.csv"
-EVAL_LOCK = ROOT_DIR / "results" / ".eval.lock"
-LOCK_BUSY_EXIT_CODE = 75
 # 問題文の実行時間制限 (秒)。コンテストごとに合わせる。
 PROBLEM_TIME_LIMIT_SEC = 2.0
 # 時間切れは solver が報告する process CPU 時間で判定する。実時間の打ち切りは、並列評価で CPU を
@@ -130,11 +126,6 @@ def parse_args() -> argparse.Namespace:
         "--no-local",
         action="store_true",
         help="Build the solver without the LOCAL macro for production-like behavior",
-    )
-    parser.add_argument(
-        "--wait-lock",
-        action="store_true",
-        help="Wait for another eval.py to finish instead of exiting immediately",
     )
     args = parser.parse_args()
     if args.jobs is not None and args.jobs < 1:
@@ -263,56 +254,6 @@ def append_jsonl(path: Path, records: list[dict[str, object]]) -> None:
         for record in records:
             handle.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")))
             handle.write("\n")
-
-
-def make_lock_record(args: argparse.Namespace, normalized_input_dir: str) -> str:
-    record = {
-        "pid": os.getpid(),
-        "bin": args.bin_name,
-        "jobs": args.jobs,
-        "input_dir": normalized_input_dir,
-        "started_at": datetime.now().astimezone().isoformat(timespec="seconds"),
-    }
-    return json.dumps(record, ensure_ascii=False, separators=(",", ":"))
-
-
-@contextmanager
-def acquire_eval_lock(
-    args: argparse.Namespace,
-    normalized_input_dir: str,
-) -> Iterator[None]:
-    EVAL_LOCK.parent.mkdir(parents=True, exist_ok=True)
-    with EVAL_LOCK.open("a+", encoding="utf-8") as handle:
-        try:
-            fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError:
-            handle.seek(0)
-            owner = handle.read().strip()
-            if not args.wait_lock:
-                eprint("eval: another eval.py is already running.")
-                if owner:
-                    eprint(f"eval: running eval: {owner}")
-                eprint(
-                    "eval: exit without running. "
-                    "Use --wait-lock to wait for the current eval to finish."
-                )
-                raise SystemExit(LOCK_BUSY_EXIT_CODE)
-
-            eprint("eval: another eval.py is already running; waiting...")
-            if owner:
-                eprint(f"eval: running eval: {owner}")
-            fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
-
-        handle.seek(0)
-        handle.truncate()
-        handle.write(make_lock_record(args, normalized_input_dir) + "\n")
-        handle.flush()
-        os.fsync(handle.fileno())
-
-        try:
-            yield
-        finally:
-            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
 def compute_detail_header() -> list[str]:
@@ -632,7 +573,7 @@ def make_records(
     return records
 
 
-def run_eval_locked(
+def run_eval(
     args: argparse.Namespace,
     input_files: list[Path],
     normalized_input_dir: str,
@@ -759,8 +700,17 @@ def run_eval_locked(
     return 0
 
 
+def require_junban() -> None:
+    # 評価がほかの計算と同時に走ると実行時間の計測がぶれるため、junban を通さない実行を拒否する。
+    if "JUNBAN_JOB_ID" not in os.environ:
+        raise SystemExit(
+            "error: eval.py must be run through junban: junban run scripts/eval.py ... (without -c)"
+        )
+
+
 def main() -> int:
     args = parse_args()
+    require_junban()
     profile = load_profile(args.profile)
     eprint(describe_profile(profile))
     if args.jobs is None:
@@ -783,15 +733,14 @@ def main() -> int:
     is_tools_in = input_dir == DEFAULT_INPUT_DIR.resolve()
     local_enabled = not args.no_local
 
-    with acquire_eval_lock(args, normalized_input_dir):
-        return run_eval_locked(
-            args=args,
-            input_files=input_files,
-            normalized_input_dir=normalized_input_dir,
-            is_tools_in=is_tools_in,
-            local_enabled=local_enabled,
-            profile=profile,
-        )
+    return run_eval(
+        args=args,
+        input_files=input_files,
+        normalized_input_dir=normalized_input_dir,
+        is_tools_in=is_tools_in,
+        local_enabled=local_enabled,
+        profile=profile,
+    )
 
 
 if __name__ == "__main__":
