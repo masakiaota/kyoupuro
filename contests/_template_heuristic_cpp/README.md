@@ -39,7 +39,11 @@ _template_heuristic_cpp/
 │   │   └── vNNNN.md              # 派生元、事前登録、判定、考察
 │   ├── backlog.md               # 検討を続ける案、問い、観察の台帳
 │   └── handoffs/                # 引き継ぎ文書
-├── results/                     # 評価ログと出力
+├── results/
+│   ├── score_summary.csv        # 評価の要約。1 評価 1 行
+│   ├── score_detail.csv         # tools/in のケース別スコア表
+│   ├── eval_records/            # 評価セット別の記録。1 ケース 1 行
+│   └── out/<bin_name>/          # 最新の評価の出力
 └── tools/                       # 公式 generator / tester / scorer の展開先
 ```
 
@@ -91,6 +95,8 @@ junban ls
 ./scripts/eval.py --help
 ./scripts/unpack_tools.sh ./tools.zip
 ```
+
+`run.sh` と `eval.py` は、`src/bin/` の solver と `adhoc/bin/` の補助コードを、どちらも bin 名で実行できる。`eval.py` の既定の入力は `tools/in`、出力先は `results/out/<bin_name>/` である。
 
 ## Visualizer の使い方
 
